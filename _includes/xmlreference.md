@@ -1,9 +1,10 @@
-<!-- generated with preCICE 3.2.0 -->
+<!-- generated with preCICE 3.3.0 -->
 # precice-configuration
 
 Main tag containing preCICE configuration.
 
 **Example:**  
+
 ```xml
 <precice-configuration experimental="false" allow-remeshing="false" wait-in-finalize="false">
   <log enabled="true">
@@ -56,6 +57,7 @@ Main tag containing preCICE configuration.
 Configures logging sinks based on Boost log.
 
 **Example:**  
+
 ```xml
 <log enabled="true">
   <sink type="stream" output="stdout" format="(%Rank%) %TimeStamp(format="%H:%M:%S")% [%Module%]:%Line% in %Function%: %ColorizedSeverity%%Message%" filter="(%Severity% > debug) and not ((%Severity% = info) and (%Rank% != 0))" enabled="true"/>
@@ -76,6 +78,7 @@ Configures logging sinks based on Boost log.
 Contains the configuration of a single log sink, which allows fine grained control of what to log where. Available attributes in filter and format strings are `%TimeStamp%`, `%Runtime%`, `%Severity%`, `%ColorizedSeverity%`, `%File%`, `%Line%`, `%Function%`, `%Module%`, `%Rank%`, and `%Participant%`. The boolean attribute `%preCICE%` is `true` for all log entries originating from preCICE.
 
 **Example:**  
+
 ```xml
 <sink type="stream" output="stdout" format="(%Rank%) %TimeStamp(format="%H:%M:%S")% [%Module%]:%Line% in %Function%: %ColorizedSeverity%%Message%" filter="(%Severity% > debug) and not ((%Severity% = info) and (%Rank% != 0))" enabled="true"/>
 ```
@@ -97,14 +100,15 @@ Contains the configuration of a single log sink, which allows fine grained contr
 Allows configuring the profiling functionality of preCICE.
 
 **Example:**  
+
 ```xml
 <profiling mode="fundamental" flush-every="50" directory="." synchronize="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| mode | string | Operational modes of the profiling. "fundamental" will only write fundamental events. "all" writes all events. | `fundamental` | `all`, `fundamental`, `off` |
-| flush-every | integer | Set the amount of event records that should be kept in memory before flushing them to file. One event consists out of multiple records.0 keeps all records in memory and writes them at the end of the program, useful for slower network filesystems. 1 writes records directly to the file, useful to get profiling data despite program crashes. Settings greater than 1 keep records in memory and write them to file in blocks, which is recommended. | `50` | none |
+| mode | string | Operational modes of the profiling. "fundamental" will only write fundamental steering events. "api" will write events of the complete API. "all" writes all events. | `fundamental` | `all`, `api`, `fundamental`, `off` |
+| flush-every | integer | Set the amount of event records that should be kept in memory before flushing them to file. One event consists out of multiple records. 0 keeps all records in memory and writes them at the end of the program, useful for slower network filesystems. 1 writes records directly to the file, useful to get profiling data despite program crashes. Settings greater than 1 keep records in memory and write them to file in blocks, which is recommended. | `50` | none |
 | directory | string | Directory to use as a root directory to  write the events to. Events will be written to `<directory>/precice-profiling/` | `.` | none |
 | synchronize | boolean | Enables additional inter- and intra-participant synchronization points. This avoids measuring blocking time for communication and other collective operations. | `false` | none |
 
@@ -115,6 +119,7 @@ Allows configuring the profiling functionality of preCICE.
 Defines a scalar data set to be assigned to meshes.
 
 **Example:**  
+
 ```xml
 <data:scalar name="{string}" waveform-degree="1"/>
 ```
@@ -131,6 +136,7 @@ Defines a scalar data set to be assigned to meshes.
 Defines a vector data set to be assigned to meshes. The number of components of each data entry depends on the spatial dimensions of the mesh.
 
 **Example:**  
+
 ```xml
 <data:vector name="{string}" waveform-degree="1"/>
 ```
@@ -147,6 +153,7 @@ Defines a vector data set to be assigned to meshes. The number of components of 
 Surface mesh consisting of vertices and optional connectivity information. The vertices of a mesh can carry data, configured by tags <use-data>. The mesh coordinates have to be defined by a participant (see tag <provide-mesh>).
 
 **Example:**  
+
 ```xml
 <mesh name="{string}" dimensions="{integer}">
   <use-data name="{string}"/>
@@ -168,6 +175,7 @@ Surface mesh consisting of vertices and optional connectivity information. The v
 Assigns a before defined data set (see tag <data>) to the mesh.
 
 **Example:**  
+
 ```xml
 <use-data name="{string}"/>
 ```
@@ -185,6 +193,7 @@ Assigns a before defined data set (see tag <data>) to the mesh.
 Communication via Sockets.
 
 **Example:**  
+
 ```xml
 <m2n:sockets port="0" network="lo" exchange-directory="." acceptor="{string}" connector="{string}" enforce-gather-scatter="false" use-two-level-initialization="false"/>
 ```
@@ -206,6 +215,7 @@ Communication via Sockets.
 Communication via MPI with startup in separated communication spaces, using multiple communicators.
 
 **Example:**  
+
 ```xml
 <m2n:mpi-multiple-ports exchange-directory="." acceptor="{string}" connector="{string}" enforce-gather-scatter="false" use-two-level-initialization="false"/>
 ```
@@ -225,6 +235,7 @@ Communication via MPI with startup in separated communication spaces, using mult
 Communication via MPI with startup in separated communication spaces, using a single communicator
 
 **Example:**  
+
 ```xml
 <m2n:mpi exchange-directory="." acceptor="{string}" connector="{string}" enforce-gather-scatter="false" use-two-level-initialization="false"/>
 ```
@@ -244,6 +255,7 @@ Communication via MPI with startup in separated communication spaces, using a si
 Represents one solver using preCICE. At least two participants have to be defined.
 
 **Example:**  
+
 ```xml
 <participant name="{string}">
   <write-data name="{string}" mesh="{string}"/>
@@ -252,7 +264,7 @@ Represents one solver using preCICE. At least two participants have to be define
   <action:multiply-by-area timing="{string}" mesh="{string}">
     ...
   </action:multiply-by-area>
-  <export:vtk directory="." every-n-time-windows="1" every-iteration="false"/>
+  <export:vtk directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
   <watch-point name="{string}" mesh="{string}" coordinate="{vector}"/>
   <watch-integral name="{string}" mesh="{string}" scale-with-connectivity="{boolean}"/>
   <provide-mesh name="{string}"/>
@@ -305,6 +317,7 @@ Represents one solver using preCICE. At least two participants have to be define
 Sets data to be written by the participant to preCICE. Data is defined by using the <data> tag.
 
 **Example:**  
+
 ```xml
 <write-data name="{string}" mesh="{string}"/>
 ```
@@ -321,6 +334,7 @@ Sets data to be written by the participant to preCICE. Data is defined by using 
 Sets data to be read by the participant from preCICE. Data is defined by using the <data> tag.
 
 **Example:**  
+
 ```xml
 <read-data name="{string}" mesh="{string}"/>
 ```
@@ -337,6 +351,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes and run nearest-neighbour queries.
 
 **Example:**  
+
 ```xml
 <mapping:nearest-neighbor from="" to="" direction="{string}" constraint="{string}"/>
 ```
@@ -355,6 +370,7 @@ Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes 
 Nearest-projection mapping which uses a rstar-spacial index tree to index meshes and locate the nearest projections.
 
 **Example:**  
+
 ```xml
 <mapping:nearest-projection from="" to="" direction="{string}" constraint="{string}"/>
 ```
@@ -373,6 +389,7 @@ Nearest-projection mapping which uses a rstar-spacial index tree to index meshes
 Nearest-neighbor-gradient mapping which uses nearest-neighbor mapping with an additional linear approximation using gradient data.
 
 **Example:**  
+
 ```xml
 <mapping:nearest-neighbor-gradient from="" to="" direction="{string}" constraint="{string}"/>
 ```
@@ -391,6 +408,7 @@ Nearest-neighbor-gradient mapping which uses nearest-neighbor mapping with an ad
 Linear cell interpolation mapping which uses a rstar-spacial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.
 
 **Example:**  
+
 ```xml
 <mapping:linear-cell-interpolation from="" to="" direction="{string}" constraint="{string}"/>
 ```
@@ -409,6 +427,7 @@ Linear cell interpolation mapping which uses a rstar-spacial index tree to index
 Radial-basis-function mapping using an iterative solver with a distributed parallelism.
 
 **Example:**  
+
 ```xml
 <mapping:rbf-global-iterative from="" to="" direction="{string}" constraint="{string}" polynomial="separate" x-dead="false" y-dead="false" z-dead="false" solver-rtol="1e-09">
   <executor:cpu/>
@@ -454,6 +473,7 @@ Radial-basis-function mapping using an iterative solver with a distributed paral
 The default executor relying on PETSc, which uses CPUs and distributed memory parallelism via MPI.
 
 **Example:**  
+
 ```xml
 <executor:cpu/>
 ```
@@ -465,6 +485,7 @@ The default executor relying on PETSc, which uses CPUs and distributed memory pa
 Cuda (Nvidia) executor, which uses Ginkgo with a gather-scatter parallelism.
 
 **Example:**  
+
 ```xml
 <executor:cuda gpu-device-id="0"/>
 ```
@@ -480,6 +501,7 @@ Cuda (Nvidia) executor, which uses Ginkgo with a gather-scatter parallelism.
 Hip (AMD/Nvidia) executor, which uses hipSolver with a gather-scatter parallelism.
 
 **Example:**  
+
 ```xml
 <executor:hip gpu-device-id="0"/>
 ```
@@ -495,6 +517,7 @@ Hip (AMD/Nvidia) executor, which uses hipSolver with a gather-scatter parallelis
 OpenMP executor, which uses Ginkgo with a gather-scatter parallelism.
 
 **Example:**  
+
 ```xml
 <executor:openmp n-threads="0"/>
 ```
@@ -510,6 +533,7 @@ OpenMP executor, which uses Ginkgo with a gather-scatter parallelism.
 Wendland C0 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c0 support-radius="{float}"/>
 ```
@@ -525,6 +549,7 @@ Wendland C0 function
 Wendland C2 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c2 support-radius="{float}"/>
 ```
@@ -540,6 +565,7 @@ Wendland C2 function
 Wendland C4 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c4 support-radius="{float}"/>
 ```
@@ -555,6 +581,7 @@ Wendland C4 function
 Wendland C6 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c6 support-radius="{float}"/>
 ```
@@ -570,6 +597,7 @@ Wendland C6 function
 Wendland C8 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c8 support-radius="{float}"/>
 ```
@@ -585,6 +613,7 @@ Wendland C8 function
 Compact thin-plate-spline C2
 
 **Example:**  
+
 ```xml
 <basis-function:compact-tps-c2 support-radius="{float}"/>
 ```
@@ -600,6 +629,7 @@ Compact thin-plate-spline C2
 Multiquadrics
 
 **Example:**  
+
 ```xml
 <basis-function:multiquadrics shape-parameter="{float}"/>
 ```
@@ -615,6 +645,7 @@ Multiquadrics
 Inverse multiquadrics
 
 **Example:**  
+
 ```xml
 <basis-function:inverse-multiquadrics shape-parameter="{float}"/>
 ```
@@ -630,6 +661,7 @@ Inverse multiquadrics
 Gaussian basis function accepting a support radius or a shape parameter.
 
 **Example:**  
+
 ```xml
 <basis-function:gaussian shape-parameter="nan" support-radius="nan"/>
 ```
@@ -646,6 +678,7 @@ Gaussian basis function accepting a support radius or a shape parameter.
 Thin-plate-splines
 
 **Example:**  
+
 ```xml
 <basis-function:thin-plate-splines/>
 ```
@@ -657,6 +690,7 @@ Thin-plate-splines
 Volume splines
 
 **Example:**  
+
 ```xml
 <basis-function:volume-splines/>
 ```
@@ -670,6 +704,7 @@ Volume splines
 Radial-basis-function mapping using a direct solver with a gather-scatter parallelism.
 
 **Example:**  
+
 ```xml
 <mapping:rbf-global-direct from="" to="" direction="{string}" constraint="{string}" polynomial="separate" x-dead="false" y-dead="false" z-dead="false">
   <executor:cpu/>
@@ -713,6 +748,7 @@ Radial-basis-function mapping using a direct solver with a gather-scatter parall
 The default executor, which uses a single-core CPU with a gather-scatter parallelism.
 
 **Example:**  
+
 ```xml
 <executor:cpu/>
 ```
@@ -724,6 +760,7 @@ The default executor, which uses a single-core CPU with a gather-scatter paralle
 Cuda (Nvidia) executor, which uses cuSolver/Ginkgo and a direct QR decomposition with a gather-scatter parallelism.
 
 **Example:**  
+
 ```xml
 <executor:cuda gpu-device-id="0"/>
 ```
@@ -739,6 +776,7 @@ Cuda (Nvidia) executor, which uses cuSolver/Ginkgo and a direct QR decomposition
 Hip (AMD/Nvidia) executor, which uses hipSolver/Ginkgo and a direct QR decomposition with a gather-scatter parallelism.
 
 **Example:**  
+
 ```xml
 <executor:hip gpu-device-id="0"/>
 ```
@@ -754,6 +792,7 @@ Hip (AMD/Nvidia) executor, which uses hipSolver/Ginkgo and a direct QR decomposi
 Wendland C0 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c0 support-radius="{float}"/>
 ```
@@ -769,6 +808,7 @@ Wendland C0 function
 Wendland C2 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c2 support-radius="{float}"/>
 ```
@@ -784,6 +824,7 @@ Wendland C2 function
 Wendland C4 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c4 support-radius="{float}"/>
 ```
@@ -799,6 +840,7 @@ Wendland C4 function
 Wendland C6 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c6 support-radius="{float}"/>
 ```
@@ -814,6 +856,7 @@ Wendland C6 function
 Wendland C8 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c8 support-radius="{float}"/>
 ```
@@ -829,6 +872,7 @@ Wendland C8 function
 Compact thin-plate-spline C2
 
 **Example:**  
+
 ```xml
 <basis-function:compact-tps-c2 support-radius="{float}"/>
 ```
@@ -844,6 +888,7 @@ Compact thin-plate-spline C2
 Multiquadrics
 
 **Example:**  
+
 ```xml
 <basis-function:multiquadrics shape-parameter="{float}"/>
 ```
@@ -859,6 +904,7 @@ Multiquadrics
 Inverse multiquadrics
 
 **Example:**  
+
 ```xml
 <basis-function:inverse-multiquadrics shape-parameter="{float}"/>
 ```
@@ -874,6 +920,7 @@ Inverse multiquadrics
 Gaussian basis function accepting a support radius or a shape parameter.
 
 **Example:**  
+
 ```xml
 <basis-function:gaussian shape-parameter="nan" support-radius="nan"/>
 ```
@@ -890,6 +937,7 @@ Gaussian basis function accepting a support radius or a shape parameter.
 Thin-plate-splines
 
 **Example:**  
+
 ```xml
 <basis-function:thin-plate-splines/>
 ```
@@ -901,6 +949,7 @@ Thin-plate-splines
 Volume splines
 
 **Example:**  
+
 ```xml
 <basis-function:volume-splines/>
 ```
@@ -914,6 +963,7 @@ Volume splines
 Radial-basis-function mapping using a partition of unity method, which supports a distributed parallelism.
 
 **Example:**  
+
 ```xml
 <mapping:rbf-pum-direct from="" to="" direction="{string}" constraint="{string}" polynomial="separate" vertices-per-cluster="50" relative-overlap="0.15" project-to-input="true">
   <executor:cpu/>
@@ -955,6 +1005,7 @@ Radial-basis-function mapping using a partition of unity method, which supports 
 The default (and currently only) executor using a CPU and a distributed memory parallelism via MPI.
 
 **Example:**  
+
 ```xml
 <executor:cpu/>
 ```
@@ -966,6 +1017,7 @@ The default (and currently only) executor using a CPU and a distributed memory p
 Wendland C0 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c0 support-radius="{float}"/>
 ```
@@ -981,6 +1033,7 @@ Wendland C0 function
 Wendland C2 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c2 support-radius="{float}"/>
 ```
@@ -996,6 +1049,7 @@ Wendland C2 function
 Wendland C4 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c4 support-radius="{float}"/>
 ```
@@ -1011,6 +1065,7 @@ Wendland C4 function
 Wendland C6 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c6 support-radius="{float}"/>
 ```
@@ -1026,6 +1081,7 @@ Wendland C6 function
 Wendland C8 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c8 support-radius="{float}"/>
 ```
@@ -1041,6 +1097,7 @@ Wendland C8 function
 Compact thin-plate-spline C2
 
 **Example:**  
+
 ```xml
 <basis-function:compact-tps-c2 support-radius="{float}"/>
 ```
@@ -1056,6 +1113,7 @@ Compact thin-plate-spline C2
 Multiquadrics
 
 **Example:**  
+
 ```xml
 <basis-function:multiquadrics shape-parameter="{float}"/>
 ```
@@ -1071,6 +1129,7 @@ Multiquadrics
 Inverse multiquadrics
 
 **Example:**  
+
 ```xml
 <basis-function:inverse-multiquadrics shape-parameter="{float}"/>
 ```
@@ -1086,6 +1145,7 @@ Inverse multiquadrics
 Gaussian basis function accepting a support radius or a shape parameter.
 
 **Example:**  
+
 ```xml
 <basis-function:gaussian shape-parameter="nan" support-radius="nan"/>
 ```
@@ -1102,6 +1162,7 @@ Gaussian basis function accepting a support radius or a shape parameter.
 Thin-plate-splines
 
 **Example:**  
+
 ```xml
 <basis-function:thin-plate-splines/>
 ```
@@ -1113,6 +1174,7 @@ Thin-plate-splines
 Volume splines
 
 **Example:**  
+
 ```xml
 <basis-function:volume-splines/>
 ```
@@ -1126,6 +1188,7 @@ Volume splines
 Alias tag, which auto-selects a radial-basis-function mapping depending on the simulation parameter,
 
 **Example:**  
+
 ```xml
 <mapping:rbf from="" to="" direction="{string}" constraint="{string}" x-dead="false" y-dead="false" z-dead="false">
   <basis-function:compact-polynomial-c0 support-radius="{float}"/>
@@ -1163,6 +1226,7 @@ Alias tag, which auto-selects a radial-basis-function mapping depending on the s
 Wendland C0 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c0 support-radius="{float}"/>
 ```
@@ -1178,6 +1242,7 @@ Wendland C0 function
 Wendland C2 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c2 support-radius="{float}"/>
 ```
@@ -1193,6 +1258,7 @@ Wendland C2 function
 Wendland C4 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c4 support-radius="{float}"/>
 ```
@@ -1208,6 +1274,7 @@ Wendland C4 function
 Wendland C6 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c6 support-radius="{float}"/>
 ```
@@ -1223,6 +1290,7 @@ Wendland C6 function
 Wendland C8 function
 
 **Example:**  
+
 ```xml
 <basis-function:compact-polynomial-c8 support-radius="{float}"/>
 ```
@@ -1238,6 +1306,7 @@ Wendland C8 function
 Compact thin-plate-spline C2
 
 **Example:**  
+
 ```xml
 <basis-function:compact-tps-c2 support-radius="{float}"/>
 ```
@@ -1253,6 +1322,7 @@ Compact thin-plate-spline C2
 Multiquadrics
 
 **Example:**  
+
 ```xml
 <basis-function:multiquadrics shape-parameter="{float}"/>
 ```
@@ -1268,6 +1338,7 @@ Multiquadrics
 Inverse multiquadrics
 
 **Example:**  
+
 ```xml
 <basis-function:inverse-multiquadrics shape-parameter="{float}"/>
 ```
@@ -1283,6 +1354,7 @@ Inverse multiquadrics
 Gaussian basis function accepting a support radius or a shape parameter.
 
 **Example:**  
+
 ```xml
 <basis-function:gaussian shape-parameter="nan" support-radius="nan"/>
 ```
@@ -1299,6 +1371,7 @@ Gaussian basis function accepting a support radius or a shape parameter.
 Thin-plate-splines
 
 **Example:**  
+
 ```xml
 <basis-function:thin-plate-splines/>
 ```
@@ -1310,6 +1383,7 @@ Thin-plate-splines
 Volume splines
 
 **Example:**  
+
 ```xml
 <basis-function:volume-splines/>
 ```
@@ -1323,6 +1397,7 @@ Volume splines
 Axial geometric multiscale mapping between one 1D and multiple 3D vertices.
 
 **Example:**  
+
 ```xml
 <mapping:axial-geometric-multiscale from="" to="" direction="{string}" constraint="{string}" multiscale-type="{string}" multiscale-axis="{string}" multiscale-radius="{float}"/>
 ```
@@ -1344,6 +1419,7 @@ Axial geometric multiscale mapping between one 1D and multiple 3D vertices.
 Radial geometric multiscale mapping between multiple 1D and multiple 3D vertices, distributed along a principle axis.
 
 **Example:**  
+
 ```xml
 <mapping:radial-geometric-multiscale from="" to="" direction="{string}" constraint="{string}" multiscale-type="{string}" multiscale-axis="{string}" multiscale-radius="{float}"/>
 ```
@@ -1365,6 +1441,7 @@ Radial geometric multiscale mapping between multiple 1D and multiple 3D vertices
 Multiplies data values with mesh area associated to vertex holding the value.
 
 **Example:**  
+
 ```xml
 <action:multiply-by-area timing="{string}" mesh="{string}">
   <target-data name="{string}"/>
@@ -1386,6 +1463,7 @@ Multiplies data values with mesh area associated to vertex holding the value.
 Data to read from and write to.
 
 **Example:**  
+
 ```xml
 <target-data name="{string}"/>
 ```
@@ -1403,6 +1481,7 @@ Data to read from and write to.
 Divides data values by mesh area associated to vertex holding the value.
 
 **Example:**  
+
 ```xml
 <action:divide-by-area timing="{string}" mesh="{string}">
   <target-data name="{string}"/>
@@ -1424,6 +1503,7 @@ Divides data values by mesh area associated to vertex holding the value.
 Data to read from and write to.
 
 **Example:**  
+
 ```xml
 <target-data name="{string}"/>
 ```
@@ -1441,6 +1521,7 @@ Data to read from and write to.
 Sums up multiple source data values and writes the result into target data.
 
 **Example:**  
+
 ```xml
 <action:summation timing="{string}" mesh="{string}">
   <source-data name="{string}"/>
@@ -1464,6 +1545,7 @@ Sums up multiple source data values and writes the result into target data.
 Multiple data to read from.
 
 **Example:**  
+
 ```xml
 <source-data name="{string}"/>
 ```
@@ -1479,6 +1561,7 @@ Multiple data to read from.
 Data to read from and write to.
 
 **Example:**  
+
 ```xml
 <target-data name="{string}"/>
 ```
@@ -1496,6 +1579,7 @@ Data to read from and write to.
 Records action invocations for testing purposes.
 
 **Example:**  
+
 ```xml
 <action:recorder timing="{string}" mesh="{string}"/>
 ```
@@ -1512,6 +1596,7 @@ Records action invocations for testing purposes.
 Calls Python script to execute action. See preCICE file "src/action/PythonAction.py" for an example.
 
 **Example:**  
+
 ```xml
 <action:python timing="{string}" mesh="{string}">
   <path name=""/>
@@ -1539,6 +1624,7 @@ Calls Python script to execute action. See preCICE file "src/action/PythonAction
 Directory path to Python module, i.e. script file. If it doesn't occur, the current path is used
 
 **Example:**  
+
 ```xml
 <path name=""/>
 ```
@@ -1554,6 +1640,7 @@ Directory path to Python module, i.e. script file. If it doesn't occur, the curr
 Name of Python module, i.e. Python script file without file ending. The module name has to differ from existing (library) modules, otherwise, the existing module will be loaded instead of the user script.
 
 **Example:**  
+
 ```xml
 <module name="{string}"/>
 ```
@@ -1569,6 +1656,7 @@ Name of Python module, i.e. Python script file without file ending. The module n
 Source data to be read is handed to the Python module. Can be omitted, if only a target data is needed.
 
 **Example:**  
+
 ```xml
 <source-data name="{string}"/>
 ```
@@ -1584,6 +1672,7 @@ Source data to be read is handed to the Python module. Can be omitted, if only a
 Target data to be read and written to is handed to the Python module. Can be omitted, if only source data is needed.
 
 **Example:**  
+
 ```xml
 <target-data name="{string}"/>
 ```
@@ -1601,8 +1690,9 @@ Target data to be read and written to is handed to the Python module. Can be omi
 Exports meshes to VTK legacy format files. Parallel participants will use the VTU exporter instead.
 
 **Example:**  
+
 ```xml
-<export:vtk directory="." every-n-time-windows="1" every-iteration="false"/>
+<export:vtk directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1610,6 +1700,7 @@ Exports meshes to VTK legacy format files. Parallel participants will use the VT
 | directory | string | Directory to export the files to. | `.` | none |
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `false` | none |
+| update-series | boolean | Update the series file after every export instead of at the end of the simulation. | `false` | none |
 
 
 
@@ -1618,8 +1709,9 @@ Exports meshes to VTK legacy format files. Parallel participants will use the VT
 Exports meshes to VTU files in serial or PVTU files with VTU piece files in parallel.
 
 **Example:**  
+
 ```xml
-<export:vtu directory="." every-n-time-windows="1" every-iteration="false"/>
+<export:vtu directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1627,6 +1719,7 @@ Exports meshes to VTU files in serial or PVTU files with VTU piece files in para
 | directory | string | Directory to export the files to. | `.` | none |
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `false` | none |
+| update-series | boolean | Update the series file after every export instead of at the end of the simulation. | `false` | none |
 
 
 
@@ -1635,8 +1728,9 @@ Exports meshes to VTU files in serial or PVTU files with VTU piece files in para
 Exports meshes to VTP files in serial or PVTP files with VTP piece files in parallel.
 
 **Example:**  
+
 ```xml
-<export:vtp directory="." every-n-time-windows="1" every-iteration="false"/>
+<export:vtp directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1644,6 +1738,7 @@ Exports meshes to VTP files in serial or PVTP files with VTP piece files in para
 | directory | string | Directory to export the files to. | `.` | none |
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `false` | none |
+| update-series | boolean | Update the series file after every export instead of at the end of the simulation. | `false` | none |
 
 
 
@@ -1652,8 +1747,9 @@ Exports meshes to VTP files in serial or PVTP files with VTP piece files in para
 Exports vertex coordinates and data to CSV files.
 
 **Example:**  
+
 ```xml
-<export:csv directory="." every-n-time-windows="1" every-iteration="false"/>
+<export:csv directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1661,6 +1757,7 @@ Exports vertex coordinates and data to CSV files.
 | directory | string | Directory to export the files to. | `.` | none |
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `false` | none |
+| update-series | boolean | Update the series file after every export instead of at the end of the simulation. | `false` | none |
 
 
 
@@ -1669,6 +1766,7 @@ Exports vertex coordinates and data to CSV files.
 A watch point can be used to follow the transient changes of data and mesh vertex coordinates at a given point
 
 **Example:**  
+
 ```xml
 <watch-point name="{string}" mesh="{string}" coordinate="{vector}"/>
 ```
@@ -1686,6 +1784,7 @@ A watch point can be used to follow the transient changes of data and mesh verte
 A watch integral can be used to follow the transient change of integral data and surface area for a given coupling mesh.
 
 **Example:**  
+
 ```xml
 <watch-integral name="{string}" mesh="{string}" scale-with-connectivity="{boolean}"/>
 ```
@@ -1703,6 +1802,7 @@ A watch integral can be used to follow the transient change of integral data and
 Provide a mesh (see tag `<mesh>`) to other participants.
 
 **Example:**  
+
 ```xml
 <provide-mesh name="{string}"/>
 ```
@@ -1718,6 +1818,7 @@ Provide a mesh (see tag `<mesh>`) to other participants.
 Makes a remote mesh (see tag `<mesh>`) available to this participant.
 
 **Example:**  
+
 ```xml
 <receive-mesh name="{string}" api-access="false" direct-access="false" geometric-filter="on-secondary-ranks" from="{string}" safety-factor="0.5"/>
 ```
@@ -1738,6 +1839,7 @@ Makes a remote mesh (see tag `<mesh>`) available to this participant.
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.
 
 **Example:**  
+
 ```xml
 <intra-comm:sockets port="0" network="lo" exchange-directory="."/>
 ```
@@ -1755,6 +1857,7 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.
 
 **Example:**  
+
 ```xml
 <intra-comm:mpi exchange-directory="."/>
 ```
@@ -1772,6 +1875,7 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 Explicit coupling scheme according to conventional serial staggered procedure (CSS).
 
 **Example:**  
+
 ```xml
 <coupling-scheme:serial-explicit>
   <max-time value="{float}"/>
@@ -1796,6 +1900,7 @@ Explicit coupling scheme according to conventional serial staggered procedure (C
 Defined the end of the simulation as total time.
 
 **Example:**  
+
 ```xml
 <max-time value="{float}"/>
 ```
@@ -1811,6 +1916,7 @@ Defined the end of the simulation as total time.
 Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
+
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -1826,6 +1932,7 @@ Defined the end of the simulation as a total count of time windows.
 Defines the size of the time window.
 
 **Example:**  
+
 ```xml
 <time-window-size value="-1" method="fixed"/>
 ```
@@ -1842,6 +1949,7 @@ Defines the size of the time window.
 Defines the participants of the coupling scheme.
 
 **Example:**  
+
 ```xml
 <participants first="{string}" second="{string}"/>
 ```
@@ -1858,6 +1966,7 @@ Defines the participants of the coupling scheme.
 Defines the flow of data between meshes of participants.
 
 **Example:**  
+
 ```xml
 <exchange data="{string}" mesh="{string}" from="{string}" to="{string}" initialize="false" substeps="false"/>
 ```
@@ -1880,6 +1989,7 @@ Defines the flow of data between meshes of participants.
 Explicit coupling scheme according to conventional parallel staggered procedure (CPS).
 
 **Example:**  
+
 ```xml
 <coupling-scheme:parallel-explicit>
   <max-time value="{float}"/>
@@ -1904,6 +2014,7 @@ Explicit coupling scheme according to conventional parallel staggered procedure 
 Defined the end of the simulation as total time.
 
 **Example:**  
+
 ```xml
 <max-time value="{float}"/>
 ```
@@ -1919,6 +2030,7 @@ Defined the end of the simulation as total time.
 Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
+
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -1934,6 +2046,7 @@ Defined the end of the simulation as a total count of time windows.
 Defines the size of the time window.
 
 **Example:**  
+
 ```xml
 <time-window-size value="-1"/>
 ```
@@ -1949,6 +2062,7 @@ Defines the size of the time window.
 Defines the participants of the coupling scheme.
 
 **Example:**  
+
 ```xml
 <participants first="{string}" second="{string}"/>
 ```
@@ -1965,6 +2079,7 @@ Defines the participants of the coupling scheme.
 Defines the flow of data between meshes of participants.
 
 **Example:**  
+
 ```xml
 <exchange data="{string}" mesh="{string}" from="{string}" to="{string}" initialize="false" substeps="false"/>
 ```
@@ -1987,6 +2102,7 @@ Defines the flow of data between meshes of participants.
 Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). Improved implicit iterations are achieved by using a acceleration (recommended!).
 
 **Example:**  
+
 ```xml
 <coupling-scheme:serial-implicit>
   <max-time value="{float}"/>
@@ -2031,6 +2147,7 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 Defined the end of the simulation as total time.
 
 **Example:**  
+
 ```xml
 <max-time value="{float}"/>
 ```
@@ -2046,6 +2163,7 @@ Defined the end of the simulation as total time.
 Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
+
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -2061,6 +2179,7 @@ Defined the end of the simulation as a total count of time windows.
 Defines the size of the time window.
 
 **Example:**  
+
 ```xml
 <time-window-size value="-1" method="fixed"/>
 ```
@@ -2077,6 +2196,7 @@ Defines the size of the time window.
 Defines the participants of the coupling scheme.
 
 **Example:**  
+
 ```xml
 <participants first="{string}" second="{string}"/>
 ```
@@ -2093,6 +2213,7 @@ Defines the participants of the coupling scheme.
 Defines the flow of data between meshes of participants.
 
 **Example:**  
+
 ```xml
 <exchange data="{string}" mesh="{string}" from="{string}" to="{string}" initialize="false" substeps="true"/>
 ```
@@ -2113,6 +2234,7 @@ Defines the flow of data between meshes of participants.
 Accelerates coupling data with constant underrelaxation.
 
 **Example:**  
+
 ```xml
 <acceleration:constant>
   <relaxation value="{float}"/>
@@ -2129,6 +2251,7 @@ Accelerates coupling data with constant underrelaxation.
 
 
 **Example:**  
+
 ```xml
 <relaxation value="{float}"/>
 ```
@@ -2146,6 +2269,7 @@ Accelerates coupling data with constant underrelaxation.
 Accelerates coupling data with dynamic Aitken under-relaxation.
 
 **Example:**  
+
 ```xml
 <acceleration:aitken>
   <initial-relaxation value="{float}"/>
@@ -2166,6 +2290,7 @@ Accelerates coupling data with dynamic Aitken under-relaxation.
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.5 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}"/>
 ```
@@ -2181,6 +2306,7 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -2195,9 +2321,10 @@ The data used to compute the acceleration.
 
 #### preconditioner
 
-To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
+To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" freeze-after="-1"/>
 ```
@@ -2216,13 +2343,14 @@ To improve the numerical stability of multiple data vectors a preconditioner can
 Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
 **Example:**  
+
 ```xml
 <acceleration:IQN-ILS reduced-time-grid="true">
   <initial-relaxation value="{float}" enforce="false"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
   <data scaling="1" name="{string}" mesh="{string}"/>
-  <filter limit="1e-16" type="{string}"/>
+  <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-ILS>
 ```
@@ -2246,6 +2374,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}" enforce="false"/>
 ```
@@ -2262,6 +2391,7 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the attribute value of 100 is used.
 
 **Example:**  
+
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -2277,6 +2407,7 @@ Maximum number of columns used in low-rank approximation of Jacobian. If this ta
 Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the default attribute value of 10 is used.
 
 **Example:**  
+
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -2292,6 +2423,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -2307,34 +2439,41 @@ The data used to compute the acceleration.
 #### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
- - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR1`: update QR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
+- `QR1-absolute`: update QR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+- `QR2`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR3`: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 **Example:**  
+
 ```xml
-<filter limit="1e-16" type="{string}"/>
+<filter limit="1e-16" type="QR3"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | limit | float | Limit eps of the filter. | `1e-16` | none |
-| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
+| type | string | Type of the filter. | `QR3` | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
 
 
 
 #### preconditioner
 
-To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. - A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. 
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.
+
+- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. 
  - A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
 - A residual preconditioner scales every acceleration data by the current residual.
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.
+
+If this tag is not provided, the residual-sum preconditioner is employed.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 ```
@@ -2342,8 +2481,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
-| update-on-threshold | boolean | To update the preconditioner weights after the first time window:- `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude.
-- `false`: The preconditioner weights are updated after every iteration. | `true` | none |
+| update-on-threshold | boolean | To update the preconditioner weights after the first time window: `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. `false`: The preconditioner weights are updated after every iteration. | `true` | none |
 | freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 
 
@@ -2355,6 +2493,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
 **Example:**  
+
 ```xml
 <acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
   <initial-relaxation value="{float}" enforce="false"/>
@@ -2362,7 +2501,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
   <data scaling="1" name="{string}" mesh="{string}"/>
-  <filter limit="1e-16" type="{string}"/>
+  <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-IMVJ>
 ```
@@ -2388,6 +2527,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}" enforce="false"/>
 ```
@@ -2401,15 +2541,10 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 
 #### imvj-restart-mode
 
-Type of IMVJ restart mode that is used:
-- `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
-- `RS-0`:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information
-- `RS-LS`:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-- `RS-SVD`:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.
-- `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
-If this tag is not provided, IMVJ runs in restart mode with SVD-method.
+Enable IMVJ Type of IMVJ restart mode that is used: `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian. `RS-0`: IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information. `RS-LS`: IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed. `RS-SVD`: IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated. `RS-SLIDE`: IMVJ runs in sliding window restart mode. If this tag is not provided, IMVJ runs in restart mode with SVD-method.
 
 **Example:**  
+
 ```xml
 <imvj-restart-mode type="RS-SVD" chunk-size="8" reused-time-windows-at-restart="8" truncation-threshold="0.0001"/>
 ```
@@ -2428,6 +2563,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.
 Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the default attribute value of 20 is used.
 
 **Example:**  
+
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -2443,6 +2579,7 @@ Maximum number of columns used in low-rank approximation of Jacobian. If this ta
 Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the attribute value of 0 is used.
 
 **Example:**  
+
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -2458,6 +2595,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -2473,34 +2611,41 @@ The data used to compute the acceleration.
 #### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
- - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR1`: update QR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
+- `QR1-absolute`: update QR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+- `QR2`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR3`: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 **Example:**  
+
 ```xml
-<filter limit="1e-16" type="{string}"/>
+<filter limit="1e-16" type="QR3"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | limit | float | Limit eps of the filter. | `1e-16` | none |
-| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
+| type | string | Type of the filter. | `QR3` | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
 
 
 
 #### preconditioner
 
-To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.
+
+- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
 - A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
 - A residual preconditioner scales every acceleration data by the current residual.
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.
+
+If this tag is not provided, the residual-sum preconditioner is employed.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 ```
@@ -2508,8 +2653,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
-| update-on-threshold | boolean | To update the preconditioner weights after the first time window:- `true`:  The preconditioner weights are only updated if the weights will change by more than one order of magnitude.
-- `false`: The preconditioner weights are updated after every iteration. | `true` | none |
+| update-on-threshold | boolean | To update the preconditioner weights after the first time window: `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. `false`: The preconditioner weights are updated after every iteration. | `true` | none |
 | freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 
 
@@ -2522,6 +2666,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
 **Example:**  
+
 ```xml
 <absolute-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -2538,9 +2683,10 @@ Absolute convergence criterion based on the two-norm difference of data values b
 
 ### absolute-or-relative-convergence-measure
 
-Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled.\$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{rel-limit} \$$  
+Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled. \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{rel-limit} \$$  
 
 **Example:**  
+
 ```xml
 <absolute-or-relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" abs-limit="{float}" rel-limit="{float}"/>
 ```
@@ -2562,6 +2708,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
 **Example:**  
+
 ```xml
 <relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -2582,6 +2729,7 @@ Relative convergence criterion comparing the currently measured residual to the 
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right\rVert_2} < \text{limit}\$$
 
 **Example:**  
+
 ```xml
 <residual-relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -2601,6 +2749,7 @@ Relative convergence criterion comparing the currently measured residual to the 
 Allows to specify a minimum amount of iterations that must be performed per time window.
 
 **Example:**  
+
 ```xml
 <min-iterations value="{integer}"/>
 ```
@@ -2616,6 +2765,7 @@ Allows to specify a minimum amount of iterations that must be performed per time
 Allows to specify a maximum amount of iterations per time window.
 
 **Example:**  
+
 ```xml
 <max-iterations value="{integer}"/>
 ```
@@ -2633,6 +2783,7 @@ Allows to specify a maximum amount of iterations per time window.
 Parallel Implicit coupling scheme according to block Jacobi iterations (V-System). Improved implicit iterations are achieved by using a acceleration (recommended!).
 
 **Example:**  
+
 ```xml
 <coupling-scheme:parallel-implicit>
   <max-time value="{float}"/>
@@ -2677,6 +2828,7 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 Defined the end of the simulation as total time.
 
 **Example:**  
+
 ```xml
 <max-time value="{float}"/>
 ```
@@ -2692,6 +2844,7 @@ Defined the end of the simulation as total time.
 Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
+
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -2707,6 +2860,7 @@ Defined the end of the simulation as a total count of time windows.
 Defines the size of the time window.
 
 **Example:**  
+
 ```xml
 <time-window-size value="-1"/>
 ```
@@ -2722,6 +2876,7 @@ Defines the size of the time window.
 Defines the participants of the coupling scheme.
 
 **Example:**  
+
 ```xml
 <participants first="{string}" second="{string}"/>
 ```
@@ -2738,6 +2893,7 @@ Defines the participants of the coupling scheme.
 Defines the flow of data between meshes of participants.
 
 **Example:**  
+
 ```xml
 <exchange data="{string}" mesh="{string}" from="{string}" to="{string}" initialize="false" substeps="true"/>
 ```
@@ -2758,6 +2914,7 @@ Defines the flow of data between meshes of participants.
 Accelerates coupling data with constant underrelaxation.
 
 **Example:**  
+
 ```xml
 <acceleration:constant>
   <relaxation value="{float}"/>
@@ -2774,6 +2931,7 @@ Accelerates coupling data with constant underrelaxation.
 
 
 **Example:**  
+
 ```xml
 <relaxation value="{float}"/>
 ```
@@ -2791,6 +2949,7 @@ Accelerates coupling data with constant underrelaxation.
 Accelerates coupling data with dynamic Aitken under-relaxation.
 
 **Example:**  
+
 ```xml
 <acceleration:aitken>
   <initial-relaxation value="{float}"/>
@@ -2811,6 +2970,7 @@ Accelerates coupling data with dynamic Aitken under-relaxation.
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.5 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}"/>
 ```
@@ -2826,6 +2986,7 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -2840,9 +3001,10 @@ The data used to compute the acceleration.
 
 #### preconditioner
 
-To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
+To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" freeze-after="-1"/>
 ```
@@ -2861,13 +3023,14 @@ To improve the numerical stability of multiple data vectors a preconditioner can
 Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
 **Example:**  
+
 ```xml
 <acceleration:IQN-ILS reduced-time-grid="true">
   <initial-relaxation value="{float}" enforce="false"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
   <data scaling="1" name="{string}" mesh="{string}"/>
-  <filter limit="1e-16" type="{string}"/>
+  <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-ILS>
 ```
@@ -2891,6 +3054,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}" enforce="false"/>
 ```
@@ -2907,6 +3071,7 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the attribute value of 100 is used.
 
 **Example:**  
+
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -2922,6 +3087,7 @@ Maximum number of columns used in low-rank approximation of Jacobian. If this ta
 Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the default attribute value of 10 is used.
 
 **Example:**  
+
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -2937,6 +3103,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -2952,34 +3119,41 @@ The data used to compute the acceleration.
 #### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
- - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR1`: update QR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
+- `QR1-absolute`: update QR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+- `QR2`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR3`: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 **Example:**  
+
 ```xml
-<filter limit="1e-16" type="{string}"/>
+<filter limit="1e-16" type="QR3"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | limit | float | Limit eps of the filter. | `1e-16` | none |
-| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
+| type | string | Type of the filter. | `QR3` | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
 
 
 
 #### preconditioner
 
-To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. - A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. 
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.
+
+- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. 
  - A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
 - A residual preconditioner scales every acceleration data by the current residual.
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.
+
+If this tag is not provided, the residual-sum preconditioner is employed.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 ```
@@ -2987,8 +3161,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
-| update-on-threshold | boolean | To update the preconditioner weights after the first time window:- `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude.
-- `false`: The preconditioner weights are updated after every iteration. | `true` | none |
+| update-on-threshold | boolean | To update the preconditioner weights after the first time window: `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. `false`: The preconditioner weights are updated after every iteration. | `true` | none |
 | freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 
 
@@ -3000,6 +3173,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
 **Example:**  
+
 ```xml
 <acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
   <initial-relaxation value="{float}" enforce="false"/>
@@ -3007,7 +3181,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
   <data scaling="1" name="{string}" mesh="{string}"/>
-  <filter limit="1e-16" type="{string}"/>
+  <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-IMVJ>
 ```
@@ -3033,6 +3207,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}" enforce="false"/>
 ```
@@ -3046,15 +3221,10 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 
 #### imvj-restart-mode
 
-Type of IMVJ restart mode that is used:
-- `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
-- `RS-0`:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information
-- `RS-LS`:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-- `RS-SVD`:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.
-- `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
-If this tag is not provided, IMVJ runs in restart mode with SVD-method.
+Enable IMVJ Type of IMVJ restart mode that is used: `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian. `RS-0`: IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information. `RS-LS`: IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed. `RS-SVD`: IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated. `RS-SLIDE`: IMVJ runs in sliding window restart mode. If this tag is not provided, IMVJ runs in restart mode with SVD-method.
 
 **Example:**  
+
 ```xml
 <imvj-restart-mode type="RS-SVD" chunk-size="8" reused-time-windows-at-restart="8" truncation-threshold="0.0001"/>
 ```
@@ -3073,6 +3243,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.
 Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the default attribute value of 20 is used.
 
 **Example:**  
+
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -3088,6 +3259,7 @@ Maximum number of columns used in low-rank approximation of Jacobian. If this ta
 Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the attribute value of 0 is used.
 
 **Example:**  
+
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -3103,6 +3275,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -3118,34 +3291,41 @@ The data used to compute the acceleration.
 #### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
- - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR1`: update QR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
+- `QR1-absolute`: update QR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+- `QR2`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR3`: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 **Example:**  
+
 ```xml
-<filter limit="1e-16" type="{string}"/>
+<filter limit="1e-16" type="QR3"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | limit | float | Limit eps of the filter. | `1e-16` | none |
-| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
+| type | string | Type of the filter. | `QR3` | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
 
 
 
 #### preconditioner
 
-To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.
+
+- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
 - A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
 - A residual preconditioner scales every acceleration data by the current residual.
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.
+
+If this tag is not provided, the residual-sum preconditioner is employed.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 ```
@@ -3153,8 +3333,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
-| update-on-threshold | boolean | To update the preconditioner weights after the first time window:- `true`:  The preconditioner weights are only updated if the weights will change by more than one order of magnitude.
-- `false`: The preconditioner weights are updated after every iteration. | `true` | none |
+| update-on-threshold | boolean | To update the preconditioner weights after the first time window: `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. `false`: The preconditioner weights are updated after every iteration. | `true` | none |
 | freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 
 
@@ -3167,6 +3346,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
 **Example:**  
+
 ```xml
 <absolute-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -3183,9 +3363,10 @@ Absolute convergence criterion based on the two-norm difference of data values b
 
 ### absolute-or-relative-convergence-measure
 
-Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled.\$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{rel-limit} \$$  
+Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled. \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{rel-limit} \$$  
 
 **Example:**  
+
 ```xml
 <absolute-or-relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" abs-limit="{float}" rel-limit="{float}"/>
 ```
@@ -3207,6 +3388,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
 **Example:**  
+
 ```xml
 <relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -3227,6 +3409,7 @@ Relative convergence criterion comparing the currently measured residual to the 
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right\rVert_2} < \text{limit}\$$
 
 **Example:**  
+
 ```xml
 <residual-relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -3246,6 +3429,7 @@ Relative convergence criterion comparing the currently measured residual to the 
 Allows to specify a minimum amount of iterations that must be performed per time window.
 
 **Example:**  
+
 ```xml
 <min-iterations value="{integer}"/>
 ```
@@ -3261,6 +3445,7 @@ Allows to specify a minimum amount of iterations that must be performed per time
 Allows to specify a maximum amount of iterations per time window.
 
 **Example:**  
+
 ```xml
 <max-iterations value="{integer}"/>
 ```
@@ -3278,6 +3463,7 @@ Allows to specify a maximum amount of iterations per time window.
 Multi coupling scheme according to block Jacobi iterations. Improved implicit iterations are achieved by using a acceleration (recommended!).
 
 **Example:**  
+
 ```xml
 <coupling-scheme:multi>
   <max-time value="{float}"/>
@@ -3322,6 +3508,7 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 Defined the end of the simulation as total time.
 
 **Example:**  
+
 ```xml
 <max-time value="{float}"/>
 ```
@@ -3337,6 +3524,7 @@ Defined the end of the simulation as total time.
 Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
+
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -3352,6 +3540,7 @@ Defined the end of the simulation as a total count of time windows.
 Defines the size of the time window.
 
 **Example:**  
+
 ```xml
 <time-window-size value="-1"/>
 ```
@@ -3367,6 +3556,7 @@ Defines the size of the time window.
 
 
 **Example:**  
+
 ```xml
 <participant name="{string}" control="false"/>
 ```
@@ -3383,6 +3573,7 @@ Defines the size of the time window.
 Defines the flow of data between meshes of participants.
 
 **Example:**  
+
 ```xml
 <exchange data="{string}" mesh="{string}" from="{string}" to="{string}" initialize="false" substeps="true"/>
 ```
@@ -3403,6 +3594,7 @@ Defines the flow of data between meshes of participants.
 Accelerates coupling data with constant underrelaxation.
 
 **Example:**  
+
 ```xml
 <acceleration:constant>
   <relaxation value="{float}"/>
@@ -3419,6 +3611,7 @@ Accelerates coupling data with constant underrelaxation.
 
 
 **Example:**  
+
 ```xml
 <relaxation value="{float}"/>
 ```
@@ -3436,6 +3629,7 @@ Accelerates coupling data with constant underrelaxation.
 Accelerates coupling data with dynamic Aitken under-relaxation.
 
 **Example:**  
+
 ```xml
 <acceleration:aitken>
   <initial-relaxation value="{float}"/>
@@ -3456,6 +3650,7 @@ Accelerates coupling data with dynamic Aitken under-relaxation.
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.5 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}"/>
 ```
@@ -3471,6 +3666,7 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -3485,9 +3681,10 @@ The data used to compute the acceleration.
 
 #### preconditioner
 
-To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
+To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" freeze-after="-1"/>
 ```
@@ -3506,13 +3703,14 @@ To improve the numerical stability of multiple data vectors a preconditioner can
 Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
 **Example:**  
+
 ```xml
 <acceleration:IQN-ILS reduced-time-grid="true">
   <initial-relaxation value="{float}" enforce="false"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
   <data scaling="1" name="{string}" mesh="{string}"/>
-  <filter limit="1e-16" type="{string}"/>
+  <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-ILS>
 ```
@@ -3536,6 +3734,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}" enforce="false"/>
 ```
@@ -3552,6 +3751,7 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the attribute value of 100 is used.
 
 **Example:**  
+
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -3567,6 +3767,7 @@ Maximum number of columns used in low-rank approximation of Jacobian. If this ta
 Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the default attribute value of 10 is used.
 
 **Example:**  
+
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -3582,6 +3783,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -3597,34 +3799,41 @@ The data used to compute the acceleration.
 #### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
- - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR1`: update QR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
+- `QR1-absolute`: update QR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+- `QR2`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR3`: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 **Example:**  
+
 ```xml
-<filter limit="1e-16" type="{string}"/>
+<filter limit="1e-16" type="QR3"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | limit | float | Limit eps of the filter. | `1e-16` | none |
-| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
+| type | string | Type of the filter. | `QR3` | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
 
 
 
 #### preconditioner
 
-To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. - A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. 
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.
+
+- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. 
  - A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
 - A residual preconditioner scales every acceleration data by the current residual.
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.
+
+If this tag is not provided, the residual-sum preconditioner is employed.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 ```
@@ -3632,8 +3841,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
-| update-on-threshold | boolean | To update the preconditioner weights after the first time window:- `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude.
-- `false`: The preconditioner weights are updated after every iteration. | `true` | none |
+| update-on-threshold | boolean | To update the preconditioner weights after the first time window: `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. `false`: The preconditioner weights are updated after every iteration. | `true` | none |
 | freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 
 
@@ -3645,6 +3853,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
 **Example:**  
+
 ```xml
 <acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
   <initial-relaxation value="{float}" enforce="false"/>
@@ -3652,7 +3861,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
   <data scaling="1" name="{string}" mesh="{string}"/>
-  <filter limit="1e-16" type="{string}"/>
+  <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-IMVJ>
 ```
@@ -3678,6 +3887,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.
 
 **Example:**  
+
 ```xml
 <initial-relaxation value="{float}" enforce="false"/>
 ```
@@ -3691,15 +3901,10 @@ Initial relaxation factor. If this tag is not provided, an initial relaxation of
 
 #### imvj-restart-mode
 
-Type of IMVJ restart mode that is used:
-- `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
-- `RS-0`:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information
-- `RS-LS`:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-- `RS-SVD`:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.
-- `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
-If this tag is not provided, IMVJ runs in restart mode with SVD-method.
+Enable IMVJ Type of IMVJ restart mode that is used: `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian. `RS-0`: IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information. `RS-LS`: IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed. `RS-SVD`: IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated. `RS-SLIDE`: IMVJ runs in sliding window restart mode. If this tag is not provided, IMVJ runs in restart mode with SVD-method.
 
 **Example:**  
+
 ```xml
 <imvj-restart-mode type="RS-SVD" chunk-size="8" reused-time-windows-at-restart="8" truncation-threshold="0.0001"/>
 ```
@@ -3718,6 +3923,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.
 Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the default attribute value of 20 is used.
 
 **Example:**  
+
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -3733,6 +3939,7 @@ Maximum number of columns used in low-rank approximation of Jacobian. If this ta
 Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the attribute value of 0 is used.
 
 **Example:**  
+
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -3748,6 +3955,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 The data used to compute the acceleration.
 
 **Example:**  
+
 ```xml
 <data scaling="1" name="{string}" mesh="{string}"/>
 ```
@@ -3763,34 +3971,41 @@ The data used to compute the acceleration.
 #### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
- - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR1`: update QR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
+- `QR1-absolute`: update QR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+- `QR2`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
+
+- `QR3`: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 **Example:**  
+
 ```xml
-<filter limit="1e-16" type="{string}"/>
+<filter limit="1e-16" type="QR3"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | limit | float | Limit eps of the filter. | `1e-16` | none |
-| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
+| type | string | Type of the filter. | `QR3` | `QR1`, `QR1-absolute`, `QR2`, `QR3` |
 
 
 
 #### preconditioner
 
-To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.
+
+- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
 - A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
 - A residual preconditioner scales every acceleration data by the current residual.
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.
+
+If this tag is not provided, the residual-sum preconditioner is employed.
 
 **Example:**  
+
 ```xml
 <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 ```
@@ -3798,8 +4013,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
-| update-on-threshold | boolean | To update the preconditioner weights after the first time window:- `true`:  The preconditioner weights are only updated if the weights will change by more than one order of magnitude.
-- `false`: The preconditioner weights are updated after every iteration. | `true` | none |
+| update-on-threshold | boolean | To update the preconditioner weights after the first time window: `true`: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. `false`: The preconditioner weights are updated after every iteration. | `true` | none |
 | freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 
 
@@ -3812,6 +4026,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
 **Example:**  
+
 ```xml
 <absolute-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -3828,9 +4043,10 @@ Absolute convergence criterion based on the two-norm difference of data values b
 
 ### absolute-or-relative-convergence-measure
 
-Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled.\$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{rel-limit} \$$  
+Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled. \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{rel-limit} \$$  
 
 **Example:**  
+
 ```xml
 <absolute-or-relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" abs-limit="{float}" rel-limit="{float}"/>
 ```
@@ -3852,6 +4068,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
 **Example:**  
+
 ```xml
 <relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -3872,6 +4089,7 @@ Relative convergence criterion comparing the currently measured residual to the 
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right\rVert_2} < \text{limit}\$$
 
 **Example:**  
+
 ```xml
 <residual-relative-convergence-measure data="{string}" mesh="{string}" suffices="false" strict="false" limit="{float}"/>
 ```
@@ -3891,6 +4109,7 @@ Relative convergence criterion comparing the currently measured residual to the 
 Allows to specify a minimum amount of iterations that must be performed per time window.
 
 **Example:**  
+
 ```xml
 <min-iterations value="{integer}"/>
 ```
@@ -3906,6 +4125,7 @@ Allows to specify a minimum amount of iterations that must be performed per time
 Allows to specify a maximum amount of iterations per time window.
 
 **Example:**  
+
 ```xml
 <max-iterations value="{integer}"/>
 ```
