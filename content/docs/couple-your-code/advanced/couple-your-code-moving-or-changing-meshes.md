@@ -71,7 +71,7 @@ To change a mesh dynamically at runtime, first enable remeshing in the config:
 </precice-configuration>
 ```
 
-You can the reset a mesh in your participant as follows: 
+You can the reset a mesh in your participant as follows:
 
 ```python
 rdata = participant.read_data(mesh, data, vertex_ids, dt)
