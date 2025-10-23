@@ -1627,7 +1627,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 23 Oct 25</small>
             </div>
           </aside>
           
@@ -1682,21 +1682,38 @@ The adapters can now dynamically use these nodes by writing <code class="languag
 
 <h2 id="remeshing-using-precice">Remeshing using preCICE</h2>
 
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b>  This feature is new in preCICE version 3.2.0. </div>
+
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
-This feature is in active development and not yet released. This section is part of the roadmap!
+This feature is in active development and not yet feature-complete.
+If you are missing features, please check <a href="https://github.com/orgs/precice/projects/20">the GitHub project</a> and comment on the issues to help us prioritize.
 </div>
 
 <p><strong>Goal</strong> of the remeshing support in preCICE to allow resetting meshes at runtime.</p>
 
-<p>To change a mesh dynamically at runtime:</p>
+<p>To change a mesh dynamically at runtime, first enable remeshing in the config:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">my_solver_wants_to_remesh</span><span class="p">):</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration</span> <span class="na">experimental=</span><span class="s">"true"</span> <span class="na">allow-remeshing=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+  ...
+<span class="nt">&lt;/precice-configuration&gt;</span>
+</code></pre></div></div>
+
+<p>You can the reset a mesh in your participant as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rdata</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">read_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">my_solver_wants_to_remesh</span><span class="p">(</span><span class="n">basedon</span><span class="o">=</span><span class="n">data</span><span class="p">)):</span>
     <span class="c1"># reset the mesh
 </span>    <span class="n">participant</span><span class="p">.</span><span class="n">reset_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
     <span class="c1"># redefine the mesh
-</span>    <span class="n">new_ids</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertices</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">new_coordinates</span><span class="p">)</span>
-    <span class="c1"># write data to the newly defined mesh
-</span>    <span class="n">participant</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">new_ids</span><span class="p">,</span> <span class="n">new_values</span><span class="p">)</span>
+</span>    <span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertices</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">new_coordinates</span><span class="p">)</span>
+    <span class="n">values</span><span class="p">.</span><span class="n">resize</span><span class="p">()</span>
+
+<span class="c1"># solved the timestep based on the old data
+# most likely this needs extra support from the adapter
+</span><span class="n">wdata</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">rdata</span><span class="p">)</span>
+
+<span class="c1"># write data to the newly defined mesh
+</span><span class="n">participant</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">wdata</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># preCICE automatically handles the mesh change
 </span><span class="n">participant</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
@@ -2068,7 +2085,7 @@ For such cases, <a href="#mapping-inside-adapter">mapping inside the adapter</a>
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Oct 23, 2025<br>
         Site last updated: Oct 23, 2025
         </p>
       </div>
