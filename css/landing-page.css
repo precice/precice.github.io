@@ -4,9 +4,6 @@
 /* clear fixes */
 /* idea is to not touch the docs part of the website, but start from a clear state */
 
-main { /* fixed topnav takes up 50 + 20 px */
-  /* margin-top: -20px; */
-}
 h1[id], h2[id], h3[id], h4[id], h5[id], h6[id],
 dt[id] {
 padding-top: 0px;
@@ -241,61 +238,53 @@ div.logo-holder > img {
 /* Latest News Section */
 
 #latest-news {
-  background-color: #e6f2ff;  /* same light blue as other landing sections */
-  padding-top: 70px;
-  padding-bottom: 70px;
+  background-color: #e6f2ff;
+  padding: 70px 0;
 }
 
 #latest-news .section-header {
   margin-bottom: 40px;
   text-align: center;
-  color: #040606;
 }
 
-.news-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
+#latest-news a.no-external-marker::after {
+  content: none !important;
 }
 
 .news-card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 25px;
-  width: 300px;
-  text-align: left;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.news-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.news-card h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  height: 2.8em; 
 }
 
-.news-card h3 {
-  font-size: 1.25rem;
-  margin-top: 0;
-  color: #003366;
+.news-card p:first-of-type {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; 
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
-.news-card p {
-  font-size: 0.95rem;
-  color: #333;
+
+#news-container {
+  display: flex;
+  gap: 25px;
 }
 
-.news-card .btn {
-  margin-top: 1rem;
-  display: inline-block;
-  color: #fff;
-  background-color: #007acc;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.news-card .btn:hover {
-  background-color: #005fa3;
+#news-container .col-md-4 {
+  flex: 1;
 }
