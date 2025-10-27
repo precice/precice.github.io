@@ -1,34 +1,49 @@
-name: Fetch FAQ Data
+name: Update Discourse data
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"  # Every day at 6 AM UTC
-  workflow_dispatch:      # Allow manual run
+    - cron: "0 6 * * *"   # every day at 06:00 UTC
 
 jobs:
-  fetch-faq:
+  update-discourse-data:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Create GitHub App token
+        uses: actions/create-github-app-token@v1
+        id: app-token
         with:
-          node-version: "18"
+          app-id: ${{ vars.WEBSITE_UPDATER_APPID }}
+          private-key: ${{ secrets.WEBSITE_UPDATER_KEY }}
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
 
-      - name: Fetch latest FAQ data from Discourse
-        run: node tools/fetch-faq.js
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
 
-      - name: Commit and push changes
+      - name: Fetch latest news from Discourse
+        run: python tools/fetch-news.py
+
+      - name: Configure Git author
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add assets/data/faq.json
-          git commit -m "ci(faq): update faq.json with latest excerpts from Discourse" || echo "No changes to commit"
-          git push origin HEAD:feature/faq-static-fetch
-        continue-on-error: true
+          git config --local user.name "precice-bot"
+          git config --local user.email "info@precice.org"
+
+      - name: Commit changes (if any)
+        run: |
+          git add assets/data/news.json
+          git commit -m "Update Discourse news data [skip ci]" || echo "No changes to commit"
+
+      - name: Push commit
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ steps.app-token.outputs.token }}
+          branch: ${{ github.ref }}
