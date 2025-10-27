@@ -88,7 +88,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         const btn = document.createElement("button");
         btn.textContent = "Load more";
         btn.style.cssText =
-          "padding:8px 16px;margin:12px auto;display:block;border:1px solid #ccc;border-radius:8px;background:#f9f9f9;cursor:pointer;";
+      "padding:8px 16px;margin:12px 0 12px auto;display:block;border:1px solid #ccc;border-radius:8px;background:#f9f9f9;cursor:pointer;";
+
         btn.addEventListener("click", () => {
           visibleCount += 10;
           renderTopics();
