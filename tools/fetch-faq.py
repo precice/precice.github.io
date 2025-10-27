@@ -2,11 +2,17 @@
 import os
 import json
 import re
-import requests
+import urllib.request
 from datetime import datetime
 
 DISCOURSE_BASE = "https://precice.discourse.group"
 OUTPUT_FILE = "./assets/data/faq.json"
+
+
+def http_get_json(url: str):
+    """GET URL and return parsed JSON using only stdlib."""
+    with urllib.request.urlopen(url) as r:
+        return json.load(r)
 
 
 def strip_html(text: str) -> str:
@@ -15,10 +21,7 @@ def strip_html(text: str) -> str:
 
 def fetch_excerpt(topic_id: int) -> str:
     try:
-        r = requests.get(f"{DISCOURSE_BASE}/t/{topic_id}.json")
-        r.raise_for_status()
-        topic_data = r.json()
-
+        topic_data = http_get_json(f"{DISCOURSE_BASE}/t/{topic_id}.json")
         raw = topic_data.get("post_stream", {}).get("posts", [{}])[0].get("cooked", "")
         cleaned = strip_html(raw)
         return cleaned[:250] + ("…" if len(cleaned) > 250 else "")
@@ -30,11 +33,9 @@ def fetch_excerpt(topic_id: int) -> str:
 def fetch_faq():
     try:
         print("Fetching FAQ topics from Discourse...")
-        r = requests.get(f"{DISCOURSE_BASE}/tag/faq/l/latest.json")
-        r.raise_for_status()
 
-        json_data = r.json()
-        topic_list = json_data.get("topic_list", {}).get("topics", [])
+        data = http_get_json(f"{DISCOURSE_BASE}/tag/faq/l/latest.json")
+        topic_list = data.get("topic_list", {}).get("topics", [])
         print(f"Found {len(topic_list)} FAQ topics. Fetching excerpts...")
 
         topics = []
@@ -64,6 +65,7 @@ def fetch_faq():
             json.dump(payload, f, indent=2)
 
         print(f"Saved {len(topics)} FAQ topics to {OUTPUT_FILE}")
+
     except Exception as e:
         print("Failed to fetch FAQ data:", e)
         exit(1)
