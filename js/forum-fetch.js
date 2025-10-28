@@ -34,9 +34,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       // Filter
       filteredTopics = topics.filter((t) =>
-        (t.title + " " + (t.excerpt || ""))
-          .toLowerCase()
-          .includes(q)
+        (t.title + " " + (t.excerpt || "")).toLowerCase().includes(q)
       );
 
       // Sort
@@ -69,13 +67,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         card.style.cssText =
           "border:1px solid #ddd;padding:12px;border-radius:8px;background:#fff;";
 
+        const excerpt =
+          t.excerpt && t.excerpt.trim().length > 0
+            ? t.excerpt
+            : "No description available.";
+
         card.innerHTML = `
-          <h4>
-            <a href="${t.url}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:#0069c2;">
-              ${t.title}
-            </a>
+          <h4 style="margin-bottom:8px;">
+            <strong>${t.title}</strong>
           </h4>
-          <p style="color:#333;">${t.excerpt || "No description available."}</p>
+          <p style="color:#333;line-height:1.4;">
+            ${excerpt}
+            <a href="${t.url}" target="_blank" rel="noopener noreferrer" 
+               style="text-decoration:none;color:#0069c2;" data-noicon>
+              Read more
+            </a>
+          </p>
           <p style="color:#666;font-size:0.9em;">
             Last updated: ${new Date(t.last_posted_at).toLocaleDateString()} |
             Replies: ${t.posts_count} | Views: ${t.views}
@@ -88,13 +95,25 @@ document.addEventListener("DOMContentLoaded", async function () {
         const btn = document.createElement("button");
         btn.textContent = "Load more";
         btn.style.cssText =
-      "padding:8px 16px;margin:12px 0 12px auto;display:block;border:1px solid #ccc;border-radius:8px;background:#f9f9f9;cursor:pointer;";
-
+          "padding:8px 16px;margin:12px 0 12px auto;display:block;border:1px solid #ccc;border-radius:8px;background:#f9f9f9;cursor:pointer;";
         btn.addEventListener("click", () => {
           visibleCount += 10;
           renderTopics();
         });
         list.appendChild(btn);
+      }
+
+      // 🧽 JS-based CSS injection to remove external icon pseudo-element
+      if (!document.getElementById("noicon-style")) {
+        const style = document.createElement("style");
+        style.id = "noicon-style";
+        style.textContent = `
+          [data-noicon]::after {
+            content: none !important;
+            background-image: none !important;
+          }
+        `;
+        document.head.appendChild(style);
       }
     }
 
