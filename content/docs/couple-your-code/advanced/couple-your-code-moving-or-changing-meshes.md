@@ -54,22 +54,40 @@ Note that inactive nodes can lead to numerical instabilities in some acceleratio
 
 ## Remeshing using preCICE
 
+{% version 3.2.0 %} This feature is new in preCICE version 3.2.0. {% endversion %}
+
 {% important %}
-This feature is in active development and not yet released. This section is part of the roadmap!
+This feature is in active development and not yet feature-complete.
+If you are missing features, please check [the GitHub project](https://github.com/orgs/precice/projects/20) and comment on the issues to help us prioritize.
 {% endimportant %}
 
 **Goal** of the remeshing support in preCICE to allow resetting meshes at runtime.
 
-To change a mesh dynamically at runtime:
+To change a mesh dynamically at runtime, first enable remeshing in the config:
+
+```xml
+<precice-configuration experimental="true" allow-remeshing="true" />
+  ...
+</precice-configuration>
+```
+
+You can the reset a mesh in your participant as follows:
 
 ```python
-if (my_solver_wants_to_remesh):
+rdata = participant.read_data(mesh, data, vertex_ids, dt)
+if (my_solver_wants_to_remesh(basedon=data)):
     # reset the mesh
     participant.reset_mesh(mesh)
     # redefine the mesh
-    new_ids = participant.set_mesh_vertices(mesh, new_coordinates)
-    # write data to the newly defined mesh
-    participant.write_data(mesh, data, new_ids, new_values)
+    vertex_ids = participant.set_mesh_vertices(mesh, new_coordinates)
+    values.resize()
+
+# solved the timestep based on the old data
+# most likely this needs extra support from the adapter
+wdata = solve(rdata)
+
+# write data to the newly defined mesh
+participant.write_data(mesh, wdata, vertex_ids, values)
 
 # preCICE automatically handles the mesh change
 participant.advance(dt)

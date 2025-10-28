@@ -15,8 +15,8 @@ For most recent developments waiting for the next release, have a look at the [u
 
 ## In active development
 
-- GPU support for partition-of-unity radial-basis-function data mapping
-- [Dynamic coupling meshes](https://github.com/precice/precice/projects/20)
+- [GPU support for partition-of-unity radial-basis-function data mapping](https://github.com/precice/precice/pull/2346)
+- [Dynamic coupling meshes](https://github.com/orgs/precice/projects/20/views/1)
 - [Geometric multi-scale data mapping](https://github.com/orgs/precice/projects/14), e.g. for 3D-1D and 3D-2D coupled problems
 - [Extendable and modular system tests](https://github.com/orgs/precice/projects/12)
 - [Volume coupling for OpenFOAM](https://github.com/orgs/precice/projects/9)
