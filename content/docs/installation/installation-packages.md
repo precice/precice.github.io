@@ -8,6 +8,10 @@ For some systems, preCICE is available in the form of a pre-built package or a p
 These packages are built with enabled Python actions, MPI communication, and PETSc mapping.
 This section lists systems and instructions on how to install these packages.
 
+An incomplete package version overview of preCICE can be found on repology:
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/precice.svg?header=&columns=2&exclude_sources=site)](https://repology.org/project/precice/versions)
+
 ## Ubuntu
 
 You can download version-specific Ubuntu (Debian) packages from each [GitHub release](https://github.com/precice/precice/releases/latest).
@@ -25,6 +29,11 @@ Check the [official release-cyle](https://ubuntu.com/about/release-cycle) for mo
 As an example, change `noble` to `jammy` for 22.04.
 
 Is a newer preCICE release out, and have we not yet updated the above links? Please edit this page.
+
+## Debian
+
+Similar to the Ubuntu packages, we generate Debian packages for at least the latest stable release of Debian.
+You can download version-specific Debian packages from the respective release [GitHub release](https://github.com/precice/precice/releases/latest).
 
 ## Arch Linux / Manjaro
 
@@ -55,6 +64,36 @@ For more options, have a look at the [readme](https://github.com/precice/nix-pac
 
 For all packages available upstream, see the [NixOS search](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&query=precice).
 
+## macOS
+
+For macOS, we maintain a [homebrew package/formula](https://formulae.brew.sh/formula/precice).
+To install the latest version use:
+
+```bash
+brew install --only-dependencies precice
+```
+
+It also provides a way of installing the latest develop version from source using the head flag:
+
+```bash
+brew install --head precice
+```
+
+## Windows
+
+The community maintains a preCICE package for [MSYS2](https://packages.msys2.org/base/mingw-w64-precice).
+To search for a suitable package use:
+
+```bash
+pacman -Ss precice
+```
+
+Then install it with:
+
+```bash
+pacman -S precice/
+```
+
 ## Something else
 
 For other systems, you need to either use [Spack](installation-spack.html) or [build from source](installation-source-preparation.html).
@@ -64,7 +103,7 @@ For other systems, you need to either use [Spack](installation-spack.html) or [b
 These packages are maintained by the preCICE community and may be occasionally outdated or not fully working.
 However, we appreciate the effort, and you may be able to contribute to them.
 
-- [MSYS2](https://packages.msys2.org/base/mingw-w64-precice) (for Windows, built with MinGW), [thread on our forum](https://precice.discourse.group/t/precice-and-mingw-packages/382)
+
 - [EasyBuild](https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE)
 - [Conda](https://github.com/conda-forge/precice-feedstock) (see also packages [pyprecice](https://github.com/conda-forge/pyprecice-feedstock) and [fenicsprecice](https://github.com/conda-forge/fenicsprecice-feedstock)). We recommend using [Miniforge](https://conda-forge.org/download/) (see https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us for reasons why).
 - [FreeBSD](https://www.freshports.org/science/precice)
