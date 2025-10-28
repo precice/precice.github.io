@@ -28,32 +28,32 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
 
 #### Required dependencies
 
-| preCICE | {{ site.precice_version }} |
-| [C++ compiler](#c-compiler) | C++14 |
-| [CMake](#cmake) | >= 3.16.1 |
-| [Eigen](#eigen) | >= 3.3.7 |
-| [Boost](#boost) | >= 1.71.0 |
-| [libxml2](#libxml2) | >= 2 |
+| preCICE | {{ site.precice_version }} | Available |
+| [C++ compiler](#c-compiler) | C++17 | [![c++ standard](https://img.shields.io/badge/c%2B%2B-17-blue.svg)](https://cppreference.com/w/cpp/compiler_support/17.html) |
+| [CMake](#cmake) | >= 3.22.1 | [![Repology - CMake](https://img.shields.io/repology/repositories/cmake)](https://repology.org/project/cmake/versions) |
+| [Eigen](#eigen) | >= 3.4.0 | [![Repology - Eigen](https://img.shields.io/repology/repositories/eigen)](https://repology.org/project/eigen/versions) |
+| [Boost](#boost) | >= 1.74.0 | [![Repology - Boost](https://img.shields.io/repology/repositories/boost)](https://repology.org/project/boost/versions) |
+| [libxml2](#libxml2) | >= 2 | [![Repology - libxml2](https://img.shields.io/repology/repositories/libxml2)](https://repology.org/project/libxml2/versions) |
+
+Note that more recent versions of some dependencies (e.g., Boost) might also need more recent or upcoming releases of preCICE.
 
 #### Required optional dependencies
 
-| preCICE | {{ site.precice_version }} |
-| [MPI](#mpi) | implementation of MPI-3 |
-| [PETSc](#petsc) | >= 3.12 |
-| [Python](#python) | >= 3 |
-| [Ginkgo](#ginkgo) | >= 1.8 with Kokkos >= 4.1 |
+| preCICE | {{ site.precice_version }} | Available |
+| [MPI](#mpi) | implementation of MPI-3 | |
+| [PETSc](#petsc) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions) |
+| [Python](#python) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions) |
+| [Ginkgo](#ginkgo) | >= 1.8 with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions) |
 
 ### C++ compiler
 
-preCICE requires a [C++ compiler with full C++14 support](https://en.cppreference.com/w/cpp/compiler_support#cpp14).
+preCICE requires a [C++ compiler with full C++17 support](https://cppreference.com/w/cpp/compiler_support/17.html).
 The following table lists the minimal requirement for compiler versions:
 
 | Toolchain | Minimal Version | Note |
-| GCC | `5` | |
-| Intel | `17` | also requires GCC `5` |
-| Cray | `8.6` | also requires GCC `5` |
-| Clang | `3.4`| |
-| MSVC | `19.10` | _For future reference_ |
+| GCC | 7 | |
+| Intel | all | Classic: v19, OneAPI: all |
+| Clang | 14 | |
 
 If you are using Debian/Ubuntu, the `build-essential` package will install everything needed.
 
