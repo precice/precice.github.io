@@ -103,7 +103,6 @@ For other systems, you need to either use [Spack](installation-spack.html) or [b
 These packages are maintained by the preCICE community and may be occasionally outdated or not fully working.
 However, we appreciate the effort, and you may be able to contribute to them.
 
-
 - [EasyBuild](https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE)
 - [Conda](https://github.com/conda-forge/precice-feedstock) (see also packages [pyprecice](https://github.com/conda-forge/pyprecice-feedstock) and [fenicsprecice](https://github.com/conda-forge/fenicsprecice-feedstock)). We recommend using [Miniforge](https://conda-forge.org/download/) (see https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us for reasons why).
 - [FreeBSD](https://www.freshports.org/science/precice)
