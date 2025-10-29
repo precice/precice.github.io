@@ -87,13 +87,13 @@ Preliminary schedule:
 - Monday (course):
   - 12:00-13:00: 🍜 *Registration and lunch*
   - 13:00-13:30: Setting up for the [Training course](community-training.html)
-  - 13:30-15:30: Course part 1 (Basics) - Benjamin Uekermann
+  - 13:30-15:30: Course part 1 (Basics) - Benjamin Uekermann and Gerasimos Chourdakis
   - 15:30-16:00: ☕️ *Coffee break*
   - 16:00-18:00: Course part 2 (Tools) - Gerasimos Chourdakis
   - 19:00-22:00: 🍻 *Time for community-organized social events*
 - Tuesday (course):
   - 08:30-09:00: ☕️ *Arrival and coffee*
-  - 09:00-11:00: Course part 3 (Implicit coupling) - Gerasimos Chourdakis
+  - 09:00-11:00: Course part 3 (Implicit coupling) - Benjamin Uekermann
   - 11:00-12:00: Course part 4a (Data mapping) - Benjamin Uekermann
   - 12:00-13:00: 🍜 *Lunch*
   - 13:00-14:30: Course part 4b (Data mapping) - Benjamin Uekermann
@@ -182,7 +182,7 @@ Preliminary schedule:
     <br/>*Chair: David Schneider*
     <details class="workshop-event" id="talk-thornton"><br/>
       <summary>Coupling Particle Simulations: Challenges, Strategies, and the ON-DEM Vision
-      <p>Anthony Thornton*, Thomas Weinhart, Daniel Bareto<br/>
+      <p>Anthony Thornton*, Thomas Weinhart, Daniel Barreto<br/>
       University of Manchester, UK</p>
       </summary>
       <p>The Discrete Particle Method (DPM), aka Discrete Element Method (DEM), simulates the motion and interaction of individual grains and has proven highly successful in modelling granular processes. However, tackling the next generation of challenges—such as multiphysics interactions and multiscale phenomena—requires coupling DPM with continuum solvers for fluids and deformable solids. Additionally, the growing complexity of industrial processes is pushing the limits of DEM, which remains computationally intensive. This calls for flexible, efficient coupling strategies to extend the capabilities of DEM. In this talk, we present the main types of DEM coupling currently used in the field. We focus on three key approaches: Surface coupling, which models the interaction between granular materials and soft or deformable boundaries; Volume coupling, which allows hybrid modelling where some regions are simulated with DEM and others with a continuum approach—enhancing scalability without sacrificing accuracy; Particle–fluid coupling, which models the interaction of particles with a background fluid or thermal field. We also introduce the newly funded European COST network ON-DEM (Open Network on DEM simulations), which aims to accelerate progress in this area. We conclude by discussing the integration of the coupling library preCICE, highlighting its potential as a key enabler for ON-DEM's goals and the broader future of particle simulation.</p>
