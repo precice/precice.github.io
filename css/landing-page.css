@@ -4,9 +4,6 @@
 /* clear fixes */
 /* idea is to not touch the docs part of the website, but start from a clear state */
 
-main { /* fixed topnav takes up 50 + 20 px */
-  /* margin-top: -20px; */
-}
 h1[id], h2[id], h3[id], h4[id], h5[id], h6[id],
 dt[id] {
 padding-top: 0px;
@@ -236,4 +233,68 @@ div.logo-holder > img {
 }
 .no-padding {
   padding: 0;
+}
+
+/* Latest News Section */
+
+#latest-news {
+  background-color: #e6f2ff;
+  padding: 70px 0;
+}
+
+#latest-news .section-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+#latest-news a.no-external-marker::after {
+  content: none !important;
+}
+
+.news-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.news-card h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  height: 2.8em; 
+}
+
+.news-card p:first-of-type {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; 
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+
+#news-container {
+  display: flex;
+  gap: 25px;
+}
+
+#news-container .col-md-4 {
+  flex: 1;
+}
+
+
+@media (max-width: 768px) {
+  #news-container {
+    flex-wrap: wrap;         
+  }
+  #news-container .col-md-4 {
+    flex: 1 1 100%;         
+  }
 }
