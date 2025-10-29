@@ -70,7 +70,7 @@ For macOS, we maintain a [homebrew package/formula](https://formulae.brew.sh/for
 To install the latest version use:
 
 ```bash
-brew install --only-dependencies precice
+brew install precice
 ```
 
 It also provides a way of installing the latest develop version from source using the head flag:
