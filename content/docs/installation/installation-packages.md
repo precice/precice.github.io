@@ -91,7 +91,7 @@ pacman -Ss precice
 Then install it with:
 
 ```bash
-pacman -S precice/
+pacman -S <package name>
 ```
 
 ## Something else
