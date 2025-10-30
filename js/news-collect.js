@@ -22,6 +22,7 @@ for (const topic of topics.slice(0, 3)) {
   const card = document.createElement("div");
   card.className = "news-card";
 
+  // NOTE: The `adapter` class is used here as an already available card class, feel free to provide a new one.
   card.innerHTML = `<a href="${topic.url}" target="_blank" rel="noopener noreferrer" class="adapter no-external-marker">
     <h4><strong>${topic.title}</strong></h4>
     <p>${topic.description}</p>
