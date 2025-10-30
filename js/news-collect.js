@@ -31,7 +31,7 @@ for (const topic of topics.slice(0, 3)) {
       </a>
     </p>
     <p class="text-muted"><small>
-      Last activity: ${new Date(topic.last_posted_at).toLocaleDateString()}
+      Last activity: ${new Date(topic.last_posted_at).toLocaleDateString("en-GB")}
     </small></p>
   `;
 
