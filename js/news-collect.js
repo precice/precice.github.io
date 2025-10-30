@@ -22,14 +22,10 @@ for (const topic of topics.slice(0, 3)) {
   const card = document.createElement("div");
   card.className = "news-card";
 
-  card.innerHTML = `
+  card.innerHTML = `<a href="${topic.url}" target="_blank" rel="noopener noreferrer" class="adapter no-external-marker">
     <h4><strong>${topic.title}</strong></h4>
     <p>${topic.description}</p>
-    <p>
-      <a href="${topic.url}" target="_blank" rel="noopener noreferrer" class="no-external-marker">
-        Read more about this update
-      </a>
-    </p>
+    </a>
     <p class="text-muted"><small>
       Last activity: ${new Date(topic.last_posted_at).toLocaleDateString("en-GB")}
     </small></p>
