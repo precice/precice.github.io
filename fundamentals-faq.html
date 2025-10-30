@@ -5,25 +5,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured.">
-
-<meta name="keywords" content=" configuration, communication, m2n tag, intra-comm tag">
+<meta name="keywords" content=" faq, forum, questions">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Communication configuration | preCICE - The Coupling Library</title>
+<title>Frequently asked questions | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Communication configuration" />
+<meta property="og:title" content="Frequently asked questions" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-<meta property="og:description" content="A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured.">
+
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/configuration-communication" >
+<link rel="canonical" href="https://precice.org/fundamentals-faq" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -89,7 +87,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/configuration-communication.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/fundamentals-faq.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -457,7 +455,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="FAQ" href="fundamentals-faq.html">FAQ</a></li>
+      <li  class="active"  ><a title="FAQ" href="fundamentals-faq.html">FAQ</a></li>
       
       
       
@@ -674,7 +672,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Communication" href="configuration-communication.html">Communication</a></li>
+          <li><a title="Communication" href="configuration-communication.html">Communication</a></li>
           
           
           
@@ -1578,7 +1576,7 @@ document.addEventListener('mouseup', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Communication configuration</h1>
+   <h1 class="post-title-main">Frequently asked questions</h1>
 </div>
 
 
@@ -1586,126 +1584,38 @@ document.addEventListener('mouseup', function(e) {
 <div class="post-content">
 
     
-    <div class="summary">
-        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured.
-
-    </div>
-    
 
     <div class="row">
         <div class="col-md-9 col-sm-8">
-          
-          <nav aria-label="table of contents">
-          
-          
-<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
-<script>
-$( document ).ready(function() {
-  // Handler for .ready() called.
-
-    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
-
-/* this offset helps account for the space taken up by the floating toolbar. */
-$('#toc').on('click', 'a', function() {
-  var target = $(this.getAttribute('href'))
-    , scroll_target = target.offset().top
-
-  $(window).scrollTop(scroll_target - 10);
-  return false
-})
-  
-});
-</script>
-
-<div id="toc"></div>
-
-          
-          </nav>
           
         </div>
 
         <div class="col-md-3 col-sm-4">
           
-          <aside>
-            
-                <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/content/docs/configuration/basics/configuration-communication.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
-                </div>
-            
-            <div class="text-right">
-              <small>Updated 01 Sep 25</small>
-            </div>
-          </aside>
-          
         </div>
     </div>
 
-   <h2 id="the-m2n-tag">The m2n tag</h2>
+   <p>Search and filter frequently asked questions on the <a href="https://precice.discourse.group/tag/faq">preCICE Discourse forum</a>.</p>
 
-<p>For each two participants that should exchange data, you have to define a m2n communication, for example like this:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">acceptor=</span><span class="s">"MySolver1"</span> <span class="na">connector=</span><span class="s">"MySolver2"</span> <span class="na">exchange-directory=</span><span class="s">"../"</span><span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<p>This establishes an <code class="language-plaintext highlighter-rouge">m2n</code> (i.e. parallel, from the M processes of the one participant to the N processes of the other) communication channel based on TCP/IP <code class="language-plaintext highlighter-rouge">sockets</code> between <code class="language-plaintext highlighter-rouge">MySolver1</code> and <code class="language-plaintext highlighter-rouge">MySolver2</code>.
-The used network defaults to the loopback network of your OS, which allows running multiple participants on a single machine.
-Certain systems may not provide a loopback interface, in which case you need to specify a network interface yourself.</p>
-
-<p>In some situations, you may need to manually specify a network interface.
-The most common case being participants distributed over multiple hosts aka running on clusters.
-This may also be the case if you use participants in isolated Docker containers or if your system doesn’t provide a loopback interface.</p>
-
-<p>To manually specify a network interface use the <code class="language-plaintext highlighter-rouge">network="..."</code> attribute.
-Common interface on clusters are the local ethernet <code class="language-plaintext highlighter-rouge">"eth0"</code> or the infiniband system <code class="language-plaintext highlighter-rouge">"ib0"</code>.</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">acceptor=</span><span class="s">"MySolver1"</span> <span class="na">connector=</span><span class="s">"MySolver2"</span> <span class="na">network=</span><span class="s">"ib0"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<p>On Unix systems, you can list network interfaces using the following command:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>ip <span class="nb">link</span>
-<span class="gp">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt;</span><span class="w"> </span>mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-<span class="go">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-</span><span class="gp">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;</span><span class="w"> </span>mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
-<span class="go">    link/ether 52:54:00:e0:03:62 brd ff:ff:ff:ff:ff:ff
-</span></code></pre></div></div>
-
-<p>You can also specify a specific port that you want to use for the communication.
-In that case, it is also important to use a gather-scatter step, so that all communication
-goes via that one port:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">port=</span><span class="s">"12345"</span> <span class="na">acceptor=</span><span class="s">"MySolver1"</span> <span class="na">connector=</span><span class="s">"MySolver2"</span> <span class="na">exchange-directory=</span><span class="s">".."</span> <span class="na">enforce-gather-scatter=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<p>This allows interesting use cases, such as <a href="running-distributed.html">coupling participants running on different systems</a>.</p>
-
-<p>The alternative to TCP/IP sockets is MPI ports (an MPI 2.0 feature):</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:mpi</span> <span class="err">...</span><span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<p>In preCICE, we always start simulations in separated MPI communicators (remember: we start solvers in different terminals, with their own <code class="language-plaintext highlighter-rouge">mpirun</code> commands), a feature that highly improves flexibility (solvers do not need to be in the same MPI communicator at any time). As the MPI ports functionality is not a highly used feature of MPI (at least not with separated <code class="language-plaintext highlighter-rouge">MPI_COMM_WORLD</code> communicators), it has robustness issues for several MPI implementations (<a href="https://github.com/precice/precice/issues/746">for OpenMPI, for example</a>). In principle, MPI gives you faster communication roughly by a factor of 10 (see <a href="https://mediatum.ub.tum.de/doc/1320661/document.pdf">Benjamin Uekermann’s dissertation</a>, section 4.2.3), but, for most applications, you will not feel any difference as both are very fast. We recommend using <code class="language-plaintext highlighter-rouge">sockets</code> by default, unless you are performing large performance-critical simulations with very large coupling meshes combined with a high total time-window count.
-There are no hard limits regarding vertex or time-window count for when this change makes sense, as the the preCICE configuration and the solver-provided mesh partitioning hugely impact the required communication load. The only reliable decision process is to measure the impact of the change on the run-time of <code class="language-plaintext highlighter-rouge">initialize</code> and <code class="language-plaintext highlighter-rouge">advance</code> calls. See the section on <a href="tooling-performance-analysis">performance analysis</a> for more information.</p>
-
-<p>Which participant is <code class="language-plaintext highlighter-rouge">acceptor</code> and which one is <code class="language-plaintext highlighter-rouge">connector</code> makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, <a href="https://precice.discourse.group/new-topic">ask us for advice</a>.</p>
-
-<p>The <code class="language-plaintext highlighter-rouge">exchange-directory</code> should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to <code class="language-plaintext highlighter-rouge">"."</code>, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers in the page <a href="running-simple.html">running on a local machine</a>.</p>
-
-<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
-If you face any problems with establishing the communication, have a look <a href="https://precice.discourse.group/t/help-the-participants-are-not-finding-each-other/646/2">at this Discourse post</a>.
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;">
+  <input id="q" placeholder="Search questions..." style="padding:8px;border:1px solid #ddd;border-radius:8px;min-width:240px;" />
+  <select id="sort" style="padding:8px;border:1px solid #ddd;border-radius:8px;">
+    <option value="last_posted_at">Sort by last activity</option>
+    <option value="created_at">Sort by creation date</option>
+    <option value="posts_count">Sort by replies</option>
+    <option value="views">Sort by views</option>
+    <option value="like_count">Sort by likes</option>
+  </select>
 </div>
 
-<h2 id="advanced-the-intra-comm-tag">Advanced: the intra-comm tag</h2>
+<p id="meta" style="margin:0 0 8px 0;color:#666;"></p>
+<p id="stats" style="margin:0 0 16px 0;color:#666;"></p>
 
-<p>If you build preCICE without MPI (and <strong>only</strong> in this case) you might also need to change the communication preCICE uses to communicate between ranks of a single parallel participant. You can specify to use TCP/IP sockets with:</p>
+<div id="list" style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));"></div>
+<div id="empty" style="display:none;color:#666;padding:16px 0;text-align:center;">No results found.</div>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span> 
-...
-<span class="nt">&lt;intra-comm:sockets/&gt;</span>   
-...
-<span class="nt">&lt;/participant&gt;</span>
-</code></pre></div></div>
+<script src="/js/forum-fetch.js"></script>
+
 
 
     
@@ -1768,11 +1678,12 @@ If you face any problems with establishing the communication, have a look <a hre
 
 
 
-
-
-
-
-
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "FAQ",
+  "item": "https://precice.org/fundamentals-faq.html"
+}
 
 
 
@@ -2066,7 +1977,7 @@ If you face any problems with establishing the communication, have a look <a hre
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Oct 30, 2025<br>
         Site last updated: Oct 30, 2025
         </p>
       </div>
