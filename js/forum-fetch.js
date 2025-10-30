@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             </a>
           </p>
           <p style="color:#666;font-size:0.9em;">
-            Last updated: ${new Date(t.last_posted_at).toLocaleDateString()} |
+            Last updated: ${new Date(t.last_posted_at).toLocaleDateString("en-GB")} |
             Replies: ${t.posts_count} | Views: ${t.views}
           </p>
         `;
