@@ -1,13 +1,14 @@
 ---
-layout: default
-title: FAQ
-parent: Fundamentals
+title: Frequently asked questions
 permalink: /fundamentals-faq.html
 tags: [faq]
+editme: false
+toc: false
+redirect_from:
+  - faq.html
 ---
 
-<h1>Frequently Asked Questions</h1>
-<p style="color:#666;">Browse and search frequently asked questions mirrored from the preCICE Discourse forum.</p>
+Search and filter frequently asked questions on the [preCICE Discourse forum](https://precice.discourse.group/tag/faq).
 
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;">
   <input id="q" placeholder="Search questions..." style="padding:8px;border:1px solid #ddd;border-radius:8px;min-width:240px;">
