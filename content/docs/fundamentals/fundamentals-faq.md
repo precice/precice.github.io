@@ -1,7 +1,7 @@
 ---
 title: Frequently asked questions
 permalink: /fundamentals-faq.html
-tags: [faq]
+keywords: faq, forum, questions
 editme: false
 toc: false
 redirect_from:
