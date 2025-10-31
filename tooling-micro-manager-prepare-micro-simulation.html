@@ -1625,18 +1625,18 @@ document.addEventListener('mouseup', function(e) {
 <p>Restructure your micro simulation code into a Python class with the structure given below. The docstring of each function gives information on what it should do and what its input and output should be.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MicroSimulation</span><span class="p">:</span> <span class="c1"># Name is fixed
-</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim_id</span><span class="p">):</span>
-        <span class="s">"""
+</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sim_id</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
         Constructor of class MicroSimulation.
 
         Parameters
         ----------
         sim_id : int
             ID of the simulation instance, that the Micro Manager has set for it.
-        """</span>
+        </span><span class="sh">"""</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="s">"""
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sh">"""</span><span class="s">
         Initialize the micro simulation and return initial data which will be used in computing adaptivity before the first time step.
 
         Defining this function is OPTIONAL.
@@ -1645,10 +1645,10 @@ document.addEventListener('mouseup', function(e) {
         -------
         initial_data : dict
             Dictionary with names of initial data as keys and the initial data itself as values.
-        """</span>
+        </span><span class="sh">"""</span>
 
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="s">"""
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">macro_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sh">"""</span><span class="s">
         Solve one time step of the micro simulation for transient problems or solve until steady state for steady-state problems.
 
         Parameters
@@ -1662,24 +1662,24 @@ document.addEventListener('mouseup', function(e) {
         -------
         micro_data : dict
             Dictionary with names of micro data as keys and the updated micro data a values.
-        """</span>
+        </span><span class="sh">"""</span>
 
-    <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-        <span class="s">"""
+    <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
         Set the state of the micro simulation.
-        """</span>
+        </span><span class="sh">"""</span>
 
-    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s">"""
+    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
         Return the state of the micro simulation.
-        """</span>
+        </span><span class="sh">"""</span>
 
-    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s">"""
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
         This function writes output of the micro simulation in some form.
         It will be called with frequency set by configuration option `simulation_params: micro_output_n`
         This function is *optional*.
-        """</span>
+        </span><span class="sh">"""</span>
 </code></pre></div></div>
 
 <p>A dummy code of a sample MicroSimulation class can be found in the <a href="https://github.com/precice/micro-manager/blob/develop/examples/python-dummy/micro_dummy.py">examples/python-dummy/micro_dummy.py</a> directory.</p>

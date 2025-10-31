@@ -1664,7 +1664,7 @@ Now, we will learn how to write gradient data to the mesh. For this purpose, we 
   </div>
 <div role="tabpanel" class="tab-pane" id="python-1">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">write_gradient_data</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">gradients</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">write_gradient_data</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">gradients</span><span class="p">)</span>
 </code></pre></div>    </div>
 
   </div>
@@ -1725,33 +1725,33 @@ The values are passed as following:</p>
   </div>
 <div role="tabpanel" class="tab-pane" id="python-2">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nc">Participant</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidSolver</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">precice-config.xml</span><span class="sh">"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 
-<span class="n">mesh_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_mesh_dimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">)</span>
-<span class="n">data_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_data_dimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">)</span>
+<span class="n">mesh_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_mesh_dimensions</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">data_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_data_dimensions</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stress</span><span class="sh">"</span><span class="p">)</span>
 
-<span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">set_mesh_vertices</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+<span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">set_mesh_vertices</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
 
-<span class="n">stress</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">data_dim</span><span class="p">))</span>
-<span class="n">stress_gradient</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">data_dim</span><span class="p">,</span> <span class="n">mesh_dim</span><span class="p">))</span>
-<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
+<span class="n">stress</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">data_dim</span><span class="p">))</span>
+<span class="n">stress_gradient</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">data_dim</span><span class="p">,</span> <span class="n">mesh_dim</span><span class="p">))</span>
+<span class="n">precice</span><span class="p">.</span><span class="nf">initialize</span><span class="p">()</span>
 
-<span class="k">while</span> <span class="ow">not</span> <span class="n">simulation_done</span><span class="p">():</span>
-  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step_size</span><span class="p">()</span>
-  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
-  <span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">read_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
-  <span class="n">set_displacement</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
-  <span class="n">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-  <span class="n">stress</span> <span class="o">=</span> <span class="n">compute_stress</span><span class="p">()</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="nf">simulation_done</span><span class="p">():</span>
+  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_max_time_step_size</span><span class="p">()</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="nf">begin_time_step</span><span class="p">()</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+  <span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">read_data</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Displacements</span><span class="sh">"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+  <span class="nf">set_displacement</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
+  <span class="nf">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="n">stress</span> <span class="o">=</span> <span class="nf">compute_stress</span><span class="p">()</span>
 
-  <span class="n">precice</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">stress</span><span class="p">)</span>
+  <span class="n">precice</span><span class="p">.</span><span class="nf">write_data</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stress</span><span class="sh">"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">stress</span><span class="p">)</span>
 
-  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="n">requires_gradient_data_for</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">):</span>
-    <span class="n">stress_gradient</span> <span class="o">=</span> <span class="n">compute_stress_gradient</span><span class="p">()</span>
-    <span class="n">precice</span><span class="p">.</span><span class="n">write_gradient_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">stress_gradient</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="nf">requires_gradient_data_for</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stress</span><span class="sh">"</span><span class="p">):</span>
+    <span class="n">stress_gradient</span> <span class="o">=</span> <span class="nf">compute_stress_gradient</span><span class="p">()</span>
+    <span class="n">precice</span><span class="p">.</span><span class="nf">write_gradient_data</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stress</span><span class="sh">"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">stress_gradient</span><span class="p">)</span>
 
-  <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="n">precice</span><span class="p">.</span><span class="nf">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
 </code></pre></div>    </div>
 
   </div>

@@ -1656,8 +1656,8 @@ $('#toc').on('click', 'a', function() {
   </div>
 <div role="tabpanel" class="tab-pane" id="python-1">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">requires_writing_checkpoint</span><span class="p">()</span>
-<span class="n">requires_reading_checkpoint</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">requires_writing_checkpoint</span><span class="p">()</span>
+<span class="nf">requires_reading_checkpoint</span><span class="p">()</span>
 </code></pre></div>    </div>
 
   </div>
@@ -1691,8 +1691,8 @@ $('#toc').on('click', 'a', function() {
   </div>
 <div role="tabpanel" class="tab-pane" id="python-2">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turn_on_solver</span><span class="p">()</span> <span class="c1"># eg: setup and partition mesh
-</span><span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="c1"># construct participant
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">turn_on_solver</span><span class="p">()</span> <span class="c1"># eg: setup and partition mesh
+</span><span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nc">Participant</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidSolver</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">precice-config.xml</span><span class="sh">"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="c1"># construct participant
 </span>
 <span class="c1"># [... ] define mesh 
 </span></code></pre></div>    </div>
@@ -1735,28 +1735,28 @@ $('#toc').on('click', 'a', function() {
   </div>
 <div role="tabpanel" class="tab-pane" id="python-3">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
-<span class="k">while</span> <span class="n">precice</span><span class="p">.</span><span class="n">is_coupling_ongoing</span><span class="p">():</span>
-  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="n">requires_writing_checkpoint</span><span class="p">():</span>
-    <span class="n">save_old_state</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="p">.</span><span class="nf">initialize</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">precice</span><span class="p">.</span><span class="nf">is_coupling_ongoing</span><span class="p">():</span>
+  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="nf">requires_writing_checkpoint</span><span class="p">():</span>
+    <span class="nf">save_old_state</span><span class="p">()</span>
   
-  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step_size</span><span class="p">()</span>
-  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
-  <span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">read_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
-  <span class="n">set_displacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
-  <span class="n">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-  <span class="n">forces</span> <span class="o">=</span> <span class="n">compute_forces</span><span class="p">()</span>
-  <span class="n">precice</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Forces"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">forces</span><span class="p">)</span>
-  <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_max_time_step_size</span><span class="p">()</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="nf">begin_time_step</span><span class="p">()</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+  <span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">read_data</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Displacements</span><span class="sh">"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+  <span class="nf">set_displacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
+  <span class="nf">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="n">forces</span> <span class="o">=</span> <span class="nf">compute_forces</span><span class="p">()</span>
+  <span class="n">precice</span><span class="p">.</span><span class="nf">write_data</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Forces</span><span class="sh">"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">forces</span><span class="p">)</span>
+  <span class="n">precice</span><span class="p">.</span><span class="nf">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
 
-  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="n">requires_reading_checkpoint</span><span class="p">():</span>
-    <span class="n">reload_old_state</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="nf">requires_reading_checkpoint</span><span class="p">():</span>
+    <span class="nf">reload_old_state</span><span class="p">()</span>
   <span class="k">else</span><span class="p">:</span>
-    <span class="n">end_time_step</span><span class="p">()</span>
+    <span class="nf">end_time_step</span><span class="p">()</span>
 
-<span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">()</span>
-<span class="n">turn_off_solver</span><span class="p">()</span>
+<span class="n">precice</span><span class="p">.</span><span class="nf">finalize</span><span class="p">()</span>
+<span class="nf">turn_off_solver</span><span class="p">()</span>
 </code></pre></div>    </div>
 
   </div>

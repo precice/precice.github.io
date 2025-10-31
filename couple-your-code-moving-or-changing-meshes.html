@@ -1707,23 +1707,23 @@ If you are missing features, please check <a href="https://github.com/orgs/preci
 
 <p>You can the reset a mesh in your participant as follows:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rdata</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">read_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">my_solver_wants_to_remesh</span><span class="p">(</span><span class="n">basedon</span><span class="o">=</span><span class="n">data</span><span class="p">)):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rdata</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="nf">read_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="nf">if </span><span class="p">(</span><span class="nf">my_solver_wants_to_remesh</span><span class="p">(</span><span class="n">basedon</span><span class="o">=</span><span class="n">data</span><span class="p">)):</span>
     <span class="c1"># reset the mesh
-</span>    <span class="n">participant</span><span class="p">.</span><span class="n">reset_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+</span>    <span class="n">participant</span><span class="p">.</span><span class="nf">reset_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
     <span class="c1"># redefine the mesh
-</span>    <span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertices</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">new_coordinates</span><span class="p">)</span>
-    <span class="n">values</span><span class="p">.</span><span class="n">resize</span><span class="p">()</span>
+</span>    <span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="nf">set_mesh_vertices</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">new_coordinates</span><span class="p">)</span>
+    <span class="n">values</span><span class="p">.</span><span class="nf">resize</span><span class="p">()</span>
 
 <span class="c1"># solved the timestep based on the old data
 # most likely this needs extra support from the adapter
-</span><span class="n">wdata</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">rdata</span><span class="p">)</span>
+</span><span class="n">wdata</span> <span class="o">=</span> <span class="nf">solve</span><span class="p">(</span><span class="n">rdata</span><span class="p">)</span>
 
 <span class="c1"># write data to the newly defined mesh
-</span><span class="n">participant</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">wdata</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</span><span class="n">participant</span><span class="p">.</span><span class="nf">write_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">wdata</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># preCICE automatically handles the mesh change
-</span><span class="n">participant</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</span><span class="n">participant</span><span class="p">.</span><span class="nf">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>This feature comes with runtime implications.

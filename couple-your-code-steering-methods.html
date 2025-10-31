@@ -1660,10 +1660,10 @@ The handle to the preCICE API is the class <code class="language-plaintext highl
   </div>
   <div role="tabpanel" class="tab-pane" id="python-1">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">participant</span> <span class="o">=</span> <span class="n">Participant</span><span class="p">(</span><span class="n">participant_name</span><span class="p">,</span> <span class="n">configuration_file_name</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-<span class="n">participant</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
-<span class="n">participant</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">computed_timestep_size</span><span class="p">)</span>
-<span class="n">participant</span><span class="p">.</span><span class="n">finalize</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">participant</span> <span class="o">=</span> <span class="nc">Participant</span><span class="p">(</span><span class="n">participant_name</span><span class="p">,</span> <span class="n">configuration_file_name</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">participant</span><span class="p">.</span><span class="nf">initialize</span><span class="p">()</span>
+<span class="n">participant</span><span class="p">.</span><span class="nf">advance</span><span class="p">(</span><span class="n">computed_timestep_size</span><span class="p">)</span>
+<span class="n">participant</span><span class="p">.</span><span class="nf">finalize</span><span class="p">()</span>
 </code></pre></div>    </div>
 
   </div>
@@ -1690,7 +1690,7 @@ The handle to the preCICE API is the class <code class="language-plaintext highl
   </div>
 <div role="tabpanel" class="tab-pane" id="python-2">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_max_time_step_size</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">get_max_time_step_size</span><span class="p">()</span>
 </code></pre></div>    </div>
 
   </div>
@@ -1730,25 +1730,25 @@ The handle to the preCICE API is the class <code class="language-plaintext highl
   </div>
 <div role="tabpanel" class="tab-pane" id="python-3">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">precice</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">precice</span>
 
-<span class="n">turn_on_solver</span><span class="p">()</span>  <span class="c1"># e.g. setup and partition mesh
+<span class="nf">turn_on_solver</span><span class="p">()</span>  <span class="c1"># e.g. setup and partition mesh
 </span>
-<span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(</span>
-    <span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span>
+<span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nc">Participant</span><span class="p">(</span>
+    <span class="sh">"</span><span class="s">FluidSolver</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">precice-config.xml</span><span class="sh">"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span>
 <span class="p">)</span> <span class="c1"># construct participant
 </span>
-<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
-<span class="k">while</span> <span class="ow">not</span> <span class="n">simulation_done</span><span class="p">():</span>  <span class="c1"># time loop
-</span>    <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step</span><span class="p">()</span>
-    <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span> <span class="c1"># e.g. compute adaptive dt
-</span>    <span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
-    <span class="n">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-    <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-    <span class="n">end_time_step</span><span class="p">()</span> <span class="c1"># e.g. update variables, increment time
+<span class="n">precice</span><span class="p">.</span><span class="nf">initialize</span><span class="p">()</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="nf">simulation_done</span><span class="p">():</span>  <span class="c1"># time loop
+</span>    <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_max_time_step</span><span class="p">()</span>
+    <span class="n">solver_dt</span> <span class="o">=</span> <span class="nf">begin_time_step</span><span class="p">()</span> <span class="c1"># e.g. compute adaptive dt
+</span>    <span class="n">dt</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+    <span class="nf">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">precice</span><span class="p">.</span><span class="nf">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+    <span class="nf">end_time_step</span><span class="p">()</span> <span class="c1"># e.g. update variables, increment time
 </span>
-<span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">()</span>  <span class="c1"># frees data structures and closes communication channels
-</span><span class="n">turn_off_solver</span><span class="p">()</span>
+<span class="n">precice</span><span class="p">.</span><span class="nf">finalize</span><span class="p">()</span>  <span class="c1"># frees data structures and closes communication channels
+</span><span class="nf">turn_off_solver</span><span class="p">()</span>
 </code></pre></div>    </div>
 
   </div>

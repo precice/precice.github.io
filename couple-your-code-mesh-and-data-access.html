@@ -1665,8 +1665,8 @@ $('#toc').on('click', 'a', function() {
   </div>
 <div role="tabpanel" class="tab-pane" id="python-1">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vertex_id</span> <span class="o">=</span> <span class="n">set_mesh_vertex</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
-<span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">set_mesh_vertices</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">positions</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vertex_id</span> <span class="o">=</span> <span class="nf">set_mesh_vertex</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+<span class="n">vertex_ids</span> <span class="o">=</span> <span class="nf">set_mesh_vertices</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">positions</span><span class="p">)</span>
 </code></pre></div>    </div>
 
   </div>
@@ -1694,7 +1694,7 @@ $('#toc').on('click', 'a', function() {
   </div>
 <div role="tabpanel" class="tab-pane" id="python-2">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">write_data</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">write_data</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 </code></pre></div>    </div>
 
   </div>
@@ -1718,7 +1718,7 @@ $('#toc').on('click', 'a', function() {
   </div>
 <div role="tabpanel" class="tab-pane" id="python-3">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">values</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">relative_read_time</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">values</span> <span class="o">=</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">relative_read_time</span><span class="p">)</span>
 </code></pre></div>    </div>
 
   </div>
@@ -1774,37 +1774,37 @@ $('#toc').on('click', 'a', function() {
   </div>
 <div role="tabpanel" class="tab-pane" id="python-4">
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turn_on_solver</span><span class="p">()</span> <span class="c1"># e.g. setup and partition mesh
-</span><span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="c1"># Initialize participant
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">turn_on_solver</span><span class="p">()</span> <span class="c1"># e.g. setup and partition mesh
+</span><span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nc">Participant</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidSolver</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">precice-config.xml</span><span class="sh">"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="c1"># Initialize participant
 </span>
-<span class="n">mesh_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_mesh_dimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">)</span>
+<span class="n">mesh_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_mesh_dimensions</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">)</span>
 
 <span class="c1"># define coords of vertices at wet surface
-</span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">mesh_dim</span><span class="p">))</span>
+</span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">mesh_dim</span><span class="p">))</span>
 
-<span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">set_mesh_vertices</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+<span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">set_mesh_vertices</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
 
-<span class="n">forces_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_data_dimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Forces"</span><span class="p">)</span>
-<span class="n">forces</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">forces_dim</span><span class="p">))</span>
+<span class="n">forces_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_data_dimensions</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Forces</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">forces</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">forces_dim</span><span class="p">))</span>
 
-<span class="n">displacements_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_data_dimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">)</span>
-<span class="n">displacements</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">displacements_dim</span><span class="p">))</span>
+<span class="n">displacements_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_data_dimensions</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Displacements</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">displacements</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">displacements_dim</span><span class="p">))</span>
 
-<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
-<span class="k">while</span> <span class="n">participant</span><span class="p">.</span><span class="n">is_coupling_ongoing</span><span class="p">():</span> <span class="c1"># time loop
-</span>  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step_size</span><span class="p">()</span>
-  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span> <span class="c1"># e.g. compute adaptive dt
-</span>  <span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
-  <span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">read_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
-  <span class="n">set_displacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
-  <span class="n">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-  <span class="n">forces</span> <span class="o">=</span> <span class="n">compute_forces</span><span class="p">()</span>
-  <span class="n">precice</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Forces"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">forces</span><span class="p">)</span>
-  <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-  <span class="n">end_time_step</span><span class="p">()</span> <span class="c1"># e.g. update variables, increment time
+<span class="n">precice</span><span class="p">.</span><span class="nf">initialize</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">participant</span><span class="p">.</span><span class="nf">is_coupling_ongoing</span><span class="p">():</span> <span class="c1"># time loop
+</span>  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">get_max_time_step_size</span><span class="p">()</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="nf">begin_time_step</span><span class="p">()</span> <span class="c1"># e.g. compute adaptive dt
+</span>  <span class="n">dt</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+  <span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="nf">read_data</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Displacements</span><span class="sh">"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+  <span class="nf">set_displacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
+  <span class="nf">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="n">forces</span> <span class="o">=</span> <span class="nf">compute_forces</span><span class="p">()</span>
+  <span class="n">precice</span><span class="p">.</span><span class="nf">write_data</span><span class="p">(</span><span class="sh">"</span><span class="s">FluidMesh</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Forces</span><span class="sh">"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">forces</span><span class="p">)</span>
+  <span class="n">precice</span><span class="p">.</span><span class="nf">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="nf">end_time_step</span><span class="p">()</span> <span class="c1"># e.g. update variables, increment time
 </span>
-<span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">()</span> <span class="c1"># frees data structures and closes communication channels
-</span><span class="n">turn_off_solver</span><span class="p">()</span>
+<span class="n">precice</span><span class="p">.</span><span class="nf">finalize</span><span class="p">()</span> <span class="c1"># frees data structures and closes communication channels
+</span><span class="nf">turn_off_solver</span><span class="p">()</span>
 </code></pre></div>    </div>
 
   </div>

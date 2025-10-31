@@ -1665,23 +1665,23 @@ $('#toc').on('click', 'a', function() {
   <li>
     <p>Download previous distribution</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">easyDataverse</span> <span class="kn">import</span> <span class="n">Dataverse</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="n">easyDataverse</span> <span class="kn">import</span> <span class="n">Dataverse</span>
 
- <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">"https://darus.uni-stuttgart.de"</span>
+ <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://darus.uni-stuttgart.de</span><span class="sh">"</span>
 
  <span class="c1"># get the token from DaRUS after logging in; valid for one year
-</span> <span class="n">API_TOKEN</span> <span class="o">=</span> <span class="s">"yourToken"</span>
+</span> <span class="n">API_TOKEN</span> <span class="o">=</span> <span class="sh">"</span><span class="s">yourToken</span><span class="sh">"</span>
 
  <span class="c1"># DOI of preCICE Distribution Version v2211.0
-</span> <span class="n">PID</span> <span class="o">=</span> <span class="s">"doi:10.18419/darus-3576"</span>
+</span> <span class="n">PID</span> <span class="o">=</span> <span class="sh">"</span><span class="s">doi:10.18419/darus-3576</span><span class="sh">"</span>
 
- <span class="n">darus</span> <span class="o">=</span> <span class="n">Dataverse</span><span class="p">(</span><span class="n">SERVER_URL</span><span class="p">,</span> <span class="n">API_TOKEN</span><span class="p">)</span>
+ <span class="n">darus</span> <span class="o">=</span> <span class="nc">Dataverse</span><span class="p">(</span><span class="n">SERVER_URL</span><span class="p">,</span> <span class="n">API_TOKEN</span><span class="p">)</span>
  <span class="c1"># pull data and metadata, data is written into subfolder old_files, which is also created
-</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">darus</span><span class="p">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">PID</span><span class="p">,</span> <span class="n">filedir</span><span class="o">=</span><span class="s">"old_files"</span><span class="p">)</span>
+</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">darus</span><span class="p">.</span><span class="nf">load_dataset</span><span class="p">(</span><span class="n">PID</span><span class="p">,</span> <span class="n">filedir</span><span class="o">=</span><span class="sh">"</span><span class="s">old_files</span><span class="sh">"</span><span class="p">)</span>
 
  <span class="c1"># write metadata into a json file
-</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"dataset.json"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-   <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">dataset</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
+</span> <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">dataset.json</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">w</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+   <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">dataset</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -1779,28 +1779,28 @@ $('#toc').on('click', 'a', function() {
   <li>
     <p>Upload to DaRUS</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">easyDataverse</span> <span class="kn">import</span> <span class="n">Dataverse</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="n">easyDataverse</span> <span class="kn">import</span> <span class="n">Dataverse</span>
 
- <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">"https://darus.uni-stuttgart.de"</span>
+ <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://darus.uni-stuttgart.de</span><span class="sh">"</span>
 
  <span class="c1"># get the token from DaRUS after logging in; valid for one year
-</span> <span class="n">API_TOKEN</span> <span class="o">=</span> <span class="s">"yourToken"</span>
+</span> <span class="n">API_TOKEN</span> <span class="o">=</span> <span class="sh">"</span><span class="s">yourToken</span><span class="sh">"</span>
 
- <span class="n">darus</span> <span class="o">=</span> <span class="n">Dataverse</span><span class="p">(</span><span class="n">SERVER_URL</span><span class="p">,</span> <span class="n">API_TOKEN</span><span class="p">)</span>
+ <span class="n">darus</span> <span class="o">=</span> <span class="nc">Dataverse</span><span class="p">(</span><span class="n">SERVER_URL</span><span class="p">,</span> <span class="n">API_TOKEN</span><span class="p">)</span>
 
- <span class="n">dataset</span> <span class="o">=</span> <span class="n">darus</span><span class="p">.</span><span class="n">dataset_from_json</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">"./dataset_new.json"</span><span class="p">))</span>
+ <span class="n">dataset</span> <span class="o">=</span> <span class="n">darus</span><span class="p">.</span><span class="nf">dataset_from_json</span><span class="p">(</span><span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">./dataset_new.json</span><span class="sh">"</span><span class="p">))</span>
 
  <span class="c1"># datasetContactEmail is a field that cannot yet be downloaded, need to provide manually
-</span> <span class="n">dataset</span><span class="p">.</span><span class="n">citation</span><span class="p">.</span><span class="n">dataset_contact</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="s">"benjamin.uekermann@ipvs.uni-stuttgart.de"</span>
+</span> <span class="n">dataset</span><span class="p">.</span><span class="n">citation</span><span class="p">.</span><span class="n">dataset_contact</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="sh">"</span><span class="s">benjamin.uekermann@ipvs.uni-stuttgart.de</span><span class="sh">"</span>
 
- <span class="n">dataset</span><span class="p">.</span><span class="n">add_directory</span><span class="p">(</span>
-   <span class="n">dirpath</span><span class="o">=</span><span class="s">"./new_files/"</span><span class="p">,</span>
+ <span class="n">dataset</span><span class="p">.</span><span class="nf">add_directory</span><span class="p">(</span>
+   <span class="n">dirpath</span><span class="o">=</span><span class="sh">"</span><span class="s">./new_files/</span><span class="sh">"</span><span class="p">,</span>
  <span class="p">)</span>
 
  <span class="c1"># delete pid to upload to new dataset, otherwise existing one overwritten
 </span> <span class="n">dataset</span><span class="p">.</span><span class="n">p_id</span> <span class="o">=</span> <span class="bp">None</span>
  <span class="c1"># upload to dataverse of US3
-</span> <span class="n">dataset</span><span class="p">.</span><span class="n">upload</span><span class="p">(</span><span class="s">"ipvs_us3"</span><span class="p">)</span>
+</span> <span class="n">dataset</span><span class="p">.</span><span class="nf">upload</span><span class="p">(</span><span class="sh">"</span><span class="s">ipvs_us3</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li>

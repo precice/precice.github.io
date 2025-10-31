@@ -1668,19 +1668,19 @@ $('#toc').on('click', 'a', function() {
 
 <p>In the directory <code class="language-plaintext highlighter-rouge">pdfconfigs</code> there is a file called <code class="language-plaintext highlighter-rouge">prince-list.txt</code> that looks like this:</p>
 
-<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">entry</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">sidebar</span><span class="w"> </span><span class="p">%}</span>
-    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">folder</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">entry.folders</span><span class="w"> </span><span class="p">%}</span>
-        <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">folder</span><span class="p">.</span><span class="nv">output</span><span class="w"> </span><span class="ow">contains</span><span class="w"> </span><span class="s2">"pdf"</span><span class="w"> </span><span class="p">%}</span>
-            <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">folderitem</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">folder.folderitems</span><span class="w"> </span><span class="p">%}</span>
-                <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">folderitem</span><span class="p">.</span><span class="nv">output</span><span class="w"> </span><span class="ow">contains</span><span class="w"> </span><span class="s2">"pdf"</span><span class="w"> </span><span class="p">%}</span>
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">entry</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">sidebar</span><span class="w"> </span><span class="cp">%}</span>
+    <span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">folder</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">entry</span><span class="p">.</span><span class="nv">folders</span><span class="w"> </span><span class="cp">%}</span>
+        <span class="cp">{%</span><span class="w"> </span><span class="nt">if</span><span class="w"> </span><span class="nv">folder</span><span class="p">.</span><span class="nv">output</span><span class="w"> </span><span class="ow">contains</span><span class="w"> </span><span class="s2">"pdf"</span><span class="w"> </span><span class="cp">%}</span>
+            <span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">folderitem</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">folder</span><span class="p">.</span><span class="nv">folderitems</span><span class="w"> </span><span class="cp">%}</span>
+                <span class="cp">{%</span><span class="w"> </span><span class="nt">if</span><span class="w"> </span><span class="nv">folderitem</span><span class="p">.</span><span class="nv">output</span><span class="w"> </span><span class="ow">contains</span><span class="w"> </span><span class="s2">"pdf"</span><span class="w"> </span><span class="cp">%}</span>
 
-                <span class="p">{{</span><span class="nv">folderitem</span><span class="p">.</span><span class="nv">url</span><span class="p">}}</span>
+                <span class="cp">{{</span><span class="nv">folderitem</span><span class="p">.</span><span class="nv">url</span><span class="cp">}}</span>
 
-                <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
-            <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
-        <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
-      <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
- <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+                <span class="cp">{%</span><span class="w"> </span><span class="nt">endif</span><span class="w"> </span><span class="cp">%}</span>
+            <span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
+        <span class="cp">{%</span><span class="w"> </span><span class="nt">endif</span><span class="w"> </span><span class="cp">%}</span>
+      <span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
+ <span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
 </code></pre></div></div>
 
 <p>I.e. we loop through every item in the appropriate <code class="language-plaintext highlighter-rouge">sidebar.yml</code>, check whether <code class="language-plaintext highlighter-rouge">output</code> is <code class="language-plaintext highlighter-rouge">pdf</code>, and if so print the item’s URI. As a result, after running jekyll, <code class="language-plaintext highlighter-rouge">prince-list.txt</code> contains a list of URIs for all items in <code class="language-plaintext highlighter-rouge">sidebar.yml</code>:</p>
@@ -1716,8 +1716,8 @@ http://localhost:4000/docs.html
       <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pages"</span>
     <span class="na">values</span><span class="pi">:</span>
       <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">page_print"</span>
-      <span class="na">comments</span><span class="pi">:</span> <span class="no">true</span>
-      <span class="na">search</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">comments</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">search</span><span class="pi">:</span> <span class="kc">true</span>
 </code></pre></div></div>
 
 <p>This layout type includes a separate <code class="language-plaintext highlighter-rouge">&lt;head&gt;&lt;/head&gt;</code> in the form of <code class="language-plaintext highlighter-rouge">_includes/head_print.html</code>. Apart from some minor changes, e.g. by referencing resources such as stylesheets, scripts and fonts locally, it also points to <code class="language-plaintext highlighter-rouge">css/printstyles.css</code>. This is where styles specific to the PDF are stored.</p>
@@ -1810,7 +1810,7 @@ http://localhost:4000/docs.html
 
 <p>Bootstrap by default sets color values to black for all elements for <code class="language-plaintext highlighter-rouge">@media print</code>. To override this behaviour modify the (local) minified <code class="language-plaintext highlighter-rouge">bootstrap.min.css</code> from</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@media</span> <span class="n">print</span><span class="p">{</span><span class="o">*,</span><span class="nd">:after</span><span class="o">,</span><span class="nd">:before</span><span class="p">{</span><span class="nl">color</span><span class="p">:</span><span class="m">#000</span><span class="cp">!important</span><span class="p">;</span><span class="nl">text-shadow</span><span class="p">:</span><span class="nb">none</span><span class="cp">!important</span><span class="p">;</span><span class="nl">background</span><span class="p">:</span><span class="m">0</span> <span class="m">0</span><span class="cp">!important</span><span class="p">;</span><span class="nl">-webkit-box-shadow</span><span class="p">:</span><span class="nb">none</span><span class="cp">!important</span><span class="p">;</span><span class="nl">box-shadow</span><span class="p">:</span><span class="nb">none</span><span class="cp">!important</span><span class="p">}</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@media</span> <span class="n">print</span><span class="p">{</span><span class="o">*,</span><span class="nd">:after</span><span class="o">,</span><span class="nd">:before</span><span class="p">{</span><span class="nl">color</span><span class="p">:</span><span class="nx">#000</span><span class="cp">!important</span><span class="p">;</span><span class="nl">text-shadow</span><span class="p">:</span><span class="nb">none</span><span class="cp">!important</span><span class="p">;</span><span class="nl">background</span><span class="p">:</span><span class="m">0</span> <span class="m">0</span><span class="cp">!important</span><span class="p">;</span><span class="nl">-webkit-box-shadow</span><span class="p">:</span><span class="nb">none</span><span class="cp">!important</span><span class="p">;</span><span class="nl">box-shadow</span><span class="p">:</span><span class="nb">none</span><span class="cp">!important</span><span class="p">}</span>
 </code></pre></div></div>
 
 <p>to</p>

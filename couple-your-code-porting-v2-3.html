@@ -1666,14 +1666,14 @@ Missing:
 <span class="gd">- int dim = participant.getDimension();
 </span><span class="gi">+ int dim = participant.getMeshDimensions("FluidMesh");
 </span><span class="gd">- int meshID = precice.getMeshID("FluidMesh");
-</span>
-  int vertexSize; // number of vertices at wet surface
+</span><span class="err">
+</span>  int vertexSize; // number of vertices at wet surface
   // determine vertex count
-
-  std::vector&lt;double&gt; coords(vertexSize*dim); // coords of vertices at wet surface
+<span class="err">
+</span>  std::vector&lt;double&gt; coords(vertexSize*dim); // coords of vertices at wet surface
   // determine coordinates
-
-  std::vector&lt;int&gt; vertexIDs(vertexSize);
+<span class="err">
+</span>  std::vector&lt;int&gt; vertexIDs(vertexSize);
 <span class="gd">- precice.setMeshVertices(meshID, vertexSize, coords.data(), vertexIDs.data());
 </span><span class="gi">+ precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 </span>  
@@ -1842,8 +1842,8 @@ Missing:
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- double dt = 0;
 - dt        = couplingInterface.initialize();
 </span>  std::vector&lt;double&gt; writeData(dimensions, writeValue);
-
-  // Write initial data before calling initialize()
+<span class="err">
+</span>  // Write initial data before calling initialize()
 <span class="gd">-  const std::string &amp; cowid = actionWriteInitialData();
 -  if (couplingInterface.isActionRequired(cowid)) {
 -    couplingInterface.writeVectorData(writeDataID, vertexIDs, writeData.data());
@@ -1851,8 +1851,8 @@ Missing:
 </span><span class="gi">+  if (participant.requiresInitialData()) {
 +    participant.writeData(meshName, dataWriteName, vertexIDs, writeData);
 </span>  }
-
-  // Move initialize to the place where you called initializeData() previously.
+<span class="err">
+</span>  // Move initialize to the place where you called initializeData() previously.
 <span class="gd">- couplingInterface.initializeData();
 </span><span class="gi">+ participant.initialize();
 + double dt = participant.getMaxTimeWindowSize();

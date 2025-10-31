@@ -1708,7 +1708,7 @@ The primary purpose of the python interface is prototyping. If you need a native
 
 <p>The callback interface calls the following function:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">performAction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sourceData</span><span class="p">,</span> <span class="n">targetData</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">performAction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sourceData</span><span class="p">,</span> <span class="n">targetData</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Without the Python action, the 1D elastic tube gives the following results:</p>
@@ -1724,12 +1724,12 @@ The primary purpose of the python interface is prototyping. If you need a native
     <span class="n">timeThreshold</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># Ramp up the pressure values until this point in time
 </span>
     <span class="k">if</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="n">timeThreshold</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">targetData</span><span class="p">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">targetData</span><span class="p">.</span><span class="n">size</span><span class="p">):</span>
             <span class="c1"># Ramp up pressure value
 </span>            <span class="n">targetData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">/</span> <span class="n">timeThreshold</span><span class="p">)</span> <span class="o">*</span> <span class="n">sourceData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">targetData</span><span class="p">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">targetData</span><span class="p">.</span><span class="n">size</span><span class="p">):</span>
             <span class="c1"># Assign the computed physical pressure values
 </span>            <span class="n">targetData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sourceData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </code></pre></div></div>
