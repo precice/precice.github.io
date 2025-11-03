@@ -188,6 +188,7 @@ The `multiscale-type` which can be either `"spread"` or `"collect"` refers to wh
 When using a `"spread"` mapping, the 1D quantity is distributed over the 3D interface using the `spread-profile`, which defines how the value varies radially across the circular interface. It can either be `"uniform"`, where the same value is applied to all interface vertices; or `"parabolic"`, in which a parabolic profile is applied (maximum at the centerline, decreasing to zero at the wall).
 
 Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. By default, a laminar flow profile is imposed, but this can be explicitly controlled via the `spread-profile` attribute in the configuration.
+
 ## Restrictions for parallel participants
 
 As stated above, for parallel participants only `read`-`consistent` and `write`-`conservative` are valid combinations. If want to find out why, have a look at [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf), page 85. But what to do if you want a `write`-`consistent` mapping? The trick is to move the mapping to the other participant, then `write` becomes `read`:
