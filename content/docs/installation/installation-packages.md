@@ -42,6 +42,8 @@ Please have a look at the official [AUR wiki page](https://wiki.archlinux.org/in
 
 The community also maintains a [development version](https://aur.archlinux.org/packages/precice-git) and [several other packages](https://aur.archlinux.org/packages?&K=precice).
 
+Furthermore, the [arch4edu](https://github.com/arch4edu/arch4edu/wiki) initiative provides pre-built binaries for preCICE and related packages.
+
 ## Nix / NixOS
 
 In addition to the community efforts listed above, preCICE and several of the bindings and adapters are available for Nix in the [precice/nix-packages repository](https://github.com/precice/nix-packages/).
