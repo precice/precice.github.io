@@ -8,9 +8,11 @@ For some systems, preCICE is available in the form of a pre-built package or a p
 These packages are built with enabled Python actions, MPI communication, and PETSc mapping.
 This section lists systems and instructions on how to install these packages.
 
-An incomplete package version overview of preCICE can be found on repology:
+[Repology](https://repology.org/project/precice/versions) compiles a list of packages and versions in distribution repositories.
+This contains a good overview of packages also in community repositories.
+Note, however that Ubuntu and Debian are absent from this list as official packages for those Distros would lack too far behind in time.
 
-[![Packaging status](https://repology.org/badge/vertical-allrepos/precice.svg?header=&columns=2&exclude_sources=site)](https://repology.org/project/precice/versions)
+![Packaging status](https://repology.org/badge/vertical-allrepos/precice.svg?header=&columns=2&exclude_sources=site)
 
 ## Ubuntu
 
