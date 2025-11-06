@@ -1626,7 +1626,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 06 Nov 25</small>
             </div>
           </aside>
           
@@ -1636,6 +1636,12 @@ $('#toc').on('click', 'a', function() {
    <p>For some systems, preCICE is available in the form of a pre-built package or a package recipe.
 These packages are built with enabled Python actions, MPI communication, and PETSc mapping.
 This section lists systems and instructions on how to install these packages.</p>
+
+<p><a href="https://repology.org/project/precice/versions">Repology</a> compiles a list of packages and versions in distribution repositories.
+This contains a good overview of packages also in community repositories.
+Note, however that Ubuntu and Debian are absent from this list as official packages for those Distros would lack too far behind in time.</p>
+
+<p><img src="https://repology.org/badge/vertical-allrepos/precice.svg?header=&amp;columns=2&amp;exclude_sources=site" alt="Packaging status" /></p>
 
 <h2 id="ubuntu">Ubuntu</h2>
 
@@ -1654,12 +1660,19 @@ As an example, change <code class="language-plaintext highlighter-rouge">noble</
 
 <p>Is a newer preCICE release out, and have we not yet updated the above links? Please edit this page.</p>
 
+<h2 id="debian">Debian</h2>
+
+<p>Similar to the Ubuntu packages, we generate Debian packages for at least the latest stable release of Debian.
+You can download version-specific Debian packages from the respective release <a href="https://github.com/precice/precice/releases/latest">GitHub release</a>.</p>
+
 <h2 id="arch-linux--manjaro">Arch Linux / Manjaro</h2>
 
 <p>We maintain a package in the <a href="https://aur.archlinux.org/packages/precice/">Arch User Repository</a>.
 Please have a look at the official <a href="https://wiki.archlinux.org/index.php/Arch_User_Repository">AUR wiki page</a> to find out how to install it.</p>
 
 <p>The community also maintains a <a href="https://aur.archlinux.org/packages/precice-git">development version</a> and <a href="https://aur.archlinux.org/packages?&amp;K=precice">several other packages</a>.</p>
+
+<p>Furthermore, the <a href="https://github.com/arch4edu/arch4edu/wiki">arch4edu</a> initiative provides pre-built binaries for preCICE and related packages.</p>
 
 <h2 id="nix--nixos">Nix / NixOS</h2>
 
@@ -1682,6 +1695,36 @@ For more options, have a look at the <a href="https://github.com/precice/nix-pac
 
 <p>For all packages available upstream, see the <a href="https://search.nixos.org/packages?channel=unstable&amp;from=0&amp;size=50&amp;sort=relevance&amp;query=precice">NixOS search</a>.</p>
 
+<h2 id="macos">macOS</h2>
+
+<p>For macOS, we maintain a <a href="https://formulae.brew.sh/formula/precice">homebrew package/formula</a>.
+To install the latest version use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>precice
+</code></pre></div></div>
+
+<p>It also provides a way of installing the latest develop version from source using the head flag:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install</span> <span class="nt">--head</span> precice
+</code></pre></div></div>
+
+<h2 id="windows">Windows</h2>
+
+<p>The community maintains a preCICE package for <a href="https://packages.msys2.org/base/mingw-w64-precice">MSYS2</a>.
+To use Microsoft MPI, first make sure to install the <a href="https://github.com/microsoft/Microsoft-MPI/releases/latest">latest release of MSMPI</a> (the <code class="language-plaintext highlighter-rouge">msmpisetup.exe</code>).
+Then, enable path inheritance in the environment configuration of your choice.
+To enable it for MSYS64 UCRT, edit the file <code class="language-plaintext highlighter-rouge">C:/msys64/ucrt.ini</code> and uncomment the line <code class="language-plaintext highlighter-rouge">MSYS2_PATH_TYPE=inherit</code> by removing the leading <code class="language-plaintext highlighter-rouge">#</code>. You should now be able to run <code class="language-plaintext highlighter-rouge">mpiexec</code> in the ucrt environment.</p>
+
+<p>To search for a suitable package use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pacman <span class="nt">-Ss</span> precice
+</code></pre></div></div>
+
+<p>Then install it with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pacman <span class="nt">-S</span> &lt;package name&gt;
+</code></pre></div></div>
+
 <h2 id="something-else">Something else</h2>
 
 <p>For other systems, you need to either use <a href="installation-spack.html">Spack</a> or <a href="installation-source-preparation.html">build from source</a>.</p>
@@ -1692,7 +1735,6 @@ For more options, have a look at the <a href="https://github.com/precice/nix-pac
 However, we appreciate the effort, and you may be able to contribute to them.</p>
 
 <ul>
-  <li><a href="https://packages.msys2.org/base/mingw-w64-precice">MSYS2</a> (for Windows, built with MinGW), <a href="https://precice.discourse.group/t/precice-and-mingw-packages/382">thread on our forum</a></li>
   <li><a href="https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE">EasyBuild</a></li>
   <li><a href="https://github.com/conda-forge/precice-feedstock">Conda</a> (see also packages <a href="https://github.com/conda-forge/pyprecice-feedstock">pyprecice</a> and <a href="https://github.com/conda-forge/fenicsprecice-feedstock">fenicsprecice</a>). We recommend using <a href="https://conda-forge.org/download/">Miniforge</a> (see https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us for reasons why).</li>
   <li><a href="https://www.freshports.org/science/precice">FreeBSD</a></li>
@@ -2042,8 +2084,8 @@ However, we appreciate the effort, and you may be able to contribute to them.</p
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
-        Site last updated: Nov 4, 2025
+        Page last updated: Nov 6, 2025<br>
+        Site last updated: Nov 6, 2025
         </p>
       </div>
     </div>
