@@ -87,6 +87,7 @@ The community maintains a preCICE package for [MSYS2](https://packages.msys2.org
 To use Microsoft MPI, first make sure to install the [latest release of MSMPI](https://github.com/microsoft/Microsoft-MPI/releases/latest) (the `msmpisetup.exe`).
 Then, enable path inheritance in the environment configuration of your choice.
 To enable it for MSYS64 UCRT, edit the file `C:/msys64/ucrt.ini` and uncomment the line `MSYS2_PATH_TYPE=inherit` by removing the leading `#`. You should now be able to run `mpiexec` in the ucrt environment.
+
 To search for a suitable package use:
 
 ```bash
