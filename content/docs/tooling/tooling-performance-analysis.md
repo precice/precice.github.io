@@ -444,3 +444,11 @@ JOIN ancestor_slice(s.id) a
 WHERE s.name GLOB '*.sync'
 GROUP BY a.id;
 ```
+
+The following is a view that uses preCICE terminology and allows to work with `participant` and numberic `ranks`:
+
+```sql
+CREATE VIEW precice AS
+SELECT process_name as participant, cast_int!(SUBSTR(thread_name, 6)) AS rank, *
+FROM thread_slice;
+```
