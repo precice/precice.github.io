@@ -438,7 +438,7 @@ The following table gives for every slice, the total time spend in `.sync` event
 
 ```sql
 CREATE PERFETTO TABLE synctime AS
-SELECT a.id AS sid, sum(dur) AS synctime
+SELECT a.id AS sid, sum(s.dur) AS synctime
 FROM slice AS s
 JOIN ancestor_slice(s.id) a
 WHERE s.name GLOB '*.sync'
