@@ -195,7 +195,7 @@ var searchData=
   ['createdata_192',['createData',['../classprecice_1_1mesh_1_1Mesh.html#a6e3fec22b430b35daccd92ef560d2c87',1,'precice::mesh::Mesh::createData()'],['../classMesh.html#a6e3fec22b430b35daccd92ef560d2c87',1,'Mesh::createData()']]],
   ['createdistributedcommunication_193',['createDistributedCommunication',['../classprecice_1_1m2n_1_1M2N.html#a214013879aa3ac0cb5ef46cd48d30218',1,'precice::m2n::M2N']]],
   ['createedge_194',['createEdge',['../classprecice_1_1mesh_1_1Mesh.html#ae05c5234aa9adc6f47a814622039c28e',1,'precice::mesh::Mesh::createEdge()'],['../classMesh.html#ae05c5234aa9adc6f47a814622039c28e',1,'Mesh::createEdge()']]],
-  ['createmapping_195',['createMapping',['../classprecice_1_1mapping_1_1MappingConfiguration.html#aa69bd3a7304fe29a37bb05a09b4d133d',1,'precice::mapping::MappingConfiguration']]],
+  ['createmapping_195',['createMapping',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a1f7fa810770393c8d0cdfa43e26a155c',1,'precice::mapping::MappingConfiguration']]],
   ['createmulticouplingscheme_196',['createMultiCouplingScheme',['../classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a82656320107c05248e586fc6bb5f4a80',1,'precice::cplscheme::CouplingSchemeConfiguration']]],
   ['createnastinmesh2d_197',['createNastinMesh2D',['../ReceivedPartitionTest_8cpp.html#a032b2b0991450dd961918315825cea73',1,'ReceivedPartitionTest.cpp']]],
   ['createnastinmesh2d2_198',['createNastinMesh2D2',['../ReceivedPartitionTest_8cpp.html#a2cb5258adf325d4c18f2f3a8d486ce63',1,'ReceivedPartitionTest.cpp']]],
