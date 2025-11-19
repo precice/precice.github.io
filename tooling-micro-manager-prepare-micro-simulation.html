@@ -1611,7 +1611,7 @@ document.addEventListener('mouseup', function(e) {
                 </div>
             
             <div class="text-right">
-              <small>Updated 18 Nov 25</small>
+              <small>Updated 19 Nov 25</small>
             </div>
           </aside>
           
@@ -1690,13 +1690,12 @@ document.addEventListener('mouseup', function(e) {
 
 <ol>
   <li>
-    <p>Create a C++ class which implements the functions given in the code snippet above.
-The <code class="language-plaintext highlighter-rouge">solve()</code> function should have the following signature:</p>
+    <p>Create a C++ class which implements the functions given in the code snippet above. The <code class="language-plaintext highlighter-rouge">solve()</code> function should have the following signature:</p>
 
-    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">py</span><span class="o">::</span><span class="n">dict</span> <span class="n">MicroSimulation</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">dict</span> <span class="n">macro_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">dt</span><span class="p">)</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">py</span><span class="o">::</span><span class="n">dict</span> <span class="n">MicroSimulation</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">dict</span> <span class="n">macro_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">dt</span><span class="p">)</span>
 </code></pre></div>    </div>
 
-    <p><a href="https://pybind11.readthedocs.io/en/stable/advanced/pycpp/object.html?#instantiating-compound-python-types-from-c"><code class="language-plaintext highlighter-rouge">py::dict</code></a> is a Python dictionary which can be used to pass data between Python and C++. Cast the data to the correct type before using it in C++ and vice versa.</p>
+    <p><a href="https://pybind11.readthedocs.io/en/stable/advanced/pycpp/object.html?%23instantiating-compound-python-types-from-c"><code class="language-plaintext highlighter-rouge">py::dict</code></a> is a Python dictionary which can be used to pass data between Python and C++. Cast the data to the correct type before using it in C++ and vice versa.</p>
   </li>
   <li>
     <p>Export the C++ class to Python using pybind11. Follow the instructions to exporting classes in the <a href="https://pybind11.readthedocs.io/en/stable/classes.html">pybind11 documentation</a> or read their <a href="https://pybind11.readthedocs.io/en/stable/basics.html">first steps</a> to get started.</p>
@@ -1704,20 +1703,19 @@ The <code class="language-plaintext highlighter-rouge">solve()</code> function s
   <li>
     <p>Compile the C++ library including pybind11. For example, for the solverdummy, the command is</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> c++ <span class="nt">-O3</span> <span class="nt">-Wall</span> <span class="nt">-shared</span> <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-fPIC</span> <span class="si">$(</span>python3 <span class="nt">-m</span> pybind11 <span class="nt">--includes</span><span class="si">)</span> micro_cpp_dummy.cpp <span class="nt">-o</span> micro_dummy<span class="si">$(</span>python3-config <span class="nt">--extension-suffix</span><span class="si">)</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c++ <span class="nt">-O3</span> <span class="nt">-Wall</span> <span class="nt">-shared</span> <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-fPIC</span> <span class="si">$(</span>python3 <span class="nt">-m</span> pybind11 <span class="nt">--includes</span><span class="si">)</span> micro_cpp_dummy.cpp <span class="nt">-o</span> micro_dummy<span class="si">$(</span>python3-config <span class="nt">--extension-suffix</span><span class="si">)</span>
 </code></pre></div>    </div>
 
-    <p>This will create a shared library <code class="language-plaintext highlighter-rouge">micro_dummy.so</code> which can be directly imported in Python.
- For more information on compiling C++ libraries, see the <a href="https://pybind11.readthedocs.io/en/stable/compiling.html">pybind11 documentation</a>.</p>
+    <p>This will create a shared library <code class="language-plaintext highlighter-rouge">micro_dummy.so</code> which can be directly imported in Python. For more information on compiling C++ libraries, see the <a href="https://pybind11.readthedocs.io/en/stable/compiling.html">pybind11 documentation</a>.</p>
   </li>
 </ol>
 
 <p>There are more examples which demonstrate how a micro simulation written in C++ is converted to a Python-importable class</p>
 
-<ol>
+<ul>
   <li><a href="https://github.com/precice/tutorials/blob/v202404.0/two-scale-heat-conduction/micro-dumux/appl/micro_sim.cpp">DuMuX-based micro simulation</a> in the two-scale heat conduction tutorial.</li>
   <li><a href="https://github.com/DataAnalyticsEngineering/FANS/tree/develop/pyfans">pyFANS</a>.</li>
-</ol>
+</ul>
 
 <h2 id="initializing-micro-simulations">Initializing micro simulations</h2>
 
@@ -2086,8 +2084,8 @@ The <code class="language-plaintext highlighter-rouge">solve()</code> function s
         </a>
         </p>
         <p>
-        Page last updated: Nov 18, 2025<br>
-        Site last updated: Nov 18, 2025
+        Page last updated: Nov 19, 2025<br>
+        Site last updated: Nov 19, 2025
         </p>
       </div>
     </div>
