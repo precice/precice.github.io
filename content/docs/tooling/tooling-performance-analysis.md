@@ -389,7 +389,7 @@ where process_name = 'B' and thread_name = "Rank 0"
 
 ### Prototyping queries in the UI
 
-After importing a trace into [perfetto UI](ui.perfetto.dev), clicking the SQL tab on the left opens a text input.
+After importing a trace into [perfetto UI](https://ui.perfetto.dev), clicking the SQL tab on the left opens a text input.
 Here, you can run SQL queries, see and download the results.
 This is great for prototyping queries quickly directly in the browser.
 
@@ -403,7 +403,7 @@ If you don't need to see the other tracks, it may be a good idea to change to a 
 
 ### Scripting the processing
 
-For the scripting, I recommend using the [trace processor](https://perfetto.dev/docs/analysis/trace-processor-python) included in the python package `perfetto`.
+For the scripting, we recommend using the [trace processor](https://perfetto.dev/docs/analysis/trace-processor-python) included in the python package `perfetto`.
 
 ```bash
 pip install perfetto
