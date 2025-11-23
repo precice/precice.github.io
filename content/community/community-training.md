@@ -56,17 +56,61 @@ We parallelize the same Python codes used in the Basics module, we analyze the p
 
 ## How to prepare?
 
-In our training courses, we typically bring along some Ubuntu Live USB sticks with all the dependencies pre-installed. They should work on any laptop with an x86 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple silicon systems.
+### Provided system
 
-In case you would like something more permanent, but still with low setup effort, you can download the  [preCICE Demo Virtual Machine](installation-vm.html). Note that downloading this will take a while, so better prepare this early enough.
+The training course involves multiple components of the preCICE ecosystem, as well as third-party solvers and pre- and post-processing tools. Most of these tools work best (or only) on a Linux system.
 
-Finally, in case you prefer to install everything in your laptop, you will need the following:
+We have prepared a [modified Ubuntu image](https://ipvscloud.informatik.uni-stuttgart.de/s/tzFbZ8zsrRNM9z2) that includes all the tools we will use (different from the demo VM).
+With this `.iso` file, you can either:
+
+- prepare a virtual machin (VM), e.g., using [VirtualBox](https://www.virtualbox.org/)
+- create a bootable USB stick, e.g., using [Etcher](https://etcher.balena.io/), and use your system directly
+
+In both cases, you can either install the modified Ubuntu image, or try a live session, without any permanent changes (or result file saves) to your system.
+Get the smoothest experience by installing the image in a VM, so that your changes are saved between sessions, and you can at the same time access your host OS.
+
+{% note %}
+At the moment, this image is only available for Intel/AMD x86-64 CPUs.
+In our on-site trainings, some prepared USB sticks are provided.
+These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
+{% endnote %}
+
+Configure the VM with these settings:
+
+- At least 8GB of RAM (the system will not load with 4GB in the "try" mode).
+- Ideally, four logical CPU cores (one is also fine).
+- At least 64MB of video RAM (more -> smoother graphics).
+- At least 25GB of storage.
+
+For VirtualBox, find these settings under the `System`, `Display`, and `Storage` categories.
+
+Further important settings:
+
+- The OpenFOAM adapter is installed under `~/OpenFOAM/ubuntu-v2406`. If you install (not "try" in a live session), move that directory to your user: `cd ~/OpenFOAM/ && mv ubuntu-v2406/ $USER-v2406`.
+- Set your keyboard layout: In the Ubuntu applications menu, type "keyboard layout". Select "Add input source". Remove the default one.
+
+**Optional:** If you choose to install the image in a VM, you probably want to better integrate it with your host system. For VirtualBox, you need to [install the Guest Additions](https://www.virtualbox.org/manual/ch04.html) and set up a [shared folder](https://www.virtualbox.org/manual/ch04.html#sharedfolders):
+
+1. Devices > Insert Guest Additions CD Image
+2. Navigate to the CD
+3. Execute `autorun.sh` and give your password
+4. It automatically installs the Guest Additions. Press Enter to exit at the end.
+5. Set up a shared folder: Devices > Shared Folders > Shared Folders settings... > Add
+6. Folder Path: folder in your host system
+7. Mount point: Where to find the folder in the VM system. For example, `/mnt/training`.
+8. Select "Auto-mount" and "Make Permanent"
+9. Inside the VM, execute `sudo adduser $USER vboxsf`
+10. Restart the VM
+
+### Individual dependencies
+
+In case you prefer to install everything on your system, you will need the following:
 
 - [preCICE](installation-overview.html)
 - [preCICE Python bindings](installation-bindings-python.html):
   - Create a virtual environment: `python3 -m venv .venv && source .venv/bin/activate`. As long as the environment is active, you will see `(venv)` before your command prompt. You need to activate the venv in new terminal windows.
   - Install the bindings: `pip3 install pyprecice` (check with running `import precice` in a Python interpreter)
-- matplotlib: In the same virtual environment, run `pip3 install matplotlib`
+- matplotlib and numpy v1.x: In the same virtual environment, run `pip3 install matplotlib numpy==1.26.4`
 - [ParaView](https://www.paraview.org/) (visualization, used in most modules apart from the basics)
 
 The tools module also needs (all optional):
@@ -85,7 +129,7 @@ The mapping module also needs:
 
 - [ASTE](tooling-aste.html) (check by running `./precice-aste-run --help` from the ASTE build directory)
 
-The FSI workflow module also needs:
+The FSI workflow module needs:
 
 - OpenFOAM (openfoam.com): See the [Quickstart](quickstart.html) page (check with running `pimpleFoam -help`)
 - [OpenFOAM-preCICE](adapter-openfoam-get.html) (check with running the Quickstart tutorial)
