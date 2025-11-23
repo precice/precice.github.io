@@ -139,7 +139,7 @@ The mapping module also needs:
 
 - [ASTE](tooling-aste.html) (check by running `./precice-aste-run --help` from the ASTE build directory)
 
-The FSI workflow module needs:
+The FSI workflow module also needs:
 
 - OpenFOAM (openfoam.com): See the [Quickstart](quickstart.html) page (check with running `pimpleFoam -help`)
 - [OpenFOAM-preCICE](adapter-openfoam-get.html) (check with running the Quickstart tutorial)
