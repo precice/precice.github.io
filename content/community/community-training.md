@@ -56,9 +56,17 @@ We parallelize the same Python codes used in the Basics module, we analyze the p
 
 ## How to prepare?
 
-### Provided system
+On the technical side, the training course involves multiple components of the preCICE ecosystem, as well as third-party solvers and pre- and post-processing tools.
+Most of these tools work best (or only) on a Linux system.
+You can either (a) use a prepared system image that we provide (e.g., in a virtual machine), or (b) install the dependencies directly on your system.
+To reduce system-related friction during the training, we recommend starting with option (a).
 
-The training course involves multiple components of the preCICE ecosystem, as well as third-party solvers and pre- and post-processing tools. Most of these tools work best (or only) on a Linux system.
+{% important %}
+At the end, verify your installation, and contact us as soon as possible regarding any issues.
+Find verification instructions at the end of each section.
+{% endimportant %}
+
+### Provided system
 
 We have prepared a [modified Ubuntu image](https://ipvscloud.informatik.uni-stuttgart.de/s/tzFbZ8zsrRNM9z2) that includes all the tools we will use (different from the demo VM).
 With this `.iso` file, you can either:
@@ -101,6 +109,8 @@ Further important settings:
 8. Select "Auto-mount" and "Make Permanent"
 9. Inside the VM, execute `sudo adduser $USER vboxsf`
 10. Restart the VM
+
+To check your installation, run the [1D elastic tube tutorial](tutorials-elastic-tube-1d.html) (Python solvers) inside the VM.
 
 ### Individual dependencies
 
