@@ -68,7 +68,8 @@ Find verification instructions at the end of each section.
 
 ### Provided system
 
-We have prepared a [modified Ubuntu image](https://ipvscloud.informatik.uni-stuttgart.de/s/tzFbZ8zsrRNM9z2) that includes all the tools we will use (different from the demo VM).
+We have prepared a modified Ubuntu image that includes all the tools we will use (different from the demo VM).
+With the training instructions, you will receive a URL with an up-to-date image for the specific training.
 With this `.iso` file, you can either:
 
 - prepare a virtual machin (VM), e.g., using [VirtualBox](https://www.virtualbox.org/)
