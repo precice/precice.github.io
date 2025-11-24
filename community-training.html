@@ -752,7 +752,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 15 Sep 25</small>
+              <small>Updated 24 Nov 25</small>
             </div>
           </aside>
           
@@ -809,11 +809,74 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="how-to-prepare">How to prepare?</h2>
 
-<p>In our training courses, we typically bring along some Ubuntu Live USB sticks with all the dependencies pre-installed. They should work on any laptop with an x86 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple silicon systems.</p>
+<p>On the technical side, the training course involves multiple components of the preCICE ecosystem, as well as third-party solvers and pre- and post-processing tools.
+Most of these tools work best (or only) on a Linux system.
+You can either (a) use a prepared system image that we provide (e.g., in a virtual machine), or (b) install the dependencies directly on your system.
+To reduce system-related friction during the training, we recommend starting with option (a).</p>
 
-<p>In case you would like something more permanent, but still with low setup effort, you can download the  <a href="installation-vm.html">preCICE Demo Virtual Machine</a>. Note that downloading this will take a while, so better prepare this early enough.</p>
+<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
+At the end, verify your installation, and contact us as soon as possible regarding any issues.
+Find verification instructions at the end of each section.
+</div>
 
-<p>Finally, in case you prefer to install everything in your laptop, you will need the following:</p>
+<h3 id="provided-system">Provided system</h3>
+
+<p>We have prepared a modified Ubuntu image that includes all the tools we will use (different from the demo VM).
+With the training instructions, you will receive a URL with an up-to-date image for the specific training.
+With this <code class="language-plaintext highlighter-rouge">.iso</code> file, you can either:</p>
+
+<ul>
+  <li>prepare a virtual machin (VM), e.g., using <a href="https://www.virtualbox.org/">VirtualBox</a></li>
+  <li>create a bootable USB stick, e.g., using <a href="https://etcher.balena.io/">Etcher</a>, and use your system directly</li>
+</ul>
+
+<p>In both cases, you can either install the modified Ubuntu image, or try a live session, without any permanent changes (or result file saves) to your system.
+Get the smoothest experience by installing the image in a VM, so that your changes are saved between sessions, and you can at the same time access your host OS.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+At the moment, this image is only available for Intel/AMD x86-64 CPUs.
+In our on-site trainings, some prepared USB sticks are provided.
+These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
+</div>
+
+<p>Configure the VM with these settings:</p>
+
+<ul>
+  <li>At least 8GB of RAM (the system will not load with 4GB in the “try” mode).</li>
+  <li>Ideally, four logical CPU cores (one is also fine).</li>
+  <li>At least 64MB of video RAM (more -&gt; smoother graphics).</li>
+  <li>At least 25GB of storage.</li>
+</ul>
+
+<p>For VirtualBox, find these settings under the <code class="language-plaintext highlighter-rouge">System</code>, <code class="language-plaintext highlighter-rouge">Display</code>, and <code class="language-plaintext highlighter-rouge">Storage</code> categories.</p>
+
+<p>Further important settings:</p>
+
+<ul>
+  <li>The OpenFOAM adapter is installed under <code class="language-plaintext highlighter-rouge">~/OpenFOAM/ubuntu-v2406</code>. If you install (not “try” in a live session), move that directory to your user: <code class="language-plaintext highlighter-rouge">cd ~/OpenFOAM/ &amp;&amp; mv ubuntu-v2406/ $USER-v2406</code>.</li>
+  <li>Set your keyboard layout: In the Ubuntu applications menu, type “keyboard layout”. Select “Add input source”. Remove the default one.</li>
+</ul>
+
+<p><strong>Optional:</strong> If you choose to install the image in a VM, you probably want to better integrate it with your host system. For VirtualBox, you need to <a href="https://www.virtualbox.org/manual/ch04.html">install the Guest Additions</a> and set up a <a href="https://www.virtualbox.org/manual/ch04.html#sharedfolders">shared folder</a>:</p>
+
+<ol>
+  <li>Devices &gt; Insert Guest Additions CD Image</li>
+  <li>Navigate to the CD</li>
+  <li>Execute <code class="language-plaintext highlighter-rouge">autorun.sh</code> and give your password</li>
+  <li>It automatically installs the Guest Additions. Press Enter to exit at the end.</li>
+  <li>Set up a shared folder: Devices &gt; Shared Folders &gt; Shared Folders settings… &gt; Add</li>
+  <li>Folder Path: folder in your host system</li>
+  <li>Mount point: Where to find the folder in the VM system. For example, <code class="language-plaintext highlighter-rouge">/mnt/training</code>.</li>
+  <li>Select “Auto-mount” and “Make Permanent”</li>
+  <li>Inside the VM, execute <code class="language-plaintext highlighter-rouge">sudo adduser $USER vboxsf</code></li>
+  <li>Restart the VM</li>
+</ol>
+
+<p>To check your installation, run the <a href="tutorials-elastic-tube-1d.html">1D elastic tube tutorial</a> (Python solvers) inside the VM.</p>
+
+<h3 id="individual-dependencies">Individual dependencies</h3>
+
+<p>In case you prefer to install everything on your system, you will need the following:</p>
 
 <ul>
   <li><a href="installation-overview.html">preCICE</a></li>
@@ -823,7 +886,7 @@ $('#toc').on('click', 'a', function() {
       <li>Install the bindings: <code class="language-plaintext highlighter-rouge">pip3 install pyprecice</code> (check with running <code class="language-plaintext highlighter-rouge">import precice</code> in a Python interpreter)</li>
     </ul>
   </li>
-  <li>matplotlib: In the same virtual environment, run <code class="language-plaintext highlighter-rouge">pip3 install matplotlib</code></li>
+  <li>matplotlib and numpy v1.x: In the same virtual environment, run <code class="language-plaintext highlighter-rouge">pip3 install matplotlib numpy==1.26.4</code></li>
   <li><a href="https://www.paraview.org/">ParaView</a> (visualization, used in most modules apart from the basics)</li>
 </ul>
 
@@ -1066,7 +1129,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Sep 15, 2025<br>
+        Page last updated: Nov 24, 2025<br>
         Site last updated: Nov 24, 2025
         </p>
       </div>
