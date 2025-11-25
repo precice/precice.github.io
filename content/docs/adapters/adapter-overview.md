@@ -28,7 +28,7 @@ The preCICE community has successfully coupled the following codes with preCICE 
 Wherever meaningful (license, maturity of the project, no other home), we host the code repository.
 
 | Adapter for   | Contact | Resources | Typical applications | Comments |
-| [Alya](https://www.bsc.es/research-development/research-areas/engineering-simulations/alya-high-performance-computational) | [TUM SCCS](https://www.in.tum.de/en/i05/) | | Fluid and structure part in FSI | Not actively maintained (but not abandoned) |
+| [Alya](https://www.bsc.es/research-development/research-areas/engineering-simulations/alya-high-performance-computational) | [Benjamin Uekermann](https://github.com/uekerman) | | Fluid and structure part in FSI | Not actively maintained (but not abandoned) |
 | [Ansys Fluent](https://www.ansys.com/products/fluids/ansys-fluent) | preCICE Developers | [code](https://github.com/precice/fluent-adapter), [docs](https://github.com/precice/fluent-adapter/wiki) | Fluid part in FSI | Experimental |
 | [Ateles (APES)](https://apes.osdn.io/pages/ateles) | [Univ. Siegen STS](https://www.mb.uni-siegen.de/sts/index.html) | [code](https://github.com/apes-suite/ateles) | Fluid-Acousting, Fluid-Fluid coupling | |
 | [COMSOL Multiphysics](https://www.comsol.com/comsol-multiphysics) | preCICE Developers | [code](https://github.com/precice/comsol-adapter) | Structure part in FSI | Currently not maintained |
