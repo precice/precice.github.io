@@ -210,3 +210,11 @@ Elements to mention in the detailed schedule:
 2. Schedule buffers: Lunch should be at least 1h and coffee breaks at least 30min.
 3. Course components can split between sessions or even days, but each session should be allocated at least 90min (ideally 120min). Especially in the beginning, account for some time for setup or resolving installation issues.
 4. Don't forget to schedule the group photo, any interaction components (e.g., world café), and any evening activities (formal and informal dinner).
+
+## Tasks to delegate
+
+There are a few minor non-local tasks, which can be easily distributed to others within the organization team:
+
+- Preparing and announcing feedback form. Ideally, participants can fill out the feedback form already during the last day of the workshop.
+- Ordering and preparing swag.
+- Managing the word café (collecting topcis, introducing the concept, keeping the time)
