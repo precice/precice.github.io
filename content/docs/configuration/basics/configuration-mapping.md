@@ -177,7 +177,7 @@ The concept also extends to 1D-2D, 2D-3D, and further setups, which are not curr
 Potential configurations for the axial and radial geometric multiscale mapping look as follows:
 
 ```xml
-<mapping:axial-geometric-multiscale direction="read" multiscale-type="spread" multiscale-radius="1.0" multiscale-axis="X" from="MyMesh2" to="MyMesh1" constraint="consistent" />
+<mapping:axial-geometric-multiscale direction="read" multiscale-type="spread" multiscale-radius="1.0" multiscale-axis="X" spread-profile="parabolic" from="MyMesh2" to="MyMesh1" constraint="consistent" />
 ```
 
 ```xml
@@ -185,8 +185,9 @@ Potential configurations for the axial and radial geometric multiscale mapping l
 ```
 
 The `multiscale-type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The `multiscale-axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The `multiscale-radius` refers to the radius of the circular interface boundary surface.
+When using a `"spread"` mapping, the 1D quantity is distributed over the 3D interface using the `spread-profile`, which defines how the value varies radially across the circular interface. It can either be `"uniform"`, where the same value is applied to all interface vertices; or `"parabolic"`, in which a parabolic profile is applied (maximum at the centerline, decreasing to zero at the wall).
 
-Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future.
+Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. By default, a laminar flow profile is imposed, but this can be explicitly controlled via the `spread-profile` attribute in the configuration.
 
 ## Restrictions for parallel participants
 
