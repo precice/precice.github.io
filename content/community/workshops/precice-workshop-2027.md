@@ -4,7 +4,7 @@ keywords: precice workshop 2027, event, events, workshop
 summary:
 permalink: precice-workshop-2027.html
 toc: true
-redirect_from: /preCICE2027/
+redirect_from: /workshop2027/
 ---
 
 <img class="img-responsive center-block" src="images/events/precice2027/precice2027-path.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
