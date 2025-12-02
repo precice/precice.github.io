@@ -39,7 +39,7 @@ Please arrange accommodation independently.
 
 ## Program
 
-Expect talks, posters, training, and further interactive and networking program components.
+Expect talks, posters, training, and further interactive and networking program components. We also plan to incorporate optional training in [G+Smo](https://gismo.github.io/).
 
 All workshop activities will take place in the [TUDelft Aula](https://map.tudelftcampus.nl/poi/aula-conference-centre/).
 
