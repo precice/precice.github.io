@@ -11,7 +11,7 @@ redirect_from: /workshop2027/
 
 The 7th preCICE Workshop will be held for the first time outside Germany, at the [Delft University of Technology](https://www.tudelft.nl/en/) in The Netherlands, on March 1-5, 2027, co-organized by the local user group and the [G+Smo community](https://gismo.github.io/). The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
 
-The workshop will include a hands-on [training course](community-training.html). The course is suited for both beginners and current preCICE users, since advanced topics will also be covered. This year, we are extending the course by a new module on best practices in the development of preCICE adapters.
+The workshop will include a hands-on [training course](community-training.html). The course is suited for both beginners and current preCICE users, since advanced topics will also be covered. This year, we are extending the course by two new modules: one on best practices in the development of preCICE adapters and one on how to couple solvers using Isogeometric Analysis (IGA).
 
 Keep watching this space for updates on registration, the workshop program, and more.
 <!-- For any organizational questions (for example, visa-related requests), please contact `organizers` at `todo`. -->
