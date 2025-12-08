@@ -74,7 +74,7 @@ var searchData=
   ['weak_5fptr_71',['weak_ptr',['http://en.cppreference.com/w/cpp/memory/weak_ptr.html',1,'std::weak_ptr&lt; T &gt;'],['http://en.cppreference.com/w/cpp/memory/weak_ptr/weak_ptr.html',1,'std::weak_ptr::weak_ptr()']]],
   ['weakly_5fcanonical_72',['weakly_canonical',['http://en.cppreference.com/w/cpp/filesystem/canonical.html',1,'std::filesystem']]],
   ['weibull_5fdistribution_73',['weibull_distribution',['http://en.cppreference.com/w/cpp/numeric/random/weibull_distribution.html',1,'std::weibull_distribution'],['http://en.cppreference.com/w/cpp/numeric/random/weibull_distribution/weibull_distribution.html',1,'std::weibull_distribution::weibull_distribution()']]],
-  ['weight_74',['weight',['../structprecice_1_1mapping_1_1WeightedElement.html#ae3b39d951fda5beb60d2b4112307d3b3',1,'precice::mapping::WeightedElement']]],
+  ['weight_74',['weight',['../structprecice_1_1mapping_1_1Operation.html#a020d8d1dcf035f94b548d6fde9f5dca1',1,'precice::mapping::Operation::weight'],['../structprecice_1_1mapping_1_1WeightedElement.html#ae3b39d951fda5beb60d2b4112307d3b3',1,'precice::mapping::WeightedElement::weight']]],
   ['weightedelement_75',['WeightedElement',['../structprecice_1_1mapping_1_1WeightedElement.html',1,'precice::mapping']]],
   ['weinitialized_76',['weInitialized',['../classprecice_1_1device_1_1Ginkgo.html#a056de0dcfe05c2728d2990723749dba5',1,'precice::device::Ginkgo::weInitialized'],['../classprecice_1_1utils_1_1Petsc.html#a3babe6a46a5dc69072382f15a1d9a00c',1,'precice::utils::Petsc::weInitialized']]],
   ['wendlandc0_77',['WendlandC0',['../namespaceprecice_1_1mapping.html#a286ca95581034aaea96421365f23b07aace0821b3ef8f18b424121aa1083bbc76',1,'precice::mapping']]],

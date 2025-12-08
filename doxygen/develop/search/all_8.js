@@ -252,7 +252,7 @@ var searchData=
   ['getwaste_249',['getWaste',['../classprecice_1_1acceleration_1_1impl_1_1SVDFactorization.html#ae6263e88a85aad1b49468951567e4605',1,'precice::acceleration::impl::SVDFactorization']]],
   ['getwaveformdegree_250',['getWaveformDegree',['../classprecice_1_1mesh_1_1Data.html#a8e0a773a182a73bef8c39cb8409ff0bc',1,'precice::mesh::Data::getWaveformDegree()'],['../classprecice_1_1impl_1_1ReadDataContext.html#a6b05cc6ed024489b8c836b1283bc8952',1,'precice::impl::ReadDataContext::getWaveformDegree()']]],
   ['getwchar_251',['getwchar',['http://en.cppreference.com/w/cpp/io/c/getwchar.html',1,'std']]],
-  ['getweightedelements_252',['getWeightedElements',['../classprecice_1_1mapping_1_1Polation.html#aa4a6a8dddb865e639ddcac4d3bd5c73b',1,'precice::mapping::Polation']]],
+  ['getweightedelements_252',['getWeightedElements',['../classprecice_1_1mapping_1_1Polation.html#a56a550790aca317393ebe26c0fb8fa9d',1,'precice::mapping::Polation']]],
   ['getweights_253',['getWeights',['../classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a81982f34104fa53ebb8838c4e7785a90',1,'precice::acceleration::impl::Preconditioner']]],
   ['getwindowendtime_254',['getWindowEndTime',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ac12278b409b70f27a135701e12cbcf3f',1,'precice::cplscheme::BaseCouplingScheme']]],
   ['getwindowstarttime_255',['getWindowStartTime',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ab7eaf0915d2e2c2bcdccef754e98e791',1,'precice::cplscheme::BaseCouplingScheme']]],
