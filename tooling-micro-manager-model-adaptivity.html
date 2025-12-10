@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Micro Manager can adaptively switch models of micro simulations.">
+
+<meta name="keywords" content=" tooling, macro-micro, two-scale, model-adaptivity">
+<meta name="theme-color" content="#0A76BB">
+<meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
+
+<title>Adaptive switching of simulation models | preCICE - The Coupling Library</title>
+<link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
+
+<!-- OpenGraph metadata -->
+<meta property="og:title" content="Adaptive switching of simulation models" />
+<meta property="og:site_name" content="preCICE.org" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://precice.org/page.url" />
+<meta property="og:image" content="https://precice.org/images/icon.svg" />
+<meta property="og:description" content="Micro Manager can adaptively switch models of micro simulations.">
+
+<!-- Cannonical link -->
+<link rel="canonical" href="https://precice.org/tooling-micro-manager-model-adaptivity" >
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Local CSS -->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/customstyles-precice.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<link rel="stylesheet" href="css/bookcover.css">
+<!-- Color styles -->
+<link rel="stylesheet" href="css/theme-precice.css">
+<!-- Styling for landing page -->
+
+
+<!-- Jquery, Ajax -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js"></script>
+
+<!-- Anchor.js -->
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JavaScript (requires jquery) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Local JS -->
+<script src="js/jquery.navgoco.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<!-- Algolia search -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<!-- QR code to retrieve printed page -->
+<style>
+@media print {
+    div.post-header:before {
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tooling-micro-manager-model-adaptivity.html&choe=UTF-8');
+        margin-top: -25px;
+        float: right;
+    }
+}
+</style>
+
+<!-- Plausible Analytics -->
+<script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
+        $(document).ready(function() {
+            $('table').addClass('table');
+            $('table').wrap('<div class="table-responsive"></div>');
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <a!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" aria-label="Main">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand no-icon" href="https://precice.org">
+            <span class="navbar-brand-icon">
+            <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE"></span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                
+                <!-- entries without drop-downs appear here -->
+
+                
+                
+
+                
+                
+                
+                
+                
+                <li><a href="quickstart.html">Quickstart</a></li>
+                
+                
+                
+                
+                
+                <li class="active"><a href="docs.html">Docs</a></li>
+                
+                
+                
+                
+                
+                <li><a href="tutorials.html">Tutorials</a></li>
+                
+                
+                
+                
+                
+                <li><a href="community.html">Community</a></li>
+                
+                
+                
+                
+                
+                <li><a href="https://precice.discourse.group/c/news" target="_blank" rel="noopener">Blog</a></li>
+                
+                
+                
+                
+                
+                <li><a href="about.html">About</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <div id="search-input"></div>
+                        <div id="search-results"></div>
+                        <script>
+const algoliaSearch = instantsearch({
+  appId: 'LIT6P0EW26',
+  apiKey: '760ed6be3e165d08b4a798ac4aa82fe4',
+  indexName: 'jekyll',
+  searchFunction: function(helper) {          // hide search result in init query
+    var searchResults = $('#search-results');
+    if (helper.state.query === '') {
+      searchResults.hide();
+      return;
+    }
+    helper.search();
+    searchResults.show();
+  }
+});
+
+const hitTemplate = function(hit) {
+  let date = '';
+  if (hit.date) {
+    date = moment.unix(hit.date).format('MMM D, YYYY');
+  }
+
+  let url = `${hit.url}#${hit.anchor}`;
+
+  const title = hit._highlightResult.title.value;
+
+  let breadcrumbs = '';
+  if (hit._highlightResult.headings) {
+    breadcrumbs = hit._highlightResult.headings.map(match => {
+      return `<span class="result-breadcrumb">${match.value}</span>`
+    }).join(' > ')
+  }
+
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="result-item">
+    <h2><a class="result-link" href="${url}">${title}</a></h2>
+    <a href="${url}" class="result-breadcrumbs">${breadcrumbs}</a>
+    <div class="result-snippet">${content}</div>
+    </div>
+  `;
+}
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-input',
+    placeholder: 'Search ...',
+    poweredBy: true, // This is required if you're on the free Community plan
+    magnifier: false,
+    autofocus: false,
+    searchOnEnterKeyPressOnly: false,
+    reset: true
+  })
+);
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.hits({
+    container: '#search-results',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+algoliaSearch.start();
+
+// Patch the style of the search input bar generated by the above script
+// The equivalent CSS is below, however, including <style> in <body> is against the W3C commandments
+// Chrome and Firefox had baby called scope, but it didn't make it
+// https://stackoverflow.com/questions/2830296/using-style-tags-in-the-body-with-other-html
+var elem = document.querySelector('.ais-search-box--powered-by');
+elem.style.marginTop = '-15px';
+elem.style.paddingRight = '5px';
+
+var elem = document.querySelector('.nav li a.ais-search-box--powered-by-link');
+elem.style.padding = '0';
+elem.style.backgroundColor = 'transparent';
+elem.style.display = "inline-block";
+
+var elem = document.querySelector('.ais-search-box--input');
+elem.style.paddingLeft = '10px';
+elem.style.borderColor = '#0A76BB';
+
+var elem = document.querySelector('.ais-search-box');
+elem.style.padding = '.5em';
+elem.style.marginBottom = '0px';
+elem.style.marginLeft = '10px';
+elem.style.marginTop = '0px';
+elem.style.width = '20em';
+elem.style.fontSize = '0.8em';
+elem.style.height = '50px';
+elem.style.boxSizing = 'border-box';
+
+/*<style type="text/css">
+.ais-search-box--powered-by {
+  margin-top: -15px;
+  padding-right: 5px;
+}
+.nav li a.ais-search-box--powered-by-link {
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+}
+.ais-search-box--input {
+  padding-left: 10px;
+  border-color: #0A76BB;
+}
+.ais-search-box {
+  padding: .5em;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-top: 0px;
+  width: 20em;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  height: 50px;
+}
+</style>*/
+
+// some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
+document.addEventListener('mouseup', function(e) {
+  var results = document.getElementById('search-results');
+  if (!results.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+document.addEventListener('mouseup', function(e) {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  if (input.contains(e.target)) {
+    results.style.display = 'block';
+  }
+});
+
+</script>
+                    </div>
+                    <!--end search-->
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://github.com/precice" target="_blank" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                </li>
+                <li>
+                    <!-- rel="me" required by Mastodon for verification -->
+                    <a rel="me" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" data-show-count="false" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://bsky.app/profile/precice.org" target="_blank" data-show-count="false" aria-label="Follow us on Bluesky"><i class="fab fa-bluesky"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+          <!-- News banner -->
+          
+
+
+
+    </header>
+    <div class="container" style="margin-bottom:50px">
+        
+        <div class="row">
+          <div class="col-md-3" id="tg-sb-sidebar">
+            
+
+<nav aria-label="Documentation">
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Documentation </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Fundamentals" href="#">Fundamentals</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Terminology" href="fundamentals-terminology.html">Terminology</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="License information" href="fundamentals-license.html">License information</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Literature guide" href="fundamentals-literature-guide.html">Literature guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Roadmap" href="fundamentals-roadmap.html">Roadmap</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="FAQ" href="fundamentals-faq.html">FAQ</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Previous versions" href="fundamentals-previous-versions.html">Previous versions</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Installation" href="#">Installation</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="installation-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="System packages" href="installation-packages.html">System packages</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Using Spack" href="installation-spack.html">Using Spack</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Building from source" href="#">Building from source</a>
+        <ul>
+          
+          
+          
+          <li><a title="Preparation" href="installation-source-preparation.html">Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dependencies" href="installation-source-dependencies.html">Dependencies</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="installation-source-configuration.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building" href="installation-source-building.html">Building</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Testing" href="installation-source-testing.html">Testing</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Installation" href="installation-source-installation.html">Installation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Finding" href="installation-source-finding.html">Finding</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Advanced" href="installation-source-advanced.html">Advanced</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="installation-source-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Notes on CMake" href="installation-source-cmake.html">Notes on CMake</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Linking to preCICE" href="installation-linking.html">Linking to preCICE</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Language bindings" href="#">Language bindings</a>
+        <ul>
+          
+          
+          
+          <li><a title="Fortran" href="installation-bindings-fortran.html">Fortran</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Python" href="installation-bindings-python.html">Python</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Matlab" href="installation-bindings-matlab.html">Matlab</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Julia" href="installation-bindings-julia.html">Julia</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Rust" href="installation-bindings-rust.html">Rust</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Special systems" href="installation-special-systems.html">Special systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Demo Virtual Machine" href="installation-vm.html">Demo Virtual Machine</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="preCICE distribution" href="installation-distribution.html">preCICE distribution</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Configuration" href="#">Configuration</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="configuration-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Basics" href="#">Basics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Introduction" href="configuration-introduction.html">Introduction</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mapping" href="configuration-mapping.html">Mapping</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Communication" href="configuration-communication.html">Communication</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling scheme" href="configuration-coupling.html">Coupling scheme</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Acceleration" href="configuration-acceleration.html">Acceleration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mesh exchange example" href="configuration-coupling-mesh-exchange.html">Mesh exchange example</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Multi coupling" href="configuration-coupling-multi.html">Multi coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Logging" href="configuration-logging.html">Logging</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Export" href="configuration-export.html">Export</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Action" href="configuration-action.html">Action</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watchpoint" href="configuration-watchpoint.html">Watchpoint</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watch integral" href="configuration-watchintegral.html">Watch integral</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="XML reference" href="configuration-xml-reference.html">XML reference</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Tooling" href="#">Tooling</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="tooling-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Artificial solver testing environment (ASTE)" href="tooling-aste.html">Artificial solver testing environment (ASTE)</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Built-in tooling" href="tooling-builtin.html">Built-in tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Config visualization" href="tooling-config-visualization.html">Config visualization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="FMI runner" href="tooling-fmi-runner.html">FMI runner</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Micro Manager" href="#">Micro Manager</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="tooling-micro-manager-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the Micro Manager" href="tooling-micro-manager-installation.html">Get the Micro Manager</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Preparing micro simulation" href="tooling-micro-manager-prepare-micro-simulation.html">Preparing micro simulation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="tooling-micro-manager-configuration.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Running" href="tooling-micro-manager-running.html">Running</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Logging" href="tooling-micro-manager-logging.html">Logging</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Adaptivity" href="tooling-micro-manager-adaptivity.html">Adaptivity</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Snapshot Computation" href="tooling-micro-manager-snapshot-configuration.html">Snapshot Computation</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="RBF shape calculator" href="tooling-rbf-shape.html">RBF shape calculator</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Provided adapters" href="#">Provided adapters</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="adapters-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="CalculiX" href="#">CalculiX</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-calculix-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get CalculiX" href="adapter-calculix-get-calculix.html">Get CalculiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-calculix-get-adapter.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Build the adapter with PaStiX" href="adapter-calculix-pastix-build.html">Build the adapter with PaStiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-calculix-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="adapter-calculix-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building on SuperMUC" href="adapter-calculix-supermuc.html">Building on SuperMUC</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="code_aster" href="#">code_aster</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-code_aster.html">Overview</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="deal.II" href="#">deal.II</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-dealii-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-dealii-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-dealii-configure.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="For your own deal.II code" href="adapter-dealii-own-project.html">For your own deal.II code</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Limitations and assumptions" href="adapter-dealii-limitations.html">Limitations and assumptions</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Solver details" href="adapter-dealii-solver-details.html">Solver details</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling Meshes in deal.II" href="adapter-dealii-coupling-meshes.html">Coupling Meshes in deal.II</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="DuMuX" href="#">DuMuX</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-dumux.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-dumux-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Use the adapter" href="adapter-dumux-use.html">Use the adapter</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="DUNE" href="#">DUNE</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-dune.html">Overview</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="FEniCS" href="#">FEniCS</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-fenics.html">Overview</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="G+Smo" href="#">G+Smo</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-gismo.html">Overview</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Nutils" href="#">Nutils</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-nutils.html">Overview</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="OpenFOAM" href="#">OpenFOAM</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-openfoam-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-openfoam-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-openfoam-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Extending" href="adapter-openfoam-extend.html">Extending</a></li>
+          
+          
+          
+          
+          
+          <li><a title="OpenFOAM support" href="adapter-openfoam-support.html">OpenFOAM support</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="SU2" href="#">SU2</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-su2-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-su2-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-su2-configure.html">Configuration</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Couple your code" href="#">Couple your code</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="couple-your-code-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Application programming interface" href="couple-your-code-api.html">Application programming interface</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Step by step" href="#">Step by step</a>
+        <ul>
+          
+          
+          
+          <li><a title="Step 1 – Preparation" href="couple-your-code-preparing-your-solver.html">Step 1 – Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 2 – Steering methods" href="couple-your-code-steering-methods.html">Step 2 – Steering methods</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 3 – Mesh and data access" href="couple-your-code-mesh-and-data-access.html">Step 3 – Mesh and data access</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 4 – Coupling flow" href="couple-your-code-coupling-flow.html">Step 4 – Coupling flow</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 6 – Implicit coupling" href="couple-your-code-implicit-coupling.html">Step 6 – Implicit coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 7 – Data initialization" href="couple-your-code-initializing-coupling-data.html">Step 7 – Data initialization</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 8 – Mesh connectivity" href="couple-your-code-defining-mesh-connectivity.html">Step 8 – Mesh connectivity</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 9 – Gradient Data" href="couple-your-code-gradient-data.html">Step 9 – Gradient Data</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Adapter software engineering" href="couple-your-code-adapter-software-engineering.html">Adapter software engineering</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Initialization in existing MPI environment" href="couple-your-code-existing-mpi-environment.html">Initialization in existing MPI environment</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Moving or changing meshes" href="couple-your-code-moving-or-changing-meshes.html">Moving or changing meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Just-in-time data mapping" href="couple-your-code-just-in-time-mapping.html">Just-in-time data mapping</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with FEM meshes" href="couple-your-code-fem-meshes.html">Dealing with FEM meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with distributed meshes" href="couple-your-code-distributed-meshes.html">Dealing with distributed meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Direct access to received meshes" href="couple-your-code-direct-access.html">Direct access to received meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Time interpolation of coupling data" href="couple-your-code-waveform.html">Time interpolation of coupling data</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Global data" href="couple-your-code-global-data.html">Global data</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Porting guides for major versions" href="#">Porting guides for major versions</a>
+        <ul>
+          
+          
+          
+          <li><a title="Porting adapters in general" href="couple-your-code-porting-overview.html">Porting adapters in general</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Porting from 1.x to 2.x" href="couple-your-code-porting-v1-2.html">Porting from 1.x to 2.x</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Porting from 2.x to 3.x" href="couple-your-code-porting-v2-3.html">Porting from 2.x to 3.x</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Running simulations" href="#">Running simulations</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="running-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running locally" href="running-simple.html">Running locally</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Distributed systems" href="running-distributed.html">Distributed systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="SLURM sessions" href="running-slurm.html">SLURM sessions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Output files" href="running-output-files.html">Output files</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Dev docs" href="#">Dev docs</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="dev-docs-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Naming" href="dev-docs-naming.html">Naming</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Source documentation" href="dev-docs-sourcedocs.html">Source documentation</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="General coding conventions" href="dev-docs-dev-conventions.html">General coding conventions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Timings in preCICE" href="dev-docs-dev-eventtimings.html">Timings in preCICE</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Logging" href="dev-docs-dev-logging.html">Logging</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Optimization" href="dev-docs-dev-optimization.html">Optimization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release workflow" href="dev-docs-dev-release.html">Release workflow</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running and writing tests" href="dev-docs-dev-testing.html">Running and writing tests</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="System tests" href="dev-docs-system-tests.html">System tests</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Tooling" href="dev-docs-dev-tooling.html">Tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release strategy" href="dev-docs-release-strategy.html">Release strategy</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Publication strategy" href="dev-docs-publication-strategy.html">Publication strategy</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Documentation meta" href="#">Documentation meta</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs-meta-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Content guidelines" href="docs-meta-content-guidelines.html">Content guidelines</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Cheatsheet" href="docs-meta-cheatsheet.html">Cheatsheet</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Landing page" href="docs-meta-landing-page.html">Landing page</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="PDF generation" href="docs-meta-publish-to-pdf.html">PDF generation</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Common issues" href="docs-meta-common-issues.html">Common issues</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Search" href="docs-meta-search.html">Search</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Migration guide" href="docs-meta-migration-guide.html">Migration guide</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  <!-- if you aren't using the accordion, uncomment this block:
+  <p class="external">
+  <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+  </p>
+  -->
+</ul>
+</nav>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+          </div>
+          <main class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Adaptive switching of simulation models</h1>
+</div>
+
+
+
+<div class="post-content">
+
+    
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        Micro Manager can adaptively switch models of micro simulations.
+
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-9 col-sm-8">
+          
+          <nav aria-label="table of contents">
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
+          </nav>
+          
+        </div>
+
+        <div class="col-md-3 col-sm-4">
+          
+          <aside>
+            
+                
+                
+                
+                
+                <div class="text-right">
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/model-adaptivity.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
+            
+            <div class="text-right">
+              <small>Updated 10 Dec 25</small>
+            </div>
+          </aside>
+          
+        </div>
+    </div>
+
+   <h2 id="main-concept">Main Concept</h2>
+
+<p>For certain multiscale scenarios, having an adaptivity strategy that groups the micro simulations into active and inactive simulations
+may be insufficient. Alternatively, a hierarchy of micro-scale models, for example, reduced order models (ROMs) can be used.
+The model adaptivity functionality allows for the definition of multiple
+model fidelities and the switching between them at run-time.</p>
+
+<h3 id="iterative-process">Iterative Process</h3>
+
+<p><strong>Without</strong> model adaptivity, the Micro Manager calls the <code class="language-plaintext highlighter-rouge">solve(micro_sims_input, dt)</code> routine of all active simulations
+and copies their output to their closest similar inactive counterparts.</p>
+
+<p><strong>With</strong> model adaptivity, there is an iterative process, because a model may not be sufficiently accurate (given the current input).
+The call to <code class="language-plaintext highlighter-rouge">solve(micro_sims_input, dt)</code> leads to the following logic:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">self</span><span class="p">.</span><span class="n">_model_adaptivity_controller</span><span class="p">.</span><span class="nf">initialise_solve</span><span class="p">()</span>
+
+<span class="n">active_sim_ids</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">_is_adaptivity_on</span><span class="p">:</span>
+    <span class="n">active_sim_ids</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_adaptivity_controller</span><span class="p">.</span><span class="nf">get_active_sim_local_ids</span><span class="p">()</span>
+<span class="n">output</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">while</span> <span class="n">self</span><span class="p">.</span><span class="n">_model_adaptivity_controller</span><span class="p">.</span><span class="nf">should_iterate</span><span class="p">():</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">_model_adaptivity_controller</span><span class="p">.</span><span class="nf">switch_models</span><span class="p">(</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_mesh_vertex_coords</span><span class="p">,</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_t</span><span class="p">,</span>
+        <span class="n">micro_sims_input</span><span class="p">,</span>
+        <span class="n">output</span><span class="p">,</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_micro_sims</span><span class="p">,</span>
+        <span class="n">active_sim_ids</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="nf">solve_variant</span><span class="p">(</span><span class="n">micro_sims_input</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">_model_adaptivity_controller</span><span class="p">.</span><span class="nf">check_convergence</span><span class="p">(</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_mesh_vertex_coords</span><span class="p">,</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_t</span><span class="p">,</span>
+        <span class="n">micro_sims_input</span><span class="p">,</span>
+        <span class="n">output</span><span class="p">,</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_micro_sims</span><span class="p">,</span>
+        <span class="n">active_sim_ids</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">self</span><span class="p">.</span><span class="n">_model_adaptivity_controller</span><span class="p">.</span><span class="nf">finalise_solve</span><span class="p">()</span>
+<span class="k">return</span> <span class="n">output</span>
+</code></pre></div></div>
+
+<p>Here, after initialization and active sim acquisition, models will be switched, evaluated and checked for convergence
+as long as the <code class="language-plaintext highlighter-rouge">switching_function</code> contains values other than 0.
+Model evaluation - in the call <code class="language-plaintext highlighter-rouge">solve_variant(micro_sims_input, dt)</code> - is delegated to the regular
+(non-model-adaptive) <code class="language-plaintext highlighter-rouge">micro_sim_solve(micro_sims_input, dt)</code> method.</p>
+
+<h3 id="interfaces">Interfaces</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MicroSimulation</span><span class="p">:</span> <span class="c1"># Name is fixed
+</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sim_id</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
+        Constructor of class MicroSimulation.
+
+        Parameters
+        ----------
+        sim_id : int
+            ID of the simulation instance, that the Micro Manager has set for it.
+        </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sh">"""</span><span class="s">
+        Initialize the micro simulation and return initial data which will be used in computing adaptivity before the first time step.
+
+        Defining this function is OPTIONAL.
+
+        Returns
+        -------
+        initial_data : dict
+            Dictionary with names of initial data as keys and the initial data itself as values.
+        </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">macro_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sh">"""</span><span class="s">
+        Solve one time step of the micro simulation for transient problems or solve until steady state for steady-state problems.
+
+        Parameters
+        ----------
+        macro_data : dict
+            Dictionary with names of macro data as keys and the data as values.
+        dt : float
+            Current time step size.
+
+        Returns
+        -------
+        micro_data : dict
+            Dictionary with names of micro data as keys and the updated micro data a values.
+        </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
+        Set the state of the micro simulation.
+        </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
+        Return the state of the micro simulation.
+        </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
+        This function writes output of the micro simulation in some form.
+        It will be called with frequency set by configuration option `simulation_params: micro_output_n`
+        This function is *optional*.
+        </span><span class="sh">"""</span>
+</code></pre></div></div>
+
+<p>For this the default MicroSimulation still serves as the model interface, while the <code class="language-plaintext highlighter-rouge">(set)|(get)_state()</code> methods
+are called to transfer internal model parameters from one to another.
+The list of provided models is interpreted in decreasing fidelity order. In other words, the first one
+is likely to be the full order model, while subsequent ones are ROMs.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">switching_function</span><span class="p">(</span>
+    <span class="n">resolutions</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">locations</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span>
+    <span class="n">prev_output</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">active</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    Switching interface function, use as reference
+
+    Parameters
+    ----------
+    resolutions : np.array - shape(N,)
+        Array with resolution information as get_sim_class_resolution would return for a sim obj.
+    locations : np.array - shape(N,D)
+        Array with gaussian points for all sims. D is the mesh dimension.
+    t : float
+        Current time in simulation.
+    inputs : list[dict]
+        List of input objects.
+    prev_output : [None, dict-like]
+        Contains the outputs of the previous model evaluation.
+    active : np.array - shape(N,)
+        Bool array indicating whether the model is active or not.
+
+    </span><span class="sh">"""</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">resolutions</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The switching of models is governed by the <code class="language-plaintext highlighter-rouge">switching_function</code>.
+The output is expected to be a np.ndarray of shape (N,) and is interpreted in the following manner:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>No resolution change</td>
+    </tr>
+    <tr>
+      <td>-1</td>
+      <td>Increase model fidelity by one (go back one in list)</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Decrease model fidelity by one (go one ahead in list)</td>
+    </tr>
+  </tbody>
+</table>
+
+
+    
+
+
+
+<!-- Breadcrumb metadata -->
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+
+
+
+
+
+
+
+
+
+{
+  "@type": "ListItem",
+  "position": 1,
+  "name": "Docs",
+  "item": "https://precice.org/docs.html"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]}
+</script>
+
+
+</div>
+
+
+          </main>
+        </div>
+        
+    </div>
+    <footer class="background-dark">
+  <div class="container">
+    <div class="row equal">
+      <div class="col-md-4">
+        <nav aria-label="Footer left">
+          <ul class="list-unstyled">
+            <li>
+              <a href="fundamentals-literature-guide.html">Cite preCICE</a>
+            </li>
+            <li>
+              <a href="community-contribute-to-precice.html">Contribute</a>
+            </li>
+            <li>
+              <a href="community-support-precice.html">Get support</a>
+            </li>
+            <li>
+              <a href="community-training.html">Get training</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col-md-4">
+        <nav aria-label="Footer right">
+          <ul class="list-unstyled">
+            <li>
+              <a class="no-icon" href="https://precice.discourse.group">Forum on Discourse</a>
+            </li>
+            <li>
+              <a class="no-icon" href="https://github.com/precice">preCICE on GitHub</a>
+            </li>
+            <li>
+              <a href="fundamentals-license.html">License</a>
+            </li>
+            <li>
+              <a href="about.html">Impressum / Legal</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col-md-4">
+        <p>
+        <a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+          <img alt="This work is licensed under a Creative Commons Attribution 4.0 International License." src="images/licensebutton-by-40_88x31.png" />
+        </a>
+        </p>
+        <p>
+        Page last updated: Dec 10, 2025<br>
+        Site last updated: Dec 10, 2025
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+
+</html>

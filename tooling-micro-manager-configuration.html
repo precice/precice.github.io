@@ -1638,7 +1638,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 09 Dec 25</small>
+              <small>Updated 10 Dec 25</small>
             </div>
           </aside>
           
@@ -1883,6 +1883,44 @@ $('#toc').on('click', 'a', function() {
         </span><span class="nl">"refining_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
         </span><span class="nl">"every_implicit_iteration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nl">"lazy_initialization"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="model-adaptivity">Model Adaptivity</h2>
+
+<p>See the <a href="tooling-micro-manager-model-adaptivity.html">model adaptivity</a> documentation for a detailed explanation about the interface.</p>
+
+<p>To turn on model adaptivity, set <code class="language-plaintext highlighter-rouge">"model_adaptivity": true</code> in <code class="language-plaintext highlighter-rouge">simulation_params</code>. Then under <code class="language-plaintext highlighter-rouge">model_adaptivity_settings</code> set the following variables:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">micro_file_names</code></td>
+      <td>List of paths to the files containing the Python importable micro simulation classes. If the files are not in the working directory, give the relative path from the directory where the Micro Manager is executed. Requires a minimum of 2 files.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">switching_function</code></td>
+      <td>Path to the file containing the Python importable switching function. If the file is not in the working directory, give the relative path from the directory where the Micro Manager is executed.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example of model adaptivity configuration is</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">25.0</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"model_adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model_adaptivity_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"micro_file_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"switching_function"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mada_switcher"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
@@ -2323,8 +2361,8 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Dec 9, 2025<br>
-        Site last updated: Dec 9, 2025
+        Page last updated: Dec 10, 2025<br>
+        Site last updated: Dec 10, 2025
         </p>
       </div>
     </div>
