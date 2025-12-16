@@ -192,7 +192,7 @@ The documentation pages of each adapter include guides to further literature. Ap
 
 A lot of useful information is also included in student projects, follow-up publications, and data sets. Have a look at:
 
-* [Zenodo community on preCICE](https://www.cs.cit.tum.de/en/sccs/job-offers-student-projects/job-offers-student-projects/coupled-problems-multi-physics-simulations/)
+* [Zenodo community on preCICE](https://zenodo.org/communities/precice/records)
 * [student projects at the IPVS, University of Stuttgart](https://www.ipvs.uni-stuttgart.de/departments/sc/teaching/student-projects/) ([university library](https://rds-stg.ibs-bw.de/opac/RDSIndex/Search?lookfor=preCICE&type=allfields), [DaRUS](https://darus.uni-stuttgart.de/dataverse/darus?q=preCICE&types=dataverses%3Adatasets%3Afiles&sort=score&order=desc&page=1))
 * [student projects at the SCCS, Technical University of Munich](https://www.cs.cit.tum.de/en/sccs/job-offers-student-projects/job-offers-student-projects/coupled-problems-multi-physics-simulations/)
 * [works citing the preCICE v1 paper](https://scholar.google.com/scholar?hl=en&cites=5053469347483527186)
