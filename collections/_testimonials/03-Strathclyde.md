@@ -1,6 +1,6 @@
 ---
 title: "Fluid-structure interaction modelling of biomimetics"
-author: "Dr. Qing Xiao"
+author: "Prof. Qing Xiao"
 author_link: "https://www.cfd-fsi-xiao.org/"
 organisation: "CFD & FSI-RG, University of Strathclyde, UK"
 organisation_link: ""
