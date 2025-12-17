@@ -1,5 +1,5 @@
 ---
-title: "Numerical simulation of a cross-flow through a bundle to prepare the FSI simulations in the GO-VIKING European project"
+title: "Turbulent flow coupling for flow-induced vibrations"
 author: "Enrico Pivato"
 author_link: "mailto:enrico.pivato@vki.ac.be"
 organisation: "Von Karman Institute for Fluid Dynamics, Belgium"
