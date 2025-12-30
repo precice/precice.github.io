@@ -186,7 +186,7 @@ and the story continues by the [current team](about.html).
 
 ## Further components
 
-The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper ["Official preCICE Adapters for Standard Open-Source Solvers"](https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf) includes a first overview and describes the concept of an adapter, while the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2) gives a more updated and detailed overview of the preCICE ecosystem.
+The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper ["Official preCICE Adapters for Standard Open-Source Solvers"](https://doi.org/10.18419/opus-9334) includes a first overview and describes the concept of an adapter, while the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2) gives a more updated and detailed overview of the preCICE ecosystem.
 
 ## Discover more
 
