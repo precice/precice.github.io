@@ -1,5 +1,5 @@
 ---
-title: "Closed-loop simulations to analyze natural convection flow in deformed bundles"
+title: "Closed-loop natural convection flow in deformed bundles"
 author: "Matilde Fiore, PhD"
 author_link: "mailto:matilde.fiore@vki.ac.be"
 organisation: "Von Karman Institute for Fluid Dynamics, Belgium"
