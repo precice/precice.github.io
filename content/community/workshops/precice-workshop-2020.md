@@ -17,7 +17,7 @@ Thank you everybody who helped or participated in the workshop. After all the po
 
 [![Group photo](images/events/precice2020-group-cropped.jpg)](images/events/precice2020-group.jpeg)
 
-February 17-18, 2020 at the [Technical University of Munich](https://www.tum.de/), [Department of Informatics](http://www.in.tum.de/en/) (campus Garching), [Lecture Hall 2](https://portal.mytum.de/campus/roomfinder/roomfinder_viewmap?mapid=142&roomid=00.04.011@5604). [Register](https://www5.in.tum.de/workshops/precice-workshop/) until February 7.
+February 17-18, 2020 at the [Technical University of Munich](https://www.tum.de/), [Department of Informatics](http://www.in.tum.de/en/) (campus Garching), [Lecture Hall 2](https://portal.mytum.de/campus/roomfinder/roomfinder_viewmap?mapid=142&roomid=00.04.011@5604). Registeration closed.
 
 After meeting you at invited sessions in conferences around Europe,
 it is time that we meet at home, where everything started.
@@ -74,7 +74,7 @@ More details have been sent to registered participants.
 ## Program details
 
 <details class="workshop-event" id="workshop"><summary>Hands-on introductory workshop</summary>
-<p>Instructors: <a href="https://www5.in.tum.de/wiki/index.php/Gerasimos_Chourdakis,_M.Sc.">Gerasimos Chourdakis</a>, <a href="https://www5.in.tum.de/wiki/index.php/Dr._rer._nat._Benjamin_Uekermann">Benjamin Uekermann</a><br/>
+<p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://github.com/uekerman">Benjamin Uekermann</a><br/>
 Affiliation: Technical Univerisy of Munich, Eindhoven University of Technology, preCICE developers.</p>
 <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
 <p>We will couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
@@ -92,7 +92,7 @@ Affiliation: University of Stuttgart</p>
 </details>
 
 <details class="workshop-event" id="Simonis"><summary>Frédéric Simonis: preCICE v2.0 and beyond</summary>
-<p>Speaker: <a href="https://www5.in.tum.de/wiki/index.php/Fr%C3%A9d%C3%A9ric_Simonis,_M.Sc.">Frédéric Simonis</a><br/>
+<p>Speaker: <a href="https://www.cs.cit.tum.de/en/sccs/people/frederic-simonis/">Frédéric Simonis</a><br/>
 Affiliation: Technical University of Munich, preCICE developer</p>
 <p>preCICE 2.0 brings many changes and improvements at the price of breaking backwards compatibility.
 This talk presents an overview on what has changed in this major release and presents a comprehensive guide on how to painlessly upgrade adapters and configurations. Furthermore, we will have a brief overview of upcoming features.</p>
@@ -141,7 +141,7 @@ Affiliation: Indian Institute of Technology</p>
 </details>
 
 <details class="workshop-event" id="Rueth"><summary>Benjamin Rüth: High-order and multi-rate time stepping with preCICE</summary>
-<p>Authors: <a href="https://www5.in.tum.de/wiki/index.php/Benjamin_R%C3%BCth,_M.Sc._(hons)">Benjamin Rüth</a><br/>
+<p>Authors: <a href="https://www.cs.cit.tum.de/en/sccs/people/benjamin-rueth/">Benjamin Rüth</a><br/>
 Affiliation: Technical University of Munich, preCICE developer</p>
 <p>Many multi-physics applications have solver components that come with their respective scale in time and space. The spatial mapping of preCICE already allows to consequently connect different scales in space, i.e. different mesh resolutions. However, for the time dimension, only a very limited subcycling scheme is implemented to support different scales in time and timestep sizes.</p>
 <p>In this talk, we present a coupling scheme that utilizes waveform iteration and interpolates between time steps of each component to reach high order in time. We present a draft for the future implementation in preCICE and give usage examples. Finally, we want to discuss possible effects on the preCICE API and configuration.</p>
@@ -163,7 +163,7 @@ This is an academic, non-profit conference. However, we still have to collect a 
 
 For early registrations (until November 29), the registration fee is 100€, which covers the catering and the workshop dinner. A later registration (until February 7) is also possible, with a registration fee of 150€.
 
-Please use the [registration form](https://www5.in.tum.de/workshops/precice-workshop/) to register.
+The registration has closed.
 
 ## Getting there
 
@@ -203,7 +203,7 @@ This is a no-profit, academic conference. A big "thank you" to <a href="http://w
 </ul>
 </p>
 
-<p>Please use the <a href="https://www5.in.tum.de/workshops/precice-workshop/">registration form</a> if you would like to submit a talk.</p>
+<p>The registration has closed.</p>
 </details>
 
 ## Important dates
