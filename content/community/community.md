@@ -7,12 +7,11 @@ toc: false
 editme: true
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2025/precice2025.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
-<!-- ![preCICE community](images/community-banner2.jpg) -->
+<img class="img-responsive center-block" src="images/events/precice2027/precice2027-path.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
 
 ## preCICE workshops
 
-Do you want to meet the community and learn what is new in preCICE? There is no better way than to join [one of our workshops](precice-workshop.html)! The next workshop will be in Hamburg in [September 2025](precice-workshop-2025.html).
+Do you want to meet the community and learn what is new in preCICE? There is no better way than to join [one of our workshops](precice-workshop.html) or [trainings](community-training.html)!
 
 ## The preCICE forum
 
@@ -26,8 +25,8 @@ There are different ways how to support preCICE and get priority support from th
 
 ## How our community is using preCICE
 
-We have compiled a community showcase with several of the most impressive preCICE implementations. The range of application fields is diverse, including e.g.  simulating the [temperatures on the moon](community-projects.html#simulation-of-temperatures-on-the-moon-with-thermos),  the [biomechanics of the heart valve](community-projects.html#evaluation-of-heart-balve-biomechanics), [modelling wind in urban areas](community-projects.html#hybrid-simulation-methods-for-wind-modelling-in-urban-areas), and simluating [high impact loads on structures](community-projects.html#fsi-simulations-of-high-impact-loads-on-structures).
-You can find many more use cases on the [projects page](community-projects.html).
+We have compiled a community showcase with several of the most impressive preCICE implementations. The range of application fields is diverse, including e.g.  simulating the [temperatures on the moon](community-projects.html#simulation-of-temperatures-on-the-moon-with-thermos),  the [biomechanics of the heart valve](community-projects.html#evaluation-of-heart-valve-biomechanics), [modelling wind in urban areas](community-projects.html#hybrid-simulation-methods-for-wind-modelling-in-urban-areas), and simluating [high impact loads on structures](community-projects.html#fsi-simulations-of-high-impact-loads-on-structures).
+You can find many more use cases on the [community stories page](community-projects.html).
 
 {% assign testimonials = site.testimonials | reverse %}
 {%- for testimonial in testimonials -%}
@@ -35,8 +34,6 @@ You can find many more use cases on the [projects page](community-projects.html)
 <img class="img-circle" src="images/testimonials/{{ testimonial.img }}" alt="Overview of preCICE user stories" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; display: inline; border: 1px solid lightgrey;">
 {%- endif -%}
 {% endfor %}
-
-Do you use preCICE? [Tell us](community-channels.html) your story and will be happy to feature it here!
 
 ## Contributions to preCICE
 

@@ -30,21 +30,21 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | Adapter for   | Contact | Resources | Typical applications | Comments |
 | [Alya](https://www.bsc.es/research-development/research-areas/engineering-simulations/alya-high-performance-computational) | [Benjamin Uekermann](https://github.com/uekerman) | | Fluid and structure part in FSI | Not actively maintained (but not abandoned) |
 | [Ansys Fluent](https://www.ansys.com/products/fluids/ansys-fluent) | preCICE Developers | [code](https://github.com/precice/fluent-adapter), [docs](https://github.com/precice/fluent-adapter/wiki) | Fluid part in FSI | Experimental |
-| [Ateles (APES)](https://apes.osdn.io/pages/ateles) | [Univ. Siegen STS](https://www.mb.uni-siegen.de/sts/index.html) | [code](https://github.com/apes-suite/ateles) | Fluid-Acousting, Fluid-Fluid coupling | |
+| [Ateles (APES)](https://apes-suite.org/ateles/) | [APES team](https://apes-suite.org/pages/impressum) | [code](https://github.com/apes-suite/ateles) | Fluid-Acousting, Fluid-Fluid coupling | |
 | [COMSOL Multiphysics](https://www.comsol.com/comsol-multiphysics) | preCICE Developers | [code](https://github.com/precice/comsol-adapter) | Structure part in FSI | Currently not maintained |
 | [DUNE](https://dune-project.org/) | [Max Firmbach, UniBW M](https://www.unibw.de/imcs/team/firmbach) | [Thesis](https://mediatum.ub.tum.de/node?id=1609293), [code](https://github.com/precice/dune-adapter) | Structure part in FSI | |
 | [DUNE-Fem](https://www.dune-project.org/sphinx/content/sphinx/dune-fem/) | [Niklas Kotarsky, Lund University](https://www.lunduniversity.lu.se/lucat/user/9a5a021777b3e7cb0b8aea7ee9094808) | [coupled example code](https://github.com/precice/tutorials/tree/develop/flow-over-heated-plate/solid-dunefem) | Structure part in CHT, any FEM | |
-| [Elmer FEM](https://www.elmerfem.org/) | [Benjamin Rodenberg, TUM](https://www.in.tum.de/i05/personen/personen/benjamin-rodenberg/) | [Thesis](https://mediatum.ub.tum.de/node?id=1636717), [code](https://github.com/precice/elmer-adapter) | Structure part in CHT, FSI, any FEM | looking for maintainers! |
+| [Elmer FEM](https://www.elmerfem.org/) | [Benjamin Rodenberg, TUM](https://www.cs.cit.tum.de/sccs/personen/benjamin-rodenberg/) | [Thesis](https://mediatum.ub.tum.de/node?id=1636717), [code](https://github.com/precice/elmer-adapter) | Structure part in CHT, FSI, any FEM | looking for maintainers! |
 | [ExaDG](https://github.com/exadg/exadg) | [David Schneider, US](https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/) | [code](https://github.com/exadg/exadg/tree/master/applications/fluid_structure_interaction/perpendicular_flap) | Fluid or Structure part in FSI | |
-| [FASTEST](https://www.fnb.tu-darmstadt.de/forschung_fnb/software_fnb/software_fnb.en.jsp) | [TU Darmstadt FNB](https://www.fnb.tu-darmstadt.de/) | None | Fluid-Structure-Acoustics interaction | |
+| [FASTEST](https://www.maschinenbau.tu-darmstadt.de/fnb/fnb_research/fnb_fastest/index.en.jsp) | [TU Darmstadt FNB](https://www.fnb.tu-darmstadt.de/) | None | Fluid-Structure-Acoustics interaction | |
 | [FEAP](http://projects.ce.berkeley.edu/feap/) | [TU Darmstadt FNB](https://www.fnb.tu-darmstadt.de/) | None | Structure part in FSI | |
-| [FEniCS-X](https://fenicsproject.org/) | [Benjamin Rodenberg, TUM](https://www.in.tum.de/i05/personen/personen/benjamin-rodenberg/) | [code](https://github.com/precice/fenicsx-adapter) | Structure part in CHT, FSI, any FEM | looking for maintainers! |
+| [FEniCS-X](https://fenicsproject.org/) | [Benjamin Rodenberg, TUM](https://www.cs.cit.tum.de/sccs/personen/benjamin-rodenberg/) | [code](https://github.com/precice/fenicsx-adapter) | Structure part in CHT, FSI, any FEM | looking for maintainers! |
 | [G+Smo](https://gismo.github.io/) | [TU Delft Numerical Analysis](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics/numerical-analysis/) |[code](https://github.com/gismo/gsPreCICE) | Structure part in FSI ||
-| [ISSM](https://issm.jpl.nasa.gov/) | [Daniel Abele](https://github.com/dabele), [DLR Software Technology](https://www.dlr.de/sc/) | [code](https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice) | Ice sheet model | |
+| [ISSM](https://github.com/ISSMteam/ISSM) | [Daniel Abele](https://github.com/dabele), [DLR Software Technology](https://www.dlr.de/sc/) | [code](https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice) | Ice sheet model | |
 | [LS-DYNA](http://www.lstc.com/products/ls-dyna) | [LKR](https://www.ait.ac.at/lkr) | [code example](https://github.com/precice/lsdyna-adapter) | Continuous metal casting process ||
 | [MBDyn](https://www.mbdyn.org/) | [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/mbdyn-adapter) | Structure part in FSI ||
 | [MBDyn](https://www.mbdyn.org/) | [Politecnico di Milano DAER](https://www.aero.polimi.it/) | [documentation](https://public.gitlab.polimi.it/DAER/mbdyn/-/wikis/preCICE-MBDyn-adapter), [code](https://gitlab.com/stilita/mbdyn-esm-adapter/) | Structure part in FSI ||
-| [OpenFAST](https://openfast.readthedocs.io/en/main/) | [Leonard Willeke](https://github.com/LeonardWilleke), [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/openfast-adapter), [report](https://pure.tudelft.nl/ws/portalfiles/portal/175757249/willeke24-openfast-adapter.pdf) | Structure part in FSI | Experimental |
+| [OpenFAST](https://openfast.readthedocs.io/en/main/) | [Leonard Willeke](https://github.com/LeonardWilleke), [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/openfast-adapter), [report](https://doi.org/10.5281/zenodo.14809779) | Structure part in FSI | Experimental |
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) | |
 
 ## Legacy adapters
@@ -52,7 +52,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 These adapters and/or the respective solvers are not maintained and might not work anymore, but are listed here as an example of which other projects have used preCICE in the past.
 
 | Adapter for   | Contact | Resources | Typical applications | Comments |
-| [Carat++](http://carat.st.bv.tum.de/) | [TUM Statik](https://www.bgu.tum.de/en/st/software/research/carat/) | None | Structure part of FSI | |
-| [EFD](https://github.com/precice/efd) | [TUM SCCS](https://www.in.tum.de/en/i05/) | [code](https://github.com/precice/efd) | Fluid part of FSI | |
+| [Carat++](https://www.cee.ed.tum.de/en/st/software/research/carat/) | [TUM Statik](https://www.cee.ed.tum.de/en/st/home/) | None | Structure part of FSI | |
+| [EFD](https://github.com/precice/efd) | [TUM SCCS](https://www.cs.cit.tum.de/en/sccs/home/) | [code](https://github.com/precice/efd) | Fluid part of FSI | |
 | [foam-extend](https://sourceforge.net/projects/foam-extend/) | [TU Delft Aerodynamics](https://www.tudelft.nl/index.php?id=4542&L=1) | [code](https://github.com/davidsblom/FOAM-FSI) | Fluid and structure part of FSI, Fluid-Fluid coupling | |
 | [Peano](http://www.peano-framework.org/) | [Durham University](https://tobiasweinzierl.webspace.durham.ac.uk/) | None | Fluid part of FSI | |
