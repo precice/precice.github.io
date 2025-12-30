@@ -759,6 +759,30 @@ A good example is <a href="https://github.com/precice/precice.github.io/pull/54"
 
 
 
+<h2>Closed-loop natural convection flow in deformed bundles</h2>
+
+<div class="row">
+    <div class="col-md-6">
+
+      <p>Deformation of fuel pins in the core of nuclear reactors is the result of several concurrent phenomena and directly affects the peak temperatures reached in the cladding layers. In forced-convection regimes, the excess temperature induced by pin deformations can be reasonably estimated through numerical simulations that focus only on the active region of the assembly. Simulations of fuel bundles under natural convection are significantly more challenging, as the entire primary loop must be resolved in order to accurately capture buoyancy-driven flow dynamics. As the computational domain increases in size, mesh generation becomes increasingly demanding: it is necessary to limit the total number of cells while preserving good mesh quality and appropriately handling transition regions between zones of high and low spatial resolution.</p>
+
+      <p>Using preCICE, we simplified the meshing process by partitioning the full domain into two subdomains: the active region of the bundle and the remaining part of the loop. The two subdomains have very different resolution and mesh structure (structured vs unstructured) and are handled by different solvers (chtMultiRegionFoam and buoyantPimpleFoam for the bundle and the loop, respectively). At the two shared interfaces we used custom boundary conditions and exchange derived fields, enabling a consistent, pressure-driven flow across the coupled domains.</p>
+
+      <p>—<strong><a href="mailto:matilde.fiore@vki.ac.be">Matilde Fiore, PhD</a></strong>
+Von Karman Institute for Fluid Dynamics, Belgium</p>
+
+    </div>
+    <div class="col-md-6">
+
+      <figure>
+        <p><img src="images/testimonials/testimonial-26-vki-closed-loop.png" alt="Closed-loop natural convection flow in deformed bundles" /></p>
+        <figcaption>Closed-loop natural convection flow in deformed bundles</figcaption>
+      </figure>
+
+    </div>
+  </div>
+
+
 <h2>Turbulent flow coupling for flow-induced vibrations</h2>
 
 <div class="row">
@@ -1597,7 +1621,7 @@ CFD Laboratory, CIRA - Italian Aerospace Research Centre, Italy</p>
         </p>
         <p>
         Page last updated: Dec 17, 2025<br>
-        Site last updated: Dec 29, 2025
+        Site last updated: Dec 30, 2025
         </p>
       </div>
     </div>
