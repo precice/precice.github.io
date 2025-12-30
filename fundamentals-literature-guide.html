@@ -1640,7 +1640,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 02 Dec 25</small>
+              <small>Updated 30 Dec 25</small>
             </div>
           </aside>
           
@@ -1744,7 +1744,7 @@ $('#toc').on('click', 'a', function() {
         GACM,
         2017.
       </p>
-      <a href="https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf">Publisher's site</a>&nbsp;&nbsp;
+      <a href="https://doi.org/10.18419/opus-9334">Publisher's site</a>&nbsp;&nbsp;
       <a href="assets/precice-adapters-gacm2017.bib">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
     </div>
   </div>
@@ -1754,6 +1754,8 @@ $('#toc').on('click', 'a', function() {
 <h3 id="reproducibility">Reproducibility</h3>
 
 <p>To ensure reproducibility of your results, you can use and cite the <a href="installation-distribution.html">preCICE distribution</a>. This frequently updated snapshot of the preCICE ecosystem includes versions of components that work together, while acknowledging everyone that has contributed to the respective version of any component.</p>
+
+<p>Besides the distribution, publications are often accompanied by replication data published in the <a href="https://zenodo.org/communities/precice/records">preCICE community on Zenodo</a> and <a href="https://darus.uni-stuttgart.de/dataverse/darus?q=preCICE">DaRUS</a>.</p>
 
 <h2 id="starting-points">Starting points</h2>
 
@@ -1810,13 +1812,21 @@ Are you looking for how to start coupling your code? Then the <a href="couple-yo
     <p><strong>Coupling schemes</strong> For an introduction to explicit and implicit coupling, as well as the various acceleration / post-processing techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.3 and 4.1) and Benjamin Uekermann (Chapter 3). An easy first read on quasi-Newton acceleration is <a href="http://hdl.handle.net/2117/191193">A Comparison of Various Quasi-Newton Schemes for Partitioned Fluid-Structure Interaction</a>. Detailed information on the improved IQN-IMVJ acceleration is given in <a href="https://doi.org/10.1137/16M1082020">Robust Multisecant Quasi-Newton Variants for Parallel Fluid-Structure Simulations – and Other Multiphysics Applications</a>. For the motivation of replacing multiple implicit schemes with a single multi coupling scheme, see <a href="https://doi.org/10.1007/s00466-014-1113-2">A plug-and-play coupling approach for parallel multi-field simulations</a>.</p>
   </li>
   <li>
-    <p><strong>Data mapping</strong> For an introduction to the various techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.4 and 4.2) and Benjamin Uekermann (Section 4.3). For a more condensed overview of RBF mapping, see <a href="https://upcommons.upc.edu/handle/2117/190255">Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations</a>. For details regarding gradient-based data mapping schemes, see <a href="https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf">Second-order projection-based mapping methods for coupled multi-physics simulations</a>. For a performance comparison between the different mapping methods, see the <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2 reference paper</a>. For details regarding volume-coupling with cell-interpolation, see <a href="https://mediatum.ub.tum.de/1685618">Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE</a>.</p>
+    <p><strong>Data mapping</strong> For an introduction to the various techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.4 and 4.2) and Benjamin Uekermann (Section 4.3). Details regarding various mappings:</p>
+
+    <ul>
+      <li>For a performance comparison between the different mapping methods, see the <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2 reference paper</a>.</li>
+      <li>For the partition-of-unity RBF mapping (default since preCICE v3), see <a href="https://doi.org/10.1137/24M1663843">Efficient Partition-of-Unity Radial-Basis-Function Interpolation for Coupled Problems</a>.</li>
+      <li>An older overview of the RBF mapping is <a href="https://upcommons.upc.edu/handle/2117/190255">Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations</a>.</li>
+      <li>For details regarding gradient-based data mapping schemes, see <a href="https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf">Second-order projection-based mapping methods for coupled multi-physics simulations</a>.</li>
+      <li>For details regarding volume-coupling with cell-interpolation, see <a href="https://mediatum.ub.tum.de/1685618">Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE</a>.</li>
+    </ul>
   </li>
   <li>
     <p><strong>Communication</strong> For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master’s thesis of Alexander Shukaev: “<a href="https://www5.in.tum.de/pub/Shukaev2015_MasterThesis.pdf">A Fully Parallel Process-to-Process Intercommunication Technique for preCICE</a>”.</p>
   </li>
   <li>
-    <p><strong>Time interpolation</strong> This feature is currently under active development. Have a look at the publications, talks, and posters of <a href="https://www.cs.cit.tum.de/sccs/personen/benjamin-rodenberg/">Benjamin Rodenberg</a>.</p>
+    <p><strong>Time interpolation</strong> This feature was developed in the context of <a href="https://mediatum.ub.tum.de/1763172">Benjamin Rodenberg’s dissertation</a>. The method was described in <a href="https://doi.org/10.1002/nme.6443">Quasi-Newton waveform iteration for partitioned surface-coupled multiphysics applications</a>.</p>
   </li>
 </ul>
 
@@ -1826,7 +1836,7 @@ Are you looking for how to start coupling your code? Then the <a href="couple-yo
   <li>The initial effort for parallelization of preCICE is documented in <a href="https://link.springer.com/chapter/10.1007/978-3-319-40528-5_11">Partitioned Fluid-Structure-Acoustics Interaction on Distributed Data: Coupling via preCICE</a> (2016).</li>
   <li>Further steps to speed up initialization are documented in <a href="https://library.oapen.org/bitstream/handle/20.500.12657/41289/2020_Book_SoftwareForExascaleComputing-S.pdf?sequence=1#page=278">ExaFSA: Parallel Fluid-Structure-Acoustic Simulation</a> (2020).</li>
   <li>The parallelization of communication initialization is published in <a href="https://www.mdpi.com/1999-4893/14/6/166">Efficient and Scalable Initialization of Partitioned Coupled Simulations with preCICE</a> (2021).</li>
-  <li>More details can be found in <a href="https://mediatum.ub.tum.de/doc/1320661/document.pdf">Benjamin’s thesis</a> (2016), <a href="https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf">Florian’s thesis</a> (2019), and <a href="https://elib.uni-stuttgart.de/handle/11682/10413">Klaudius’ thesis</a> (2018).</li>
+  <li>More details can be found in <a href="https://mediatum.ub.tum.de/doc/1320661/document.pdf">Benjamin Uekermann’s dissertation</a> (2016), <a href="https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf">Florian Lindner’s dissertation</a> (2019), and <a href="https://elib.uni-stuttgart.de/handle/11682/10413">Klaudius Scheufele’s dissertation</a> (2018).</li>
 </ul>
 
 <h2 id="testing">Testing</h2>
@@ -1839,7 +1849,7 @@ Are you looking for how to start coupling your code? Then the <a href="couple-yo
 
 <h2 id="further-components">Further components</h2>
 
-<p>The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper <a href="https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf">“Official preCICE Adapters for Standard Open-Source Solvers”</a> includes a first overview and describes the concept of an adapter, while the <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2 reference paper</a> gives a more updated and detailed overview of the preCICE ecosystem.</p>
+<p>The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper <a href="https://doi.org/10.18419/opus-9334">“Official preCICE Adapters for Standard Open-Source Solvers”</a> includes a first overview and describes the concept of an adapter, while the <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2 reference paper</a> gives a more updated and detailed overview of the preCICE ecosystem.</p>
 
 <h2 id="discover-more">Discover more</h2>
 
@@ -2205,7 +2215,7 @@ Are you looking for how to start coupling your code? Then the <a href="couple-yo
         </a>
         </p>
         <p>
-        Page last updated: Dec 2, 2025<br>
+        Page last updated: Dec 30, 2025<br>
         Site last updated: Dec 30, 2025
         </p>
       </div>
