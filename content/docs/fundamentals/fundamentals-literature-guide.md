@@ -131,6 +131,8 @@ For the CalculiX, SU2, and code_aster adapters, as well as for the concept of an
 
 To ensure reproducibility of your results, you can use and cite the [preCICE distribution](installation-distribution.html). This frequently updated snapshot of the preCICE ecosystem includes versions of components that work together, while acknowledging everyone that has contributed to the respective version of any component.
 
+Besides the distribution, publications are often accompanied by replication data published in the [preCICE community on Zenodo](https://zenodo.org/communities/precice/records) and [DaRUS](https://darus.uni-stuttgart.de/dataverse/darus?q=preCICE).
+
 ## Starting points
 
 {% tip %}
@@ -165,18 +167,24 @@ and the story continues by the [current team](about.html).
 
 * **Coupling schemes** For an introduction to explicit and implicit coupling, as well as the various acceleration / post-processing techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.3 and 4.1) and Benjamin Uekermann (Chapter 3). An easy first read on quasi-Newton acceleration is [A Comparison of Various Quasi-Newton Schemes for Partitioned Fluid-Structure Interaction](http://hdl.handle.net/2117/191193). Detailed information on the improved IQN-IMVJ acceleration is given in [Robust Multisecant Quasi-Newton Variants for Parallel Fluid-Structure Simulations – and Other Multiphysics Applications](https://doi.org/10.1137/16M1082020). For the motivation of replacing multiple implicit schemes with a single multi coupling scheme, see [A plug-and-play coupling approach for parallel multi-field simulations](https://doi.org/10.1007/s00466-014-1113-2).
 
-* **Data mapping** For an introduction to the various techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.4 and 4.2) and Benjamin Uekermann (Section 4.3). For a more condensed overview of RBF mapping, see [Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations](https://upcommons.upc.edu/handle/2117/190255). For details regarding gradient-based data mapping schemes, see [Second-order projection-based mapping methods for coupled multi-physics simulations](https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf). For a performance comparison between the different mapping methods, see the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2). For details regarding volume-coupling with cell-interpolation, see [Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE](https://mediatum.ub.tum.de/1685618).
+* **Data mapping** For an introduction to the various techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.4 and 4.2) and Benjamin Uekermann (Section 4.3). Details regarding various mappings:
+
+  * For a performance comparison between the different mapping methods, see the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2).
+  * For the partition-of-unity RBF mapping (default since preCICE v3), see [Efficient Partition-of-Unity Radial-Basis-Function Interpolation for Coupled Problems](https://doi.org/10.1137/24M1663843).
+  * An older overview of the RBF mapping is [Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations](https://upcommons.upc.edu/handle/2117/190255).
+  * For details regarding gradient-based data mapping schemes, see [Second-order projection-based mapping methods for coupled multi-physics simulations](https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf).
+  * For details regarding volume-coupling with cell-interpolation, see [Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE](https://mediatum.ub.tum.de/1685618).
 
 * **Communication** For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master's thesis of Alexander Shukaev: "[A Fully Parallel Process-to-Process Intercommunication Technique for preCICE](https://www5.in.tum.de/pub/Shukaev2015_MasterThesis.pdf)".
 
-* **Time interpolation** This feature is currently under active development. Have a look at the publications, talks, and posters of [Benjamin Rodenberg](https://www.cs.cit.tum.de/sccs/personen/benjamin-rodenberg/).
+* **Time interpolation** This feature was developed in the context of [Benjamin Rodenberg's dissertation](https://mediatum.ub.tum.de/1763172). The method was described in [Quasi-Newton waveform iteration for partitioned surface-coupled multiphysics applications](https://doi.org/10.1002/nme.6443).
 
 ## Parallel and high-performance computing
 
 * The initial effort for parallelization of preCICE is documented in [Partitioned Fluid-Structure-Acoustics Interaction on Distributed Data: Coupling via preCICE](https://link.springer.com/chapter/10.1007/978-3-319-40528-5_11) (2016).
 * Further steps to speed up initialization are documented in [ExaFSA: Parallel Fluid-Structure-Acoustic Simulation](https://library.oapen.org/bitstream/handle/20.500.12657/41289/2020_Book_SoftwareForExascaleComputing-S.pdf?sequence=1#page=278) (2020).
 * The parallelization of communication initialization is published in [Efficient and Scalable Initialization of Partitioned Coupled Simulations with preCICE](https://www.mdpi.com/1999-4893/14/6/166) (2021).
-* More details can be found in [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf) (2016), [Florian's thesis](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (2019), and [Klaudius' thesis](https://elib.uni-stuttgart.de/handle/11682/10413) (2018).
+* More details can be found in [Benjamin Uekermann's dissertation](https://mediatum.ub.tum.de/doc/1320661/document.pdf) (2016), [Florian Lindner's dissertation](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (2019), and [Klaudius Scheufele's dissertation](https://elib.uni-stuttgart.de/handle/11682/10413) (2018).
 
 ## Testing
 
@@ -186,7 +194,7 @@ and the story continues by the [current team](about.html).
 
 ## Further components
 
-The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper ["Official preCICE Adapters for Standard Open-Source Solvers"](https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf) includes a first overview and describes the concept of an adapter, while the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2) gives a more updated and detailed overview of the preCICE ecosystem.
+The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper ["Official preCICE Adapters for Standard Open-Source Solvers"](https://doi.org/10.18419/opus-9334) includes a first overview and describes the concept of an adapter, while the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2) gives a more updated and detailed overview of the preCICE ecosystem.
 
 ## Discover more
 
