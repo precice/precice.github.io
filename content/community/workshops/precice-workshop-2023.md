@@ -140,7 +140,7 @@ The course continues with a part 4 (data mapping) on Thursday.
   <details class="workshop-event" id="talk-caccia">
     <summary>
       Using MultiBody dynamics in FSI simulations for marine applications<br/>
-      <p><a href="https://www.aero.polimi.it/index.php?id=263&uid=28451&L=0">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
+      <p><a href="https://www.aero.polimi.it/en/staff/claudiogiovanni.caccia">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
     </summary>
     <p>Our presentation concerns the simulation and validation of the hydroelastic performance of marine components.
     Our simulations involve three software components: the Multibody Dynamics solver MBDyn, the CFD solver OpenFOAM, and preCICE.
@@ -229,7 +229,7 @@ If you are new to preCICE, this is the perfect way to get started. February 13 i
 
 ## Location
 
-Having offered [preCICE 2022](precice-workshop-2022.html) and [preCICE 2021](precice-workshop-2021.html) online, we are now looking forward to meeting our community again in person, similarly to [preCICE 2020](precice-workshop-2020.html). The event itself will take place at the [LRZ](https://www.lrz.de/english/) building ([Boltzmannstr. 1](https://www.openstreetmap.org/search?query=Boltzmannstr.%201%20Garching#map=19/48.26176/11.66999)) and the social events will take place in the town of Garching.
+Having offered [preCICE 2022](precice-workshop-2022.html) and [preCICE 2021](precice-workshop-2021.html) online, we are now looking forward to meeting our community again in person, similarly to [preCICE 2020](precice-workshop-2020.html). The event itself will take place at the [LRZ](https://www.lrz.de/en/) building ([Boltzmannstr. 1](https://www.openstreetmap.org/search?query=Boltzmannstr.%201%20Garching#map=19/48.26176/11.66999)) and the social events will take place in the town of Garching.
 
 As of January 2023, there are no particular Corona-related regulations anymore in Munich, while there is a recommendation of using masks in the public transportation. Follow the latest updates in the [official portal of the City of Munich](https://stadt.muenchen.de/infos/corona-fallzahlen-muenchen) (in German).
 
