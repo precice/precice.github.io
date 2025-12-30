@@ -175,7 +175,7 @@ and the story continues by the [current team](about.html).
   * For details regarding gradient-based data mapping schemes, see [Second-order projection-based mapping methods for coupled multi-physics simulations](https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf).
   * For details regarding volume-coupling with cell-interpolation, see [Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE](https://mediatum.ub.tum.de/1685618).
 
-* **Communication** For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master's thesis of Alexander Shukaev: "[A Fully Parallel Process-to-Process Intercommunication Technique for preCICE](https://www5.in.tum.de/pub/Shukaev2015_MasterThesis.pdf)".
+* **Communication** For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master's thesis of Alexander Shukaev: "[A Fully Parallel Process-to-Process Intercommunication Technique for preCICE](https://mediatum.ub.tum.de/1461672)".
 
 * **Time interpolation** This feature was developed in the context of [Benjamin Rodenberg's dissertation](https://mediatum.ub.tum.de/1763172). The method was described in [Quasi-Newton waveform iteration for partitioned surface-coupled multiphysics applications](https://doi.org/10.1002/nme.6443).
 
