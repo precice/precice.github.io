@@ -1642,24 +1642,7 @@ $('#toc').on('click', 'a', function() {
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  In the preCICE XML configuration the Micro Manager is a participant with the name <code class="language-plaintext highlighter-rouge">Micro-Manager</code>. </div>
 
-<p>The Micro Manager is configured with a JSON file. An example configuration file looks like</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"micro_solver"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"precice_config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"macro_mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"macro-mesh"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"temperature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"heat-flux"</span><span class="p">],</span><span class="w">
-        </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"porosity"</span><span class="p">,</span><span class="w"> </span><span class="s2">"conductivity"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">],</span><span class="w">
-        </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>This example configuration file is in <a href="https://github.com/precice/micro-manager/tree/develop/examples/micro-manager-config.json"><code class="language-plaintext highlighter-rouge">examples/micro-manager-config.json</code></a>.</p>
+<p>The Micro Manager is configured with a JSON file. Several parameters can be set.</p>
 
 <h2 id="micro-manager-configuration">Micro Manager Configuration</h2>
 
@@ -1668,27 +1651,34 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <th>Parameter</th>
       <th>Description</th>
+      <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">micro_file_name</code></td>
       <td>Path to the file containing the Python importable micro simulation class. If the file is not in the working directory, give the relative path from the directory where the Micro Manager is executed.</td>
+      <td>-</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">output_directory</code></td>
       <td>Path to output directory for logging and performance metrics. Directory is created if not existing already.</td>
+      <td><code class="language-plaintext highlighter-rouge">.</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">memory_usage_output_type</code></td>
-      <td>Set to either <code class="language-plaintext highlighter-rouge">local</code>, <code class="language-plaintext highlighter-rouge">global</code>, or <code class="language-plaintext highlighter-rouge">all</code>. <code class="language-plaintext highlighter-rouge">local</code> outputs rank-wise peak memory usage. <code class="language-plaintext highlighter-rouge">global</code> outputs global averaged peak memory usage. <code class="language-plaintext highlighter-rouge">all</code> outputs both local and global levels. All output is to a CSV file with the peak memory usage (RSS) in every time window, in MBs.</td>
+      <td>Set to either <code class="language-plaintext highlighter-rouge">local</code>, <code class="language-plaintext highlighter-rouge">global</code>, or <code class="language-plaintext highlighter-rouge">all</code>. <code class="language-plaintext highlighter-rouge">local</code> outputs rank-wise peak memory usage. <code class="language-plaintext highlighter-rouge">global</code> outputs global averaged peak memory usage. <code class="language-plaintext highlighter-rouge">all</code> outputs both local and global levels.</td>
+      <td>Empty string.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">memory_usage_output_n</code></td>
-      <td>Frequency of output of memory usage (integer which is number of time windows).</td>
+      <td>Interval of output.</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
+
+<p>All output is to a CSV file with the peak memory usage (RSS) in every time window, in MBs.</p>
 
 <p>Apart from the base settings, there are three main sections in the configuration file, <a href="#coupling-parameters">coupling parameters</a>, <a href="#simulation-parameters">simulation parameters</a>, and <a href="#diagnostics">diagnostics</a>.</p>
 
@@ -1712,11 +1702,11 @@ $('#toc').on('click', 'a', function() {
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">read_data_names</code></td>
-      <td>A list with the names of the data to be read from preCICE.</td>
+      <td>List with the names of the data to be read from preCICE.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">write_data_names</code></td>
-      <td>A list with the names of the data to be written to preCICE.</td>
+      <td>List with the names of the data to be written to preCICE.</td>
     </tr>
   </tbody>
 </table>
@@ -1728,31 +1718,39 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <th>Parameter</th>
       <th>Description</th>
+      <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">macro_domain_bounds</code></td>
       <td>Minimum and maximum bounds of the macro-domain, having the format <code class="language-plaintext highlighter-rouge">[xmin, xmax, ymin, ymax, zmin, zmax]</code> in 3D and <code class="language-plaintext highlighter-rouge">[xmin, xmax, ymin, ymax]</code> in 2D.</td>
+      <td>-</td>
     </tr>
     <tr>
-      <td>Domain decomposition parameters</td>
-      <td>See section on <a href="#domain-decomposition">domain decomposition</a>. But default, the Micro Manager assumes serial execution.</td>
-    </tr>
-    <tr>
-      <td>Adaptivity parameters</td>
-      <td>See section on <a href="#adaptivity">adaptivity</a>. By default, adaptivity is disabled.</td>
-    </tr>
-    <tr>
-      <td>Load balancing parameters</td>
-      <td>See section on <a href="#load-balancing">load balancing</a>. By default, load balancing is disabled.</td>
+      <td><code class="language-plaintext highlighter-rouge">decomposition</code></td>
+      <td>List of number of ranks in each axis with format <code class="language-plaintext highlighter-rouge">[xranks, yranks, zranks]</code> in 3D and <code class="language-plaintext highlighter-rouge">[xranks, yranks]</code> in 2D.</td>
+      <td><code class="language-plaintext highlighter-rouge">[1, 1, 1]</code> or <code class="language-plaintext highlighter-rouge">[1, 1]</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">micro_dt</code></td>
       <td>Initial time window size (dt) of the micro simulation.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">adaptivity</code></td>
+      <td>Set <code class="language-plaintext highlighter-rouge">true</code> for simulations with adaptivity. See section on <a href="#adaptivity">adaptivity</a>.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">load_balancing</code></td>
+      <td>Set <code class="language-plaintext highlighter-rouge">true</code> for load balancing. See section on <a href="#load-balancing">load balancing</a>.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
     </tr>
   </tbody>
 </table>
+
+<p>The total number of partitions ranks in the <code class="language-plaintext highlighter-rouge">decomposition</code> list should be the same as the number of ranks in the <code class="language-plaintext highlighter-rouge">mpirun</code> or <code class="language-plaintext highlighter-rouge">mpiexec</code> command.</p>
 
 <h2 id="diagnostics">Diagnostics</h2>
 
@@ -1761,16 +1759,19 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <th>Parameter</th>
       <th>Description</th>
+      <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">data_from_micro_sims</code></td>
-      <td>A Python dictionary with the names of the data from the micro simulation to be written to VTK files as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code> as values.</td>
+      <td>Dictionary with the names of the data from the micro simulation to be written to VTK files as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code> as values.</td>
+      <td>-</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">micro_output_n</code></td>
-      <td>Frequency of calling the optional output functionality of the micro simulation in terms of number of time steps. If not given, <code class="language-plaintext highlighter-rouge">micro_sim.output()</code> is called every time step.</td>
+      <td>Frequency of calling the optional output functionality of the micro simulation in terms of number of time steps.</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
@@ -1788,18 +1789,6 @@ $('#toc').on('click', 'a', function() {
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
 
-<h2 id="domain-decomposition">Domain decomposition</h2>
-
-<p>The Micro Manager can be run in parallel. For a parallel run, set the desired partitions in each axis by setting the <code class="language-plaintext highlighter-rouge">decomposition</code> parameter. For example, if the domain is 3D and the decomposition needs to be two partitions in x, one partition in y, and sixteen partitions in for z, the setting is</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"decomposition"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>For a 2D domain, only two values need to be set for <code class="language-plaintext highlighter-rouge">decomposition</code>. The total number of partitions provided in the <code class="language-plaintext highlighter-rouge">decomposition</code> should be the same as the number of processors provided in the <code class="language-plaintext highlighter-rouge">mpirun</code>/<code class="language-plaintext highlighter-rouge">mpiexec</code> command.</p>
-
 <h2 id="adaptivity">Adaptivity</h2>
 
 <p>See the <a href="tooling-micro-manager-adaptivity.html">adaptivity</a> documentation for a detailed explanation about the algorithm and variants.</p>
@@ -1811,56 +1800,69 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <th>Parameter</th>
       <th>Description</th>
+      <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">type</code></td>
       <td>Set to either <code class="language-plaintext highlighter-rouge">local</code> or <code class="language-plaintext highlighter-rouge">global</code>. The type of adaptivity matters when the Micro Manager is run in parallel. <code class="language-plaintext highlighter-rouge">local</code> means comparing micro simulations within a local partitioned domain for similarity. <code class="language-plaintext highlighter-rouge">global</code> means comparing micro simulations from all partitions, so over the entire domain.</td>
+      <td>None</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">data</code></td>
       <td>List of names of data which are to be used to calculate if micro-simulations are similar or not. For example <code class="language-plaintext highlighter-rouge">["temperature", "porosity"]</code>.</td>
+      <td>-</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">adaptivity_every_n_time_windows</code></td>
-      <td>Frequency of adaptivity computation (integer which is number of time windows).</td>
+      <td>Interval of adaptivity computation.</td>
+      <td>1</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">output_type</code></td>
       <td>Set to either <code class="language-plaintext highlighter-rouge">local</code>, <code class="language-plaintext highlighter-rouge">global</code>, or <code class="language-plaintext highlighter-rouge">all</code>. <code class="language-plaintext highlighter-rouge">local</code> outputs rank-wise adaptivity metrics. <code class="language-plaintext highlighter-rouge">global</code> outputs global averaged metrics. <code class="language-plaintext highlighter-rouge">all</code> outputs both local and global metrics.</td>
+      <td>Empty string.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">output_n</code></td>
-      <td>Frequency of output of adaptivity metrics (integer which is number of time windows).</td>
+      <td>Frequency of output of adaptivity metrics.</td>
+      <td>1</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">history_param</code></td>
       <td>History parameter \(\Lambda\), set as \(\Lambda &gt;= 0\).</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">coarsening_constant</code></td>
       <td>Coarsening constant \(C_c\), set as \(0 =&lt; C_c &lt; 1\).</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">refining_constant</code></td>
       <td>Refining constant \(C_r\), set as \(0 =&lt; C_r &lt; 1\).</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">every_implicit_iteration</code></td>
-      <td>If <code class="language-plaintext highlighter-rouge">true</code>, adaptivity is calculated in every implicit iteration. <br /> If False, adaptivity is calculated once at the start of the time window and then reused in every implicit time iteration. Default <code class="language-plaintext highlighter-rouge">false</code>.</td>
+      <td>If <code class="language-plaintext highlighter-rouge">true</code>, adaptivity is calculated in every implicit iteration. <br /> If False, adaptivity is calculated once at the start of the time window and then reused in every implicit time iteration.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">similarity_measure</code></td>
-      <td>Similarity measure to be used for adaptivity. Can be either <code class="language-plaintext highlighter-rouge">L1</code>, <code class="language-plaintext highlighter-rouge">L2</code>, <code class="language-plaintext highlighter-rouge">L1rel</code> or <code class="language-plaintext highlighter-rouge">L2rel</code>. By default, <code class="language-plaintext highlighter-rouge">L1</code> is used. The <code class="language-plaintext highlighter-rouge">rel</code> variants calculate the respective relative norms. This parameter is <em>optional</em>. Default <code class="language-plaintext highlighter-rouge">L1</code>.</td>
+      <td>Similarity measure to be used for adaptivity. Can be either <code class="language-plaintext highlighter-rouge">L1</code>, <code class="language-plaintext highlighter-rouge">L2</code>, <code class="language-plaintext highlighter-rouge">L1rel</code> or <code class="language-plaintext highlighter-rouge">L2rel</code>. By default, <code class="language-plaintext highlighter-rouge">L1</code> is used. The <code class="language-plaintext highlighter-rouge">rel</code> variants calculate the respective relative norms. This parameter is <em>optional</em>.</td>
+      <td><code class="language-plaintext highlighter-rouge">L2rel</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">lazy_initialization</code></td>
-      <td>Set to <code class="language-plaintext highlighter-rouge">true</code> to lazily create and initialize micro simulations. If selected, micro simulation objects are created only when the micro simulation is activated for the first time. Default: <code class="language-plaintext highlighter-rouge">false</code>.</td>
+      <td>Set to <code class="language-plaintext highlighter-rouge">true</code> to lazily create and initialize micro simulations. If selected, micro simulation objects are created only when the micro simulation is activated for the first time.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">load_balancing</code></td>
-      <td>Set to <code class="language-plaintext highlighter-rouge">true</code> to dynamically balance simulations for parallel runs. Default <code class="language-plaintext highlighter-rouge">false</code>. See <a href="#load-balancing">load balancing settings</a> below.</td>
+      <td>Set to <code class="language-plaintext highlighter-rouge">true</code> to dynamically balance simulations for parallel runs. See <a href="#load-balancing">load balancing settings</a> below.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
     </tr>
   </tbody>
 </table>
@@ -1868,15 +1870,16 @@ $('#toc').on('click', 'a', function() {
 <p>Example of adaptivity configuration is</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"adaptivity_settings"</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"temperature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"porosity"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"adaptivity_every_n_time_windows"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"output_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"output_n"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
         </span><span class="nl">"history_param"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
         </span><span class="nl">"coarsening_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
         </span><span class="nl">"refining_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"every_implicit_iteration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"every_implicit_iteration"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nl">"lazy_initialization"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1910,8 +1913,6 @@ $('#toc').on('click', 'a', function() {
 <p>Example of model adaptivity configuration is</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">25.0</span><span class="p">],</span><span class="w">
     </span><span class="nl">"model_adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"model_adaptivity_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"micro_file_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">],</span><span class="w">
@@ -1924,24 +1925,10 @@ $('#toc').on('click', 'a', function() {
 
 <p>If adaptivity is used, the Micro Manager will attempt to write two scalar data per micro simulation to preCICE, called <code class="language-plaintext highlighter-rouge">active_state</code> and <code class="language-plaintext highlighter-rouge">active_steps</code>.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">active_state</code></td>
-      <td><code class="language-plaintext highlighter-rouge">1</code> if the micro simulation is active in the time window, and <code class="language-plaintext highlighter-rouge">0</code> if inactive.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">active_steps</code></td>
-      <td>Summation of <code class="language-plaintext highlighter-rouge">active_state</code> up to the current time window.</td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">active_state</code> is <code class="language-plaintext highlighter-rouge">1</code> if the micro simulation is active in the time window, and <code class="language-plaintext highlighter-rouge">0</code> if inactive.</li>
+  <li><code class="language-plaintext highlighter-rouge">active_steps</code> is summation of <code class="language-plaintext highlighter-rouge">active_state</code> up to the current time window.</li>
+</ul>
 
 <p>The Micro Manager uses the output functionality of preCICE, hence these data sets need to be manually added to the preCICE configuration file. In the mesh and the participant Micro-Manager add the following lines:</p>
 
@@ -1968,20 +1955,24 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <th>Parameter</th>
       <th>Description</th>
+      <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">every_n_time_windows</code></td>
-      <td>Frequency of balancing the simulations. Default <code class="language-plaintext highlighter-rouge">1</code> (every time window).</td>
+      <td>Frequency of balancing the simulations.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">balancing_threshold</code></td>
-      <td>Integer threshold value. Default <code class="language-plaintext highlighter-rouge">0</code>.</td>
+      <td>Integer threshold value.</td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">balance_inactive_sims</code></td>
-      <td>If <code class="language-plaintext highlighter-rouge">true</code>, inactive simulations associated to redistributed active simulations are moved to the new ranks of the active simulations. See <a href="tooling-micro-manager-adaptivity.html#balance-inactive-simulations">balance inactive simulations</a>. Default <code class="language-plaintext highlighter-rouge">false</code>.</td>
+      <td>If <code class="language-plaintext highlighter-rouge">true</code>, inactive simulations associated to redistributed active simulations are moved to the new ranks of the active simulations. See <a href="tooling-micro-manager-adaptivity.html#balance-inactive-simulations">balance inactive simulations</a>.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
     </tr>
   </tbody>
 </table>

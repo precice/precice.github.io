@@ -1654,7 +1654,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="preparation">Preparation</h2>
 
-<p>Prepare your micro simulation for the Micro Manager snapshot computation by following the instructions in the <a href="tooling-micro-manager-preparation.html">preparation guide</a>.</p>
+<p>Prepare your micro simulation for the Micro Manager snapshot computation by following the instructions in the <a href="tooling-micro-manager-prepare-micro-simulation.html">preparation guide</a>.</p>
 
 <p>Note: The <code class="language-plaintext highlighter-rouge">initialize()</code> method is not used for the snapshot computation.</p>
 
@@ -1677,9 +1677,6 @@ $('#toc').on('click', 'a', function() {
         </span><span class="nl">"post_processing_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_postprocessing"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"initialize_once"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nl">"output_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_data"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"diagnostics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"output_micro_sim_solve_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
@@ -1691,16 +1688,19 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <th>Parameter</th>
       <th>Description</th>
+      <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">micro_file_name</code></td>
       <td>Path to the file containing the Python importable micro simulation class. If the file is not in the working directory, give the relative path from the directory where the Micro Manager is executed.</td>
+      <td>-</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">output_directory</code></td>
       <td>Path to output directory for logging and performance metrics. Directory is created if not existing already.</td>
+      <td><code class="language-plaintext highlighter-rouge">.</code></td>
     </tr>
   </tbody>
 </table>
@@ -1785,12 +1785,14 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <th>Parameter</th>
       <th>Description</th>
+      <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code></td>
       <td>If <code class="language-plaintext highlighter-rouge">true</code>, the Micro Manager writes the wall clock time of the <code class="language-plaintext highlighter-rouge">solve()</code> function of each micro simulation to the database.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
     </tr>
   </tbody>
 </table>
