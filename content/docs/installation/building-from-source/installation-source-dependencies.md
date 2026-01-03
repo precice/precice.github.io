@@ -34,6 +34,7 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
 #### Required dependencies
 
 | Dependency | Version | Availability |
+| --- | --- | --- |
 | [C++ compiler](#c-compiler) | C++17 | [C++17 compiler support](https://cppreference.com/w/cpp/compiler_support/17.html) |
 | [CMake](#cmake) | >= 3.22.1 | [![Repology - CMake](https://img.shields.io/repology/repositories/cmake)](https://repology.org/project/cmake/versions) |
 | [Eigen](#eigen) | >= 3.4.0 | [![Repology - Eigen](https://img.shields.io/repology/repositories/eigen)](https://repology.org/project/eigen/versions) |
@@ -45,6 +46,7 @@ Note that more recent versions of some dependencies (e.g., Boost) might also nee
 #### Required optional dependencies
 
 | Dependency | Version | Availability |
+| --- | --- | --- |
 | [MPI](#mpi) | implementation of MPI-3 | Various [implementations](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) |
 | [PETSc](#petsc) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions) |
 | [Python](#python) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions) |
@@ -55,10 +57,11 @@ Note that more recent versions of some dependencies (e.g., Boost) might also nee
 preCICE requires a [C++ compiler with full C++17 support](https://cppreference.com/w/cpp/compiler_support/17.html).
 The following table lists the minimal requirement for compiler versions:
 
-| Toolchain | Minimal Version | Note |
-| GCC | 7 | |
-| Intel | all | Classic: v19, OneAPI: all |
-| Clang | 14 | |
+| Toolchain | Version | Notes                     |
+| ---       | ---     | ---                       |
+| GCC       | min 7   |                           |
+| Intel     | all     | Classic: v19, OneAPI: all |
+| Clang     | min 14  |                           |
 
 If you are using Debian/Ubuntu, the `build-essential` package will install everything needed.
 
@@ -68,15 +71,20 @@ Check the section on [MPI](#mpi) for more information.j
 
 ### CMake
 
-| preCICE  |     | 1.4    | 2.4    |
-| Required | 3.5 | 3.10.2 | 3.16.3 |
-
-preCICE requires the build system CMake at a minimal version of `3.16.1`.
+preCICE requires the build system CMake at a minimal version of `3.22.1` (CMake 4 also works).
 You can check your CMake version using `cmake --version`.
 
 Depending on the versions of CMake and Boost, CMake may not find all libraries in boost and display warnings when configuring preCICE.
-This can be safely ignored as preCICE does not use problematic libraries.
-[Fixing this requires to upgrade CMake.](https://stackoverflow.com/a/42124857/5158031).
+This can be safely ignored, and can be [fixed by upgrading CMake](https://stackoverflow.com/a/42124857/5158031).
+
+History of required version:
+
+| preCICE | CMake      |
+| ---     | ---        |
+| 1.4.0   | min 3.10.2 |
+| 2.4.0   | min 3.16.3 |
+| 3.2.0   | min 3.22.1 |
+| 3.3.0   | as above   |
 
 #### Download CMake binaries
 
@@ -84,24 +92,29 @@ Download the [official binaries](https://cmake.org/download/#latest) for your pl
 Then extend the path environment variable by executing the following:
 
 ```bash
-export PATH=$PATH:/path/to/extracted/location/version/bin
+export PATH="$PATH:/path/to/extracted/location/version/bin"
 cmake --version
 ```
 
-This should now display the version of the latest release.
-If the version is correct, you can make this change persistent by appending the above export statement to your `.bashrc` or similar.
+This should now display the version of the downloaded release.
+If the version is correct, you can make this change persistent by appending the above export statement to your `.bashrc`.
 
 ### Eigen
 
-| preCICE  |     | 1.5   |
-| Required | 3.2 | 3.3.7 |
+preCICE uses [Eigen](http://eigen.tuxfamily.org/) for linear algebra computations and for a version of [global RBF mappings](configuration-mapping.html#execution-backends) which does not require PETSc.
 
-preCICE uses [Eigen](http://eigen.tuxfamily.org/) for linear algebra computations and for a version of RBF mappings which does not require PETSc.
+History of required version:
+
+| preCICE | Eigen     |
+| ---     | ---       |
+| older   | min 3.2.0 |
+| 1.5.0   | min 3.3.7 |
+| 3.3.0   | min 3.4.0 |
 
 #### Download the Eigen headers
 
 Eigen is a header-only library, i.e. it is compiled into preCICE and does not require linkage.
-Download the sources from their [latest release](https://gitlab.com/libeigen/eigen/-/releases/) and extract them to some location.
+Download the sources from their [latest compatible release](https://gitlab.com/libeigen/eigen/-/releases/) and extract them to some location.
 The folder of your choice should now contain a folder called `eigen-x.y.z` for version `x.y.z`.
 Set the environment variable `Eigen3_ROOT` to the `eigen-x.y.z` folder by adding this to your `~.bashrc`.
 
@@ -112,12 +125,7 @@ export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z
 ### Boost
 
 preCICE uses [Boost](http://www.boost.org/) for several features.
-Boost 1.67 and newer, it may complicate how you install adapters that use yaml-cpp.
-Note that users have experienced problems building Boost 1.68 and 1.69 with some compilers.
-
-| preCICE      |        | 1.4.0  | 2.0.2  | 2.1.1  | 2.3.0  | 2.4.0  |
-| Required     | 1.60.0 | 1.65.1 | <-     | <-     | <-     | 1.71.0 |
-| Incompatible | 1.72.0 | <-     | <-     | 1.74.0 | 1.78.0 | None   |
+The minimum required version is 1.74.0, but newer Boost versions are not always compatible to previous ones.
 
 You might save some time and space by installing only the necessary libraries:
 
@@ -131,7 +139,23 @@ You might save some time and space by installing only the necessary libraries:
 
 These libraries may also depend on other Boost libraries. Make sure that these get installed, too.
 
-The following header-only Boost libraries are also needed: 'asio', `vmd`, `geometry`, `signals2`, `container`, `ranges`.
+The following header-only Boost libraries are also needed: `asio`, `vmd`, `geometry`, `signals2`, `container`, `ranges`.
+
+History of required versions:
+
+| preCICE | Boost required | Boost incompatible |
+| ---     | ---            | ---                |
+| older   | 1.60.0         | 1.72.0             |
+| 1.4.0   | 1.65.1         | as above           |
+| 2.0.2   | as above       | as above           |
+| 2.1.1   | as above       | 1.74.0             |
+| 2.3.0   | as above       | 1.78.0             |
+| 2.4.0   | 1.71.0         | as above           |
+| 3.1.2   | as above       | 1.86.0             |
+| 3.2.0   | 1.74.0         | 1.89.0             |
+| 3.3.0   | 1.74.0         | none known yet     |
+
+For help, see also the ranges set in the [Spack recipe](https://github.com/spack/spack-packages/blob/develop/repos/spack_repo/builtin/packages/precice/package.py).
 
 #### Build boost from source
 
@@ -170,10 +194,10 @@ For more information, please refer to the "[Getting Started](http://www.boost.or
 
 preCICE uses [libxml2](http://www.xmlsoft.org/) for parsing the configuration file.
 
-{% note %}
+{% tip %}
 libxml2 is available on close to any system you can imagine.  
-Please double check if there are no system packages before attempting to build this dependency from source.
-{% endnote %}
+Double check if there are any system packages before attempting to build this dependency from source.
+{% endtip %}
 
 #### Install libxml2 from source
 
@@ -192,21 +216,24 @@ Please double check if there are no system packages before attempting to build t
   Add the following to your `~/.bashrc` replacing prefix with the chosen directory:
 
   ```bash
-  export LIBRARY_PATH=<prefix>/lib:$LIBRARY_PATH
-  export LD_LIBRARY_PATH=<prefix>/lib:$LD_LIBRARY_PATH
-  export CPLUS_INCLUDE_PATH=<prefix>/include:$CPLUS_INCLUDE_PATH
-  export PKG_CONFIG_PATH=<prefix>/lib/pkgconfig:$PKG_CONFIG_PATH
+  export LIBRARY_PATH="<prefix>/lib:$LIBRARY_PATH"
+  export LD_LIBRARY_PATH="<prefix>/lib:$LD_LIBRARY_PATH"
+  export CPLUS_INCLUDE_PATH="<prefix>/include:$CPLUS_INCLUDE_PATH"
+  export PKG_CONFIG_PATH="<prefix>/lib/pkgconfig:$PKG_CONFIG_PATH"
   ```
 
 ### PETSc
 
-| preCICE      |      | 2.1.0 |
-| Required     | 3.6  | 3.12  |
-| Incompatible | 3.12 |  <-   |
+preCICE optionally uses [PETSc](https://petsc.org/) (at least 3.15) for some  [global RBF mappings](configuration-mapping.html#execution-backends) and is highly recommended for large cases. For small/medium-size cases, preCICE can still do a global RBF mapping in parallel without PETSc. If you don't need this feature, you may specify `-DPRECICE_FEATURE_PETSC_MAPPING=off` when building preCICE.
 
-[PETSc](https://www.mcs.anl.gov/petsc/) is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don't need this feature, you may specify `-DPRECICE_FEATURE_PETSC_MAPPING=off` when building preCICE.
+History of required versions:
 
-We require at least version 3.12. For preCICE versions earlier than v2.1.0, PETSc version between 3.6 and 3.12 might still work, but needs to be built with 64bit index sizes. In particular on [Ubuntu 18.04, we require at least 3.12](https://github.com/precice/precice/issues/115).
+| preCICE | PETSc required             | PETSc incompatible |
+| ---     | ---                        | ---                |
+| older   | 3.6.0 (with 64bit indices) | 3.12.0             |
+| 2.1.0   | 3.12.0                     | none known yet     |
+| 3.2.0   | 3.15.0                     | as above           |
+| 3.3.0   | as above                   | as above           |
 
 #### Build PETSc from source
 
@@ -222,34 +249,33 @@ If you prefer to install the most recent version from source, do the following:
 Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH`, or `PYTHONPATH`. Here is an example:
 
    ```bash
-   export PETSC_DIR=/path/to/petsc
-   export PETSC_ARCH=arch-linux-c-opt
-   export LD_LIBRARY_PATH=$PETSC_DIR/$PETSC_ARCH/lib:$LD_LIBRARY_PATH
+   export PETSC_DIR="/path/to/petsc"
+   export PETSC_ARCH="arch-linux-c-opt"
+   export LD_LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LD_LIBRARY_PATH"
    ```
 
 ### Python
 
-| preCICE                |      | 2.0.0 |
-| Required libypthon     | 2.7  |  3    |
-| Incompatible libypthon | 2.8  |  None |
-| Required NumPy         |      |  1.17 |
-| Incompatible NumPy     | 1.17 |  None |
-
-You only need [Python](https://www.python.org/) if you want to use the Python action interface (only used for rare applications). If you don't need this feature, you may specify `-DPRECICE_FEATURE_PYTHON_ACTIONS=off`.
+preCICE optionally uses [Python](https://www.python.org/) for the [Python action interface](configuration-action.html#python-callback-interface) (only used for rare applications). If you don't need this feature, you may specify `-DPRECICE_FEATURE_PYTHON_ACTIONS=off`.
 In particular, you don't need to build with Python if you only want to use the [preCICE Python bindings](installation-bindings-python.html).
 
-You probably already have Python installed. However, in order to use the Python interface, you also need to install NumPy and the header files for Python and NumPy. On Debian/Ubuntu, install the packages `python3-numpy` and `python3-dev`.
+You probably already have Python installed. However, in order to use the Python action interface, you also need to install NumPy and the header files for Python and NumPy.
+
+History of required versions:
+
+| preCICE | Python required            | Python incompatible | NumPy required | NumPy incompatible |
+| ---     | ---                        | ---                 | ---            | ---                |
+| older   | 2.7                        | 2.8                 | not defined    | 1.17               |
+| 2.0.0   | 3                          | None known yet      | 1.17           | None known yet     |
+| 3.3.0   | same as above              | same as above       | same as above  | same as above      |
 
 ### MPI
 
-preCICE requires an implementation of the MPI-3 specification, which is provided by all major vendors including OpenMPI, MPICH, and Intel MPI.
+preCICE optionally requires an implementation of the MPI-3 specification for [communication](configuration-communication.html), which is [provided by all major vendors](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) including OpenMPI, MPICH, and Intel MPI.
 
-You can build preCICE without [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use `-DPRECICE_FEATURE_MPI_COMMUNICATION=OFF` when building with CMake. In such a case, you can still use TCP/IP sockets instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.
+You can build preCICE without MPI in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use `-DPRECICE_FEATURE_MPI_COMMUNICATION=OFF`. In such a case, you can still use TCP/IP sockets for inter- and intra-participant communication, instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.
 
-Please note that many MPI implementations implement the client-server functionality in various ways.
-They often require special setup such as environment variables, servers or infrastructure setup.
-
-Keep in mind that already [PETSc](installation-source-dependencies.html#petsc) should have installed MPI.
+Keep in mind that, if you already installed [PETSc](installation-source-dependencies.html#petsc), MPI must also already be installed.
 
 {% important %}
 Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
@@ -257,13 +283,16 @@ Make sure that PETSc, preCICE, and your solvers are all compiled with the same M
 
 ### Ginkgo
 
-| preCICE             | 3.2.0 >= |
-| Required Ginkgo     | 1.8.0 >= |
-| Required Kokkos     | 4.1.0 >= |
-
-[Ginkgo](https://ginkgo-project.github.io/) enables support for GPU- and OpenMP-accelerated (global) radial-basis function mappings. To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_GINKGO_MAPPING=ON`. Using this feature in preCICE requires additionally [Kokkos](https://kokkos.org/).
+preCICE optionally uses [Ginkgo](https://ginkgo-project.github.io/) for GPU- and OpenMP-accelerated [global radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_GINKGO_MAPPING=ON`. Using this feature in preCICE requires additionally [Kokkos](https://kokkos.org/).
 
 Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for [Ginkgo](https://github.com/ginkgo-project/ginkgo/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases). For Kokkos, system packages might be available through your package manager as well.
+
+History of required versions:
+
+| preCICE | Ginkgo required | Kokkos required |
+| ---     | ---             | ---             |
+| 3.2.0   | 1.8.0           | 4.1.0           |
+| 3.3.0   | same as above   | same as above   |
 
 ## System guides
 
