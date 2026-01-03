@@ -177,7 +177,7 @@ and the story continues by the [current team](about.html).
 
 * **Communication** For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master's thesis of Alexander Shukaev: "[A Fully Parallel Process-to-Process Intercommunication Technique for preCICE](https://mediatum.ub.tum.de/1461672)".
 
-* **Time interpolation** This feature was developed in the context of [Benjamin Rodenberg's dissertation](https://mediatum.ub.tum.de/1763172). The method was described in [Quasi-Newton waveform iteration for partitioned surface-coupled multiphysics applications](https://doi.org/10.1002/nme.6443).
+* **Time interpolation** This feature was developed in the context of [Benjamin Rodenberg's dissertation](https://mediatum.ub.tum.de/1763172). The method was described in [Quasi-Newton waveform iteration for partitioned surface-coupled multiphysics applications](https://doi.org/10.1002/nme.6443) and independently extended in [A Time-Adaptive Multirate Quasi-Newton Waveform Iteration for Coupled Problems](https://doi.org/10.1002/nme.70063), while the implementation is presented in [A waveform iteration implementation for black-box multi-rate higher-order coupling (preprint)](https://doi.org/10.48550/arXiv.2511.07616).
 
 ## Parallel and high-performance computing
 
