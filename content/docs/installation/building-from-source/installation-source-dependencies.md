@@ -311,9 +311,9 @@ sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-de
 
 These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply for later Ubuntu releases as well.
 
-### Debian 11 Bullseye
+### Debian
 
-Everything is available from the distribution's repositories:
+With every release, we also ship [binary packages for Debian](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
 
 ```bash
 su
