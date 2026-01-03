@@ -10,6 +10,33 @@ While the preCICE workshop lasts a week, it takes several months of preparation 
 
 In this page, we document common steps and lessons learned, aiming to make onboarding of new organizers easier. Besides, who remembers what material the registration desk needed last year, if we cannot even remember what we had for lunch?
 
+We have also published our experiences and recommendations together with the [ESPResSo](https://espressomd.org/) and [DuMux](https://dumux.org/) teams:
+
+{% for pub in site.publications %}
+{% if pub.title == "Organizing software community workshops: Experiences from three independent simulation software projects" %}
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        Volume {{ pub.journal.volume }},
+        {{ pub.journal.publisher }},
+        {{ pub.year }}.
+      </p>
+      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
 ## First urgent steps
 
 Do these steps as soon as possible, as other major steps depend on them.
