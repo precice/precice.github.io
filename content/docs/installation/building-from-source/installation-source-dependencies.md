@@ -20,15 +20,20 @@ This section lists all dependencies alongside required versions and steps on how
 Meaning, installing dependencies based on the steps in this section should be the _last resort_ for normal users.
 Prefer to follow the [system guides](#system-guides) and only install custom versions if you have a reason to do so.
 
+{% tip %}
+This documentation concerns preCICE v{{ site.precice_version }}.
+Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](http://127.0.0.1:4000/couple-your-code-porting-overview.html).
+{% endtip %}
+
 ### Overview
 
-The following is an overview of the required dependencies of the latest preCICE release.
+The following is an overview of the required dependencies of preCICE.
 Note that we always strive to be forwards-compatible.
 If you find a problem with preCICE and a latest versions of these dependencies, please let us know.
 
 #### Required dependencies
 
-| preCICE | {{ site.precice_version }} | Available |
+| Dependency | Version | Availability |
 | [C++ compiler](#c-compiler) | C++17 | [![c++ standard](https://img.shields.io/badge/c%2B%2B-17-blue.svg)](https://cppreference.com/w/cpp/compiler_support/17.html) |
 | [CMake](#cmake) | >= 3.22.1 | [![Repology - CMake](https://img.shields.io/repology/repositories/cmake)](https://repology.org/project/cmake/versions) |
 | [Eigen](#eigen) | >= 3.4.0 | [![Repology - Eigen](https://img.shields.io/repology/repositories/eigen)](https://repology.org/project/eigen/versions) |
@@ -39,7 +44,7 @@ Note that more recent versions of some dependencies (e.g., Boost) might also nee
 
 #### Required optional dependencies
 
-| preCICE | {{ site.precice_version }} | Available |
+| Dependency | Version | Availability |
 | [MPI](#mpi) | implementation of MPI-3 | |
 | [PETSc](#petsc) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions) |
 | [Python](#python) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions) |
