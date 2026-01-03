@@ -12,28 +12,17 @@ Start by checking if there is a [guide for your system](#system-guides). It will
 If there is no guide for your system, find out if there are suitable system packages for the dependencies.
 Then use the [dependencies](#dependencies) section to install all missing dependencies from source.
 
-After all dependencies are ready to use, proceed with [configuring preCICE](installation-source-configuration).
+After all dependencies are ready to use, proceed with [configuring the preCICE build](installation-source-configuration).
 
-## Dependencies
-
-This section lists all dependencies alongside required versions and steps on how to install them from source.
-Meaning, installing dependencies based on the steps in this section should be the _last resort_ for normal users.
-Prefer to follow the [system guides](#system-guides) and only install custom versions if you have a reason to do so.
-
-{% tip %}
-This documentation concerns preCICE v{{ site.precice_version }}.
-Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](http://127.0.0.1:4000/couple-your-code-porting-overview.html).
-{% endtip %}
-
-### Overview
+## Overview
 
 The following is an overview of the required dependencies of preCICE.
 Note that we always strive to be forwards-compatible.
 If you find a problem with preCICE and a latest versions of these dependencies, please let us know.
 
-#### Required dependencies
+### Required dependencies
 
-| Dependency | Version | Availability |
+| Dependency | Version required | Availability |
 | --- | --- | --- |
 | [C++ compiler](#c-compiler) | C++17 | [C++17 compiler support](https://cppreference.com/w/cpp/compiler_support/17.html) |
 | [CMake](#cmake) | >= 3.22.1 | [![Repology - CMake](https://img.shields.io/repology/repositories/cmake)](https://repology.org/project/cmake/versions) |
@@ -43,14 +32,25 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
 
 Note that more recent versions of some dependencies (e.g., Boost) might also need more recent or upcoming releases of preCICE.
 
-#### Required optional dependencies
+### Optional dependencies
 
-| Dependency | Version | Availability |
-| --- | --- | --- |
-| [MPI](#mpi) | implementation of MPI-3 | Various [implementations](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) |
-| [PETSc](#petsc) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions) |
-| [Python](#python) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions) |
-| [Ginkgo](#ginkgo) | >= 1.8 with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions) |
+| Dependency | Required for | Version required | Availability |
+| --- | --- | --- | --- |
+| [MPI](#mpi) | [Communication over MPI](configuration-communication.html) | implementation of MPI-3 | Various [implementations](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) |
+| [PETSc](#petsc) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions) |
+| [Ginkgo](#ginkgo) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 1.8, with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions) |
+| [Python](#python) | [Python Action interface](configuration-action.html#python-callback-interface) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions) |
+
+{% tip %}
+This documentation concerns preCICE v{{ site.precice_version }}.
+Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](http://127.0.0.1:4000/couple-your-code-porting-overview.html).
+{% endtip %}
+
+## Dependencies
+
+This section lists all dependencies alongside required versions and steps on how to install them from source.
+Meaning, installing dependencies based on the steps in this section should be the _last resort_ for normal users.
+Prefer to follow the [system guides](#system-guides) and only install custom versions if you have a reason to do so.
 
 ### C++ compiler
 
