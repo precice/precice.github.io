@@ -300,37 +300,16 @@ If you want build preCICE on your own computer and you are using one of the foll
 
 Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options. Since our users have tried preCICE on various distributions, you may as well ask on our [forum](https://precice.discourse.group/) for any questions.
 
-### Ubuntu 22.04 LTS Jammy Jellyfish
+### Ubuntu
 
-With every release, we also ship [binary packages for Ubuntu 22.04](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
+With every release, we also ship [binary packages for Ubuntu](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
 
 ```bash
 sudo apt update && \
 sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
 
-The same instructions apply for later Ubuntu releases.
-
-### Ubuntu 20.04 LTS Focal Fossa
-
-Follow the same instructions as for Ubuntu 22.04.
-
-### Ubuntu 18.04 Bionic Beaver
-
-{% warning %}
-The last release of preCICE to support Ubuntu 18.04 was [preCICE v2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0).
-{% endwarning %}
-
-With every release, we also ship [binary packages for Ubuntu 18.04](https://github.com/precice/precice/releases).
-However, if you still want to build from source, almost everything is available through the distribution's repositories:
-
-```bash
-sudo apt update && \
-sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
-```
-
-If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_FEATURE_PETSC_MAPPING=OFF`.
-If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
+These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply for later Ubuntu releases as well.
 
 ### Debian 11 Bullseye
 
@@ -341,19 +320,6 @@ su
 apt update && \
 apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
-
-### Debian 10 Buster
-
-In Debian 10.5, almost everything is available through the distribution's repositories:
-
-```bash
-su
-apt update && \
-apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
-```
-
-If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_FEATURE_PETSC_MAPPING=OFF`.
-If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
 ### Fedora 36
 
