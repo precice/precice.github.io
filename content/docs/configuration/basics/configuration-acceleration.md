@@ -7,7 +7,7 @@ summary: "Mathematically, implicit coupling schemes lead to fixed-point equation
 
 To find out more about the mathematical background, please refer, for example, to [this paper](https://www.sciencedirect.com/science/article/pii/S0898122115005933).
 
-In preCICE, three different types of <tt>acceleration</tt> can be configured: `constant` (constant under-relaxation), `aitken` (adaptive under-relaxation), and various quasi-Newton variants (`IQN-ILS` aka. Anderson acceleration, `IQN-IMVJ` aka. generalized Broyden). Before looking at the details, we need to understand which data gets modified when.
+In preCICE, three different types of `acceleration` can be configured: `constant` (constant under-relaxation), `aitken` (adaptive under-relaxation), and two quasi-Newton variants (`IQN-ILS` aka. Anderson acceleration, `IQN-IMVJ` aka. generalized Broyden). Before looking at the details, we need to understand which data gets modified when.
 
 ## Coupling data and primary data
 
@@ -61,11 +61,23 @@ Now, we know the difference between coupling data and primary data. Next, we hav
 </acceleration:constant>
 ```
 
-The configuration for constant under-relaxation is straight-forward. The only parameter to be configured is the under-relaxation factor <tt>relaxation</tt>. In particular, the configuration of primary data is not necessary as the relaxation parameter stays constant, i.e. the linear combination has fixed coefficients (`relaxation` for the current iteration, `1-relaxation` for the previous iteration).
+The configuration for constant under-relaxation is straight-forward. The only parameter to be configured is the under-relaxation factor `relaxation`. In particular, the configuration of primary data is not necessary as the relaxation parameter stays constant, i.e. the linear combination has fixed coefficients (`relaxation` for the current iteration, `1-relaxation` for the previous iteration).
 
 Constant under-relaxation with a factor of 0.5 can be a good choice for e.g. turbulent FSI at a high Reynolds number.
 
 ## Dynamic Aitken under-relaxation
+
+Aitken under-relaxation adapts the under-relaxation factor in every iteration based on current residuals of the defined primary data. We only need to provide an initial relaxation factor `initial-relaxation`.
+
+With default setting of the `initial-relaxation` equal to 0.5, the minimum configuration looks like this:
+
+```xml
+<acceleration:aitken>
+  <data name="Displacements" mesh="StructureMesh"/>
+</acceleration:aitken>
+```
+
+To manually set the initial relaxation factor, the configuration of acceleration looks like:
 
 ```xml
 <acceleration:aitken>
@@ -74,32 +86,86 @@ Constant under-relaxation with a factor of 0.5 can be a good choice for e.g. tur
 </acceleration:aitken>
 ```
 
-Aitken under-relaxation adapts the under-relaxation factor in every iteration based on current residuals of the defined primary data and we only need to define an initial relaxation factor `initial-relaxation`. An initial relaxation factor of 0.1 usually leads to a robust simulation.
+An initial relaxation factor of 0.1 is recommended for strongly coupled problems.
 
 Aitken under-relaxation can be a good choice for strong interaction with a fluid solver that does not fully converge in every iteration, or for compressible fluid solvers. For most cases, however, it is beneficial to change to a quasi-Newton scheme. Using Aitken under-relaxation is generally not recommended in combination with a parallel coupling scheme (refer to table 1 in [this paper](https://doi.org/10.1016/j.camwa.2015.12.025), where *Vec-Aitken* refers to our implementation of Aitken under-relaxation for parallel coupling schemes).
 
 ## Quasi-Newton schemes
 
+In preCICE, there are two quasi-Newton variants available: `IQN-ILS` (aka. Anderson acceleration) and `IQN-IMVJ` (aka. generalized Broyden). Both are good choices for strong interactions, while `IQN-ILS` is simpler to start with.
+
+For both methods, the configuration is more involved than other acceleration methods. However, we provide robust default values for all options.
+
+The minimum configuration for `IQN-ILS` looks like:
+
 ```xml
 <acceleration:IQN-ILS>
   <data name="Displacements" mesh="StructureMesh"/>
   <data name="Forces" mesh="StructureMesh"/>
-  <preconditioner type="residual-sum"/>
-  <filter type="QR2" limit="1e-3"/>
-  <initial-relaxation value="0.1"/>
+</acceleration:IQN-ILS>
+```
+
+while for `IQN-IMVJ`, it is:
+
+```xml
+<acceleration:IQN-IMVJ>
+  <data name="Displacements" mesh="StructureMesh"/>
+  <data name="Forces" mesh="StructureMesh"/>
+</acceleration:IQN-IMVJ>
+```
+
+For some cases, the default settings are not sufficient and a more detailed configuration is necessary. In the following, we introduce the full set of options for both quasi-Newton variants, while a partial specification of the parameters is possible and common as well.
+
+For `IQN-ILS`, the complete configuration with all options specified explicitly to the default settings is as follows:
+
+```xml
+<acceleration:IQN-ILS reduced-time-grid="true">
+  <data name="Displacements" mesh="StructureMesh"/>
+  <data name="Forces" mesh="StructureMesh"/>
+  <preconditioner type="residual-sum" update-on-threshold="true" freeze-after="-1"/>
+  <filter type="QR3" limit="1e-2"/>
+  <initial-relaxation value="0.1" enforce="false"/>
   <max-used-iterations value="100"/>
   <time-windows-reused value="20"/>
 </acceleration:IQN-ILS>
 ```
 
-For quasi-Newton, the configuration is more involved. We provide robust default values for all options, however. In the following, we list all (optional) options and parameters and give hints on good combinations of choices:
+and for `IQN-IMVJ`, it is:
 
-* Pick a quasi-Newton variant from the following choices: <tt>IQN-ILS</tt> (aka. Anderson acceleration), <tt>IQN-IMVJ</tt> (aka. generalized Broyden). `IQN-ILS` is simpler to start with.
-* If parallel coupling is used and, thus, several primary data fields are configured, an equal weighting between them has to be ensured. This is done by defining a <tt>preconditioner</tt>. As <tt>type</tt>, we recommend to use `"residual-sum"`.
-* To ensure linear independence of columns in the multi-secant system for Jacobian estimation, a <tt>filter</tt> can be used. The <tt>type</tt> can be chosen as <tt>QR1</tt> or <tt>QR2</tt>. In addition to <tt>type</tt>, a threshold for linear dependency, <tt>limit</tt> has to be defined. In most cases, the filter efficiency is not very sensitive with respect to the <tt>limit</tt>. We recommend to start with a `limit` of 1e-3 or 1e-2 and <tt>QR2</tt> (For `QR1` 1e-6 or 1e-5 is a good choice). A filter should be used with all quasi-Newton variants. If the respective line of the configuration file is omitted, no filter is applied. To find our more, you can have a look at [this paper](https://www.sciencedirect.com/science/article/pii/S004579491630164X).
-* In the first iteration, quasi-Newton methods don’t provide an estimate for the Jacobian yet. Thus, the first iteration is an under-relaxed fixed-point iteration, for which we have to define the parameter <tt>initial-relaxation</tt>. 0.1 is a robust choice. Too small values can render the information from the first iteration too coarse for the calculation of a good Jacobian estimate. Too large values might lead to stability problems.
-* The parameter <tt>max-used-iterations</tt> specifies the maximum number of previous iterations used to generate the data basis for Jacobian estimation. In particular for small simulations with only few degrees for freedom, this is an important parameter. It should be chosen to be smaller than half of the total number of degrees of freedom at the interface. For large-scale simulations 100 is a robust choice.
-* The parameter `time-windows-reused` also limits the number of previous iterations, but in a per-time-window fashion. Iterations from older time windows than `time-windows-reused` are dropped. Note that, as we don’t know the number of iterations per time window a priori, this is not equivalent to setting max-used-iterations. For `IQN-IMVJ`, this parameter can be set to 0 as information from past time windows is implicitly used in the modified Jacobian norm minimization. For `IQN-ILS`, this parameter is an important tuning parameter, in particular if no filtering or filtering with a very low threshold is used. The optimum highly depends on the application, the used solvers and also the grid resolution. We recommend to choose a rather large value (10-30) and combine it with effective filtering (e.g., `QR2` with limit 1e-2) as a starting point for further optimization. With increasing degree of non-linearity of the considered application, the optimal value for `time-windows-reused` is expected to decrease.
-* While the `IQN-IMVJ` method exhibits excellent convergence properties as a result of implicit reuse of prior information, it also causes quadratic storage and runtime complexity because of the explicit computation of Jacobian matrix. To make this method practical for large-scale simulations, we introduced a set of `imvj-restart-mode` variants, which reduce the method's complexity to a linear one. In particular, the `RS-SVD` mode gives good performance comparing to other options while retaining the original multi-vector convergence properties, although its performance slightly depends on the choice of the truncation parameter.
+```xml
+<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
+  <data name="Displacements" mesh="StructureMesh"/>
+  <data name="Forces" mesh="StructureMesh"/>
+  <preconditioner type="residual-sum" update-on-threshold="true" freeze-after="-1"/>
+  <filter type="QR3" limit="1e-2"/>
+  <initial-relaxation value="0.1" enforce="false"/>
+  <max-used-iterations value="100"/>
+  <time-windows-reused value="20"/>
+  <imvj-restart-mode type="RS-SVD" chunk-size="8" reused-time-windows-at-restart="8" truncation-threshold="0.0001" />
+</acceleration:IQN-IMVJ>
+```
 
-Quasi-Newton acceleration is a good choice for strong interactions. Please note that a necessary prerequisite for convergence of the implicit coupling loop is the proper convergence of each participant internally. Inner convergence measure (e.g. of the fluid solver) should be two orders of magnitude stricter than the coupling convergence-measure to achieve good performance with quasi-Newton.
+For the detailed meaning of the various options, please refer to the [configuration reference](https://precice.org/configuration-xml-reference.html).
+
+Here are some brief explanations and hints on good combinations of choices for the configuration options:
+
+* If several primary data fields are configured, e.g. when parallel coupling is used, an equal order of magnitude of them has to be ensured. This is done by defining a `preconditioner`.
+  * As `type`, we recommend to use `"residual-sum"` as in the default setting.
+  * The option `update-on-threshold` can be used to avoid updates of the preconditioner in case of small changes of the preconditioning factors.
+* To ensure linear independence of columns in the multi-secant system for Jacobian estimation, a `filter` should be used with all quasi-Newton variants.
+  * The `type` can be chosen as `QR1`, `QR2` or `QR3`.
+  * After selecting the `type`, a threshold for linear dependency, `limit` can be defined. In most cases, the filter efficiency is not very sensitive with respect to the `limit`. We recommend to start with a `limit` of 1e-3 or 1e-2 for `QR2` or `QR3` (For `QR1` 1e-6 or 1e-5 is a good choice). Different than the default `limit` of 1e-2 when no `filter` is configured, the `limit` of 1e-16 is used when a `filter` is configured without providing the `limit`.
+  * You can have a look at [this paper](https://www.sciencedirect.com/science/article/pii/S004579491630164X) to find more about filtering in general and [this paper](https://www.mdpi.com/2297-8747/27/3/40) to learn about `QR3`.
+* In the first iteration, quasi-Newton methods don’t provide an estimate for the Jacobian yet. Thus, the first iteration is an under-relaxed fixed-point iteration, for which we can define the parameter `initial-relaxation`.
+  * 0.1 is a robust choice.
+  * Too small values can render the information from the first iteration too coarse for the calculation of a good Jacobian estimate. Too large values might lead to stability problems.
+* The parameter `max-used-iterations` specifies the maximum number of previous iterations used to generate the data basis for Jacobian estimation.
+  * In particular for small simulations with only few degrees for freedom, this is an important parameter.
+  * It should be chosen to be smaller than half of the total number of degrees of freedom at the interface. For large-scale simulations 100 is a robust choice.
+* The parameter `time-windows-reused` also limits the number of previous iterations, but in a per-time-window fashion. Iterations from older time windows than `time-windows-reused` are dropped.
+  * Note that, as we don’t know the number of iterations per time window a priori, this is not equivalent to setting `max-used-iterations`.
+  * For `IQN-IMVJ`, this parameter can be set to 0 as information from past time windows is implicitly used in the modified Jacobian norm minimization.
+  * For `IQN-ILS`, this parameter is an important tuning parameter, in particular if no filtering or filtering with a very low threshold is used. The optimum highly depends on the application, the used solvers and also the grid resolution. We recommend to choose a rather large value (10-30) and combine it with effective filtering (e.g., `QR2` with `limit` 1e-2) as a starting point for further optimization. With increasing degree of non-linearity of the considered application, the optimal value for `time-windows-reused` is expected to decrease.
+* While the `IQN-IMVJ` method exhibits excellent convergence properties as a result of implicit reuse of prior information, it also causes quadratic storage and runtime complexity because of the explicit computation of Jacobian matrix. To make this method practical for large-scale simulations, we introduced a set of `imvj-restart-mode` variants, which reduce the method's complexity to a linear one.
+  * In particular, the `RS-SVD` mode gives good performance comparing to other options while retaining the original multi-vector convergence properties, although its performance slightly depends on the choice of the truncation parameter.
+* It's to note that a necessary prerequisite for convergence of the implicit coupling loop is the proper convergence of each participant internally. Inner convergence measure (e.g. of the fluid solver) should be two orders of magnitude stricter than the coupling convergence-measure to achieve good performance with quasi-Newton.

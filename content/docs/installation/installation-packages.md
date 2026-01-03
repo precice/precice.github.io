@@ -8,6 +8,12 @@ For some systems, preCICE is available in the form of a pre-built package or a p
 These packages are built with enabled Python actions, MPI communication, and PETSc mapping.
 This section lists systems and instructions on how to install these packages.
 
+[Repology](https://repology.org/project/precice/versions) compiles a list of packages and versions in distribution repositories.
+This contains a good overview of packages also in community repositories.
+Note, however that Ubuntu and Debian are absent from this list as official packages for those Distros would lack too far behind in time.
+
+![Packaging status](https://repology.org/badge/vertical-allrepos/precice.svg?header=&columns=2&exclude_sources=site)
+
 ## Ubuntu
 
 You can download version-specific Ubuntu (Debian) packages from each [GitHub release](https://github.com/precice/precice/releases/latest).
@@ -26,12 +32,19 @@ As an example, change `noble` to `jammy` for 22.04.
 
 Is a newer preCICE release out, and have we not yet updated the above links? Please edit this page.
 
+## Debian
+
+Similar to the Ubuntu packages, we generate Debian packages for at least the latest stable release of Debian.
+You can download version-specific Debian packages from the respective release [GitHub release](https://github.com/precice/precice/releases/latest).
+
 ## Arch Linux / Manjaro
 
 We maintain a package in the [Arch User Repository](https://aur.archlinux.org/packages/precice/).
 Please have a look at the official [AUR wiki page](https://wiki.archlinux.org/index.php/Arch_User_Repository) to find out how to install it.
 
 The community also maintains a [development version](https://aur.archlinux.org/packages/precice-git) and [several other packages](https://aur.archlinux.org/packages?&K=precice).
+
+Furthermore, the [arch4edu](https://github.com/arch4edu/arch4edu/wiki) initiative provides pre-built binaries for preCICE and related packages.
 
 ## Nix / NixOS
 
@@ -55,6 +68,40 @@ For more options, have a look at the [readme](https://github.com/precice/nix-pac
 
 For all packages available upstream, see the [NixOS search](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&query=precice).
 
+## macOS
+
+For macOS, we maintain a [homebrew package/formula](https://formulae.brew.sh/formula/precice).
+To install the latest version use:
+
+```bash
+brew install precice
+```
+
+It also provides a way of installing the latest develop version from source using the head flag:
+
+```bash
+brew install --head precice
+```
+
+## Windows
+
+The community maintains a preCICE package for [MSYS2](https://packages.msys2.org/base/mingw-w64-precice).
+To use Microsoft MPI, first make sure to install the [latest release of MSMPI](https://github.com/microsoft/Microsoft-MPI/releases/latest) (the `msmpisetup.exe`).
+Then, enable path inheritance in the environment configuration of your choice.
+To enable it for MSYS64 UCRT, edit the file `C:/msys64/ucrt.ini` and uncomment the line `MSYS2_PATH_TYPE=inherit` by removing the leading `#`. You should now be able to run `mpiexec` in the ucrt environment.
+
+To search for a suitable package use:
+
+```bash
+pacman -Ss precice
+```
+
+Then install it with:
+
+```bash
+pacman -S <package name>
+```
+
 ## Something else
 
 For other systems, you need to either use [Spack](installation-spack.html) or [build from source](installation-source-preparation.html).
@@ -64,7 +111,6 @@ For other systems, you need to either use [Spack](installation-spack.html) or [b
 These packages are maintained by the preCICE community and may be occasionally outdated or not fully working.
 However, we appreciate the effort, and you may be able to contribute to them.
 
-- [MSYS2](https://packages.msys2.org/base/mingw-w64-precice) (for Windows, built with MinGW), [thread on our forum](https://precice.discourse.group/t/precice-and-mingw-packages/382)
 - [EasyBuild](https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE)
 - [Conda](https://github.com/conda-forge/precice-feedstock) (see also packages [pyprecice](https://github.com/conda-forge/pyprecice-feedstock) and [fenicsprecice](https://github.com/conda-forge/fenicsprecice-feedstock)). We recommend using [Miniforge](https://conda-forge.org/download/) (see https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us for reasons why).
 - [FreeBSD](https://www.freshports.org/science/precice)
