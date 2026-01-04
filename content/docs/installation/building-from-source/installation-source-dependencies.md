@@ -321,7 +321,9 @@ apt update && \
 apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
 
-### Fedora 36
+These instructions are known to work with Debian 10, and should apply for later Debian releases as well.
+
+### Fedora
 
 In Fedora, everything is available through the distribution's repositories:
 
@@ -346,7 +348,9 @@ In case you use the docker image of fedora, you need to install the support for 
 
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_FEATURE_PETSC_MAPPING=OFF`. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a [related issue](https://github.com/precice/precice/issues/864).
 
-### Rocky Linux 9
+These instructions are known to work with Fedora 36, and should apply for later Fedora releases as well.
+
+### Rocky Linux
 
 Rocky Linux very closely follows the conventions previously set by CentOS. We first need to install common development tools, enable the [CRB repository](https://wiki.rockylinux.org/rocky/repo/) (only for Eigen), install the dependencies, load the MPI module, and continue with building preCICE.
 
@@ -372,7 +376,9 @@ Rocky Linux very closely follows the conventions previously set by CentOS. We fi
 
 4. Unfortunately, [PETSc does not seem to be available in this distribution.](https://pkgs.org/search/?q=petsc), so we need to switch that off later when building preCICE. If you don't plan to use RBF mappings in large parallel cases, you can continue without installing PETSc and build preCICE with `-DPRECICE_FEATURE_PETSC_MAPPING=OFF`. If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-### OpenSUSE Leap 15.4
+These instructions are known to work with Rocky Linux 9, and should apply for later Rocky releases as well.
+
+### OpenSUSE
 
 In OpenSUSE Leap 15.4, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
 
@@ -398,9 +404,11 @@ cmake -DPRECICE_FEATURE_MPI_COMMUNICATION=OFF -DPRECICE_FEATURE_PETSC_MAPPING=OF
 
 See also a related [discussion on the preCICE forum](https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4) for more details.
 
+These instructions are known to work with OpenSUSE Leap 15.4, and should apply to later OpenSUSE releases as well.
+
 ### Arch Linux
 
-(The same applies to Manjaro and other derived distributions)
+(The same applies to Manjaro, EndeavourOS, and other derived distributions)
 
 Good news: [preCICE is already on AUR](https://aur.archlinux.org/packages/precice/), so you can directly use or modify the respective `PKGBUILD`.
 
