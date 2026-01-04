@@ -33,4 +33,3 @@ Follow the discussion on [the forum](https://precice.discourse.group/t/precice-i
 ## Further talks about preCICE
 
 Large conferences like this are an ideal opportunity to discuss with other groups and change our perspective. For this reason, we often participate with talks in different sessions.
-
