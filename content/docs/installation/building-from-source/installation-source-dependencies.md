@@ -14,6 +14,11 @@ Then use the [dependencies](#dependencies) section to install all missing depend
 
 After all dependencies are ready to use, proceed with [configuring the preCICE build](installation-source-configuration).
 
+{% tip %}
+This documentation concerns preCICE v{{ site.precice_version }}.
+Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](http://127.0.0.1:4000/couple-your-code-porting-overview.html).
+{% endtip %}
+
 ## Overview
 
 The following is an overview of the required dependencies of preCICE.
@@ -40,11 +45,6 @@ Note that more recent versions of some dependencies (e.g., Boost) might also nee
 | [PETSc](#petsc) (opt-out) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-petsc-blue)](https://pkgs.org/search/?q=petsc) |
 | [Ginkgo](#ginkgo) (opt-in) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 1.8, with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-ginkgo-blue)](https://pkgs.org/search/?q=ginkgo) |
 | [Python](#python) (opt-out) | [Python Action interface](configuration-action.html#python-callback-interface) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-python-blue)](https://pkgs.org/search/?q=python) |
-
-{% tip %}
-This documentation concerns preCICE v{{ site.precice_version }}.
-Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](http://127.0.0.1:4000/couple-your-code-porting-overview.html).
-{% endtip %}
 
 ## Dependencies
 
