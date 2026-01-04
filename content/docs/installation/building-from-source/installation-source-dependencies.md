@@ -384,39 +384,33 @@ These instructions are known to work with Rocky 9, 10, and should apply to later
 
 ### OpenSUSE
 
-In OpenSUSE Leap 15.4, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
+In OpenSUSE, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
 
 ```bash
 sudo zypper refresh
-sudo zypper install gcc-c++ make cmake libxml2-devel \
-libboost_log1_75_0-devel libboost_thread1_75_0-devel libboost_system1_75_0-devel libboost_filesystem1_75_0-devel libboost_program_options1_75_0-devel libboost_test1_75_0-devel \
-eigen3-devel python3-devel
+sudo zypper install gcc-c++ make cmake libxml2-devel eigen3-devel
+sudo zypper install libboost_log*-devel libboost_thread*-devel libboost_system*-devel libboost_filesystem*-devel libboost_program_options*-devel libboost_test*-devel
+sudo zypper install python3-devel python3*-numpy  # optional
+sudo zypper install openmpi5-devel                # optional, other versions work as well
 ```
 
-Furthermore, Numpy is needed. It can be installed through pip: `pip3 install --user numpy`.
-You may need to set the Eigen location when configuring preCICE:
+If you don't already have a fitting combination of PETSc (not shown here), disable the respective feature when configuring preCICE:
 
 ```bash
-cmake -DEIGEN3_INCLUDE_DIR=/usr/include/eigen3 <options as usual>
+cmake -DPRECICE_FEATURE_PETSC_MAPPING=OFF <options as usual>
 ```
 
-If you don't already have a fitting combination of MPI and PETSc (not shown here), disable the respective features when configuring preCICE:
+or [get PETSc from source](installation-source-dependencies.html#build-petsc-from-source). See also a related [discussion on the preCICE forum](https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4) for more details.
 
-```bash
-cmake -DPRECICE_FEATURE_MPI_COMMUNICATION=OFF -DPRECICE_FEATURE_PETSC_MAPPING=OFF <options as usual>
-```
-
-See also a related [discussion on the preCICE forum](https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4) for more details.
-
-These instructions are known to work with OpenSUSE Leap 15.4, and should apply to later releases as well ([release history](https://endoflife.date/opensuse)).
+These instructions are known to work with OpenSUSE Leap 16, and should apply to later releases as well ([release history](https://endoflife.date/opensuse)).
 
 ### Arch Linux
-
-(The same applies to Manjaro, EndeavourOS, and other derived distributions)
 
 Good news: [preCICE is already on AUR](https://aur.archlinux.org/packages/precice/), so you can directly use or modify the respective `PKGBUILD`.
 
 See also the [Arch Linux Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-archlinux.dockerfile).
+
+The same instructions apply to Manjaro, EndeavourOS, and other derived distributions.
 
 ### macOS
 
