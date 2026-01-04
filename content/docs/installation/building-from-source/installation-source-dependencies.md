@@ -220,6 +220,18 @@ double check if there are any system packages before attempting to build this de
   export PKG_CONFIG_PATH="<prefix>/lib/pkgconfig:$PKG_CONFIG_PATH"
   ```
 
+### MPI
+
+preCICE optionally requires an implementation of the MPI-3 specification for [communication](configuration-communication.html), which is [provided by all major vendors](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) including OpenMPI, MPICH, and Intel MPI.
+
+You can build preCICE without MPI in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use `-DPRECICE_FEATURE_MPI_COMMUNICATION=OFF`. In such a case, you can still use TCP/IP sockets for inter- and intra-participant communication, instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.
+
+Keep in mind that, if you already installed [PETSc](installation-source-dependencies.html#petsc), MPI must also already be installed.
+
+{% important %}
+Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
+{% endimportant %}
+
 ### PETSc
 
 preCICE optionally uses [PETSc](https://petsc.org/) (at least 3.15) for some  [global RBF mappings](configuration-mapping.html#execution-backends) and is highly recommended for large cases. For small/medium-size cases, preCICE can still do a global RBF mapping in parallel without PETSc. If you don't need this feature, you may specify `-DPRECICE_FEATURE_PETSC_MAPPING=off` when building preCICE.
@@ -252,6 +264,20 @@ Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH
    export LD_LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LD_LIBRARY_PATH"
    ```
 
+### Ginkgo
+
+preCICE optionally uses [Ginkgo](https://ginkgo-project.github.io/) for GPU- and OpenMP-accelerated [global radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_GINKGO_MAPPING=ON`. Using this feature in preCICE requires additionally [Kokkos](https://kokkos.org/).
+
+Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for [Ginkgo](https://github.com/ginkgo-project/ginkgo/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases).
+For Kokkos, system packages might be available through your package manager as well.
+
+History of required versions:
+
+| preCICE | Ginkgo required | Kokkos required |
+| ---     | ---             | ---             |
+| 3.2.0   | 1.8.0           | 4.1.0           |
+| 3.3.0   | same as above   | same as above   |
+
 ### Python
 
 preCICE optionally uses [Python](https://www.python.org/) for the [Python action interface](configuration-action.html#python-callback-interface) (only used for rare applications). If you don't need this feature, you may specify `-DPRECICE_FEATURE_PYTHON_ACTIONS=off`.
@@ -266,32 +292,6 @@ History of required versions:
 | older   | 2.7                        | 2.8                 | not defined    | 1.17               |
 | 2.0.0   | 3                          | None known yet      | 1.17           | None known yet     |
 | 3.3.0   | same as above              | same as above       | same as above  | same as above      |
-
-### MPI
-
-preCICE optionally requires an implementation of the MPI-3 specification for [communication](configuration-communication.html), which is [provided by all major vendors](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) including OpenMPI, MPICH, and Intel MPI.
-
-You can build preCICE without MPI in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use `-DPRECICE_FEATURE_MPI_COMMUNICATION=OFF`. In such a case, you can still use TCP/IP sockets for inter- and intra-participant communication, instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.
-
-Keep in mind that, if you already installed [PETSc](installation-source-dependencies.html#petsc), MPI must also already be installed.
-
-{% important %}
-Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
-{% endimportant %}
-
-### Ginkgo
-
-preCICE optionally uses [Ginkgo](https://ginkgo-project.github.io/) for GPU- and OpenMP-accelerated [global radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_GINKGO_MAPPING=ON`. Using this feature in preCICE requires additionally [Kokkos](https://kokkos.org/).
-
-Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for [Ginkgo](https://github.com/ginkgo-project/ginkgo/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases).
-For Kokkos, system packages might be available through your package manager as well.
-
-History of required versions:
-
-| preCICE | Ginkgo required | Kokkos required |
-| ---     | ---             | ---             |
-| 3.2.0   | 1.8.0           | 4.1.0           |
-| 3.3.0   | same as above   | same as above   |
 
 ## System guides
 
