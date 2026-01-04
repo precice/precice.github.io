@@ -310,6 +310,7 @@ sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-de
 ```
 
 These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply for later Ubuntu releases as well.
+See also the [Ubuntu Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-ubuntu-2404.dockerfile).
 
 ### Debian
 
@@ -344,6 +345,7 @@ If you use the docker image of fedora, you need to install the support for envir
 {% endnote %}
 
 These instructions are known to work with Fedora 43, and should apply for later Fedora releases as well.
+See also the [Fedora Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-fedora.dockerfile).
 
 ### Rocky Linux
 
@@ -406,6 +408,8 @@ These instructions are known to work with OpenSUSE Leap 15.4, and should apply t
 (The same applies to Manjaro, EndeavourOS, and other derived distributions)
 
 Good news: [preCICE is already on AUR](https://aur.archlinux.org/packages/precice/), so you can directly use or modify the respective `PKGBUILD`.
+
+See also the [Arch Linux Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-archlinux.dockerfile).
 
 ### macOS
 
