@@ -111,7 +111,7 @@ Preliminary schedule:
       <summary>
       News on the preCICE coupling library<br/>
       <p>Frédéric Simonis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>)<br/>
-      University of Stuttgart, Germany</p>
+      University of Stuttgart, Germany - <a href="https://doi.org/10.5281/zenodo.17349449">slides</a></p>
       </summary>
       <p>New features, fixes, and plans in the core library. A deeper look into the <a href="https://github.com/precice/precice/releases/tag/v3.2.0">v3.2.0</a> release notes and further developments since (<a href="https://github.com/precice/precice/tree/develop/docs/changelog">changelog entries</a>, <a href="https://github.com/precice/precice/milestone/27?closed=1">v3.3.0 milestone</a>, <a href="./fundamentals-roadmap.html">roadmap</a>).</p>
     </details>
@@ -119,7 +119,7 @@ Preliminary schedule:
       <summary>
       News on the preCICE coupling ecosystem<br/>
       <p>Gerasimos Chourdakis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">webpage</a>, <a href="https://github.com/MakisH">GitHub</a>)<br/>
-      University of Stuttgart, Germany</p>
+      University of Stuttgart, Germany - <a href="https://doi.org/10.5281/zenodo.17307038">slides</a></p>
       </summary>
       <p>Updates on the available bindings, adapters, tutorials, and further tools built on top of the core library and included in the <a href="./installation-distribution.html">preCICE distribution</a>.</p>
     </details>
@@ -127,7 +127,7 @@ Preliminary schedule:
       <summary>
       News on the standardization process<br/>
       <p>Benjamin Uekermann (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Uekermann-00001/">webpage</a>, <a href="https://github.com/uekerman">GitHub</a>)<br/>
-      University of Stuttgart, Germany</p>
+      University of Stuttgart, Germany - <a href="https://doi.org/10.5281/zenodo.17310236">slides</a></p>
       </summary>
       <p>Updates on the standardization process and the DFG project preECO, including <a href="https://precice.org/community-guidelines-adapters.html">guidelines for adapters</a> and <a href="https://precice.org/community-guidelines-application-cases.html">guidelines for application cases</a>.</p>
     </details>
@@ -170,7 +170,7 @@ Preliminary schedule:
       <summary>
       News on the automation tools<br/>
       <p>Felix Neubauer (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Neubauer-00007/">webpage</a>, <a href="https://github.com/Logende">GitHub</a>)<br/>
-      University of Stuttgart, Germany</p>
+      University of Stuttgart, Germany - <a href="https://doi.org/10.5281/zenodo.17104911">slides</a></p>
       </summary>
       <p>Overview of new automation tools such as the <a href="https://github.com/precice/cli">preCICE command-line interface</a>, <a href="https://github.com/precice/case-generate">configuration generator</a>, <a href="https://github.com/precice/config-check">configuration checker</a>, and more.</p>
     </details>
@@ -181,7 +181,7 @@ Preliminary schedule:
     <details class="workshop-event" id="talk-thornton"><br/>
       <summary>Coupling Particle Simulations: Challenges, Strategies, and the ON-DEM Vision
       <p>Anthony Thornton*, Thomas Weinhart, Daniel Barreto<br/>
-      University of Manchester, UK</p>
+      University of Manchester, UK - <a href="https://doi.org/10.5281/zenodo.17258370">slides</a></p>
       </summary>
       <p>The Discrete Particle Method (DPM), aka Discrete Element Method (DEM), simulates the motion and interaction of individual grains and has proven highly successful in modelling granular processes. However, tackling the next generation of challenges—such as multiphysics interactions and multiscale phenomena—requires coupling DPM with continuum solvers for fluids and deformable solids. Additionally, the growing complexity of industrial processes is pushing the limits of DEM, which remains computationally intensive. This calls for flexible, efficient coupling strategies to extend the capabilities of DEM. In this talk, we present the main types of DEM coupling currently used in the field. We focus on three key approaches: Surface coupling, which models the interaction between granular materials and soft or deformable boundaries; Volume coupling, which allows hybrid modelling where some regions are simulated with DEM and others with a continuum approach—enhancing scalability without sacrificing accuracy; Particle–fluid coupling, which models the interaction of particles with a background fluid or thermal field. We also introduce the newly funded European COST network ON-DEM (Open Network on DEM simulations), which aims to accelerate progress in this area. We conclude by discussing the integration of the coupling library preCICE, highlighting its potential as a key enabler for ON-DEM's goals and the broader future of particle simulation.</p>
     </details>
@@ -208,7 +208,7 @@ Preliminary schedule:
     <details class="workshop-event" id="talk-simonis"><br/>
       <summary>Dynamic Meshes in preCICE
       <p>Frédéric Simonis* (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>), Benjamin Uekermann<br/>
-      University of Stuttgart, Germany</p>
+      University of Stuttgart, Germany - <a href="https://doi.org/10.5281/zenodo.17349604">slides</a></p>
       </summary>
       <p>preCICE is an open-source coupling library for partitioned multi-physics simulations. It provides a flexible framework for exchanging mesh-based data between different simulation codes, enabling the simulation of complex multi-physics problems involving multiple solvers. These solvers may run on massively parallel systems with large meshes partitioned among their ranks. To facilitate leveraging parallel systems, preCICE requires solver meshes to remain static during the simulation. This restricts users in need of moving geometries to either using ALE methods relying on a static reference domain, or to use direct-mesh access and handle data-mapping themselves. In this talk, I showcase the current state of dynamic meshes to preCICE as well as cost-effective use-cases. This includes the necessary orchestration to ensure a consistent state between solvers, the challenges of handling the shift of work from one-time to reoccurring operations, and open questions regarding implicit coupling.</p>
     </details>
@@ -228,7 +228,7 @@ Preliminary schedule:
     <details class="workshop-event" id="talk-chen"><br/>
       <summary>Bound-Aware Quasi-Newton Strategies for Partitioned Coupling in preCICE
       <p>Jun Chen* (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chen-00029/">webpage</a>, <a href="https://github.com/Fujikawas">GitHub</a>), Miriam Schulte<br/>
-      University of Stuttgart, Germany</p>
+      University of Stuttgart, Germany - <a href="https://doi.org/10.5281/zenodo.17340016">slides</a></p>
       </summary>
       <p>In partitioned multi-physics simulations and in preCICE, quasi-Newton (QN) methods are widely used to accelerate convergence at the coupling interface. However, standard QN schemes often disregard bound constraints arising from the underlying physic-such as saturation or pressure limits in porous media-resulting in physical values exceeding the prescribed bounds and reduced robustness. In this talk, we present and compare several bound-aware QN approaches designed to handle such constraints effectively within the preCICE framework.
       We focus on modular methods that balance step length control, projection techniques, and space-splitting strategies that separate trusted and extrapolated components of the update. These methods aim to balance convergence speed with physical feasibility, especially in strongly nonlinear or ill-scaled settings. The fundamental principles and the trade-offs between the various methods will be discussed, with conclusions drawn from experiments in designed scenarios involving bounded variables.
