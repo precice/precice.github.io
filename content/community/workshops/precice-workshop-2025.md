@@ -9,13 +9,11 @@ redirect_from: /preCICE2025/
 
 <img class="img-responsive center-block" src="images/events/precice2025/precice2025.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
-The 6th preCICE Workshop will be held at the [Helmut Schmidt University / University of the German Federal Armed Forces Hamburg](https://www.hsu-hh.de/) on September 8-12, 2025, co-organized by the local user group. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
+The 6th preCICE Workshop was held at the [Helmut Schmidt University / University of the German Federal Armed Forces Hamburg](https://www.hsu-hh.de/) on September 8-12, 2025, co-organized by the local user group. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we had user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
 
-The workshop will include a hands-on [training course](community-training.html). The course is suited for both beginners and current preCICE users, since advanced topics will also be covered. This year, we are extending the course by a new module on HPC.
+The workshop included a hands-on [training course](community-training.html). The course is suited for both beginners and current preCICE users, since advanced topics will also be covered. This year, we extended the course by a new module on HPC.
 
-In the developer talks, the maintainer team will present recent updates on dynamic meshes, mesh-particle coupling, and macro-micro coupling – to only mention a few highlights. And we will continue the standardization process of adapters and application cases, where you can help shaping the future.
-
-Keep watching this space for updates on registration, the workshop program, and more. For any organizational questions (for example, visa-related requests), please contact `precice` at `hsu-hh.de`.
+In the developer talks, the maintainer team presented recent updates on dynamic meshes, mesh-particle coupling, and macro-micro coupling – to only mention a few highlights. And we continued the standardization process of adapters and application cases, where you can help shaping the future.
 
 ## Call for contributions
 
