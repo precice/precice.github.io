@@ -194,10 +194,8 @@ For more information, please refer to the "[Getting Started](http://www.boost.or
 
 preCICE uses [libxml2](http://www.xmlsoft.org/) for parsing the configuration file.
 
-{% tip %}
-libxml2 is available on close to any system you can imagine.  
-Double check if there are any system packages before attempting to build this dependency from source.
-{% endtip %}
+Since libxml2 is available on close to any system you can imagine,
+double check if there are any system packages before attempting to build this dependency from source.
 
 #### Install libxml2 from source
 
