@@ -297,10 +297,13 @@ History of required versions:
 
 ## System guides
 
-If you want build preCICE on your own computer and you are using one of the following Linux distributions, we provide a summary here to quickly install everything you need. If everything works, you may ignore the rest of this page.
-Contributions to this section are particularly welcome (click "Edit me").
+If you want build preCICE on your own computer and you are using one of the following Linux distributions, we provide a summary here to quickly install the dependencies.
+Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options.
+Contributions to this section are particularly welcome (click "Edit me"). Trouble? [Ask for help](https://precice.discourse.group/).
 
-Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options. Since our users have tried preCICE on various distributions, you may as well ask on our [forum](https://precice.discourse.group/) for any questions.
+{% tip %}
+preCICE also has pre-compiled [system packages](installation-packages.html) in many repositories.
+{% endtip %}
 
 ### Ubuntu
 
