@@ -11,6 +11,10 @@ Reviving that old adapter? Good opportunity to learn about some best practices a
 There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
 {% endtip %}
 
+{% tip %}
+Also have a look at the [source documentation](dev-docs-sourcedocs.html) and [minimal reference implementations](couple-your-code-api.html#minimal-reference-implementations).
+{% endtip %}
+
 ## preCICE API
 
 ### Single-step setup
