@@ -298,6 +298,7 @@ History of required versions:
 ## System guides
 
 If you want build preCICE on your own computer and you are using one of the following Linux distributions, we provide a summary here to quickly install everything you need. If everything works, you may ignore the rest of this page.
+Contributions to this section are particularly welcome (click "Edit me").
 
 Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options. Since our users have tried preCICE on various distributions, you may as well ask on our [forum](https://precice.discourse.group/) for any questions.
 
@@ -360,10 +361,12 @@ Rocky Linux very closely follows the conventions previously set by CentOS. We fi
    sudo dnf groupinstall "Development Tools"
    ```
 
-2. Then, install the available preCICE dependencies:
+2. Then, enable the CRB repostitory to install Eigen3, and the install the rest of the available preCICE dependencies:
 
    ```bash
-   sudo dnf install cmake libxml2-devel boost-devel openmpi-devel eigen3-devel python3-devel
+   sudo dnf config-manager --set-enabled crb
+   sudo dnf install eigen3-devel
+   sudo dnf install cmake libxml2-devel boost-devel openmpi-devel python3-devel
    ```
 
 3. Before configuring & building preCICE, load MPI (you may need to log out and in again, if `module` is not found):
@@ -374,7 +377,7 @@ Rocky Linux very closely follows the conventions previously set by CentOS. We fi
 
 4. Unfortunately, [PETSc does not seem to be available in this distribution.](https://pkgs.org/search/?q=petsc), so we need to switch that off later when building preCICE. If you don't plan to use RBF mappings in large parallel cases, you can continue without installing PETSc and build preCICE with `-DPRECICE_FEATURE_PETSC_MAPPING=OFF`. If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-These instructions are known to work with Rocky 9, and should apply to later releases as well ([release history](https://endoflife.date/rocky-linux)).
+These instructions are known to work with Rocky 9, 10, and should apply to later releases as well ([release history](https://endoflife.date/rocky-linux)).
 
 ### OpenSUSE
 
