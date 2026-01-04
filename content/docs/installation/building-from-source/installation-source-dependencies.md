@@ -305,17 +305,13 @@ Contributions to this section are particularly welcome (click "Edit me"). Troubl
 preCICE also has pre-compiled [system packages](installation-packages.html) in many repositories.
 {% endtip %}
 
-### Ubuntu
+### Arch Linux
 
-With every release, we also ship [binary packages for Ubuntu](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
+Good news: [preCICE is already on AUR](https://aur.archlinux.org/packages/precice/), so you can directly use or modify the respective `PKGBUILD`.
 
-```bash
-sudo apt update && \
-sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
-```
+See also the [Arch Linux Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-archlinux.dockerfile).
 
-These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply to later releases as well ([release history](https://endoflife.date/ubuntu)).
-See also the [Ubuntu Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-ubuntu-2404.dockerfile).
+The same instructions apply to Manjaro, EndeavourOS, and other derived distributions.
 
 ### Debian
 
@@ -352,6 +348,28 @@ If you use the docker image of fedora, you need to install the support for envir
 These instructions are known to work with Fedora 43, and should apply to later releases as well ([release history](https://endoflife.date/fedora)).
 See also the [Fedora Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-fedora.dockerfile).
 
+### OpenSUSE
+
+In OpenSUSE, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
+
+```bash
+sudo zypper refresh
+sudo zypper install gcc-c++ make cmake libxml2-devel eigen3-devel
+sudo zypper install libboost_log*-devel libboost_thread*-devel libboost_system*-devel libboost_filesystem*-devel libboost_program_options*-devel libboost_test*-devel
+sudo zypper install python3-devel python3*-numpy  # optional
+sudo zypper install openmpi5-devel                # optional, other versions work as well
+```
+
+If you don't already have a fitting combination of PETSc (not shown here), disable the respective feature when configuring preCICE:
+
+```bash
+cmake -DPRECICE_FEATURE_PETSC_MAPPING=OFF <options as usual>
+```
+
+or [get PETSc from source](installation-source-dependencies.html#build-petsc-from-source). See also a related [discussion on the preCICE forum](https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4) for more details.
+
+These instructions are known to work with OpenSUSE Leap 16, and should apply to later releases as well ([release history](https://endoflife.date/opensuse)).
+
 ### Rocky Linux
 
 Rocky Linux very closely follows the conventions previously set by CentOS. We first need to install common development tools, enable the [CRB repository](https://wiki.rockylinux.org/rocky/repo/) (only for Eigen), install the dependencies, load the MPI module, and continue with building preCICE.
@@ -382,35 +400,17 @@ Rocky Linux very closely follows the conventions previously set by CentOS. We fi
 
 These instructions are known to work with Rocky 9, 10, and should apply to later releases as well ([release history](https://endoflife.date/rocky-linux)).
 
-### OpenSUSE
+### Ubuntu
 
-In OpenSUSE, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
-
-```bash
-sudo zypper refresh
-sudo zypper install gcc-c++ make cmake libxml2-devel eigen3-devel
-sudo zypper install libboost_log*-devel libboost_thread*-devel libboost_system*-devel libboost_filesystem*-devel libboost_program_options*-devel libboost_test*-devel
-sudo zypper install python3-devel python3*-numpy  # optional
-sudo zypper install openmpi5-devel                # optional, other versions work as well
-```
-
-If you don't already have a fitting combination of PETSc (not shown here), disable the respective feature when configuring preCICE:
+With every release, we also ship [binary packages for Ubuntu](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
 
 ```bash
-cmake -DPRECICE_FEATURE_PETSC_MAPPING=OFF <options as usual>
+sudo apt update && \
+sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
 
-or [get PETSc from source](installation-source-dependencies.html#build-petsc-from-source). See also a related [discussion on the preCICE forum](https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4) for more details.
-
-These instructions are known to work with OpenSUSE Leap 16, and should apply to later releases as well ([release history](https://endoflife.date/opensuse)).
-
-### Arch Linux
-
-Good news: [preCICE is already on AUR](https://aur.archlinux.org/packages/precice/), so you can directly use or modify the respective `PKGBUILD`.
-
-See also the [Arch Linux Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-archlinux.dockerfile).
-
-The same instructions apply to Manjaro, EndeavourOS, and other derived distributions.
+These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply to later releases as well ([release history](https://endoflife.date/ubuntu)).
+See also the [Ubuntu Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-ubuntu-2404.dockerfile).
 
 ### macOS
 
