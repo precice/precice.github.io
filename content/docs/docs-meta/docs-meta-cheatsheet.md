@@ -261,3 +261,9 @@ In the future we might implement [server-side rendering](https://gendignoux.com/
 ##### H5 Heading
 
 “Lorem Ipsum” is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+
+## Footnotes
+
+This is a footnote reference[^1].
+
+[^1]: A footnote.
