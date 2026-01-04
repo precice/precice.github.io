@@ -1629,7 +1629,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 04 Jan 26</small>
             </div>
           </aside>
           
@@ -1643,7 +1643,98 @@ $('#toc').on('click', 'a', function() {
 <p>If there is no guide for your system, find out if there are suitable system packages for the dependencies.
 Then use the <a href="#dependencies">dependencies</a> section to install all missing dependencies from source.</p>
 
-<p>After all dependencies are ready to use, proceed with <a href="installation-source-configuration">configuring preCICE</a>.</p>
+<p>After all dependencies are ready to use, proceed with <a href="installation-source-configuration">configuring the preCICE build</a>.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+This documentation concerns preCICE v3.3.0.
+Read about <a href="fundamentals-previous-versions.html">previous versions</a> or <a href="http://127.0.0.1:4000/couple-your-code-porting-overview.html">how to upgrade</a>.
+</div>
+
+<h2 id="overview">Overview</h2>
+
+<p>The following is an overview of the required dependencies of preCICE.
+Note that we always strive to be forwards-compatible.
+If you find a problem with preCICE and a latest versions of these dependencies, please let us know.</p>
+
+<h3 id="required-dependencies">Required dependencies</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Version required</th>
+      <th>Availability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#c-compiler">C++ compiler</a></td>
+      <td>C++17</td>
+      <td><a href="https://cppreference.com/w/cpp/compiler_support/17.html">C++17 compiler support</a></td>
+    </tr>
+    <tr>
+      <td><a href="#cmake">CMake</a></td>
+      <td>&gt;= 3.22.1</td>
+      <td><a href="https://repology.org/project/cmake/versions" class="no-icon"><img src="https://img.shields.io/repology/repositories/cmake" alt="Repology - CMake" /></a> <a href="https://pkgs.org/search/?q=cmake" class="no-icon"><img src="https://img.shields.io/badge/pkgs.org-cmake-blue" alt="pkgs.org" /></a></td>
+    </tr>
+    <tr>
+      <td><a href="#eigen">Eigen</a></td>
+      <td>&gt;= 3.4.0</td>
+      <td><a href="https://repology.org/project/eigen/versions" class="no-icon"><img src="https://img.shields.io/repology/repositories/eigen" alt="Repology - Eigen" /></a> <a href="https://pkgs.org/search/?q=eigen3" class="no-icon"><img src="https://img.shields.io/badge/pkgs.org-eigen3-blue" alt="pkgs.org" /></a></td>
+    </tr>
+    <tr>
+      <td><a href="#boost">Boost</a></td>
+      <td>&gt;= 1.74.0</td>
+      <td><a href="https://repology.org/project/boost/versions" class="no-icon"><img src="https://img.shields.io/repology/repositories/boost" alt="Repology - Boost" /></a> <a href="https://pkgs.org/search/?q=libboost" class="no-icon"><img src="https://img.shields.io/badge/pkgs.org-libboost-blue" alt="pkgs.org" /></a></td>
+    </tr>
+    <tr>
+      <td><a href="#libxml2">libxml2</a></td>
+      <td>&gt;= 2</td>
+      <td><a href="https://repology.org/project/libxml2/versions" class="no-icon"><img src="https://img.shields.io/repology/repositories/libxml2" alt="Repology - libxml2" /></a> <a href="https://pkgs.org/search/?q=libxml2" class="no-icon"><img src="https://img.shields.io/badge/pkgs.org-libxml2-blue" alt="pkgs.org" /></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that more recent versions of some dependencies (e.g., Boost) might also need more recent or upcoming releases of preCICE.</p>
+
+<h3 id="optional-dependencies">Optional dependencies</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dependency</th>
+      <th>Required for</th>
+      <th>Version required</th>
+      <th>Availability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#mpi">MPI</a> (opt-out)</td>
+      <td><a href="configuration-communication.html">Communication over MPI</a></td>
+      <td>implementation of MPI-3</td>
+      <td>Various <a href="https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations">implementations</a></td>
+    </tr>
+    <tr>
+      <td><a href="#petsc">PETSc</a> (opt-out)</td>
+      <td><a href="configuration-mapping.html#execution-backends">Some RBF mappings</a></td>
+      <td>&gt;= 3.15</td>
+      <td><a href="https://repology.org/project/petsc/versions" class="no-icon"><img src="https://img.shields.io/repology/repositories/petsc" alt="Repology - PETSc" /></a> <a href="https://pkgs.org/search/?q=petsc" class="no-icon"><img src="https://img.shields.io/badge/pkgs.org-petsc-blue" alt="pkgs.org" /></a></td>
+    </tr>
+    <tr>
+      <td><a href="#ginkgo">Ginkgo</a> (opt-in)</td>
+      <td><a href="configuration-mapping.html#execution-backends">Some RBF mappings</a></td>
+      <td>&gt;= 1.8, with Kokkos &gt;= 4.1</td>
+      <td><a href="https://repology.org/project/ginkgo-linear-algebra/versions" class="no-icon"><img src="https://img.shields.io/repology/repositories/ginkgo-linear-algebra" alt="Repology - Ginkgo" /></a> <a href="https://pkgs.org/search/?q=ginkgo" class="no-icon"><img src="https://img.shields.io/badge/pkgs.org-ginkgo-blue" alt="pkgs.org" /></a></td>
+    </tr>
+    <tr>
+      <td><a href="#python">Python</a> (opt-out)</td>
+      <td><a href="configuration-action.html#python-callback-interface">Python Action interface</a></td>
+      <td>&gt;= 3</td>
+      <td><a href="https://repology.org/project/python/versions" class="no-icon"><img src="https://img.shields.io/repology/repositories/python" alt="Repology - Python" /></a> <a href="https://pkgs.org/search/?q=python" class="no-icon"><img src="https://img.shields.io/badge/pkgs.org-python-blue" alt="pkgs.org" /></a></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="dependencies">Dependencies</h2>
 
@@ -1651,106 +1742,34 @@ Then use the <a href="#dependencies">dependencies</a> section to install all mis
 Meaning, installing dependencies based on the steps in this section should be the <em>last resort</em> for normal users.
 Prefer to follow the <a href="#system-guides">system guides</a> and only install custom versions if you have a reason to do so.</p>
 
-<h3 id="overview">Overview</h3>
-
-<p>The following is an overview of the required dependencies of the latest preCICE release.
-Note that we always strive to be forwards-compatible.
-If you find a problem with preCICE and a latest versions of these dependencies, please let us know.</p>
-
-<h4 id="required-dependencies">Required dependencies</h4>
-
-<table>
-  <tbody>
-    <tr>
-      <td>preCICE</td>
-      <td>3.3.0</td>
-    </tr>
-    <tr>
-      <td><a href="#c-compiler">C++ compiler</a></td>
-      <td>C++14</td>
-    </tr>
-    <tr>
-      <td><a href="#cmake">CMake</a></td>
-      <td>&gt;= 3.16.1</td>
-    </tr>
-    <tr>
-      <td><a href="#eigen">Eigen</a></td>
-      <td>&gt;= 3.3.7</td>
-    </tr>
-    <tr>
-      <td><a href="#boost">Boost</a></td>
-      <td>&gt;= 1.71.0</td>
-    </tr>
-    <tr>
-      <td><a href="#libxml2">libxml2</a></td>
-      <td>&gt;= 2</td>
-    </tr>
-  </tbody>
-</table>
-
-<h4 id="required-optional-dependencies">Required optional dependencies</h4>
-
-<table>
-  <tbody>
-    <tr>
-      <td>preCICE</td>
-      <td>3.3.0</td>
-    </tr>
-    <tr>
-      <td><a href="#mpi">MPI</a></td>
-      <td>implementation of MPI-3</td>
-    </tr>
-    <tr>
-      <td><a href="#petsc">PETSc</a></td>
-      <td>&gt;= 3.12</td>
-    </tr>
-    <tr>
-      <td><a href="#python">Python</a></td>
-      <td>&gt;= 3</td>
-    </tr>
-    <tr>
-      <td><a href="#ginkgo">Ginkgo</a></td>
-      <td>&gt;= 1.8 with Kokkos &gt;= 4.1</td>
-    </tr>
-  </tbody>
-</table>
-
 <h3 id="c-compiler">C++ compiler</h3>
 
-<p>preCICE requires a <a href="https://en.cppreference.com/w/cpp/compiler_support#cpp14">C++ compiler with full C++14 support</a>.
+<p>preCICE requires a <a href="https://cppreference.com/w/cpp/compiler_support/17.html">C++ compiler with full C++17 support</a>.
 The following table lists the minimal requirement for compiler versions:</p>
 
 <table>
+  <thead>
+    <tr>
+      <th>Toolchain</th>
+      <th>Version</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td>Toolchain</td>
-      <td>Minimal Version</td>
-      <td>Note</td>
-    </tr>
-    <tr>
       <td>GCC</td>
-      <td><code class="language-plaintext highlighter-rouge">5</code></td>
+      <td>min 7</td>
       <td> </td>
     </tr>
     <tr>
       <td>Intel</td>
-      <td><code class="language-plaintext highlighter-rouge">17</code></td>
-      <td>also requires GCC <code class="language-plaintext highlighter-rouge">5</code></td>
-    </tr>
-    <tr>
-      <td>Cray</td>
-      <td><code class="language-plaintext highlighter-rouge">8.6</code></td>
-      <td>also requires GCC <code class="language-plaintext highlighter-rouge">5</code></td>
+      <td>all</td>
+      <td>Classic: v19, OneAPI: all</td>
     </tr>
     <tr>
       <td>Clang</td>
-      <td><code class="language-plaintext highlighter-rouge">3.4</code></td>
+      <td>min 14</td>
       <td> </td>
-    </tr>
-    <tr>
-      <td>MSVC</td>
-      <td><code class="language-plaintext highlighter-rouge">19.10</code></td>
-      <td><em>For future reference</em></td>
     </tr>
   </tbody>
 </table>
@@ -1763,65 +1782,86 @@ Check the section on <a href="#mpi">MPI</a> for more information.j</p>
 
 <h3 id="cmake">CMake</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td>preCICE</td>
-      <td> </td>
-      <td>1.4</td>
-      <td>2.4</td>
-    </tr>
-    <tr>
-      <td>Required</td>
-      <td>3.5</td>
-      <td>3.10.2</td>
-      <td>3.16.3</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>preCICE requires the build system CMake at a minimal version of <code class="language-plaintext highlighter-rouge">3.16.1</code>.
+<p>preCICE requires the build system CMake at a minimal version of <code class="language-plaintext highlighter-rouge">3.22.1</code> (CMake 4 also works).
 You can check your CMake version using <code class="language-plaintext highlighter-rouge">cmake --version</code>.</p>
 
 <p>Depending on the versions of CMake and Boost, CMake may not find all libraries in boost and display warnings when configuring preCICE.
-This can be safely ignored as preCICE does not use problematic libraries.
-<a href="https://stackoverflow.com/a/42124857/5158031">Fixing this requires to upgrade CMake.</a>.</p>
+This can be safely ignored, and can be <a href="https://stackoverflow.com/a/42124857/5158031">fixed by upgrading CMake</a>.</p>
+
+<p>History of required version:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>preCICE</th>
+      <th>CMake</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.4.0</td>
+      <td>min 3.10.2</td>
+    </tr>
+    <tr>
+      <td>2.4.0</td>
+      <td>min 3.16.3</td>
+    </tr>
+    <tr>
+      <td>3.2.0</td>
+      <td>min 3.22.1</td>
+    </tr>
+    <tr>
+      <td>3.3.0</td>
+      <td>as above</td>
+    </tr>
+  </tbody>
+</table>
 
 <h4 id="download-cmake-binaries">Download CMake binaries</h4>
 
 <p>Download the <a href="https://cmake.org/download/#latest">official binaries</a> for your platform and extract them into a folder.
 Then extend the path environment variable by executing the following:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/path/to/extracted/location/version/bin
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PATH</span><span class="s2">:/path/to/extracted/location/version/bin"</span>
 cmake <span class="nt">--version</span>
 </code></pre></div></div>
 
-<p>This should now display the version of the latest release.
-If the version is correct, you can make this change persistent by appending the above export statement to your <code class="language-plaintext highlighter-rouge">.bashrc</code> or similar.</p>
+<p>This should now display the version of the downloaded release.
+If the version is correct, you can make this change persistent by appending the above export statement to your <code class="language-plaintext highlighter-rouge">.bashrc</code>.</p>
 
 <h3 id="eigen">Eigen</h3>
 
+<p>preCICE uses <a href="http://eigen.tuxfamily.org/">Eigen</a> for linear algebra computations and for a version of <a href="configuration-mapping.html#execution-backends">global RBF mappings</a> which does not require PETSc.</p>
+
+<p>History of required version:</p>
+
 <table>
+  <thead>
+    <tr>
+      <th>preCICE</th>
+      <th>Eigen</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td>preCICE</td>
-      <td> </td>
-      <td>1.5</td>
+      <td>older</td>
+      <td>min 3.2.0</td>
     </tr>
     <tr>
-      <td>Required</td>
-      <td>3.2</td>
-      <td>3.3.7</td>
+      <td>1.5.0</td>
+      <td>min 3.3.7</td>
+    </tr>
+    <tr>
+      <td>3.3.0</td>
+      <td>min 3.4.0</td>
     </tr>
   </tbody>
 </table>
 
-<p>preCICE uses <a href="http://eigen.tuxfamily.org/">Eigen</a> for linear algebra computations and for a version of RBF mappings which does not require PETSc.</p>
-
 <h4 id="download-the-eigen-headers">Download the Eigen headers</h4>
 
 <p>Eigen is a header-only library, i.e. it is compiled into preCICE and does not require linkage.
-Download the sources from their <a href="https://gitlab.com/libeigen/eigen/-/releases/">latest release</a> and extract them to some location.
+Download the sources from their <a href="https://gitlab.com/libeigen/eigen/-/releases/">latest compatible release</a> and extract them to some location.
 The folder of your choice should now contain a folder called <code class="language-plaintext highlighter-rouge">eigen-x.y.z</code> for version <code class="language-plaintext highlighter-rouge">x.y.z</code>.
 Set the environment variable <code class="language-plaintext highlighter-rouge">Eigen3_ROOT</code> to the <code class="language-plaintext highlighter-rouge">eigen-x.y.z</code> folder by adding this to your <code class="language-plaintext highlighter-rouge">~.bashrc</code>.</p>
 
@@ -1831,40 +1871,7 @@ Set the environment variable <code class="language-plaintext highlighter-rouge">
 <h3 id="boost">Boost</h3>
 
 <p>preCICE uses <a href="http://www.boost.org/">Boost</a> for several features.
-Boost 1.67 and newer, it may complicate how you install adapters that use yaml-cpp.
-Note that users have experienced problems building Boost 1.68 and 1.69 with some compilers.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>preCICE</td>
-      <td> </td>
-      <td>1.4.0</td>
-      <td>2.0.2</td>
-      <td>2.1.1</td>
-      <td>2.3.0</td>
-      <td>2.4.0</td>
-    </tr>
-    <tr>
-      <td>Required</td>
-      <td>1.60.0</td>
-      <td>1.65.1</td>
-      <td>&lt;-</td>
-      <td>&lt;-</td>
-      <td>&lt;-</td>
-      <td>1.71.0</td>
-    </tr>
-    <tr>
-      <td>Incompatible</td>
-      <td>1.72.0</td>
-      <td>&lt;-</td>
-      <td>&lt;-</td>
-      <td>1.74.0</td>
-      <td>1.78.0</td>
-      <td>None</td>
-    </tr>
-  </tbody>
-</table>
+The minimum required version is 1.74.0, but newer Boost versions are not always compatible to previous ones.</p>
 
 <p>You might save some time and space by installing only the necessary libraries:</p>
 
@@ -1880,7 +1887,68 @@ Note that users have experienced problems building Boost 1.68 and 1.69 with some
 
 <p>These libraries may also depend on other Boost libraries. Make sure that these get installed, too.</p>
 
-<p>The following header-only Boost libraries are also needed: ‘asio’, <code class="language-plaintext highlighter-rouge">vmd</code>, <code class="language-plaintext highlighter-rouge">geometry</code>, <code class="language-plaintext highlighter-rouge">signals2</code>, <code class="language-plaintext highlighter-rouge">container</code>, <code class="language-plaintext highlighter-rouge">ranges</code>.</p>
+<p>The following header-only Boost libraries are also needed: <code class="language-plaintext highlighter-rouge">asio</code>, <code class="language-plaintext highlighter-rouge">vmd</code>, <code class="language-plaintext highlighter-rouge">geometry</code>, <code class="language-plaintext highlighter-rouge">signals2</code>, <code class="language-plaintext highlighter-rouge">container</code>, <code class="language-plaintext highlighter-rouge">ranges</code>.</p>
+
+<p>History of required versions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>preCICE</th>
+      <th>Boost required</th>
+      <th>Boost incompatible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>older</td>
+      <td>1.60.0</td>
+      <td>1.72.0</td>
+    </tr>
+    <tr>
+      <td>1.4.0</td>
+      <td>1.65.1</td>
+      <td>as above</td>
+    </tr>
+    <tr>
+      <td>2.0.2</td>
+      <td>as above</td>
+      <td>as above</td>
+    </tr>
+    <tr>
+      <td>2.1.1</td>
+      <td>as above</td>
+      <td>1.74.0</td>
+    </tr>
+    <tr>
+      <td>2.3.0</td>
+      <td>as above</td>
+      <td>1.78.0</td>
+    </tr>
+    <tr>
+      <td>2.4.0</td>
+      <td>1.71.0</td>
+      <td>as above</td>
+    </tr>
+    <tr>
+      <td>3.1.2</td>
+      <td>as above</td>
+      <td>1.86.0</td>
+    </tr>
+    <tr>
+      <td>3.2.0</td>
+      <td>1.74.0</td>
+      <td>1.89.0</td>
+    </tr>
+    <tr>
+      <td>3.3.0</td>
+      <td>1.74.0</td>
+      <td>none known yet</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For help, see also the ranges set in the <a href="https://github.com/spack/spack-packages/blob/develop/repos/spack_repo/builtin/packages/precice/package.py">Spack recipe</a>.</p>
 
 <h4 id="build-boost-from-source">Build boost from source</h4>
 
@@ -1922,10 +1990,8 @@ You may now safely remove the boost directory from step 1.</p>
 
 <p>preCICE uses <a href="http://www.xmlsoft.org/">libxml2</a> for parsing the configuration file.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-libxml2 is available on close to any system you can imagine.<br />
-Please double check if there are no system packages before attempting to build this dependency from source.
-</div>
+<p>Since libxml2 is available on close to any system you can imagine,
+double check if there are any system packages before attempting to build this dependency from source.</p>
 
 <h4 id="install-libxml2-from-source">Install libxml2 from source</h4>
 
@@ -1945,37 +2011,61 @@ make <span class="nb">install</span>
   Add the following to your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> replacing prefix with the chosen directory:</li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">LIBRARY_PATH</span><span class="o">=</span>&lt;prefix&gt;/lib:<span class="nv">$LIBRARY_PATH</span>
-  <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>&lt;prefix&gt;/lib:<span class="nv">$LD_LIBRARY_PATH</span>
-  <span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span>&lt;prefix&gt;/include:<span class="nv">$CPLUS_INCLUDE_PATH</span>
-  <span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span>&lt;prefix&gt;/lib/pkgconfig:<span class="nv">$PKG_CONFIG_PATH</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="s2">"&lt;prefix&gt;/lib:</span><span class="nv">$LIBRARY_PATH</span><span class="s2">"</span>
+  <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"&lt;prefix&gt;/lib:</span><span class="nv">$LD_LIBRARY_PATH</span><span class="s2">"</span>
+  <span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="s2">"&lt;prefix&gt;/include:</span><span class="nv">$CPLUS_INCLUDE_PATH</span><span class="s2">"</span>
+  <span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"&lt;prefix&gt;/lib/pkgconfig:</span><span class="nv">$PKG_CONFIG_PATH</span><span class="s2">"</span>
 </code></pre></div></div>
+
+<h3 id="mpi">MPI</h3>
+
+<p>preCICE optionally requires an implementation of the MPI-3 specification for <a href="configuration-communication.html">communication</a>, which is <a href="https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations">provided by all major vendors</a> including OpenMPI, MPICH, and Intel MPI.</p>
+
+<p>You can build preCICE without MPI in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_MPI_COMMUNICATION=OFF</code>. In such a case, you can still use TCP/IP sockets for inter- and intra-participant communication, instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.</p>
+
+<p>Keep in mind that, if you already installed <a href="installation-source-dependencies.html#petsc">PETSc</a>, MPI must also already be installed.</p>
+
+<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
+Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
+</div>
 
 <h3 id="petsc">PETSc</h3>
 
+<p>preCICE optionally uses <a href="https://petsc.org/">PETSc</a> (at least 3.15) for some  <a href="configuration-mapping.html#execution-backends">global RBF mappings</a> and is highly recommended for large cases. For small/medium-size cases, preCICE can still do a global RBF mapping in parallel without PETSc. If you don’t need this feature, you may specify <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=off</code> when building preCICE.</p>
+
+<p>History of required versions:</p>
+
 <table>
+  <thead>
+    <tr>
+      <th>preCICE</th>
+      <th>PETSc required</th>
+      <th>PETSc incompatible</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td>preCICE</td>
-      <td> </td>
+      <td>older</td>
+      <td>3.6.0 (with 64bit indices)</td>
+      <td>3.12.0</td>
+    </tr>
+    <tr>
       <td>2.1.0</td>
+      <td>3.12.0</td>
+      <td>none known yet</td>
     </tr>
     <tr>
-      <td>Required</td>
-      <td>3.6</td>
-      <td>3.12</td>
+      <td>3.2.0</td>
+      <td>3.15.0</td>
+      <td>as above</td>
     </tr>
     <tr>
-      <td>Incompatible</td>
-      <td>3.12</td>
-      <td>&lt;-</td>
+      <td>3.3.0</td>
+      <td>as above</td>
+      <td>as above</td>
     </tr>
   </tbody>
 </table>
-
-<p><a href="https://www.mcs.anl.gov/petsc/">PETSc</a> is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don’t need this feature, you may specify <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=off</code> when building preCICE.</p>
-
-<p>We require at least version 3.12. For preCICE versions earlier than v2.1.0, PETSc version between 3.6 and 3.12 might still work, but needs to be built with 64bit index sizes. In particular on <a href="https://github.com/precice/precice/issues/115">Ubuntu 18.04, we require at least 3.12</a>.</p>
 
 <h4 id="build-petsc-from-source">Build PETSc from source</h4>
 
@@ -1992,167 +2082,155 @@ make <span class="nb">install</span>
 
 <p>Finally, in some cases you may need to have PETSc in your <code class="language-plaintext highlighter-rouge">CPATH</code>, <code class="language-plaintext highlighter-rouge">LIBRARY_PATH</code>, or <code class="language-plaintext highlighter-rouge">PYTHONPATH</code>. Here is an example:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">export </span><span class="nv">PETSC_DIR</span><span class="o">=</span>/path/to/petsc
-   <span class="nb">export </span><span class="nv">PETSC_ARCH</span><span class="o">=</span>arch-linux-c-opt
-   <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PETSC_DIR</span>/<span class="nv">$PETSC_ARCH</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">export </span><span class="nv">PETSC_DIR</span><span class="o">=</span><span class="s2">"/path/to/petsc"</span>
+   <span class="nb">export </span><span class="nv">PETSC_ARCH</span><span class="o">=</span><span class="s2">"arch-linux-c-opt"</span>
+   <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PETSC_DIR</span><span class="s2">/</span><span class="nv">$PETSC_ARCH</span><span class="s2">/lib:</span><span class="nv">$LD_LIBRARY_PATH</span><span class="s2">"</span>
 </code></pre></div></div>
-
-<h3 id="python">Python</h3>
-
-<table>
-  <tbody>
-    <tr>
-      <td>preCICE</td>
-      <td> </td>
-      <td>2.0.0</td>
-    </tr>
-    <tr>
-      <td>Required libypthon</td>
-      <td>2.7</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Incompatible libypthon</td>
-      <td>2.8</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Required NumPy</td>
-      <td> </td>
-      <td>1.17</td>
-    </tr>
-    <tr>
-      <td>Incompatible NumPy</td>
-      <td>1.17</td>
-      <td>None</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>You only need <a href="https://www.python.org/">Python</a> if you want to use the Python action interface (only used for rare applications). If you don’t need this feature, you may specify <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PYTHON_ACTIONS=off</code>.
-In particular, you don’t need to build with Python if you only want to use the <a href="installation-bindings-python.html">preCICE Python bindings</a>.</p>
-
-<p>You probably already have Python installed. However, in order to use the Python interface, you also need to install NumPy and the header files for Python and NumPy. On Debian/Ubuntu, install the packages <code class="language-plaintext highlighter-rouge">python3-numpy</code> and <code class="language-plaintext highlighter-rouge">python3-dev</code>.</p>
-
-<h3 id="mpi">MPI</h3>
-
-<p>preCICE requires an implementation of the MPI-3 specification, which is provided by all major vendors including OpenMPI, MPICH, and Intel MPI.</p>
-
-<p>You can build preCICE without <a href="https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations">MPI</a> in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_MPI_COMMUNICATION=OFF</code> when building with CMake. In such a case, you can still use TCP/IP sockets instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.</p>
-
-<p>Please note that many MPI implementations implement the client-server functionality in various ways.
-They often require special setup such as environment variables, servers or infrastructure setup.</p>
-
-<p>Keep in mind that already <a href="installation-source-dependencies.html#petsc">PETSc</a> should have installed MPI.</p>
-
-<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
-Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
-</div>
 
 <h3 id="ginkgo">Ginkgo</h3>
 
+<p>preCICE optionally uses <a href="https://ginkgo-project.github.io/">Ginkgo</a> for GPU- and OpenMP-accelerated <a href="configuration-mapping.html#execution-backends">global radial-basis function mappings</a>. To enable the feature in preCICE, use the CMake option <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_GINKGO_MAPPING=ON</code>. Using this feature in preCICE requires additionally <a href="https://kokkos.org/">Kokkos</a>.</p>
+
+<p>Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for <a href="https://github.com/ginkgo-project/ginkgo/releases">Ginkgo</a> and <a href="https://github.com/kokkos/kokkos/releases">Kokkos</a>.
+For Kokkos, system packages might be available through your package manager as well.</p>
+
+<p>History of required versions:</p>
+
 <table>
+  <thead>
+    <tr>
+      <th>preCICE</th>
+      <th>Ginkgo required</th>
+      <th>Kokkos required</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td>preCICE</td>
-      <td>3.2.0 &gt;=</td>
+      <td>3.2.0</td>
+      <td>1.8.0</td>
+      <td>4.1.0</td>
     </tr>
     <tr>
-      <td>Required Ginkgo</td>
-      <td>1.8.0 &gt;=</td>
-    </tr>
-    <tr>
-      <td>Required Kokkos</td>
-      <td>4.1.0 &gt;=</td>
+      <td>3.3.0</td>
+      <td>same as above</td>
+      <td>same as above</td>
     </tr>
   </tbody>
 </table>
 
-<p><a href="https://ginkgo-project.github.io/">Ginkgo</a> enables support for GPU- and OpenMP-accelerated (global) radial-basis function mappings. To enable the feature in preCICE, use the CMake option <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_GINKGO_MAPPING=ON</code>. Using this feature in preCICE requires additionally <a href="https://kokkos.org/">Kokkos</a>.</p>
+<h3 id="python">Python</h3>
 
-<p>Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for <a href="https://github.com/ginkgo-project/ginkgo/releases">Ginkgo</a> and <a href="https://github.com/kokkos/kokkos/releases">Kokkos</a>. For Kokkos, system packages might be available through your package manager as well.</p>
+<p>preCICE optionally uses <a href="https://www.python.org/">Python</a> for the <a href="configuration-action.html#python-callback-interface">Python action interface</a> (only used for rare applications). If you don’t need this feature, you may specify <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PYTHON_ACTIONS=off</code>.
+In particular, you don’t need to build with Python if you only want to use the <a href="installation-bindings-python.html">preCICE Python bindings</a>.</p>
+
+<p>You probably already have Python installed. However, in order to use the Python action interface, you also need to install NumPy and the header files for Python and NumPy.</p>
+
+<p>History of required versions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>preCICE</th>
+      <th>Python required</th>
+      <th>Python incompatible</th>
+      <th>NumPy required</th>
+      <th>NumPy incompatible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>older</td>
+      <td>2.7</td>
+      <td>2.8</td>
+      <td>not defined</td>
+      <td>1.17</td>
+    </tr>
+    <tr>
+      <td>2.0.0</td>
+      <td>3</td>
+      <td>None known yet</td>
+      <td>1.17</td>
+      <td>None known yet</td>
+    </tr>
+    <tr>
+      <td>3.3.0</td>
+      <td>same as above</td>
+      <td>same as above</td>
+      <td>same as above</td>
+      <td>same as above</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="system-guides">System guides</h2>
 
-<p>If you want build preCICE on your own computer and you are using one of the following Linux distributions, we provide a summary here to quickly install everything you need. If everything works, you may ignore the rest of this page.</p>
+<p>If you want build preCICE on your own computer and you are using one of the following Linux distributions, we provide a summary here to quickly install the dependencies.
+Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options.
+Contributions to this section are particularly welcome (click “Edit me”). Trouble? <a href="https://precice.discourse.group/">Ask for help</a>.</p>
 
-<p>Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options. Since our users have tried preCICE on various distributions, you may as well ask on our <a href="https://precice.discourse.group/">forum</a> for any questions.</p>
-
-<h3 id="ubuntu-2204-lts-jammy-jellyfish">Ubuntu 22.04 LTS Jammy Jellyfish</h3>
-
-<p>With every release, we also ship <a href="https://github.com/precice/precice/releases">binary packages for Ubuntu 22.04</a>. However, if you still want to build from source, everything is available through the distribution’s repositories:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
-<span class="nb">sudo </span>apt <span class="nb">install </span>build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
-</code></pre></div></div>
-
-<p>The same instructions apply for later Ubuntu releases.</p>
-
-<h3 id="ubuntu-2004-lts-focal-fossa">Ubuntu 20.04 LTS Focal Fossa</h3>
-
-<p>Follow the same instructions as for Ubuntu 22.04.</p>
-
-<h3 id="ubuntu-1804-bionic-beaver">Ubuntu 18.04 Bionic Beaver</h3>
-
-<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-The last release of preCICE to support Ubuntu 18.04 was <a href="https://github.com/precice/precice/releases/tag/v2.3.0">preCICE v2.3.0</a>.
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+preCICE also has pre-compiled <a href="installation-packages.html">system packages</a> in many repositories.
 </div>
 
-<p>With every release, we also ship <a href="https://github.com/precice/precice/releases">binary packages for Ubuntu 18.04</a>.
-However, if you still want to build from source, almost everything is available through the distribution’s repositories:</p>
+<h3 id="arch-linux">Arch Linux</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
-<span class="nb">sudo </span>apt <span class="nb">install </span>build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
-</code></pre></div></div>
+<p>Good news: <a href="https://aur.archlinux.org/packages/precice/">preCICE is already on AUR</a>, so you can directly use or modify the respective <code class="language-plaintext highlighter-rouge">PKGBUILD</code>.</p>
 
-<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>.
-If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
+<p>See also the <a href="https://github.com/precice/ci-images/blob/master/ci-archlinux.dockerfile">Arch Linux Dockerfile used in the preCICE tests</a>.</p>
 
-<h3 id="debian-11-bullseye">Debian 11 Bullseye</h3>
+<p>The same instructions apply to Manjaro, EndeavourOS, and other derived distributions.</p>
 
-<p>Everything is available from the distribution’s repositories:</p>
+<h3 id="debian">Debian</h3>
+
+<p>With every release, we also ship <a href="https://github.com/precice/precice/releases">binary packages for Debian</a>. However, if you still want to build from source, everything is available through the distribution’s repositories:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su
 apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
 apt <span class="nb">install </span>build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 </code></pre></div></div>
 
-<h3 id="debian-10-buster">Debian 10 Buster</h3>
+<p>These instructions are known to work with Debian 10, and should apply to later releases as well (<a href="https://endoflife.date/debian">release history</a>).</p>
 
-<p>In Debian 10.5, almost everything is available through the distribution’s repositories:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su
-apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
-apt <span class="nb">install </span>build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
-</code></pre></div></div>
-
-<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>.
-If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
-
-<h3 id="fedora-36">Fedora 36</h3>
+<h3 id="fedora">Fedora</h3>
 
 <p>In Fedora, everything is available through the distribution’s repositories:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf update
-<span class="nb">sudo </span>dnf <span class="nb">install </span>gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel hdf5-openmpi-devel eigen3-devel python3-devel
+<span class="nb">sudo </span>dnf <span class="nb">install </span>gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel eigen3-devel python3-devel
 </code></pre></div></div>
-
-<p>Note that <code class="language-plaintext highlighter-rouge">hdf5-openmpi-devel</code> is only needed to detect the PETSc installation (<a href="https://github.com/precice/precice.github.io/pull/179#issuecomment-1207865435">details</a>).</p>
 
 <p>Afterwards, start a new terminal, to make MPI discoverable (read more about <a href="https://docs.fedoraproject.org/en-US/neurofedora/mpi/">MPI on Fedora</a>). Before configuring &amp; building preCICE, load MPI using the module:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load mpi/openmpi-x86_64
 </code></pre></div></div>
 
-<p>(if <code class="language-plaintext highlighter-rouge">module</code> is not available, you may need to log out and in again)</p>
+<p>In case <code class="language-plaintext highlighter-rouge">module</code> is not available, you may need to log out and in again first.
+If you use the docker image of fedora, you need to install the support for environment modules: <code class="language-plaintext highlighter-rouge">sudo dnf install environment-modules</code></p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-In case you use the docker image of fedora, you need to install the support for environment modules first: <code class="language-plaintext highlighter-rouge">sudo dnf install environment-modules</code>
-</div>
+<p>These instructions are known to work with Fedora 43, and should apply to later releases as well (<a href="https://endoflife.date/fedora">release history</a>).
+See also the <a href="https://github.com/precice/ci-images/blob/master/ci-fedora.dockerfile">Fedora Dockerfile used in the preCICE tests</a>.</p>
 
-<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a <a href="https://github.com/precice/precice/issues/864">related issue</a>.</p>
+<h3 id="opensuse">OpenSUSE</h3>
 
-<h3 id="rocky-linux-9">Rocky Linux 9</h3>
+<p>In OpenSUSE, things are a bit more complicated (please contribute in this section). Get the basic dependencies:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>zypper refresh
+<span class="nb">sudo </span>zypper <span class="nb">install </span>gcc-c++ make cmake libxml2-devel eigen3-devel
+<span class="nb">sudo </span>zypper <span class="nb">install </span>libboost_log<span class="k">*</span><span class="nt">-devel</span> libboost_thread<span class="k">*</span><span class="nt">-devel</span> libboost_system<span class="k">*</span><span class="nt">-devel</span> libboost_filesystem<span class="k">*</span><span class="nt">-devel</span> libboost_program_options<span class="k">*</span><span class="nt">-devel</span> libboost_test<span class="k">*</span><span class="nt">-devel</span>
+<span class="nb">sudo </span>zypper <span class="nb">install </span>python3-devel python3<span class="k">*</span><span class="nt">-numpy</span>  <span class="c"># optional</span>
+<span class="nb">sudo </span>zypper <span class="nb">install </span>openmpi5-devel                <span class="c"># optional, other versions work as well</span>
+</code></pre></div></div>
+
+<p>If you don’t already have a fitting combination of PETSc (not shown here), disable the respective feature when configuring preCICE:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DPRECICE_FEATURE_PETSC_MAPPING</span><span class="o">=</span>OFF &lt;options as usual&gt;
+</code></pre></div></div>
+
+<p>or <a href="installation-source-dependencies.html#build-petsc-from-source">get PETSc from source</a>. See also a related <a href="https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4">discussion on the preCICE forum</a> for more details.</p>
+
+<p>These instructions are known to work with OpenSUSE Leap 16, and should apply to later releases as well (<a href="https://endoflife.date/opensuse">release history</a>).</p>
+
+<h3 id="rocky-linux">Rocky Linux</h3>
 
 <p>Rocky Linux very closely follows the conventions previously set by CentOS. We first need to install common development tools, enable the <a href="https://wiki.rockylinux.org/rocky/repo/">CRB repository</a> (only for Eigen), install the dependencies, load the MPI module, and continue with building preCICE.</p>
 
@@ -2166,9 +2244,11 @@ In case you use the docker image of fedora, you need to install the support for 
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Then, install the available preCICE dependencies:</p>
+    <p>Then, enable the CRB repostitory to install Eigen3, and the install the rest of the available preCICE dependencies:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf <span class="nb">install </span>cmake libxml2-devel boost-devel openmpi-devel eigen3-devel python3-devel
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf config-manager <span class="nt">--set-enabled</span> crb
+<span class="nb">sudo </span>dnf <span class="nb">install </span>eigen3-devel
+<span class="nb">sudo </span>dnf <span class="nb">install </span>cmake libxml2-devel boost-devel openmpi-devel python3-devel
 </code></pre></div>    </div>
   </li>
   <li>
@@ -2182,130 +2262,20 @@ In case you use the docker image of fedora, you need to install the support for 
   </li>
 </ol>
 
-<h3 id="centos-8">CentOS 8</h3>
+<p>These instructions are known to work with Rocky 9, 10, and should apply to later releases as well (<a href="https://endoflife.date/rocky-linux">release history</a>).</p>
 
-<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-The last release of preCICE to support CentOS 8 was <a href="https://github.com/precice/precice/releases/tag/v2.3.0">preCICE v2.3.0</a>.
-</div>
+<h3 id="ubuntu">Ubuntu</h3>
 
-<p>(The same instructions apply also to Rocky Linux 8)</p>
+<p>With every release, we also ship <a href="https://github.com/precice/precice/releases">binary packages for Ubuntu</a>. However, if you still want to build from source, everything is available through the distribution’s repositories:</p>
 
-<p>This system requires to install some tools in a fixed order.</p>
-
-<ol>
-  <li>
-    <p>First, make sure that a few common dependencies are installed.
-You need to enable the <a href="https://serverfault.com/questions/997896/how-to-enable-powertools-repository-in-centos-8">PowerTools</a> repository (for Eigen) and to
-install the <a href="https://serverfault.com/questions/814671/centos-how-do-i-check-if-development-tools-is-installed">Development Tools</a> group (compilers, Git, make, pkg-config, …).</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf update
-<span class="nb">sudo </span>dnf <span class="nb">install </span>dnf-plugins-core
-<span class="nb">sudo </span>dnf groupinstall <span class="s2">"Development Tools"</span>
-<span class="nb">sudo </span>dnf config-manager <span class="nt">--set-enabled</span> powertools
-<span class="nb">sudo </span>dnf update
-</code></pre></div>    </div>
-
-    <p>Note that, instead of <code class="language-plaintext highlighter-rouge">dnf</code>, you can also type <code class="language-plaintext highlighter-rouge">yum</code> with the same options.</p>
-  </li>
-  <li>
-    <p>Then, install the available preCICE dependencies:</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf <span class="nb">install </span>cmake libxml2-devel boost-devel openmpi-devel eigen3-devel python3-devel
-pip3 <span class="nb">install</span> <span class="nt">--user</span> numpy
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Before configuring &amp; building preCICE, load MPI (you may need to log out and in again, if <code class="language-plaintext highlighter-rouge">module</code> is not found):</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load mpi/openmpi-x86_64
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Unfortunately, the PETSc package (<code class="language-plaintext highlighter-rouge">petsc-openmpi-devel</code>) in this distribution is too old. If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc, and build preCICE with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>. If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
-  </li>
-</ol>
-
-<h3 id="centos-7">CentOS 7</h3>
-
-<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-The last release of preCICE to support CentOS 7 was <a href="https://github.com/precice/precice/releases/tag/v2.3.0">preCICE v2.3.0</a>.
-</div>
-
-<p>This system requires to install some tools in a fixed order.</p>
-
-<ol>
-  <li>
-    <p>First install the group ‘Development Tools’.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum groupinstall <span class="s1">'Development Tools'</span>
-<span class="nb">sudo </span>yum update
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Then install available dependencies from the repositories:</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum <span class="nb">install </span>cmake3 libxml2-devel eigen3 openmpi-devel python3-devel boost169-devel
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Then add the following to your <code class="language-plaintext highlighter-rouge">~./bashrc</code>:</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/lib64/openmpi/bin:<span class="nv">$PATH</span>
-<span class="nb">export </span><span class="nv">CC</span><span class="o">=</span>/opt/rh/devtoolset-7/root/usr/bin/gcc
-<span class="nb">export </span><span class="nv">BOOST_LIBRARYDIR</span><span class="o">=</span>/usr/lib64/boost169/
-<span class="nb">export </span><span class="nv">BOOST_INCLUDEDIR</span><span class="o">=</span>/usr/include/boost169/
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Then install install a newer version of gcc using a software development package:</p>
-  </li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>yum <span class="nb">install </span>centos-release-scl
-  <span class="nb">sudo </span>yum <span class="nb">install </span>devtoolset-7
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 </code></pre></div></div>
 
-<p>To enable the new gcc compiler in a terminal:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  scl <span class="nb">enable </span>devtoolset-7 bash
-</code></pre></div></div>
-
-<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
-Use <code class="language-plaintext highlighter-rouge">cmake3</code> instead of <code class="language-plaintext highlighter-rouge">cmake</code> to configure preCICE!
-</div>
-
-<h3 id="opensuse-leap-154">OpenSUSE Leap 15.4</h3>
-
-<p>In OpenSUSE Leap 15.4, things are a bit more complicated (please contribute in this section). Get the basic dependencies:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>zypper refresh
-<span class="nb">sudo </span>zypper <span class="nb">install </span>gcc-c++ make cmake libxml2-devel <span class="se">\</span>
-libboost_log1_75_0-devel libboost_thread1_75_0-devel libboost_system1_75_0-devel libboost_filesystem1_75_0-devel libboost_program_options1_75_0-devel libboost_test1_75_0-devel <span class="se">\</span>
-eigen3-devel python3-devel
-</code></pre></div></div>
-
-<p>Furthermore, Numpy is needed. It can be installed through pip: <code class="language-plaintext highlighter-rouge">pip3 install --user numpy</code>.
-You may need to set the Eigen location when configuring preCICE:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DEIGEN3_INCLUDE_DIR</span><span class="o">=</span>/usr/include/eigen3 &lt;options as usual&gt;
-</code></pre></div></div>
-
-<p>If you don’t already have a fitting combination of MPI and PETSc (not shown here), disable the respective features when configuring preCICE:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DPRECICE_FEATURE_MPI_COMMUNICATION</span><span class="o">=</span>OFF <span class="nt">-DPRECICE_FEATURE_PETSC_MAPPING</span><span class="o">=</span>OFF &lt;options as usual&gt;
-</code></pre></div></div>
-
-<p>See also a related <a href="https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4">discussion on the preCICE forum</a> for more details.</p>
-
-<h3 id="arch-linux">Arch Linux</h3>
-
-<p>(The same applies to Manjaro and other derived distributions)</p>
-
-<p>Good news: <a href="https://aur.archlinux.org/packages/precice/">preCICE is already on AUR</a>, so you can directly use or modify the respective <code class="language-plaintext highlighter-rouge">PKGBUILD</code>.</p>
+<p>These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply to later releases as well (<a href="https://endoflife.date/ubuntu">release history</a>).
+See also the <a href="https://github.com/precice/ci-images/blob/master/ci-ubuntu-2404.dockerfile">Ubuntu Dockerfile used in the preCICE tests</a>.</p>
 
 <h3 id="macos">macOS</h3>
-
-<p>These instructions were written for macOS Catalina (10). We are aware of users using preCICE in newer macOS versions, including macOS Big Sur (11), while our <a href="https://github.com/precice/precice/actions/workflows/build-and-test-mac.yml">automated tests</a> run on the <a href="https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources">GitHub Actions macos-latest runner</a>. Contributions to this section would be particularly helpful.</p>
 
 <p>First, install <code class="language-plaintext highlighter-rouge">XCode Command Line Tools</code> from the <a href="https://developer.apple.com/download/more/">Apple Developer page</a> or from XCode.</p>
 
@@ -2318,6 +2288,11 @@ You may need to set the Eigen location when configuring preCICE:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>port <span class="nb">install </span>cmake eigen3 libxml2 boost petsc openmpi python3 numpy
 </code></pre></div></div>
+
+<p>These instructions were written for macOS Catalina (10) (<a href="https://endoflife.date/macos">release history</a>).
+We are aware of users using preCICE in newer macOS versions, while our <a href="https://github.com/precice/precice/blob/develop/.github/workflows/build-and-test.yml">automated tests</a>
+run on the <a href="https://docs.github.com/en/actions/reference/runners/github-hosted-runners">GitHub Actions macos-latest runner</a>.
+Contributions to this section would be particularly helpful.</p>
 
 
     
@@ -2678,7 +2653,7 @@ You may need to set the Eigen location when configuring preCICE:</p>
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Jan 4, 2026<br>
         Site last updated: Jan 4, 2026
         </p>
       </div>
