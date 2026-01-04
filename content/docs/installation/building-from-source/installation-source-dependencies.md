@@ -25,10 +25,10 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
 | Dependency | Version required | Availability |
 | --- | --- | --- |
 | [C++ compiler](#c-compiler) | C++17 | [C++17 compiler support](https://cppreference.com/w/cpp/compiler_support/17.html) |
-| [CMake](#cmake) | >= 3.22.1 | [![Repology - CMake](https://img.shields.io/repology/repositories/cmake)](https://repology.org/project/cmake/versions) |
-| [Eigen](#eigen) | >= 3.4.0 | [![Repology - Eigen](https://img.shields.io/repology/repositories/eigen)](https://repology.org/project/eigen/versions) |
-| [Boost](#boost) | >= 1.74.0 | [![Repology - Boost](https://img.shields.io/repology/repositories/boost)](https://repology.org/project/boost/versions) |
-| [libxml2](#libxml2) | >= 2 | [![Repology - libxml2](https://img.shields.io/repology/repositories/libxml2)](https://repology.org/project/libxml2/versions) |
+| [CMake](#cmake) | >= 3.22.1 | [![Repology - CMake](https://img.shields.io/repology/repositories/cmake)](https://repology.org/project/cmake/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-cmake-blue)](https://pkgs.org/search/?q=cmake) |
+| [Eigen](#eigen) | >= 3.4.0 | [![Repology - Eigen](https://img.shields.io/repology/repositories/eigen)](https://repology.org/project/eigen/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-eigen3-blue)](https://pkgs.org/search/?q=eigen3) |
+| [Boost](#boost) | >= 1.74.0 | [![Repology - Boost](https://img.shields.io/repology/repositories/boost)](https://repology.org/project/boost/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-libboost-blue)](https://pkgs.org/search/?q=libboost) |
+| [libxml2](#libxml2) | >= 2 | [![Repology - libxml2](https://img.shields.io/repology/repositories/libxml2)](https://repology.org/project/libxml2/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-libxml2-blue)](https://pkgs.org/search/?q=libxml2) |
 
 Note that more recent versions of some dependencies (e.g., Boost) might also need more recent or upcoming releases of preCICE.
 
@@ -37,9 +37,9 @@ Note that more recent versions of some dependencies (e.g., Boost) might also nee
 | Dependency | Required for | Version required | Availability |
 | --- | --- | --- | --- |
 | [MPI](#mpi) | [Communication over MPI](configuration-communication.html) | implementation of MPI-3 | Various [implementations](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) |
-| [PETSc](#petsc) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions) |
-| [Ginkgo](#ginkgo) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 1.8, with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions) |
-| [Python](#python) | [Python Action interface](configuration-action.html#python-callback-interface) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions) |
+| [PETSc](#petsc) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-petsc-blue)](https://pkgs.org/search/?q=petsc) |
+| [Ginkgo](#ginkgo) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 1.8, with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-ginkgo-blue)](https://pkgs.org/search/?q=ginkgo) |
+| [Python](#python) | [Python Action interface](configuration-action.html#python-callback-interface) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions) [![pkgs.org](https://img.shields.io/badge/pkgs.org-python-blue)](https://pkgs.org/search/?q=python) |
 
 {% tip %}
 This documentation concerns preCICE v{{ site.precice_version }}.
