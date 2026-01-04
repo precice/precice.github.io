@@ -285,7 +285,8 @@ Make sure that PETSc, preCICE, and your solvers are all compiled with the same M
 
 preCICE optionally uses [Ginkgo](https://ginkgo-project.github.io/) for GPU- and OpenMP-accelerated [global radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_GINKGO_MAPPING=ON`. Using this feature in preCICE requires additionally [Kokkos](https://kokkos.org/).
 
-Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for [Ginkgo](https://github.com/ginkgo-project/ginkgo/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases). For Kokkos, system packages might be available through your package manager as well.
+Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for [Ginkgo](https://github.com/ginkgo-project/ginkgo/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases).
+For Kokkos, system packages might be available through your package manager as well.
 
 History of required versions:
 
@@ -413,8 +414,6 @@ See also the [Arch Linux Dockerfile used in the preCICE tests](https://github.co
 
 ### macOS
 
-These instructions were written for macOS Catalina (10) ([release history](https://endoflife.date/macos)). We are aware of users using preCICE in newer macOS versions, including macOS Big Sur (11), while our [automated tests](https://github.com/precice/precice/actions/workflows/build-and-test-mac.yml) run on the [GitHub Actions macos-latest runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources). Contributions to this section would be particularly helpful.
-
 First, install `XCode Command Line Tools` from the [Apple Developer page](https://developer.apple.com/download/more/) or from XCode.
 
 You can then install all dependencies using [Homebrew](https://brew.sh/):
@@ -428,3 +427,8 @@ or, alternatively, using [MacPorts](https://www.macports.org/)
 ```bash
 port install cmake eigen3 libxml2 boost petsc openmpi python3 numpy
 ```
+
+These instructions were written for macOS Catalina (10) ([release history](https://endoflife.date/macos)).
+We are aware of users using preCICE in newer macOS versions, while our [automated tests](https://github.com/precice/precice/blob/develop/.github/workflows/build-and-test.yml)
+run on the [GitHub Actions macos-latest runner](https://docs.github.com/en/actions/reference/runners/github-hosted-runners).
+Contributions to this section would be particularly helpful.
