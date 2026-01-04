@@ -329,10 +329,8 @@ In Fedora, everything is available through the distribution's repositories:
 
 ```bash
 sudo dnf update
-sudo dnf install gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel hdf5-openmpi-devel eigen3-devel python3-devel
+sudo dnf install gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel eigen3-devel python3-devel
 ```
-
-Note that `hdf5-openmpi-devel` is only needed to detect the PETSc installation ([details](https://github.com/precice/precice.github.io/pull/179#issuecomment-1207865435)).
 
 Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI on Fedora](https://docs.fedoraproject.org/en-US/neurofedora/mpi/)). Before configuring & building preCICE, load MPI using the module:
 
@@ -340,15 +338,12 @@ Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI
 module load mpi/openmpi-x86_64
 ```
 
-(if `module` is not available, you may need to log out and in again)
-
 {% note %}
-In case you use the docker image of fedora, you need to install the support for environment modules first: `sudo dnf install environment-modules`
+In case `module` is not available, you may need to log out and in again first.
+If you use the docker image of fedora, you need to install the support for environment modules: `sudo dnf install environment-modules`
 {% endnote %}
 
-If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_FEATURE_PETSC_MAPPING=OFF`. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a [related issue](https://github.com/precice/precice/issues/864).
-
-These instructions are known to work with Fedora 36, and should apply for later Fedora releases as well.
+These instructions are known to work with Fedora 43, and should apply for later Fedora releases as well.
 
 ### Rocky Linux
 
