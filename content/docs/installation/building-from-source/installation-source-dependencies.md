@@ -340,10 +340,8 @@ Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI
 module load mpi/openmpi-x86_64
 ```
 
-{% note %}
 In case `module` is not available, you may need to log out and in again first.
 If you use the docker image of fedora, you need to install the support for environment modules: `sudo dnf install environment-modules`
-{% endnote %}
 
 These instructions are known to work with Fedora 43, and should apply to later releases as well ([release history](https://endoflife.date/fedora)).
 See also the [Fedora Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-fedora.dockerfile).
