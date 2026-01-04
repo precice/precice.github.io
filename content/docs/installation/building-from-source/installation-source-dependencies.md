@@ -309,7 +309,7 @@ sudo apt update && \
 sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
 
-These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply for later Ubuntu releases as well.
+These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply to later releases as well ([release history](https://endoflife.date/ubuntu)).
 See also the [Ubuntu Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-ubuntu-2404.dockerfile).
 
 ### Debian
@@ -322,7 +322,7 @@ apt update && \
 apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
 
-These instructions are known to work with Debian 10, and should apply for later Debian releases as well.
+These instructions are known to work with Debian 10, and should apply to later releases as well ([release history](https://endoflife.date/debian)).
 
 ### Fedora
 
@@ -344,7 +344,7 @@ In case `module` is not available, you may need to log out and in again first.
 If you use the docker image of fedora, you need to install the support for environment modules: `sudo dnf install environment-modules`
 {% endnote %}
 
-These instructions are known to work with Fedora 43, and should apply for later Fedora releases as well.
+These instructions are known to work with Fedora 43, and should apply to later releases as well ([release history](https://endoflife.date/fedora)).
 See also the [Fedora Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-fedora.dockerfile).
 
 ### Rocky Linux
@@ -373,7 +373,7 @@ Rocky Linux very closely follows the conventions previously set by CentOS. We fi
 
 4. Unfortunately, [PETSc does not seem to be available in this distribution.](https://pkgs.org/search/?q=petsc), so we need to switch that off later when building preCICE. If you don't plan to use RBF mappings in large parallel cases, you can continue without installing PETSc and build preCICE with `-DPRECICE_FEATURE_PETSC_MAPPING=OFF`. If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-These instructions are known to work with Rocky Linux 9, and should apply for later Rocky releases as well.
+These instructions are known to work with Rocky 9, and should apply to later releases as well ([release history](https://endoflife.date/rocky-linux)).
 
 ### OpenSUSE
 
@@ -401,7 +401,7 @@ cmake -DPRECICE_FEATURE_MPI_COMMUNICATION=OFF -DPRECICE_FEATURE_PETSC_MAPPING=OF
 
 See also a related [discussion on the preCICE forum](https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4) for more details.
 
-These instructions are known to work with OpenSUSE Leap 15.4, and should apply to later OpenSUSE releases as well.
+These instructions are known to work with OpenSUSE Leap 15.4, and should apply to later releases as well ([release history](https://endoflife.date/opensuse)).
 
 ### Arch Linux
 
@@ -413,7 +413,7 @@ See also the [Arch Linux Dockerfile used in the preCICE tests](https://github.co
 
 ### macOS
 
-These instructions were written for macOS Catalina (10). We are aware of users using preCICE in newer macOS versions, including macOS Big Sur (11), while our [automated tests](https://github.com/precice/precice/actions/workflows/build-and-test-mac.yml) run on the [GitHub Actions macos-latest runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources). Contributions to this section would be particularly helpful.
+These instructions were written for macOS Catalina (10) ([release history](https://endoflife.date/macos)). We are aware of users using preCICE in newer macOS versions, including macOS Big Sur (11), while our [automated tests](https://github.com/precice/precice/actions/workflows/build-and-test-mac.yml) run on the [GitHub Actions macos-latest runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources). Contributions to this section would be particularly helpful.
 
 First, install `XCode Command Line Tools` from the [Apple Developer page](https://developer.apple.com/download/more/) or from XCode.
 
