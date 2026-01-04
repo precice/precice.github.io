@@ -52,6 +52,11 @@ In the following steps, we will slowly add more and more calls to the preCICE AP
 Also have a look at the [definite C++ API documentation](https://precice.org/doxygen/main/classprecice_1_1Participant.html).
 {% endtip %}
 
+{% tip %}
+Looking for best practices? There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
+{% endtip %}
+
+
 {% note %}
 This example refers to preCICE v3.x: [see the differences from preCICE v2.x](couple-your-code-porting-v2-3.html).
 {% endnote %}

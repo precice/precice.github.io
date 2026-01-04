@@ -10,6 +10,11 @@ Missing:
 #1352
 -->
 
+{% tip %}
+Reviving that old adapter? Good opportunity to learn about some best practices and make it easier to reuse and maintain!
+There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
+{% endtip %}
+
 ## preCICE API
 
 The following is a diff of how an adapter-port could look like. The guide continues underneath the code.
