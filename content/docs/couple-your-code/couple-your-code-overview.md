@@ -22,6 +22,10 @@ There is a [step-by-step guide](couple-your-code-preparing-your-solver.html), wh
 
 There is a list of advanced topics. These topics are not all relevant to every user. They deal with specific problems for certain types of codes: how to handle FEM meshes, how to handle moving meshes, etc.  
 
+## What best practices should I follow?
+
+There are standardized [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](https://precice.org/community-guidelines-application-cases.html).
+
 ## You want to port your adapter to a newer preCICE version?
 
 There are specific pages on [porting adapters from preCICE between major versions](couple-your-code-porting-overview.html).

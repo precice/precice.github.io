@@ -6,6 +6,11 @@ summary: "This guide helps you to upgrade from preCICE 1.x to preCICE 2.x."
 redirect_from: couple-your-code-porting-adapters.html
 ---
 
+{% tip %}
+Reviving that old adapter? Good opportunity to learn about some best practices and make it easier to reuse and maintain!
+There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
+{% endtip %}
+
 ## preCICE API
 
 ### Single-step setup
