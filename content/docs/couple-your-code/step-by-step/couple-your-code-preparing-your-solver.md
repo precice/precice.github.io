@@ -56,7 +56,6 @@ Also have a look at the [definite C++ API documentation](https://precice.org/dox
 Looking for best practices? There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
 {% endtip %}
 
-
 {% note %}
 This example refers to preCICE v3.x: [see the differences from preCICE v2.x](couple-your-code-porting-v2-3.html).
 {% endnote %}
