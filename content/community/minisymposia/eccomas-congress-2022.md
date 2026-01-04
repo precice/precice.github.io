@@ -6,7 +6,9 @@ permalink: eccomas-congress-2022.html
 toc: false
 ---
 
-The [ECCOMAS Congress 2022](http://www.eccomas2022.org/frontal/default.asp) is scheduled for June 5-9, 2022, and will take place in Oslo, Norway. Similar to previous ECCOMAS conferences, we are again organizing a minisymposium [Multi-physics simulations with the coupling library preCICE](http://www.eccomas2022.org/admin/Files/FileAbstract/MS46.pdf).
+The [ECCOMAS Congress 2022](http://www.eccomas2022.org/frontal/default.asp) took place between June 5-9, 2022, in Oslo, Norway. Similar to previous ECCOMAS conferences, we organized a minisymposium [Multi-physics simulations with the coupling library preCICE](http://www.eccomas2022.org/admin/Files/FileAbstract/MS46.pdf).
+
+[Conference proceedings](https://www.scipedia.com/sj/eccomas2022)
 
 ## The invited session
 

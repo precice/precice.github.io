@@ -8,6 +8,8 @@ toc: false
 
 The [ECCOMAS WCCM 2020](https://web.archive.org/web/20201203110253/https://www.wccm-eccomas2020.org/frontal/MSList.as) was originally scheduled for summer 2020 in Paris, but was moved to January 11-15, 2021 in a virtual format. Continuing the tradition, we organized a minisymposium (MS202) "[Multiphysics simulations with the coupling library preCICE](https://web.archive.org/web/20220517234111/http://wccm-eccomas2020.org/admin/Files/FileAbstract/a202.pdf)".
 
+ [Conference proceedings](https://www.scipedia.com/sj/wccm-eccomas2020)
+
 ## The minisymposium
 
 Thanks to the WCCM organizers, authors were given access to their recorded talks to be shared with the public. The links of the titles below lead to the recordings on SlideLive.

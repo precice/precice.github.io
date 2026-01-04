@@ -6,9 +6,9 @@ permalink: iacm-wccm-2024.html
 toc: false
 ---
 
-The [WCCM 2024 / PANACM 2024](https://wccm2024.usacm.org/) will take place in Vancouver, Canada, between July 21-26.
+The [WCCM 2024 / PANACM 2024](https://wccm2024.usacm.org/) took place in Vancouver, Canada, between July 21-26.
 
-We are again organizing a preCICE minisymposium: [Multi-Physics and Multi-Scale Simulations with the Coupling Library preCICE](https://storage.googleapis.com/usacm_static_shared/wccm2024/MS_0415.pdf) (0415). Preliminary schedule:
+We organized a preCICE minisymposium: [Multi-Physics and Multi-Scale Simulations with the Coupling Library preCICE](https://storage.googleapis.com/usacm_static_shared/wccm2024/MS_0415.pdf) (0415). Schedule:
 
 - [Session 1](https://events.rdmobile.com/Sessions/Details/2422120) (TS7, Wed 9:45-11:45):
   - A quick introduction to the coupling library preCICE and the minisymposium (Gerasimos Chourdakis, University of Stuttgart)
@@ -20,7 +20,7 @@ We are again organizing a preCICE minisymposium: [Multi-Physics and Multi-Scale 
   - Flexible macro-micro coupling for spatial simulation of the liver (Steffen Gerhäusser, University of Stuttgart)
   - A coupled two-muscle-one-tendon model of the agonist-antagonist myoneural interface (Carme Homs Pons, University of Stuttgart)
 
-Next to the minisymposium, we are also organizing a [full-day training course](https://wccm2024.usacm.org/short-courses) in the context of the conference and we are contributing a general poster about preCICE and the new [preECO project](https://precice.discourse.group/t/shape-the-future-of-the-precice-ecosystem-the-preeco-project/2019/1).
+Next to the minisymposium, we organized a [full-day training course](https://wccm2024.usacm.org/short-courses) in the context of the conference and we contributed a general poster about preCICE and the new [preECO project](https://precice.discourse.group/t/shape-the-future-of-the-precice-ecosystem-the-preeco-project/2019/1).
 
 Other talks mentioning preCICE in their abstract:
 
