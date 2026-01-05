@@ -30,7 +30,8 @@ Before [running a simulation](running-simple.html) again, remove this directory 
 
 ## Iterations log
 
-Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.
+The files `precice-PARTICIPANT-iterations.log` log how many iterations an [implicit coupling scheme](configuration-coupling.html) took per coupling time window,
+if that coupling time window converged, and more information about the quasi-Newton [acceleration](configuration-acceleration.html) system (if used).
 
 An example file (example from the 2D [perpendicular-flap tutorial](tutorials-perpendicular-flap.html)):
 
@@ -56,7 +57,7 @@ Further reading: [quasi-Newton configuration](configuration-acceleration.html#qu
 
 ## Convergence log
 
-Information per iteration with current residuals (only for `second` participant in an implicit coupling).
+The files `precice-PARTICIPANT-convergence.log` log the residuals of every [implicit coupling scheme](configuration-coupling.html) iteration (only from the `second` participant).
 
 An example file (example from the 2D [perpendicular-flap tutorial](tutorials-perpendicular-flap.html)):
 
@@ -82,8 +83,8 @@ An example file (example from the 2D [perpendicular-flap tutorial](tutorials-per
 ```
 
 - `TimeWindow` is the time window counter.
-- `Iteration` is the coupling iteration counter within each time window. So, in the first time window, 6 iterations were necessary to converge, in the second time window 3.
-- And then two convergence measure are defined in the example. Two relative ones -- hence the `...Rel(...)`. The two columns `ResRel(Temperature)` and `RelRel(Force)` give the relative residual for temperature and heat flux, respectively, at the start of each iteration.
+- `Iteration` is the coupling iteration counter within each time window.
+- And then two convergence measure are defined in the example. Two relative ones -- hence the `...Rel(...)`. The two columns `ResRel(Solid-Mesh:Displacement)` and `ResRel(Solid-Mesh:Force)` give the relative residual for displacement and force, respectively, at the start of each iteration.
 
 ## Acceleration information
 
