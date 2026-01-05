@@ -7,16 +7,19 @@ summary: "During runtime, preCICE writes different output files. On this page, w
 
 ## Overview of output files
 
-If the participant's name is `MySolver`, preCICE creates the following files:
+During a simulation, preCICE will create the following files and directories, depending on its configuration:
 
 - `precice-run/` (during initialization)
 - `precice-MySolver-iterations.log` (only in an [implicit coupling scheme](configuration-coupling.html))
 - `precice-MySolver-convergence.log` (only from the `second` participant in an [implicit coupling scheme](configuration-coupling.html))
+- `precice-accelerationInfo.log` (only if enabled in the source code)
 - `precice-MySolver-watchpoint-NAME.log` (if [watchpoints](configuration-watchpoint.html) are defined)
 - `precice-profiling/` (if [profiling](tooling-performance-analysis.html) is enabled)
-- exported `.vtu` or similar files (if [exports](configuration-export.html) are defined)
+- exported `.vtu` or similar files (if [exports](configuration-export.html) are defined, optionally in a directory such as `precice-exports/`)
 
-Let's look at them in detail.
+where `MySolver` refers to the coupling participant, and `NAME` is user-defined.
+
+Let's look at these files in detail.
 
 ## precice-MySolver-iterations.log
 
