@@ -126,12 +126,18 @@ Read about [previous versions](fundamentals-previous-versions.html) or [how to u
 
 For older scripts that rely on these files, the following historical information might be useful:
 
-- Starting from preCICE [2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0):
-  - The formatting of the numbers in the `precice-PARTICIPANT-iterations.log` and `precice-PARTICIPANT-convergence.log` changed from an arbitrary to a fixed column width.
-  - The formatting of the numbers in `precice-PARTICIPANT-convergence.log` changed from a decimal to a fixed scientific format.
-- In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier:
-  - Instead of `precice-PARTICIPANT-events.json`, two performance output files were used: `precice-PARTICIPANT-events.log` and `precice-PARTICIPANT-eventTimings.log`.
-- In preCICE [v1.2.0](https://github.com/precice/precice/releases/tag/v1.2.0) and earlier, slightly different names were used:
+- Before preCICE [v3.3.0](https://github.com/precice/precice/blob/develop/CHANGELOG.md#330):
+  - `precice-profiling/PARTICIPANT-RANK-N.txt` were named `precice-profiling/PARTICIPANT-RANK-N.json`. The output files of the profiling post-processing tool were different.
+- Before preCICE [v3.0.0](https://github.com/precice/precice/blob/develop/CHANGELOG.md#300):
+  - `precice-profiling` was named `precice-events`, and `precice-PARTICIPANT-profiling.json` was `precice-PARTICIPANT-events.json`.
+- Before preCICE [v2.3.0](https://github.com/precice/precice/blob/develop/CHANGELOG.md#230):
+  - `precice-PARTICIPANT-iterations.log` and `precice-PARTICIPANT-convergence.log` had an arbitrary column format, instead of now fixed column width.
+  - `precice-PARTICIPANT-convergence.log` had decimal format, instead of now fixed scientific format.
+- Before preCICE [v2.1.0](https://github.com/precice/precice/blob/b86d874258d077fab68b36726f31b9b882289e22/CHANGELOG.md#210):
+  - `precice-PARTICIPANT-events-summary.log` was only part of the screen output.
+- Before preCICE [v1.4.0](https://github.com/precice/precice/blob/develop/CHANGELOG.md#140):
+  - `precice-PARTICIPANT-events.json` was `precice-PARTICIPANT-events.log` and `precice-PARTICIPANT-eventTimings.log`.
+- Before preCICE [v1.3.0](https://github.com/precice/precice/blob/develop/CHANGELOG.md#130):
   - `precice-PARTICIPANT-iterations.log` was named `iterations-PARTICIPANT.txt`
   - `precice-PARTICIPANT-convergence.log` was named `convergence-PARTICIPANT.txt`
   - `precice-accelerationInfo.log` was named `postProcessingInfo.txt` (and later `precice-postProcessingInfo.log`) included more advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
