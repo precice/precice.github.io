@@ -10,14 +10,14 @@ summary: "During runtime, preCICE writes different output files. On this page, w
 During a simulation, preCICE will create the following files and directories, depending on its configuration:
 
 - `precice-run/` (during initialization)
-- `precice-MySolver-iterations.log` (only in an [implicit coupling scheme](configuration-coupling.html))
-- `precice-MySolver-convergence.log` (only from the `second` participant in an [implicit coupling scheme](configuration-coupling.html))
+- `precice-PARTICIPANT-iterations.log` (only in an [implicit coupling scheme](configuration-coupling.html))
+- `precice-PARTICIPANT-convergence.log` (only from the `second` participant in an [implicit coupling scheme](configuration-coupling.html))
 - `precice-accelerationInfo.log` (only if enabled in the source code)
-- `precice-MySolver-watchpoint-NAME.log` (if [watchpoints](configuration-watchpoint.html) are defined)
+- `precice-PARTICIPANT-watchpoint-NAME.log` (if [watchpoints](configuration-watchpoint.html) are defined)
 - `precice-profiling/` (if [profiling](tooling-performance-analysis.html) is enabled)
 - exported `.vtu` or similar files (if [exports](configuration-export.html) are defined, optionally in a directory such as `precice-exports/`)
 
-where `MySolver` refers to the coupling participant, and `NAME` is user-defined.
+where `PARTICIPANT` refers to the coupling participant, and `NAME` is user-defined.
 
 Let's look at these files in detail.
 
@@ -28,7 +28,7 @@ advertising the network addresses and ports that the requestor can connect to.
 After the communication handshake is completed, the respective files are deleted.
 Before [running a simulation](running-simple.html) again, remove this directory if not empty (e.g., previous failed initialization).
 
-## precice-MySolver-iterations.log
+## precice-PARTICIPANT-iterations.log
 
 Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.
 
@@ -56,7 +56,7 @@ TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumn
 
 Further reading: [quasi-Newton configuration](configuration-acceleration.html#quasi-newton-schemes).
 
-## precice-MySolver-convergence.log
+## precice-PARTICIPANT-convergence.log
 
 Information per iteration with current residuals (only for `second` participant in an implicit coupling).
 
@@ -127,12 +127,12 @@ Read about [previous versions](fundamentals-previous-versions.html) or [how to u
 For older scripts that rely on these files, the following historical information might be useful:
 
 - Starting from preCICE [2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0):
-  - The formatting of the numbers in the `precice-MySolver-iterations.log` and `precice-MySolver-convergence.log` changed from an arbitrary to a fixed column width.
-  - The formatting of the numbers in `precice-MySolver-convergence.log` changed from a decimal to a fixed scientific format.
+  - The formatting of the numbers in the `precice-PARTICIPANT-iterations.log` and `precice-PARTICIPANT-convergence.log` changed from an arbitrary to a fixed column width.
+  - The formatting of the numbers in `precice-PARTICIPANT-convergence.log` changed from a decimal to a fixed scientific format.
 - In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier:
-  - Instead of `precice-MySolver-events.json`, two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
+  - Instead of `precice-PARTICIPANT-events.json`, two performance output files were used: `precice-PARTICIPANT-events.log` and `precice-PARTICIPANT-eventTimings.log`.
 - In preCICE [v1.2.0](https://github.com/precice/precice/releases/tag/v1.2.0) and earlier, slightly different names were used:
-  - `precice-MySolver-iterations.log` was named `iterations-MySolver.txt`
-  - `precice-MySolver-convergence.log` was named `convergence-MySolver.txt`
+  - `precice-PARTICIPANT-iterations.log` was named `iterations-PARTICIPANT.txt`
+  - `precice-PARTICIPANT-convergence.log` was named `convergence-PARTICIPANT.txt`
   - `precice-accelerationInfo.log` was named `postProcessingInfo.txt` (and later `precice-postProcessingInfo.log`) included more advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
-  - `profiling/` information was stored in `Events-MySolver.log` and `EventTimings-MySolver.log`
+  - `profiling/` information was stored in `Events-PARTICIPANT.log` and `EventTimings-PARTICIPANT.log`
