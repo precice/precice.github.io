@@ -56,10 +56,11 @@ Note that inactive nodes can lead to numerical instabilities in some acceleratio
 
 {% version 3.2.0 %} This feature is new in preCICE version 3.2.0. {% endversion %}
 
-{% important %}
+{% experimental %}
 This feature is in active development and not yet feature-complete.
 If you are missing features, please check [the GitHub project](https://github.com/orgs/precice/projects/20) and comment on the issues to help us prioritize.
-{% endimportant %}
+Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet.
+{% endexperimental %}
 
 **Goal** of the remeshing support in preCICE to allow resetting meshes at runtime.
 
