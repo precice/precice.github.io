@@ -124,5 +124,5 @@ For older scripts that rely on these files, the following historical information
 - In preCICE [v1.2.0](https://github.com/precice/precice/releases/tag/v1.2.0) and earlier, slightly different names were used:
   - `precice-MySolver-iterations.log` was named `iterations-MySolver.txt`
   - `precice-MySolver-convergence.log` was named `convergence-MySolver.txt`
+  - `precice-accelerationInfo.log` was named `postProcessingInfo.txt` (and later `precice-postProcessingInfo.log`) included more advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
   - `profiling/` information was stored in `Events-MySolver.log` and `EventTimings-MySolver.log`
-  - `postProcessingInfo.txt` (and later ``precice-postProcessingInfo.log`) included more advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
