@@ -5,7 +5,7 @@ keywords: output, log, iterations, convergence, events
 summary: "During runtime, preCICE writes different output files. On this page, we give an overview of these files and their content."
 ---
 
-## Overview of output files
+## Overview
 
 During a simulation, preCICE will create the following files and directories, depending on its configuration:
 
