@@ -21,14 +21,14 @@ where `PARTICIPANT` refers to the coupling participant, and `NAME` is user-defin
 
 Let's look at these files in detail.
 
-## precice-run directory
+## Exchange directory
 
 This directory is created during initialization by the connector participant in a [communication](configuration-communication.html),
 advertising the network addresses and ports that the requestor can connect to.
 After the communication handshake is completed, the respective files are deleted.
 Before [running a simulation](running-simple.html) again, remove this directory if not empty (e.g., previous failed initialization).
 
-## precice-PARTICIPANT-iterations.log
+## Iterations log
 
 Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.
 
@@ -54,7 +54,7 @@ An example file (example from the 2D [perpendicular-flap tutorial](tutorials-per
 
 Further reading: [quasi-Newton configuration](configuration-acceleration.html#quasi-newton-schemes).
 
-## precice-PARTICIPANT-convergence.log
+## Convergence log
 
 Information per iteration with current residuals (only for `second` participant in an implicit coupling).
 
@@ -85,7 +85,7 @@ An example file (example from the 2D [perpendicular-flap tutorial](tutorials-per
 - `Iteration` is the coupling iteration counter within each time window. So, in the first time window, 6 iterations were necessary to converge, in the second time window 3.
 - And then two convergence measure are defined in the example. Two relative ones -- hence the `...Rel(...)`. The two columns `ResRel(Temperature)` and `RelRel(Force)` give the relative residual for temperature and heat flux, respectively, at the start of each iteration.
 
-## precice-accelerationInfo.log
+## Acceleration information
 
 Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.
 
@@ -120,7 +120,7 @@ To enable this log, uncomment the relevant lines in the destructor `~BaseQNAccel
 
 In the end, you need to recompile preCICE to apply the change.
 
-## precice-PARTICIPANT-watchpoint-NAME.log
+## Watchpoints
 
 If [watchpoints](configuration-watchpoint.html) are configured, these are written with the name `precice-PARTICIPANT-watchpoint-NAME.log`,
 in the working directory of the respective participant.
@@ -137,7 +137,7 @@ It has the format (example from the 2D [perpendicular-flap tutorial](tutorials-p
 ...
 ```
 
-## precice-profiling/*
+## Profiling
 
 Recorded events of all participants and ranks. See page on [performance analysis](tooling-performance-analysis.html) for more information.
 
