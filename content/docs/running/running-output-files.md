@@ -21,6 +21,13 @@ where `MySolver` refers to the coupling participant, and `NAME` is user-defined.
 
 Let's look at these files in detail.
 
+## precice-run directory
+
+This directory is created during initialization by the connector participant in a [communication](configuration-communication.html),
+advertising the network addresses and ports that the requestor can connect to.
+After the communication handshake is completed, the respective files are deleted.
+Before [running a simulation](running-simple.html) again, remove this directory if not empty (e.g., previous failed initialization).
+
 ## precice-MySolver-iterations.log
 
 Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.
