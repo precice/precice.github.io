@@ -92,7 +92,7 @@ If a participant uses at least two meshes, you can define a data mapping between
 
 `nearest-neighbor` means that the nearest-neighbor mapping method is used to map data from `MyMesh1` to `MyMesh2`.
 
-Read more about the [mapping configuration](configuration-mapping.html).
+Read more about the [mapping configuration](configuration-mapping.html), or see the full [configuration reference](configuration-xml-reference.html).
 
 ## 4. Communication
 
@@ -104,7 +104,7 @@ If two participants should exchange data, they need a communication channel.
 <m2n:sockets acceptor="MySolver1" connector="MySolver2" />   
 ```
 
-Read more about the [communication configuration](configuration-communication.html).
+Read more about the [communication configuration](configuration-communication.html), or see the full [configuration reference](configuration-xml-reference.html).
 
 ## 5. Coupling scheme
 
@@ -134,4 +134,4 @@ Both participants need to either `provide` or `receive` the mesh over which data
 
 For implicit coupling, i.e. both solver subiterate in every time window until convergence, the configuration looks a bit more complicated.
 
-Read more about the [coupling scheme configuration](configuration-coupling.html).
+Read more about the [coupling scheme configuration](configuration-coupling.html), or see the full [configuration reference](configuration-xml-reference.html).
