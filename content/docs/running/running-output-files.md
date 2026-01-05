@@ -5,11 +5,13 @@ keywords: output, log, iterations, convergence, events
 summary: "During runtime, preCICE writes different output files. On this page, we give an overview of these files and their content."
 ---
 
+## Overview of output files
+
 If the participant's name is `MySolver`, preCICE creates the following files:
 
 - `precice-run/` (during initialization)
-- `precice-MySolver-iterations.log`
-- `precice-MySolver-convergence.log` (only from the `second` participant in a coupling scheme)
+- `precice-MySolver-iterations.log` (only in an [implicit coupling scheme](configuration-coupling.html))
+- `precice-MySolver-convergence.log` (only from the `second` participant in an [implicit coupling scheme](configuration-coupling.html))
 - `precice-MySolver-watchpoint-NAME.log` (if [watchpoints](configuration-watchpoint.html) are defined)
 - `precice-profiling/` (if [profiling](tooling-performance-analysis.html) is enabled)
 - exported `.vtu` or similar files (if [exports](configuration-export.html) are defined)
@@ -21,10 +23,6 @@ Let's look at them in detail.
 Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.
 
 An example file:
-
-{% version 2.3.0 %}
-Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from an arbitrary to a fixed column width.
-{% endversion %}
 
 ```log
 TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
@@ -38,13 +36,13 @@ TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumn
 ...
 ```
 
-* `TimeWindow` is the time window counter.
-* `TotalIterations` is the total (summed up) number of coupling iterations.
-* `Iterations` is the number of iterations preCICE used in each time window.
-* `Convergence` indicates whether the coupling converged (`1`) or not (`0`) in each time window.
-* `QNColumns` gives the amount of columns in the tall-and-skinny matrices V and W after convergence.
-* `DeletedQNColumns` gives the amount of columns that were filtered out during this time window  (due to a QR filter). In this example no columns were filtered out.
-* `DroppedQNColumns` gives the amount of columns that went out of scope during this time window (due to `max-iterations` or `time-windows-reused`). Here, for example, 5 columns went out of scope during the 6th time window.
+- `TimeWindow` is the time window counter.
+- `TotalIterations` is the total (summed up) number of coupling iterations.
+- `Iterations` is the number of iterations preCICE used in each time window.
+- `Convergence` indicates whether the coupling converged (`1`) or not (`0`) in each time window.
+- `QNColumns` gives the amount of columns in the tall-and-skinny matrices V and W after convergence.
+- `DeletedQNColumns` gives the amount of columns that were filtered out during this time window  (due to a QR filter). In this example no columns were filtered out.
+- `DroppedQNColumns` gives the amount of columns that went out of scope during this time window (due to `max-iterations` or `time-windows-reused`). Here, for example, 5 columns went out of scope during the 6th time window.
 
 Further reading: [quasi-Newton configuration](configuration-acceleration.html#quasi-newton-schemes).
 
@@ -53,10 +51,6 @@ Further reading: [quasi-Newton configuration](configuration-acceleration.html#qu
 Information per iteration with current residuals (only for `second` participant in an implicit coupling).
 
 An example file:
-
-{% version 2.3.0 %}
-Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from a decimal to a fixed scientific format.
-{% endversion %}
 
 ```log
 TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
@@ -70,9 +64,9 @@ TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
 ...
 ```
 
-* `TimeWindow` is the time window counter.
-* `Iteration` is the coupling iteration counter within each time window. So, in the first time window, 6 iterations were necessary to converge, in the second time window 3.
-* And then two convergence measure are defined in the example. Two relative ones -- hence the `...Rel(...)`. The two columns `ResRel(Temperature)` and `RelRel(Force)` give the relative residual for temperature and heat flux, respectively, at the start of each iteration.
+- `TimeWindow` is the time window counter.
+- `Iteration` is the coupling iteration counter within each time window. So, in the first time window, 6 iterations were necessary to converge, in the second time window 3.
+- And then two convergence measure are defined in the example. Two relative ones -- hence the `...Rel(...)`. The two columns `ResRel(Temperature)` and `RelRel(Force)` give the relative residual for temperature and heat flux, respectively, at the start of each iteration.
 
 ## precice-events/*
 
@@ -98,11 +92,11 @@ DOFs (global): 96
 ...
 ```
 
-* `DOFs` number of degrees of freedom at the coupling interface, which equals the number of vertices times the number of variables. Please note that only variables relevant to the acceleration are taken into account.
-* `time window` is the time window counter.
-* `iterations` is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.
-* `used cols` is the amount of the reused columns in the matrices V and W from previous time windows.
-* `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
+- `DOFs` number of degrees of freedom at the coupling interface, which equals the number of vertices times the number of variables. Please note that only variables relevant to the acceleration are taken into account.
+- `time window` is the time window counter.
+- `iterations` is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.
+- `used cols` is the amount of the reused columns in the matrices V and W from previous time windows.
+- `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
 
 To enable this log, uncomment the relevant lines in the destructor `~BaseQNAcceleration()` in [`precice/src/acceleration/BaseQNAcceleration.hpp`](https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.hpp). And add the following lines at the beginning of the same file:
 
@@ -113,10 +107,22 @@ To enable this log, uncomment the relevant lines in the destructor `~BaseQNAccel
 
 In the end, you need to recompile preCICE to apply the change.
 
-{% version 1.3.0 %}
-In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier, instead of `precice-MySolver-events.json`, two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
-{% endversion %}
+## History of output files
 
-{% version 1.2.0 %}
-In preCICE [v1.2.0](https://github.com/precice/precice/releases/tag/v1.2.0) and earlier, slightly different names were used: `iterations-MySolver.txt`,`convergence-MySolver.txt`, `Events-MySolver.log`,`EventTimings-MySolver.log`, and `postProcessingInfo.txt`.
-{% endversion %}
+{% tip %}
+This documentation concerns preCICE v{{ site.precice_version }}.
+Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](couple-your-code-porting-overview.html).
+{% endtip %}
+
+For older scripts that rely on these files, the following historical information might be useful:
+
+- Starting from preCICE [2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0):
+  - The formatting of the numbers in the `precice-MySolver-iterations.log` and `precice-MySolver-convergence.log` changed from an arbitrary to a fixed column width.
+  - The formatting of the numbers in `precice-MySolver-convergence.log` changed from a decimal to a fixed scientific format.
+- In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier:
+  - Instead of `precice-MySolver-events.json`, two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
+- In preCICE [v1.2.0](https://github.com/precice/precice/releases/tag/v1.2.0) and earlier, slightly different names were used:
+  - `precice-MySolver-iterations.log` was named `iterations-MySolver.txt`
+  - `precice-MySolver-convergence.log` was named `convergence-MySolver.txt`
+  - `profiling/` information was stored in `Events-MySolver.log` and `EventTimings-MySolver.log`
+  - `postProcessingInfo.txt` (and later ``precice-postProcessingInfo.log`) included more advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
