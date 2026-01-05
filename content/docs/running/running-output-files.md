@@ -15,7 +15,7 @@ During a simulation, preCICE will create the following files and directories, de
 - `precice-accelerationInfo.log` (only if enabled in the source code)
 - `precice-PARTICIPANT-watchpoint-NAME.log` (if [watchpoints](configuration-watchpoint.html) are defined)
 - `precice-profiling/` (if [profiling](tooling-performance-analysis.html) is enabled)
-- exported `.vtu` or similar files (if [exports](configuration-export.html) are defined, optionally in a directory such as `precice-exports/`)
+- exports, optionally in a directory such as `precice-exports/` (if [exports](configuration-export.html) are defined)
 
 where `PARTICIPANT` refers to the coupling participant, and `NAME` is user-defined.
 
@@ -116,6 +116,16 @@ To enable this log, uncomment the relevant lines in the destructor `~BaseQNAccel
 ```
 
 In the end, you need to recompile preCICE to apply the change.
+## Exports
+
+If [exports](configuration-export.html) are defined, preCICE writes such files in the directory of the participant that defines them,
+or in the specific directory configured (in our examples and tutorials, we use `precice-exports/`).
+
+Most commonly (with `<export:vtu />`), these are:
+
+- `MESH-PARTICIPANT.init.vtu`: The initial state
+- `MESH-PARTICIPANT.dtN.vtu`: One result file per coupling time window
+- `MESH-PARTICIPANT.vtu.series`: A collection of the above
 
 ## History of output files
 
