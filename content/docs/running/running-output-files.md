@@ -88,7 +88,7 @@ An example file (example from the 2D [perpendicular-flap tutorial](tutorials-per
 
 ## Acceleration information
 
-Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.
+The ``precice-accelerationInfo.log` files contain advanced information on the numerical performance of the Quasi-Newton coupling (if used and the logging is enabled in the source code). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.
 
 An example file (unrelated to the rest of the examples):
 
@@ -110,16 +110,16 @@ DOFs (global): 96
 - `time window` is the time window counter.
 - `iterations` is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.
 - `used cols` is the amount of the reused columns in the matrices V and W from previous time windows.
-- `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
+- `del cols` gives the amount of columns that were filtered out during this time window (due to a QR filter).
 
-To enable this log, uncomment the relevant lines in the destructor `~BaseQNAcceleration()` in [`precice/src/acceleration/BaseQNAcceleration.hpp`](https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.hpp). And add the following lines at the beginning of the same file:
+To enable this log, uncomment the relevant lines in the destructor `~BaseQNAcceleration()` in [`precice/src/acceleration/BaseQNAcceleration.hpp`](https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.hpp) and add the following lines at the beginning of the same file:
 
 ```cpp
 #include <iomanip>
 #include "utils/IntraComm.hpp"
 ```
 
-In the end, you need to recompile preCICE to apply the change.
+In the end, you need to rebuild preCICE to apply the change.
 
 ## Watchpoints
 
