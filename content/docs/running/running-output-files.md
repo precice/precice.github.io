@@ -7,6 +7,15 @@ summary: "During runtime, preCICE writes different output files. On this page, w
 
 If the participant's name is `MySolver`, preCICE creates the following files:
 
+- `precice-run/` (during initialization)
+- `precice-MySolver-iterations.log`
+- `precice-MySolver-convergence.log` (only from the `second` participant in a coupling scheme)
+- `precice-MySolver-watchpoint-NAME.log` (if [watchpoints](configuration-watchpoint.html) are defined)
+- `precice-profiling/` (if [profiling](tooling-performance-analysis.html) is enabled)
+- exported `.vtu` or similar files (if [exports](configuration-export.html) are defined)
+
+Let's look at them in detail.
+
 ## precice-MySolver-iterations.log
 
 Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.
