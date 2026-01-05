@@ -23,7 +23,7 @@ Let's look at these files in detail.
 
 ## Exchange directory
 
-This directory is created during initialization by the connector participant in a [communication](configuration-communication.html),
+The exchange directory `precice-run/` is created during initialization by the connector participant in a [communication](configuration-communication.html),
 advertising the network addresses and ports that the requestor can connect to.
 After the communication handshake is completed, the respective files are deleted.
 Before [running a simulation](running-simple.html) again, remove this directory if not empty (e.g., previous failed initialization).
@@ -51,7 +51,7 @@ An example file (example from the 2D [perpendicular-flap tutorial](tutorials-per
 - `Convergence` indicates whether the coupling converged (`1`) or not (`0`) in each time window.
 - `QNColumns` gives the amount of columns in the tall-and-skinny matrices V and W after convergence.
 - `DeletedQNColumns` gives the amount of columns that were filtered out during this time window  (due to a QR filter). In this example no columns were filtered out.
-- `DroppedQNColumns` gives the amount of columns that went out of scope during this time window (due to `max-iterations` or `time-windows-reused`). Here, for example, 5 columns went out of scope during the 6th time window.
+- `DroppedQNColumns` gives the amount of columns that went out of scope during this time window (due to `max-iterations` or `time-windows-reused`).
 
 Further reading: [quasi-Newton configuration](configuration-acceleration.html#quasi-newton-schemes).
 
@@ -88,7 +88,7 @@ An example file (example from the 2D [perpendicular-flap tutorial](tutorials-per
 
 ## Acceleration information
 
-The ``precice-accelerationInfo.log` files contain advanced information on the numerical performance of the Quasi-Newton coupling (if used and the logging is enabled in the source code). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.
+The `precice-accelerationInfo.log` files contain advanced information on the numerical performance of the Quasi-Newton coupling (if used and the logging is enabled in the source code). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.
 
 An example file (unrelated to the rest of the examples):
 
@@ -108,7 +108,7 @@ DOFs (global): 96
 
 - `DOFs` number of degrees of freedom at the coupling interface, which equals the number of vertices times the number of variables. Please note that only variables relevant to the acceleration are taken into account.
 - `time window` is the time window counter.
-- `iterations` is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.
+- `iterations` is the coupling iteration counter within each time window.
 - `used cols` is the amount of the reused columns in the matrices V and W from previous time windows.
 - `del cols` gives the amount of columns that were filtered out during this time window (due to a QR filter).
 
@@ -173,11 +173,11 @@ For older scripts that rely on these files, the following historical information
   - `precice-PARTICIPANT-iterations.log` and `precice-PARTICIPANT-convergence.log` had an arbitrary column format, instead of now fixed column width.
   - `precice-PARTICIPANT-convergence.log` had decimal format, instead of now fixed scientific format.
 - Before preCICE [v2.1.0](https://github.com/precice/precice/blob/b86d874258d077fab68b36726f31b9b882289e22/CHANGELOG.md#210):
-  - `precice-PARTICIPANT-events-summary.log` was only part of the screen output.
+  - `precice-PARTICIPANT-events-summary.log` were only part of the screen output.
 - Before preCICE [v1.4.0](https://github.com/precice/precice/blob/develop/CHANGELOG.md#140):
-  - `precice-PARTICIPANT-events.json` was `precice-PARTICIPANT-events.log` and `precice-PARTICIPANT-eventTimings.log`.
+  - `precice-PARTICIPANT-events.json` were `precice-PARTICIPANT-events.log` and `precice-PARTICIPANT-eventTimings.log`.
 - Before preCICE [v1.3.0](https://github.com/precice/precice/blob/develop/CHANGELOG.md#130):
-  - `precice-PARTICIPANT-iterations.log` was named `iterations-PARTICIPANT.txt`
-  - `precice-PARTICIPANT-convergence.log` was named `convergence-PARTICIPANT.txt`
+  - `precice-PARTICIPANT-iterations.log` were named `iterations-PARTICIPANT.txt`
+  - `precice-PARTICIPANT-convergence.log` were named `convergence-PARTICIPANT.txt`
   - `precice-accelerationInfo.log` was named `postProcessingInfo.txt` (and later `precice-postProcessingInfo.log`) included more advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
   - `profiling/` information was stored in `Events-PARTICIPANT.log` and `EventTimings-PARTICIPANT.log`
