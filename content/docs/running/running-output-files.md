@@ -78,10 +78,6 @@ TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
 - `Iteration` is the coupling iteration counter within each time window. So, in the first time window, 6 iterations were necessary to converge, in the second time window 3.
 - And then two convergence measure are defined in the example. Two relative ones -- hence the `...Rel(...)`. The two columns `ResRel(Temperature)` and `RelRel(Force)` give the relative residual for temperature and heat flux, respectively, at the start of each iteration.
 
-## precice-events/*
-
-Recorded events of all participants and ranks. See page on [performance analysis](tooling-performance-analysis.html) for more information.
-
 ## precice-accelerationInfo.log
 
 Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.
@@ -116,6 +112,14 @@ To enable this log, uncomment the relevant lines in the destructor `~BaseQNAccel
 ```
 
 In the end, you need to recompile preCICE to apply the change.
+
+## precice-profiling/*
+
+Recorded events of all participants and ranks. See page on [performance analysis](tooling-performance-analysis.html) for more information.
+
+These files have the format `PARTICIPANT-RANK-N.txt`. By default, they are stored in a `precice-profiling/` directory,
+in the working directory of each participant. The respective performance analysis tools produce intermediate and result files as well.
+
 ## Exports
 
 If [exports](configuration-export.html) are defined, preCICE writes such files in the directory of the participant that defines them,
