@@ -32,17 +32,15 @@ Before [running a simulation](running-simple.html) again, remove this directory 
 
 Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.
 
-An example file:
+An example file (example from the 2D [perpendicular-flap tutorial](tutorials-perpendicular-flap.html)):
 
 ```log
-TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
-     1       5       5       1       0       0       0
-     2      10       5       1       0       0       0
-     3      15       5       1       0       0       0
-     4      20       5       1       0       0       0
-     5      24       4       1       0       0       0
-     6      28       4       1       0       0       0
-     7      32       4       1       0       0       0
+  TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
+     1       4       4       1       3       0       0
+     2       7       3       1       4       1       0
+     3      10       3       1       6       0       0
+     4      13       3       1       8       0       0
+     5      16       3       1      10       0       0
 ...
 ```
 
@@ -60,17 +58,26 @@ Further reading: [quasi-Newton configuration](configuration-acceleration.html#qu
 
 Information per iteration with current residuals (only for `second` participant in an implicit coupling).
 
-An example file:
+An example file (example from the 2D [perpendicular-flap tutorial](tutorials-perpendicular-flap.html)):
 
 ```log
-TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
-     1       1  1.00000000e+00  1.00000000e+00
-     1       2  2.36081866e-03  4.61532554e-01
-     1       3  1.76770050e-03  2.20718535e-03
-     1       4  8.24839318e-06  4.83731693e-04
-     1       5  1.38649284e-06  3.03987119e-05
-     2       1  2.02680329e-03  1.14463674e+00
-     2       2  1.10152875e-03  4.53255279e-01
+  TimeWindow  Iteration  ResRel(Solid-Mesh:Displacement)  ResRel(Solid-Mesh:Force)
+     1       1              inf   1.00000000e+00
+     1       2   1.00000000e+00   5.00000000e-01
+     1       3   5.00000000e-01   6.54332720e-03
+     1       4   8.11693686e-04   2.69838168e-04
+     2       1   3.44371401e-01   2.54887282e+00
+     2       2   1.38165157e-01   2.61749833e-03
+     2       3   3.17097088e-04   1.87206769e-03
+     3       1   4.35700354e-01   5.15689928e-01
+     3       2   1.37742944e-02   7.38243695e-03
+     3       3   2.39573559e-04   4.28219646e-04
+     4       1   3.69981564e-01   1.26171987e-01
+     4       2   1.21284869e-03   1.22056631e-02
+     4       3   8.56506268e-05   5.57929995e-04
+     5       1   2.73443741e-01   7.65040124e-02
+     5       2   2.45034099e-04   5.28876243e-03
+     5       3   9.27789960e-05   6.07767123e-04
 ...
 ```
 
@@ -82,7 +89,7 @@ TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
 
 Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.
 
-An example file:
+An example file (unrelated to the rest of the examples):
 
 ```log
 --------
@@ -112,6 +119,23 @@ To enable this log, uncomment the relevant lines in the destructor `~BaseQNAccel
 ```
 
 In the end, you need to recompile preCICE to apply the change.
+
+## precice-PARTICIPANT-watchpoint-NAME.log
+
+If [watchpoints](configuration-watchpoint.html) are configured, these are written with the name `precice-PARTICIPANT-watchpoint-NAME.log`,
+in the working directory of the respective participant.
+
+It has the format (example from the 2D [perpendicular-flap tutorial](tutorials-perpendicular-flap.html)):
+
+```log
+  Time  Coordinate0  Coordinate1  Displacement0  Displacement1  Force0  Force1
+ 0.00000000e+00   0.00000000e+00   1.00000000e+00   0.00000000e+00   0.00000000e+00   0.00000000e+00   0.00000000e+00
+ 1.00000000e-02   0.00000000e+00   1.00000000e+00   1.40209082e-03   2.53740150e-06   2.03655856e+01  -1.52020001e+01
+ 2.00000000e-02   0.00000000e+00   1.00000000e+00   1.45349259e-03   9.20233008e-05   1.39714999e+01   3.19717624e+01
+ 3.00000000e-02   0.00000000e+00   1.00000000e+00   2.24703291e-03   1.04481990e-04   1.06942430e+01   2.48601963e+01
+ 4.00000000e-02   0.00000000e+00   1.00000000e+00   3.46697879e-03   1.34304672e-04   9.60776463e+00   2.14353495e+01
+...
+```
 
 ## precice-profiling/*
 
