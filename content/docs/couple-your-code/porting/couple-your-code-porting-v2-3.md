@@ -211,6 +211,8 @@ error: ‘class precice::Participant’ has no member named ‘initializeData’
 
 ## preCICE configuration file
 
+See the [tutorials](tutorials.html) for some examples, and the [configuration reference](configuration-xml-reference.html) for more details.
+
 - The XML tag `<solver-interface>` was removed and all underlying functionality was moved to the `<precice-configuration>` tag. Remove the lines including `<solver-interface>` and `</solver-interface>`, and move any attributes (such as `experimental`) from the `solver-interface` to the `precice-configuration` tag. Move the `sync-mode` attribute to the new `<profiling>` tag (see below).
 - The `dimensions` configuration is now defined per mesh. Move the `dimensions="2"` or `dimensions="3"` from the `<solver-interface>` tag to each `<mesh>` tag: `<mesh name="MeshOne" dimensions="3">`.
 - Rename the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`.
