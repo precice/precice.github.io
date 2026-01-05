@@ -1703,9 +1703,10 @@ $('#toc').on('click', 'a', function() {
 <span class="nb">cd </span>fmi-runner
 </code></pre></div></div>
 
-<p>To use <code class="language-plaintext highlighter-rouge">pip</code> for the installation, run the command:</p>
+<p>To use <code class="language-plaintext highlighter-rouge">pip</code> for the installation, create a <a href="https://docs.python.org/3/library/venv.html#creating-virtual-environments">virtual environment</a> and install the package:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">-e</span> <span class="nb">.</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv .venv <span class="o">&amp;&amp;</span> <span class="nb">.</span> .venv/bin/activate
+pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
 </code></pre></div></div>
 
 <p>The editable flag <code class="language-plaintext highlighter-rouge">-e</code> allows you to update the FMI runner by pulling the repository.</p>
