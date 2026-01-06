@@ -1629,33 +1629,51 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 06 Jan 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <p>If the participant’s name is <code class="language-plaintext highlighter-rouge">MySolver</code>, preCICE creates the following files:</p>
+   <h2 id="overview">Overview</h2>
 
-<h2 id="precice-mysolver-iterationslog">precice-MySolver-iterations.log</h2>
+<p>During a simulation, preCICE will create the following files and directories, depending on its configuration:</p>
 
-<p>Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">precice-run/</code> (during initialization)</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-iterations.log</code> (only in an <a href="configuration-coupling.html">implicit coupling scheme</a>)</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-convergence.log</code> (only from the <code class="language-plaintext highlighter-rouge">second</code> participant in an <a href="configuration-coupling.html">implicit coupling scheme</a>)</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-accelerationInfo.log</code> (only if enabled in the source code)</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-watchpoint-NAME.log</code> (if <a href="configuration-watchpoint.html">watchpoints</a> are defined)</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-profiling/</code> (if <a href="tooling-performance-analysis.html">profiling</a> is enabled)</li>
+  <li>exports, optionally in a directory such as <code class="language-plaintext highlighter-rouge">precice-exports/</code> (if <a href="configuration-export.html">exports</a> are defined)</li>
+</ul>
 
-<p>An example file:</p>
+<p>where <code class="language-plaintext highlighter-rouge">PARTICIPANT</code> refers to the coupling participant, and <code class="language-plaintext highlighter-rouge">NAME</code> is user-defined.</p>
 
-<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
-Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from an arbitrary to a fixed column width.
-</div>
+<p>Let’s look at these files in detail.</p>
 
-<pre><code class="language-log">TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
-     1       5       5       1       0       0       0
-     2      10       5       1       0       0       0
-     3      15       5       1       0       0       0
-     4      20       5       1       0       0       0
-     5      24       4       1       0       0       0
-     6      28       4       1       0       0       0
-     7      32       4       1       0       0       0
+<h2 id="exchange-directory">Exchange directory</h2>
+
+<p>The exchange directory <code class="language-plaintext highlighter-rouge">precice-run/</code> is created during initialization by the connector participant in a <a href="configuration-communication.html">communication</a>,
+advertising the network addresses and ports that the requestor can connect to.
+After the communication handshake is completed, the respective files are deleted.
+Before <a href="running-simple.html">running a simulation</a> again, remove this directory if not empty (e.g., previous failed initialization).</p>
+
+<h2 id="iterations-log">Iterations log</h2>
+
+<p>The files <code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-iterations.log</code> log how many iterations an <a href="configuration-coupling.html">implicit coupling scheme</a> took per coupling time window,
+if that coupling time window converged, and more information about the quasi-Newton <a href="configuration-acceleration.html">acceleration</a> system (if used).</p>
+
+<p>An example file (example from the 2D <a href="tutorials-perpendicular-flap.html">perpendicular-flap tutorial</a>):</p>
+
+<pre><code class="language-log">  TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
+     1       4       4       1       3       0       0
+     2       7       3       1       4       1       0
+     3      10       3       1       6       0       0
+     4      13       3       1       8       0       0
+     5      16       3       1      10       0       0
 ...
 </code></pre>
 
@@ -1666,47 +1684,48 @@ Starting from preCICE version 2.3.0, the formatting of the numbers in these log 
   <li><code class="language-plaintext highlighter-rouge">Convergence</code> indicates whether the coupling converged (<code class="language-plaintext highlighter-rouge">1</code>) or not (<code class="language-plaintext highlighter-rouge">0</code>) in each time window.</li>
   <li><code class="language-plaintext highlighter-rouge">QNColumns</code> gives the amount of columns in the tall-and-skinny matrices V and W after convergence.</li>
   <li><code class="language-plaintext highlighter-rouge">DeletedQNColumns</code> gives the amount of columns that were filtered out during this time window  (due to a QR filter). In this example no columns were filtered out.</li>
-  <li><code class="language-plaintext highlighter-rouge">DroppedQNColumns</code> gives the amount of columns that went out of scope during this time window (due to <code class="language-plaintext highlighter-rouge">max-iterations</code> or <code class="language-plaintext highlighter-rouge">time-windows-reused</code>). Here, for example, 5 columns went out of scope during the 6th time window.</li>
+  <li><code class="language-plaintext highlighter-rouge">DroppedQNColumns</code> gives the amount of columns that went out of scope during this time window (due to <code class="language-plaintext highlighter-rouge">max-iterations</code> or <code class="language-plaintext highlighter-rouge">time-windows-reused</code>).</li>
 </ul>
 
 <p>Further reading: <a href="configuration-acceleration.html#quasi-newton-schemes">quasi-Newton configuration</a>.</p>
 
-<h2 id="precice-mysolver-convergencelog">precice-MySolver-convergence.log</h2>
+<h2 id="convergence-log">Convergence log</h2>
 
-<p>Information per iteration with current residuals (only for <code class="language-plaintext highlighter-rouge">second</code> participant in an implicit coupling).</p>
+<p>The files <code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-convergence.log</code> log the residuals of every <a href="configuration-coupling.html">implicit coupling scheme</a> iteration (only from the <code class="language-plaintext highlighter-rouge">second</code> participant).</p>
 
-<p>An example file:</p>
+<p>An example file (example from the 2D <a href="tutorials-perpendicular-flap.html">perpendicular-flap tutorial</a>):</p>
 
-<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
-Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from a decimal to a fixed scientific format.
-</div>
-
-<pre><code class="language-log">TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
-     1       1  1.00000000e+00  1.00000000e+00
-     1       2  2.36081866e-03  4.61532554e-01
-     1       3  1.76770050e-03  2.20718535e-03
-     1       4  8.24839318e-06  4.83731693e-04
-     1       5  1.38649284e-06  3.03987119e-05
-     2       1  2.02680329e-03  1.14463674e+00
-     2       2  1.10152875e-03  4.53255279e-01
+<pre><code class="language-log">  TimeWindow  Iteration  ResRel(Solid-Mesh:Displacement)  ResRel(Solid-Mesh:Force)
+     1       1              inf   1.00000000e+00
+     1       2   1.00000000e+00   5.00000000e-01
+     1       3   5.00000000e-01   6.54332720e-03
+     1       4   8.11693686e-04   2.69838168e-04
+     2       1   3.44371401e-01   2.54887282e+00
+     2       2   1.38165157e-01   2.61749833e-03
+     2       3   3.17097088e-04   1.87206769e-03
+     3       1   4.35700354e-01   5.15689928e-01
+     3       2   1.37742944e-02   7.38243695e-03
+     3       3   2.39573559e-04   4.28219646e-04
+     4       1   3.69981564e-01   1.26171987e-01
+     4       2   1.21284869e-03   1.22056631e-02
+     4       3   8.56506268e-05   5.57929995e-04
+     5       1   2.73443741e-01   7.65040124e-02
+     5       2   2.45034099e-04   5.28876243e-03
+     5       3   9.27789960e-05   6.07767123e-04
 ...
 </code></pre>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">TimeWindow</code> is the time window counter.</li>
-  <li><code class="language-plaintext highlighter-rouge">Iteration</code> is the coupling iteration counter within each time window. So, in the first time window, 6 iterations were necessary to converge, in the second time window 3.</li>
-  <li>And then two convergence measure are defined in the example. Two relative ones – hence the <code class="language-plaintext highlighter-rouge">...Rel(...)</code>. The two columns <code class="language-plaintext highlighter-rouge">ResRel(Temperature)</code> and <code class="language-plaintext highlighter-rouge">RelRel(Force)</code> give the relative residual for temperature and heat flux, respectively, at the start of each iteration.</li>
+  <li><code class="language-plaintext highlighter-rouge">Iteration</code> is the coupling iteration counter within each time window.</li>
+  <li>And then two convergence measure are defined in the example. Two relative ones – hence the <code class="language-plaintext highlighter-rouge">...Rel(...)</code>. The two columns <code class="language-plaintext highlighter-rouge">ResRel(Solid-Mesh:Displacement)</code> and <code class="language-plaintext highlighter-rouge">ResRel(Solid-Mesh:Force)</code> give the relative residual for displacement and force, respectively, at the start of each iteration.</li>
 </ul>
 
-<h2 id="precice-events">precice-events/*</h2>
+<h2 id="acceleration-information">Acceleration information</h2>
 
-<p>Recorded events of all participants and ranks. See page on <a href="tooling-performance-analysis.html">performance analysis</a> for more information.</p>
+<p>The <code class="language-plaintext highlighter-rouge">precice-accelerationInfo.log</code> files contain advanced information on the numerical performance of the Quasi-Newton coupling (if used and the logging is enabled in the source code). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.</p>
 
-<h2 id="precice-accelerationinfolog">precice-accelerationInfo.log</h2>
-
-<p>Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.</p>
-
-<p>An example file:</p>
+<p>An example file (unrelated to the rest of the examples):</p>
 
 <pre><code class="language-log">--------
 DOFs (global): 96
@@ -1724,26 +1743,100 @@ DOFs (global): 96
 <ul>
   <li><code class="language-plaintext highlighter-rouge">DOFs</code> number of degrees of freedom at the coupling interface, which equals the number of vertices times the number of variables. Please note that only variables relevant to the acceleration are taken into account.</li>
   <li><code class="language-plaintext highlighter-rouge">time window</code> is the time window counter.</li>
-  <li><code class="language-plaintext highlighter-rouge">iterations</code> is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.</li>
+  <li><code class="language-plaintext highlighter-rouge">iterations</code> is the coupling iteration counter within each time window.</li>
   <li><code class="language-plaintext highlighter-rouge">used cols</code> is the amount of the reused columns in the matrices V and W from previous time windows.</li>
-  <li><code class="language-plaintext highlighter-rouge">del cols</code> gives the amount of columns that were filtered out during this time window  (due to a QR filter).</li>
+  <li><code class="language-plaintext highlighter-rouge">del cols</code> gives the amount of columns that were filtered out during this time window (due to a QR filter).</li>
 </ul>
 
-<p>To enable this log, uncomment the relevant lines in the destructor <code class="language-plaintext highlighter-rouge">~BaseQNAcceleration()</code> in <a href="https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.hpp"><code class="language-plaintext highlighter-rouge">precice/src/acceleration/BaseQNAcceleration.hpp</code></a>. And add the following lines at the beginning of the same file:</p>
+<p>To enable this log, uncomment the relevant lines in the destructor <code class="language-plaintext highlighter-rouge">~BaseQNAcceleration()</code> in <a href="https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.hpp"><code class="language-plaintext highlighter-rouge">precice/src/acceleration/BaseQNAcceleration.hpp</code></a> and add the following lines at the beginning of the same file:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
 #include</span> <span class="cpf">"utils/IntraComm.hpp"</span><span class="cp">
 </span></code></pre></div></div>
 
-<p>In the end, you need to recompile preCICE to apply the change.</p>
+<p>In the end, you need to rebuild preCICE to apply the change.</p>
 
-<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
-In preCICE <a href="https://github.com/precice/precice/releases/tag/v1.3.0">v1.3.0</a> and earlier, instead of <code class="language-plaintext highlighter-rouge">precice-MySolver-events.json</code>, two performance output files were used: <code class="language-plaintext highlighter-rouge">precice-MySolver-events.log</code> and <code class="language-plaintext highlighter-rouge">precice-MySolver-eventTimings.log</code>.
+<h2 id="watchpoints">Watchpoints</h2>
+
+<p>If <a href="configuration-watchpoint.html">watchpoints</a> are configured, these are written with the name <code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-watchpoint-NAME.log</code>,
+in the working directory of the respective participant.</p>
+
+<p>It has the format (example from the 2D <a href="tutorials-perpendicular-flap.html">perpendicular-flap tutorial</a>):</p>
+
+<pre><code class="language-log">  Time  Coordinate0  Coordinate1  Displacement0  Displacement1  Force0  Force1
+ 0.00000000e+00   0.00000000e+00   1.00000000e+00   0.00000000e+00   0.00000000e+00   0.00000000e+00   0.00000000e+00
+ 1.00000000e-02   0.00000000e+00   1.00000000e+00   1.40209082e-03   2.53740150e-06   2.03655856e+01  -1.52020001e+01
+ 2.00000000e-02   0.00000000e+00   1.00000000e+00   1.45349259e-03   9.20233008e-05   1.39714999e+01   3.19717624e+01
+ 3.00000000e-02   0.00000000e+00   1.00000000e+00   2.24703291e-03   1.04481990e-04   1.06942430e+01   2.48601963e+01
+ 4.00000000e-02   0.00000000e+00   1.00000000e+00   3.46697879e-03   1.34304672e-04   9.60776463e+00   2.14353495e+01
+...
+</code></pre>
+
+<h2 id="profiling">Profiling</h2>
+
+<p>Recorded events of all participants and ranks. See page on <a href="tooling-performance-analysis.html">performance analysis</a> for more information.</p>
+
+<p>These files have the format <code class="language-plaintext highlighter-rouge">PARTICIPANT-RANK-N.txt</code>. By default, they are stored in a <code class="language-plaintext highlighter-rouge">precice-profiling/</code> directory,
+in the working directory of each participant. The respective performance analysis tools produce intermediate and result files as well.</p>
+
+<h2 id="exports">Exports</h2>
+
+<p>If <a href="configuration-export.html">exports</a> are defined, preCICE writes such files in the directory of the participant that defines them,
+or in the specific directory configured (in our examples and tutorials, we use <code class="language-plaintext highlighter-rouge">precice-exports/</code>).</p>
+
+<p>Most commonly (with <code class="language-plaintext highlighter-rouge">&lt;export:vtu /&gt;</code>), these are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MESH-PARTICIPANT.init.vtu</code>: The initial state</li>
+  <li><code class="language-plaintext highlighter-rouge">MESH-PARTICIPANT.dtN.vtu</code>: One result file per coupling time window</li>
+  <li><code class="language-plaintext highlighter-rouge">MESH-PARTICIPANT.vtu.series</code>: A collection of the above</li>
+</ul>
+
+<h2 id="history-of-output-files">History of output files</h2>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+This documentation concerns preCICE v3.3.0.
+Read about <a href="fundamentals-previous-versions.html">previous versions</a> or <a href="couple-your-code-porting-overview.html">how to upgrade</a>.
 </div>
 
-<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
-In preCICE <a href="https://github.com/precice/precice/releases/tag/v1.2.0">v1.2.0</a> and earlier, slightly different names were used: <code class="language-plaintext highlighter-rouge">iterations-MySolver.txt</code>,<code class="language-plaintext highlighter-rouge">convergence-MySolver.txt</code>, <code class="language-plaintext highlighter-rouge">Events-MySolver.log</code>,<code class="language-plaintext highlighter-rouge">EventTimings-MySolver.log</code>, and <code class="language-plaintext highlighter-rouge">postProcessingInfo.txt</code>.
-</div>
+<p>For older scripts that rely on these files, the following historical information might be useful:</p>
+
+<ul>
+  <li>Before preCICE <a href="https://github.com/precice/precice/blob/develop/CHANGELOG.md#330">v3.3.0</a>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">precice-profiling/PARTICIPANT-RANK-N.txt</code> were named <code class="language-plaintext highlighter-rouge">precice-profiling/PARTICIPANT-RANK-N.json</code>. The output files of the profiling post-processing tool were different.</li>
+    </ul>
+  </li>
+  <li>Before preCICE <a href="https://github.com/precice/precice/blob/develop/CHANGELOG.md#300">v3.0.0</a>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">precice-profiling</code> was named <code class="language-plaintext highlighter-rouge">precice-events</code>, and <code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-profiling.json</code> was <code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-events.json</code>.</li>
+    </ul>
+  </li>
+  <li>Before preCICE <a href="https://github.com/precice/precice/blob/develop/CHANGELOG.md#230">v2.3.0</a>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-iterations.log</code> and <code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-convergence.log</code> had an arbitrary column format, instead of now fixed column width.</li>
+      <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-convergence.log</code> had decimal format, instead of now fixed scientific format.</li>
+    </ul>
+  </li>
+  <li>Before preCICE <a href="https://github.com/precice/precice/blob/b86d874258d077fab68b36726f31b9b882289e22/CHANGELOG.md#210">v2.1.0</a>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-events-summary.log</code> were only part of the screen output.</li>
+    </ul>
+  </li>
+  <li>Before preCICE <a href="https://github.com/precice/precice/blob/develop/CHANGELOG.md#140">v1.4.0</a>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-events.json</code> were <code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-events.log</code> and <code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-eventTimings.log</code>.</li>
+    </ul>
+  </li>
+  <li>Before preCICE <a href="https://github.com/precice/precice/blob/develop/CHANGELOG.md#130">v1.3.0</a>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-iterations.log</code> were named <code class="language-plaintext highlighter-rouge">iterations-PARTICIPANT.txt</code></li>
+      <li><code class="language-plaintext highlighter-rouge">precice-PARTICIPANT-convergence.log</code> were named <code class="language-plaintext highlighter-rouge">convergence-PARTICIPANT.txt</code></li>
+      <li><code class="language-plaintext highlighter-rouge">precice-accelerationInfo.log</code> was named <code class="language-plaintext highlighter-rouge">postProcessingInfo.txt</code> (and later <code class="language-plaintext highlighter-rouge">precice-postProcessingInfo.log</code>) included more advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)</li>
+      <li><code class="language-plaintext highlighter-rouge">profiling/</code> information was stored in <code class="language-plaintext highlighter-rouge">Events-PARTICIPANT.log</code> and <code class="language-plaintext highlighter-rouge">EventTimings-PARTICIPANT.log</code></li>
+    </ul>
+  </li>
+</ul>
 
 
     
@@ -2109,7 +2202,7 @@ In preCICE <a href="https://github.com/precice/precice/releases/tag/v1.2.0">v1.2
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Jan 6, 2026<br>
         Site last updated: Jan 6, 2026
         </p>
       </div>
