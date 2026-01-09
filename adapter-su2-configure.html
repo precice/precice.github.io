@@ -1736,7 +1736,9 @@ MARKER_PYTHON_CUSTOM= (interface)
 As of SU2 v7.5.1: Deforming <code class="language-plaintext highlighter-rouge">MARKER_EULER</code>’s are buggy when simulations are run in parallel, leading to unexpected results. More information can be found at <a href="https://github.com/su2code/SU2/discussions/1931">this SU2 discussion</a>.
 </div>
 
-<h2 id="important-note-on-restarts">Important note on restarts</h2>
+<h2 id="important-notes">Important notes</h2>
+
+<p>It is strongly recommended use a restart file like <code class="language-plaintext highlighter-rouge">restart_000000.dat</code> as an initial condition as opposed to default initialization. Because dual-timestepping is an implicit scheme, any time-dependent components should be evaluated at the $t_{n+1}$ state, and this is ensured by using a restart file as the initial condition. Otherwise, they are computed at $t_n$. See <a href="https://github.com/su2code/SU2/issues/2353">su2code/SU2#2353</a> for more information. With this approach, an output file with iteration suffix $N$ represents the solution data at time $N\Delta t$ (ie: <code class="language-plaintext highlighter-rouge">restart_000010.dat</code> is the solution data at $t=10\Delta t)$.</p>
 
 <p>This code <strong>has not been tested</strong> for restarts using initializations <em>from</em> SU2. Any restarted simulations should have SU2 be the first participant and receive initialization data. It is possible that, if SU2 must send initialization data, that it is incorrect (it may use default values in the config file, or just be zeros if the data hasn’t been computed until after/during a first iteration). Admittedly, this is from a lack of understanding of the specifics of how SU2 operates and there may not be a trivial work-around.</p>
 
