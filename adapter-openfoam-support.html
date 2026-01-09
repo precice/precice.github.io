@@ -1920,14 +1920,15 @@ Currently, and since v1.3.0 of the adapter (first one for preCICE v3), only the 
     <ul>
       <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.get&lt;fileName&gt;("...")</code> with <code class="language-plaintext highlighter-rouge">static_cast&lt;fileName&gt;(preciceDict.lookup("...")</code>.</li>
       <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.get&lt;word&gt;("...")</code> with <code class="language-plaintext highlighter-rouge">static_cast&lt;word&gt;(preciceDict.lookup("..."))</code>.</li>
+      <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.getOrDefault</code> with <code class="language-plaintext highlighter-rouge">preciceDict.lookupOrDefault</code>.</li>
       <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.get&lt;wordList&gt;("...")</code> with <code class="language-plaintext highlighter-rouge">static_cast&lt;wordList&gt;(preciceDict.lookup("..."))</code>.</li>
       <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.findDict("...")</code> with <code class="language-plaintext highlighter-rouge">preciceDict.subDictPtr("...")</code>.</li>
     </ul>
   </li>
   <li><strong>Db access:</strong> In the macro that deals with adding checkpointed fields, some methods are not available.
     <ul>
-      <li>Replace <code class="language-plaintext highlighter-rouge">mesh_.sortedNames&lt;GeomField&gt;()</code> with <code class="language-plaintext highlighter-rouge">mesh_.lookupClass&lt;GeomField&gt;().sortedToc()</code>.</li>
-      <li>Replace <code class="language-plaintext highlighter-rouge">mesh_.thisDb().getObjectPtr&lt;GeomField&gt;(obj)</code> with <code class="language-plaintext highlighter-rouge">&amp;(const_cast&lt;GeomField&amp;&gt;(mesh_.thisDb().lookupObject&lt;GeomField&gt;(obj)))</code>.</li>
+      <li>Replace <code class="language-plaintext highlighter-rouge">mesh_.sortedNames&lt;GeomFieldType&gt;()</code> with <code class="language-plaintext highlighter-rouge">mesh_.lookupClass&lt;GeomFieldType&gt;().sortedToc()</code>.</li>
+      <li>Replace <code class="language-plaintext highlighter-rouge">mesh_.thisDb().getObjectPtr&lt;GeomFieldType&gt;(obj)</code> with <code class="language-plaintext highlighter-rouge">&amp;(const_cast&lt;GeomFieldType&amp;&gt;(mesh_.thisDb().lookupObject&lt;GeomFieldType&gt;(obj)))</code>.</li>
     </ul>
   </li>
   <li><strong>Pointers:</strong> <code class="language-plaintext highlighter-rouge">std::unique_ptr</code> is not available.
@@ -1976,6 +1977,12 @@ Currently, and since v1.3.0 of the adapter (first one for preCICE v3), only the 
 <p>OpenFOAM 7 was <a href="https://openfoam.org/release/7/">released</a> in July 2019 (<a href="https://github.com/OpenFOAM/OpenFOAM-7">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v7">Doxygen</a>). Compared to OpenFOAM 6:</p>
 
 <ul>
+  <li><strong>writeEntry:</strong> The interface for <code class="language-plaintext highlighter-rouge">writeEntry</code> was changed.
+    <ul>
+      <li>Where in the latest adapter (<code class="language-plaintext highlighter-rouge">FF/BoundaryConditions</code>) you see <code class="language-plaintext highlighter-rouge">this-&gt;writeEntry("value", os)</code>, replace it with <code class="language-plaintext highlighter-rouge">writeEntry(os, "value", *this)</code>.</li>
+      <li>Similarly, where <code class="language-plaintext highlighter-rouge">this-&gt;valueFraction().writeEntry("valueFraction", os);</code>, replace it with <code class="language-plaintext highlighter-rouge">writeEntry(os, "valueFraction", this-&gt;valueFraction())</code>. Similarly for <code class="language-plaintext highlighter-rouge">this-&gt;refValue().writeEntry("refValue", os)</code>.</li>
+    </ul>
+  </li>
   <li><strong>fileName:</strong> <code class="language-plaintext highlighter-rouge">fileName::DIRECTORY</code> was renamed to <code class="language-plaintext highlighter-rouge">fileType::directory</code>.
     <ul>
       <li>Replace this in the <code class="language-plaintext highlighter-rouge">Adapter.C</code>.</li>
