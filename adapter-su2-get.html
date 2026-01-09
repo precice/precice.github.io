@@ -1642,7 +1642,7 @@ $('#toc').on('click', 'a', function() {
 
    <p>The adapter depends on <a href="https://su2code.github.io/">SU2</a>, <a href="https://precice.org/installation-overview.html">preCICE v3</a>, and the <a href="https://precice.org/installation-bindings-python.html">preCICE Python bindings</a>.</p>
 
-<p>The script <code class="language-plaintext highlighter-rouge">su2AdapterInstall</code> replaces a few files in the SU2 source code. You then need to build SU2 from source, install it into a prefix (<code class="language-plaintext highlighter-rouge">SU2_RUN</code>) and add that to your <code class="language-plaintext highlighter-rouge">PATH</code>.</p>
+<p>The script <code class="language-plaintext highlighter-rouge">su2AdapterInstall</code> replaces a few files in the SU2 source code (<a href="https://github.com/precice/su2-adapter/issues/41#issue-2241425543">details</a>). You then need to build SU2 from source, install it into a prefix (<code class="language-plaintext highlighter-rouge">SU2_RUN</code>) and add that to your <code class="language-plaintext highlighter-rouge">PATH</code>.</p>
 
 <p>To run SU2, you can use the provided Python scripts <code class="language-plaintext highlighter-rouge">SU2_preCICE_CHT.py</code> and <code class="language-plaintext highlighter-rouge">SU2_preCICE_FSI.py</code>, which call SU2 via its Python interface.</p>
 
@@ -1691,6 +1691,31 @@ Use './ninja -C build install' to compile and install SU2
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/path/to/adapter/run:<span class="nv">$PATH</span>
 </code></pre></div></div>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>On some newer systems (e.g., on Ubuntu 24.04), this error might appear when building SU2 7.5.1 “Blackbird”:</p>
+
+<pre><code class="language-log">../SU2_CFD/src/output/filewriter/CParaviewXMLFileWriter.cpp: In member function ‘virtual void CParaviewXMLFileWriter::Write_Data(std::string)’:
+../SU2_CFD/src/output/filewriter/CParaviewXMLFileWriter.cpp:240:10: error: ‘uint8_t’ was not declared in this scope
+  240 |   vector&lt;uint8_t&gt; typeBuf(myElem);
+      |          ^~~~~~~
+</code></pre>
+
+<p>To fix it, patch the following file:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">--- a/SU2_CFD/src/output/filewriter/CParaviewXMLFileWriter.cpp
+</span><span class="gi">+++ b/SU2_CFD/src/output/filewriter/CParaviewXMLFileWriter.cpp
+</span><span class="p">@@ -27,7 +27,7 @@</span>
+ 
+ #include "../../../include/output/filewriter/CParaviewXMLFileWriter.hpp"
+ #include "../../../../Common/include/toolboxes/printing_toolbox.hpp"
+<span class="gd">-
+</span><span class="gi">+#include &lt;cstdint&gt;
+</span> const string CParaviewXMLFileWriter::fileExt = ".vtu";
+</code></pre></div></div>
+
+<p>and load the python packages <code class="language-plaintext highlighter-rouge">mpi4py</code> and <code class="language-plaintext highlighter-rouge">swig</code> in the same virtual environment.</p>
 
 
     
