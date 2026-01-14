@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.3.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.3.1</span>
    </div>
   </td>
  </tr>
@@ -170,8 +170,8 @@ $(function() {
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; v.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/size.html">size</a>(); ++d) {</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    v[d] = (u[d] - v[d]) * <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(activeAxis[d]);</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  }</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">// @todo: this can be replaced by std::hypot when moving to C++17</span></div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="keywordflow">return</span> <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/accumulate.html">std::accumulate</a>(v.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/begin.html">begin</a>(), v.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/end.html">end</a>(), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(0.), [](<span class="keyword">auto</span> &amp;res, <span class="keyword">auto</span> &amp;val) { return res + val * val; });</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">// use std::inner_product to avoid the need for lambda expressions</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="keywordflow">return</span> <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/inner_product.html">std::inner_product</a>(v.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/begin.html">begin</a>(), v.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/end.html">end</a>(), v.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/begin.html">begin</a>(), 0.0);</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
 </div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
@@ -706,7 +706,6 @@ $(function() {
 <div class="ttc" id="aMappingConfigurationTypes_8hpp_html"><div class="ttname"><a href="MappingConfigurationTypes_8hpp.html">MappingConfigurationTypes.hpp</a></div></div>
 <div class="ttc" id="aMathHelper_8hpp_html"><div class="ttname"><a href="MathHelper_8hpp.html">MathHelper.hpp</a></div></div>
 <div class="ttc" id="aMesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div></div>
-<div class="ttc" id="aaccumulate_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/accumulate.html">std::accumulate</a></div><div class="ttdeci">T accumulate(T... args)</div></div>
 <div class="ttc" id="aarray_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00085">assertion.hpp:85</a></div></div>
 <div class="ttc" id="abegin_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/array/begin.html">std::array::begin</a></div><div class="ttdeci">T begin(T... args)</div></div>
@@ -745,6 +744,7 @@ $(function() {
 <div class="ttc" id="acount_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/count.html">std::count</a></div><div class="ttdeci">T count(T... args)</div></div>
 <div class="ttc" id="aend_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/array/end.html">std::array::end</a></div><div class="ttdeci">T end(T... args)</div></div>
 <div class="ttc" id="aimpl_2Types_8hpp_html"><div class="ttname"><a href="impl_2Types_8hpp.html">Types.hpp</a></div></div>
+<div class="ttc" id="ainner_product_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/inner_product.html">std::inner_product</a></div><div class="ttdeci">T inner_product(T... args)</div></div>
 <div class="ttc" id="amake_pair_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/utility/pair/make_pair.html">std::make_pair</a></div><div class="ttdeci">T make_pair(T... args)</div></div>
 <div class="ttc" id="amax_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/numeric_limits/max.html">std::numeric_limits::max</a></div><div class="ttdeci">T max(T... args)</div></div>
 <div class="ttc" id="aminmax_element_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/minmax_element.html">std::minmax_element</a></div><div class="ttdeci">T minmax_element(T... args)</div></div>

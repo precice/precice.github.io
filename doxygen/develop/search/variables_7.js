@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gamma_0',['gamma',['../structprecice_1_1acceleration_1_1impl_1_1QRFactorization_1_1givensRot.html#aacce06b0f97f91ff80c1709a00b87a4f',1,'precice::acceleration::impl::QRFactorization::givensRot']]],
-  ['geofilter_1',['geoFilter',['../structprecice_1_1impl_1_1MeshContext.html#a43d76b814b37d5edaee62376b69e5a05',1,'precice::impl::MeshContext']]],
+  ['geofilter_1',['geoFilter',['../structprecice_1_1impl_1_1ReceivedMeshContext.html#a5ea307dccabeff66a64f4c2441c8908b',1,'precice::impl::ReceivedMeshContext']]],
   ['geometric_5fmultiscale_5faxis_5fx_2',['GEOMETRIC_MULTISCALE_AXIS_X',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a0a05e9ae219760aa416c0d87fca42b09',1,'precice::mapping::MappingConfiguration']]],
   ['geometric_5fmultiscale_5faxis_5fy_3',['GEOMETRIC_MULTISCALE_AXIS_Y',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a8bf9c11a7fd5a0dd28983889dd416ec7',1,'precice::mapping::MappingConfiguration']]],
   ['geometric_5fmultiscale_5faxis_5fz_4',['GEOMETRIC_MULTISCALE_AXIS_Z',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a69788f655e5b12d588d7103612b3efa9',1,'precice::mapping::MappingConfiguration']]],

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;40a98c3</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;d3eae60</span>
    </div>
   </td>
  </tr>
@@ -80,17 +80,20 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">ParticipantState.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;boost/range/adaptor/map.hpp&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/cmath.html">cmath</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/deque.html">deque</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a>&gt;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/variant.html">variant</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="precice_2impl_2SharedPointer_8hpp_source.html">SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="action_2SharedPointer_8hpp_source.html">action/SharedPointer.hpp</a>&quot;</code><br />
@@ -101,7 +104,10 @@ $(function() {
 <code>#include &quot;<a class="el" href="mapping_2SharedPointer_8hpp_source.html">mapping/SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mesh_2SharedPointer_8hpp_source.html">mesh/SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ReceivedPartition_8hpp_source.html">partition/ReceivedPartition.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MeshContext_8hpp_source.html">precice/impl/MeshContext.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ProvidedMeshContext_8hpp_source.html">precice/impl/ProvidedMeshContext.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ReadDataContext_8hpp_source.html">precice/impl/ReadDataContext.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ReceivedMeshContext_8hpp_source.html">precice/impl/ReceivedMeshContext.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="impl_2Types_8hpp_source.html">precice/impl/Types.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="WriteDataContext_8hpp_source.html">precice/impl/WriteDataContext.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="IntraComm_8hpp_source.html">utils/IntraComm.hpp</a>&quot;</code><br />
@@ -138,8 +144,19 @@ Namespaces</h2></td></tr>
 <tr class="memitem:precice_3A_3Autils" id="r_precice_3A_3Autils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html">precice::utils</a></td></tr>
 <tr class="memdesc:namespaceprecice_1_1utils"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains precice-related utilities. <br /></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a70ac226950468b7f250fdb0fc3321aa8" id="r_a70ac226950468b7f250fdb0fc3321aa8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1impl.html#a70ac226950468b7f250fdb0fc3321aa8">precice::impl::MeshContextVariant</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/variant.html">std::variant</a>&lt;<a class="el" href="structprecice_1_1impl_1_1ProvidedMeshContext.html">ProvidedMeshContext</a> *, <a class="el" href="structprecice_1_1impl_1_1ReceivedMeshContext.html">ReceivedMeshContext</a> *&gt;</td></tr>
+<tr class="memdesc:a70ac226950468b7f250fdb0fc3321aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for variant holding either provided or received mesh context pointers.  <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ad0ed14890c6f8fb9bdcfd8d9d595e70f" id="r_ad0ed14890c6f8fb9bdcfd8d9d595e70f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structprecice_1_1impl_1_1MeshContext.html">MeshContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1impl.html#ad0ed14890c6f8fb9bdcfd8d9d595e70f">precice::impl::getMeshContext</a> (const <a class="el" href="namespaceprecice_1_1impl.html#a70ac226950468b7f250fdb0fc3321aa8">MeshContextVariant</a> &amp;variant)</td></tr>
+<tr class="memdesc:ad0ed14890c6f8fb9bdcfd8d9d595e70f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to extract base <a class="el" href="structprecice_1_1impl_1_1MeshContext.html">MeshContext</a> pointer from variant.  <br /></td></tr>
+<tr class="memitem:ae3eef0b0afc97fe867d85be1b95f4b55" id="r_ae3eef0b0afc97fe867d85be1b95f4b55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1impl.html#ae3eef0b0afc97fe867d85be1b95f4b55">precice::impl::getMesh</a> (const <a class="el" href="namespaceprecice_1_1impl.html#a70ac226950468b7f250fdb0fc3321aa8">MeshContextVariant</a> &amp;variant)</td></tr>
+<tr class="memdesc:ae3eef0b0afc97fe867d85be1b95f4b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to extract mesh from variant.  <br /></td></tr>
+<tr class="memitem:adef178b9bd242d7c7d6abe75164682f2" id="r_adef178b9bd242d7c7d6abe75164682f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classprecice_1_1partition_1_1Partition.html">partition::Partition</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1impl.html#adef178b9bd242d7c7d6abe75164682f2">precice::impl::getPartition</a> (const <a class="el" href="namespaceprecice_1_1impl.html#a70ac226950468b7f250fdb0fc3321aa8">MeshContextVariant</a> &amp;variant)</td></tr>
+<tr class="memdesc:adef178b9bd242d7c7d6abe75164682f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to extract partition from variant.  <br /></td></tr>
 <tr class="memitem:a84524ea2d625a14cdfaf42c0c40ab5f1" id="r_a84524ea2d625a14cdfaf42c0c40ab5f1"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
 <tr class="memitem:a84524ea2d625a14cdfaf42c0c40ab5f1 template"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1impl.html#a84524ea2d625a14cdfaf42c0c40ab5f1">precice::impl::MeshDataKey</a> (T, T) -&gt; MeshDataKey&lt; T &gt;</td></tr>
 <tr class="memdesc:a84524ea2d625a14cdfaf42c0c40ab5f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deduction guide for two identical parameter types.  <br /></td></tr>

@@ -8,7 +8,7 @@ var searchData=
   ['action_5',['action',['../namespacecompileAndTest.html#a301ca193f57385ef601616b5060c9bc7',1,'compileAndTest']]],
   ['addressdirectory_6',['addressDirectory',['../classprecice_1_1com_1_1ConnectionInfoPublisher.html#a0256198722a9ca12d4683d1a5b272b73',1,'precice::com::ConnectionInfoPublisher']]],
   ['alignment_5fof_5fv_7',['alignment_of_v',['http://en.cppreference.com/w/cpp/types/alignment_of.html',1,'std::alignment_of_v'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::alignment_of_v']]],
-  ['allowdirectaccess_8',['allowDirectAccess',['../structprecice_1_1impl_1_1MeshContext.html#ad567a692524b277b7ae004da32e65792',1,'precice::impl::MeshContext']]],
+  ['allowdirectaccess_8',['allowDirectAccess',['../structprecice_1_1impl_1_1ReceivedMeshContext.html#a230139f30f8a1457b66318203394e1b5',1,'precice::impl::ReceivedMeshContext']]],
   ['alwaysbuildjacobian_9',['alwaysBuildJacobian',['../structprecice_1_1acceleration_1_1AccelerationConfiguration_1_1ConfigurationData.html#a63630027fd887f325dc353d98649b6ae',1,'precice::acceleration::AccelerationConfiguration::ConfigurationData']]],
   ['api_10',['API',['../namespaceprecice_1_1profiling.html#a11ea444dc37c3bc5cc34028609039ee9',1,'precice::profiling']]],
   ['args_11',['args',['../namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978',1,'compileAndTest']]],
