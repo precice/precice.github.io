@@ -1647,7 +1647,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 19 Jan 26</small>
+              <small>Updated 20 Jan 26</small>
             </div>
           </aside>
           
@@ -2081,6 +2081,18 @@ It is important to notice that the target data location is again the face center
 This is implemented for all CHT-related fields mapped with a <code class="language-plaintext highlighter-rouge">consistent</code> constraint, but it is not implemented for the <code class="language-plaintext highlighter-rouge">FSI</code> and <code class="language-plaintext highlighter-rouge">FF</code> modules.
 </div>
 
+<h3 id="notes-on-subcycling">Notes on subcycling</h3>
+
+<p>If it is necessary to subcycle, i.e., do multiple solver time steps per coupling time window, on either the OpenFOAM side or another solver, please consider additional nuances. A good way to start is reading up on subcycling and <a href="https://precice.org/couple-your-code-waveform">waveform time interpolation</a>. Subcycling is <em>allowed</em> by preCICE and the OpenFOAM-adapter, but you may obtain different results with subcycling enabled or not depending on your problem and coupling configuration. This has to do with how the subcycling data is modelled in the time-integration of your problem, where the two independent solvers (coupling participants) with non-matching timesteps march forward in time. This depends on the time stepping scheme and the type of physical quantity that you are coupling.</p>
+
+<p>Currently, when doing subcycling in OpenFOAM on an FSI problem, the OpenFOAM-adapter will give the following warning:</p>
+
+<p><code class="language-plaintext highlighter-rouge">The adapter does not fully support subcycling for FSI and instabilities may occur.</code></p>
+
+<p>There is an active discussion on a <a href="https://github.com/precice/openfoam-adapter/issues/368">GitHub issue</a> about why you will get different results with subcycling on the perpendicular-flap case. Until this is resolved, it is recommended to not subcycle the fluid participant in FSI simulations.</p>
+
+<p>In short, preCICE will sample only the instantaneous state of the coupled data at end of the coupling time window. If your coupled quantity is an instantaneous state of the system, such as Temperature, Velocity or Displacement, then your time-dependent problem evolution with subcycling will be modelled correctly. However, if your coupled data is a rate-quantity or something which should be conserved over time, such as Heat-Flux, Momentum-Flux or Force, then you would have to consider the modelling more carefully. For example, to exchange the time-average of Heat-Flux samples over the coupling time window.</p>
+
 <h3 id="additional-properties-for-some-solvers">Additional properties for some solvers</h3>
 
 <p>Some solvers may not read all the material properties that are required for a coupled simulation. These parameters need to be added in the <code class="language-plaintext highlighter-rouge">preciceDict</code>.</p>
@@ -2240,7 +2252,7 @@ file (the values correspond to the default values):</p>
 </code></pre></div></div>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
-The option here defines the way the interface mesh is initialized when restarting an FSI simulation in OpenFOAM. In order to restart a coupled simulation, your solid solver needs to be capable of restarting as well. Furthermore, the two participants need to follow the same assumption for the initialization, which for OpenFOAM you can configure with this option. You can find more information about restarting coupled simulations on <a href="https://precice.discourse.group/t/how-can-i-restart-a-coupled-simulation/675">Dsicourse</a>.
+The option here defines the way the interface mesh is initialized when restarting an FSI simulation in OpenFOAM. In order to restart a coupled simulation, your solid solver needs to be capable of restarting as well. Furthermore, the two participants need to follow the same assumption for the initialization, which for OpenFOAM you can configure with this option. You can find more information about restarting coupled simulations on <a href="https://precice.discourse.group/t/how-can-i-restart-a-coupled-simulation/675">Discourse</a>.
 </div>
 
 <h4 id="debugging">Debugging</h4>
@@ -2618,8 +2630,8 @@ to be a useful reference (file changes).</p>
         </a>
         </p>
         <p>
-        Page last updated: Jan 19, 2026<br>
-        Site last updated: Jan 19, 2026
+        Page last updated: Jan 20, 2026<br>
+        Site last updated: Jan 20, 2026
         </p>
       </div>
     </div>

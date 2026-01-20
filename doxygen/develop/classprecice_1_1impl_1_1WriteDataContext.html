@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;d3eae60</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;d199bb3</span>
    </div>
   </td>
  </tr>
@@ -117,7 +117,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afd087b9117502d46df46494097e16f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store values in _writeDataBuffer.  <br /></td></tr>
 <tr class="memitem:a30816dbece9807b3a84f2f1b0c2876b4" id="r_a30816dbece9807b3a84f2f1b0c2876b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30816dbece9807b3a84f2f1b0c2876b4">writeGradientsIntoDataBuffer</a> (<a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a> &gt; vertices, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; gradients)</td></tr>
 <tr class="memdesc:a30816dbece9807b3a84f2f1b0c2876b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store gradients in _writeDataBuffer.  <br /></td></tr>
-<tr class="memitem:a1f9cb755aa4823f38075e0d7087cd747" id="r_a1f9cb755aa4823f38075e0d7087cd747"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f9cb755aa4823f38075e0d7087cd747">resizeBufferTo</a> (int size)</td></tr>
+<tr class="memitem:a54eecafefd4ac4ff5a2f932f4f95ea0b" id="r_a54eecafefd4ac4ff5a2f932f4f95ea0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54eecafefd4ac4ff5a2f932f4f95ea0b">resizeBufferTo</a> (int size, bool invalidateBufferedData=false)</td></tr>
 <tr class="memitem:a6b8289306305a7d6084c6a104a4723df" id="r_a6b8289306305a7d6084c6a104a4723df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b8289306305a7d6084c6a104a4723df">storeBufferedData</a> (double currentTime)</td></tr>
 <tr class="memdesc:a6b8289306305a7d6084c6a104a4723df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store data from _writeDataBuffer in persistent storage.  <br /></td></tr>
 <tr class="memitem:aff2db0d6e2336be007170f3dffdbc4b5" id="r_aff2db0d6e2336be007170f3dffdbc4b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff2db0d6e2336be007170f3dffdbc4b5">appendMappingConfiguration</a> (<a class="el" href="structprecice_1_1impl_1_1MappingContext.html">MappingContext</a> &amp;mappingContext, const <a class="el" href="structprecice_1_1impl_1_1MeshContext.html">MeshContext</a> &amp;meshContext) override</td></tr>
@@ -341,7 +341,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1impl_1_1DataContext.html#a78138b8c78dd10db3890b2486f507179">precice::impl::DataContext</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00124">124</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00131">131</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -462,8 +462,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a1f9cb755aa4823f38075e0d7087cd747" name="a1f9cb755aa4823f38075e0d7087cd747"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f9cb755aa4823f38075e0d7087cd747">&#9670;&#160;</a></span>resizeBufferTo()</h2>
+<a id="a54eecafefd4ac4ff5a2f932f4f95ea0b" name="a54eecafefd4ac4ff5a2f932f4f95ea0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54eecafefd4ac4ff5a2f932f4f95ea0b">&#9670;&#160;</a></span>resizeBufferTo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -471,8 +471,12 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precice::impl::WriteDataContext::resizeBufferTo </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>invalidateBufferedData</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -481,7 +485,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1impl_1_1WriteDataContext_a1f9cb755aa4823f38075e0d7087cd747_cgraph.svg" width="435" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1impl_1_1WriteDataContext_a54eecafefd4ac4ff5a2f932f4f95ea0b_cgraph.svg" width="435" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -509,7 +513,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00119">119</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00126">126</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 
 </div>
 </div>
