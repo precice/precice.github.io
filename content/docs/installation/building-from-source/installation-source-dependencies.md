@@ -257,9 +257,8 @@ If you prefer to install the most recent version from source, do the following:
 4. Usage: You will need to add PETSc to your pkg-config path (`PKG_CONFIG_PATH`). Here is an example:
 
    ```bash
-   export PETSC_DIR="/path/to/petsc"
-   export PETSC_ARCH="arch-linux-c-opt"
-   export PKG_CONFIG_PATH="$PETSC_DIR/$PETSC_ARCH/lib/pkgconfig"
+   export LD_LIBRARY_PATH="/path/to/petsc/lib:$LD_LIBRARY_PATH"
+   export PKG_CONFIG_PATH="/path/to/petsc/lib/pkgconfig:$PKG_CONFIG_PATH"
    ```
 
    Check that `pkg-config --libs --cflags PETSc` returns valid paths.
