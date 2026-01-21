@@ -254,15 +254,14 @@ If you prefer to install the most recent version from source, do the following:
 3. Use the `make` command as the configure script proposes, e.g.
   `make PETSC_DIR=/path/to/petsc PETSC_ARCH=arch-linux-c-opt all`
   Further documentation see the [PETSc installation documentation](https://petsc.org/release/install/).
-4. Usage: You will need to add PETSc to your dynamic linker search path (`LD_LIBRARY_PATH` on Linux or `DYLD_LIBRARY_PATH` on macOS). You may also need to set the `$PETSC_ARCH`.
-
-Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH`, or `PYTHONPATH`. Here is an example:
+4. Usage: You will need to add PETSc to your pkg-config path (`PKG_CONFIG_PATH`). Here is an example:
 
    ```bash
-   export PETSC_DIR="/path/to/petsc"
-   export PETSC_ARCH="arch-linux-c-opt"
-   export LD_LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LD_LIBRARY_PATH"
+   export LD_LIBRARY_PATH="/path/to/petsc/lib:$LD_LIBRARY_PATH"
+   export PKG_CONFIG_PATH="/path/to/petsc/lib/pkgconfig:$PKG_CONFIG_PATH"
    ```
+
+   Check that `pkg-config --libs --cflags PETSc` returns valid paths.
 
 ### Ginkgo
 
