@@ -16,7 +16,7 @@ After all dependencies are ready to use, proceed with [configuring the preCICE b
 
 {% tip %}
 This documentation concerns preCICE v{{ site.precice_version }}.
-Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](http://127.0.0.1:4000/couple-your-code-porting-overview.html).
+Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](couple-your-code-porting-overview.html).
 {% endtip %}
 
 ## Overview
