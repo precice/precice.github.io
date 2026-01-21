@@ -1643,23 +1643,23 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 21 Jan 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <p>Part of a preCICE installation is the tool <code class="language-plaintext highlighter-rouge">precice-tools</code>.
-It provides an easy-to-use interface to tooling API of the preCICE library.</p>
-
-<p>With <code class="language-plaintext highlighter-rouge">precice-tools</code>, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.</p>
+   <p>The <a href="https://github.com/precice/cli"><code class="language-plaintext highlighter-rouge">precice-cli</code></a> package provides an easy-to-use interface to tooling API of the preCICE library, and is the successor of the now deprecated <code class="language-plaintext highlighter-rouge">precice-tools</code>.
+With the <code class="language-plaintext highlighter-rouge">precice-cli</code>, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.</p>
 
 <h2 id="xml-reference">XML reference</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools md
-precice-tools xml
-precice-tools dtd
+<p>For generating the XML reference, we can use <code class="language-plaintext highlighter-rouge">precice-config-doc</code> (or the deprecated <code class="language-plaintext highlighter-rouge">precice-tools</code>, with the same options):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-doc md
+precice-config-doc xml
+precice-config-doc dtd
 </code></pre></div></div>
 
 <p>This prints the XML reference to the console in various flavors.</p>
@@ -1672,7 +1672,7 @@ You can find the reference of the latest release <a href="configuration-xml-refe
 <p>It is possible to generate a local version of the reference by rendering the Markdown to HTML using the <code class="language-plaintext highlighter-rouge">markdown</code> command.
 Be aware that this version does not contain styling, LaTeX rendering, and functioning links.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools md | markdown <span class="o">&gt;</span> reference.html
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-doc md | markdown <span class="o">&gt;</span> reference.html
 </code></pre></div></div>
 
 <h3 id="xml"><code class="language-plaintext highlighter-rouge">xml</code></h3>
@@ -2109,7 +2109,7 @@ precice-tools check precice-config.xml Fluid 2
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Jan 21, 2026<br>
         Site last updated: Jan 21, 2026
         </p>
       </div>
