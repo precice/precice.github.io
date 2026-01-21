@@ -5,10 +5,8 @@ keywords: tooling, xml, configuration, version
 summary: "Built-in tooling is always installed alongside preCICE and provides some basic functionality."
 ---
 
-Part of a preCICE installation is the tool `precice-tools` (deprecated and replaced by the [`precice-cli`](https://github.com/precice/cli) and other tools).
-It provides an easy-to-use interface to tooling API of the preCICE library.
-
-With `precice-tools`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
+The [`precice-cli`](https://github.com/precice/cli) package provides an easy-to-use interface to tooling API of the preCICE library, and is the successor of the now deprecated `precice-tools`.
+With the `precice-cli`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
 
 ## XML reference
 
