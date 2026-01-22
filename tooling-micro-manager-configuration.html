@@ -1647,7 +1647,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 21 Jan 26</small>
+              <small>Updated 22 Jan 26</small>
             </div>
           </aside>
           
@@ -1937,26 +1937,26 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="adding-adaptivity-in-the-precice-xml-configuration">Adding adaptivity in the preCICE XML configuration</h3>
 
-<p>If adaptivity is used, the Micro Manager will attempt to write two scalar data per micro simulation to preCICE, called <code class="language-plaintext highlighter-rouge">active_state</code> and <code class="language-plaintext highlighter-rouge">active_steps</code>.</p>
+<p>If adaptivity is used, the Micro Manager will attempt to write two scalar data per micro simulation to preCICE, called <code class="language-plaintext highlighter-rouge">Active-State</code> and <code class="language-plaintext highlighter-rouge">Active-Steps</code>.</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">active_state</code> is <code class="language-plaintext highlighter-rouge">1</code> if the micro simulation is active in the time window, and <code class="language-plaintext highlighter-rouge">0</code> if inactive.</li>
-  <li><code class="language-plaintext highlighter-rouge">active_steps</code> is summation of <code class="language-plaintext highlighter-rouge">active_state</code> up to the current time window.</li>
+  <li><code class="language-plaintext highlighter-rouge">Active-State</code> is <code class="language-plaintext highlighter-rouge">1</code> if the micro simulation is active in the time window, and <code class="language-plaintext highlighter-rouge">0</code> if inactive.</li>
+  <li><code class="language-plaintext highlighter-rouge">Active-Steps</code> is summation of <code class="language-plaintext highlighter-rouge">Active-State</code> up to the current time window.</li>
 </ul>
 
 <p>The Micro Manager uses the output functionality of preCICE, hence these data sets need to be manually added to the preCICE configuration file. In the mesh and the participant Micro-Manager add the following lines:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"active_state"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"active_steps"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"Active-State"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"Active-Steps"</span><span class="nt">/&gt;</span>
 
 <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"macro-mesh"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"active_state"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"active_steps"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Active-State"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Active-Steps"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/mesh&gt;</span>
 
 <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Micro-Manager"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"active_state"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"active_steps"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Active-State"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Active-Steps"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
 
@@ -2361,8 +2361,8 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Jan 21, 2026<br>
-        Site last updated: Jan 21, 2026
+        Page last updated: Jan 22, 2026<br>
+        Site last updated: Jan 22, 2026
         </p>
       </div>
     </div>
