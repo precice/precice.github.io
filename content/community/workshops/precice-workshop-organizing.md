@@ -185,6 +185,7 @@ Further places where we typically advertise are:
 - Other communities:
   - [CFD Online forum](https://www.cfd-online.com/Forums/main/259965-precice-workshop-conference-sessions.html)
   - [CalculiX forum](https://calculix.discourse.group/)
+  - [FEniCS forum](https://fenicsproject.discourse.group/)
   - Reddit [r/cfd](https://www.reddit.com/r/CFD/)
 - Personal posts on LinkedIn and in the following groups:
   - [preCICE](https://www.linkedin.com/groups/9073912/)
