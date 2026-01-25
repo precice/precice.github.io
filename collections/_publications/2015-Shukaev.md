@@ -1,6 +1,6 @@
 ---
 title: "A Fully Parallel Process-to-Process Intercommunication Technique for preCICE"
-pub-url: http://www5.in.tum.de/pub/Shukaev2015_MasterThesis.pdf
+pub-url: http:/mediatum.ub.tum.de/1461672
 year: 2015
 authors: "Alexander Shukaev"
 ---

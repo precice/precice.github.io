@@ -19,7 +19,7 @@ Note, however that Ubuntu and Debian are absent from this list as official packa
 You can download version-specific Ubuntu (Debian) packages from each [GitHub release](https://github.com/precice/precice/releases/latest).
 To install, open it in your software center.
 
-Alternatively, download & install it from the command line. For **Ubuntu 24.04 (noble)**:
+Alternatively, download & install it from the command line. For **Ubuntu 24.04 (Noble Numbat)**:
 
 ```bash
 wget https://github.com/precice/precice/releases/download/v{{ site.precice_version }}/libprecice3_{{ site.precice_version }}_noble.deb
@@ -28,7 +28,7 @@ sudo apt install ./libprecice3_{{ site.precice_version }}_noble.deb
 
 We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release.
 Check the [official release-cyle](https://ubuntu.com/about/release-cycle) for more information and the version code names.
-As an example, change `noble` to `jammy` for 22.04.
+As an example, change `noble` to `jammy` for 22.04 (Jammy Jellyfish).
 
 Is a newer preCICE release out, and have we not yet updated the above links? Please edit this page.
 

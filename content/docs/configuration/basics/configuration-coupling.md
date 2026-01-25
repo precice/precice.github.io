@@ -98,8 +98,6 @@ relative convergence measure: relative two-norm diff = 2.6023e-05, limit = 1e-05
 
 Most important for implicit coupling is to use a **acceleration scheme**, i.e. to let preCICE modify the exchanged data. We give more details on the [acceleration configuration page](configuration-acceleration.html). For numerical reasons, you should always use a acceleration for implicit coupling. Otherwise, an implicit coupling has no benefit over an explicit coupling. You can only define one acceleration per coupling scheme.
 
-Additionally, you can speed up an implicit coupling by using an extrapolated value from previous time windows as initial guess, `<extrapolation-order value="2"/>`. This tag is optional and requires some trial-and-error tuning as extrapolation does not always result in fewer iterations. Use with care!
-
 For implicit coupling, the tags `first` and `second` do not only determine the order of execution (for serial coupling), but they also determine where preCICE computes the convergence measures and the acceleration: Both are executed on the `second` participant.
 
 Besides `parallel-implicit`, you can also use a `serial-implicit` coupling. However, for performance reasons, we recommend to use `parallel-implicit`. To explain this is beyond the scope of this documentation. We refer, instead, to the respective [publications](fundamentals-literature-guide.html).

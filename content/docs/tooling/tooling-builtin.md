@@ -5,17 +5,17 @@ keywords: tooling, xml, configuration, version
 summary: "Built-in tooling is always installed alongside preCICE and provides some basic functionality."
 ---
 
-Part of a preCICE installation is the tool `precice-tools`.
-It provides an easy-to-use interface to tooling API of the preCICE library.
-
-With `precice-tools`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
+The [`precice-cli`](https://github.com/precice/cli) package provides an easy-to-use interface to tooling API of the preCICE library, and is the successor of the now deprecated `precice-tools`.
+With the `precice-cli`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
 
 ## XML reference
 
+For generating the XML reference, we can use `precice-config-doc` (or the deprecated `precice-tools`, with the same options):
+
 ```bash
-precice-tools md
-precice-tools xml
-precice-tools dtd
+precice-config-doc md
+precice-config-doc xml
+precice-config-doc dtd
 ```
 
 This prints the XML reference to the console in various flavors.
@@ -29,7 +29,7 @@ It is possible to generate a local version of the reference by rendering the Mar
 Be aware that this version does not contain styling, LaTeX rendering, and functioning links.
 
 ```bash
-precice-tools md | markdown > reference.html
+precice-config-doc md | markdown > reference.html
 ```
 
 ### `xml`
