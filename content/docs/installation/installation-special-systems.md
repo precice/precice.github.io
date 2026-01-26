@@ -16,6 +16,17 @@ The instructions may still be valuable for unlisted systems.
 We encourage users to actively contribute to this page! If your system is not listed, please feel encouraged to add instructions for it!
 {% endnote %}
 
+## HPC systems with preCICE pre-installed
+
+Before attempting to install preCICE yourself, check if it is already available on the system you are using.
+Since preCICE is included in the [E4S](https://e4s.io/product-catalog/) ecosystem and in the [Spack](installation-spack.html) and [EasyBuild](https://docs.easybuild.io/version-specific/supported-software/p/preCICE/) package managers, you might find that a preCICE module is already available.
+
+| Facility | System | More information |
+| --- | --- | --- |
+| [GWDG HPC](https://gwdg.de/hpc/), Germany | [Emmy](https://gwdg.de/en/hpc/systems/emmy/) | [documentation](https://docs.hpc.gwdg.de/software_stacks/applications/precice/index.html) |
+
+More entries to this table are very welcome, feel free to edit this page.
+
 ## Active systems
 
 ### HAWK (HPE Apollo/AMD, Stuttgart)
