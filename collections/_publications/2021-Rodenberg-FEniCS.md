@@ -9,5 +9,5 @@ journal:
   name: SoftwareX
   volume: 16
   publisher: Elsevier
-tag: fenics, fenics-precice-adapter
+tag: fenics, fenics-precice-adapter, fenicsx
 ---
