@@ -175,6 +175,7 @@ Further places where we typically advertise are:
 - Event calendars:
   - [FOSS Events](https://foss.events/)
   - [Gauß-Allianz's HPC calendar](https://veranstaltungen.hpc-in-deutschland.de/)
+  - [CFD Online Events Calendar](https://cfd-online.com/Events/)
 - News and mailing lists:
   - [NADigest](https://na-digest.coecis.cornell.edu/na-digest-html/)
   - [CFD Online News](https://www.cfd-online.com/Forum/news.cgi/form/0)
