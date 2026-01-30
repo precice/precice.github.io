@@ -29,6 +29,7 @@ The [Google Summer of Code](https://summerofcode.withgoogle.com/) is _"a global,
 
 For 2026 (our first year), we have prepared the following topics.
 Contact us on [Matrix](https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im) for any questions.
+Introduce yourself and let us know more about your background and motivation, so that we can find out together if these topics are a good fit.
 
 ### Project: Website modernization
 
