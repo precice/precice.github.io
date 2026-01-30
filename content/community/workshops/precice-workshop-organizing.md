@@ -169,6 +169,7 @@ Further places where we typically advertise are:
   - forum
   - chatroom
   - [social media](https://precice.org/community-channels.html)
+  - newsletter
 - Local communities:
   - [Quartl](https://www.cs.cit.tum.de/sccs/weiterfuehrende-informationen/quartl/)
   - [SimTech](https://www.simtech.uni-stuttgart.de/communication/)
