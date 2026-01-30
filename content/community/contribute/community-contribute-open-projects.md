@@ -28,8 +28,7 @@ Are you looking for or offering a thesis / PhD / other related job? Have a look 
 The [Google Summer of Code](https://summerofcode.withgoogle.com/) is _"a global, online program focused on bringing new contributors into open source software development. GSoC Contributors work with an open source organization on a 12+ week programming project under the guidance of mentors."_.
 
 For 2026 (our first year), we have prepared the following topics.
-Contact us on [Matrix](https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im) for any questions.
-Introduce yourself and let us know more about your background and motivation, so that we can find out together if these topics are a good fit.
+Introduce yourself in the [forum](https://precice.discourse.group/c/jobs/gsoc/15) and let us know more about your background and motivation, so that we can find out together if these topics are a good fit.
 
 ### Project: Website modernization
 
