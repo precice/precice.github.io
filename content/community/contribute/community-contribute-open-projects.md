@@ -91,7 +91,7 @@ To figure out if this is for you, [run the system tests locally](dev-docs-system
 ### Project: Error messages with configuration context
 
 The core library needs a [preCICE configuration file](configuration-overview.html),
-which currently needs to be written directly (we are working on higher-level configuration tools as well).
+which currently needs to be written manually (we are working on higher-level configuration tools as well).
 When one configures something wrong, preCICE throws an error message with details and recommendations (think git).
 Writing these error messages is, however, rather cumbersome at the moment,
 while they might sometimes miss important context for the user.
