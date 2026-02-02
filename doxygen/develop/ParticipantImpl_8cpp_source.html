@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;d10ad35</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;39136e2</span>
    </div>
   </td>
  </tr>
@@ -116,7 +116,7 @@ $(function() {
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;<a class="code" href="Mapping_8hpp.html">mapping/Mapping.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;<a class="code" href="mapping_2SharedPointer_8hpp.html">mapping/SharedPointer.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;<a class="code" href="MappingConfiguration_8hpp.html">mapping/config/MappingConfiguration.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;<a class="code" href="Ginkgo_8hpp.html">mapping/device/Ginkgo.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;<a class="code" href="Device_8hpp.html">mapping/device/Device.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;<a class="code" href="differences_8hpp.html">math/differences.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &quot;<a class="code" href="geometry_8hpp.html">math/geometry.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &quot;<a class="code" href="Data_8hpp.html">mesh/Data.hpp</a>&quot;</span></div>
@@ -735,8 +735,8 @@ $(function() {
 <div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>  <span class="comment">// Finalize PETSc and Events first</span></div>
 <div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>  <a class="code hl_function" href="classprecice_1_1utils_1_1Petsc.html#ab9cb75bb28bc602f4ef5e76911f9cc9b">utils::Petsc::finalize</a>();</div>
 <div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span><span class="comment">// This will lead to issues if we call finalize afterwards again</span></div>
-<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span><span class="preprocessor">#ifndef PRECICE_NO_GINKGO</span></div>
-<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>  <a class="code hl_function" href="classprecice_1_1device_1_1Ginkgo.html#a2bc80897065a519564d0d394d63eb67a">device::Ginkgo::finalize</a>();</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span><span class="preprocessor">#if !defined(PRECICE_NO_GINKGO) || !defined(PRECICE_NO_KOKKOS_KERNELS)</span></div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>  <a class="code hl_function" href="classprecice_1_1device_1_1Device.html#ab4aed89f610118b0e84a2e1c9c994497">device::Device::finalize</a>();</div>
 <div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>  <a class="code hl_function" href="classprecice_1_1profiling_1_1EventRegistry.html#a0a1555e6211794ef23fcaf7a4f41950d">profiling::EventRegistry::instance</a>().<a class="code hl_function" href="classprecice_1_1profiling_1_1EventRegistry.html#a4e1bb8d0019a55bfd954568ba32c2910">finalize</a>();</div>
 <div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span> </div>
@@ -2193,6 +2193,7 @@ $(function() {
 <div class="ttc" id="aCouplingSchemeConfiguration_8hpp_html"><div class="ttname"><a href="CouplingSchemeConfiguration_8hpp.html">CouplingSchemeConfiguration.hpp</a></div></div>
 <div class="ttc" id="aCouplingScheme_8hpp_html"><div class="ttname"><a href="CouplingScheme_8hpp.html">CouplingScheme.hpp</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
+<div class="ttc" id="aDevice_8hpp_html"><div class="ttname"><a href="Device_8hpp.html">Device.hpp</a></div></div>
 <div class="ttc" id="aEdge_8hpp_html"><div class="ttname"><a href="Edge_8hpp.html">Edge.hpp</a></div></div>
 <div class="ttc" id="aEigenHelperFunctions_8hpp_html"><div class="ttname"><a href="EigenHelperFunctions_8hpp.html">EigenHelperFunctions.hpp</a></div></div>
 <div class="ttc" id="aEigenIO_8hpp_html"><div class="ttname"><a href="EigenIO_8hpp.html">EigenIO.hpp</a></div></div>
@@ -2200,7 +2201,6 @@ $(function() {
 <div class="ttc" id="aEvent_8hpp_html"><div class="ttname"><a href="Event_8hpp.html">Event.hpp</a></div></div>
 <div class="ttc" id="aExportContext_8hpp_html"><div class="ttname"><a href="ExportContext_8hpp.html">ExportContext.hpp</a></div></div>
 <div class="ttc" id="aExport_8hpp_html"><div class="ttname"><a href="Export_8hpp.html">Export.hpp</a></div></div>
-<div class="ttc" id="aGinkgo_8hpp_html"><div class="ttname"><a href="Ginkgo_8hpp.html">Ginkgo.hpp</a></div></div>
 <div class="ttc" id="aHelpers_8hpp_html"><div class="ttname"><a href="Helpers_8hpp.html">Helpers.hpp</a></div></div>
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
 <div class="ttc" id="aLogConfiguration_8hpp_html"><div class="ttname"><a href="LogConfiguration_8hpp.html">LogConfiguration.hpp</a></div></div>
@@ -2267,7 +2267,7 @@ $(function() {
 <div class="ttc" id="aclassprecice_1_1cplscheme_1_1CouplingScheme_html_a165dcc02dc4a183e9598e471b1834a46a667488c55c3abca96b02755bfe193681"><div class="ttname"><a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46a667488c55c3abca96b02755bfe193681">precice::cplscheme::CouplingScheme::Action::WriteCheckpoint</a></div><div class="ttdeci">@ WriteCheckpoint</div><div class="ttdoc">Is the participant required to write a checkpoint?</div><div class="ttdef"><b>Definition</b> <a href="CouplingScheme_8hpp_source.html#l00065">CouplingScheme.hpp:65</a></div></div>
 <div class="ttc" id="aclassprecice_1_1cplscheme_1_1CouplingScheme_html_a165dcc02dc4a183e9598e471b1834a46ad0b65f74231c653c82661a7c571914e7"><div class="ttname"><a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46ad0b65f74231c653c82661a7c571914e7">precice::cplscheme::CouplingScheme::Action::ReadCheckpoint</a></div><div class="ttdeci">@ ReadCheckpoint</div><div class="ttdoc">Is the participant required to read a previously written checkpoint?</div><div class="ttdef"><b>Definition</b> <a href="CouplingScheme_8hpp_source.html#l00064">CouplingScheme.hpp:64</a></div></div>
 <div class="ttc" id="aclassprecice_1_1cplscheme_1_1CouplingScheme_html_a165dcc02dc4a183e9598e471b1834a46af8fa9e7084bdc0c9513645cf162b4aa7"><div class="ttname"><a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46af8fa9e7084bdc0c9513645cf162b4aa7">precice::cplscheme::CouplingScheme::Action::InitializeData</a></div><div class="ttdeci">@ InitializeData</div><div class="ttdoc">Is the initialization of coupling data required?</div><div class="ttdef"><b>Definition</b> <a href="CouplingScheme_8hpp_source.html#l00063">CouplingScheme.hpp:63</a></div></div>
-<div class="ttc" id="aclassprecice_1_1device_1_1Ginkgo_html_a2bc80897065a519564d0d394d63eb67a"><div class="ttname"><a href="classprecice_1_1device_1_1Ginkgo.html#a2bc80897065a519564d0d394d63eb67a">precice::device::Ginkgo::finalize</a></div><div class="ttdeci">static void finalize()</div><div class="ttdef"><b>Definition</b> <a href="Ginkgo_8cpp_source.html#l00036">Ginkgo.cpp:36</a></div></div>
+<div class="ttc" id="aclassprecice_1_1device_1_1Device_html_ab4aed89f610118b0e84a2e1c9c994497"><div class="ttname"><a href="classprecice_1_1device_1_1Device.html#ab4aed89f610118b0e84a2e1c9c994497">precice::device::Device::finalize</a></div><div class="ttdeci">static void finalize()</div><div class="ttdef"><b>Definition</b> <a href="Device_8cpp_source.html#l00035">Device.cpp:35</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1DataContext_html_a302ba32bc5da853e6c08c1219c299a8f"><div class="ttname"><a href="classprecice_1_1impl_1_1DataContext.html#a302ba32bc5da853e6c08c1219c299a8f">precice::impl::DataContext::hasJustInTimeMapping</a></div><div class="ttdeci">bool hasJustInTimeMapping() const</div><div class="ttdef"><b>Definition</b> <a href="DataContext_8hpp_source.html#l00176">DataContext.hpp:176</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1DataContext_html_a8d081b34b4aa2963df9006ff66dfd5f3"><div class="ttname"><a href="classprecice_1_1impl_1_1DataContext.html#a8d081b34b4aa2963df9006ff66dfd5f3">precice::impl::DataContext::hasGradient</a></div><div class="ttdeci">bool hasGradient() const</div><div class="ttdoc">Returns whether _providedData has gradient.</div><div class="ttdef"><b>Definition</b> <a href="DataContext_8cpp_source.html#l00063">DataContext.cpp:63</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1DataContext_html_a947bcec25838edbba8d675527d1bb568"><div class="ttname"><a href="classprecice_1_1impl_1_1DataContext.html#a947bcec25838edbba8d675527d1bb568">precice::impl::DataContext::getDataDimensions</a></div><div class="ttdeci">int getDataDimensions() const</div><div class="ttdoc">Get the dimensions of _providedData.</div><div class="ttdef"><b>Definition</b> <a href="DataContext_8cpp_source.html#l00033">DataContext.cpp:33</a></div></div>

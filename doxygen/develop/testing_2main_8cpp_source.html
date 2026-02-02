@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;d10ad35</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;39136e2</span>
    </div>
   </td>
  </tr>
@@ -97,7 +97,7 @@ $(function() {
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="com_2SharedPointer_8hpp.html">com/SharedPointer.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="LogConfiguration_8hpp.html">logging/LogConfiguration.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="Ginkgo_8hpp.html">mapping/device/Ginkgo.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="Device_8hpp.html">mapping/device/Device.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="Testing_8hpp.html">testing/Testing.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="IntraComm_8hpp.html">utils/IntraComm.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="Parallel_8hpp.html">utils/Parallel.hpp</a>&quot;</span></div>
@@ -237,8 +237,8 @@ $(function() {
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  }</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="comment">// Required for Kokkos, which doesn&#39;t allow to initialize multiple times, i.e.,</span></div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  <span class="comment">// finalize and initialize can really only be called once</span></div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#ifndef PRECICE_NO_GINKGO</span></div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  <a class="code hl_function" href="classprecice_1_1device_1_1Ginkgo.html#a2bc80897065a519564d0d394d63eb67a">precice::device::Ginkgo::finalize</a>();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#if !defined(PRECICE_NO_GINKGO) || !defined(PRECICE_NO_KOKKOS_KERNELS)</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  <a class="code hl_function" href="classprecice_1_1device_1_1Device.html#ab4aed89f610118b0e84a2e1c9c994497">precice::device::Device::finalize</a>();</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#ad45fca6e5adf1b476ddb74f3f53e750c">utils::IntraComm::getCommunication</a>() = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <a class="code hl_function" href="classprecice_1_1utils_1_1Parallel.html#a14b8aee14f0ef2fd341e9090eaa35fc7">utils::Parallel::finalizeTestingMPI</a>();</div>
@@ -246,14 +246,14 @@ $(function() {
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>}</div>
 </div>
 <div class="ttc" id="aBSplineTest_8cpp_html_af955df90f6f7a8f0cb6dfab2450f49e0"><div class="ttname"><a href="BSplineTest_8cpp.html#af955df90f6f7a8f0cb6dfab2450f49e0">ts</a></div><div class="ttdeci">Eigen::Vector2d ts</div><div class="ttdef"><b>Definition</b> <a href="BSplineTest_8cpp_source.html#l00137">BSplineTest.cpp:137</a></div></div>
-<div class="ttc" id="aGinkgo_8hpp_html"><div class="ttname"><a href="Ginkgo_8hpp.html">Ginkgo.hpp</a></div></div>
+<div class="ttc" id="aDevice_8hpp_html"><div class="ttname"><a href="Device_8hpp.html">Device.hpp</a></div></div>
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
 <div class="ttc" id="aLogConfiguration_8hpp_html"><div class="ttname"><a href="LogConfiguration_8hpp.html">LogConfiguration.hpp</a></div></div>
 <div class="ttc" id="aParallel_8hpp_html"><div class="ttname"><a href="Parallel_8hpp.html">Parallel.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="acerr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/cerr.html">std::cerr</a></div></div>
-<div class="ttc" id="aclassprecice_1_1device_1_1Ginkgo_html_a2bc80897065a519564d0d394d63eb67a"><div class="ttname"><a href="classprecice_1_1device_1_1Ginkgo.html#a2bc80897065a519564d0d394d63eb67a">precice::device::Ginkgo::finalize</a></div><div class="ttdeci">static void finalize()</div><div class="ttdef"><b>Definition</b> <a href="Ginkgo_8cpp_source.html#l00036">Ginkgo.cpp:36</a></div></div>
+<div class="ttc" id="aclassprecice_1_1device_1_1Device_html_ab4aed89f610118b0e84a2e1c9c994497"><div class="ttname"><a href="classprecice_1_1device_1_1Device.html#ab4aed89f610118b0e84a2e1c9c994497">precice::device::Device::finalize</a></div><div class="ttdeci">static void finalize()</div><div class="ttdef"><b>Definition</b> <a href="Device_8cpp_source.html#l00035">Device.cpp:35</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_ad45fca6e5adf1b476ddb74f3f53e750c"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#ad45fca6e5adf1b476ddb74f3f53e750c">precice::utils::IntraComm::getCommunication</a></div><div class="ttdeci">static com::PtrCommunication &amp; getCommunication()</div><div class="ttdoc">Intra-participant communication.</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8hpp_source.html#l00031">IntraComm.hpp:31</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1Parallel_html_a14b8aee14f0ef2fd341e9090eaa35fc7"><div class="ttname"><a href="classprecice_1_1utils_1_1Parallel.html#a14b8aee14f0ef2fd341e9090eaa35fc7">precice::utils::Parallel::finalizeTestingMPI</a></div><div class="ttdeci">static void finalizeTestingMPI()</div><div class="ttdoc">Unconditionally finalizes MPI environment.</div><div class="ttdef"><b>Definition</b> <a href="Parallel_8cpp_source.html#l00261">Parallel.cpp:261</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1Parallel_html_a2aeadec30c9e48918e014608ede4d51d"><div class="ttname"><a href="classprecice_1_1utils_1_1Parallel.html#a2aeadec30c9e48918e014608ede4d51d">precice::utils::Parallel::current</a></div><div class="ttdeci">static CommStatePtr current()</div><div class="ttdoc">Returns an owning pointer to the current CommState.</div><div class="ttdef"><b>Definition</b> <a href="Parallel_8cpp_source.html#l00147">Parallel.cpp:147</a></div></div>
@@ -273,7 +273,7 @@ $(function() {
 <div class="ttc" id="anamespaceprecice_1_1logging_html_a33f23997f82442b8a7f097ec2e5d87c8"><div class="ttname"><a href="namespaceprecice_1_1logging.html#a33f23997f82442b8a7f097ec2e5d87c8">precice::logging::setMPIRank</a></div><div class="ttdeci">void setMPIRank(int const rank)</div><div class="ttdef"><b>Definition</b> <a href="LogConfiguration_8cpp_source.html#l00285">LogConfiguration.cpp:285</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a88702065a256e30c0017b305e68c196d"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a88702065a256e30c0017b305e68c196d">precice::testing::getTestSetupFor</a></div><div class="ttdeci">std::optional&lt; TestSetup &gt; getTestSetupFor(const boost::unit_test::test_unit &amp;tu)</div><div class="ttdoc">Returns the registered TestSetup for a test if available.</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00074">Testing.cpp:74</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
-<div class="ttc" id="anamespaceprecice_html_af702febbc9b271b27825da88dc83a008"><div class="ttname"><a href="namespaceprecice.html#af702febbc9b271b27825da88dc83a008">precice::syncMode</a></div><div class="ttdeci">bool syncMode</div><div class="ttdoc">Enabled further inter- and intra-solver synchronisation.</div><div class="ttdef"><b>Definition</b> <a href="PartitionOfUnityMapping_8hpp_source.html#l00018">PartitionOfUnityMapping.hpp:18</a></div></div>
+<div class="ttc" id="anamespaceprecice_html_af702febbc9b271b27825da88dc83a008"><div class="ttname"><a href="namespaceprecice.html#af702febbc9b271b27825da88dc83a008">precice::syncMode</a></div><div class="ttdeci">bool syncMode</div><div class="ttdoc">Enabled further inter- and intra-solver synchronisation.</div><div class="ttdef"><b>Definition</b> <a href="PartitionOfUnityMapping_8hpp_source.html#l00019">PartitionOfUnityMapping.hpp:19</a></div></div>
 <div class="ttc" id="anamespacestd_1_1filesystem_html"><div class="ttname"><a href="http://en.cppreference.com/w/namespacestd_1_1filesystem.html">std::filesystem</a></div></div>
 <div class="ttc" id="apath_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/filesystem/path.html">std::filesystem::path</a></div></div>
 <div class="ttc" id="aremove_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/filesystem/remove.html">std::filesystem::remove_all</a></div><div class="ttdeci">T remove_all(T... args)</div></div>
