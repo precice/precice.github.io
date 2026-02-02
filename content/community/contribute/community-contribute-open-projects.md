@@ -78,7 +78,7 @@ TODO
 
 ### Project: Error messages with configuration context
 
-A coupled simulation needs a [preCICE configuration file](configuration-overview.html),
+The core library needs a [preCICE configuration file](configuration-overview.html),
 which currently needs to be written directly (we are working on higher-level configuration tools as well).
 When one configures something wrong, preCICE throws an error message with details and recommendations (think git).
 Writing these error messages is, however, rather cumbersome at the moment,
@@ -99,7 +99,13 @@ Then, locate and modify the error message in the source code, to provide more in
 
 ### Project: Clean multi-step configuration
 
-[Related issue](https://github.com/precice/precice/issues/982)
+The core library parses its [configuration file](configuration-overview.html) using the [libxml2 library](https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home).
+The way this currently works is a bit rigid and the configuration of objects is directly tied to this parsing.
+Instead, we could do this in multiple stages, first creating an abstract syntax tree, which we could then use as a layer for additional checks, for example.
+In this project, we want to refactor the configuration code to introduce an XML AST built with libxml2.
+See the [related issue](https://github.com/precice/precice/issues/982).
+
+To figure out if this is for you, try the same as in the [project idea above](#project-error-messages-with-configuration-context).
 
 - Skills required: C++
 - Project size: Medium (175h)
