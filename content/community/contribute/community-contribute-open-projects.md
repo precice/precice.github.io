@@ -55,7 +55,7 @@ when we look at the documentation of other community projects, such as [GitLab](
 We also required some hacky jekyll plugins to integrate multiple repositories into one jekyll website, which are a bit error-prone.
 Our technology stack is also a bit outdated:
 For example, the front-end is using [Bootstrap](https://getbootstrap.com/docs/) 3.3.7, with some custom CSS on top.
-We have done some [preliminary work](https://github.com/orgs/precice/projects/22/views/1),
+We have done some [preliminary work](https://github.com/orgs/precice/projects/22/views/1) porting to hugo,
 but web development is not what we are good at.
 As a first step, we would like to [upgrade to a newer Bootstrap version](https://github.com/precice/precice.github.io/issues/691).
 After that, we would like to switch to the [Hugo static site generator](https://gohugo.io/),
