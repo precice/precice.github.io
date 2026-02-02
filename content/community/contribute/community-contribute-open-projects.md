@@ -67,6 +67,28 @@ Be creative!
 - Difficulty: Intermediate
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
 
+### Project: Error messages with configuration context
+
+A coupled simulation needs a [preCICE configuration file](configuration-overview.html),
+which currently needs to be written directly (we are working on higher-level configuration tools as well).
+When one configures something wrong, preCICE throws an error message with details and recommendations (think git).
+Writing these error messages is, however, rather cumbersome at the moment,
+while they might sometimes miss important context for the user.
+In this project, we want to refactor the code to provide context directly from the configuration file:
+see the [related issue](https://github.com/precice/precice/issues/751).
+
+To figure out if this is for you, try [building preCICE from source](https://precice.org/installation-source-preparation.html),
+running the [elastic tube 1D tutorial](https://precice.org/tutorials-elastic-tube-1d.html),
+and modifying the [configuration file](https://github.com/precice/tutorials/blob/master/elastic-tube-1d/precice-config.xml)
+to trigger an error (e.g., remove one of the `<data>` tags).
+Then, locate and modify the error message in the source code, to provide more information.
+
+- Skills required: C++
+- Project size: Small (90h)
+- Difficulty: Intermediate
+- Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
+
+
 ## General guidelines
 
 Be creative, be proactive, make your project your own, and write like appealing to colleagues with the same questions as you when you started.
