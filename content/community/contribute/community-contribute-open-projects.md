@@ -114,7 +114,7 @@ Then, locate and modify the error message in the source code, to provide more in
 The core library parses its [configuration file](configuration-overview.html) using the [libxml2 library](https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home).
 The way this currently works is a bit rigid and the configuration of objects is directly tied to this parsing.
 Instead, we could do this in multiple stages, introducing an additional abstract syntax tree, which we could then use as a layer for additional checks,
-or to parse the configuration in any order.
+or to parse the configuration in a predefined order.
 In this project, we want to refactor the configuration code to introduce an XML AST built with libxml2.
 See the [related issue](https://github.com/precice/precice/issues/982).
 
