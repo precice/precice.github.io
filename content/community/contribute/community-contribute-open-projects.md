@@ -64,7 +64,7 @@ Be creative!
 
 - Skills required: Web development (Jekyll/Hugo + CSS, JS)
 - Project size: Medium (175h)
-- Difficulty: Intermediate
+- Difficulty: Easy/Intermediate - Requires porting existing content from one framework and stack to another, but will be driven primarily by you on the "how".
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
 
 ### Project: System tests improvements
@@ -73,7 +73,7 @@ TODO
 
 - Skills required: Python, Bash, Docker, Git
 - Project size: Medium (175h)
-- Difficulty: Intermediate
+- Difficulty: Intermediate - Requires combining multiple technologies and has an impact in multiple repositories, but includes mostly small and clear work packages.
 - Mentors: [Gerasimos Chourdakis](https://github.com/MakisH) and [Frédéric Simonis](https://github.com/fsimonis)
 
 ### Project: Error messages with configuration context
@@ -94,7 +94,7 @@ Then, locate and modify the error message in the source code, to provide more in
 
 - Skills required: C++
 - Project size: Small (90h)
-- Difficulty: Intermediate
+- Difficulty: Intermediate - Requires significant modifications to the C++ codebase, but with limited impact to/from other work.
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
 
 ### Project: Clean multi-step configuration
@@ -103,7 +103,7 @@ Then, locate and modify the error message in the source code, to provide more in
 
 - Skills required: C++
 - Project size: Medium (175h)
-- Difficulty: Intermediate
+- Difficulty: Intermediate/Hard - Requires refactoring or modifying large parts of the C++ codebase, but with limited impact to/from other work.
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
 
 ## General guidelines
