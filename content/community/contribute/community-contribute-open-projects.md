@@ -2,8 +2,10 @@
 title: Contribute to preCICE - Open projects
 keywords: contribute, GSoC, google summer of code, student
 summary: Open opportunities for contributing to preCICE
-permalink: community-contribute-open-projects.html
 toc: true
+permalink: community-contribute-open-projects.html
+redirect_from:
+  - /gsoc/
 ---
 
 ## Context
