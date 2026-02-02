@@ -6,6 +6,17 @@ permalink: community-contribute-open-projects.html
 toc: true
 ---
 
+## Context
+
+In case you skipped the [home page](index.html),
+preCICE is a _coupling library_ for **numerical simulations** (think meshes, iterative solution, FEM, CFD)
+and an _ecosystem_ of related components.
+Scientists take two independent numerical simulation codes and make them work together on a more complex simulation,
+which none of the individual codes could do alone.
+For this, they use one of the many _adapters_ (think plugins for various simulation codes), or directly the core library.
+While the latter is written in **C++**, many other languages are relevant as well: **Python, Julia, Matlab, C, Fortran, and Rust**,
+while it is primarily used on **Linux** systems (with macOS and Windows possible as well).
+
 Most of the preCICE development has been happening in a university context,
 and student projects have played a vital role: Just look at the [list of contributors](community-contributors.html).
 We are working on [GitHub](https://github.com/precice/), and we accept contributions by everyone.
