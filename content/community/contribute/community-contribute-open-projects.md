@@ -108,8 +108,8 @@ Then, locate and modify the error message in the source code, to provide more in
 
 ## General guidelines
 
-Be creative, be proactive, make your project your own, and write like appealing to colleagues with the same questions as you when you started.
-
-We welcome all kinds of modern tools for assisting with code development, but we do value the human factor:
+1. Be creative, be proactive, make your project your own.
+2. When writing (e.g., a pull request description), think of writing to colleagues with the same questions as you when you started.
+3. We welcome all kinds of modern tools for assisting with code development, but we do value the human factor:
 we want to see your work, in your own words, and we trust that you understand what you contribute.
 No need to impress, we are happy to help understand every concept together!
