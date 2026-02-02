@@ -104,7 +104,7 @@ Then, locate and modify the error message in the source code, to provide more in
 - Skills required: C++
 - Project size: Small (90h)
 - Difficulty: Intermediate - Requires significant modifications to the C++ codebase, but with limited impact to/from other work.
-- Mentors: [Frédéric Simonis](https://github.com/fsimonis) - Fallback: [Gerasimos Chourdakis](https://github.com/MakisH)
+- Mentors: [Frédéric Simonis](https://github.com/fsimonis) - Fallback: [Benjamin Uekermann](https://github.com/uekerman)
 
 ### Project: Clean multi-step configuration
 
@@ -119,7 +119,7 @@ To figure out if this is for you, try the same as in the [project idea above](#p
 - Skills required: C++
 - Project size: Medium (175h)
 - Difficulty: Intermediate/Hard - Requires refactoring or modifying large parts of the C++ codebase, but with limited impact to/from other work.
-- Mentors: [Frédéric Simonis](https://github.com/fsimonis) - Fallback: [Gerasimos Chourdakis](https://github.com/MakisH)
+- Mentors: [Frédéric Simonis](https://github.com/fsimonis) - Fallback: [Benjamin Uekermann](https://github.com/uekerman)
 
 ## General guidelines
 
