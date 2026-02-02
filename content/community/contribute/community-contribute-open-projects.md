@@ -26,7 +26,7 @@ In the university context, we also closely mentor students,
 we encourage participation in team events such as our coding days,
 and several students have so far participated in workshops, conferences, and publications.
 
-If you want to contribute with a student project (typically a thesis), see the [university groups behind preCICE](https://precice.org/about.html).
+If you want to contribute with a student project (typically a thesis), see the [university groups behind preCICE](about.html).
 This page highlights a few specific projects that are not directly suitable for a thesis ([thesis-suitable issues in the core library](https://github.com/precice/precice/issues?q=is%3Aissue%20state%3Aopen%20label%3Athesis)), but are also a bit more than a [good first issue](https://github.com/precice/precice/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22).
 Some of these projects we advertise publicly, in programs such as the Google Summer of Code.
 
@@ -47,7 +47,7 @@ Introduce yourself in the [forum](https://precice.discourse.group/c/jobs/gsoc/15
 This website is built with [Jekyll](https://jekyllrb.com/),
 a straight-forward static site generator that has served us well,
 but now starts to feel a bit restrictive
-([GitHub repository](https://github.com/precice/precice.github.io), [documentation](https://precice.org/docs-meta-overview.html)).
+([GitHub repository](https://github.com/precice/precice.github.io), [documentation]docs-meta-overview.html)).
 We envy the dark theme, the nice footer that showcases contributions, and the nice search engine support
 when we look at the documentation of other community projects, such as [GitLab](https://docs.gitlab.com/user/) or [Docker](https://docs.docker.com/get-started/).
 Our technology stack is also a bit outdated:
@@ -86,8 +86,8 @@ while they might sometimes miss important context for the user.
 In this project, we want to refactor the code to provide context directly from the configuration file:
 see the [related issue](https://github.com/precice/precice/issues/751).
 
-To figure out if this is for you, try [building preCICE from source](https://precice.org/installation-source-preparation.html),
-running the [elastic tube 1D tutorial](https://precice.org/tutorials-elastic-tube-1d.html),
+To figure out if this is for you, try [building preCICE from source](installation-source-preparation.html),
+running the [elastic tube 1D tutorial](tutorials-elastic-tube-1d.html),
 and modifying the [configuration file](https://github.com/precice/tutorials/blob/master/elastic-tube-1d/precice-config.xml)
 to trigger an error (e.g., remove one of the `<data>` tags).
 Then, locate and modify the error message in the source code, to provide more information.
