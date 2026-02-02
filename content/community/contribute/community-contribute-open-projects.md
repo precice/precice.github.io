@@ -67,6 +67,15 @@ Be creative!
 - Difficulty: Intermediate
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
 
+### Project: System tests improvements
+
+TODO
+
+- Skills required: Python, Bash, Docker, Git
+- Project size: Medium (175h)
+- Difficulty: Intermediate
+- Mentors: [Gerasimos Chourdakis](https://github.com/MakisH) and [Frédéric Simonis](https://github.com/fsimonis)
+
 ### Project: Error messages with configuration context
 
 A coupled simulation needs a [preCICE configuration file](configuration-overview.html),
@@ -88,6 +97,14 @@ Then, locate and modify the error message in the source code, to provide more in
 - Difficulty: Intermediate
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
 
+### Project: Clean multi-step configuration
+
+[Related issue](https://github.com/precice/precice/issues/982)
+
+- Skills required: C++
+- Project size: Medium (175h)
+- Difficulty: Intermediate
+- Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
 
 ## General guidelines
 
