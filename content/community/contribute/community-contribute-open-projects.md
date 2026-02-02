@@ -83,7 +83,7 @@ To figure out if this is for you, [run the system tests locally](dev-docs-system
 - Skills required: Python, Docker, GitHub Actions
 - Project size: Medium (175h) - Depending on the availability, small or large are also possible
 - Difficulty: Intermediate - Requires combining multiple technologies and has an impact in multiple repositories, but includes mostly small and clear work packages.
-- Mentors: [Gerasimos Chourdakis](https://github.com/MakisH) and [Frédéric Simonis](https://github.com/fsimonis)
+- Mentors: [Gerasimos Chourdakis](https://github.com/MakisH) - Fallback: [Frédéric Simonis](https://github.com/fsimonis)
 
 ### Project: Error messages with configuration context
 
@@ -104,7 +104,7 @@ Then, locate and modify the error message in the source code, to provide more in
 - Skills required: C++
 - Project size: Small (90h)
 - Difficulty: Intermediate - Requires significant modifications to the C++ codebase, but with limited impact to/from other work.
-- Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
+- Mentors: [Frédéric Simonis](https://github.com/fsimonis) - Fallback: [Gerasimos Chourdakis](https://github.com/MakisH)
 
 ### Project: Clean multi-step configuration
 
@@ -119,11 +119,11 @@ To figure out if this is for you, try the same as in the [project idea above](#p
 - Skills required: C++
 - Project size: Medium (175h)
 - Difficulty: Intermediate/Hard - Requires refactoring or modifying large parts of the C++ codebase, but with limited impact to/from other work.
-- Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
+- Mentors: [Frédéric Simonis](https://github.com/fsimonis) - Fallback: [Gerasimos Chourdakis](https://github.com/MakisH)
 
 ## General guidelines
 
-1. Be creative, be proactive, make your project your own.
+1. Be creative, be proactive, and make your project your own.
 2. When writing (e.g., a pull request description), think of writing to colleagues with the same questions as you when you started.
 3. We welcome all kinds of modern tools for assisting with code development, but we do value the human factor:
 we want to see your work, in your own words, and we trust that you understand what you contribute.
