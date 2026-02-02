@@ -26,7 +26,7 @@ We review pull requests trying to improve their quality together and bring them 
 which can sometimes be a long but rewarding experience.
 In the university context, we also closely mentor students,
 we encourage participation in team events such as our coding days,
-and several students have so far participated in workshops, conferences, and publications.
+and several students have so far participated in workshops, conferences, and publications, or even done their PhD in the team.
 
 If you want to contribute with a student project (typically a thesis), see the [university groups behind preCICE](about.html).
 This page highlights a few specific projects that are not directly suitable for a thesis ([thesis-suitable issues in the core library](https://github.com/precice/precice/issues?q=is%3Aissue%20state%3Aopen%20label%3Athesis)), but are also a bit more than a [good first issue](https://github.com/precice/precice/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22).
