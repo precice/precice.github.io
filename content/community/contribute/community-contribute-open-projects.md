@@ -94,7 +94,7 @@ The core library needs a [preCICE configuration file](configuration-overview.htm
 which currently needs to be written manually (we are working on higher-level configuration tools as well).
 When one configures something wrong, preCICE throws an error message with details and recommendations (think git).
 Writing these error messages is, however, rather cumbersome at the moment,
-while they might sometimes miss important context for the user.
+as they don't mention where the error occurs in the configuration file.
 In this project, we want to refactor the code to provide context directly from the configuration file:
 see the [related issue](https://github.com/precice/precice/issues/751).
 
