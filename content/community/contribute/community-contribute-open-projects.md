@@ -27,7 +27,7 @@ we encourage participation in team events such as our coding days,
 and several students have so far participated in workshops, conferences, and publications.
 
 If you want to contribute with a student project (typically a thesis), see the [university groups behind preCICE](https://precice.org/about.html).
-This page highlights a few specific projects that are not directly suitable for a thesis.
+This page highlights a few specific projects that are not directly suitable for a thesis ([thesis-suitable issues in the core library](https://github.com/precice/precice/issues?q=is%3Aissue%20state%3Aopen%20label%3Athesis)), but are also a bit more than a [good first issue](https://github.com/precice/precice/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22).
 Some of these projects we advertise publicly, in programs such as the Google Summer of Code.
 
 {% tip %}
