@@ -115,7 +115,7 @@ The core library parses its [configuration file](configuration-overview.html) us
 The way this currently works is a bit rigid and the configuration of objects is directly tied to this parsing.
 Instead, we could do this in multiple stages, introducing an additional abstract syntax tree, which we could then use as a layer for additional checks,
 or to parse the configuration in a predefined order.
-In this project, we want to refactor the configuration code to introduce an XML AST built with libxml2.
+In this project, we want to refactor the configuration code to introduce a confguration AST (structured types), generated from the XML AST (nested tags and their attributes) built with libxml2.
 See the [related issue](https://github.com/precice/precice/issues/982).
 
 To figure out if this is for you, try the same as in the [project idea above](#project-error-messages-with-configuration-context).
