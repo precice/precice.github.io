@@ -1678,6 +1678,88 @@ another missing library will trigger an “undefined symbol” runtime error.</p
 
 <p>See also the notes and discussion in <a href="https://github.com/precice/openfoam-adapter/issues/7">issue #7: Create a module for fluid-structure interaction</a>.</p>
 
+<h2 id="checkpointing">Checkpointing</h2>
+
+<p>In implicit coupling, the adapter manages the coupling loop, which entails checkpointing the simulation state (fields and mesh).
+The checkpoints are stored and reloaded to repeat implicit time steps.
+As the coupling data is exchanged, the adapter repeats the time step until convergence.
+See this diagram for an overview:</p>
+
+<p><img src="images/docs-adapter-openfoam-implicit-loop.png" alt="Implicit checkpointing diagram" /></p>
+
+<p>While the adapter already takes care of checkpointing all of the usual field and mesh data, your solver or use specific scenario might need to checkpoint more objects.
+Start by looking at the <code class="language-plaintext highlighter-rouge">setupCheckpointing()</code> function in the <a href="https://github.com/precice/openfoam-adapter/blob/master/Adapter.C">Adapter.C</a>.</p>
+
+<h3 id="checkpointed-fields">Checkpointed fields</h3>
+
+<p>For reference, here is a list of known checkpointed and non-checkpointed fields in the OpenFOAM adapter. The adapter automatically finds and checkpoints all objects registered in the OpenFOAM object registry (<code class="language-plaintext highlighter-rouge">mesh_.thisDb()</code>) that match the following types:</p>
+
+<h4 id="volume-fields">Volume fields</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">volScalarField</code>: e.g., <code class="language-plaintext highlighter-rouge">p</code>, <code class="language-plaintext highlighter-rouge">T</code>, <code class="language-plaintext highlighter-rouge">k</code>, <code class="language-plaintext highlighter-rouge">omega</code>, <code class="language-plaintext highlighter-rouge">nut</code>, <code class="language-plaintext highlighter-rouge">nu</code>, <code class="language-plaintext highlighter-rouge">rho</code></li>
+  <li><code class="language-plaintext highlighter-rouge">volVectorField</code>: e.g., <code class="language-plaintext highlighter-rouge">U</code>, <code class="language-plaintext highlighter-rouge">Force</code>, <code class="language-plaintext highlighter-rouge">cellDisplacement</code></li>
+  <li><code class="language-plaintext highlighter-rouge">volTensorField</code>: e.g., <code class="language-plaintext highlighter-rouge">grad(U)</code> (if exists, relevant closed issue <a href="https://github.com/precice/openfoam-adapter/issues/158">#158</a>)</li>
+  <li><code class="language-plaintext highlighter-rouge">volSymmTensorField</code>: e.g., <code class="language-plaintext highlighter-rouge">R</code> (Reynolds stress)</li>
+</ul>
+
+<h4 id="surface-fields">Surface fields</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">surfaceScalarField</code>: e.g., <code class="language-plaintext highlighter-rouge">phi</code> (flux), <code class="language-plaintext highlighter-rouge">faceDiffusivity</code></li>
+  <li><code class="language-plaintext highlighter-rouge">surfaceVectorField</code>: e.g., <code class="language-plaintext highlighter-rouge">Uf</code></li>
+  <li><code class="language-plaintext highlighter-rouge">surfaceTensorField</code></li>
+</ul>
+
+<h4 id="point-fields">Point fields</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pointScalarField</code></li>
+  <li><code class="language-plaintext highlighter-rouge">pointVectorField</code>: e.g., <code class="language-plaintext highlighter-rouge">pointDisplacement</code></li>
+  <li><code class="language-plaintext highlighter-rouge">pointTensorField</code></li>
+</ul>
+
+<p>The adapter will only create the checkpoint list once during initialization: After the first solver step, it is assumed that no new fields have been created that need to be checkpointed.</p>
+
+<h4 id="mesh-data">Mesh data</h4>
+
+<p>To handle mesh motion (ALE), the adapter explicitly checkpoints:</p>
+
+<ul>
+  <li>Mesh Points <code class="language-plaintext highlighter-rouge">mesh_.points()</code> and <code class="language-plaintext highlighter-rouge">mesh_.oldPoints()</code></li>
+  <li>Mesh Motion Flux <code class="language-plaintext highlighter-rouge">mesh_.phi()</code></li>
+</ul>
+
+<h3 id="non-checkpointed-fields">Non-checkpointed fields</h3>
+
+<p>Certain fields are purposely not checkpointed, see issue <a href="https://github.com/precice/openfoam-adapter/issues/324">#324</a> and explanation in <a href="https://github.com/precice/openfoam-adapter/pull/387">PR #387</a>. This is either because they are re-calculated when needed “on-demand” or because they are essentially static (dictionaries assumed unchanging).</p>
+
+<h4 id="derived-mesh-fields">Derived mesh fields</h4>
+
+<p>The following fields are recalculated by OpenFOAM when <code class="language-plaintext highlighter-rouge">fvMesh::movePoints</code> is called, so the adapter does not store them:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">C</code> (Cell Centers)</li>
+  <li><code class="language-plaintext highlighter-rouge">Cf</code> (Face Centers)</li>
+  <li><code class="language-plaintext highlighter-rouge">Sf</code> (Face Area Vectors)</li>
+  <li><code class="language-plaintext highlighter-rouge">magSf</code> (Face Area Magnitudes)</li>
+  <li><code class="language-plaintext highlighter-rouge">delta</code> (Face-Center to Cell-Center distances)</li>
+  <li><code class="language-plaintext highlighter-rouge">V</code>, <code class="language-plaintext highlighter-rouge">V0</code>, <code class="language-plaintext highlighter-rouge">V00</code> (Cell Volumes): These are already properly checkpointed by OpenFOAM itself, except when subcycling (needs further handling when subcycling - <a href="https://github.com/precice/openfoam-adapter/pull/369#issuecomment-3748773060">related discussion</a>).</li>
+</ul>
+
+<h4 id="dictionaries">Dictionaries</h4>
+
+<p>The adapter does not checkpoint <code class="language-plaintext highlighter-rouge">IOdictionary</code> objects, assuming they are unchanged over the time windows or handled by OpenFOAM otherwise. Examples:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">controlDict</code></li>
+  <li><code class="language-plaintext highlighter-rouge">transportProperties</code></li>
+  <li><code class="language-plaintext highlighter-rouge">turbulenceProperties</code></li>
+  <li><code class="language-plaintext highlighter-rouge">fvSchemes</code>, <code class="language-plaintext highlighter-rouge">fvSolution</code></li>
+  <li><code class="language-plaintext highlighter-rouge">dynamicMeshDict</code></li>
+  <li><code class="language-plaintext highlighter-rouge">preciceDict</code></li>
+</ul>
+
 
     
 
