@@ -67,7 +67,7 @@ Be creative!
 
 - Skills required: Web development (Jekyll/Hugo + CSS, JS)
 - Project size: Medium (175h)
-- Difficulty: Easy/Intermediate - Requires porting existing content from one framework and stack to another, but will be driven primarily by you on the "how".
+- Difficulty: Easy/Intermediate - Requires upgrading the front-end framework and porting existing content from one framework and stack to another, but will be driven primarily by you on the "how".
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
 
 ### Project: System tests improvements
