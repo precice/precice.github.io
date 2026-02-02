@@ -69,10 +69,19 @@ Be creative!
 
 ### Project: System tests improvements
 
-TODO
+While the core library has several unit and integration tests,
+some issues only show up when running complete simulations.
+For this reason, preCICE has [system tests](dev-docs-system-tests.html),
+which choose and install components from the ecosystem in Docker containers,
+run complete simulations, and compare the numerical results against references.
+These tests are integrated into the [GitHub Actions](https://docs.github.com/en/actions) CI infrastructure of preCICE.
+While the system tests are already running every night and on many pull requests, several improvements are possible ([related issues](https://github.com/precice/tutorials/issues?q=is%3Aissue%20state%3Aopen%20label%3Asystemtests)):
+running (much) faster test cases, running multiple test cases in parallel, better communicating what went wrong, integrating more repositories, and the list of possibilities goes on.
 
-- Skills required: Python, Bash, Docker, Git
-- Project size: Medium (175h)
+To figure out if this is for you, [run the system tests locally](dev-docs-system-tests.html#running-specific-test-suites) and [add one more tutorial to the tests](dev-docs-system-tests.html#adding-tutorials).
+
+- Skills required: Python, Docker, GitHub Actions
+- Project size: Medium (175h) - Depending on the availability, small or large are also possible
 - Difficulty: Intermediate - Requires combining multiple technologies and has an impact in multiple repositories, but includes mostly small and clear work packages.
 - Mentors: [Gerasimos Chourdakis](https://github.com/MakisH) and [Frédéric Simonis](https://github.com/fsimonis)
 
