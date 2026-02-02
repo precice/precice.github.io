@@ -161,7 +161,7 @@ displacements_dim = precice.get_data_dimensions("FluidMesh", "Displacements")
 displacements = np.zeros((vertex_size, displacements_dim))
 
 precice.initialize()
-while participant.is_coupling_ongoing(): # time loop
+while precice.is_coupling_ongoing(): # time loop
   precice_dt = precice.get_max_time_step_size()
   solver_dt = begin_time_step() # e.g. compute adaptive dt
   dt = min(precice_dt, solver_dt)
