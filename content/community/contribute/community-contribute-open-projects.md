@@ -52,6 +52,7 @@ but now starts to feel a bit restrictive
 ([GitHub repository](https://github.com/precice/precice.github.io), [documentation]docs-meta-overview.html)).
 We envy the dark theme, the nice footer that showcases contributions, and the nice search engine support
 when we look at the documentation of other community projects, such as [GitLab](https://docs.gitlab.com/user/) or [Docker](https://docs.docker.com/get-started/).
+We also required some hacky jekyll plugins to integrate multiple repositories into one jekyll website, which are a bit error-prone.
 Our technology stack is also a bit outdated:
 For example, the front-end is using [Bootstrap](https://getbootstrap.com/docs/) 3.3.7, with some custom CSS on top.
 We have done some [preliminary work](https://github.com/orgs/precice/projects/22/views/1),
