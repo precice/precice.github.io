@@ -21,6 +21,8 @@ To find the right method for you, follow this decision graph, or read on!
     <area target="" alt="Demo Virtual Machine" title="Demo Virtual Machine" href="installation-vm.html" coords="439,340,562,401" shape="rect">
 </map>
 
+You can always check your preCICE installation by running `precice-version` in a terminal (see [built-in tooling](tooling-builtin.html#precice-version)).
+
 Note that preCICE is much more than the core library. To find out which library, bindings, adapters, and tutorials versions work together,
 have a look at the [preCICE distribution](installation-distribution.html).
 
