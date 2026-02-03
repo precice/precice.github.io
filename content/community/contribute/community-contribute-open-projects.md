@@ -42,7 +42,17 @@ The [Google Summer of Code](https://summerofcode.withgoogle.com/) is _"a global,
 
 For 2026, we have prepared the following topics, for different sets of skills.
 Since this is our first year, and since we are a rather small project, we might not be able to accommodate applicants to all of these projects.
-Introduce yourself in the [forum](https://precice.discourse.group/c/jobs/gsoc/15) and let us know more about your background and motivation, so that we can find out together if these topics are a good fit. Show us what you have tried already (see "entry test" in each project and feel free to go beyond that), to support your application. We will contact you via replies and/or private messages there.
+Before applying, introduce yourself in the [forum](https://precice.discourse.group/c/jobs/gsoc/15) and let us know more about your background and motivation:
+
+- What motivates you spend this summer in GSoC instead of doing anything else?
+- What interests you most about our project?
+- Will you have any other commitments (e.g., work or study) while working on the project?
+- What previous experience do you have with the respective technologies?
+- What previous experience with Git and GitHub do you have, if any?
+
+Additionally, show us what you have tried already (see "entry test" in each project and feel free to go beyond that), to support your application. If you have contributed anything to any preCICE repository, definitely mention this here.
+
+We will contact you via replies and/or private messages in the forum, to find out together if these topics are a good fit. You can alternatively ask quick questions in the [Matrix chat](https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im). Don't miss the [guidelines](#general-guidelines) at the bottom of this page.
 
 ### Project: Website modernization
 
