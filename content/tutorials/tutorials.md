@@ -18,6 +18,7 @@ git clone https://github.com/precice/tutorials.git
 ```
 
 If you don't need the full history (to save space and data), you can use the `--depth 1` option.
+Releases originate from the `master` branch.
 
 ## Basic cases
 
