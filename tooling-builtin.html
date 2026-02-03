@@ -785,6 +785,13 @@ document.addEventListener('mouseup', function(e) {
       
       
       
+      <li><a title="The preCICE CLI" href="tooling-cli.html">The preCICE CLI</a></li>
+      
+      
+      
+      
+      
+      
       <li  class="active"  ><a title="Built-in tooling" href="tooling-builtin.html">Built-in tooling</a></li>
       
       
@@ -1643,7 +1650,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 21 Jan 26</small>
+              <small>Updated 03 Feb 26</small>
             </div>
           </aside>
           
@@ -1655,7 +1662,11 @@ With the <code class="language-plaintext highlighter-rouge">precice-cli</code>, 
 
 <h2 id="xml-reference">XML reference</h2>
 
-<p>For generating the XML reference, we can use <code class="language-plaintext highlighter-rouge">precice-config-doc</code> (or the deprecated <code class="language-plaintext highlighter-rouge">precice-tools</code>, with the same options):</p>
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
+<code class="language-plaintext highlighter-rouge">precice-tools md|xml|dt</code> was deprecated in version 3.3.0 in favour of <code class="language-plaintext highlighter-rouge">precice-config-doc</code>.
+</div>
+
+<p>For generating the XML reference, we can use <code class="language-plaintext highlighter-rouge">precice-config-doc</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-doc md
 precice-config-doc xml
@@ -1686,10 +1697,10 @@ Be aware that this version does not contain styling, LaTeX rendering, and functi
 <h2 id="precice-version">preCICE version</h2>
 
 <div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
-This feature is available since version 2.4.0.
+<code class="language-plaintext highlighter-rouge">precice-tools version</code> was introduced in version 2.4.0 and deprecated in version 3.3.0 in favour of <code class="language-plaintext highlighter-rouge">precice-version</code>.
 </div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools version
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-version
 </code></pre></div></div>
 
 <p>This prints the version information of preCICE, which consists of multiple semicolon-separated parts.</p>
@@ -1706,10 +1717,11 @@ It is not available if the library wasn’t build using the git repository.</li>
 <h2 id="configuration-check">Configuration check</h2>
 
 <div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
-This feature is available since version 2.4.0.
+<code class="language-plaintext highlighter-rouge">precice-tools check</code> was introduced in version 2.4.0 and deprecated in version 3.3.0 in favour of <code class="language-plaintext highlighter-rouge">precice-config-validate</code>.
+Prefer to use <code class="language-plaintext highlighter-rouge">precice-cli config check</code> for the extra logic checks instead.
 </div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools check FILE <span class="o">[</span> PARTICIPANT <span class="o">[</span> COMMSIZE <span class="o">]</span> <span class="o">]</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-validate FILE <span class="o">[</span> PARTICIPANT <span class="o">[</span> COMMSIZE <span class="o">]</span> <span class="o">]</span>
 </code></pre></div></div>
 
 <p>The <code class="language-plaintext highlighter-rouge">check</code> runs the preCICE configuration parsing and checking logic on the given configuration file.
@@ -1720,7 +1732,7 @@ For more logical checks, see the <a href="https://github.com/precice/config-chec
 
 <p>The basic usage is to check a configuration file:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools check precice-config.xml
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-validate precice-config.xml
 </code></pre></div></div>
 
 <p>Some example errors handled by the checker:</p>
@@ -1757,8 +1769,8 @@ This participant is assumed to run on a single rank.
 You may additionally pass the communicator size of the participant.
 This enables some checks regarding user-defined intra-participant communication, which should not be necessary in the vast majority of cases.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools check precice-config.xml Fluid
-precice-tools check precice-config.xml Fluid 2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-validate precice-config.xml Fluid
+precice-config-validate precice-config.xml Fluid 2
 </code></pre></div></div>
 
 
@@ -1788,6 +1800,10 @@ precice-tools check precice-config.xml Fluid 2
   "name": "Docs",
   "item": "https://precice.org/docs.html"
 }
+
+
+
+
 
 
 
@@ -2128,7 +2144,7 @@ precice-tools check precice-config.xml Fluid 2
         </a>
         </p>
         <p>
-        Page last updated: Jan 21, 2026<br>
+        Page last updated: Feb 3, 2026<br>
         Site last updated: Feb 3, 2026
         </p>
       </div>

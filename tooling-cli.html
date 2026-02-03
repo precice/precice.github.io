@@ -5,25 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI applications or even to couple G+Smo to itself for advanced structural simulations.">
+  <meta name="description" content="The preCICE CLI provides a unified interface to the main preCICE tools.">
 
-<meta name="keywords" content=" adapter, G+Smo, Isogeometric Analysis, IGA">
+<meta name="keywords" content=" tooling, xml, configuration, version, cli, pypi">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>The G+Smo adapter | preCICE - The Coupling Library</title>
+<title>The preCICE CLI | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="The G+Smo adapter" />
+<meta property="og:title" content="The preCICE CLI" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-<meta property="og:description" content="The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI applications or even to couple G+Smo to itself for advanced structural simulations.">
+<meta property="og:description" content="The preCICE CLI provides a unified interface to the main preCICE tools.">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/adapter-gismo" >
+<link rel="canonical" href="https://precice.org/tooling-cli" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -785,7 +785,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="The preCICE CLI" href="tooling-cli.html">The preCICE CLI</a></li>
+      <li  class="active"  ><a title="The preCICE CLI" href="tooling-cli.html">The preCICE CLI</a></li>
       
       
       
@@ -1086,7 +1086,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Overview" href="adapter-gismo.html">Overview</a></li>
+          <li><a title="Overview" href="adapter-gismo.html">Overview</a></li>
           
           
           
@@ -1594,7 +1594,7 @@ document.addEventListener('mouseup', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">The G+Smo adapter</h1>
+   <h1 class="post-title-main">The preCICE CLI</h1>
 </div>
 
 
@@ -1604,7 +1604,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI applications or even to couple G+Smo to itself for advanced structural simulations.
+        The preCICE CLI provides a unified interface to the main preCICE tools.
 
     </div>
     
@@ -1646,93 +1646,77 @@ $('#toc').on('click', 'a', function() {
           <aside>
             
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/content/docs/adapters/gismo/adapter-gismo.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/content/docs/tooling/tooling-cli.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
-              <small>Updated 16 Sep 25</small>
+              <small>Updated 03 Feb 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <h2 id="what-is-gsmo">What is G+Smo?</h2>
+   <p>The <a href="https://github.com/precice/cli"><code class="language-plaintext highlighter-rouge">precice-cli</code></a> package provides an easy-to-use interface for the <a href="tooling-builtin">builtin tools</a> of preCICE and a range of python-based tooling.</p>
 
-<p>G+Smo (pronounced gismo or gizmo) is a C++ library for isogeometric analysis (IGA). Geometry plus simulation modules aims at the seamless integration of Computer-aided Design (CAD) and Finite Element Analysis (FEA).</p>
+<h2 id="installation">Installation</h2>
 
-<h2 id="what-can-it-do">What can it do?</h2>
+<p>To install the cli locally as a runnable program, we recommend using either <a href="https://pipx.pypa.io/latest/installation/">pipx</a> by the Python Packaging Authority or <a href="https://docs.astral.sh/uv/">uv</a> by the <a href="https://astral.sh">Astal</a> project.</p>
 
-<p>This adapter can read/write the following fields in a surface coupling setup:</p>
+<h3 id="pipx">pipx</h3>
 
-<ul>
-  <li>Temperature (read + write)</li>
-  <li>Temperature surface-normal gradient (read + write)</li>
-  <li>Heat flux (read + write)</li>
-  <li>Stress (read)</li>
-  <li>Force (read)</li>
-  <li>Displacement (read + write)</li>
-  <li>Pressure (read)</li>
-  <li>Velocity (write)</li>
-  <li>Velocity surface-normal gradient (write)</li>
-</ul>
-
-<p>All features of preCICE are supported, including implicit coupling, nearest-projection mapping and radial basis function based mapping.</p>
-
-<h2 id="aim-of-the-adapter">Aim of the adapter</h2>
-
-<p>The G+Smo adapter provides a collection of examples demonstrating the use of G+Smo solvers adapted for preCICE. A particular focus lies on the IGA functionality of G+Smo.</p>
-
-<h2 id="install-gsmo-and-the-adapter">Install G+Smo and the adapter</h2>
-
-<p>The <a href="https://github.com/gismo/gsPreCICE">G+Smo adapter</a> is a submodule of the <a href="https://github.com/gismo/gismo">G+Smo library</a> and relies on the core functionality of the main library. The adapter is automatically cloned into the main library if configured.</p>
-
-<p>Clone G+Smo and build a specific solver:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/gismo/gismo.git
-<span class="nb">cd </span>gismo
-<span class="nb">mkdir </span>build &amp; <span class="nb">cd </span>build
-cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"&lt;additional submodules&gt;;gsPreCICE"</span>
-make &lt;solver_name&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pipx <span class="nb">install </span>precice-cli  
+  installed package precice-cli 1.0.0, installed using Python 3.13.7
+  These apps are now globally available
+    - precice-cli
+<span class="k">done</span><span class="o">!</span> 
 </code></pre></div></div>
 
-<p>Depending on the solver, different submodules need to be added. These <code class="language-plaintext highlighter-rouge">&lt;additional submodules&gt;</code> can be <a href="https://github.com/gismo/gsElasticity"><code class="language-plaintext highlighter-rouge">gsElasticity</code></a>, <a href="https://github.com/gismo/gsKLShell"><code class="language-plaintext highlighter-rouge">gsKLShell</code></a> and <a href="https://github.com/gismo/gsStructuralAnalysis"><code class="language-plaintext highlighter-rouge">gsStructuralAnalysis</code></a>.</p>
+<h3 id="uv">uv</h3>
 
-<p>For example, to build the solver <code class="language-plaintext highlighter-rouge">perpendicular-flap-vertex-gismo</code>, configure and build with:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"gsElasticity;gsStructuralAnalysis;gsPreCICE"</span>
-make perpendicular-flap-vertex-gismo
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>uv tool <span class="nb">install </span>precice-cli
+Resolved 39 packages <span class="k">in </span>11ms
+Installed 39 packages <span class="k">in </span>15ms
+Installed 1 executable: precice-cli
 </code></pre></div></div>
 
-<p>For more details, refer to the documentation and examples within each submodule. Available solvers:</p>
+<h2 id="usage">Usage</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th><strong>Solver</strong></th>
-      <th><strong>Additional submodules</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">perpendicular-flap-vertex-gismo</code></td>
-      <td><a href="https://github.com/gismo/gsElasticity"><code class="language-plaintext highlighter-rouge">gsElasticity</code></a>,<a href="https://github.com/gismo/gsStructuralAnalysis"><code class="language-plaintext highlighter-rouge">gsStructuralAnalysis</code></a></td>
-    </tr>
-  </tbody>
-</table>
+<p><code class="language-plaintext highlighter-rouge">precice-cli</code> offers some basic sub commands and categories:</p>
 
-<p>Finally, make the solver discoverable, e.g. by installation (by default, to <code class="language-plaintext highlighter-rouge">/usr/local/</code>, which might not be in your <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code>):</p>
+<h3 id="version">version</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make <span class="nb">install</span> &lt;solver_name&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-cli version
 </code></pre></div></div>
 
-<h2 id="history">History</h2>
+<p>This subcommand displays the version of the precice-cli and all preCICE-related dependencies.
+If the preCICE library is installed, it also shows its version and configuration.</p>
 
-<p>The adapter has been developed by Jingya Li (<a href="https://github.com/Crazy-Rich-Meghan">@Crazy-Rich-Meghan</a>) and Hugo Verhelst (<a href="https://github.com/hverhelst">@hverhelst</a>).</p>
+<h3 id="profiling">profiling</h3>
 
-<h2 id="how-to-cite">How to cite</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-cli profiling merge
+precice-cli profiling trace
+</code></pre></div></div>
 
-<p>There is a <a href="https://github.com/gismo/gismo/wiki/Frequently-asked-questions#user-content-How_can_I_cite_GSmo_in_a_publicationpresentation_">FAQ entry</a> on how to cite G+Smo itself.</p>
+<p>This subcommand group exposes all commands from the <a href="tooling-performance-analysis">precice profiling tools</a>.</p>
+
+<h3 id="config">config</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-cli config check
+precice-cli config visualize
+precice-cli config format
+</code></pre></div></div>
+
+<p>This subcommand group includes configuration related commands such as checking, <a href="tooling-config-visualization">visualization</a>, and <a href="https://github.com/precice/config-format">formatting</a>.
+The check command first validates the given configuration using the <a href="tooling-builtin">builtin tool</a> and then runs the <a href="https://github.com/precice/config-check">config checker</a> on it.</p>
+
+<h3 id="init">init</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-cli init
+</code></pre></div></div>
+
+<p>This experimental command initializes a preCICE case using a topology file.
+Have a look at the <a href="https://github.com/precice/case-generate">case generation repository</a> for up-to-date information on the development.</p>
 
 
     
@@ -1865,27 +1849,12 @@ make perpendicular-flap-vertex-gismo
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "The preCICE CLI",
+  "item": "https://precice.org/tooling-cli.html"
+}
 
 
 
@@ -2116,7 +2085,7 @@ make perpendicular-flap-vertex-gismo
         </a>
         </p>
         <p>
-        Page last updated: Sep 16, 2025<br>
+        Page last updated: Feb 3, 2026<br>
         Site last updated: Feb 3, 2026
         </p>
       </div>
