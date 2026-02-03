@@ -40,7 +40,8 @@ Installed 1 executable: precice-cli
 precice-cli version
 ```
 
-This subcommand displays the version of installed subcomponents of the cli and the version of the installed precice library.
+This subcommand displays the version of the precice-cli and all preCICE-related dependencies.
+If the preCICE library is installed, it also shows its version and configuration.
 
 ### profiling
 
@@ -59,7 +60,8 @@ precice-cli config visualize
 precice-cli config format
 ```
 
-This subcommand group includes configuration related commands such as checking, [visualization](tooling-config-visualization), and formatting.
+This subcommand group includes configuration related commands such as checking, [visualization](tooling-config-visualization), and [formatting](https://github.com/precice/config-format).
+The check command first validates the given configuration using the [builtin tool](tooling-builtin) and then runs the [config checker](https://github.com/precice/config-check) on it.
 
 ### init
 
@@ -68,4 +70,4 @@ precice-cli init
 ```
 
 This experimental command initializes a preCICE case using a topology file.
-Have a look at the [repository](https://github.com/precice/case-generate) for up2date information on the development.
+Have a look at the [case generation repository](https://github.com/precice/case-generate) for up-to-date information on the development.
