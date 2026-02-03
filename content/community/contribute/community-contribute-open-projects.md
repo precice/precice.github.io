@@ -93,9 +93,9 @@ To figure out if this is for you, [run the system tests locally](dev-docs-system
 The core library needs a [preCICE configuration file](configuration-overview.html),
 which currently needs to be written manually (we are working on higher-level configuration tools as well).
 When one configures something wrong, preCICE throws an error message with details and recommendations (think git).
-Writing these error messages is, however, rather cumbersome at the moment,
-as they don't mention where the error occurs in the configuration file.
-In this project, we want to refactor the code to provide context directly from the configuration file:
+In this project, we want to attach context to these error messages,
+referring to specific lines in the configuration file
+(similarly to how a compiler would refer to code lines with errors):
 see the [related issue](https://github.com/precice/precice/issues/751).
 
 To figure out if this is for you, try [building preCICE from source](installation-source-preparation.html),
