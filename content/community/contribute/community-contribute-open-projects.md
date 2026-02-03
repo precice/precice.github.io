@@ -42,7 +42,7 @@ The [Google Summer of Code](https://summerofcode.withgoogle.com/) is _"a global,
 
 For 2026, we have prepared the following topics, for different sets of skills.
 Since this is our first year, and since we are a rather small project, we might not be able to accommodate applicants to all of these projects.
-Introduce yourself in the [forum](https://precice.discourse.group/c/jobs/gsoc/15) and let us know more about your background and motivation, so that we can find out together if these topics are a good fit.
+Introduce yourself in the [forum](https://precice.discourse.group/c/jobs/gsoc/15) and let us know more about your background and motivation, so that we can find out together if these topics are a good fit. Show us what you have tried already (see "entry test" in each project and feel free to go beyond that), to support your application. We will contact you via replies and/or private messages there.
 
 ### Project: Website modernization
 
@@ -61,7 +61,7 @@ As a first step, we would like to [upgrade to a newer Bootstrap version](https:/
 After that, we would like to switch to the [Hugo static site generator](https://gohugo.io/),
 aiming to have a framework that we can upgrade and maintain with minimal effort.
 
-To figure out if this is for you, try [building the website locally](https://github.com/precice/precice.github.io/blob/master/README.md)
+**Entry test:** To figure out if this is for you, try [building the website locally](https://github.com/precice/precice.github.io/blob/master/README.md)
 and adding and styling some new element in the [landing page](https://github.com/precice/precice.github.io/blob/master/content/index.html).
 Be creative!
 
@@ -81,7 +81,7 @@ These tests are integrated into the [GitHub Actions](https://docs.github.com/en/
 While the system tests are already running every night and on many pull requests, several improvements are possible ([related issues](https://github.com/precice/tutorials/issues?q=is%3Aissue%20state%3Aopen%20label%3Asystemtests)):
 running (much) faster test cases, running multiple test cases in parallel, better communicating what went wrong, integrating more repositories, and the list of possibilities goes on.
 
-To figure out if this is for you, [run the system tests locally](dev-docs-system-tests.html#running-specific-test-suites) and [add one more tutorial to the tests](dev-docs-system-tests.html#adding-tutorials).
+**Entry test:** To figure out if this is for you, [run the system tests locally](dev-docs-system-tests.html#running-specific-test-suites) and [add one more tutorial to the tests](dev-docs-system-tests.html#adding-tutorials).
 
 - Skills required: Python, Docker, GitHub Actions
 - Project size: Medium (175h) - Depending on the availability, small or large are also possible
@@ -98,7 +98,7 @@ referring to specific lines in the configuration file
 (similarly to how a compiler would refer to code lines with errors):
 see the [related issue](https://github.com/precice/precice/issues/751).
 
-To figure out if this is for you, try [building preCICE from source](installation-source-preparation.html),
+**Entry test:** To figure out if this is for you, try [building preCICE from source](installation-source-preparation.html),
 running the [elastic tube 1D tutorial](tutorials-elastic-tube-1d.html),
 and modifying the [configuration file](https://github.com/precice/tutorials/blob/master/elastic-tube-1d/precice-config.xml)
 to trigger an error (e.g., remove one of the `<data>` tags).
@@ -118,7 +118,7 @@ or to parse the configuration in a predefined order.
 In this project, we want to refactor the configuration code to introduce a confguration AST (structured types), generated from the XML AST (nested tags and their attributes) built with libxml2.
 See the [related issue](https://github.com/precice/precice/issues/982).
 
-To figure out if this is for you, try the same as in the [project idea above](#project-error-messages-with-configuration-context).
+**Entry test:** To figure out if this is for you, try the same as in the [project idea above](#project-error-messages-with-configuration-context).
 
 - Skills required: C++
 - Project size: Medium (175h)
