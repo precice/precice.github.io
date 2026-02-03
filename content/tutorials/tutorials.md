@@ -23,9 +23,9 @@ If you don't need the full history (to save space and data), you can use the `--
 
 We recommend that you start from one of the following cases, which you can quickly run on your laptop:
 
-- [Flow over a heated plate](tutorials-flow-over-heated-plate.html): A **conjugate heat transfer** scenario. Try OpenFOAM, FEniCS, or Nutils.
+- [Flow over a heated plate](tutorials-flow-over-heated-plate.html): A **conjugate heat transfer** scenario. Try OpenFOAM, FEniCS, Nutils, or DUNE-FEM.
 - [Partitioned heat conduction](tutorials-partitioned-heat-conduction.html): The mathematician's dream: split the **heat equation** in two and glue it again. Pick your Dirichlet and Neumann solvers among FEniCS, Nutils, and OpenFOAM.
-- Flow in a channel with an elastic [perpendicular flap](tutorials-perpendicular-flap.html): A **fluid-structure interaction** scenario. Feel free to combine different solvers, among OpenFOAM, SU2, deal.II, FEniCS, Nutils, CalculiX, and DUNE.
+- Flow in a channel with an elastic [perpendicular flap](tutorials-perpendicular-flap.html): A **fluid-structure interaction** scenario. Feel free to combine different solvers, among OpenFOAM, SU2, deal.II, FEniCS, Nutils, CalculiX, solids4Foam, and DUNE.
 
 <p style="text-align: center">
 <a href="tutorials-flow-over-heated-plate.html" title="Tutorial: Flow over heated plate"><img src="images/tutorials-flow-over-heated-plate-example.png" style="margin-left:3%; max-width:31%; max-height:100px;" alt="Flow over heated plate"></a>
@@ -50,11 +50,12 @@ In the following cases, you can explore different aspects of preCICE:
   - [Nearest-projection mapping variant](tutorials-flow-over-heated-plate-nearest-projection.html): A nearest-projection mapping version, with two OpenFOAM solvers.
   - [Steady-state variant](tutorials-flow-over-heated-plate-steady-state.html): A steady-state version, with OpenFOAM and code_aster.
   - [Two interface meshes variant](tutorials-flow-over-heated-plate-two-meshes.html): A variant where the mesh used to transfer temperature is not the same as the one transferring heat fluxes. This allows us to use CalculiX as a solid solver.
+- [Free flow over porous media](tutorials-free-flow-over-porous-media.html): A single-phase flow in and above a porous medium, with DuMux.
 - [Heat exchanger](tutorials-heat-exchanger.html): A three-field conjugate heat transfer case (explicit coupling, steady state, Robin-Robin coupling), with OpenFOAM and CalculiX.
-- [Heat exchanger: simplified](tutorials-heat-exchanger-simplified.html): A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling..
-- [Multiple perpendicular flaps](tutorials-multiple-perpendicular-flaps.html): A three-field fluid-structure interaction case (fully implicit coupling, transient).
-- [Oscillator](tutorials-oscillator.html): A simple mass-spring oscillator with two masses, coupling two instances of a Python solver.
-- [Oscillator overlap](tutorials-oscillator-overlap.html): An overlapping Schwartz method variant of the Oscillator tutorial, coupling two Dirichlet participants.
+- [Heat exchanger: simplified](tutorials-heat-exchanger-simplified.html): A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling.
+- [Multiple perpendicular flaps](tutorials-multiple-perpendicular-flaps.html): A three-field fluid-structure interaction case (fully implicit coupling, transient), with OpenFOAM and deal.II.
+- [Oscillator](tutorials-oscillator.html): A simple mass-spring oscillator with two masses, coupling two instances of a Python solver or of the FMI Runner.
+- [Oscillator overlap](tutorials-oscillator-overlap.html): An overlapping Schwartz method variant of the Oscillator tutorial, coupling two Dirichlet participants in Python.
 - [Partitioned elastic beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
 - Partitioned flow collection
   - [Partitioned flow over a backwards-facing step](tutorials-partitioned-backwards-facing-step.html): A fluid-fluid coupling scenario, demonstrating inlet-outlet boundary conditions in OpenFOAM.
@@ -68,9 +69,9 @@ In the following cases, you can explore different aspects of preCICE:
   - [Overlapping Schwarz variant](tutorials-partitioned-heat-conduction-overlap.html): An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.
 - Perpendicular flap collection
   - [Basic variant](tutorials-perpendicular-flap.html) (as in "featured")
-  - [Stress variant](tutorials-perpendicular-flap-stress.html)
-- [Resonant circuit](tutorials-resonant-circuit.html): The basic LC circuit, with two MATLAB solvers.
-- [Two-scale heat conduction](tutorials-two-scale-heat-conduction.html): A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale.
+  - [Stress variant](tutorials-perpendicular-flap-stress.html): Exchanging stresses instead of forces, coupling OpenFOAM and G+Smo.
+- [Resonant circuit](tutorials-resonant-circuit.html): The basic LC circuit, with MATLAB and Python based solvers.
+- [Two-scale heat conduction](tutorials-two-scale-heat-conduction.html): A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale. Coupling DuMux and Nutils based solvers.
 - [Turek-Hron FSI3](tutorials-turek-hron-fsi3.html): The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II. Nutils participants are also available.
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
 - [Volume-coupled flow](tutorials-volume-coupled-flow.html): An experimental volume coupling scenario, coupling a source term coded in Nutils with a flow in OpenFOAM.
