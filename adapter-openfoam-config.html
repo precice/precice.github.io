@@ -1799,6 +1799,11 @@ either:</p>
 You will run into problems when you use <code class="language-plaintext highlighter-rouge">Displacement(Delta)</code> as write data set and execute RBF mappings in parallel. This would affect users who use OpenFOAM and the adapter as the Solid participant in order to compute solid mechanics with OpenFOAM (currently not officially supported at all). Have a look <a href="https://github.com/precice/openfoam-adapter/issues/153">at this issue on GitHub</a> for details.
 </div>
 
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+The <code class="language-plaintext highlighter-rouge">writeData</code> and <code class="language-plaintext highlighter-rouge">readData</code> names are case-insensitive since v1.4.0. This means that both <code class="language-plaintext highlighter-rouge">TEMPERATURE</code> and <code class="language-plaintext highlighter-rouge">Temperature</code> are valid, for example.
+Additionally, since earlier versions, only the beginning of the name needs to match: <code class="language-plaintext highlighter-rouge">Temperatures0</code> is valid and matched to the temperature reader/writer, for example.
+</div>
+
 <h2 id="configuration-of-the-openfoam-case">Configuration of the OpenFOAM case</h2>
 
 <p>A few changes are required in the configuration of an OpenFOAM case, in order to specify the interfaces and load the adapter. For some solvers, additional parameters may be needed (see “advanced configuration”).</p>
