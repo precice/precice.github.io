@@ -816,7 +816,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 05 Feb 26</small>
             </div>
           </aside>
           
@@ -829,19 +829,22 @@ $('#toc').on('click', 'a', function() {
 Is this your your first time trying our preCICE? Read first the <a href="quickstart.html">Quickstart</a> guide or <a href="https://www.youtube.com/c/preCICECoupling/">watch a talk on YouTube</a>.
 </div>
 
-<p>You can find all tutorial case files in the <a href="https://github.com/precice/tutorials">tutorials repository</a>. Get the <a href="https://github.com/precice/tutorials/releases/latest">latest release</a>, or clone the Git repository to easily update them in the future:</p>
+<p>You can find all tutorial case files in the <a href="https://github.com/precice/tutorials">tutorials repository</a>. Get the <a href="https://github.com/precice/tutorials/releases/latest">latest release</a>, or clone the Git repository with the latest state, which makes it easier to get updates in the future or contribute back:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--branch</span><span class="o">=</span>master <span class="nt">--depth</span> 1 https://github.com/precice/tutorials.git
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/precice/tutorials.git
 </code></pre></div></div>
+
+<p>If you don’t need the full history (to save space and data), you can use the <code class="language-plaintext highlighter-rouge">--depth 1</code> option.
+Releases originate from the <code class="language-plaintext highlighter-rouge">master</code> branch.</p>
 
 <h2 id="basic-cases">Basic cases</h2>
 
 <p>We recommend that you start from one of the following cases, which you can quickly run on your laptop:</p>
 
 <ul>
-  <li><a href="tutorials-flow-over-heated-plate.html">Flow over a heated plate</a>: A <strong>conjugate heat transfer</strong> scenario. Try OpenFOAM, FEniCS, or Nutils.</li>
+  <li><a href="tutorials-flow-over-heated-plate.html">Flow over a heated plate</a>: A <strong>conjugate heat transfer</strong> scenario. Try OpenFOAM, FEniCS, Nutils, or DUNE-FEM.</li>
   <li><a href="tutorials-partitioned-heat-conduction.html">Partitioned heat conduction</a>: The mathematician’s dream: split the <strong>heat equation</strong> in two and glue it again. Pick your Dirichlet and Neumann solvers among FEniCS, Nutils, and OpenFOAM.</li>
-  <li>Flow in a channel with an elastic <a href="tutorials-perpendicular-flap.html">perpendicular flap</a>: A <strong>fluid-structure interaction</strong> scenario. Feel free to combine different solvers, among OpenFOAM, SU2, deal.II, FEniCS, Nutils, CalculiX, and DUNE.</li>
+  <li>Flow in a channel with an elastic <a href="tutorials-perpendicular-flap.html">perpendicular flap</a>: A <strong>fluid-structure interaction</strong> scenario. Feel free to combine different solvers, among OpenFOAM, SU2, deal.II, FEniCS, Nutils, CalculiX, solids4Foam, and DUNE.</li>
 </ul>
 
 <p style="text-align: center">
@@ -874,11 +877,12 @@ Is this your your first time trying our preCICE? Read first the <a href="quickst
       <li><a href="tutorials-flow-over-heated-plate-two-meshes.html">Two interface meshes variant</a>: A variant where the mesh used to transfer temperature is not the same as the one transferring heat fluxes. This allows us to use CalculiX as a solid solver.</li>
     </ul>
   </li>
+  <li><a href="tutorials-free-flow-over-porous-media.html">Free flow over porous media</a>: A single-phase flow in and above a porous medium, with DuMux.</li>
   <li><a href="tutorials-heat-exchanger.html">Heat exchanger</a>: A three-field conjugate heat transfer case (explicit coupling, steady state, Robin-Robin coupling), with OpenFOAM and CalculiX.</li>
-  <li><a href="tutorials-heat-exchanger-simplified.html">Heat exchanger: simplified</a>: A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling..</li>
-  <li><a href="tutorials-multiple-perpendicular-flaps.html">Multiple perpendicular flaps</a>: A three-field fluid-structure interaction case (fully implicit coupling, transient).</li>
-  <li><a href="tutorials-oscillator.html">Oscillator</a>: A simple mass-spring oscillator with two masses, coupling two instances of a Python solver.</li>
-  <li><a href="tutorials-oscillator-overlap.html">Oscillator overlap</a>: An overlapping Schwartz method variant of the Oscillator tutorial, coupling two Dirichlet participants.</li>
+  <li><a href="tutorials-heat-exchanger-simplified.html">Heat exchanger: simplified</a>: A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling.</li>
+  <li><a href="tutorials-multiple-perpendicular-flaps.html">Multiple perpendicular flaps</a>: A three-field fluid-structure interaction case (fully implicit coupling, transient), with OpenFOAM and deal.II.</li>
+  <li><a href="tutorials-oscillator.html">Oscillator</a>: A simple mass-spring oscillator with two masses, coupling two instances of a Python solver or of the FMI Runner.</li>
+  <li><a href="tutorials-oscillator-overlap.html">Oscillator overlap</a>: An overlapping Schwartz method variant of the Oscillator tutorial, coupling two Dirichlet participants in Python.</li>
   <li><a href="tutorials-partitioned-elastic-beam.html">Partitioned elastic beam</a>: An experimental structure-structure coupling scenario, with two CalculiX solvers.</li>
   <li>Partitioned flow collection
     <ul>
@@ -899,11 +903,11 @@ Is this your your first time trying our preCICE? Read first the <a href="quickst
   <li>Perpendicular flap collection
     <ul>
       <li><a href="tutorials-perpendicular-flap.html">Basic variant</a> (as in “featured”)</li>
-      <li><a href="tutorials-perpendicular-flap-stress.html">Stress variant</a></li>
+      <li><a href="tutorials-perpendicular-flap-stress.html">Stress variant</a>: Exchanging stresses instead of forces, coupling OpenFOAM and G+Smo.</li>
     </ul>
   </li>
-  <li><a href="tutorials-resonant-circuit.html">Resonant circuit</a>: The basic LC circuit, with two MATLAB solvers.</li>
-  <li><a href="tutorials-two-scale-heat-conduction.html">Two-scale heat conduction</a>: A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale.</li>
+  <li><a href="tutorials-resonant-circuit.html">Resonant circuit</a>: The basic LC circuit, with MATLAB and Python based solvers.</li>
+  <li><a href="tutorials-two-scale-heat-conduction.html">Two-scale heat conduction</a>: A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale. Coupling DuMux and Nutils based solvers.</li>
   <li><a href="tutorials-turek-hron-fsi3.html">Turek-Hron FSI3</a>: The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II. Nutils participants are also available.</li>
   <li><a href="tutorials-volume-coupled-diffusion.html">Volume-coupled diffusion</a>: An experimental volume coupling scenario, with two FEniCS solvers.</li>
   <li><a href="tutorials-volume-coupled-flow.html">Volume-coupled flow</a>: An experimental volume coupling scenario, coupling a source term coded in Nutils with a flow in OpenFOAM.</li>
@@ -1145,7 +1149,7 @@ Is this your your first time trying our preCICE? Read first the <a href="quickst
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Feb 5, 2026<br>
         Site last updated: Feb 5, 2026
         </p>
       </div>
