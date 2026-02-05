@@ -169,12 +169,15 @@ Further places where we typically advertise are:
   - forum
   - chatroom
   - [social media](https://precice.org/community-channels.html)
+  - newsletter
 - Local communities:
   - [Quartl](https://www.cs.cit.tum.de/sccs/weiterfuehrende-informationen/quartl/)
   - [SimTech](https://www.simtech.uni-stuttgart.de/communication/)
 - Event calendars:
   - [FOSS Events](https://foss.events/)
   - [Gauß-Allianz's HPC calendar](https://veranstaltungen.hpc-in-deutschland.de/)
+  - [CFD Online Events Calendar](https://cfd-online.com/Events/)
+  - LinkedIn event
 - News and mailing lists:
   - [NADigest](https://na-digest.coecis.cornell.edu/na-digest-html/)
   - [CFD Online News](https://www.cfd-online.com/Forum/news.cgi/form/0)
@@ -185,6 +188,7 @@ Further places where we typically advertise are:
 - Other communities:
   - [CFD Online forum](https://www.cfd-online.com/Forums/main/259965-precice-workshop-conference-sessions.html)
   - [CalculiX forum](https://calculix.discourse.group/)
+  - [FEniCS forum](https://fenicsproject.discourse.group/)
   - Reddit [r/cfd](https://www.reddit.com/r/CFD/)
 - Personal posts on LinkedIn and in the following groups:
   - [preCICE](https://www.linkedin.com/groups/9073912/)
