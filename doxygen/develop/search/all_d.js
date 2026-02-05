@@ -104,5 +104,6 @@ var searchData=
   ['lowest_101',['lowest',['http://en.cppreference.com/w/cpp/types/numeric_limits/lowest.html',1,'std::numeric_limits']]],
   ['lrint_102',['lrint',['http://en.cppreference.com/w/cpp/numeric/math/rint.html',1,'std']]],
   ['lround_103',['lround',['http://en.cppreference.com/w/cpp/numeric/math/round.html',1,'std']]],
-  ['lt_104',['lt',['http://en.cppreference.com/w/cpp/string/char_traits/cmp.html',1,'std::char_traits']]]
+  ['lt_104',['lt',['http://en.cppreference.com/w/cpp/string/char_traits/cmp.html',1,'std::char_traits']]],
+  ['lucykernelfunction_105',['LucyKernelFunction',['../classprecice_1_1mapping_1_1impl_1_1LucyKernelFunction.html',1,'precice::mapping::impl::LucyKernelFunction'],['../classprecice_1_1mapping_1_1impl_1_1LucyKernelFunction.html#aa4178088bf242faa8fe54bf34a7dd134',1,'precice::mapping::impl::LucyKernelFunction::LucyKernelFunction()']]]
 ];
