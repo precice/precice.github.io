@@ -261,7 +261,7 @@ See the [tutorials](tutorials.html) for some examples, and the [configuration re
     - Using actions with multiple couping schemes and mixed time window sizes is not well defined!
 
 - Coupling schemes
-  - Remove `<extraplation-order value="..." />` in `<coupling-scheme>`. Contact us if you need this feature.
+  - Remove `<extrapolation-order value="..." />` in `<coupling-scheme>`. Contact us if you need this feature.
   - Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`. Not defining convergence measures leads to iterations until `max-iterations` is reached.
   - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
 
