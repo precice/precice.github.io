@@ -5,17 +5,21 @@ keywords: tooling, xml, configuration, version
 summary: "Built-in tooling is always installed alongside preCICE and provides some basic functionality."
 ---
 
-Part of a preCICE installation is the tool `precice-tools`.
-It provides an easy-to-use interface to tooling API of the preCICE library.
-
-With `precice-tools`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
+The [`precice-cli`](https://github.com/precice/cli) package provides an easy-to-use interface to tooling API of the preCICE library, and is the successor of the now deprecated `precice-tools`.
+With the `precice-cli`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
 
 ## XML reference
 
+{% version 3.3.0 %}
+`precice-tools md|xml|dt` was deprecated in version 3.3.0 in favour of `precice-config-doc`.
+{% endversion %}
+
+For generating the XML reference, we can use `precice-config-doc`:
+
 ```bash
-precice-tools md
-precice-tools xml
-precice-tools dtd
+precice-config-doc md
+precice-config-doc xml
+precice-config-doc dtd
 ```
 
 This prints the XML reference to the console in various flavors.
@@ -29,7 +33,7 @@ It is possible to generate a local version of the reference by rendering the Mar
 Be aware that this version does not contain styling, LaTeX rendering, and functioning links.
 
 ```bash
-precice-tools md | markdown > reference.html
+precice-config-doc md | markdown > reference.html
 ```
 
 ### `xml`
@@ -43,11 +47,11 @@ This prints the DTD information, which can be used to validate the XML configura
 ## preCICE version
 
 {% version 2.4.0 %}
-This feature is available since version 2.4.0.
+`precice-tools version` was introduced in version 2.4.0 and deprecated in version 3.3.0 in favour of `precice-version`.
 {% endversion %}
 
 ```bash
-precice-tools version
+precice-version
 ```
 
 This prints the version information of preCICE, which consists of multiple semicolon-separated parts.
@@ -62,11 +66,12 @@ This prints the version information of preCICE, which consists of multiple semic
 ## Configuration check
 
 {% version 2.4.0 %}
-This feature is available since version 2.4.0.
+`precice-tools check` was introduced in version 2.4.0 and deprecated in version 3.3.0 in favour of `precice-config-validate`.
+Prefer to use `precice-cli config check` for the extra logic checks instead.
 {% endversion %}
 
 ```bash
-precice-tools check FILE [ PARTICIPANT [ COMMSIZE ] ]
+precice-config-validate FILE [ PARTICIPANT [ COMMSIZE ] ]
 ```
 
 The `check` runs the preCICE configuration parsing and checking logic on the given configuration file.
@@ -78,7 +83,7 @@ For more logical checks, see the [preCICE config checker](https://github.com/pre
 The basic usage is to check a configuration file:
 
 ```bash
-precice-tools check precice-config.xml
+precice-config-validate precice-config.xml
 ```
 
 Some example errors handled by the checker:
@@ -113,6 +118,6 @@ You may additionally pass the communicator size of the participant.
 This enables some checks regarding user-defined intra-participant communication, which should not be necessary in the vast majority of cases.
 
 ```bash
-precice-tools check precice-config.xml Fluid
-precice-tools check precice-config.xml Fluid 2
+precice-config-validate precice-config.xml Fluid
+precice-config-validate precice-config.xml Fluid 2
 ```

@@ -205,6 +205,10 @@ Look for [contributing guidelines](https://github.com/precice/precice/blob/devel
 Read on our [Roadmap](fundamentals-roadmap.html) what is already in our to-do list before starting to write large parts of code.
 {% endtip %}
 
+{% tip %}
+There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
+{% endtip %}
+
 ## Helping other users
 
 We would really appreciate it if you followed our [community channels](community-channels.html) and joined us in answering questions.

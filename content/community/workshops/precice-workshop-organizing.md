@@ -10,6 +10,33 @@ While the preCICE workshop lasts a week, it takes several months of preparation 
 
 In this page, we document common steps and lessons learned, aiming to make onboarding of new organizers easier. Besides, who remembers what material the registration desk needed last year, if we cannot even remember what we had for lunch?
 
+We have also published our experiences and recommendations together with the [ESPResSo](https://espressomd.org/) and [DuMux](https://dumux.org/) teams:
+
+{% for pub in site.publications %}
+{% if pub.title == "Organizing software community workshops: Experiences from three independent simulation software projects" %}
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        Volume {{ pub.journal.volume }},
+        {{ pub.journal.publisher }},
+        {{ pub.year }}.
+      </p>
+      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
 ## First urgent steps
 
 Do these steps as soon as possible, as other major steps depend on them.
@@ -142,12 +169,15 @@ Further places where we typically advertise are:
   - forum
   - chatroom
   - [social media](https://precice.org/community-channels.html)
+  - newsletter
 - Local communities:
   - [Quartl](https://www.cs.cit.tum.de/sccs/weiterfuehrende-informationen/quartl/)
   - [SimTech](https://www.simtech.uni-stuttgart.de/communication/)
 - Event calendars:
   - [FOSS Events](https://foss.events/)
   - [Gauß-Allianz's HPC calendar](https://veranstaltungen.hpc-in-deutschland.de/)
+  - [CFD Online Events Calendar](https://cfd-online.com/Events/)
+  - LinkedIn event
 - News and mailing lists:
   - [NADigest](https://na-digest.coecis.cornell.edu/na-digest-html/)
   - [CFD Online News](https://www.cfd-online.com/Forum/news.cgi/form/0)
@@ -158,6 +188,7 @@ Further places where we typically advertise are:
 - Other communities:
   - [CFD Online forum](https://www.cfd-online.com/Forums/main/259965-precice-workshop-conference-sessions.html)
   - [CalculiX forum](https://calculix.discourse.group/)
+  - [FEniCS forum](https://fenicsproject.discourse.group/)
   - Reddit [r/cfd](https://www.reddit.com/r/CFD/)
 - Personal posts on LinkedIn and in the following groups:
   - [preCICE](https://www.linkedin.com/groups/9073912/)

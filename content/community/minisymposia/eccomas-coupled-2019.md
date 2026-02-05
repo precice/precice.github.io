@@ -10,6 +10,8 @@ The [ECCOMAS Coupled Problems 2019](https://congress.cimne.com/coupled2019/) too
 
 We organized the minisymposium _Multi-physics Simulations with the Coupling Library preCICE_, which had three sessions.
 
+[Conference proceedings](https://www.scipedia.com/sj/coupled2019)
+
 ## Schedule of the Minisymposium
 
 ### Wednesday, June 5, 11:30 - 13:30

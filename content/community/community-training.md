@@ -79,7 +79,7 @@ In both cases, you can either install the modified Ubuntu image, or try a live s
 Get the smoothest experience by installing the image in a VM, so that your changes are saved between sessions, and you can at the same time access your host OS.
 
 {% note %}
-At the moment, this image is only available for Intel/AMD x86-64 CPUs.
+At the moment, this modified Ubuntu image is only available for Intel/AMD x86-64 CPUs.
 In our on-site trainings, some prepared USB sticks are provided.
 These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
 {% endnote %}
@@ -113,11 +113,19 @@ Further important settings:
 
 To check your installation, run the [1D elastic tube tutorial](tutorials-elastic-tube-1d.html) (Python solvers) inside the VM.
 
+{% important %}
+If you use a bootable USB, make sure to select trying a live session, and not installing (or take care that you do not remove your data).
+If you have [secure boot](https://en.wikipedia.org/wiki/UEFI#Secure_Boot) enabled, this will need to be turned off to boot this unsigned OS.
+In case you use Windows with [BitLocker](https://en.wikipedia.org/wiki/BitLocker) enabled, you will not be able to boot on Windows while secure boot is disabled (BitLocker will be asking for the decryption key).
+Remember to switch secure boot on again to be able to use your system as before.
+Do not remove the USB during a live session.
+{% endimportant %}
+
 ### Individual dependencies
 
 In case you prefer to install everything on your system, you will need the following:
 
-- [preCICE](installation-overview.html)
+- [preCICE](installation-overview.html) (check with running `precice-version` in a terminal)
 - [preCICE Python bindings](installation-bindings-python.html):
   - Create a virtual environment: `python3 -m venv .venv && source .venv/bin/activate`. As long as the environment is active, you will see `(venv)` before your command prompt. You need to activate the venv in new terminal windows.
   - Install the bindings: `pip3 install pyprecice` (check with running `import precice` in a Python interpreter)
