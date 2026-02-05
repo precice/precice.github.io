@@ -820,7 +820,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 03 Feb 26</small>
+              <small>Updated 05 Feb 26</small>
             </div>
           </aside>
           
@@ -849,15 +849,13 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/free-flow-ove
 
 <h2 id="available-solvers">Available solvers</h2>
 
-<p>Both the participants are computed using the simulation code <a href="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/">DuMu<sup>x</sup></a>.</p>
+<p>Both the participants are computed using the simulation code <a href="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/">DuMux</a>.</p>
 
 <h2 id="solver-setup">Solver setup</h2>
 
 <p>To solve the flows with the DuMux framework, the necessary DUNE modules need to be downloaded and set up. This is done by running <code class="language-plaintext highlighter-rouge">sh setup-dumux.sh</code> in the tutorial folder.</p>
 
-<p>Note that if an existing installation of DUNE modules is detected in a default location, this may lead to problems in running the <code class="language-plaintext highlighter-rouge">setup-dumux.sh</code> script. The script suppresses the environment variable <code class="language-plaintext highlighter-rouge">DUNE_CONTROL_PATH</code>.</p>
-
-<p>To only recompile the participants, run <code class="language-plaintext highlighter-rouge">sh compile-dumux-cases.sh</code> in the tutorial folder.</p>
+<p>If an existing path, containing compiled DUNE modules, DuMux and DuMux-adapter, is to be used for compiling the solvers, the path can be specified by setting the arguments while running the script <code class="language-plaintext highlighter-rouge">run.sh</code> with <code class="language-plaintext highlighter-rouge">-l &lt;path-to-DUNE-common&gt;</code> in each solver folder. The environment variable <code class="language-plaintext highlighter-rouge">DUNE_CONTROL_PATH</code> is suppressed by the script. The <code class="language-plaintext highlighter-rouge">run.sh</code> scripts in the DuMux solver folders will first compile the solver if not already compiled, and then run the simulation.</p>
 
 <h2 id="running-the-simulation">Running the simulation</h2>
 
@@ -873,6 +871,11 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/free-flow-ove
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>porous-media-dumux
 ./run.sh
+</code></pre></div></div>
+
+<p>This assumes a DuMux and DUNE modules installation in the case folder. You can specify the path to an existing DUNE installation with with <code class="language-plaintext highlighter-rouge">-l</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./run.sh <span class="nt">-l</span> &lt;path-to-DUNE-common&gt;
 </code></pre></div></div>
 
 <p>Participants can be executed only in serial. Parallel execution is not supported. The case takes approximately two minutes to finish.</p>
@@ -1074,8 +1077,8 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/free-flow-ove
         </a>
         </p>
         <p>
-        Page last updated: Feb 3, 2026<br>
-        Site last updated: Feb 3, 2026
+        Page last updated: Feb 5, 2026<br>
+        Site last updated: Feb 5, 2026
         </p>
       </div>
     </div>

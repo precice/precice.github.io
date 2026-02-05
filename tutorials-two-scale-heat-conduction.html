@@ -820,7 +820,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 03 Feb 26</small>
+              <small>Updated 05 Feb 26</small>
             </div>
           </aside>
           
@@ -850,16 +850,16 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/two-scale-hea
 <h2 id="available-solvers-and-dependencies">Available solvers and dependencies</h2>
 
 <ul>
-  <li>Both the macro and micro simulations can be solved using the finite element library <a href="https://nutils.org/install.html">Nutils</a> v7 or the simulation framework <a href="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/">DuMu<sup>x</sup></a>.</li>
+  <li>Both the macro and micro simulations can be solved using the finite element library <a href="https://nutils.org/install.html">Nutils</a> v7 or the simulation framework <a href="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/">DuMux</a>.</li>
   <li>While using Nutils, the macro simulation is written in Python, so it requires the <a href="https://precice.org/installation-bindings-python.html">Python bindings of preCICE</a>.</li>
   <li>The <a href="https://precice.org/tooling-micro-manager-installation.html">Micro Manager</a> controls all micro-simulations and facilitates coupling via preCICE. Use the <a href="https://github.com/precice/micro-manager/tree/develop">develop</a> branch of the Micro Manager.</li>
 </ul>
 
-<h3 id="dumux-setup">DuMu<sup>x</sup> setup</h3>
+<h3 id="dumux-setup">DuMux setup</h3>
 
-<p>To solve either the macro or micro simulations with the DuMu<sup>x</sup> framework, the necessary DUNE modules need to be downloaded and set up. This is done by running <code class="language-plaintext highlighter-rouge">sh setup-dumux.sh</code> in the tutorial folder.</p>
+<p>To solve either the macro or micro simulations with the DuMux framework, the necessary DUNE modules need to be downloaded and set up. This is done by running <code class="language-plaintext highlighter-rouge">sh setup-dumux.sh</code> in the tutorial folder.</p>
 
-<p>Note that if an existing installation of DUNE modules is detected in a default location, this may lead to problems in running the <code class="language-plaintext highlighter-rouge">setup-dumux.sh</code> script. The environment variable <code class="language-plaintext highlighter-rouge">DUNE_CONTROL_PATH</code> is suppressed by the script.</p>
+<p>If an existing path, containing compiled DUNE modules, DuMux and DuMux-adapter, is to be used for compiling the solvers, the path can be specified by setting the arguments while running the script <code class="language-plaintext highlighter-rouge">run.sh</code> with <code class="language-plaintext highlighter-rouge">-l &lt;path-to-DUNE-common&gt;</code> in each solver folder. The environment variable <code class="language-plaintext highlighter-rouge">DUNE_CONTROL_PATH</code> is suppressed by the script. The <code class="language-plaintext highlighter-rouge">run.sh</code> scripts in the DuMux solver folders will first compile the solver if not already compiled, and then run the simulation.</p>
 
 <h2 id="running-the-simulation">Running the simulation</h2>
 
@@ -877,7 +877,16 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/two-scale-hea
 ./run.sh <span class="nt">-s</span>
 </code></pre></div></div>
 
-<p>If you want to use DuMu<sup>x</sup>, use <code class="language-plaintext highlighter-rouge">cd macro-dumux</code> instead of <code class="language-plaintext highlighter-rouge">cd macro-nutils</code> and/or <code class="language-plaintext highlighter-rouge">cd micro-dumux</code> instead of <code class="language-plaintext highlighter-rouge">cd micro-nutils</code>.</p>
+<p>If you want to use DuMux, use <code class="language-plaintext highlighter-rouge">cd macro-dumux</code> instead of <code class="language-plaintext highlighter-rouge">cd macro-nutils</code> and/or <code class="language-plaintext highlighter-rouge">cd micro-dumux</code> instead of <code class="language-plaintext highlighter-rouge">cd micro-nutils</code>. For example, to run the macro simulation with DuMux in serial (default), run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>macro-dumux
+./run.sh <span class="nt">-s</span>
+</code></pre></div></div>
+
+<p>This assumes a DuMux and DUNE modules installation in the case folder. You can specify the path to an existing DUNE installation with with <code class="language-plaintext highlighter-rouge">-l</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./run.sh <span class="nt">-s</span> <span class="nt">-l</span> &lt;path-to-DUNE-common&gt;
+</code></pre></div></div>
 
 <h2 id="running-the-simulation-in-parallel">Running the simulation in parallel</h2>
 
@@ -895,7 +904,7 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/two-scale-hea
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p>Here are the results from Nutils-Nutils and DuMu<sup>x</sup>-DuMu<sup>x</sup> combination:</p>
+<p>Here are the results from Nutils-Nutils and DuMux-DuMux combination:</p>
 
 <p>&lt;img class=”img-responsive” src=”images/tutorials-two-scale-heat-conduction-results.png” alt=”Macro and micro data of macro-nutils - micro-nutils simulation” width=50% height=30%/&gt;</p>
 
@@ -909,7 +918,7 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/two-scale-hea
 
 <p>The micro simulations themselves have a circular micro structure which is resolved in every time step. To output VTK files for each micro simulation, uncomment the <code class="language-plaintext highlighter-rouge">output()</code> function in the file <code class="language-plaintext highlighter-rouge">micro-nutils/micro.py</code>. The figure above shows the changing phase field used to represent the circular micro structure and the diffuse interface width.</p>
 
-<p>Similar to the output data files from simulation with Nutils, the <code class="language-plaintext highlighter-rouge">VTU</code> files from macro and micro solvers, that are written in DuMu<sup>x</sup>, could also be rendered and inspected with ParaView with the mentioned method.</p>
+<p>Similar to the output data files from simulation with Nutils, the <code class="language-plaintext highlighter-rouge">VTU</code> files from macro and micro solvers, that are written in DuMux, could also be rendered and inspected with ParaView with the mentioned method.</p>
 
 
     
@@ -1127,8 +1136,8 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/two-scale-hea
         </a>
         </p>
         <p>
-        Page last updated: Feb 3, 2026<br>
-        Site last updated: Feb 3, 2026
+        Page last updated: Feb 5, 2026<br>
+        Site last updated: Feb 5, 2026
         </p>
       </div>
     </div>
