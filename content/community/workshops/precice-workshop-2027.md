@@ -50,7 +50,10 @@ We are looking into options for a few travel awards for participants that cannot
 ## Help us advertise
 
 A successful workshop needs the right crowd of people. Please help us attract people from your field and make this workshop more relevant for you.
+For that, feel free to use [this advertising material](https://ipvscloud.informatik.uni-stuttgart.de/s/TRXSiTFxFnTb33i) (poster, slide, and further formats).
 Did you know? Many past participants only discovered this workshop via a direct email.
+
+<a href="https://ipvscloud.informatik.uni-stuttgart.de/s/TRXSiTFxFnTb33i" title="preCICE Workshop 2027 advertising material" class="no-icon"><img src="material/flyers/precice2027-poster-thumbnail.png" alt="preCICE Workshop 2027 poster (png thumbnail)" style="max-width:200px;"></a>
 
 ## Supporters
 
