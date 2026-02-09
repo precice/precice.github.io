@@ -2283,6 +2283,26 @@ We moved to a OpenFOAM dictionary format in <a href="https://github.com/precice/
 to reduce the dependencies. You may also find the <a href="https://github.com/precice/tutorials/pull/69">tutorials #69</a>
 to be a useful reference (file changes).</p>
 
+<h2 id="upcoming-changes-to-the-configuration-format">Upcoming changes to the configuration format</h2>
+
+<p>We are currently working on porting the adapter configuration file to the new <a href="https://github.com/precice/preeco-orga/tree/main/adapter-config-schema">adapter configuration schema</a>. Since v1.4.0, <code class="language-plaintext highlighter-rouge">readData</code> and <code class="language-plaintext highlighter-rouge">writeData</code> support parsing both the new format. Additional options (<code class="language-plaintext highlighter-rouge">solver_name</code>, <code class="language-plaintext highlighter-rouge">operation</code> and <code class="language-plaintext highlighter-rouge">flip-normal</code>) can be specified in the dictionaries . For example, the data <code class="language-plaintext highlighter-rouge">name</code> as known by preCICE can be different than the <code class="language-plaintext highlighter-rouge">solver_name</code> known by OpenFOAM. However, the new options are not yet functionally supported by the current modules FF, CHT and FSI. The legacy word list format is still supported, and both formats can even be mixed:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">readData</span>
+<span class="p">(</span>
+    <span class="c1">// New dictionary entry</span>
+    <span class="n">Velocity1</span>
+    <span class="p">{</span>
+        <span class="n">name</span>        <span class="n">Velocity</span><span class="p">;</span>   <span class="c1">// Data name as defined in preCICE config</span>
+        <span class="n">solver_name</span> <span class="n">U</span><span class="p">;</span>          <span class="c1">// Optional: Field name in OpenFOAM (defaults to same as 'name')</span>
+        <span class="n">operation</span>   <span class="n">value</span><span class="p">;</span>      <span class="c1">// Optional: Operation to perform on data (defaults to 'value')</span>
+        <span class="n">flip</span><span class="o">-</span><span class="n">normal</span> <span class="nb">false</span><span class="p">;</span>      <span class="c1">// Optional: Flip the normal direction (defaults to 'false')</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Legacy word entry</span>
+    <span class="n">Temperature</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
 
     
 
