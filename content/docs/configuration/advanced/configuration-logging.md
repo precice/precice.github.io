@@ -9,7 +9,7 @@ summary: "By default, preCICE provides a meaningful logging output to stdout. In
 
 Logging in preCICE is based on [boost.log](http://www.boost.org/doc/libs/release/libs/log/doc/html/index.html).
 
-For debug logging, you need to [build preCICE in debug mode](installation-source-configuration.html). Please note that the Debian packages are not built in debug mode.
+For debug logging, you need to [build preCICE](installation-source-configuration.html) either in debug mode or in release mode with `PRECICE_RELEASE_WITH_DEBUG_LOG` enabled. Please note that the Debian packages do not provide debug logging.
 
 In principle, to modify the logging, you configure your own logging in the preCICE configuration file. We start here with a dummy example. Further below, you can find useful examples for certain use cases:
 
