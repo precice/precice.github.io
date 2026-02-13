@@ -1650,7 +1650,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 12 Sep 25</small>
+              <small>Updated 13 Feb 26</small>
             </div>
           </aside>
           
@@ -1779,16 +1779,16 @@ Hostfiles are not standardized and differ between MPI implementations OpenMPI, M
 <span class="k">done</span>
 </code></pre></div></div>
 
-<p>If you have only 2 participants, you can partition the resulting file using <code class="language-plaintext highlighter-rouge">head</code> and <code class="language-plaintext highlighter-rouge">tail</code>:</p>
+<p>Partition the resulting file into one file per participant by:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Example 2 hosts for A, the rest for B</span>
-<span class="nb">head</span> <span class="nt">-2</span> hosts.ompi <span class="o">&gt;</span> hosts.a
-<span class="nb">tail</span> +3 hosts.ompi <span class="o">&gt;</span> hosts.b
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Example: give 2 hosts for participant A and 3 hosts for participant B</span>
+<span class="nb">head</span> <span class="nt">-n</span> 2 hosts.ompi <span class="o">&gt;</span> hosts.a
+<span class="nb">tail</span> <span class="nt">-n</span> 3 hosts.ompi <span class="o">&gt;</span> hosts.b
 </code></pre></div></div>
 
 <p>If you have more participants, you can extract sections with <code class="language-plaintext highlighter-rouge">sed</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Distributing 9 nodes accross 3 participants.</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Distributing 9 nodes across 3 participants.</span>
 <span class="c"># Three nodes per participant.</span>
 <span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"1,3p"</span> hosts.ompi <span class="o">&gt;</span> hosts.a 
 <span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"4,6p"</span> hosts.ompi <span class="o">&gt;</span> hosts.b
@@ -2224,7 +2224,7 @@ MPI will automatically spawn as many jobs as slots available by the given hostfi
         </a>
         </p>
         <p>
-        Page last updated: Sep 12, 2025<br>
+        Page last updated: Feb 13, 2026<br>
         Site last updated: Feb 13, 2026
         </p>
       </div>
