@@ -100,18 +100,18 @@ for host in $(scontrol show hostname $SLURM_JOB_NODELIST); do
 done
 ```
 
-If you have only 2 participants, you can partition the resulting file using `head` and `tail`:
+Partition the resulting file into one file per participant by:
 
 ```bash
-# Example 2 hosts for A, the rest for B
-head -2 hosts.ompi > hosts.a
-tail +3 hosts.ompi > hosts.b
+# Example: give 2 hosts for participant A and 3 hosts for participant B
+head -n 2 hosts.ompi > hosts.a
+tail -n 3 hosts.ompi > hosts.b
 ```
 
 If you have more participants, you can extract sections with `sed`:
 
 ```bash
-# Distributing 9 nodes accross 3 participants.
+# Distributing 9 nodes across 3 participants.
 # Three nodes per participant.
 sed -n "1,3p" hosts.ompi > hosts.a 
 sed -n "4,6p" hosts.ompi > hosts.b
