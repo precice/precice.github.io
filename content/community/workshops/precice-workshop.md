@@ -84,6 +84,7 @@ in particular if this makes sense in the context of a research funding proposal 
 
 | N  | Date                                      | Place       | Host                                 |
 |--- | ---                                       | ---         | ---                                  |
+| 7  | [March 2027](./precice-workshop-2027)     | Delft       | Delft University of Technology       | 
 | 6  | [September 2025](./precice-workshop-2025) | Hamburg     | Helmut-Schmidt University of Hamburg |
 | 5  | [September 2024](./precice-workshop-2024) | Stuttgart   | University of Stuttgart              |
 | 4  | [February 2023](./precice-workshop-2023)  | Munich      | Technical University of Munich / LRZ |
@@ -96,6 +97,7 @@ aiming to reach out to a wider community that typically cannot travel to Europe.
 
 | Date | Event |
 | ---  | ---   |
+| October 2026 | [preCICE Online Training (Americas)](TODO) |
 | July 2020   | [Second preCICE Community hour](https://precice.discourse.group/t/267) |
 | April 2020  | [First preCICE Community hour](https://precice.discourse.group/t/196)  |
 
