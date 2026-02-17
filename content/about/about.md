@@ -55,7 +55,7 @@ The conceptual ideas of preCICE are not completely new. preCICE is an advancemen
 
 ## Planning and development of precice.org
 
-The website in its current form was planned and implemented by CH Lorenz Research and Innovation Consulting together with the preCICE team. For more information contact [Christopher Lorenz](https://christopherlorenz.com) at christopher[dot]lorenz[at]chlorenz[dot]ug.
+The website in its current form was planned and implemented by CH Lorenz Research and Innovation Consulting together with the preCICE team. For more information contact [Christopher Lorenz](https://christopherlorenz.com) at [christopher.lorenz@chlorenz.ug](mailto:christopher.lorenz@chlorenz.ug).
 
 ## Funding
 
