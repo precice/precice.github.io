@@ -38,9 +38,9 @@ toc: true
 
 If you are interested in joining the team of preCICE maintainers, please [contact Benjamin Uekermann](https://www.ipvs.uni-stuttgart.de/departments/us3/).
 
-Next we list the names of previous mantainers and contributors and its affiliation at the time of their last significant contribution.
-
 ## Previous maintainers
+
+Previous mantainers and their affiliation at the time of their last significant contribution.
 
 <br>
 {% assign dev_premain = site.data.developer.main-inactive | sort: "name" %}
