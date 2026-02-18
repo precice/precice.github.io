@@ -35,7 +35,7 @@ Yet C++ is the default, Fortran bindings are included in the main repository.
 - **Installation**: [native bindings](installation-source-advanced.html#disabling-native-bindings)
 - **Reference implementation**: [`precice/precice/examples/solverdummies/fortran`](https://github.com/precice/precice/tree/main/examples/solverdummies/fortran)
 
-## Fortran Module
+## Fortran module
 
 - **Location**: [`precice/fortran-module`](https://github.com/precice/fortran-module)
 - **Installation**: [`make`](installation-bindings-fortran.html)
