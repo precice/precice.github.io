@@ -67,6 +67,8 @@ Previous mantainers and their affiliation at the time of their last significant 
 
 ## Further contributors
 
+Previous contributors and their affiliation at the time of their last significant contribution.
+
 <br>
 {% assign dev_contrib = site.data.developer.contributors | sort: "name" %}
 <div class="row">
