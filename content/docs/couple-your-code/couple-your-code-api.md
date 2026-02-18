@@ -7,7 +7,7 @@ summary: "This page gives an overview on available preCICE APIs and minimal refe
 
 preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. If you are new to the preCICE API, we recommended that you first follow the [step-by-step guide](couple-your-code-preparing-your-solver.html).
 
-The API uses C++ bindings by default, but we provide bindings for different languages as well. Here we provide an overview of all supported languages, including location, installation and a minimal reference implementations.
+Next to the native C++ API, bindings for further languages are also available. In this page, we provide an overview of all supported languages, including location, installation, and minimal reference implementations.
 
 The reference implementations are the so called _solver dummies_, which can be a great source to copy from. The community also maintains [MPI-parallel versions of some of these solver dummies](https://github.com/ajaust/precice-parallel-solverdummies).
 
