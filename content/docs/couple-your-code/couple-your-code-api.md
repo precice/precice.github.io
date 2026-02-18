@@ -61,8 +61,6 @@ Yet C++ is the default, Fortran bindings are included in the main repository.
 
 ## Rust
 
-The community is working on the Rust bindings.
-
 - Location:   [`precice/rust-bindings`](https://github.com/precice/rust-bindings)
 - Installation:[`cargo add precice`](installation-bindings-rust.html)
 - Reference implementation: [`precice/rust-bindings/examples/solverdummy`](https://github.com/precice/rust-bindings/tree/main/examples/solverdummy)  
