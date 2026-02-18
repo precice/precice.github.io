@@ -21,7 +21,7 @@ Extensive documentation on the C++ API is available on [the preCICE API doxygen 
 
 ## C
 
-Yet C++ is the default, C bindings are included in the main repository.
+C bindings are included in the main repository.
 
 - Location: [`precice/precice/tree/main/extras/bindings/c`](https://github.com/precice/precice/tree/main/extras/bindings/c)
 - Installation: [native bindings](installation-source-advanced.html#disabling-native-bindings)
@@ -29,7 +29,7 @@ Yet C++ is the default, C bindings are included in the main repository.
 
 ## Fortran
 
-Yet C++ is the default, Fortran bindings are included in the main repository.
+Fortran bindings are included in the main repository.
 
 - Location: [`precice/precice/tree/main/extras/bindings/fortran`](https://github.com/precice/precice/tree/main/extras/bindings/fortran)
 - Installation: [native bindings](installation-source-advanced.html#disabling-native-bindings)
