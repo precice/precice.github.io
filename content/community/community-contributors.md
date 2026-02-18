@@ -27,7 +27,7 @@ toc: true
       </p>
     </div>
     <ul class="devlist-right">
-      {% if p.url %}<li><a href="{{ p.url }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
+      {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
       {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
@@ -56,7 +56,7 @@ Previous mantainers and their affiliation at the time of their last significant 
       </p>
     </div>
     <ul class="devlist-right">
-      {% if p.url %}<li><a href="{{ p.url }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
+      {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
       {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
@@ -83,7 +83,7 @@ Previous contributors and their affiliation at the time of their last significan
       </p>
     </div>
     <ul class="devlist-right">
-      {% if p.url %}<li><a href="{{ p.url }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
+      {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
       {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
