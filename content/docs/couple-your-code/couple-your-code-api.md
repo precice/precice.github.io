@@ -11,7 +11,7 @@ The API uses C++ bindings by default, but we provide bindings for different lang
 
 The reference implementations are the so called _solver dummies_, which can be a great source to copy from. The community also maintains [MPI-parallel versions of some of these solver dummies](https://github.com/ajaust/precice-parallel-solverdummies).
 
-## C++ Bindings
+## C++
 
 Extensive documentation on the C++ API is available on [the preCICE API doxygen pages for the latest release](https://precice.org/doxygen/main/classprecice_1_1Participant.html), or [see more options](dev-docs-sourcedocs.html).
 
@@ -19,7 +19,7 @@ Extensive documentation on the C++ API is available on [the preCICE API doxygen 
 - **Installation**: Automatically included
 - **Reference implementation**: [`precice/precice/examples/solverdummies/cpp`](https://github.com/precice/precice/tree/main/examples/solverdummies/cpp)  
 
-## C Bindings
+## C
 
 Yet C++ is the default, C bindings are included in the main repository.
 
@@ -27,7 +27,7 @@ Yet C++ is the default, C bindings are included in the main repository.
 - **Installation**: [native bindings](installation-source-advanced.html#disabling-native-bindings)
 - **Reference implementation**: [`precice/precice/examples/solverdummies/c`](https://github.com/precice/precice/tree/main/examples/solverdummies/c)
 
-## Fortran Bindings
+## Fortran
 
 Yet C++ is the default, Fortran bindings are included in the main repository.
 
@@ -41,25 +41,25 @@ Yet C++ is the default, Fortran bindings are included in the main repository.
 - **Installation**: [`make`](installation-bindings-fortran.html)
 - **Reference implementation**: [`precice/fortran-module/examples/solverdummy`](https://github.com/precice/fortran-module/tree/master/examples/solverdummy)
 
-## Python Bindings
+## Python
 
 - **Location**:[`precice/python-bindings`](https://github.com/precice/python-bindings)
 - **Installation**: [`pip3 install pyprecice`](installation-bindings-python.html)
 - **Reference implementation**: [`precice/python-bindings/examples/solverdummy`](https://github.com/precice/python-bindings/tree/master/examples/solverdummy)
 
-## Matlab Bindings
+## Matlab
 
 - **Location**:[`precice/matlab-bindings`](https://github.com/precice/matlab-bindings)
 - **Installation**: [installation script](installation-bindings-matlab.html)
 - **Reference implementation**: [`precice/matlab-bindings/solverdummy`](https://github.com/precice/matlab-bindings/tree/master/solverdummy)
 
-## Julia Bindings
+## Julia
 
 - **Location**:  [`precice/PreCICE.jl`](https://github.com/precice/PreCICE.jl)
 - **Installation**: [`add PreCICE`](installation-bindings-julia.html)
 - **Reference implementation**: [`precice/PreCICE.jl/solverdummy`](https://github.com/precice/PreCICE.jl/tree/main/solverdummy)
 
-## Rust Bindings
+## Rust
 
 The community is working on the Rust bindings.
 
