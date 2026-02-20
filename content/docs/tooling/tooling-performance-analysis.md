@@ -350,3 +350,105 @@ import pandas
 df = pandas.read_csv("profiling.csv")
 selection = df[ (df["participant"] == "A") & (df["rank"] == 0) ]
 ```
+
+## Advanced analysis with perfetto
+
+So far, we used [perfetto](https://perfetto.dev) for visualizing the traces.
+Sometimes, theses traces are either too large to inspect visually or one needs to extract more detailed data from the tarces than simple event-wise duration sums.
+
+The perfetto project additionally provides a complete ecosystem of tools for trace processing.
+[PerfettoSQL](https://perfetto.dev/docs/analysis/perfetto-sql-getting-started) and the [trace processor](https://perfetto.dev/docs/analysis/trace-processor-python) allow to systematically extract data from large profiling records.
+
+### PerfettoSQL for preCICE
+
+Important mappings between the two systems are:
+
+* a preCICE **participant** corresponds to a **process** in perfetto
+* a preCICE **rank** corresponds to a **thread** in perfetto, nested under the process of the participant
+* one preCICE **Event** corresponds to a row in the **slice** table of perfetto
+
+The most important STL component is the `thread_slice` in the [`slices.with_context`](https://perfetto.dev/docs/analysis/stdlib-docs#slices-with_context) module.
+It adds the thread and process name to each slice, which allows filtering for participant and rank.
+
+```sql
+INCLUDE PERFETTO MODULE slices.with_context;
+
+select *
+from thread_slice
+where process_name = 'B';
+```
+
+The rank is a string the format `Rank {rank}`.
+The following extracts all slices of the primary rank 0.
+
+```sql
+select *
+from thread_slice
+where process_name = 'B' and thread_name = "Rank 0"
+```
+
+### Prototyping queries in the UI
+
+After importing a trace into [perfetto UI](https://ui.perfetto.dev), clicking the SQL tab on the left opens a text input.
+Here, you can run SQL queries, see and download the results.
+This is great for prototyping queries quickly directly in the browser.
+
+If the output of the query is something that resembles a slice, then you can load it directly into the timeline view.
+Recently executed query results can be seen in the bottom of the timeline.
+Here you can also click "Show debug track" which will load all slices into a single track.
+To group into multiple tracks based on a column such as `thread_name`, select it as `pivot`.
+Then click "add track" to show the result of the query.
+
+If you don't need to see the other tracks, it may be a good idea to change to a new blank workspace first.
+
+### Scripting the processing
+
+For the scripting, we recommend using the [trace processor](https://perfetto.dev/docs/analysis/trace-processor-python) included in the python package `perfetto`.
+
+```bash
+pip install perfetto
+```
+
+In your script:
+
+```py
+from perfetto.trace_processor import TraceProcessor
+
+tp = TraceProcessor("profiling.pftrace")
+```
+
+After that, you can run queries using `tp.query()`:
+
+```py
+tp.query("SELECT count(*) from slice")
+```
+
+The result of a query can be:
+
+* accessed as a `numpy.ndarray` using `tq.query(...).cells`
+* iterated over using `for row in tq.query(...):`
+* or exported to a `pandas.Dataframe` using `tq.query(...).as_pandas_dataframe()`
+
+You can also use queries to create [views](https://sqlite.org/lang_createview.html) or [tables](https://sqlite.org/lang_createtable.html) to make the processing a bit more convenient.
+If you create tables make sure to use `CREATE PERFETTO TABLE` to get a table tuned for analytics queries.
+
+### Helper
+
+The following table gives for every slice, the total time spend in `.sync` events in case synchronization is enabled in the configuration.
+
+```sql
+CREATE PERFETTO TABLE synctime AS
+SELECT a.id AS sid, sum(s.dur) AS synctime
+FROM slice AS s
+JOIN ancestor_slice(s.id) a
+WHERE s.name GLOB '*.sync'
+GROUP BY a.id;
+```
+
+The following is a view that uses preCICE terminology and allows to work with `participant` and numberic `ranks`:
+
+```sql
+CREATE VIEW precice AS
+SELECT process_name as participant, cast_int!(SUBSTR(thread_name, 6)) AS rank, *
+FROM thread_slice;
+```
