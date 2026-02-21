@@ -60,12 +60,29 @@ Fundamental events should give you an insight in the overhead of preCICE as well
 
 Fundamental events are:
 
-* `_GLOBAL` time spent from the initialization of the events framework to the finalization. Starts in the construction of the participant and ends in finalize or the destructor.
-* `construction` time spent in construction of the Participant, including configuration and setting up the intra-communication of each participant.
-* `solver.initialize` time spent in the solver until `initialize()` is called. This normally includes setting meshes, defining initial data and preparing the solver.
-* `initialize()` time spent in preCICE `initialize()`. This includes establishing communication between participants, mesh and data transfer, as well as mapping computation.
-* `solver.advance` time spent in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
-* `advance()` time spent in preCICE `advance()`. This includes data mapping, data transfer, acceleration.
+* `_GLOBAL`: Time spent from the initialization of the events framework to finalization. Starts in participant construction and ends in `finalize` or the destructor.
+* `construction`: Time spent constructing the participant.
+* `configure`: Time spent loading and processing configuration.
+* `com.initializeMPI`: Time spent initializing MPI communication.
+* `com.initializeIntraCom`: Time spent initializing intra-participant communication.
+* `solver.initialize`: Time spent in the solver until `initialize()` is called. This typically includes mesh setup, initial data, and solver preparation.
+* `initialize`: Time spent in preCICE `initialize()`.
+* `reinitialize`: Time spent in participant reinitialization steps.
+* `initalizeCouplingScheme`: Time spent initializing the coupling scheme.  
+  Note: the event name currently uses this spelling in the profiler output.
+* `m2n.requestPrimaryRankConnection.<participant>`: Time spent requesting M2N primary-rank connections.
+* `m2n.acceptPrimaryRankConnection.<participant>`: Time spent accepting M2N primary-rank connections.
+* `mapping`: Time spent in mapping operations.
+* `solver.advance`: Time spent in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
+* `advance`: Time spent in preCICE `advance()`.
+* `advanceCoupling`: Time spent advancing the coupling scheme.
+* `syncTimestep`: Time spent in timestep synchronization.
+* `waitAndReceiveData`: Time spent waiting for and receiving coupling data.
+* `waitAndSendData`: Time spent waiting for and sending coupling data.
+* `accelerate`: Time spent in acceleration algorithms.
+* `sendConvergence`: Time spent sending convergence information.
+* `receiveConvergence`: Time spent receiving convergence information.
+* `finalize`: Time spent in preCICE `finalize()`.
 
 ## Full API-profiling
 
