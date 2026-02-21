@@ -270,16 +270,16 @@ div.logo-holder > img {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  line-clamp: 2; 
+  line-clamp: 2;
   -webkit-box-orient: vertical;
-  height: 2.8em; 
+  color: #000;
 }
 
 .news-card p:first-of-type {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 5; 
+  -webkit-line-clamp: 5;
   line-clamp: 5;
   -webkit-box-orient: vertical;
 }
@@ -301,5 +301,20 @@ div.logo-holder > img {
   }
   #news-container .col-md-4 {
     flex: 1 1 100%;         
+  }
+}
+
+/* Responsive title line-clamp for news cards */
+@media (max-width: 992px) {
+  .news-card h4 {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+
+@media (max-width: 576px) {
+  .news-card h4 {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
 }
