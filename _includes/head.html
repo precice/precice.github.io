@@ -2,7 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% if page.summary %}
-  <meta name="description" content="{{ page.summary | strip_html | strip_newlines }}">
+<meta name="description" content="{{ page.summary | strip_html | strip_newlines }}">
 {% endif %}
 <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
 <meta name="theme-color" content="#0A76BB">
@@ -15,13 +15,25 @@
 <meta property="og:title" content="{{ page.title }}" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="{{ 'page.url' | absolute_url }}" />
-<meta property="og:image" content="{{ 'images/icon.svg' | absolute_url }}" />
+<meta property="og:url" content="{{ page.url | absolute_url }}" />
+<meta property="og:image" content="{{ 'images/icon-310x310.png' | absolute_url }}" />
 {% if page.summary -%}
 <meta property="og:description" content="{{ page.summary | strip_html | strip_newlines }}">
+{%- elsif site.description -%}
+<meta property="og:description" content="{{ site.description | strip_html | strip_newlines }}">
 {%- endif %}
 
-<!-- Cannonical link -->
+<!-- Twitter Card metadata -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ page.title }}" />
+{% if page.summary -%}
+<meta name="twitter:description" content="{{ page.summary | strip_html | strip_newlines }}">
+{%- elsif site.description -%}
+<meta name="twitter:description" content="{{ site.description | strip_html | strip_newlines }}">
+{%- endif %}
+<meta name="twitter:image" content="{{ 'images/icon-310x310.png' | absolute_url }}" />
+
+<!-- Canonical link -->
 {% if page.url == "/index.html" -%}
 <link rel="canonical" href="{{ site.url }}" >
 {%- else -%}

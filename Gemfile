@@ -13,6 +13,7 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'jekyll-redirect-from'
   gem "jekyll-last-modified-at"
+  gem 'jekyll-mermaid'
 end
 
 gem 'jemoji'
