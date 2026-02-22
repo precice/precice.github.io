@@ -21,6 +21,15 @@ Meet the community online, ask questions, and help others at the [preCICE forum 
 
 Are you looking for something else? Maybe one of the other [community channels](community-channels.html) is for you.
 
+## Community metrics
+
+The following metrics are updated automatically and provide a quick snapshot of community activity.
+
+<div id="community-metrics"></div>
+<p id="community-metrics-status">Loading automatically generated metrics...</p>
+
+<script src="js/community-metrics.js"></script>
+
 ## Support preCICE
 
 There are different ways how to support preCICE and get priority support from the preCICE developers in return. [Find out which options](community-support-precice.html).
