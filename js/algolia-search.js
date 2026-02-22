@@ -20,7 +20,9 @@ const hitTemplate = function(hit) {
     date = moment.unix(hit.date).format('MMM D, YYYY');
   }
 
-  let url = `{{ site.baseurl }}${hit.url}#${hit.anchor}`;
+  let url = hit.anchor
+    ? `{{ site.baseurl }}${hit.url}#${hit.anchor}`
+    : `{{ site.baseurl }}${hit.url}`;
 
   const title = hit._highlightResult.title.value;
 

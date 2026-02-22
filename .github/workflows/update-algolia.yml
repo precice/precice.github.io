@@ -14,6 +14,36 @@ jobs:
           submodules: true
           lfs: false
           path: website
+      - name: Fetch precice main
+        uses: actions/checkout@v4
+        with:
+          repository: precice/precice
+          ref: main
+          path: main
+          fetch-tags: true
+      - name: Patch Doxyfile for main
+        run: |
+          sed -e "/^ *TAGFILES/d" -e "/^ *SITEMAP_URL/d" -e "/^ *PROJECT_NUMBER/d" -i main/Doxyfile
+          TAGFILE="../website/doxygen/cppreference-doxygen-web.tag.xml=http://en.cppreference.com/w/"
+          echo "TAGFILES = $TAGFILE" >> main/Doxyfile
+          echo "SITEMAP_URL = https://precice.org/doxygen/main/" >> main/Doxyfile
+          echo "PROJECT_NUMBER = $( cd main && git describe --tags )" >> main/Doxyfile
+      - name: Install doxygen dependencies
+        run: |
+          sudo apt-get -yyq update
+          sudo apt-get -yyq install graphviz plantuml
+          mkdir doxygen-bin
+          curl -sL https://github.com/doxygen/doxygen/releases/download/Release_1_14_0/doxygen-1.14.0.linux.bin.tar.gz | tar -xz --strip-components=1 -C doxygen-bin
+          readlink -f doxygen-bin/bin >> $GITHUB_PATH
+      - name: Build doxygen - main
+        working-directory: main
+        run: doxygen
+        env:
+          PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
+      - name: Place doxygen HTML for indexing
+        run: |
+          mkdir -p website/_doxygen_html/main
+          cp -r main/docs/source-code-documentation/html/* website/_doxygen_html/main/
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
