@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (!topics.length) throw new Error("No topics found");
 
-    // Sort by publication date instead of last activity
     topics.sort((a, b) => new Date(b.created_at || b.last_posted_at) - new Date(a.created_at || a.last_posted_at));
     loadingText.style.display = "none";
 
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       const date = new Date(topic.created_at || topic.last_posted_at).toLocaleDateString("en-GB");
 
-      card.innerHTML = `<a href="${topic.url}" target="_blank" rel="noopener noreferrer" class="adapter no-external-marker">
+      card.innerHTML = `<a href="${topic.url}" target="_blank" rel="noopener noreferrer" class="news-link no-external-marker">
         <h4><strong>${topic.title}</strong></h4>
         <p>${topic.description}</p>
         <p class="text-muted"><small>${date}</small></p>
