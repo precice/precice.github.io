@@ -1,6 +1,9 @@
-console.log("community-metrics.js loaded");
-
 (function () {
+  var REPO_BLURBS = {
+    core: "Core coupling library and ecosystem.",
+    tutorials: "Ready-to-run tutorial cases for users and developers.",
+  };
+
   function formatNumber(value) {
     if (typeof value !== "number") {
       return "n/a";
@@ -31,17 +34,18 @@ console.log("community-metrics.js loaded");
 
   function createCardColumn(title, description, items, linkUrl, linkLabel) {
     var column = document.createElement("div");
-    column.className = "col-md-4 col-sm-6 col-flex";
+    column.className = "col-md-12";
 
     var card = document.createElement("div");
-    card.className = "panel panel-primary panel-precice full-height";
+    card.className = "panel panel-primary panel-precice";
+    card.style.marginBottom = "14px";
 
-    var list = "<ul class=\"list-unstyled\">" + items.join("") + "</ul>";
-    var descriptionHtml = description ? "<p>" + description + "</p>" : "";
+    var list = "<ul class=\"list-unstyled no-margin\">" + items.join("") + "</ul>";
+    var descriptionHtml = description ? "<p class=\"text-muted\" style=\"font-size: 0.9em; margin-bottom: 8px;\">" + description + "</p>" : "";
     var linkHtml = "";
     if (linkUrl && linkLabel) {
       linkHtml =
-        "<p class=\"no-margin\"><a href=\"" +
+        "<p class=\"no-margin\" style=\"margin-top: 10px;\"><a href=\"" +
         linkUrl +
         "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"no-external-marker\">" +
         linkLabel +
@@ -52,7 +56,7 @@ console.log("community-metrics.js loaded");
       "<div class=\"panel-heading-precice text-left\"><strong>" +
       title +
       "</strong></div>" +
-      "<div class=\"panel-body\">" +
+      "<div class=\"panel-body\" style=\"font-size: 0.92em; line-height: 1.35;\">" +
       descriptionHtml +
       list +
       linkHtml +
@@ -70,7 +74,7 @@ console.log("community-metrics.js loaded");
         "<a href=\"" +
         latestRelease.url +
         "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"no-external-marker\">" +
-        (latestRelease.name || latestRelease.tag_name || "Release") +
+        (latestRelease.tag_name || latestRelease.name || "Release") +
         "</a> (" +
         formatDate(latestRelease.published_at) +
         ")";
@@ -80,11 +84,10 @@ console.log("community-metrics.js loaded");
 
     return createCardColumn(
       repo.label,
-      repo.description || "",
+      REPO_BLURBS[repo.id] || "",
       [
         createItem("Stars", formatNumber(repo.stars)),
         createItem("Contributors", formatNumber(repo.contributors)),
-        createItem("Forks", formatNumber(repo.forks)),
         createItem("Open issues", formatNumber(repo.open_issues)),
         createItem("Latest commit", formatDate(repo.latest_commit_at)),
         createItem("Latest release", latestReleaseValue),
@@ -98,7 +101,7 @@ console.log("community-metrics.js loaded");
   function createDiscourseCard(discourse) {
     return createCardColumn(
       "Discourse forum",
-      "Community activity snapshot from the preCICE forum.",
+      "Community activity snapshot.",
       [
         createItem("Users", formatNumber(discourse.users_count)),
         createItem("Topics", formatNumber(discourse.topics_count)),
@@ -141,7 +144,7 @@ console.log("community-metrics.js loaded");
       }
 
       var row = document.createElement("div");
-      row.className = "row equal";
+      row.className = "row";
 
       for (var i = 0; i < repositories.length; i += 1) {
         row.appendChild(createRepositoryCard(repositories[i]));

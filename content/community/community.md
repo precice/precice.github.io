@@ -25,8 +25,8 @@ Are you looking for something else? Maybe one of the other [community channels](
 
 The following metrics are updated automatically and provide a quick snapshot of community activity.
 
+<p id="community-metrics-status" class="text-muted">Loading automatically generated metrics...</p>
 <div id="community-metrics"></div>
-<p id="community-metrics-status">Loading automatically generated metrics...</p>
 
 <script src="js/community-metrics.js"></script>
 
