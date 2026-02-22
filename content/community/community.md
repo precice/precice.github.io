@@ -18,6 +18,7 @@ Do you want to meet the community and learn what is new in preCICE? There is no 
 ## The preCICE forum
 
 Meet the community online, ask questions, and help others at the [preCICE forum on Discourse](https://precice.discourse.group/). Structured conversations, which help the future reader. We also post [announcements](https://precice.discourse.group/c/news/5) from time to time, so make sure to register to be the first one to learn about new workshops and releases.
+Browse our [newsletter archive](https://precice.discourse.group/c/news/5) in the News category.
 
 Are you looking for something else? Maybe one of the other [community channels](community-channels.html) is for you.
 
