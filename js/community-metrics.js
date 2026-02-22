@@ -28,45 +28,57 @@
     });
   }
 
-  function createItem(label, value) {
-    return "<li><strong>" + label + ":</strong> " + value + "</li>";
+  function createMetricItem(label, value) {
+    var item = document.createElement("li");
+    item.innerHTML = "<strong>" + label + ":</strong> " + value;
+    return item;
   }
 
-  function createCardColumn(title, description, items, linkUrl, linkLabel) {
-    var column = document.createElement("div");
-    column.className = "col-md-12";
+  function createSection(title, description, metrics, linkUrl, linkLabel) {
+    var section = document.createElement("section");
+    section.style.marginBottom = "14px";
 
-    var card = document.createElement("div");
-    card.className = "panel panel-primary panel-precice";
-    card.style.marginBottom = "14px";
+    var heading = document.createElement("h4");
+    heading.textContent = title;
+    heading.style.marginBottom = "4px";
+    section.appendChild(heading);
 
-    var list = "<ul class=\"list-unstyled no-margin\">" + items.join("") + "</ul>";
-    var descriptionHtml = description ? "<p class=\"text-muted\" style=\"font-size: 0.9em; margin-bottom: 8px;\">" + description + "</p>" : "";
-    var linkHtml = "";
-    if (linkUrl && linkLabel) {
-      linkHtml =
-        "<p class=\"no-margin\" style=\"margin-top: 10px;\"><a href=\"" +
-        linkUrl +
-        "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"no-external-marker\">" +
-        linkLabel +
-        " &nbsp;<i class=\"fas fa-chevron-right\"></i></a></p>";
+    if (description) {
+      var blurb = document.createElement("p");
+      blurb.className = "text-muted";
+      blurb.style.marginBottom = "6px";
+      blurb.style.fontSize = "0.95em";
+      blurb.textContent = description;
+      section.appendChild(blurb);
     }
 
-    card.innerHTML =
-      "<div class=\"panel-heading-precice text-left\"><strong>" +
-      title +
-      "</strong></div>" +
-      "<div class=\"panel-body\" style=\"font-size: 0.92em; line-height: 1.35;\">" +
-      descriptionHtml +
-      list +
-      linkHtml +
-      "</div>";
+    var list = document.createElement("ul");
+    list.className = "list-unstyled";
+    list.style.marginBottom = "6px";
 
-    column.appendChild(card);
-    return column;
+    for (var i = 0; i < metrics.length; i += 1) {
+      var metric = metrics[i];
+      list.appendChild(createMetricItem(metric[0], metric[1]));
+    }
+    section.appendChild(list);
+
+    if (linkUrl && linkLabel) {
+      var paragraph = document.createElement("p");
+      paragraph.className = "no-margin";
+      var link = document.createElement("a");
+      link.href = linkUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.className = "no-external-marker";
+      link.innerHTML = linkLabel + " &nbsp;<i class=\"fas fa-chevron-right\"></i>";
+      paragraph.appendChild(link);
+      section.appendChild(paragraph);
+    }
+
+    return section;
   }
 
-  function createRepositoryCard(repo) {
+  function createRepositorySection(repo) {
     var latestRelease = repo.latest_release;
     var latestReleaseValue = "n/a";
     if (latestRelease && latestRelease.url) {
@@ -82,33 +94,33 @@
 
     var releaseDownloads = latestRelease ? formatNumber(latestRelease.downloads_count) : "n/a";
 
-    return createCardColumn(
+    return createSection(
       repo.label,
       REPO_BLURBS[repo.id] || "",
       [
-        createItem("Stars", formatNumber(repo.stars)),
-        createItem("Contributors", formatNumber(repo.contributors)),
-        createItem("Open issues", formatNumber(repo.open_issues)),
-        createItem("Latest commit", formatDate(repo.latest_commit_at)),
-        createItem("Latest release", latestReleaseValue),
-        createItem("Release downloads", releaseDownloads),
+        ["Stars", formatNumber(repo.stars)],
+        ["Contributors", formatNumber(repo.contributors)],
+        ["Open issues", formatNumber(repo.open_issues)],
+        ["Latest commit", formatDate(repo.latest_commit_at)],
+        ["Latest release", latestReleaseValue],
+        ["Release downloads", releaseDownloads],
       ],
       repo.url,
       "Open repository"
     );
   }
 
-  function createDiscourseCard(discourse) {
-    return createCardColumn(
+  function createDiscourseSection(discourse) {
+    return createSection(
       "Discourse forum",
       "Community activity snapshot.",
       [
-        createItem("Users", formatNumber(discourse.users_count)),
-        createItem("Topics", formatNumber(discourse.topics_count)),
-        createItem("Posts", formatNumber(discourse.posts_count)),
-        createItem("Active users (30d)", formatNumber(discourse.active_users_30_days)),
-        createItem("Topics (30d)", formatNumber(discourse.topics_30_days)),
-        createItem("Posts (30d)", formatNumber(discourse.posts_30_days)),
+        ["Users", formatNumber(discourse.users_count)],
+        ["Topics", formatNumber(discourse.topics_count)],
+        ["Posts", formatNumber(discourse.posts_count)],
+        ["Active users (30d)", formatNumber(discourse.active_users_30_days)],
+        ["Topics (30d)", formatNumber(discourse.topics_30_days)],
+        ["Posts (30d)", formatNumber(discourse.posts_30_days)],
       ],
       discourse.url,
       "Open forum"
@@ -143,16 +155,11 @@
         throw new Error("Missing metrics data");
       }
 
-      var row = document.createElement("div");
-      row.className = "row";
-
-      for (var i = 0; i < repositories.length; i += 1) {
-        row.appendChild(createRepositoryCard(repositories[i]));
-      }
-      row.appendChild(createDiscourseCard(discourse));
-
       container.innerHTML = "";
-      container.appendChild(row);
+      for (var i = 0; i < repositories.length; i += 1) {
+        container.appendChild(createRepositorySection(repositories[i]));
+      }
+      container.appendChild(createDiscourseSection(discourse));
 
       if (status) {
         status.textContent =
