@@ -4,20 +4,32 @@
 
 First install [`pre-commit`](https://repology.org/project/python:pre-commit/versions) to keep your commits clean.
 
-The website is using [Jekyll](https://jekyllrb.com/) static website generator and [Github pages](https://pages.github.com/).
-To run and develop it locally you need to install [`rbenv`](rbenv.org) using `apt install rbenv ruby-build`.
-Then use `rbenv init` and follow the instructions to set it up.
-With `rbenv` installed and activated in your shell:
+The website uses [Jekyll](https://jekyllrb.com/) and [GitHub Pages](https://pages.github.com/). For most contributors, the most reliable setup is to run Jekyll in Docker.
+
+### Recommended: run Jekyll in Docker
 
 ```bash
 git clone --recurse-submodules https://github.com/precice/precice.github.io && cd precice.github.io
 pre-commit install
-rbenv install
-bundle install
-bundle exec jekyll serve -l
+docker run --rm --volume="${PWD}:/srv/jekyll" --workdir /srv/jekyll --publish 127.0.0.1:4000:4000 -it jekyll/jekyll:4 bash -lc "bundle install && bundle exec jekyll serve -H 0.0.0.0"
 ```
 
-You can now view website locally in your browser at `localhost:4000`.
+You can now view the website locally at `http://localhost:4000/`.
+
+### Optional: native Ruby setup
+
+If you prefer a native setup, install [`rbenv`](https://rbenv.org/) and `ruby-build` (for example via `apt install rbenv ruby-build`), then run `rbenv init` and follow its shell setup instructions.
+
+```bash
+git clone --recurse-submodules https://github.com/precice/precice.github.io && cd precice.github.io
+pre-commit install
+rbenv init
+rbenv install
+bundle install
+bundle exec jekyll serve
+```
+
+With `rbenv` installed and activated in your shell, you can now view the website locally at `http://localhost:4000/`.
 
 ## Update submodules
 
@@ -42,21 +54,20 @@ git pull --recurse-submodules
 
 ## Build inside a Docker container
 
-Instead of building on your system (which requires some setup the first time), you can directly serve the website from a Docker container (using the community image [`jekyll/jekyll`](https://hub.docker.com/r/jekyll/jekyll)). In this directory, after you initialize and update the git submodules, run the following:
+To run a one-off production build inside Docker:
 
-```shell
-docker run --rm --volume="$PWD:/srv/jekyll:Z" --publish 127.0.0.1:4000:4000 -it jekyll/jekyll jekyll serve
+```bash
+docker run --rm --volume="${PWD}:/srv/jekyll" --workdir /srv/jekyll -it jekyll/jekyll:4 bash -lc "bundle install && bundle exec jekyll build"
 ```
 
 Arguments:
 
 * `docker run`: The Docker command to run a container from an existing image
 * `--rm`: Automatically remove (or not) the container when it exists
-* `--volume`: Mount the current directory (`$PWD`) to a directory in the container (`/srv/jekyll`), so that only the current container can see the content (`:Z`)
-* `--publish`: Publish the container's port 4000 (where Jekyll serves the website) to the host port 4000. Note that `127.0.0.1` is the localhost in IPv4. For IPv6, you can replace that with `[::1]`.
+* `--volume`: Mount the current directory (`$PWD`) to `/srv/jekyll` in the container. If your host uses SELinux, append `:Z`.
 * `-it`: Interactive container, capturing signals (such as `Ctrl-C`).
-* `jekyll/jekyll`: The image
-* `jekyll serve`: The command to run. Somehow, the current default `make` target does not work in this context.
+* `jekyll/jekyll:4`: The image
+* `bundle exec jekyll build`: The command to run
 
 ## Further information
 

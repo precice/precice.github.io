@@ -17,20 +17,24 @@ In addition Tom did a great job documenting the theme (using the theme) and you 
 
 ## Getting started
 
-To develop the website locally it is recommended to install jekyll and run
+The most reliable way to develop the website locally is to run Jekyll in Docker:
 
 ```bash
-bundle exec jekyll serve
+docker run --rm --volume="${PWD}:/srv/jekyll" --workdir /srv/jekyll --publish 127.0.0.1:4000:4000 -it jekyll/jekyll:4 bash -lc "bundle install && bundle exec jekyll serve -H 0.0.0.0"
 ```
 
-The [theme's documentation page](https://idratherbewriting.com/documentation-theme-jekyll/index.html#2-install-jekyll) has a step-by-step guide to install jekyll and the plugin ("gem") manager `bundler`. When running jekyll for the first time you might have to install and/or update the gems first:
+This avoids host-specific native gem build problems and should run consistently across distributions.
+
+If you prefer a native Ruby setup, the [theme's documentation page](https://idratherbewriting.com/documentation-theme-jekyll/index.html#2-install-jekyll) has a step-by-step guide to install Jekyll and the plugin ("gem") manager `bundler`.
+
+When running Jekyll natively for the first time you might have to install and/or update the gems first:
 
 ```bash
 bundle install
 bundle update
 ```
 
-Now try again `bundle exec jekyll serve` and the site should be running at `http://localhost:4000/`. Jekyll will refresh and rebuild when you change files.
+Then run `bundle exec jekyll serve` and open `http://localhost:4000/`. Jekyll refreshes and rebuilds when you change files.
 
 ## How documentation-theme-jekyll works in a nutshell
 

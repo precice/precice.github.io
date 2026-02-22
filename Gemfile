@@ -22,9 +22,9 @@ group :dev do
   gem 'jekyll-watch'
 end
 
-# For googlescholar.rb
+# For googlescholar.rb.
+# Keep open-uri from Ruby stdlib to avoid extra native dependencies.
 gem "nokogiri"
-gem "open-uri"
 
 # Maybe in the future
 # https://rubygems.org/gems/jekyll-scholar
