@@ -1636,7 +1636,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 22 Feb 26</small>
             </div>
           </aside>
           
@@ -1684,10 +1684,13 @@ $('#toc').on('click', 'a', function() {
 
 <p>The mesh over which the data is communicated plays no role. We get a circular dependency:</p>
 
-<pre><code class="language-txt">A -- first to second --&gt; B;
-B -- first to second --&gt; C;
-C -- first to second --&gt; A;
-</code></pre>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.min.js"></script>
+<div class="mermaid">
+graph LR
+  A --&gt;|first to second| B
+  B --&gt;|first to second| C
+  C --&gt;|first to second| A
+</div>
 
 <p>All three participants are a second participant in a serial coupling scheme, in which they receive data. Thus, they all wait for data in <code class="language-plaintext highlighter-rouge">initialize</code>, which is, however, only sent in the <code class="language-plaintext highlighter-rouge">advance</code> call of another participant, as explained on the <a href="couple-your-code-coupling-flow.html">coupling flow pages</a>.</p>
 
@@ -2110,7 +2113,7 @@ All other tags are similar to a normal <a href="configuration-coupling.html#impl
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Feb 22, 2026<br>
         Site last updated: Feb 22, 2026
         </p>
       </div>
