@@ -8,37 +8,68 @@ permalink: tocpage.html
 <div id="navig">
     <h1>Table of Contents</h1>
 
-    {% assign sidebar = site.data.sidebars[site.pdf_sidebar].entries %}
+    {% assign docs_sidebar = site.data.sidebars.docs_sidebar.entries %}
+{% assign tutorial_sidebar = site.data.sidebars.tutorial_sidebar.entries %}
 
-    <ul id="mysidebar" class="nav">
-        {% for entry in sidebar %}
-        {% for folder in entry.folders %}
-        {% if folder.output contains "pdf" and folder.type != "frontmatter" %}
-        <li class="sectionHead">{{ folder.title }}
-            <ul>
-                {% for folderitem in folder.folderitems %}
-                {% if folderitem.output contains "pdf" and folderitem.type != "frontmatter"%}
-                <li><a href="{{folderitem.url | prepend: site.baseurl}}">{{folderitem.title}}</a>
-                    {% for subfolders in folderitem.subfolders %}
-                    {% if subfolders.output contains "pdf" and subfolders.type != "frontmatter" %}
-                <li class="subSectionHead"><span>{{ subfolders.title }}</span>
-                    <ul>
-                        {% for subfolderitem in subfolders.subfolderitems%}
-                        {% if subfolderitem.output contains "pdf" and subfolderitem.type != "frontmatter"%}
-                        <li><a href="{{subfolderitem.url | prepend: site.baseurl}}">{{subfolderitem.title}}</a></li>
-                        {% endif %}
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endif %}
-                {% endfor %}
-                </li>
-                {% endif %}
-                {% endfor %}
-            </ul>
-        </li>
-        {% endif %}
-        {% endfor %}
-        {% endfor %}
-    </ul>
+<ul id="mysidebar" class="nav">
+    {% for entry in docs_sidebar %}
+    {% for folder in entry.folders %}
+    {% if folder.output contains "pdf" and folder.type != "frontmatter" %}
+    <li class="sectionHead">{{ folder.title }}
+        <ul>
+            {% for folderitem in folder.folderitems %}
+            {% if folderitem.output contains "pdf" and folderitem.type != "frontmatter"%}
+            <li><a href="{{folderitem.url | prepend: site.baseurl}}">{{folderitem.title}}</a>
+                {% for subfolders in folderitem.subfolders %}
+                {% if subfolders.output contains "pdf" and subfolders.type != "frontmatter" %}
+            <li class="subSectionHead"><span>{{ subfolders.title }}</span>
+                <ul>
+                    {% for subfolderitem in subfolders.subfolderitems%}
+                    {% if subfolderitem.output contains "pdf" and subfolderitem.type != "frontmatter"%}
+                    <li><a href="{{subfolderitem.url | prepend: site.baseurl}}">{{subfolderitem.title}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+            {% endfor %}
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+    {% for entry in tutorial_sidebar %}
+    {% for folder in entry.folders %}
+    {% if folder.output contains "web" and folder.type != "frontmatter" %}
+    <li class="sectionHead">{{ folder.title }}
+        <ul>
+            {% for folderitem in folder.folderitems %}
+            {% if folderitem.output contains "web" and folderitem.type != "frontmatter"%}
+            <li><a href="{{folderitem.url | prepend: site.baseurl}}">{{folderitem.title}}</a>
+                {% for subfolders in folderitem.subfolders %}
+                {% if subfolders.output contains "web" and subfolders.type != "frontmatter" %}
+            <li class="subSectionHead"><span>{{ subfolders.title }}</span>
+                <ul>
+                    {% for subfolderitem in subfolders.subfolderitems%}
+                    {% if subfolderitem.output contains "web" and subfolderitem.type != "frontmatter"%}
+                    <li><a href="{{subfolderitem.url | prepend: site.baseurl}}">{{subfolderitem.title}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+            {% endfor %}
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</ul>
 </div>
