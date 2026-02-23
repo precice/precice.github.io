@@ -60,40 +60,22 @@ a:hover > .navbar-brand-icon:before{
 }
 /* Fix Firefox/normalize.css bug https://github.com/necolas/normalize.css/issues/740 */
 details > summary {
-  display: flex !important;
-  align-items: center;
-  justify-content: space-between;
+  display: list-item;
   margin-bottom: 10px;
-  padding: 12px 15px;
-  background-color: #f6f8fa;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1), border-color 0.2s ease;
-  list-style: none; /* Hide default arrow */
+  color: #337ab7;
 }
 
 details > summary:hover {
-  background-color: #f3f4f6;
-  border-color: #afb8c1;
+  text-decoration: underline;
+  color: #23527c;
 }
 
-details[open] > summary {
-  margin-bottom: 0px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  background-color: #f3f4f6;
-}
-
-details[open] {
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
+/* Add more space around lists inside opened details */
+details[open] > ul,
+details[open] > ol {
+  margin-top: 15px;
   margin-bottom: 15px;
-}
-
-details[open] > *:not(summary) {
-  padding: 15px;
 }
 
 /* General layout classes */
@@ -389,20 +371,23 @@ details > summary::-webkit-details-marker {
 /* Hide default marker in Firefox */
 details > summary {
   list-style: none;
+  position: relative;
+  padding-right: 1.2em;
 }
 
-/* Base arrow using transform for rotation */
+/* closed */
 details > summary::after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  display: inline-block;
-  border-right: 2px solid #57606a;
-  border-bottom: 2px solid #57606a;
-  transform: rotate(-45deg); /* Pointing right */
-  transition: transform 0.2s ease-in-out;
+  content: "▼";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9em;
+  color: #333;
+  text-decoration: none;
 }
 
+/* open */
 details[open] > summary::after {
-  transform: rotate(45deg); /* Pointing down */
+  content: "▲";
 }
