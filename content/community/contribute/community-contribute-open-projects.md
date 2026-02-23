@@ -66,7 +66,7 @@ We expect to work with the accepted GSoC participants in the summer. Our capacit
 This website is built with [Jekyll](https://jekyllrb.com/),
 a straight-forward static site generator that has served us well,
 but now starts to feel a bit restrictive
-([GitHub repository](https://github.com/precice/precice.github.io), [documentation]docs-meta-overview.html)).
+([GitHub repository](https://github.com/precice/precice.github.io), [documentation](docs-meta-overview.html)).
 We envy the dark theme, the nice footer that showcases contributions, and the nice search engine support
 when we look at the documentation of other community projects, such as [GitLab](https://docs.gitlab.com/user/) or [Docker](https://docs.docker.com/get-started/).
 We also required some hacky jekyll plugins to integrate multiple repositories into one jekyll website, which are a bit error-prone.
