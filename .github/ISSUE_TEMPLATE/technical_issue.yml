@@ -1,0 +1,60 @@
+name: Technical Issue
+description: Report a technical problem with the website infrastructure (build, performance, accessibility, SEO)
+title: "[Technical]: "
+labels: ["technical"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for issues related to the website's technical infrastructure, such as build failures, performance problems, accessibility gaps, or SEO issues.
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: What kind of technical issue is this?
+      options:
+        - Build / Jekyll issue
+        - Performance (loading speed, asset size)
+        - Accessibility (a11y)
+        - SEO / metadata
+        - CSS / styling
+        - JavaScript / interactivity
+        - CI / GitHub Actions
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please describe the technical issue clearly and concisely. Include error messages, screenshots, or links where relevant.
+      placeholder: "The site takes 8+ seconds to load on mobile because..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce (if applicable)
+      description: How can we reproduce the issue?
+      placeholder: |
+        1. Run `bundle exec jekyll serve`
+        2. Navigate to ...
+        3. See error in console
+    validations:
+      required: false
+  - type: textarea
+    id: proposed-fix
+    attributes:
+      label: Proposed fix (optional)
+      description: If you have investigated the root cause, describe your proposed solution.
+      placeholder: "The issue is in `_includes/head.html` line 42. We should..."
+    validations:
+      required: false
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / environment (if relevant)
+      description: Which browser or environment did you test in?
+      placeholder: "Chrome 120 on Windows 11 / Firefox 121 on Ubuntu 22.04"
+    validations:
+      required: false
