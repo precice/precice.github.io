@@ -9,6 +9,13 @@ const algoliaSearch = instantsearch({
       searchResults.hide();
       return;
     }
+
+    // Increase minimum word sizes for typo tolerance to prevent
+    // short queries like "gsoc" from matching unrelated code tokens
+    // (e.g., "gsoc" was matching "sockets" via prefix with 2 typos)
+    helper.setQueryParameter('minWordSizefor1Typo', 5);
+    helper.setQueryParameter('minWordSizefor2Typos', 9);
+
     helper.search();
     searchResults.show();
   }
