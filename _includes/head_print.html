@@ -1,12 +1,21 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% endif %}">
-<meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
-<title>{% if page.homepage == true %} {{site.homepage_title}} {% elsif page.title %}{{ page.title }}{% endif %}  | {{ site.site_title }}</title>
+<meta name="description" content="{% if page.summary %}
+{{ page.summary | strip_html | strip_newlines | truncate: 160 }}
+{% endif %}">
+<meta name="keywords" content="{{ page.tags }}{% if page.tags %}, {% endif %} {{ page.keywords }}">
+<title>
+{% if page.homepage == true %}
+  {{ site.homepage_title }}
+{% elsif page.title %}
+  {{ page.title }}
+{% endif %}
+ | {{ site.site_title }}
+</title>
 
 <link rel="shortcut icon" href="images/favicon.ico">
-<link rel="stylesheet" href="{{ "css/syntax.css" }}">
+<link rel="stylesheet" href="{{ 'css/syntax.css' }}">
 <link rel="icon" sizes="192x192" href="images/icon.png">
 <link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
 
@@ -50,38 +59,37 @@
 <script defer src="js/auto-render.min.js"></script>
 <!-- replaces the onload attribute for KaTeX auto-render -->
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         renderMathInElement(document.body, {
-          // customised options
-          // • auto-render specific keys, e.g.:
-          delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\(', right: '\\)', display: false},
-              {left: '\\[', right: '\\]', display: true}
-          ],
-          // • rendering keys, e.g.:
-          throwOnError : false
+            // customised options
+            // • auto-render specific keys, e.g.:
+            delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false },
+                { left: '\\(', right: '\\)', display: false },
+                { left: '\\[', right: '\\]', display: true }
+            ],
+            // • rendering keys, e.g.:
+            throwOnError: false
         });
     });
 </script>
 
 <!-- scripts for Prince functionality -->
 <script>
-    Prince.addScriptFunc("datestamp", function() {
+    Prince.addScriptFunc("datestamp", function () {
         return "{{ site.time | date: '%B %d, %Y' }}";
     });
 </script>
 
 <script>
-    Prince.addScriptFunc("guideName", function() {
-        return "{{site.print_title}} Documentation";
+    Prince.addScriptFunc("guideName", function () {
+        return "{{ site.print_title }} Documentation";
     });
 </script>
 
 <script>
-    Prince.addScriptFunc("versionNumber", function() {
+    Prince.addScriptFunc("versionNumber", function () {
         return "{{site.precice_version}}";
     });
 </script>
-
