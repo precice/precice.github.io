@@ -212,6 +212,6 @@ There are [guidelines for adapters](community-guidelines-adapters.html) and [gui
 ## Helping other users
 
 We would really appreciate it if you followed our [community channels](community-channels.html) and joined us in answering questions.
-It is often much easier that you think!
+It is often much easier than you think!
 
 If you want to help there, then you may also want bookmark and visit the forum and/or chatroom regularly. You can also try to answer some of the [still unanswered forum questions](https://precice.discourse.group/search?expanded=true&q=status%3Aunsolved%20order%3Alatest). There is a special place in our hearts for users that help each other! 🤗
