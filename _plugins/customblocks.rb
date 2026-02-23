@@ -42,8 +42,8 @@ module Jekyll
 
     def released?(context)
       if @version.nil? || @version.empty?
-        # No version defined
-        true
+        # No version defined — treat as released (show content unconditionally)
+        return true
       end
 
       current_version = context.registers[:site].config['precice_version']
