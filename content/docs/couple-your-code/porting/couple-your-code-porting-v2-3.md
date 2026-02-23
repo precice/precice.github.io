@@ -197,7 +197,7 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
   // Move initialize to the place where you called initializeData() previously.
 - couplingInterface.initializeData();
 + participant.initialize();
-+ double dt = participant.getMaxTimeWindowSize();
++ double dt = participant.getMaxTimeStepSize();
 ```
 
 Typical error message that should lead you here:
