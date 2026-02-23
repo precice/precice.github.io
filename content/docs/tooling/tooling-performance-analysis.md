@@ -162,6 +162,14 @@ To profile blocking operations:
 </precice-configuration>
 ```
 
+To profile all preCICE operations in a scaling test only writing to the filesystem at the end:
+
+```xml
+<precice-configuration>
+  <profiling mode="all" flush-every="0" />
+</precice-configuration>
+```
+
 ## Post-processing workflow
 
 The general workflow looks as follows:

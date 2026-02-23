@@ -54,6 +54,13 @@ Additionally, show us what you have tried already (see "entry test" in each proj
 
 We will contact you via replies and/or private messages in the forum, to find out together if these topics are a good fit. You can alternatively ask quick questions in the [Matrix chat](https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im). Don't miss the [guidelines](#general-guidelines) at the bottom of this page.
 
+{% important %}
+We are a small project, and we are experiencing a spike of activity, which is very difficult to review next to the usual work.
+Please do not ask whether you can work on an issue - not without details. If you find something interesting to you that you feel it is clear enough for you to contribute, go ahead and submit a PR.
+We value quality higher than quantity. If you find something interesting, take your time and focus on it.
+We expect to work with the accepted GSoC participants in the summer. Our capacity to review external contributions before that is very limited.
+{% endimportant %}
+
 ### Project: Website modernization
 
 This website is built with [Jekyll](https://jekyllrb.com/),
