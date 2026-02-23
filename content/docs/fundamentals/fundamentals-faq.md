@@ -11,7 +11,7 @@ redirect_from:
 Search and filter frequently asked questions on the [preCICE Discourse forum](https://precice.discourse.group/tag/faq).
 
 <div class="faq-search-wrapper">
-  <input id="q" placeholder="Search questions..."  class="faq-search-input">
+  <input id="q" placeholder="Search questions..." class="faq-search-input">
   <select id="sort" class="faq-search-select">
     <option value="last_posted_at">Sort by last activity</option>
     <option value="created_at">Sort by creation date</option>
