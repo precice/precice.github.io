@@ -1943,6 +1943,52 @@ The FF module is still experimental and the boundary conditions presented here h
 
 <p>When coupling face flux <code class="language-plaintext highlighter-rouge">Phi</code>, usually no specific boundary condition needs to be set. The coupled boundary values are therefore not persistent and may change within a timestep.</p>
 
+<h4 id="generic-module">Generic module</h4>
+
+<p>The Generic module is an experimental addition that allows coupling any field by its name. It supports volume and surface coupling of scalar and vector fields (e.g., <code class="language-plaintext highlighter-rouge">Velocity</code>, <code class="language-plaintext highlighter-rouge">Pressure</code>, <code class="language-plaintext highlighter-rouge">Temperature</code>). If multiple modules are enabled, the Generic module will handle only those fields which have not been defined in the other modules. For example, if FF is also enabled, then fields whose data name starts with <code class="language-plaintext highlighter-rouge">Velocity</code> will be handled by the FF module instead.</p>
+
+<p>The module supports the dictionary-based configuration format, which allows setting additional options for each field:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// File system/preciceDict</span>
+
+<span class="n">modules</span> <span class="p">(</span> <span class="n">generic</span> <span class="p">);</span>
+
+<span class="n">interfaces</span>
+<span class="p">{</span>
+  <span class="n">Interface1</span>
+  <span class="p">{</span>
+    <span class="n">mesh</span>              <span class="n">Fluid</span><span class="o">-</span><span class="n">Mesh</span><span class="p">;</span>
+    <span class="n">patches</span>           <span class="p">(</span><span class="n">interface</span><span class="p">);</span>
+    <span class="c1">// For volume coupling specify volumeCenters</span>
+    <span class="n">locations</span>         <span class="n">faceCenters</span><span class="p">;</span>
+
+    <span class="n">writeData</span>
+    <span class="p">(</span>
+      <span class="n">Velocity1</span>
+      <span class="p">{</span>
+        <span class="n">name</span>        <span class="n">Velocity</span><span class="p">;</span>   <span class="c1">// Data name as defined in preCICE config</span>
+        <span class="n">solver_name</span> <span class="n">U</span><span class="p">;</span>          <span class="c1">// Optional: Field name in OpenFOAM (defaults to same as 'name')</span>
+        <span class="n">operation</span>   <span class="n">value</span><span class="p">;</span>      <span class="c1">// Optional: Operation to perform on data (defaults to 'value')</span>
+        <span class="n">flip</span><span class="o">-</span><span class="n">normal</span> <span class="nb">false</span><span class="p">;</span>      <span class="c1">// Optional: Flip the normal direction (defaults to 'false')</span>
+      <span class="p">}</span>
+
+      <span class="n">TemperatureGradient</span>
+      <span class="p">{</span>
+        <span class="n">name</span>        <span class="n">T_Grad</span><span class="p">;</span>
+        <span class="n">solver_name</span> <span class="n">T</span><span class="p">;</span>
+        <span class="n">operation</span>   <span class="n">surface</span><span class="o">-</span><span class="n">normal</span><span class="o">-</span><span class="n">gradient</span><span class="p">;</span>   <span class="c1">// Use surface normal gradient</span>
+      <span class="p">}</span>
+    <span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Explicitly setting <code class="language-plaintext highlighter-rouge">locations volumeCenters;</code> in preciceDict is required for volume coupling. If omitted, it defaults to surface coupling on <code class="language-plaintext highlighter-rouge">faceCenters</code>. Volume coupling data is always assumed as values for now, i.e., cannot set volume gradient.</p>
+
+<p>When reading on the OpenFOAM side, the Generic module automatically detects the boundary condition type of the coupled patch to apply the received data. The boundary condition must be respected, therefore the data received is applied either as a <code class="language-plaintext highlighter-rouge">fixedValue</code> or <code class="language-plaintext highlighter-rouge">fixedGradient</code> boundary condition, determined by the type set in the <code class="language-plaintext highlighter-rouge">0/</code> files.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">operation surface-normal-gradient;</code> is currently only supported for scalar field surface writing. The operation <code class="language-plaintext highlighter-rouge">gradient</code> as well as the option <code class="language-plaintext highlighter-rouge">flip-normal</code> are not yet supported by the adapter.</p>
+
 <h3 id="volume-coupling">Volume coupling</h3>
 
 <p>Besides surface coupling on the domain boundaries, the OpenFOAM adapter also supports coupling overlapping domains, which can be the complete domain, or regions of it. In contrast to surface coupling, though, reading volume data (source terms) requires a few additional configuration steps compared to writing data.</p>
@@ -2303,7 +2349,7 @@ to be a useful reference (file changes).</p>
 
 <h2 id="upcoming-changes-to-the-configuration-format">Upcoming changes to the configuration format</h2>
 
-<p>We are currently working on porting the adapter configuration file to the new <a href="https://github.com/precice/preeco-orga/tree/main/adapter-config-schema">adapter configuration schema</a>. Since v1.4.0, <code class="language-plaintext highlighter-rouge">readData</code> and <code class="language-plaintext highlighter-rouge">writeData</code> support parsing both the new format. Additional options (<code class="language-plaintext highlighter-rouge">solver_name</code>, <code class="language-plaintext highlighter-rouge">operation</code> and <code class="language-plaintext highlighter-rouge">flip-normal</code>) can be specified in the dictionaries . For example, the data <code class="language-plaintext highlighter-rouge">name</code> as known by preCICE can be different than the <code class="language-plaintext highlighter-rouge">solver_name</code> known by OpenFOAM. However, the new options are not yet functionally supported by the current modules FF, CHT and FSI. The legacy word list format is still supported, and both formats can even be mixed:</p>
+<p>We are currently working on porting the adapter configuration file to the new <a href="https://github.com/precice/preeco-orga/tree/main/adapter-config-schema">adapter configuration schema</a>. Since v1.4.0, <code class="language-plaintext highlighter-rouge">readData</code> and <code class="language-plaintext highlighter-rouge">writeData</code> support parsing both the new format. Additional options (<code class="language-plaintext highlighter-rouge">solver_name</code>, <code class="language-plaintext highlighter-rouge">operation</code> and <code class="language-plaintext highlighter-rouge">flip-normal</code>) can be specified in the dictionaries. For example, the data <code class="language-plaintext highlighter-rouge">name</code> as known by preCICE can be different than the <code class="language-plaintext highlighter-rouge">solver_name</code> known by OpenFOAM. However, the new options are not yet functionally supported by the current modules FF, CHT and FSI. Support for the new options is planned in the Generic module. The legacy word list format is still supported, and both formats can even be mixed:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">readData</span>
 <span class="p">(</span>
