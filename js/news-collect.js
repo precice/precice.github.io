@@ -22,29 +22,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       const date = new Date(topic.created_at || topic.last_posted_at).toLocaleDateString("en-GB");
 
-      // Build DOM nodes safely — never interpolate API data into innerHTML
-      const link = document.createElement("a");
-      link.href = topic.url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.className = "news-link no-external-marker";
-
-      const h4 = document.createElement("h4");
-      const strong = document.createElement("strong");
-      strong.textContent = topic.title;      // safe: treated as text, not HTML
-      h4.appendChild(strong);
-
-      const desc = document.createElement("p");
-      desc.textContent = topic.description;  // safe: treated as text, not HTML
-
-      const datePara = document.createElement("p");
-      datePara.className = "text-muted";
-      const small = document.createElement("small");
-      small.textContent = date;              // safe: generated locally from Date API
-      datePara.appendChild(small);
-
-      link.append(h4, desc, datePara);
-      card.appendChild(link);
+      card.innerHTML = `<a href="${topic.url}" target="_blank" rel="noopener noreferrer" class="news-link no-external-marker">
+        <h4><strong>${topic.title}</strong></h4>
+        <p>${topic.description}</p>
+        <p class="text-muted"><small>${date}</small></p>
+      </a>`;
 
       col.appendChild(card);
       newsContainer.appendChild(col);
