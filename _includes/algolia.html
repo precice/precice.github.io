@@ -133,4 +133,30 @@ document.addEventListener('mouseup', function(e) {
   }
 });
 
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' || e.keyCode === 27) {
+
+    var results = document.getElementById('search-results');
+    var inputContainer = document.getElementById('search-input');
+    var activeElement = document.activeElement;
+
+    if (results) {
+      results.style.display = 'none';
+    }
+
+    if (inputContainer && inputContainer.contains(activeElement)) {
+      activeElement.blur();
+    } else if (results && results.contains(activeElement)) {
+      var algoliaInput = document.querySelector('#search-input .ais-search-box--input');
+      if (algoliaInput) {
+        algoliaInput.focus();
+      } else {
+        activeElement.blur();
+      }
+    }
+  }
+});
+
+
+
 </script>
