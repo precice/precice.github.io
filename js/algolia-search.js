@@ -1,22 +1,19 @@
----
-  ---
-// Jekyll front matter above enables Liquid template processing in this file.
-// The `---` delimiters are stripped at build time and never reach the browser.
+const { appId, apiKey, indexName, baseUrl } = window.ALGOLIA_CONFIG;
 
 const algoliaSearch = instantsearch({
-    appId: '{{ site.algolia.application_id }}',
-    apiKey: '{{ site.algolia.search_only_api_key }}',
-    indexName: '{{ site.algolia.index_name }}',
-    searchFunction: function (helper) {          // hide search result in init query
-      var searchResults = $('#search-results');
-      if (helper.state.query === '') {
-        searchResults.hide();
-        return;
-      }
-      helper.search();
-      searchResults.show();
+  appId: appId,
+  apiKey: apiKey,
+  indexName: indexName,
+  searchFunction: function (helper) {          // hide search result in init query
+    var searchResults = $('#search-results');
+    if (helper.state.query === '') {
+      searchResults.hide();
+      return;
     }
-  });
+    helper.search();
+    searchResults.show();
+  }
+});
 
 const hitTemplate = function (hit) {
   let date = '';
@@ -24,7 +21,7 @@ const hitTemplate = function (hit) {
     date = moment.unix(hit.date).format('MMM D, YYYY');
   }
 
-  let url = `{{ site.baseurl }}${hit.url}#${hit.anchor}`;
+  let url = `${baseUrl}${hit.url}#${hit.anchor}`;
 
   const title = hit._highlightResult.title.value;
 
@@ -96,32 +93,6 @@ elem.style.fontSize = '0.8em';
 elem.style.height = '50px';
 elem.style.boxSizing = 'border-box';
 
-/*<style type="text/css">
-.ais-search-box--powered-by {
-  margin-top: -15px;
-  padding-right: 5px;
-}
-.nav li a.ais-search-box--powered-by-link {
-  padding: 0;
-  background-color: transparent;
-  display: inline-block;
-}
-.ais-search-box--input {
-  padding-left: 10px;
-  border-color: #0A76BB;
-}
-.ais-search-box {
-  padding: .5em;
-  margin-bottom: 0px;
-  margin-left: 10px;
-  margin-top: 0px;
-  width: 20em;
-  font-size: 0.8em;
-  box-sizing: border-box;
-  height: 50px;
-}
-</style>*/
-
 // some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
 document.addEventListener('mouseup', function (e) {
   var results = document.getElementById('search-results');
@@ -136,4 +107,3 @@ document.addEventListener('mouseup', function (e) {
     results.style.display = 'block';
   }
 });
-
