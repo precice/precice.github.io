@@ -355,24 +355,32 @@ details > summary::-webkit-details-marker {
 }
 
 /* Hide default marker in Firefox */
-details > summary {
+details.workshop-event > summary {
   list-style: none;
   cursor: pointer;
   position: relative;
   padding-right: 1.2em;
+  
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+  padding: 6px 8px;
 }
 
-/* closed */
-details > summary::after {
-  content: "▼";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.9em;
+details.workshop-event > summary:hover {
+    background-color: #f0f6ff !important;
 }
 
-/* open */
-details[open] > summary::after {
-  content: "▲";
+details.workshop-event > summary::after {
+    content: "▾";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #1f77b4;
+}
+
+details.workshop-event[open] > summary::after {
+    content: "▴";
+    font-size: 1em;
 }
