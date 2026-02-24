@@ -1,20 +1,22 @@
+---
+  ---
 
 const algoliaSearch = instantsearch({
-  appId: '{{ site.algolia.application_id }}',
-  apiKey: '{{ site.algolia.search_only_api_key }}',
-  indexName: '{{ site.algolia.index_name }}',
-  searchFunction: function(helper) {          // hide search result in init query
-    var searchResults = $('#search-results');
-    if (helper.state.query === '') {
-      searchResults.hide();
-      return;
+    appId: '{{ site.algolia.application_id }}',
+    apiKey: '{{ site.algolia.search_only_api_key }}',
+    indexName: '{{ site.algolia.index_name }}',
+    searchFunction: function (helper) {          // hide search result in init query
+      var searchResults = $('#search-results');
+      if (helper.state.query === '') {
+        searchResults.hide();
+        return;
+      }
+      helper.search();
+      searchResults.show();
     }
-    helper.search();
-    searchResults.show();
-  }
-});
+  });
 
-const hitTemplate = function(hit) {
+const hitTemplate = function (hit) {
   let date = '';
   if (hit.date) {
     date = moment.unix(hit.date).format('MMM D, YYYY');
@@ -119,13 +121,13 @@ elem.style.boxSizing = 'border-box';
 </style>*/
 
 // some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
-document.addEventListener('mouseup', function(e) {
+document.addEventListener('mouseup', function (e) {
   var results = document.getElementById('search-results');
   if (!results.contains(e.target)) {
     results.style.display = 'none';
   }
 });
-document.addEventListener('mouseup', function(e) {
+document.addEventListener('mouseup', function (e) {
   var input = document.getElementById('search-input');
   var results = document.getElementById('search-results');
   if (input.contains(e.target)) {
