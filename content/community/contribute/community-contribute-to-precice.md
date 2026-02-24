@@ -40,6 +40,12 @@ and merge them as soon as possible.
 These pages are written in [Markdown](https://guides.github.com/features/mastering-markdown/) (a very easy language)
 and we also have a [cheatsheet](docs-meta-cheatsheet.html) specifically for this website.
 
+## Policy on AI-generated content
+
+We welcome the use of AI tools (e.g., ChatGPT, Copilot, Gemini) to help you contribute.
+However, we want to make sure that a human is always in control and responsible for the work contributed.
+If you use AI tools, please declare them in your Pull Request and ensure that you have reviewed and understood every part of your contribution.
+
 ## Reporting issues
 
 After discussing a problem in one of our [community channels](community-channels.html), we may conclude that this is a bug
