@@ -133,4 +133,16 @@ document.addEventListener('mouseup', function(e) {
   }
 });
 
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' || e.keyCode === 27) {
+    var input = document.getElementById('search-input');
+    var results = document.getElementById('search-results');
+    if (results) results.style.display = 'none';
+    if (input && input.contains(document.activeElement)) {
+      document.activeElement.blur();
+    }
+  }
+});
+
+
 </script>
