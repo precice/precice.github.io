@@ -1,5 +1,7 @@
 ---
   ---
+// Jekyll front matter above enables Liquid template processing in this file.
+// The `---` delimiters are stripped at build time and never reach the browser.
 
 const algoliaSearch = instantsearch({
     appId: '{{ site.algolia.application_id }}',
