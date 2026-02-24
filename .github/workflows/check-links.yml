@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Check links in markdown files (markdown-link-check)
         uses: tcort/github-action-markdown-link-check@v1
         with:
-          use-quiet-mode: 'yes'
-          use-verbose-mode: 'no'
-          config-file: '.markdown-link-check-config.json'
-          folder-path: 'content/'
+          use-quiet-mode: "yes"
+          use-verbose-mode: "no"
+          config-file: ".markdown-link-check-config.json"
+          folder-path: "content/"
           # We also need to check 'collections/_testimonials/', but quoted links fail
