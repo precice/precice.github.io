@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout website
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
           path: website
 
       - name: Fetch - precice develop
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: precice/precice
           ref: develop
           path: develop
 
       - name: Fetch - precice main
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: precice/precice
           ref: main
@@ -73,7 +73,7 @@ jobs:
         run: find public
 
       - name: Deploy to testing
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.WEB_TESTING_TOKEN }}
           publish_dir: ./public
