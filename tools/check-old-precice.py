@@ -7,7 +7,7 @@ from sys import exit, stderr
 
 def oldAPI():
     return [entry
-            for entry in (pathlib.Path(__file__).parent / "old-precice.txt").read_text().splitlines()
+            for entry in (pathlib.Path(__file__).parent / "old-precice.txt").read_text(encoding="utf-8").splitlines()
             if entry and not entry.startswith("#")]
 
 
@@ -22,7 +22,7 @@ def checkFiles(files: list[pathlib.Path], root:pathlib.Path):
     old = oldAPI()
     success = True
     for file in filter(fileFilter, files):
-        content = file.read_text().splitlines()
+        content = file.read_text(encoding="utf-8").splitlines()
         for n, line in enumerate(content):
             for ex in old:
                 if ex in line:
