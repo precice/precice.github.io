@@ -1821,6 +1821,11 @@ Model evaluation - in the call <code class="language-plaintext highlighter-rouge
         It will be called with frequency set by configuration option `simulation_params: micro_output_n`
         This function is *optional*.
         </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">get_global_id</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">
+        Return the assigned global id.
+        </span><span class="sh">"""</span>
 </code></pre></div></div>
 
 <p>For this the default MicroSimulation still serves as the model interface, while the <code class="language-plaintext highlighter-rouge">(set)|(get)_state()</code> methods
@@ -1829,37 +1834,40 @@ The list of provided models is interpreted in decreasing fidelity order. In othe
 is likely to be the full order model, while subsequent ones are ROMs.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">switching_function</span><span class="p">(</span>
-    <span class="n">resolutions</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
-    <span class="n">locations</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">location</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span>
+    <span class="nb">input</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
     <span class="n">prev_output</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
-    <span class="n">active</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="sh">"""</span><span class="s">
     Switching interface function, use as reference
 
     Parameters
     ----------
-    resolutions : np.array - shape(N,)
-        Array with resolution information as get_sim_class_resolution would return for a sim obj.
-    locations : np.array - shape(N,D)
-        Array with gaussian points for all sims. D is the mesh dimension.
+    resolution : int
+        Current resolution as get_sim_class_resolution would return for the respective sim obj.
+    location : np.array - shape(D,)
+        Array with gaussian points.
     t : float
         Current time in simulation.
-    inputs : list[dict]
-        List of input objects.
-    prev_output : [None, dict-like]
+    input : dict
+        Input object.
+    prev_output : [None, dict]
         Contains the outputs of the previous model evaluation.
-    active : np.array - shape(N,)
-        Bool array indicating whether the model is active or not.
 
+    Returns
+    -------
+    switch_direction: int
+        0 if resolution should not change
+        -1 if resolution should increase
+        1 if resolution should decrease
     </span><span class="sh">"""</span>
-    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">resolutions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span>
 </code></pre></div></div>
 
-<p>The switching of models is governed by the <code class="language-plaintext highlighter-rouge">switching_function</code>.
-The output is expected to be a np.ndarray of shape (N,) and is interpreted in the following manner:</p>
+<p>The switching of models is governed by the <code class="language-plaintext highlighter-rouge">switching_function</code>, which is evaluated for each micro simulation.
+The output is expected to be an integer and is interpreted in the following manner:</p>
 
 <table>
   <thead>

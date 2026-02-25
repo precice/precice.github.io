@@ -1734,6 +1734,11 @@ $('#toc').on('click', 'a', function() {
       <td>-</td>
     </tr>
     <tr>
+      <td><code class="language-plaintext highlighter-rouge">micro_stateless</code></td>
+      <td>Boolean if micro simulation is stateless allowing model instancing.</td>
+      <td>False</td>
+    </tr>
+    <tr>
       <td><code class="language-plaintext highlighter-rouge">output_directory</code></td>
       <td>Path to output directory for logging and performance metrics. Directory is created if not existing already.</td>
       <td><code class="language-plaintext highlighter-rouge">.</code></td>
@@ -1980,6 +1985,10 @@ $('#toc').on('click', 'a', function() {
       <td><code class="language-plaintext highlighter-rouge">switching_function</code></td>
       <td>Path to the file containing the Python importable switching function. If the file is not in the working directory, give the relative path from the directory where the Micro Manager is executed.</td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">micro_stateless</code></td>
+      <td>List of boolean values, whether the respective micro simulation model is stateless and can use model instancing.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1989,7 +1998,8 @@ $('#toc').on('click', 'a', function() {
     </span><span class="nl">"model_adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"model_adaptivity_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"micro_file_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">],</span><span class="w">
-        </span><span class="nl">"switching_function"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mada_switcher"</span><span class="w">
+        </span><span class="nl">"switching_function"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mada_switcher"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"micro_stateless"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">False</span><span class="p">,</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span><span class="err">True</span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
