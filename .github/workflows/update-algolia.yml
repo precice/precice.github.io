@@ -22,7 +22,7 @@ jobs:
         id: checkcommit
         working-directory: website
         run: |
-          LASTEST_COMMIT=$(git log -1 --format=%ct)
+          LATEST_COMMIT=$(git log -1 --format=%ct)
           CURRENT_TIME=$(date +%s)
           TIME_DIFF=$((CURRENT_TIME - LATEST_COMMIT))
           if [ $TIME_DIFF -gt 86400 ]; then
