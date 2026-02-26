@@ -9,6 +9,8 @@ const algoliaSearch = instantsearch({
       searchResults.hide();
       return;
     }
+    // Raise typo thresholds so short words (<=4 chars) like "gsoc" require
+    // exact matches, preventing fuzzy hits against unrelated XML tokens.
     helper.setQueryParameter('minWordSizefor1Typo', 5);
     helper.setQueryParameter('minWordSizefor2Typos', 9);
     helper.search();
