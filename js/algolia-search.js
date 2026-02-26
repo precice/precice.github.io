@@ -9,6 +9,8 @@ const algoliaSearch = instantsearch({
       searchResults.hide();
       return;
     }
+    helper.setQueryParameter('minWordSizefor1Typo', 5);
+    helper.setQueryParameter('minWordSizefor2Typos', 9);
     helper.search();
     searchResults.show();
   }
