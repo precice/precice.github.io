@@ -254,7 +254,7 @@ This trace format can then be visualized using the following tools:
 
 Use `precice-cli profiling trace --web` to directly open the exported trace in the browser.
 
-These visualization tools cannot handle large runs though.
+Even with these tools, very large runs can become difficult to inspect interactively.
 There are two options to reduce the trace size:
 You can select the first `N` ranks using `-l N` and you can pick specific ranks using `-r RANK ...`
 These two selectors are combined.
@@ -281,6 +281,71 @@ This first version contains only fundamental events, which is the default profil
 This second version contains all events using the configuration `<profiling mode="all" />`.
 
 ![example of parallel ASTE with all events visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-parallel-all.png)
+
+### Analyze larger traces with PerfettoSQL
+
+For larger runs, it is often faster to query the trace data directly instead of navigating the UI.
+`trace_processor_shell` can execute PerfettoSQL on `trace.json` and gives reproducible results.
+You can download `trace_processor_shell` from the [Perfetto releases page](https://perfetto.dev/docs/quickstart/trace-analysis#get-trace-processor).
+
+First, inspect which event names are present:
+
+```console
+trace_processor_shell -q "SELECT name, COUNT(*) AS n FROM slice GROUP BY name ORDER BY n DESC LIMIT 30;" trace.json
+```
+
+Then focus on preCICE events, for example to get total runtime per event:
+
+```console
+trace_processor_shell -q "SELECT name, COUNT(*) AS n, ROUND(SUM(dur)/1e9, 6) AS total_s, ROUND(AVG(dur)/1e6, 3) AS avg_ms FROM slice WHERE name IN ('advance', 'initialize', 'solver.advance', 'solver.initialize', 'construction', 'finalize') GROUP BY name ORDER BY total_s DESC;" trace.json
+```
+
+To find unusually expensive `advance` calls:
+
+```console
+trace_processor_shell -q "SELECT ROUND(ts/1e9, 6) AS start_s, ROUND(dur/1e6, 3) AS dur_ms, track_id FROM slice WHERE name = 'advance' ORDER BY dur DESC LIMIT 20;" trace.json
+```
+
+To estimate rank/participant imbalance on `solver.advance`, compare totals per track:
+
+```console
+trace_processor_shell -q "SELECT track_id, COUNT(*) AS n, ROUND(SUM(dur)/1e9, 6) AS total_s, ROUND(AVG(dur)/1e6, 3) AS avg_ms FROM slice WHERE name = 'solver.advance' GROUP BY track_id ORDER BY total_s DESC;" trace.json
+```
+
+If you need the mapping from `track_id` to names:
+
+```console
+trace_processor_shell -q "SELECT t.id AS track_id, COALESCE(t.name, tt.name, pt.name, p.name, th.name) AS track_name, p.pid AS pid, p.name AS process_name, tt.utid AS utid, th.name AS thread_name FROM track t LEFT JOIN thread_track tt ON tt.id = t.id LEFT JOIN process_track pt ON pt.id = t.id LEFT JOIN thread th ON th.utid = tt.utid LEFT JOIN process p ON p.upid = COALESCE(tt.upid, pt.upid) ORDER BY t.id;" trace.json
+```
+
+### Scripting trace analysis with Python
+
+For recurring analyses in CI or larger studies, you can script queries using Perfetto Trace Processor:
+installable via `pip install perfetto`.
+
+```python
+from perfetto.trace_processor import TraceProcessor
+
+tp = TraceProcessor(file_path="trace.json")
+
+query = """
+SELECT
+  name,
+  COUNT(*) AS n,
+  SUM(dur) / 1e9 AS total_s,
+  AVG(dur) / 1e6 AS avg_ms
+FROM slice
+WHERE name IN ('advance', 'initialize', 'solver.advance', 'solver.initialize')
+GROUP BY name
+ORDER BY total_s DESC
+"""
+
+for row in tp.query(query):
+    print(row.name, row.n, row.total_s, row.avg_ms)
+```
+
+Recent Perfetto Python versions expose selected columns as row attributes (`row.name`, `row.total_s`, ...).
+This approach scales better than manual exploration and allows you to keep a stable analysis script for your preCICE runs.
 
 ### Analyzing participants
 
