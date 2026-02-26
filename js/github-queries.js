@@ -10,7 +10,7 @@
 // Get the updated field of an entry of the feed and format it like "Jan 1, 1970"
 function formatDate(updated) {
   // Extract the date and create a Date object
-  date = new Date(updated);
+  const date = new Date(updated);
 
   // Names for the months (we do not need an external library just for this)
   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -27,9 +27,9 @@ var github_api_endpoint = 'https://api.github.com/repos/precice/precice/releases
     fetch(github_api_endpoint).then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
-          tag = data[0].name;
-          published_at = data[0].published_at;
-          url = data[0].html_url
+          const tag = data[0].name;
+          const published_at = data[0].published_at;
+          const url = data[0].html_url
             // Format the text, which contains the link, the title, and the date.
             var text = '<a href="' + url + '" class="btn btn-secondary no-icon action-button" role="button" target="_blank" rel="noopener noreferrer">Latest ' + tag + ' (' + formatDate(published_at) + ') &nbsp;<i class="fas fa-download"></i></a>';
             document.getElementById('latest-release').innerHTML = text;
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch(github_api_endpoint).then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
-          count = data.stargazers_count
+          const count = data.stargazers_count
           var text = '<a href="https://github.com/precice/precice/" class="btn btn-default no-icon action-button" role="button" target="_blank" rel="noopener noreferrer">Star on GitHub &nbsp;<i class="fas fa-star"></i><span id="stargazers"> ' + count + '</span></a>';
           document.getElementById('github-button').innerHTML = text;
       });
