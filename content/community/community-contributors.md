@@ -27,7 +27,7 @@ toc: true
       </p>
     </div>
     <ul class="devlist-right">
-      {% if p.url %}<li><a href="{{ p.url }}" alt="See the institutional website" class="no-icon"><i class="fas fa-university"></i></a></li>{% endif %}
+      {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
       {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
@@ -39,6 +39,8 @@ toc: true
 If you are interested in joining the team of preCICE maintainers, please [contact Benjamin Uekermann](https://www.ipvs.uni-stuttgart.de/departments/us3/).
 
 ## Previous maintainers
+
+Previous mantainers and their affiliation at the time of their last significant contribution.
 
 <br>
 {% assign dev_premain = site.data.developer.main-inactive | sort: "name" %}
@@ -54,7 +56,7 @@ If you are interested in joining the team of preCICE maintainers, please [contac
       </p>
     </div>
     <ul class="devlist-right">
-      {% if p.url %}<li><a href="{{ p.url }}" alt="See the institutional website" class="no-icon"><i class="fas fa-university"></i></a></li>{% endif %}
+      {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
       {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
@@ -64,6 +66,8 @@ If you are interested in joining the team of preCICE maintainers, please [contac
 </div>
 
 ## Further contributors
+
+Previous contributors and their affiliation at the time of their last significant contribution.
 
 <br>
 {% assign dev_contrib = site.data.developer.contributors | sort: "name" %}
@@ -79,7 +83,7 @@ If you are interested in joining the team of preCICE maintainers, please [contac
       </p>
     </div>
     <ul class="devlist-right">
-      {% if p.url %}<li><a href="{{ p.url }}" alt="See the institutional website" class="no-icon"><i class="fas fa-university"></i></a></li>{% endif %}
+      {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{% endif %}
       {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
