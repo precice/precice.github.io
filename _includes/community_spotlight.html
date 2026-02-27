@@ -1,0 +1,90 @@
+<style>
+  .gsoc-community-spotlight {
+    padding: 4rem 2rem;
+    background-color: #f8f9fa;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .gsoc-spotlight-header {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  .gsoc-spotlight-text {
+    color: #6c757d;
+    font-size: 1.125rem;
+    margin-bottom: 2.5rem;
+  }
+  .gsoc-contributor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    justify-items: center;
+  }
+  .gsoc-contributor-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid white;
+  }
+  .gsoc-contributor-avatar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  }
+  .gsoc-contributor-grid a::after {
+    display: none !important;
+  }
+  .gsoc-cta-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #004d99;
+    color: #ffffff !important;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .gsoc-cta-button:hover {
+    background-color: #003366;
+    text-decoration: none;
+  }
+</style>
+
+<div class="gsoc-community-spotlight">
+  <h2 class="gsoc-spotlight-header">Driven by the Community</h2>
+  <p class="gsoc-spotlight-text">preCICE is developed and maintained by researchers and engineers worldwide.</p>
+
+  {% assign core_team = site.data.developer.leads | concat: site.data.developer.main | concat: site.data.developer['main-inactive'] | concat: site.data.developer.contributors %}
+  {% assign shown_githubs = '' %}
+  {% assign avatar_count = 0 %}
+  {% assign max_avatars = 14 %} <div class="gsoc-contributor-grid">
+    {% for person in core_team %}
+      {% if avatar_count >= max_avatars %}
+        {% break %}
+      {% endif %}
+
+      {% if person.github and shown_githubs contains person.github %}
+        {% continue %}
+      {% endif %}
+
+      {% if person.github %}
+        <a href="https://github.com/{{ person.github }}" target="_blank" rel="noopener noreferrer" title="{{ person.fullname }}">
+          <img class="gsoc-contributor-avatar" src="https://github.com/{{ person.github }}.png?size=140" alt="{{ person.fullname }}" loading="lazy">
+        </a>
+        {% assign shown_githubs = shown_githubs | append: person.github | append: ',' %}
+        {% assign avatar_count = avatar_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <a href="{{ '/community/community-contributors.html' | relative_url }}" class="gsoc-cta-button">
+    Meet all contributors
+  </a>
+</div>
