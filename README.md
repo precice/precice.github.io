@@ -7,6 +7,17 @@ First install [`pre-commit`](https://repology.org/project/python:pre-commit/vers
 The website is using [Jekyll](https://jekyllrb.com/) static website generator and [Github pages](https://pages.github.com/).
 To run and develop it locally you need to install [`rbenv`](rbenv.org) using `apt install rbenv ruby-build`.
 Then use `rbenv init` and follow the instructions to set it up.
+
+rbenv was built specifically for Unix-like environments. So windows users can install rbenv through WSL 2. 
+
+Run in PowerShell
+
+ ```bash
+ wsl --install
+ ``` 
+
+Open the Ubuntu terminal and run `apt install rbenv ruby-build` .Then use `rbenv init` and follow the instructions mentioned below to set it up. 
+
 With `rbenv` installed and activated in your shell:
 
 ```bash
