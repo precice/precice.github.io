@@ -1,6 +1,6 @@
 ---
 title: "Conjugate Heat Transfer with the Multiphysics Coupling Library preCICE"
-pub-url: http://www5.in.tum.de/pub/Cheung2016_Thesis.pdf
+pub-url: https://mediatum.ub.tum.de/1461907
 year: 2016
 authors: "Lucia Cheung Yau"
 ---

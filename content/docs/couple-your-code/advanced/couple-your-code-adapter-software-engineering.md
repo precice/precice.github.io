@@ -30,7 +30,7 @@ This method is particularly useful for adapters used in frameworks that the user
 Examples here include the [FEniCS adapter](./adapter-fenics.html) and the [deal.II adapter](https://github.com/precice/dealii-adapter).
 
 Even when directly modifying the code, it makes sense to hide as many changes as possible behind a class API.
-Examples for this include the [CalculiX adapter](./adapter-calculix-overview.html) and the [SU2 adapter for v6 and earlier](./adapter-su2-overview.html) (as described in [Alexander Rusch's thesis](https://www5.in.tum.de/pub/Rusch2016_BA.pdf)).
+Examples for this include the [CalculiX adapter](./adapter-calculix-overview.html) and the [SU2 adapter for v6 and earlier](./adapter-su2-overview.html) (as described in [Alexander Rusch's thesis](https://mediatum.ub.tum.de/1461810)).
 
 Adapter classes can still be provided as optional modules of the main codebase. Examples include the [deal.II adapter](./adapter-dealii-overview.html), the [G+smo adapter](./adapter-gismo.html), the [DUNE adapter](./adapter-dune.html), and the [DuMux adapter](./adapter-dumux-get.html)
 
@@ -55,7 +55,7 @@ The solver needs to provide the following functionality via the plugin interface
 
 The trickiest part is typically the checkpointing. However, in some cases, this can alternatively be implemented as (a) controlling when the solver moves to the next time step or discards the current solution and tries again, (b) storing restart files and restarting from them (inefficient, but might not be an issue in some cases).
 
-Examples of adapters implemented as plugins include the [OpenFOAM adapter](./adapter-openfoam-overview.html) (with the plugin approach explained in detail in [Gerasimos Chourdakis' thesis](https://www5.in.tum.de/pub/Chourdakis2017_Thesis.pdf)) and the [Fluent adapter](https://github.com/precice/fluent-adapter).
+Examples of adapters implemented as plugins include the [OpenFOAM adapter](./adapter-openfoam-overview.html) (with the plugin approach explained in detail in [Gerasimos Chourdakis' thesis](https://mediatum.ub.tum.de/1462269)) and the [Fluent adapter](https://github.com/precice/fluent-adapter).
 
 ### Adapter wrapper
 

@@ -7,6 +7,7 @@ toc: true
 ---
 
 The preCICE Workshop is the place to be for everyone working on or simply interested to start with preCICE. We are meeting every year since 2020 to train new people, collect feedback, and work together, trying to make every year's event better than the previous one.
+Read about our [experiences](https://doi.org/10.14279/eceasst.v85.2700) or about [organizing a preCICE Workshop](precice-workshop-organizing.html).
 
 <img class="img-responsive center-block" src="images/events/precice2023-group-inside.jpeg" alt="Group picture" style="width: 70%; margin:auto;">
 

@@ -18,7 +18,7 @@ editme: false
 
 ## 2.  Attribution
 
-2.1 This document was created using a template from [SEQ Legal/Docular](https://seqlegal.com/free-legal-documents/privacy-policy).
+2.1 This document was created using a template from [SEQ Legal/Docular](https://web.archive.org/web/20250910102850/https://seqlegal.com/free-legal-documents/privacy-policy).
 
 ## 3.  The personal data that we collect
 

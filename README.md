@@ -2,19 +2,18 @@
 
 ## Local development
 
-The website is using [Jekyll](https://jekyllrb.com/) static website generator and [Github pages](https://pages.github.com/).
-To run and develop it locally you would need [Ruby](https://www.ruby-lang.org/en/) and [Bundler](https://bundler.io/).
-With Ruby, you can install bundler using `gem install bundler`.
-Then install [`pre-commit`](https://repology.org/project/python:pre-commit/versions) to keep your commits clean.
+First install [`pre-commit`](https://repology.org/project/python:pre-commit/versions) to keep your commits clean.
 
-After that all you need is:
+The website is using [Jekyll](https://jekyllrb.com/) static website generator and [Github pages](https://pages.github.com/).
+To run and develop it locally you need to install [`rbenv`](rbenv.org) using `apt install rbenv ruby-build`.
+Then use `rbenv init` and follow the instructions to set it up.
+With `rbenv` installed and activated in your shell:
 
 ```bash
-git clone https://github.com/precice/precice.github.io && cd precice.github.io
+git clone --recurse-submodules https://github.com/precice/precice.github.io && cd precice.github.io
 pre-commit install
+rbenv install
 bundle install
-git submodule init
-git submodule update
 bundle exec jekyll serve -l
 ```
 
@@ -32,6 +31,14 @@ This updates **all** submodules. You can call it from everywhere (you do not nee
 Afterwards, commit and push.
 
 Do not directly edit the content of the submodules from within the website repository. This might give ugly merge conflicts.
+
+## Pull with submodules
+
+To pull changes including submodules
+
+```bash
+git pull --recurse-submodules
+```
 
 ## Build inside a Docker container
 

@@ -6,11 +6,11 @@ summary: "When coupling two participants at a common coupling interface, in gene
 Therefore, preCICE provides data mapping methods to map coupling data from one mesh to the other. On this page, we explain how to configure such data mapping methods."
 ---
 
-## Basics
-
 {% note %}
-The mapping configuration has undergone a major revision between preCICE version 2 and preCICE version 3. For the documentation of version 2, checkout the documentation of [our previous versions](fundamentals-previous-versions.html).
+The mapping configuration has undergone a major revision between preCICE version 2 and preCICE version 3. For the documentation of version 2, checkout the documentation of [our previous versions](fundamentals-previous-versions.html). Learn [how to upgrade](couple-your-code-porting-v2-3.html), or see the full [configuration reference](configuration-xml-reference.html).
 {% endnote %}
+
+## Basics
 
 Each data mapping definition refers to two meshes in the participant configuration: a `provide` mesh defined by the participant and a `receive` mesh defined by another participant (e.g. `MySolver2`):
 

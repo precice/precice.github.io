@@ -1,7 +1,7 @@
 ---
 title: "Fluid-structure interaction during sandwich manufacturing"
 author: "Julian Seuffert"
-author_link: "http://www.fast.kit.edu/lbt/5192_9432.php"
+author_link: "https://www.fast.kit.edu/english/index.php"
 organisation: "Lightweight Technology, Institute of Vehicle System Technology (FAST), Karlsruhe Institute of Technology (KIT), Germany"
 organisation_link:
 img: testimonial-karlsruhe-fast.jpg

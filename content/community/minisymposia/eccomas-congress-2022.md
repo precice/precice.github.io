@@ -6,7 +6,9 @@ permalink: eccomas-congress-2022.html
 toc: false
 ---
 
-The [ECCOMAS Congress 2022](http://www.eccomas2022.org/frontal/default.asp) is scheduled for June 5-9, 2022, and will take place in Oslo, Norway. Similar to previous ECCOMAS conferences, we are again organizing a minisymposium [Multi-physics simulations with the coupling library preCICE](http://www.eccomas2022.org/admin/Files/FileAbstract/MS46.pdf).
+The [ECCOMAS Congress 2022](http://www.eccomas2022.org/frontal/default.asp) took place between June 5-9, 2022, in Oslo, Norway. Similar to previous ECCOMAS conferences, we organized a minisymposium [Multi-physics simulations with the coupling library preCICE](http://www.eccomas2022.org/admin/Files/FileAbstract/MS46.pdf).
+
+[Conference proceedings](https://www.scipedia.com/sj/eccomas2022)
 
 ## The invited session
 
@@ -22,7 +24,7 @@ Session: [MS46A](https://www.eccomas2022.org/frontal/ProgSesion.asp?id=117)
 [An introduction to the preCICE coupling library](https://ipvs.informatik.uni-stuttgart.de/cloud/s/iJFHgb6pXJxdfyk)
 
 * **Alexander Jaust et al.**:
-[Simulation of multi-physics porous-media applications using partitioned black-box methods](https://ipvs.informatik.uni-stuttgart.de/cloud/s/3GWfdZ33Z4bH7tf)
+[Simulation of multi-physics porous-media applications using partitioned black-box methods](https://ipvscloud.informatik.uni-stuttgart.de/s/ojKra5GQAy8qEra)
 
 * **Prasad Adhav et al.**:
 Heat and mass transfer between XDEM \& OPENFOAM using preCICE coupling library
@@ -31,10 +33,10 @@ Heat and mass transfer between XDEM \& OPENFOAM using preCICE coupling library
 [Coupling 1D thermohydraulics with 3D CFD via preCICE](https://mediatum.ub.tum.de/node?id=1662597)
 
 * **Ishaan Desai et al.**:
-[Adaptive and flexible macro-micro coupling software](https://ipvs.informatik.uni-stuttgart.de/cloud/s/BSA9B4gKLd3LHBk)
+[Adaptive and flexible macro-micro coupling software](https://ipvscloud.informatik.uni-stuttgart.de/s/QbJg62H9y9ftFHG)
 
 * **Louis Viot et al.**:
-[MaMiCo-preCICE coupling for hybrid molecular-continuum flow simulations](https://ipvs.informatik.uni-stuttgart.de/cloud/s/5HLfGPTrizbpKD2)
+[MaMiCo-preCICE coupling for hybrid molecular-continuum flow simulations](https://ipvscloud.informatik.uni-stuttgart.de/s/4HNEs8JqSPtFk9L)
 
 ### Thursday, June 9, 2021, 16:30–18:30
 
@@ -48,13 +50,13 @@ Session: [MS46B](https://www.eccomas2022.org/frontal/ProgSesion.asp?id=240)
 A Benchmark for Fluid-Structure Interaction in Hybrid Manufacturing: Simulation with preCICE in OpenFOAM
 
 * **Jurgen Kersschot et al.**:
-[Simulation of the flow-acoustic-structural interaction in flow ducts using a partitioned approach in the time domain](https://ipvs.informatik.uni-stuttgart.de/cloud/s/WsrHdGGqcHWQi9H)
+[Simulation of the flow-acoustic-structural interaction in flow ducts using a partitioned approach in the time domain](https://ipvscloud.informatik.uni-stuttgart.de/s/y4Zss7KqsXgs4Mf)
 
 * **Kyle Davis et al.**:
-[Evaluation of Radial Basis Function Mapping for Fluid-Structure Interaction Simulations](https://ipvs.informatik.uni-stuttgart.de/cloud/s/gMEQ4nd6BaQFetp)
+[Evaluation of Radial Basis Function Mapping for Fluid-Structure Interaction Simulations](https://ipvscloud.informatik.uni-stuttgart.de/s/FJoeTgi2xG9q9Gp)
 
 * **Rachael Smith et al.**:
-[A fluid structure interaction study of a large-scale wind turbine blade using preCICE](https://ipvs.informatik.uni-stuttgart.de/cloud/s/7yN6K7zkQR5NqWH)
+[A fluid structure interaction study of a large-scale wind turbine blade using preCICE](https://ipvscloud.informatik.uni-stuttgart.de/s/jZBxFiiMomGBNj7)
 
 ## Further talks about preCICE
 

@@ -163,4 +163,4 @@ There are two methods to visualize the results for Code_Aster:
 
 ## History
 
-The adapter was implemented as part of the [master thesis of Lucia Cheung](https://www5.in.tum.de/pub/Cheung2016_Thesis.pdf) in cooperation with [SimScale](https://www.simscale.com/). For quick access: [an excerpt of Lucia's thesis focusing on the adapter](https://github.com/precice/code_aster-adapter/blob/master/cht/documentation-excerpt.pdf)
+The adapter was implemented as part of the [master thesis of Lucia Cheung](https://mediatum.ub.tum.de/1461907) in cooperation with [SimScale](https://www.simscale.com/). For quick access: [an excerpt of Lucia's thesis focusing on the adapter](https://github.com/precice/code_aster-adapter/blob/master/cht/documentation-excerpt.pdf)

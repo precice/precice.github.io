@@ -6,14 +6,13 @@ permalink: eccomas-coupled-2021.html
 toc: false
 ---
 
-The [ECCOMAS COUPLED 2021](https://congress.cimne.com/coupled2021/frontal/default.asp)
-([archive](https://web.archive.org/web/20201027054315/https://congress.cimne.com/coupled2021/frontal/InvitedSessions.asp))
+The [ECCOMAS COUPLED 2021](https://web.archive.org/web/20201027054315/https://congress.cimne.com/coupled2021/frontal/InvitedSessions.asp)
 was originally scheduled for summer 2021 in Chia Laguna, South Sardinia, Italy but was changed to a virtual format.
-Continuing the tradition, we are organizing an invited session [Multi-physics simulations with the coupling library preCICE](https://congress.cimne.com/coupled2021/frontal/doc/IS/MultiPhysicsSimulationsWithCouplingLibraryPreCICE.pdf).
+Continuing the tradition, we organized an invited session [Multi-physics simulations with the coupling library preCICE](https://congress.cimne.com/coupled2021/frontal/doc/IS/MultiPhysicsSimulationsWithCouplingLibraryPreCICE.pdf).
 
 ## The invited session
 
-Preliminary schedule (to be confirmed by the conference organizers):
+Schedule:
 
 ### Wednesday June 16, 2021, 14:00–16:00
 
@@ -34,5 +33,3 @@ Follow the discussion on [the forum](https://precice.discourse.group/t/precice-i
 ## Further talks about preCICE
 
 Large conferences like this are an ideal opportunity to discuss with other groups and change our perspective. For this reason, we often participate with talks in different sessions.
-
-Stay tuned for more details.

@@ -8,13 +8,15 @@ toc: false
 
 The [ECCOMAS Coupled Problems 2025](https://coupled2025.cimne.com/) will take place on Sardinia, Italy from May 26 to 29.
 
-We are again organizing a preCICE minisymposium: [Multi-Physics and Multi-Scale Simulations with the Coupling Library preCICE](https://coupled2025.cimne.com/event/session/e430d14b-0b28-11f0-9835-000c29ddfc0c) ([abstract](https://coupled2025.cimne.com/event/area/3dec3ef1-70ff-11ef-bbc6-000c29ddfc0c)) (IS042).
+We organized a preCICE minisymposium: [Multi-Physics and Multi-Scale Simulations with the Coupling Library preCICE](https://coupled2025.cimne.com/event/session/e430d14b-0b28-11f0-9835-000c29ddfc0c) ([abstract](https://coupled2025.cimne.com/event/area/3dec3ef1-70ff-11ef-bbc6-000c29ddfc0c)) (IS042).
+
+[Conference proceedings](https://www.scipedia.com/sj/coupled2025)
 
 Feel free to ask questions in the [corresponding thread of the forum](https://precice.discourse.group/t/call-for-contributions-eccomas-coupled-problems-2025/2197).
 
 ## Schedule of the Minisymposium
 
-Our minisymposium is scheduled as one session (IS042A) on Tuesday, May 27, 14:00-16:00 in the "Samarcanda" room. Presentations:
+Our minisymposium took one session (IS042A) on Tuesday, May 27, 14:00-16:00 in the "Samarcanda" room. Presentations:
 
 - [A quick introduction to the coupling library preCICE](https://coupled2025.cimne.com/event/contribution/39120852-c766-11ef-94cb-000c29ddfc0c) (Felix Neubauer, University of Stuttgart, Germany)
 - [Magnetothermal Coupling with preCICE for Multiphysical Simulations of Electric Machines](https://coupled2025.cimne.com/event/contribution/02bae26f-c438-11ef-94cb-000c29ddfc0c) (Michael Wieshau, Technical University of Darmstadt, Germany)
@@ -26,7 +28,7 @@ If you are a speaker, see the documentation page [Talk about your work](communit
 
 ## Related talks in other sessions
 
-Let us know if you are talking about preCICE in another session. We already know of the following:
+Let us know if you talked about preCICE in another session. We already know of the following:
 
 In [IS006B Advances in Computational Methods for Digital Twins in Coupled Systems II](https://coupled2025.cimne.com/event/session/c383c2a3-2cc3-a10b-2611-c3b0c2983500) (Monday 14:00-16:00):
 
@@ -50,4 +52,4 @@ In [IS049B Numerical methods that enable the heterogeneous coupling of conventio
 
 ## Further events
 
-We are organizing a coming together of the preCICE community on Monday evening, advertised among participants of the preCICE minisymposium. Let us know if you would like to join as well.
+We are organized a coming together of the preCICE community on Monday evening, advertised among participants of the preCICE minisymposium.

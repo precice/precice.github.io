@@ -49,7 +49,11 @@ Probably most solvers have such a structures: something in the beginning (readin
 In the following steps, we will slowly add more and more calls to the preCICE API in this code snippet. Some part of the preCICE API is briefly described in each step. More precisely (no pun intended :grin:), we use the native `C++` API of preCICE. The API is, however, also available in other scientific programming languages: plain `C`, `Fortran`, `Python`, `Matlab`, `Julia`, and `Rust` (see [Application Programming Interface](couple-your-code-api)).
 
 {% tip %}
-Also have a look at the [definite C++ API documentation](https://precice.org/doxygen/main/classprecice_1_1Participant.html).
+Also have a look at the [source documentation](dev-docs-sourcedocs.html) and [minimal reference implementations](couple-your-code-api.html#minimal-reference-implementations).
+{% endtip %}
+
+{% tip %}
+Looking for best practices? There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
 {% endtip %}
 
 {% note %}

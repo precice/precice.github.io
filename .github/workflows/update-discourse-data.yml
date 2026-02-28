@@ -28,8 +28,10 @@ jobs:
         with:
           python-version: "3.14"
 
-      - name: Fetch latest news from Discourse
-        run: python tools/fetch-news.py
+      - name: Fetch latest data from Discourse
+        run: |
+          python tools/fetch-news.py
+          python tools/fetch-faq.py
 
       - name: Configure Git author
         run: |
@@ -39,7 +41,8 @@ jobs:
       - name: Commit changes (if any)
         run: |
           git add assets/data/news.json
-          git commit -m "Update Discourse news data [skip ci]" || echo "No changes to commit"
+          git add assets/data/faq.json
+          git commit -m "Update Discourse data data [skip ci]" || echo "No changes to commit"
 
       - name: Push commit
         uses: ad-m/github-push-action@master

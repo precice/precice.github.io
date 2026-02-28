@@ -49,7 +49,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
   <details class="workshop-event" id="course-caccia">
     <summary>
       Setting up a fluid-structure interaction simulation with CalculiX and OpenFOAM.<br/>
-      <p><a href="https://www.aero.polimi.it/en/staff/claudiogiovanni-caccia">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
+      <p><a href="https://www.aero.polimi.it/en/staff/claudiogiovanni.caccia">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
     </summary>
     <p>This is a new addition to the <a href="community-training.html">preCICE course</a>.
     </p>

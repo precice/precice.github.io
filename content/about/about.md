@@ -13,7 +13,7 @@ redirect_from:
 
 ## Development
 
-preCICE is developed in the groups of [Benjamin Uekermann (Usability and Sustainability of Simulation Software)](https://www.ipvs.uni-stuttgart.de/departments/us3/) and [Miriam Schulte (Simulation of Large Systems)](https://www.ipvs.uni-stuttgart.de/departments/sgs/) at the University of Stuttgart and in the group of [Hans-Joachim Bungartz (Scientific Computing in Computer Science)](http://www5.in.tum.de/wiki/index.php/Home) at the Technical University of Munich. [Support contracts](community-support-precice.html) are offered through [TTI GmbH](https://www.tti-stuttgart.de/).
+preCICE is developed in the groups of [Benjamin Uekermann (Usability and Sustainability of Simulation Software)](https://www.ipvs.uni-stuttgart.de/departments/us3/) and [Miriam Schulte (Simulation of Large Systems)](https://www.ipvs.uni-stuttgart.de/departments/sgs/) at the University of Stuttgart and in the group of [Hans-Joachim Bungartz (Scientific Computing in Computer Science)](https://www.cs.cit.tum.de/en/sccs/home/) at the Technical University of Munich. [Support contracts](community-support-precice.html) are offered through [TTI GmbH](https://www.tti-stuttgart.de/).
 
 <br>
 <img class="img-responsive center-block" src="images/developer/precice-devs.png" alt="preCICE contributors" style="width: 800px; margin: auto;">
