@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     for (const topic of topics.slice(0, 3)) {
       const col = document.createElement("div");
-      col.className = "col-md-4 col-sm-6 col-xs-12";
+      col.className = "col-md-4 col-sm-6 col-xs-12 mb-4";
 
       const card = document.createElement("div");
       card.className = "news-card";
