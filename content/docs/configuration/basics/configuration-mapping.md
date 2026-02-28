@@ -189,6 +189,10 @@ When using a `"spread"` mapping, the 1D quantity is distributed over the 3D inte
 
 Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. By default, a laminar flow profile is imposed, but this can be explicitly controlled via the `spread-profile` attribute in the configuration.
 
+{% version 3.4.0 %}
+The `spread-profile` option is currently only available in the `develop` branch of preCICE. Until v3.3.0, there was no option to switch off the parabolic profile.
+{% endversion %}
+
 ## Restrictions for parallel participants
 
 As stated above, for parallel participants only `read`-`consistent` and `write`-`conservative` are valid combinations. If want to find out why, have a look at [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf), page 85. But what to do if you want a `write`-`consistent` mapping? The trick is to move the mapping to the other participant, then `write` becomes `read`:
