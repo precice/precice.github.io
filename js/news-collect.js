@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     const data = await response.json();
     let topics = data.topics || [];
 
-    if (!topics.length) throw new Error("No topics found");
+    if (topics.length === 0) {
+      throw new Error("No news topics found in the JSON data.");
+    }
 
     topics.sort((a, b) => new Date(b.created_at || b.last_posted_at) - new Date(a.created_at || a.last_posted_at));
     loadingText.style.display = "none";
