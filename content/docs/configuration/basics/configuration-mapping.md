@@ -158,7 +158,7 @@ More details on the feature can be found in [Schneider et al. 2023](https://doi.
 
 ## Geometric multiscale mapping
 
-Geometric multiscale mapping enables the coupling of dimensionally heterogeneous coupling participants, e.g., a 1D system code with a 3D CFD code.
+Geometric multiscale mapping enables the coupling of dimensionally heterogeneous participants, e.g., 1D-2D, 1D-3D, or 2D-3D solver combinations.
 
 {% experimental %}
 This is an experimental feature, available since preCICE v3.0.0. Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
@@ -170,27 +170,38 @@ We differentiate between _axial_ and _radial_ geometric multiscale mapping:
 
 In a 1D-3D mapping, axial mapping maps between one point at the boundary of the 1D domain and multiple points at a surface of a 3D domain, while the domains are connected over a main axis.
 Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain.
-Currently, axial and radial geometric multiscale coupling is only supported in a consistent manner between 1D and 3D participants and over a circular interface, but extensions to this are planned.
+Currently, radial geometric multiscale coupling is only supported between 1D and 3D participants over a circular interface. In contrast, axial geometric multiscale coupling supports extended configurations, including 1D-2D, 1D-3D, and 2D-3D dimensional combinations, as well as circular and square cross-sections.
 
-The concept also extends to 1D-2D, 2D-3D, and further setups, which are not currently supported.
+Further extensions of radial coupling to additional dimensional combinations and cross-section types are planned.
 
 Potential configurations for the axial and radial geometric multiscale mapping look as follows:
 
 ```xml
-<mapping:axial-geometric-multiscale direction="read" multiscale-type="spread" multiscale-radius="1.0" multiscale-axis="X" spread-profile="parabolic" from="MyMesh2" to="MyMesh1" constraint="consistent" />
+<mapping:axial-geometric-multiscale direction="read" multiscale-dimension="1d-3d" multiscale-cross-section="circle" multiscale-type="spread" multiscale-radius="1.0" multiscale-axis="X" multiscale-cross-section-profile="parabolic" from="MyMesh2" to="MyMesh1" constraint="consistent" />
 ```
 
 ```xml
 <mapping:radial-geometric-multiscale direction="read" multiscale-type="collect" multiscale-axis="X" from="MyMesh1" to="MyMesh2" constraint="consistent" />
 ```
 
-The `multiscale-type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The `multiscale-axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The `multiscale-radius` refers to the radius of the circular interface boundary surface.
-When using a `"spread"` mapping, the 1D quantity is distributed over the 3D interface using the `spread-profile`, which defines how the value varies radially across the circular interface. It can either be `"uniform"`, where the same value is applied to all interface vertices; or `"parabolic"`, in which a parabolic profile is applied (maximum at the centerline, decreasing to zero at the wall).
+The `multiscale-dimension` defines the dimensional coupling type and can be `"1d-3d"`, `"1d-2d"`, or `"2d-3d"`.
 
-Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. By default, a laminar flow profile is imposed, but this can be explicitly controlled via the `spread-profile` attribute in the configuration.
+The `multiscale-cross-section` defines the shape of the interface cross-section. Supported values are `"circle"` (default) and `"square"`.
+
+The `multiscale-type` specifies the direction of data transfer between participants and can be either `"spread"` (distributes data from a lower-dimensional interface to multiple interface vertices of the higher-dimensional participant) or `"collect"` (aggregates data from multiple interface vertices of the higher-dimensional participant to the lower-dimensional interface).
+
+The `multiscale-axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the coupled participants. 
+
+The `multiscale-radius` defines the geometric size of the interface cross-section, corresponding to the radius when `multiscale-cross-section="circle"` and to the side length when `multiscale-cross-section="square"`.
+
+The `multiscale-cross-section-profile` defines how a quantity is distributed over the interface cross-section and determines how values are distributed during `"spread"` operations and averaged during `"collect"` operations; supported profiles are `"uniform"` (constant over the cross-section) and `"parabolic"` (varying parabolically with the normalized distance from the cross-section center). If not specified, the default is `"uniform"`.
+
+When using a `"spread"` mapping, data from the lower-dimensional participant is distributed over the higher-dimensional interface according to the selected `multiscale-cross-section-profile`, which defines how the value varies across the interface cross-section. For a circular cross-section, the variation is radial; for a square cross-section, it depends on the normalized distance from the center.
+
+Since lower-dimensional participants (e.g., 1D models) typically compute cross-sectionally averaged quantities such as mean velocity or pressure, an assumed spatial profile is required to reconstruct a distributed field on the higher-dimensional interface. By default, a physically consistent laminar profile is applied for `"parabolic"`, while `"uniform"` assumes a constant distribution.
 
 {% version 3.4.0 %}
-The `spread-profile` option is currently only available in the `develop` branch of preCICE. Until v3.3.0, there was no option to switch off the parabolic profile.
+The `multiscale-cross-section-profile`, `multiscale-dimension`, and `multiscale-cross-section` options are currently only available in the `develop` branch of preCICE. Until v3.3.0, multiscale coupling was limited to `"1d-3d"` with a circular cross-section, and a parabolic profile was always applied (i.e., there was no option to select a different profile).
 {% endversion %}
 
 ## Restrictions for parallel participants
