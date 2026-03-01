@@ -4,14 +4,16 @@ search: exclude
 permalink: tocpage.html
 ---
 
-<!-- new page -->
 <div id="navig">
     <h1>Table of Contents</h1>
 
     {% assign docs_sidebar = site.data.sidebars.docs_sidebar.entries %}
-{% assign tutorial_sidebar = site.data.sidebars.tutorial_sidebar.entries %}
+    {% assign tutorial_sidebar = site.data.sidebars.tutorial_sidebar.entries %}
 
 <ul id="mysidebar" class="nav">
+    
+    <h2 style="margin-top: 20px; padding-bottom: 5px; border-bottom: 1px solid #ccc;">Documentation</h2>
+
     {% for entry in docs_sidebar %}
     {% for folder in entry.folders %}
     {% if folder.output contains "pdf" and folder.type != "frontmatter" %}
@@ -41,6 +43,8 @@ permalink: tocpage.html
     {% endif %}
     {% endfor %}
     {% endfor %}
+
+    <h2 style="margin-top: 30px; padding-bottom: 5px; border-bottom: 1px solid #ccc;">Tutorials</h2>
 
     {% for entry in tutorial_sidebar %}
     {% for folder in entry.folders %}

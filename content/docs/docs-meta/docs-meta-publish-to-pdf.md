@@ -17,7 +17,7 @@ On a Windows environment it makes sense to add the location of the Prince execut
 
 The bash script 'pdf-docs.sh' in root can be used to build the PDF. It goes through the following steps
 
-### Build a web target with jekll
+### Build a web target with jekyll
 
 First, let's kill all running instances of jekyll:
 
@@ -73,7 +73,7 @@ http://localhost:4000/docs.html
 This list is consumed by Prince and converted into PDF:
 
 ```bash
-prince --javascript --raster-images-res 150 --input-list=_site/pdfconfigs/prince-list.txt -o pdf/docs.pdf
+prince --javascript --raster-dpi=150 --input-list=_site/pdfconfigs/prince-list.txt -o pdf/docs.pdf
 ```
 
 The final PDF can be found in `pdf/docs.pdf` as specified. The `--javascript` option enables JavaScript support.
@@ -110,8 +110,6 @@ The PDF will contain every page of type `pdf` that is referenced in the sidebars
 You can configure a single sidebar via `pdf_sidebar` or multiple sidebars via `pdf_sidebars`. E.g. if
 
 ```yml
-pdf_sidebar: docs_sidebar
-
 
 pdf_sidebars:
   - docs_sidebar

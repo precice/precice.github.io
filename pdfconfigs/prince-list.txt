@@ -6,6 +6,8 @@ search: exclude
  {% assign docs_sidebar = site.data.sidebars.docs_sidebar.entries %}
  {% assign tutorial_sidebar = site.data.sidebars.tutorial_sidebar.entries %}
 
+{{site.url}}{{site.baseurl}}/docs_part_title.html
+
  {% for entry in docs_sidebar %}
     {% for folder in entry.folders %}
          {% if folder.output contains "pdf" %}
@@ -14,11 +16,11 @@ search: exclude
                               {{site.url}}{{site.baseurl}}{{folderitem.url}}
                                        {% for subfolders in folderitem.subfolders %}
                                            {% if subfolders.output contains "pdf" %}
-                                                            {% for subfolderitem in subfolders.subfolderitems %}
-                                                                {% if subfolderitem.output contains "pdf" %}
-                                                                     {{site.url}}{{site.baseurl}}{{subfolderitem.url}}
-                                                                {% endif %}
-                                                            {% endfor %}
+                                                        {% for subfolderitem in subfolders.subfolderitems %}
+                                                            {% if subfolderitem.output contains "pdf" %}
+                                                                 {{site.url}}{{site.baseurl}}{{subfolderitem.url}}
+                                                            {% endif %}
+                                                        {% endfor %}
                                            {% endif %}
                                        {% endfor %}
                         {% endif %}
@@ -26,6 +28,8 @@ search: exclude
          {% endif %}
    {% endfor %}
  {% endfor %}
+
+{{site.url}}{{site.baseurl}}/tutorials_part_title.html
 
  {% for entry in tutorial_sidebar %}
     {% for folder in entry.folders %}
@@ -35,11 +39,11 @@ search: exclude
                               {{site.url}}{{site.baseurl}}{{folderitem.url}}
                                        {% for subfolders in folderitem.subfolders %}
                                            {% if subfolders.output contains "web" %}
-                                                            {% for subfolderitem in subfolders.subfolderitems %}
-                                                                {% if subfolderitem.output contains "web" %}
-                                                                     {{site.url}}{{site.baseurl}}{{subfolderitem.url}}
-                                                                {% endif %}
-                                                            {% endfor %}
+                                                        {% for subfolderitem in subfolders.subfolderitems %}
+                                                            {% if subfolderitem.output contains "web" %}
+                                                                 {{site.url}}{{site.baseurl}}{{subfolderitem.url}}
+                                                            {% endif %}
+                                                        {% endfor %}
                                            {% endif %}
                                        {% endfor %}
                         {% endif %}
