@@ -190,7 +190,7 @@ The `multiscale-cross-section` defines the shape of the interface cross-section.
 
 The `multiscale-type` specifies the direction of data transfer between participants and can be either `"spread"` (distributes data from a lower-dimensional interface to multiple interface vertices of the higher-dimensional participant) or `"collect"` (aggregates data from multiple interface vertices of the higher-dimensional participant to the lower-dimensional interface).
 
-The `multiscale-axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the coupled participants. 
+The `multiscale-axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the coupled participants.
 
 The `multiscale-radius` defines the geometric size of the interface cross-section, corresponding to the radius when `multiscale-cross-section="circle"` and to the side length when `multiscale-cross-section="square"`.
 
