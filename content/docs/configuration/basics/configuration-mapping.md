@@ -188,6 +188,20 @@ The `multiscale-type` which can be either `"spread"` or `"collect"` refers to wh
 
 Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future.
 
+## Volume coupling
+
+While preCICE is frequently used for surface coupling (where solvers exchange data at a 2D boundary), it also fully supports volume coupling. In volume coupling, the domains of the coupled solvers overlap in 3D space, and data is exchanged across this overlapping volume. 
+
+Several preCICE adapters currently support volume coupling natively, including the **OpenFOAM adapter** (for `Pressure`, `Velocity`, and `Temperature` over internal fields or `cellSets`) and the **DuMuX adapter**. You can explore practical examples of this in the [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html), [Volume-coupled flow](tutorials-volume-coupled-flow.html), and [Two-scale heat conduction](tutorials-two-scale-heat-conduction.html) tutorials.
+
+When configuring data mapping for volume coupling, keep in mind that mapping across a 3D volume involves significantly more data points than a 2D surface, making it computationally more expensive. 
+
+**Recommended Mapping Methods for Volumes:**
+* **`nearest-neighbor`**: This is usually the best starting point for volume coupling. It is extremely fast, robust, and requires very little memory, making it highly suitable for massive 3D meshes.
+* **`linear-cell-interpolation`**: If you have volumetric connectivity information defined (e.g., tetrahedra in 3D or triangles in 2D), this projection-based method provides a great balance between speed and accuracy for 3D spaces.
+* **`mapping:rbf` (Specifically `rbf-pum-direct`)**: If your physics require higher accuracy than a nearest-neighbor approach, the Partition of Unity Method (PUM) is the recommended kernel method. It breaks the massive 3D problem into smaller, localized clusters, keeping the computational cost and memory footprint manageable.
+
+*Note: It is highly recommended to avoid global RBF methods (`rbf-global-direct` or `rbf-global-iterative`) for large volume coupling setups. Assembling and solving a global system for a dense 3D volume mesh will likely exceed your available memory and compute time.*
 ## Restrictions for parallel participants
 
 As stated above, for parallel participants only `read`-`consistent` and `write`-`conservative` are valid combinations. If want to find out why, have a look at [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf), page 85. But what to do if you want a `write`-`consistent` mapping? The trick is to move the mapping to the other participant, then `write` becomes `read`:
