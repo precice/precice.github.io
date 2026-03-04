@@ -35,6 +35,9 @@ The simplest may be to use a common network file share using samba. This is avai
 Another option is to mount a remote directory using an [SSH Filesystem (`sshfs`)](https://www.redhat.com/sysadmin/sshfs).
 In any case, make sure that both are available as the same path on both machines. You can use [symbolic links](https://en.wikipedia.org/wiki/Symbolic_link) to simplify this task.
 
+Shared filesystems on clusters and super computers are normally optimized for high-bandwidth.
+This can become a serious performance bottleneck when [logging to a shared file](configuration-logging) the more ranks are involved in the simulation, prefer to log to `stdout` instead.
+
 ## Running the simulation
 
 Now open a terminal on each machine and navigate to the test setup.

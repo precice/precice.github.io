@@ -18,7 +18,7 @@ $( document ).ready(function() {
     /**
      * AnchorJS
      */
-    anchors.add('h2:not(.no-anchor),h3:not(.no-anchor),h4:not(.no-anchor),h5:not(.no-anchor)');
+    anchors.add('main h2:not(.no-anchor),main h3:not(.no-anchor),main h4:not(.no-anchor),main h5:not(.no-anchor)');
 
 });
 

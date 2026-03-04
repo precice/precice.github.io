@@ -125,7 +125,7 @@ Do not remove the USB during a live session.
 
 In case you prefer to install everything on your system, you will need the following:
 
-- [preCICE](installation-overview.html)
+- [preCICE](installation-overview.html) (check with running `precice-version` in a terminal)
 - [preCICE Python bindings](installation-bindings-python.html):
   - Create a virtual environment: `python3 -m venv .venv && source .venv/bin/activate`. As long as the environment is active, you will see `(venv)` before your command prompt. You need to activate the venv in new terminal windows.
   - Install the bindings: `pip3 install pyprecice` (check with running `import precice` in a Python interpreter)
