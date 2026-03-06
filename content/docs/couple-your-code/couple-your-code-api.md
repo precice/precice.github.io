@@ -13,7 +13,7 @@ The definite documentation of the C++ API is available on [the preCICE API doxyg
 
 | Language       | Location                                                                                    | Installation                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| C++            | [`precice/precice/tree/main/src/precice/Participant.hpp`](https://github.com/precice/precice/tree/main/src/precice/Participant.hpp)       | Automatically included                                          |
+| C++            | [`precice/precice/tree/main/src/precice/precice.hpp`](https://github.com/precice/precice/blob/main/src/precice/precice.hpp)       | Automatically included                                          |
 
 ## Bindings
 
