@@ -13,7 +13,7 @@ The definite documentation of the C++ API is available on [the preCICE API doxyg
 
 | Language       | Location                                                                                    | Installation                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| C++            | [`precice/precice/tree/main/src/precice/precice.hpp`](https://github.com/precice/precice/blob/main/src/precice/precice.hpp)       | Automatically included                                          |
+| C++            | [`precice/precice/src`](https://github.com/precice/precice/blob/main/src): [header](https://github.com/precice/precice/tree/main/src/precice/precice.hpp), [API](https://github.com/precice/precice/tree/main/src/precice/Participant.hpp)       | Automatically included                                          |
 
 ## Bindings
 
@@ -21,8 +21,8 @@ Besides the C++ API, there are also bindings to other languages available:
 
 | Language       | Location                                                                                    | Installation                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| C              | [`precice/precice/tree/main/extras/bindings/c`](https://github.com/precice/precice/tree/main/extras/bindings/c)       | [native bindings](installation-source-advanced.html#disabling-native-bindings)|
-| Fortran        | [`precice/precice/tree/main/extras/bindings/fortran`](https://github.com/precice/precice/tree/main/extras/bindings/fortran) | [native bindings](installation-source-advanced.html#disabling-native-bindings)|
+| C              | [`precice/precice/extras/bindings/c`](https://github.com/precice/precice/tree/main/extras/bindings/c)       | [native bindings](installation-source-advanced.html#disabling-native-bindings)|
+| Fortran        | [`precice/precice/extras/bindings/fortran`](https://github.com/precice/precice/tree/main/extras/bindings/fortran) | [native bindings](installation-source-advanced.html#disabling-native-bindings)|
 | Fortran Module | [`precice/fortran-module`](https://github.com/precice/fortran-module)                       | [`make`](installation-bindings-fortran.html)                                  |
 | Python         | [`precice/python-bindings`](https://github.com/precice/python-bindings)                     | [`pip3 install pyprecice`](installation-bindings-python.html)                 |
 | Matlab         | [`precice/matlab-bindings`](https://github.com/precice/matlab-bindings)                     | [installation script](installation-bindings-matlab.html)                      |
