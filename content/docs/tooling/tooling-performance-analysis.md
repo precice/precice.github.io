@@ -60,29 +60,29 @@ Fundamental events should give you an insight in the overhead of preCICE as well
 
 Fundamental events are:
 
-* `_GLOBAL`: Time spent from the initialization of the events framework to finalization. Starts in participant construction and ends in `finalize` or the destructor.
-* `construction`: Time spent constructing the participant.
-* `configure`: Time spent loading and processing configuration.
-* `com.initializeMPI`: Time spent initializing MPI communication.
-* `com.initializeIntraCom`: Time spent initializing intra-participant communication.
-* `solver.initialize`: Time spent in the solver until `initialize()` is called. This typically includes mesh setup, initial data, and solver preparation.
-* `initialize`: Time spent in preCICE `initialize()`.
-* `reinitialize`: Time spent in participant reinitialization steps.
-* `initalizeCouplingScheme`: Time spent initializing the coupling scheme.  
-  Note: the event name currently uses this spelling in the profiler output.
-* `m2n.requestPrimaryRankConnection.<participant>`: Time spent requesting M2N primary-rank connections.
-* `m2n.acceptPrimaryRankConnection.<participant>`: Time spent accepting M2N primary-rank connections.
-* `mapping`: Time spent in mapping operations.
-* `solver.advance`: Time spent in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
-* `advance`: Time spent in preCICE `advance()`.
-* `advanceCoupling`: Time spent advancing the coupling scheme.
-* `syncTimestep`: Time spent in timestep synchronization.
+* `_GLOBAL` *Deprecated*: Time from profiling framework initialization (`EventRegistry::initialize`) to finalization (`EventRegistry::finalize`), spanning the full participant lifetime.
+* `construction`: Time in participant construction, including setup checks, `configure`, profiling backend startup, MPI setup, and optional intra-participant communication initialization.
+* `configure`: Time spent parsing and applying the preCICE XML configuration.
+* `com.initializeMPI`: Time spent initializing or detecting MPI and validating communicator consistency.
+* `com.initializeIntraCom`: Time spent connecting and synchronizing intra-participant communication.
+* `solver.initialize`: Solver-side time between participant construction and calling `initialize()`. This typically includes mesh setup, initial data, and solver preparation.
+* `initialize`: Total time inside preCICE `initialize()`, including communication setup, initial mapping/data handling, coupling-scheme initialization, and initial exports.
+* `reinitialize`: Time spent in participant reinitialization, including communication re-setup and coupling-scheme reinitialization.
+* `initalizeCouplingScheme`: Time spent in `_couplingScheme->initialize()`.  
+  Note: this event name intentionally uses this spelling in profiler output.
+* `m2n.requestPrimaryRankConnection.<participant>`: Time spent requesting primary-rank M2N connections, including handshake and compatibility checks.
+* `m2n.acceptPrimaryRankConnection.<participant>`: Time spent accepting primary-rank M2N connections, including handshake and compatibility checks.
+* `mapping`: Time spent computing and applying read/write mappings in initial and runtime mapping paths.
+* `solver.advance`: Solver-side time between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
+* `advance`: Total time inside preCICE `advance()`, including timestep handling, mapping/data actions, and coupling advancement.
+* `advanceCoupling`: Time spent inside coupling-scheme advancement and synchronization/exchange steps.
+* `syncTimestep`: Time spent synchronizing and validating timestep sizes across ranks.
 * `waitAndReceiveData`: Time spent waiting for and receiving coupling data.
 * `waitAndSendData`: Time spent waiting for and sending coupling data.
-* `accelerate`: Time spent in acceleration algorithms.
-* `sendConvergence`: Time spent sending convergence information.
-* `receiveConvergence`: Time spent receiving convergence information.
-* `finalize`: Time spent in preCICE `finalize()`.
+* `accelerate`: Time spent in implicit-coupling acceleration routines.
+* `sendConvergence`: Time spent sending convergence state in implicit coupling.
+* `receiveConvergence`: Time spent receiving convergence state in implicit coupling.
+* `finalize`: Time inside preCICE `finalize()`, including coupling finalization, communication shutdown, profiling finalization, and MPI cleanup.
 
 ## Full API-profiling
 
