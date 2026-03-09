@@ -160,41 +160,47 @@ More details on the feature can be found in [Schneider et al. 2023](https://doi.
 
 Geometric multiscale mapping enables the coupling of dimensionally heterogeneous participants, e.g., 1D-2D, 1D-3D, or 2D-3D solver combinations.
 
-{% experimental %}
-This is an experimental feature, available since preCICE v3.0.0. Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
-{% endexperimental %}
-
 We differentiate between _axial_ and _radial_ geometric multiscale mapping:
 
 ![Axial vs radial 1D-3D mapping](images/docs/configuration-mapping-geometric-multiscale-axial-radial.png)
 
-In a 1D-3D mapping, axial mapping maps between one point at the boundary of the 1D domain and multiple points at a surface of a 3D domain, while the domains are connected over a main axis.
-Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain.
-Currently, radial geometric multiscale coupling is only supported between 1D and 3D participants over a circular interface. In contrast, axial geometric multiscale coupling supports extended configurations, including 1D-2D, 1D-3D, and 2D-3D dimensional combinations, as well as circular and square cross-sections.
+{% experimental %}
+This is an experimental feature, available since preCICE v3.0.0. Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
+{% endexperimental %}
 
-Further extensions of radial coupling to additional dimensional combinations and cross-section types are planned.
+### Axial geometric multiscale mapping
 
-Potential configurations for the axial and radial geometric multiscale mapping look as follows:
+Axial geometric multiscale mapping supports different combinations of dimensions, where the two domains are connected over a main axis and share a circular or square interface:
+
+* 1D-3D: maps between one 1D boundary point and multiple points at a boundary surface of a 3D domain
+* 1D-2D: maps between one 1D boundary point and multiple points at a boundary line of a 2D domain
+* 2D-3D: maps between multiple 2D boundary points and points lying on their closest stripes at a boundary surface of a 3D domain
+
+Configuration:
 
 ```xml
-<mapping:axial-geometric-multiscale direction="read" multiscale-dimension="1d-3d" multiscale-cross-section="circle" multiscale-type="spread" multiscale-radius="1.0" multiscale-axis="X" multiscale-cross-section-profile="parabolic" from="MyMesh2" to="MyMesh1" constraint="consistent" />
+<mapping:axial-geometric-multiscale direction="read"
+     multiscale-dimension="1d-3d"
+     multiscale-cross-section="circle"
+     multiscale-type="spread"
+     multiscale-radius="1.0"
+     multiscale-axis="X"
+     multiscale-cross-section-profile="parabolic"
+     from="MyMesh2" to="MyMesh1" constraint="consistent" />
 ```
 
-```xml
-<mapping:radial-geometric-multiscale direction="read" multiscale-type="collect" multiscale-axis="X" from="MyMesh1" to="MyMesh2" constraint="consistent" />
-```
-
-The `multiscale-dimension` defines the dimensional coupling type and can be `"1d-3d"`, `"1d-2d"`, or `"2d-3d"`.
-
-The `multiscale-cross-section` defines the shape of the interface cross-section. Supported values are `"circle"` (default) and `"square"`.
-
-The `multiscale-type` specifies the direction of data transfer between participants and can be either `"spread"` (distributes data from a lower-dimensional interface to multiple interface vertices of the higher-dimensional participant) or `"collect"` (aggregates data from multiple interface vertices of the higher-dimensional participant to the lower-dimensional interface).
-
-The `multiscale-axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the coupled participants.
-
-The `multiscale-radius` defines the geometric size of the interface cross-section, corresponding to the radius when `multiscale-cross-section="circle"` and to the side length when `multiscale-cross-section="square"`.
-
-The `multiscale-cross-section-profile` defines how a quantity is distributed over the interface cross-section and determines how values are distributed during `"spread"` operations and averaged during `"collect"` operations; supported profiles are `"uniform"` (constant over the cross-section) and `"parabolic"` (varying parabolically with the normalized distance from the cross-section center). If not specified, the default is `"uniform"`.
+* `multiscale-dimension`: the dimensional coupling type (`"1d-3d"`, `"1d-2d"`, `"2d-3d"`).
+* `multiscale-cross-section`: defines the shape of the interface cross-section. Supported values are `"circle"` (default) and `"square"`.
+* `multiscale-type`: specifies the direction of data transfer between participants:
+  * `"spread"`: distributes data from a lower-dimensional interface to multiple interface vertices of the higher-dimensional participant.
+  * `"collect"`: aggregates data from multiple interface vertices of the higher-dimensional participant to the lower-dimensional interface.
+* `multiscale-axis`: the main axis along which the coupling takes place, i.e., the principal axis of the coupled participants.
+* `multiscale-radius`: the geometric size of the interface cross-section.
+  * Corresponds to the radius when `multiscale-cross-section="circle"`.
+  * Corresponds to the side length when `multiscale-cross-section="square"`.
+* `multiscale-cross-section-profile`: defines how a quantity is distributed over the interface cross-section and determines how values are distributed during `"spread"` operations and averaged during `"collect"` operations; supported profiles are:
+  * `"uniform"`: constant over the cross-section (default).
+  * `"parabolic"`: varying parabolically with the normalized distance from the cross-section center.
 
 When using a `"spread"` mapping, data from the lower-dimensional participant is distributed over the higher-dimensional interface according to the selected `multiscale-cross-section-profile`, which defines how the value varies across the interface cross-section. For a circular cross-section, the variation is radial; for a square cross-section, it depends on the normalized distance from the center.
 
@@ -203,6 +209,24 @@ Since lower-dimensional participants (e.g., 1D models) typically compute cross-s
 {% version 3.4.0 %}
 The `multiscale-cross-section-profile`, `multiscale-dimension`, and `multiscale-cross-section` options are currently only available in the `develop` branch of preCICE. Until v3.3.0, multiscale coupling was limited to `"1d-3d"` with a circular cross-section, and a parabolic profile was always applied (i.e., there was no option to select a different profile).
 {% endversion %}
+
+### Radial geometric multiscale mapping
+
+Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain. Currently, only 1D-3D mapping over a circular interface is supported.
+
+Configuration:
+
+```xml
+<mapping:radial-geometric-multiscale direction="read"
+     multiscale-type="collect"
+     multiscale-axis="X"
+     from="MyMesh1" to="MyMesh2" constraint="consistent" />
+```
+
+* `multiscale-axis`: specifies the direction of data transfer between participants:
+  * `"spread"`: distributes data from a lower-dimensional interface to multiple interface vertices of the higher-dimensional participant.
+  * `"collect"`: aggregates data from multiple interface vertices of the higher-dimensional participant to the lower-dimensional interface.
+* `multiscale-axis`: the common axis of the two domains, i.e., the principal axis of the coupled participants.
 
 ## Restrictions for parallel participants
 
