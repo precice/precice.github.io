@@ -1701,7 +1701,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 21 Jan 26</small>
+              <small>Updated 09 Mar 26</small>
             </div>
           </aside>
           
@@ -1875,33 +1875,91 @@ We recommend to use the alias tag, as long as there are no further requirements 
 
 <h2 id="geometric-multiscale-mapping">Geometric multiscale mapping</h2>
 
-<p>Geometric multiscale mapping enables the coupling of dimensionally heterogeneous coupling participants, e.g., a 1D system code with a 3D CFD code.</p>
-
-<div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
-This is an experimental feature, available since preCICE v3.0.0. Enable it using <code class="language-plaintext highlighter-rouge">&lt;precice-configuration experimental="true"&gt;</code> and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
-</div>
+<p>Geometric multiscale mapping enables the coupling of dimensionally heterogeneous participants, e.g., 1D-2D, 1D-3D, or 2D-3D solver combinations.</p>
 
 <p>We differentiate between <em>axial</em> and <em>radial</em> geometric multiscale mapping:</p>
 
 <p><img src="images/docs/configuration-mapping-geometric-multiscale-axial-radial.png" alt="Axial vs radial 1D-3D mapping" /></p>
 
-<p>In a 1D-3D mapping, axial mapping maps between one point at the boundary of the 1D domain and multiple points at a surface of a 3D domain, while the domains are connected over a main axis.
-Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain.
-Currently, axial and radial geometric multiscale coupling is only supported in a consistent manner between 1D and 3D participants and over a circular interface, but extensions to this are planned.</p>
+<div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
+This is an experimental feature, available since preCICE v3.0.0. Enable it using <code class="language-plaintext highlighter-rouge">&lt;precice-configuration experimental="true"&gt;</code> and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
+</div>
 
-<p>The concept also extends to 1D-2D, 2D-3D, and further setups, which are not currently supported.</p>
+<h3 id="axial-geometric-multiscale-mapping">Axial geometric multiscale mapping</h3>
 
-<p>Potential configurations for the axial and radial geometric multiscale mapping look as follows:</p>
+<p>Axial geometric multiscale mapping supports different combinations of dimensions, where the two domains are connected over a main axis and share a circular or square interface:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:axial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">multiscale-type=</span><span class="s">"spread"</span> <span class="na">multiscale-radius=</span><span class="s">"1.0"</span> <span class="na">multiscale-axis=</span><span class="s">"X"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
+<ul>
+  <li>1D-3D: maps between one 1D boundary point and multiple points at a boundary surface of a 3D domain</li>
+  <li>1D-2D: maps between one 1D boundary point and multiple points at a boundary line of a 2D domain</li>
+  <li>2D-3D: maps between multiple 2D boundary points and points lying on their closest stripes at a boundary surface of a 3D domain</li>
+</ul>
+
+<p>Configuration:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:axial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span>
+     <span class="na">multiscale-dimension=</span><span class="s">"1d-3d"</span>
+     <span class="na">multiscale-cross-section=</span><span class="s">"circle"</span>
+     <span class="na">multiscale-type=</span><span class="s">"spread"</span>
+     <span class="na">multiscale-radius=</span><span class="s">"1.0"</span>
+     <span class="na">multiscale-axis=</span><span class="s">"X"</span>
+     <span class="na">multiscale-cross-section-profile=</span><span class="s">"parabolic"</span>
+     <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
 </code></pre></div></div>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:radial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">multiscale-type=</span><span class="s">"collect"</span> <span class="na">multiscale-axis=</span><span class="s">"X"</span> <span class="na">from=</span><span class="s">"MyMesh1"</span> <span class="na">to=</span><span class="s">"MyMesh2"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">multiscale-dimension</code>: the dimensional coupling type (<code class="language-plaintext highlighter-rouge">"1d-3d"</code>, <code class="language-plaintext highlighter-rouge">"1d-2d"</code>, <code class="language-plaintext highlighter-rouge">"2d-3d"</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">multiscale-cross-section</code>: defines the shape of the interface cross-section. Supported values are <code class="language-plaintext highlighter-rouge">"circle"</code> (default) and <code class="language-plaintext highlighter-rouge">"square"</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">multiscale-type</code>: specifies the direction of data transfer between participants:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">"spread"</code>: distributes data from a lower-dimensional interface to multiple interface vertices of the higher-dimensional participant.</li>
+      <li><code class="language-plaintext highlighter-rouge">"collect"</code>: aggregates data from multiple interface vertices of the higher-dimensional participant to the lower-dimensional interface.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">multiscale-axis</code>: the main axis along which the coupling takes place, i.e., the principal axis of the coupled participants.</li>
+  <li><code class="language-plaintext highlighter-rouge">multiscale-radius</code>: the geometric size of the interface cross-section.
+    <ul>
+      <li>Corresponds to the radius when <code class="language-plaintext highlighter-rouge">multiscale-cross-section="circle"</code>.</li>
+      <li>Corresponds to the side length when <code class="language-plaintext highlighter-rouge">multiscale-cross-section="square"</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">multiscale-cross-section-profile</code>: defines how a quantity is distributed over the interface cross-section and determines how values are distributed during <code class="language-plaintext highlighter-rouge">"spread"</code> operations and averaged during <code class="language-plaintext highlighter-rouge">"collect"</code> operations; supported profiles are:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">"uniform"</code>: constant over the cross-section (default).</li>
+      <li><code class="language-plaintext highlighter-rouge">"parabolic"</code>: varying parabolically with the normalized distance from the cross-section center.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>When using a <code class="language-plaintext highlighter-rouge">"spread"</code> mapping, data from the lower-dimensional participant is distributed over the higher-dimensional interface according to the selected <code class="language-plaintext highlighter-rouge">multiscale-cross-section-profile</code>, which defines how the value varies across the interface cross-section. For a circular cross-section, the variation is radial; for a square cross-section, it depends on the normalized distance from the center.</p>
+
+<p>Since lower-dimensional participants (e.g., 1D models) typically compute cross-sectionally averaged quantities such as mean velocity or pressure, an assumed spatial profile is required to reconstruct a distributed field on the higher-dimensional interface. By default, a physically consistent laminar profile is applied for <code class="language-plaintext highlighter-rouge">"parabolic"</code>, while <code class="language-plaintext highlighter-rouge">"uniform"</code> assumes a constant distribution.</p>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Upcoming version:</b> 
+The <code class="language-plaintext highlighter-rouge">multiscale-cross-section-profile</code>, <code class="language-plaintext highlighter-rouge">multiscale-dimension</code>, and <code class="language-plaintext highlighter-rouge">multiscale-cross-section</code> options are currently only available in the <code class="language-plaintext highlighter-rouge">develop</code> branch of preCICE. Until v3.3.0, multiscale coupling was limited to <code class="language-plaintext highlighter-rouge">"1d-3d"</code> with a circular cross-section, and a parabolic profile was always applied (i.e., there was no option to select a different profile).
+</div>
+
+<h3 id="radial-geometric-multiscale-mapping">Radial geometric multiscale mapping</h3>
+
+<p>Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain. Currently, only 1D-3D mapping over a circular interface is supported.</p>
+
+<p>Configuration:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:radial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span>
+     <span class="na">multiscale-type=</span><span class="s">"collect"</span>
+     <span class="na">multiscale-axis=</span><span class="s">"X"</span>
+     <span class="na">from=</span><span class="s">"MyMesh1"</span> <span class="na">to=</span><span class="s">"MyMesh2"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">multiscale-type</code> which can be either <code class="language-plaintext highlighter-rouge">"spread"</code> or <code class="language-plaintext highlighter-rouge">"collect"</code> refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The <code class="language-plaintext highlighter-rouge">multiscale-axis</code> is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The <code class="language-plaintext highlighter-rouge">multiscale-radius</code> refers to the radius of the circular interface boundary surface.</p>
-
-<p>Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">multiscale-axis</code>: specifies the direction of data transfer between participants:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">"spread"</code>: distributes data from a lower-dimensional interface to multiple interface vertices of the higher-dimensional participant.</li>
+      <li><code class="language-plaintext highlighter-rouge">"collect"</code>: aggregates data from multiple interface vertices of the higher-dimensional participant to the lower-dimensional interface.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">multiscale-axis</code>: the common axis of the two domains, i.e., the principal axis of the coupled participants.</li>
+</ul>
 
 <h2 id="restrictions-for-parallel-participants">Restrictions for parallel participants</h2>
 
@@ -2301,7 +2359,7 @@ After applying these changes, you can use the <a href="https://github.com/precic
         </a>
         </p>
         <p>
-        Page last updated: Jan 21, 2026<br>
+        Page last updated: Mar 9, 2026<br>
         Site last updated: Mar 9, 2026
         </p>
         <p>
