@@ -20,8 +20,9 @@ $( document ).ready(function() {
      */
     anchors.add('main h2:not(.no-anchor),main h3:not(.no-anchor),main h4:not(.no-anchor),main h5:not(.no-anchor)');
 
-    // Add copy buttons and wrappers to all code blocks inside main content
-    $('main pre, main div.highlight, main figure.highlight, main .highlighter-rouge').each(function () {
+    // Add copy buttons and wrappers to block-level code inside main content
+    // (command/code boxes only, not inline red filenames or short code words)
+    $('main pre, main div.highlight, main figure.highlight').each(function () {
         var $block = $(this);
 
         // Skip inline code (e.g. single words like Glyph, paths, etc.)
