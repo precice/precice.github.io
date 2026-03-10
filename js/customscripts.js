@@ -20,21 +20,24 @@ $( document ).ready(function() {
      */
     anchors.add('main h2:not(.no-anchor),main h3:not(.no-anchor),main h4:not(.no-anchor),main h5:not(.no-anchor)');
 
-    // Add copy buttons only to explicit code boxes
-    $('.code-container').each(function () {
-        var $container = $(this);
+    // Add copy buttons and wrappers to all code blocks inside main content
+    $('main pre, main div.highlight, main figure.highlight, main .highlighter-rouge').each(function () {
+        var $block = $(this);
 
+        // Find or create a code-container wrapper
+        var $container = $block.closest('.code-container');
+        if ($container.length === 0) {
+            $container = $('<div class="code-container"></div>');
+            $block.before($container);
+            $container.append($block);
+        }
+
+        // Avoid adding multiple buttons
         if ($container.data('has-copy-button')) {
             return;
         }
 
-        var $block = $container.find('pre, div.highlight, figure.highlight, .highlighter-rouge').first();
-        if (!$block.length) {
-            return;
-        }
-
         var $button = $('<button type="button" class="copy-btn" aria-label="Copy code"><i class="fa-regular fa-copy" aria-hidden="true"></i></button>');
-
         $container.prepend($button);
 
         $button.on('click', function () {
