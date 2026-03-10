@@ -24,6 +24,11 @@ $( document ).ready(function() {
     $('main pre, main div.highlight, main figure.highlight, main .highlighter-rouge').each(function () {
         var $block = $(this);
 
+        // Skip inline code (e.g. single words like Glyph, paths, etc.)
+        if ($block.is('code') && !$block.closest('pre').length) {
+            return;
+        }
+
         // Find or create a code-container wrapper
         var $container = $block.closest('.code-container');
         if ($container.length === 0) {
