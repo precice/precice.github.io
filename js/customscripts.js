@@ -20,6 +20,32 @@ $( document ).ready(function() {
      */
     anchors.add('main h2:not(.no-anchor),main h3:not(.no-anchor),main h4:not(.no-anchor),main h5:not(.no-anchor)');
 
+    // Add copy buttons and wrappers to all code blocks inside main content
+    $('main pre, main div.highlight, main figure.highlight, main .highlighter-rouge').each(function () {
+        var $block = $(this);
+
+        // Avoid wrapping twice
+        if ($block.closest('.code-container').length) {
+            return;
+        }
+
+        var $container = $('<div class="code-container"></div>');
+        var $button = $('<button type="button" class="copy-btn" aria-label="Copy code"><i class="fa-regular fa-copy" aria-hidden="true"></i></button>');
+
+        $block.before($container);
+        $container.append($button);
+        $container.append($block);
+
+        $button.on('click', function () {
+            var codeElement = $container.find('code').get(0) || $block.get(0);
+            if (!codeElement) {
+                return;
+            }
+            var text = codeElement.innerText || codeElement.textContent || '';
+            copyToClipboard(text, $button);
+        });
+    });
+
 });
 
 // needed for nav tabs on pages. See Formatting > Nav tabs for more details.
@@ -53,16 +79,25 @@ $(function() {
     });
 });
 
-function copyText() {
-    var introElement = document.getElementById("intro-text");
-    if (!introElement) {
+function copyToClipboard(text, $button) {
+    if (!text) {
         return;
     }
-    var text = introElement.innerText || introElement.textContent;
+
+    function indicateCopied() {
+        if (!$button) {
+            return;
+        }
+        $button.addClass('copy-btn--copied');
+        setTimeout(function () {
+            $button.removeClass('copy-btn--copied');
+        }, 2000);
+    }
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text)
             .then(function () {
-                alert("Copied!");
+                indicateCopied();
             })
             .catch(function (err) {
                 console.error("Copy failed", err);
@@ -77,10 +112,19 @@ function copyText() {
         textArea.select();
         try {
             document.execCommand("copy");
-            alert("Copied!");
+            indicateCopied();
         } catch (err) {
             console.error("Copy failed", err);
         }
         document.body.removeChild(textArea);
     }
+}
+
+function copyText() {
+    var introElement = document.getElementById("intro-text");
+    if (!introElement) {
+        return;
+    }
+    var text = introElement.innerText || introElement.textContent;
+    copyToClipboard(text);
 }
