@@ -20,21 +20,22 @@ $( document ).ready(function() {
      */
     anchors.add('main h2:not(.no-anchor),main h3:not(.no-anchor),main h4:not(.no-anchor),main h5:not(.no-anchor)');
 
-    // Add copy buttons and wrappers to all code blocks inside main content
-    $('main pre, main div.highlight, main figure.highlight, main .highlighter-rouge').each(function () {
-        var $block = $(this);
+    // Add copy buttons only to explicit code boxes
+    $('.code-container').each(function () {
+        var $container = $(this);
 
-        // Avoid wrapping twice
-        if ($block.closest('.code-container').length) {
+        if ($container.data('has-copy-button')) {
             return;
         }
 
-        var $container = $('<div class="code-container"></div>');
+        var $block = $container.find('pre, div.highlight, figure.highlight, .highlighter-rouge').first();
+        if (!$block.length) {
+            return;
+        }
+
         var $button = $('<button type="button" class="copy-btn" aria-label="Copy code"><i class="fa-regular fa-copy" aria-hidden="true"></i></button>');
 
-        $block.before($container);
-        $container.append($button);
-        $container.append($block);
+        $container.prepend($button);
 
         $button.on('click', function () {
             var codeElement = $container.find('code').get(0) || $block.get(0);
@@ -44,6 +45,8 @@ $( document ).ready(function() {
             var text = codeElement.innerText || codeElement.textContent || '';
             copyToClipboard(text, $button);
         });
+
+        $container.data('has-copy-button', true);
     });
 
 });
