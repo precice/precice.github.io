@@ -40,6 +40,27 @@ and merge them as soon as possible.
 These pages are written in [Markdown](https://guides.github.com/features/mastering-markdown/) (a very easy language)
 and we also have a [cheatsheet](docs-meta-cheatsheet.html) specifically for this website.
 
+## Repository Anatomy
+
+To help you navigate this website's codebase, here is a breakdown of the repository structure organized by function. Think of the project like a house:
+
+* **The Foundation (Root Configuration):**
+    * `_config.yml`: The main power switch. Contains site-wide metadata and build settings.
+    * `Gemfile`: The toolbox. Lists Ruby dependencies (Jekyll, plugins) needed to build the site.
+* **The Blueprint (Design & Templates):**
+    * `_layouts/`: The architectural blueprints (e.g., `default.html` for basic pages).
+    * `_includes/`: Reusable furniture. Modular components like `header.html` or `sidebar.html`.
+* **The Rooms (Content):**
+    * `content/`: The main living area. Subdivided into `docs/` (Manuals), `tutorials/`, and `community/`.
+    * `_posts/`: The notice board for dated news items.
+* **The Control Panel (Dynamic Data):**
+    * `_data/`: The smart home settings. `sidebars/` and `topnav.yml` define the navigation menus.
+* **Assets & Styling (Decor):**
+    * `assets/`: Contains `css/`, `js/`, and `fonts/` (like KaTeX for math formulas).
+    * `images/`: The gallery for logos and screenshots.
+* **Smart Appliances (Plugins):**
+    * `_plugins/`: Custom Ruby scripts, like `customblocks.rb` for styled alert boxes (Tips/Warnings).
+
 ## Reporting issues
 
 After discussing a problem in one of our [community channels](community-channels.html), we may conclude that this is a bug
