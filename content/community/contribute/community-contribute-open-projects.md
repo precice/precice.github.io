@@ -78,7 +78,7 @@ As a first step, we would like to [upgrade to a newer Bootstrap version](https:/
 After that, we would like to switch to the [Hugo static site generator](https://gohugo.io/),
 aiming to have a framework that we can upgrade and maintain with minimal effort.
 
-**Entry test:** To figure out if this is for you, try [building the website locally](https://github.com/precice/precice.github.io/blob/master/README.md)
+**Is this for me?** To figure out if this is for you, try [building the website locally](https://github.com/precice/precice.github.io/blob/master/README.md)
 and adding and styling some new element in the [landing page](https://github.com/precice/precice.github.io/blob/master/content/index.html).
 Be creative!
 
@@ -98,7 +98,7 @@ These tests are integrated into the [GitHub Actions](https://docs.github.com/en/
 While the system tests are already running every night and on many pull requests, several improvements are possible ([related issues](https://github.com/precice/tutorials/issues?q=is%3Aissue%20state%3Aopen%20label%3Asystemtests)):
 running (much) faster test cases, running multiple test cases in parallel, better communicating what went wrong, integrating more repositories, and the list of possibilities goes on.
 
-**Entry test:** To figure out if this is for you, [run the system tests locally](dev-docs-system-tests.html#running-specific-test-suites) and [add one more tutorial to the tests](dev-docs-system-tests.html#adding-tutorials).
+**Is this for me?** To figure out if this is for you, [run the system tests locally](dev-docs-system-tests.html#running-specific-test-suites) and [add one more tutorial to the tests](dev-docs-system-tests.html#adding-tutorials).
 
 - Skills required: Python, Docker, GitHub Actions
 - Project size: Medium (175h) - Depending on the availability, small or large are also possible
@@ -115,11 +115,11 @@ referring to specific lines in the configuration file
 (similarly to how a compiler would refer to code lines with errors):
 see the [related issue](https://github.com/precice/precice/issues/751).
 
-**Entry test:** To figure out if this is for you, try [building preCICE from source](installation-source-preparation.html),
+**Is this for me?** To figure out if this is for you, try [building preCICE from source](installation-source-preparation.html),
 running the [elastic tube 1D tutorial](tutorials-elastic-tube-1d.html),
 and modifying the [configuration file](https://github.com/precice/tutorials/blob/master/elastic-tube-1d/precice-config.xml)
-to trigger an error (e.g., remove one of the `<data>` tags).
-Then, locate and modify the error message in the source code, to provide more information.
+to trigger an error.
+Then, locate and modify the error message in the source code, to provide missing useful information.
 
 - Skills required: C++
 - Project size: Small (90h)
@@ -135,7 +135,7 @@ or to parse the configuration in a predefined order.
 In this project, we want to refactor the configuration code to introduce a confguration AST (structured types), generated from the XML AST (nested tags and their attributes) built with libxml2.
 See the [related issue](https://github.com/precice/precice/issues/982).
 
-**Entry test:** To figure out if this is for you, try the same as in the [project idea above](#project-error-messages-with-configuration-context).
+**Is this for me?** To figure out if this is for you, try the same as in the [project idea above](#project-error-messages-with-configuration-context).
 
 - Skills required: C++
 - Project size: Medium (175h)
