@@ -52,3 +52,35 @@ $(function() {
         }
     });
 });
+
+function copyText() {
+    var introElement = document.getElementById("intro-text");
+    if (!introElement) {
+        return;
+    }
+    var text = introElement.innerText || introElement.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+            .then(function () {
+                alert("Copied!");
+            })
+            .catch(function (err) {
+                console.error("Copy failed", err);
+            });
+    } else {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.top = "-1000px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand("copy");
+            alert("Copied!");
+        } catch (err) {
+            console.error("Copy failed", err);
+        }
+        document.body.removeChild(textArea);
+    }
+}
