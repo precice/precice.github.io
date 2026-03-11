@@ -1716,7 +1716,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 23 Feb 26</small>
+              <small>Updated 11 Mar 26</small>
             </div>
           </aside>
           
@@ -2073,6 +2073,105 @@ Writing to profiling.csv
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">profiling.csv</span><span class="sh">"</span><span class="p">)</span>
 <span class="n">selection</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">"</span><span class="s">participant</span><span class="sh">"</span><span class="p">]</span> <span class="o">==</span> <span class="sh">"</span><span class="s">A</span><span class="sh">"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">"</span><span class="s">rank</span><span class="sh">"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="advanced-analysis-with-perfetto">Advanced analysis with perfetto</h2>
+
+<p>So far, we used <a href="https://perfetto.dev">perfetto</a> for visualizing the traces.
+Sometimes, theses traces are either too large to inspect visually or one needs to extract more detailed data from the tarces than simple event-wise duration sums.</p>
+
+<p>The perfetto project additionally provides a complete ecosystem of tools for trace processing.
+<a href="https://perfetto.dev/docs/analysis/perfetto-sql-getting-started">PerfettoSQL</a> and the <a href="https://perfetto.dev/docs/analysis/trace-processor-python">trace processor</a> allow to systematically extract data from large profiling records.</p>
+
+<h3 id="perfettosql-for-precice">PerfettoSQL for preCICE</h3>
+
+<p>Important mappings between the two systems are:</p>
+
+<ul>
+  <li>a preCICE <strong>participant</strong> corresponds to a <strong>process</strong> in perfetto</li>
+  <li>a preCICE <strong>rank</strong> corresponds to a <strong>thread</strong> in perfetto, nested under the process of the participant</li>
+  <li>one preCICE <strong>Event</strong> corresponds to a row in the <strong>slice</strong> table of perfetto</li>
+</ul>
+
+<p>The most important STL component is the <code class="language-plaintext highlighter-rouge">thread_slice</code> in the <a href="https://perfetto.dev/docs/analysis/stdlib-docs#slices-with_context"><code class="language-plaintext highlighter-rouge">slices.with_context</code></a> module.
+It adds the thread and process name to each slice, which allows filtering for participant and rank.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INCLUDE</span> <span class="n">PERFETTO</span> <span class="n">MODULE</span> <span class="n">slices</span><span class="p">.</span><span class="n">with_context</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">thread_slice</span>
+<span class="k">where</span> <span class="n">process_name</span> <span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The rank is a string the format <code class="language-plaintext highlighter-rouge">Rank {rank}</code>.
+The following extracts all slices of the primary rank 0.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">thread_slice</span>
+<span class="k">where</span> <span class="n">process_name</span> <span class="o">=</span> <span class="s1">'B'</span> <span class="k">and</span> <span class="n">thread_name</span> <span class="o">=</span> <span class="nv">"Rank 0"</span>
+</code></pre></div></div>
+
+<h3 id="prototyping-queries-in-the-ui">Prototyping queries in the UI</h3>
+
+<p>After importing a trace into <a href="https://ui.perfetto.dev">perfetto UI</a>, clicking the SQL tab on the left opens a text input.
+Here, you can run SQL queries, see and download the results.
+This is great for prototyping queries quickly directly in the browser.</p>
+
+<p>If the output of the query is something that resembles a slice, then you can load it directly into the timeline view.
+Recently executed query results can be seen in the bottom of the timeline.
+Here you can also click “Show debug track” which will load all slices into a single track.
+To group into multiple tracks based on a column such as <code class="language-plaintext highlighter-rouge">thread_name</code>, select it as <code class="language-plaintext highlighter-rouge">pivot</code>.
+Then click “add track” to show the result of the query.</p>
+
+<p>If you don’t need to see the other tracks, it may be a good idea to change to a new blank workspace first.</p>
+
+<h3 id="scripting-the-processing">Scripting the processing</h3>
+
+<p>For the scripting, we recommend using the <a href="https://perfetto.dev/docs/analysis/trace-processor-python">trace processor</a> included in the python package <code class="language-plaintext highlighter-rouge">perfetto</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>perfetto
+</code></pre></div></div>
+
+<p>In your script:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">perfetto.trace_processor</span> <span class="kn">import</span> <span class="n">TraceProcessor</span>
+
+<span class="n">tp</span> <span class="o">=</span> <span class="nc">TraceProcessor</span><span class="p">(</span><span class="sh">"</span><span class="s">profiling.pftrace</span><span class="sh">"</span><span class="p">)</span> <span class="c1"># or "trace.json"
+</span></code></pre></div></div>
+
+<p>After that, you can run queries using <code class="language-plaintext highlighter-rouge">tp.query()</code>:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tp</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span><span class="sh">"</span><span class="s">SELECT count(*) from slice</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The result of a query can be:</p>
+
+<ul>
+  <li>accessed as a <code class="language-plaintext highlighter-rouge">numpy.ndarray</code> using <code class="language-plaintext highlighter-rouge">tq.query(...).cells</code></li>
+  <li>iterated over using <code class="language-plaintext highlighter-rouge">for row in tq.query(...):</code></li>
+  <li>or exported to a <code class="language-plaintext highlighter-rouge">pandas.Dataframe</code> using <code class="language-plaintext highlighter-rouge">tq.query(...).as_pandas_dataframe()</code></li>
+</ul>
+
+<p>You can also use queries to create <a href="https://sqlite.org/lang_createview.html">views</a> or <a href="https://sqlite.org/lang_createtable.html">tables</a> to make the processing a bit more convenient.
+If you create tables make sure to use <code class="language-plaintext highlighter-rouge">CREATE PERFETTO TABLE</code> to get a table tuned for analytics queries.</p>
+
+<h3 id="helper">Helper</h3>
+
+<p>The following table gives for every slice, the total time spend in <code class="language-plaintext highlighter-rouge">.sync</code> events in case synchronization is enabled in the configuration.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="n">PERFETTO</span> <span class="k">TABLE</span> <span class="n">synctime</span> <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">sid</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">dur</span><span class="p">)</span> <span class="k">AS</span> <span class="n">synctime</span>
+<span class="k">FROM</span> <span class="n">slice</span> <span class="k">AS</span> <span class="n">s</span>
+<span class="k">JOIN</span> <span class="n">ancestor_slice</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="n">a</span>
+<span class="k">WHERE</span> <span class="n">s</span><span class="p">.</span><span class="n">name</span> <span class="n">GLOB</span> <span class="s1">'*.sync'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The following is a view that uses preCICE terminology and allows to work with <code class="language-plaintext highlighter-rouge">participant</code> and numberic <code class="language-plaintext highlighter-rouge">ranks</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">precice</span> <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="n">process_name</span> <span class="k">as</span> <span class="n">participant</span><span class="p">,</span> <span class="n">cast_int</span><span class="o">!</span><span class="p">(</span><span class="n">SUBSTR</span><span class="p">(</span><span class="n">thread_name</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="k">AS</span> <span class="n">rank</span><span class="p">,</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">thread_slice</span><span class="p">;</span>
 </code></pre></div></div>
 
 
@@ -2458,7 +2557,7 @@ Writing to profiling.csv
         </a>
         </p>
         <p>
-        Page last updated: Feb 23, 2026<br>
+        Page last updated: Mar 11, 2026<br>
         Site last updated: Mar 11, 2026
         </p>
         <p>
