@@ -422,7 +422,7 @@ In your script:
 ```py
 from perfetto.trace_processor import TraceProcessor
 
-tp = TraceProcessor("profiling.pftrace")
+tp = TraceProcessor("profiling.pftrace") # or "trace.json"
 ```
 
 After that, you can run queries using `tp.query()`:
