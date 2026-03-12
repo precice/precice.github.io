@@ -77,3 +77,48 @@ Example - building with MPICH:
 ```bash
 cmake -DPRECICE_FEATURE_MPI_COMMUNICATION=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
 ```
+
+## Dependency version strategy
+
+This section documents how preCICE selects and updates minimum supported versions of its dependencies.
+
+### Minimum supported versions
+
+The minimum supported versions of dependencies are primarily determined by the environments that preCICE officially supports. In practice, these versions align with the packages available in the two most recent Ubuntu LTS releases.
+
+When selecting minimum versions, the project considers:
+
+- availability of packages in supported distributions
+- long-term stability of the dependency
+- maintenance effort required to support older versions
+
+### Updating minimum versions
+
+The minimum supported version of a dependency may be increased when:
+
+- older versions reach end-of-life
+- required features are only available in newer versions
+- maintaining compatibility with older versions significantly increases maintenance complexity
+
+Such updates are generally treated as regular maintenance and **not as breaking changes**.
+
+### Supported distributions
+
+preCICE is primarily tested on:
+
+- the two most recent Ubuntu LTS releases
+
+Other Linux distributions (for example Debian, Fedora, or Arch Linux) are expected to work as long as the required dependency versions are available.
+
+### MPI implementations
+
+preCICE supports common MPI implementations, including:
+
+- OpenMPI
+- MPICH
+
+Other MPI implementations may work but are not regularly tested by the project.
+
+### Testing policy
+
+The continuous integration infrastructure tests the dependency versions available in supported environments. This helps ensure that preCICE remains compatible with both the defined minimum versions and newer releases of its dependencies.
