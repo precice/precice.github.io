@@ -5,29 +5,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="keywords" content=" configuration, basics, cmake, installation, building, source, autotools, make, pkg-config">
+<meta name="description" content="A general adapter for the open source computing platform FEniCSx">
+
+<meta name="keywords" content=" adapter, fenicsx, dolfinx, finite element method">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Linking to preCICE | preCICE - The Coupling Library</title>
+<title>The FEniCSx adapter | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Linking to preCICE" />
+<meta property="og:title" content="The FEniCSx adapter" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://precice.org/installation-linking.html" />
+<meta property="og:url" content="https://precice.org/adapter-fenicsx.html" />
 <meta property="og:image" content="https://precice.org/images/icon-310x310.png" />
-<meta property="og:description" content="preCICE (Precise Code Interaction Coupling Environment) is an open-source coupling library for partitioned simulations of multi-physics scenarios such as fluid-structure interaction or fluid-structure-acoustic interaction.">
+<meta property="og:description" content="A general adapter for the open source computing platform FEniCSx">
 
 <!-- Twitter Card metadata -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Linking to preCICE" />
-<meta name="twitter:description" content="preCICE (Precise Code Interaction Coupling Environment) is an open-source coupling library for partitioned simulations of multi-physics scenarios such as fluid-structure interaction or fluid-structure-acoustic interaction.">
+<meta name="twitter:title" content="The FEniCSx adapter" />
+<meta name="twitter:description" content="A general adapter for the open source computing platform FEniCSx">
 <meta name="twitter:image" content="https://precice.org/images/icon-310x310.png" />
 
 <!-- Canonical link -->
-<link rel="canonical" href="https://precice.org/installation-linking" >
+<link rel="canonical" href="https://precice.org/adapter-fenicsx" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -95,7 +97,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     var qrDiv = document.createElement("div");
     qrDiv.id = "print-qr-code";
     var qr = qrcode(0, "M");
-    qr.addData("https://precice.org/installation-linking.html");
+    qr.addData("https://precice.org/adapter-fenicsx.html");
     qr.make();
     qrDiv.innerHTML = qr.createImgTag(3, 0);
     document.body.appendChild(qrDiv);
@@ -625,7 +627,7 @@ document.addEventListener('keydown', function(e) {
       
       
       
-      <li  class="active"  ><a title="Linking to preCICE" href="installation-linking.html">Linking to preCICE</a></li>
+      <li><a title="Linking to preCICE" href="installation-linking.html">Linking to preCICE</a></li>
       
       
       
@@ -1135,7 +1137,7 @@ document.addEventListener('keydown', function(e) {
           
           
           
-          <li><a title="Overview" href="adapter-fenicsx.html">Overview</a></li>
+          <li class="active"><a title="Overview" href="adapter-fenicsx.html">Overview</a></li>
           
           
           
@@ -1658,13 +1660,19 @@ document.addEventListener('keydown', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Linking to preCICE</h1>
+   <h1 class="post-title-main">The FEniCSx adapter</h1>
 </div>
 
 
 
 <div class="post-content">
 
+    
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        A general adapter for the open source computing platform FEniCSx
+
+    </div>
     
 
     <div class="row">
@@ -1703,140 +1711,105 @@ $('#toc').on('click', 'a', function() {
           
           <aside>
             
+                
+                
+                
+                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/content/docs/installation/installation-linking.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/fenicsx-adapter/edit/develop/docs/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
-              <small>Updated 21 Nov 25</small>
+              <small>Updated 12 Mar 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <p>Linking against preCICE requires to pass two set of flags to two programs.
-The compiler requires information on where to find the preCICE headers.
-The linker requires the name of the library as well as its location.</p>
+   <h2 id="what-is-fenics">What is FEniCS</h2>
 
-<h2 id="cmake">CMake</h2>
+<p>From the FEniCS Project website: <em>FEniCS is a popular open-source computing platform for solving partial differential equations (PDEs) with the finite element method (FEM). FEniCS enables users to quickly translate scientific models into efficient finite element code. With the high-level Python and C++ interfaces to FEniCS, it is easy to get started, but FEniCS offers also powerful capabilities for more experienced programmers. FEniCS runs on a multitude of platforms ranging from laptops to high-performance computers.</em> More details can be found at <a href="https://fenicsproject.org/">fenicsproject.org</a>.</p>
 
-<p>This is the preferred method of linking to preCICE.
-preCICE provides a precice-Config file which contains all required information to the build system.</p>
+<h2 id="how-to-get-fenicsx">How to get FEniCSx</h2>
 
-<p>Linking to preCICE from a CMake project is simple.
-Use <code class="language-plaintext highlighter-rouge">find_package(precice)</code> and link <code class="language-plaintext highlighter-rouge">precice::precice</code> to your target:</p>
+<p>Install FEniCSx on your system following the instructions on <a href="https://fenicsproject.org/download/">fenicsproject.org</a>.</p>
 
-<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>precice REQUIRED CONFIG<span class="p">)</span>
+<h2 id="aim-of-this-adapter">Aim of this adapter</h2>
 
-<span class="nb">add_executable</span><span class="p">(</span>myTarget main.cpp<span class="p">)</span>
-<span class="nb">target_link_libraries</span><span class="p">(</span>myTarget PRIVATE precice::precice<span class="p">)</span>
+<p>This adapter supports the Python interface of FEniCSx and offers an API that allows the user to use FEniCSx-style data structures for solving coupled problems. It is an update to the <a href="https://precice.org/adapter-fenics.html">FEniCS adapter</a> featuring a similar API, with support for FEniCSx and new preCICE features. The FEniCS solvers for the heat transport and conjugate heat transfer examples have been adapted for FEniCSx and FEniCSx-preCICE and serve as usage examples. However, the adapter is designed in a general fashion and can be used to couple any code using the FEniCS library.</p>
+
+<h2 id="how-to-install-the-adapter">How to install the adapter</h2>
+
+<p>Required dependencies
+| Name                      | Version   |
+|—————————|———–|
+| preCICE                   | &gt;=3.3.0   |
+| preCICE python bindings   | &gt;=3.3.0   |
+| precice adapter schema    | &gt;=0.4.1   |
+| dolfinx                   | &gt;=0.10    |
+| basix                     | &gt;=0.10    |
+| FFCx                      | &gt;=0.10    |
+| UFL                       | &gt;=2025.2.0|
+| mpi4py                    | &gt;=3.16    |
+| numpy                     | &gt;=1.26.4  |</p>
+
+<h3 id="use-pip">Use <code class="language-plaintext highlighter-rouge">pip</code></h3>
+
+<p>Install the adapter using pip with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>fenicsxprecice
 </code></pre></div></div>
 
-<p>This works out-of-the-box if you installed preCICE from provided packages or manually to <code class="language-plaintext highlighter-rouge">/usr/local</code>.
-In case preCICE was installed to another directory, CMake needs to know which directory to look into.</p>
+<p>The adapter can also be installed manually. First, the FEniCSx-preCICE adapter must be cloned from the <a href="https://github.com/precice/fenicsx-adapter">GitHub repository</a>. Then navigate to the cloned repository on your local machine and run <code class="language-plaintext highlighter-rouge">pip install --user .</code> from the repository root.</p>
 
-<p>The simplest solution is to explicitly pass the location of the config file to CMake using <code class="language-plaintext highlighter-rouge">-Dprecice_DIR=&lt;prefix&gt;/lib/cmake/precice</code>.
-This directory can also point to the build directory of preCICE. This allows to use preCICE without explicitly installing it.</p>
+<h2 id="examples-for-coupled-codes">Examples for coupled codes</h2>
 
-<p>An alternative is to tell CMake to consider an additional install prefix by passing the following to CMake <code class="language-plaintext highlighter-rouge">-DCMAKE_PREFIX_PATH=&lt;prefix&gt;</code>.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-<strong>Static linking is not recommended nor supported by the preCICE developers!</strong>
-
-Static linking in CMake requires you to provide all transitive dependencies of the preCICE, which includes private dependencies!
-Meaning that you have to find and provide the requested targets in your <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code>.
-You may <a href="https://github.com/precice/precice/pull/343">contribute here</a>
-</div>
-
-<h2 id="autotools">Autotools</h2>
-
-<p>Linking to preCICE from a GNU Autotools project is similarly simple. Just use the following in your <code class="language-plaintext highlighter-rouge">configure.ac</code> file:</p>
-
-<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PKG_CHECK_MODULES(preCICE,</span> <span class="err">libprecice)</span>
-</code></pre></div></div>
-
-<p>This will extract the <code class="language-plaintext highlighter-rouge">CFLAGS</code> and <code class="language-plaintext highlighter-rouge">LIBS</code> into <code class="language-plaintext highlighter-rouge">preCICE_CFLAGS</code> and <code class="language-plaintext highlighter-rouge">preCICE_LIBS</code>, which you can then use in your <code class="language-plaintext highlighter-rouge">Makefile.am</code> as:</p>
-
-<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">my_cxx_flags</span> <span class="o">+=</span> @preCICE_CFLAGS@
-<span class="nv">my_ldadd</span> <span class="o">+=</span> @preCICE_LIBS@
-</code></pre></div></div>
-
-<h2 id="make-and-scripts-in-general">Make and scripts in general</h2>
-
-<p>The recommended way to link preCICE to another project is by embedding pkg-config commands into a building script/Makefile to extract the necessary flags from the generated <code class="language-plaintext highlighter-rouge">libprecice.pc</code> file.</p>
-
-<p>Use the following two commands to fetch necessary flags:</p>
-
-<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">pkg-config</span> <span class="err">--cflags</span> <span class="err">libprecice</span>
-<span class="err">pkg-config</span> <span class="err">--libs</span>   <span class="err">libprecice</span>
-</code></pre></div></div>
-
-<p>These two commands should return (if the paths are not already known by the system):</p>
-
-<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">-I/path/to/include</span>
-<span class="err">-L/path/to/lib</span> <span class="err">-lprecice</span>
-</code></pre></div></div>
-
-<p>You can use backticks to evaluate a command and use its result in your shell script, for example:</p>
-
-<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CFLAGS</span> <span class="o">=</span> <span class="sb">`</span>pkg-config <span class="nt">--cflags</span> libprecice<span class="sb">`</span>
-</code></pre></div></div>
-
-<p>The syntax to do the same in a Makefile is:</p>
-
-<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CFLAGS</span> <span class="o">=</span> <span class="p">$(</span>shell pkg-config <span class="nt">--cflags</span> libprecice<span class="p">)</span>
-</code></pre></div></div>
-
-<p>If you built preCICE and installed it into a custom prefix, e.g. <code class="language-plaintext highlighter-rouge">~/software/</code>, you need to set the following environment variable first:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"~/software/lib/pkgconfig"</span>
-</code></pre></div></div>
-
-<p>Now you can use <code class="language-plaintext highlighter-rouge">pkg-config</code> to extract the necessary flags.</p>
-
-<h2 id="troubleshooting">Troubleshooting</h2>
-
-<h3 id="precicehpp-cannot-be-found"><code class="language-plaintext highlighter-rouge">precice.hpp</code> cannot be found</h3>
-
-<p>There are two reasons you may be getting this error:</p>
+<p>The following tutorials can be used as a usage example for the FEniCSx adapter:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">pkg-config</code> could not find a <code class="language-plaintext highlighter-rouge">libprecice.pc</code> file (keep reading)</li>
-  <li>you are including the file as <code class="language-plaintext highlighter-rouge">precice.hpp</code> and not as <code class="language-plaintext highlighter-rouge">precice/precice.hpp</code></li>
+  <li>Solver for Neumann and Dirichlet participants of the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-heat-conduction/solver-fenicsx">partitioned heat conduction equation</a></li>
+  <li><a href="https://github.com/precice/tutorials/tree/develop/flow-over-heated-plate/solid-fenicsx">Solid participant for flow over plate</a></li>
 </ul>
 
-<h3 id="precicech-cannot-be-found"><code class="language-plaintext highlighter-rouge">preciceC.h</code> cannot be found</h3>
+<p>For more details please consult the references given in the <a href="#related-literature">reference section</a>.</p>
 
-<p>Simiarly to the C++ version, there are two reasons you may be getting this error:</p>
+<h2 id="how-can-i-use-my-own-solver-with-the-adapter">How can I use my own solver with the adapter</h2>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">pkg-config</code> could not find a <code class="language-plaintext highlighter-rouge">libprecice.pc</code> file (keep reading)</li>
-  <li>you are including the file as <code class="language-plaintext highlighter-rouge">preciceC.hpp</code> and not as <code class="language-plaintext highlighter-rouge">precice/preciceC.hpp</code></li>
-</ul>
+<p>The adapter exposes an API that must be called in a script using FEniCSx. Look at the tutorials from above as an example. For more information about the purpose of each function provided by the FEniCSx adapter, you can refer to the respective Python docstrings within the <a href="https://github.com/precice/fenicsx-adapter/blob/develop/fenicsxprecice/fenicsxprecice.py">code</a>.</p>
 
-<h3 id="libprecice-cannot-be-found-during-building">libprecice cannot be found (during building)</h3>
+<h2 id="you-need-more-information">You need more information?</h2>
 
-<p>If you installed preCICE in a path not known by your compiler/linker, pkg-config will try to locate the file <code class="language-plaintext highlighter-rouge">libprecice.pc</code> and extract the necessary information. However, pkg-config only looks in specific places (usually in <code class="language-plaintext highlighter-rouge">/usr/lib/pkgconfig</code>, but <em>not</em> e.g. in <code class="language-plaintext highlighter-rouge">/usr/local/lib/pkgconfig</code>). Before building, you need to set the path where pkg-config can find this file, e.g. with:</p>
+<p>Please don’t hesitate to ask questions about the FEniCSx adapter on <a href="https://precice.discourse.group/">discourse</a> or in <a href="https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im">Matrix</a>.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span>/path/to/lib/pkgconfig <span class="o">[</span>make or anything <span class="k">else</span><span class="o">]</span>
-</code></pre></div></div>
+<h2 id="how-to-cite">How to cite</h2>
 
-<h3 id="libprecice-cannot-be-found-at-runtime">libprecice cannot be found (at runtime)</h3>
+<p>If you are using our adapter, please consider citing our paper:</p>
 
-<p>If you built preCICE (as a shared library) in a non-standard path, pkg-config only helps during building. At runtime, libprecice will not be discoverable, unless you e.g. include this path in your <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code>.</p>
+<blockquote>
+  <p><strong>Vinnitchenko, N., Desai, I., Rodenberg, B., Hildebrand, P., Humbert, A. &amp; Uekermann, B.</strong>
+<em>FEniCSx-preCICE: Coupling FEniCSx to other simulation software.</em>
+<strong>SoftwareX</strong>, Volume TODO, Year 2026, Pages TODO.
+<a href="https://precice.org">DOI/TODO</a> | <a href="https://precice.org">URL/TODO</a></p>
+</blockquote>
 
-<p>Depending on the configuration of <code class="language-plaintext highlighter-rouge">ld</code> it might look by default into <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> or not. This might lead to linking problems and can be either solved by adding <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> to the <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> or <a href="https://lonesysadmin.net/2013/02/22/error-while-loading-shared-libraries-cannot-open-shared-object-file/">changing the configuration of <code class="language-plaintext highlighter-rouge">ld</code></a>.</p>
+<h2 id="related-literature">Related literature</h2>
 
-<p>If you are running on macOS, you may need to set <code class="language-plaintext highlighter-rouge">DYLD_LIBRARY_PATH</code> in addition of <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code>.</p>
+<blockquote>
+  <p><strong>Rodenberg, B., Desai, I., Hertrich, R., Jaust, A., &amp; Uekermann, B.</strong>
+<em>FEniCS–preCICE: Coupling FEniCS to other simulation software.</em>
+<strong>SoftwareX</strong>, Volume 16, Elsevier, 2021.
+<a href="https://doi.org/10.1016/j.softx.2021.1001072">DOI: 10.1016/j.softx.2021.1001072</a></p>
+</blockquote>
 
-<h3 id="preciceversionh-cannot-be-found"><code class="language-plaintext highlighter-rouge">precice/Version.h</code> cannot be found</h3>
+<p>and</p>
 
-<p>Version 2.5 introduces the <code class="language-plaintext highlighter-rouge">precice/Version.h</code> header and includes it by default in <code class="language-plaintext highlighter-rouge">precice.hpp</code> and <code class="language-plaintext highlighter-rouge">preciceC.h</code>.
-This file is generated during the preCICE build and not part of the sources.</p>
-
-<p>If you are using preCICE directly from the build directory without the help of pkg-config nor CMake, then you are likely missing an include-directory.
-Prefer to use pkg-config or CMake as these directories may change without further notice. Alternatively, add <code class="language-plaintext highlighter-rouge">&lt;build-directory&gt;/src/</code> to your include-directories.</p>
+<blockquote>
+  <p><strong>Hildebrand, P.</strong>
+<em>Extending the FEniCSx Adapter for the Coupling Library preCICE.</em>
+Master’s thesis, Technical University of Munich, March 2023.
+<a href="https://mediatum.ub.tum.de/doc/1706280">URL</a></p>
+</blockquote>
 
 
     
@@ -1925,12 +1898,19 @@ Prefer to use pkg-config or CMake as these directories may change without furthe
 
 
 
-,{
-  "@type": "ListItem",
-  "position": 2,
-  "name": "Linking to preCICE",
-  "item": "https://precice.org/installation-linking.html"
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2213,7 +2193,7 @@ Prefer to use pkg-config or CMake as these directories may change without furthe
         </a>
         </p>
         <p>
-        Page last updated: Nov 21, 2025<br>
+        Page last updated: Mar 12, 2026<br>
         Site last updated: Mar 12, 2026
         </p>
         <p>
