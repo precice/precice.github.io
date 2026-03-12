@@ -2045,7 +2045,13 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="load-balancing">Load balancing</h2>
 
-<p>Under <code class="language-plaintext highlighter-rouge">load_balancing_settings</code>, the following parameters can be set</p>
+<p>Load balancing can be activated by setting <code class="language-plaintext highlighter-rouge">load_balancing</code> to true.
+It balances based on either the elapsed time required to solve the prior iteration <code class="language-plaintext highlighter-rouge">type="time""</code> or the number of active simulations <code class="language-plaintext highlighter-rouge">type=active</code>.
+One Initial load balancing step is performed, prior to any computation (assuming equal workload for time based load balancing or the current active counts for <code class="language-plaintext highlighter-rouge">active</code> load balancing.).
+Subsequently, in the following iteration another load balancing step is performed based. (This is mainly for the time based balancing to use the just acquired timings.)
+Afterwards balancing is performed <code class="language-plaintext highlighter-rouge">every_n_time_windows</code>.
+Upon activation, further configuration must be provided in <code class="language-plaintext highlighter-rouge">load_balancing_settings</code>.
+The following parameters can be set</p>
 
 <table>
   <thead>
@@ -2062,17 +2068,39 @@ $('#toc').on('click', 'a', function() {
       <td><code class="language-plaintext highlighter-rouge">1</code></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">balancing_threshold</code></td>
-      <td>Integer threshold value.</td>
+      <td><code class="language-plaintext highlighter-rouge">partitioning</code></td>
+      <td>Partitioning Algorithm. Options: [“lpt”].</td>
+      <td><code class="language-plaintext highlighter-rouge">"lpt"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">type</code></td>
+      <td>Load balancing type. Options: [“time”, “active”]</td>
+      <td><code class="language-plaintext highlighter-rouge">"time"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">threshold</code></td>
+      <td>Threshold parameter</td>
       <td><code class="language-plaintext highlighter-rouge">0</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">balance_inactive_sims</code></td>
-      <td>If <code class="language-plaintext highlighter-rouge">true</code>, inactive simulations associated to redistributed active simulations are moved to the new ranks of the active simulations. See <a href="tooling-micro-manager-adaptivity.html#balance-inactive-simulations">balance inactive simulations</a>.</td>
-      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td>Balance inactive simulations</td>
+      <td><code class="language-plaintext highlighter-rouge">False</code></td>
     </tr>
   </tbody>
 </table>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"load_balancing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"load_balancing_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"every_n_time_windows"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"partitioning"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lpt"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"balance_inactive_sims"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <h2 id="interpolate-a-crashed-micro-simulation">Interpolate a crashed micro simulation</h2>
 
