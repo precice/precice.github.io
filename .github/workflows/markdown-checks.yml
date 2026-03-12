@@ -19,9 +19,15 @@ jobs:
           globs: "**/*.md"
           config: ".markdownlint.json"
 
+      - name: Determine changed markdown files
+        id: changed-files
+        run: |
+          FILES=$(git diff --name-only origin/master | grep '\.md$' || true)
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+
       - name: Run markdown link check
+        if: steps.changed-files.outputs.files != ''
         uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
           config-file: ".markdown-link-check-config.json"
-          folder-path: "."
-          file-extension: ".md"
+          files: ${{ steps.changed-files.outputs.files }}
