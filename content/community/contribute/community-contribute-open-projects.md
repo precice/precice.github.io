@@ -36,7 +36,7 @@ Some of these projects we advertise publicly, in programs such as the Google Sum
 Are you looking for or offering a thesis / PhD / other related job? Have a look also at [our forum](https://precice.discourse.group/c/jobs/13).
 {% endtip %}
 
-## Google Summer of Code
+## Google Summer of Code (GSoC)
 
 The [Google Summer of Code](https://summerofcode.withgoogle.com/) is _"a global, online program focused on bringing new contributors into open source software development. GSoC Contributors work with an open source organization on a 12+ week programming project under the guidance of mentors."_.
 
