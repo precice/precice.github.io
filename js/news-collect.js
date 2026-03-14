@@ -1,8 +1,15 @@
-console.log(">>> USING JS FILE: news-collect.js LOADED <<<");
-
 document.addEventListener("DOMContentLoaded", async function () {
   const newsContainer = document.getElementById("news-container");
   const loadingText = document.getElementById("loading-news");
+
+  function isSafeUrl(url) {
+    try {
+      var parsed = new URL(url, window.location.origin);
+      return parsed.protocol === "https:" || parsed.protocol === "http:";
+    } catch (e) {
+      return false;
+    }
+  }
 
   try {
     const response = await fetch("/assets/data/news.json");
@@ -12,29 +19,47 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (!topics.length) throw new Error("No topics found");
 
-    topics.sort((a, b) => new Date(b.last_posted_at) - new Date(a.last_posted_at));
+    topics.sort((a, b) => new Date(b.created_at || b.last_posted_at) - new Date(a.created_at || a.last_posted_at));
     loadingText.style.display = "none";
 
-for (const topic of topics.slice(0, 3)) {
-  const col = document.createElement("div");
-  col.className = "col-md-4 col-sm-6 col-xs-12";
+    for (const topic of topics.slice(0, 3)) {
+      const col = document.createElement("div");
+      col.className = "col-md-4 col-sm-6 col-xs-12";
 
-  const card = document.createElement("div");
-  card.className = "news-card";
+      const card = document.createElement("div");
+      card.className = "news-card";
 
-  // NOTE: The `adapter` class is used here as an already available card class, feel free to provide a new one.
-  card.innerHTML = `<a href="${topic.url}" target="_blank" rel="noopener noreferrer" class="adapter no-external-marker">
-    <h4><strong>${topic.title}</strong></h4>
-    <p>${topic.description}</p>
-    </a>
-    <p class="text-muted"><small>
-      Last activity: ${new Date(topic.last_posted_at).toLocaleDateString("en-GB")}
-    </small></p>
-  `;
+      const date = new Date(topic.created_at || topic.last_posted_at).toLocaleDateString("en-GB");
 
-  col.appendChild(card);
-  newsContainer.appendChild(col);
-}
+      const link = document.createElement("a");
+      if (isSafeUrl(topic.url)) {
+        link.setAttribute("href", topic.url);
+      }
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+      link.className = "news-link no-external-marker";
+
+      const h4 = document.createElement("h4");
+      const strong = document.createElement("strong");
+      strong.textContent = topic.title;
+      h4.appendChild(strong);
+
+      const descP = document.createElement("p");
+      descP.textContent = topic.description;
+
+      const dateP = document.createElement("p");
+      dateP.className = "text-muted";
+      const small = document.createElement("small");
+      small.textContent = date;
+      dateP.appendChild(small);
+
+      link.appendChild(h4);
+      link.appendChild(descP);
+      link.appendChild(dateP);
+      card.appendChild(link);
+      col.appendChild(card);
+      newsContainer.appendChild(col);
+    }
 
   } catch (err) {
     console.error(err);

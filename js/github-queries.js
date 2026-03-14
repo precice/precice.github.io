@@ -10,7 +10,7 @@
 // Get the updated field of an entry of the feed and format it like "Jan 1, 1970"
 function formatDate(updated) {
   // Extract the date and create a Date object
-  date = new Date(updated);
+  var date = new Date(updated);
 
   // Names for the months (we do not need an external library just for this)
   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -27,12 +27,23 @@ var github_api_endpoint = 'https://api.github.com/repos/precice/precice/releases
     fetch(github_api_endpoint).then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
-          tag = data[0].name;
-          published_at = data[0].published_at;
-          url = data[0].html_url
-            // Format the text, which contains the link, the title, and the date.
-            var text = '<a href="' + url + '" class="btn btn-secondary no-icon action-button" role="button">Latest ' + tag + ' (' + formatDate(published_at) + ') &nbsp;<i class="fas fa-download"></i></a>';
-            document.getElementById('latest-release').innerHTML = text;
+          var tag = data[0].name;
+          var published_at = data[0].published_at;
+          var url = data[0].html_url;
+
+          var link = document.createElement('a');
+          link.setAttribute('href', url);
+          link.className = 'btn btn-secondary no-icon action-button';
+          link.setAttribute('role', 'button');
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+          link.appendChild(document.createTextNode('Latest ' + tag + ' (' + formatDate(published_at) + ') \u00A0'));
+          var icon = document.createElement('i');
+          icon.className = 'fas fa-download';
+          link.appendChild(icon);
+
+          var container = document.getElementById('latest-release');
+          container.replaceChildren(link);
         });
     }
     else throw new Error("Problem with fetching releases");
@@ -54,9 +65,25 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch(github_api_endpoint).then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
-          count = data.stargazers_count
-          var text = '<a href="https://github.com/precice/precice/" class="btn btn-default no-icon action-button" role="button">Star on Github &nbsp;<i class="fas fa-star"></i><span id="stargazers"> ' + count + '</span></a>';
-          document.getElementById('github-button').innerHTML = text;
+          var count = data.stargazers_count;
+
+          var link = document.createElement('a');
+          link.setAttribute('href', 'https://github.com/precice/precice/');
+          link.className = 'btn btn-default no-icon action-button';
+          link.setAttribute('role', 'button');
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+          link.appendChild(document.createTextNode('Star on GitHub \u00A0'));
+          var icon = document.createElement('i');
+          icon.className = 'fas fa-star';
+          link.appendChild(icon);
+          var span = document.createElement('span');
+          span.id = 'stargazers';
+          span.textContent = ' ' + count;
+          link.appendChild(span);
+
+          var container = document.getElementById('github-button');
+          container.replaceChildren(link);
       });
     }
     else throw new Error("Problem with fetching stargazers");

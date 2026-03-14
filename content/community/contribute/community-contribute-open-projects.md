@@ -36,7 +36,7 @@ Some of these projects we advertise publicly, in programs such as the Google Sum
 Are you looking for or offering a thesis / PhD / other related job? Have a look also at [our forum](https://precice.discourse.group/c/jobs/13).
 {% endtip %}
 
-## Google Summer of Code
+## Google Summer of Code (GSoC)
 
 The [Google Summer of Code](https://summerofcode.withgoogle.com/) is _"a global, online program focused on bringing new contributors into open source software development. GSoC Contributors work with an open source organization on a 12+ week programming project under the guidance of mentors."_.
 
@@ -54,12 +54,19 @@ Additionally, show us what you have tried already (see "entry test" in each proj
 
 We will contact you via replies and/or private messages in the forum, to find out together if these topics are a good fit. You can alternatively ask quick questions in the [Matrix chat](https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im). Don't miss the [guidelines](#general-guidelines) at the bottom of this page.
 
+{% important %}
+We are a small project, and we are experiencing a spike of activity, which is very difficult to review next to the usual work.
+Please do not ask whether you can work on an issue - not without details. If you find something interesting to you that you feel it is clear enough for you to contribute, go ahead and submit a PR.
+We value quality higher than quantity. If you find something interesting, take your time and focus on it.
+We expect to work with the accepted GSoC participants in the summer. Our capacity to review external contributions before that is very limited.
+{% endimportant %}
+
 ### Project: Website modernization
 
 This website is built with [Jekyll](https://jekyllrb.com/),
 a straight-forward static site generator that has served us well,
 but now starts to feel a bit restrictive
-([GitHub repository](https://github.com/precice/precice.github.io), [documentation]docs-meta-overview.html)).
+([GitHub repository](https://github.com/precice/precice.github.io), [documentation](docs-meta-overview.html)).
 We envy the dark theme, the nice footer that showcases contributions, and the nice search engine support
 when we look at the documentation of other community projects, such as [GitLab](https://docs.gitlab.com/user/) or [Docker](https://docs.docker.com/get-started/).
 We also required some hacky jekyll plugins to integrate multiple repositories into one jekyll website, which are a bit error-prone.

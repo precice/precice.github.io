@@ -34,6 +34,7 @@ def main():
                 "title": topic["title"],
                 "slug": topic["slug"],
                 "url": f"https://precice.discourse.group/t/{topic['slug']}/{topic['id']}",
+                "created_at": topic.get("created_at"),
                 "last_posted_at": topic.get("last_posted_at"),
                 "like_count": topic.get("like_count"),
                 "posts_count": topic.get("posts_count"),
