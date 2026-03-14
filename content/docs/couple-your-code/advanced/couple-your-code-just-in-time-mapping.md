@@ -158,7 +158,7 @@ As a minimal example, we consider here two timestamps `t1 = 0.25` and `t2 = 0.5`
 
 Of course, both variants work with preCICE, but the resulting computational cost might be considerable different (with Version 1 being much more efficient).
 
-A more comprehensive description of all involved API function and their arguments is given in the [API documentation](/doxygen/main/classprecice_1_1Participant.html) (see the section on just-in-time mapping). Many other configuration and code examples can be found in related [integration tests](https://github.com/precice/precice/tree/develop/tests/serial/just-in-time-mapping). Just-in-time mapping includes full support for [time interpolation](couple-your-code-waveform.html) and subcycling.
+A more comprehensive description of all involved API function and their arguments is given in the [API documentation](https://api.precice.org/cpp/latest/classprecice_1_1Participant.html) (see the section on just-in-time mapping). Many other configuration and code examples can be found in related [integration tests](https://github.com/precice/precice/tree/develop/tests/serial/just-in-time-mapping). Just-in-time mapping includes full support for [time interpolation](couple-your-code-waveform.html) and subcycling.
 
 ## Limitations
 
