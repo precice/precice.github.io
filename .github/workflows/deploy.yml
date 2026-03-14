@@ -15,7 +15,7 @@ jobs:
     name: pre-commit checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Setup python
         uses: actions/setup-python@v5
         with:
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout website
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
           lfs: false
@@ -36,14 +36,14 @@ jobs:
           fetch-depth: 0 # full history required to determine last edit
 
       - name: Fetch - precice develop
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: precice/precice
           ref: develop
           path: develop
 
       - name: Fetch - precice main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: precice/precice
           ref: main
