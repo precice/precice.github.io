@@ -16,7 +16,7 @@ The reference implementations are the so called _solver dummies_, which can be a
 
 This is the native API of preCICE.
 
-- Location: [`precice/precice/tree/main/src/precice/Participant.hpp`](https://github.com/precice/precice/tree/main/src/precice/Participant.hpp)
+- Location: [`precice/precice/src/precice/Participant.hpp`](https://github.com/precice/precice/tree/main/src/precice/Participant.hpp)
 - Installation: Automatically included
 - Usage: `#include "precice/precice.hpp"`
 - Reference implementation: [`precice/precice/examples/solverdummies/cpp`](https://github.com/precice/precice/tree/main/examples/solverdummies/cpp)
@@ -28,7 +28,7 @@ See also the source code documentation (Doxygen pages) for the [latest release](
 
 C bindings are included in the main repository.
 
-- Location: [`precice/precice/tree/main/extras/bindings/c`](https://github.com/precice/precice/tree/main/extras/bindings/c)
+- Location: [`precice/precice/extras/bindings/c`](https://github.com/precice/precice/tree/main/extras/bindings/c)
 - Installation: [native bindings](installation-source-advanced.html#disabling-native-bindings)
 - Usage: `#include "precice/preciceC.h"`
 - Reference implementation: [`precice/precice/examples/solverdummies/c`](https://github.com/precice/precice/tree/main/examples/solverdummies/c)
@@ -38,7 +38,7 @@ C bindings are included in the main repository.
 
 Fortran bindings are included in the main repository.
 
-- Location: [`precice/precice/tree/main/extras/bindings/fortran`](https://github.com/precice/precice/tree/main/extras/bindings/fortran)
+- Location: [`precice/precice/extras/bindings/fortran`](https://github.com/precice/precice/tree/main/extras/bindings/fortran)
 - Installation: [native bindings](installation-source-advanced.html#disabling-native-bindings)
 - Reference implementation: [`precice/precice/examples/solverdummies/fortran`](https://github.com/precice/precice/tree/main/examples/solverdummies/fortran)
 - Fortran API documentation: [latest release](https://api.precice.org/cpp/latest/preciceFortran_8hpp.html), [development version](https://api.precice.org/cpp/develop/preciceFortran_8hpp.html)
