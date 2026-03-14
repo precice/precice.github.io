@@ -6,7 +6,7 @@ permalink: dev-docs-overview.html
 
 This section contains information for preCICE maintainers and contributors.
 
-To see the source code documentation, please visit our [doxygen](dev-docs-sourcedocs.html).
+See also the [API and source documentation](couple-your-code-api.html).
 
 ## Getting started
 
