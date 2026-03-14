@@ -5,7 +5,7 @@ keywords: api, adapter, library, bindings, Participant
 summary: "This page gives an overview on available preCICE APIs and minimal reference implementations."
 ---
 
-preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. If you are new to the preCICE API, we recommended that you first follow the [step-by-step guide](couple-your-code-preparing-your-solver.html).
+preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. If you are new to the preCICE API, we recommended that you first follow the [step-by-step guide](couple-your-code-preparing-your-solver.html). If you are using an older version, see the [porting guides](couple-your-code-porting-overview) to port an adapter between major version of preCICE.
 
 Next to the native C++ API, bindings for further languages are also available. In this page, we provide an overview of all supported languages, including location, installation, and minimal reference implementations.
 
