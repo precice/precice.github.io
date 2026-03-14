@@ -16,7 +16,7 @@ After all dependencies are ready to use, proceed with [configuring the preCICE b
 
 {% tip %}
 This documentation concerns preCICE v{{ site.precice_version }}.
-Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](http://127.0.0.1:4000/couple-your-code-porting-overview.html).
+Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](couple-your-code-porting-overview.html).
 {% endtip %}
 
 ## Overview
@@ -124,7 +124,7 @@ export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z
 
 ### Boost
 
-preCICE uses [Boost](http://www.boost.org/) for several features.
+preCICE uses [Boost](https://www.boost.org/) for several features.
 The minimum required version is 1.74.0, but newer Boost versions are not always compatible to previous ones.
 
 You might save some time and space by installing only the necessary libraries:
@@ -159,7 +159,7 @@ For help, see also the ranges set in the [Spack recipe](https://github.com/spack
 
 #### Build boost from source
 
-1. [Download](http://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
+1. [Download](https://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
 2. Prepare the installation, selecting only the libraries that need to be built (this does not affect the header-only libraries).
    Select a prefix to install Boost to. This will later contain the directories `include` and `lib`.
    On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).
@@ -188,7 +188,7 @@ For help, see also the ranges set in the [Spack recipe](https://github.com/spack
 
    The path points to the file `BoostConfig.cmake` which is required by CMake. If this path does not exist, you can also run `locate BoostConfig.cmake` to determine the path to the file.
 
-For more information, please refer to the "[Getting Started](http://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
+For more information, please refer to the "[Getting Started](https://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
 
 ### libxml2
 
@@ -254,15 +254,14 @@ If you prefer to install the most recent version from source, do the following:
 3. Use the `make` command as the configure script proposes, e.g.
   `make PETSC_DIR=/path/to/petsc PETSC_ARCH=arch-linux-c-opt all`
   Further documentation see the [PETSc installation documentation](https://petsc.org/release/install/).
-4. Usage: You will need to add PETSc to your dynamic linker search path (`LD_LIBRARY_PATH` on Linux or `DYLD_LIBRARY_PATH` on macOS). You may also need to set the `$PETSC_ARCH`.
-
-Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH`, or `PYTHONPATH`. Here is an example:
+4. Usage: You will need to add PETSc to your pkg-config path (`PKG_CONFIG_PATH`). Here is an example:
 
    ```bash
-   export PETSC_DIR="/path/to/petsc"
-   export PETSC_ARCH="arch-linux-c-opt"
-   export LD_LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LD_LIBRARY_PATH"
+   export LD_LIBRARY_PATH="/path/to/petsc/lib:$LD_LIBRARY_PATH"
+   export PKG_CONFIG_PATH="/path/to/petsc/lib/pkgconfig:$PKG_CONFIG_PATH"
    ```
+
+   Check that `pkg-config --libs --cflags PETSc` returns valid paths.
 
 ### Ginkgo
 

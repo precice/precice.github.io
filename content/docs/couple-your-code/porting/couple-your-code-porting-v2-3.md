@@ -197,7 +197,7 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
   // Move initialize to the place where you called initializeData() previously.
 - couplingInterface.initializeData();
 + participant.initialize();
-+ double dt = participant.getMaxTimeWindowSize();
++ double dt = participant.getMaxTimeStepSize();
 ```
 
 Typical error message that should lead you here:
@@ -210,6 +210,8 @@ error: ‘class precice::Participant’ has no member named ‘initializeData’
 ```
 
 ## preCICE configuration file
+
+See the [tutorials](tutorials.html) for some examples, and the [configuration reference](configuration-xml-reference.html) for more details.
 
 - The XML tag `<solver-interface>` was removed and all underlying functionality was moved to the `<precice-configuration>` tag. Remove the lines including `<solver-interface>` and `</solver-interface>`, and move any attributes (such as `experimental`) from the `solver-interface` to the `precice-configuration` tag. Move the `sync-mode` attribute to the new `<profiling>` tag (see below).
 - The `dimensions` configuration is now defined per mesh. Move the `dimensions="2"` or `dimensions="3"` from the `<solver-interface>` tag to each `<mesh>` tag: `<mesh name="MeshOne" dimensions="3">`.
@@ -259,7 +261,7 @@ error: ‘class precice::Participant’ has no member named ‘initializeData’
     - Using actions with multiple couping schemes and mixed time window sizes is not well defined!
 
 - Coupling schemes
-  - Remove `<extraplation-order value="..." />` in `<coupling-scheme>`. Contact us if you need this feature.
+  - Remove `<extrapolation-order value="..." />` in `<coupling-scheme>`. Contact us if you need this feature.
   - Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`. Not defining convergence measures leads to iterations until `max-iterations` is reached.
   - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
 

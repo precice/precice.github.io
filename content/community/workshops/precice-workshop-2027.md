@@ -14,7 +14,7 @@ The 7th preCICE Workshop will be held for the first time outside Germany, at the
 The workshop will include a hands-on [training course](community-training.html). The course is suited for both beginners and current preCICE users, since advanced topics will also be covered. This year, we are extending the course by two new modules: one on best practices in the development of preCICE adapters and one on how to couple solvers using Isogeometric Analysis (IGA).
 
 Keep watching this space for updates on registration, the workshop program, and more.
-<!-- For any organizational questions (for example, visa-related requests), please contact `organizers` at `todo`. -->
+For any organizational questions (for example, visa-related requests), please contact `precice2027-org` at `lists.tudelft.nl`.
 
 ## Call for contributions
 
@@ -50,7 +50,10 @@ We are looking into options for a few travel awards for participants that cannot
 ## Help us advertise
 
 A successful workshop needs the right crowd of people. Please help us attract people from your field and make this workshop more relevant for you.
+For that, feel free to use [this advertising material](https://ipvscloud.informatik.uni-stuttgart.de/s/TRXSiTFxFnTb33i) (poster, slide, and further formats).
 Did you know? Many past participants only discovered this workshop via a direct email.
+
+<a href="https://ipvscloud.informatik.uni-stuttgart.de/s/TRXSiTFxFnTb33i" title="preCICE Workshop 2027 advertising material" class="no-icon"><img src="material/flyers/precice2027-poster-thumbnail.png" alt="preCICE Workshop 2027 poster (png thumbnail)" style="max-width:200px;"></a>
 
 ## Supporters
 

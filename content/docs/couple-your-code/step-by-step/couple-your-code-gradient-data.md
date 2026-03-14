@@ -9,6 +9,11 @@ summary: "So far, our mesh contains only data. This is sufficient for most of th
 This feature is available since version 2.4.0.
 {% endversion %}
 
+{% experimental %}
+This is an experimental feature.
+Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet.
+{% endexperimental %}
+
 When using `nearest-neighbor-gradient` mapping, we require coupling data and additional gradient data. We have seen in [Step 3](couple-your-code-mesh-and-data-access.html) how to write data to the mesh.
 Now, we will learn how to write gradient data to the mesh. For this purpose, we use the following API method:
 <ul id="apiTabs" class="nav nav-tabs">
@@ -125,10 +130,6 @@ while not simulation_done():
 
 </div>
 </div>
-
-{% experimental %}
-This is an experimental feature.
-{% endexperimental %}
 
 {% version 2.4.0 %}
 For preCICE versions lower than 2.5.0, you need to set the flag `gradient="on"` in the configuration file, whenever you require to write gradient data. An exemplary xml configuration file is given below. Starting from preCICE version 2.5.0, the gradient requirement is automatically deduced (based on the selected mapping) and can be queried in the code, as usual. Hence, the `gradient="on"` flag must not be set in the configuration file.

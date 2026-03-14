@@ -13,11 +13,19 @@ In this page, you can find information about features that we plan to introduce 
 If you are looking for library features introduced already in the past, have a look at our [Changelog](https://github.com/precice/precice/blob/develop/CHANGELOG.md).
 For most recent developments waiting for the next release, have a look at the [unreleased changes](#changelog).
 
+## Experimental
+
+The following features have recently been released, but are still experimental,
+meaning that the respective API or configuration might change in a minor release:
+
+- [Dynamic coupling meshes](couple-your-code-moving-or-changing-meshes.html) - Since v3.2.0 ([GitHub project](https://github.com/orgs/precice/projects/20/views/1))
+- [Just-in-time data mapping](couple-your-code-just-in-time-mapping.html), e.g., for particle codes - Since v3.2.0
+- [Geometric multi-scale data mapping](configuration-mapping.html#geometric-multiscale-mapping), e.g. for 3D-1D coupled problems - Since v3.0.0 ([GitHub project](https://github.com/orgs/precice/projects/14))
+- [Gradient data](couple-your-code-gradient-data.html) - Since v2.4.0
+
 ## In active development
 
 - [GPU support for partition-of-unity radial-basis-function data mapping](https://github.com/precice/precice/pull/2346)
-- [Dynamic coupling meshes](https://github.com/orgs/precice/projects/20/views/1)
-- [Geometric multi-scale data mapping](https://github.com/orgs/precice/projects/14), e.g. for 3D-1D and 3D-2D coupled problems
 - [Extendable and modular system tests](https://github.com/orgs/precice/projects/12)
 - [Volume coupling for OpenFOAM](https://github.com/orgs/precice/projects/9)
 - [Standardization of adapter and tooling configurations](https://github.com/precice/preeco-orga/issues/18)

@@ -47,7 +47,7 @@ To manually format configuration files, use pre-commit.
 pre-commit run -va format-precice-config
 ```
 
-To format your `precice-config.xml`, you can use the script `format_precice_config.py` which is part of the [preCICE pre-commit hooks](https://github.com/precice/precice-pre-commit-hooks) (without needing to install the pre-commit hooks) and depends on the lxml package (install it with `pip install --user lxml`). To format a file in place:
+To format your `precice-config.xml`, you can use the script `format_precice_config.py` which is part of the [preCICE pre-commit hooks](https://github.com/precice/precice-pre-commit-hooks) (without needing to install the pre-commit hooks) and depends on the lxml package (install it with `pip install lxml` in a [virtual environment](https://docs.python.org/3/library/venv.html#creating-virtual-environments)). To format a file in place:
 
 ```bash
 format_precice_config.py precice-config.xml

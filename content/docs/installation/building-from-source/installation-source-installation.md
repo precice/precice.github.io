@@ -17,6 +17,8 @@ To test your installation please run `make test_install`.
 This will attempt to build our C++ example program against the **installed version** of the library.
 This is commonly known as _the smoke test_.
 
+Alternatively, run `precice-version` in a terminal (see [built-in tooling](tooling-builtin.html#precice-version)), to see which version is being picked up at runtime.
+
 ## Next steps
 
 If you chose a system directory as installation prefix, then this concludes the preCICE installation and you should have a working installation of preCICE on your system.

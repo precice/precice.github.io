@@ -45,7 +45,7 @@ Talking about preCICE, at any level? Then, read and cite the latest preCICE refe
 {% endif %}
 {% endfor %}
 
-Talking specifically about preCICE v1? Then keep citing the [preCICE v1 reference paper](http://www.sciencedirect.com/science/article/pii/S0045793016300974).
+Talking specifically about preCICE v1? Then keep citing the [preCICE v1 reference paper](https://www.sciencedirect.com/science/article/pii/S0045793016300974).
 
 ### Adapters
 
@@ -141,13 +141,13 @@ Are you looking for how to start coupling your code? Then the [documentation](co
 
 * The latest reference article for preCICE is [preCICE v2: A sustainable and user-friendly coupling library](https://doi.org/10.12688/openreseurope.14445.2). This gives a wide overview over the complete preCICE ecosystem and is a great place to start reading about the modern preCICE (most probably even for the versions after v2).
 
-* The original reference article for preCICE is [preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling](http://www.sciencedirect.com/science/article/pii/S0045793016300974). This may not be the best introduction for new users because of its condensed form.
+* The original reference article for preCICE is [preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling](https://www.sciencedirect.com/science/article/pii/S0045793016300974). This may not be the best introduction for new users because of its condensed form.
 
 A very good first reading is the dissertations of the core preCICE developers:
 
 * Bernhard Gatzhammer introduced preCICE in his dissertation [Efficient and Flexible Partitioned Simulation of Fluid-Structure Interactions](https://doi.org/10.5281/zenodo.14833701) (2014). Chapters 1-4 give a detailed introduction of most of the preCICE features and are still valid to a large extend. Start here for an explanation of the different coupling schemes, of the different communication methods, or of the data mapping techniques. Note that the "geometry interface" and "server mode" features have been removed.
 
-* Benjamin Uekermann introduced inter- and intra-solver parallelization in his dissertation [Partitioned Fluid-Structure Interaction on Massively Parallel Systems](https://mediatum.ub.tum.de/doc/1320661/document.pdf) (2016). Chapter 2 gives a compact introduction to preCICE. Furthermore, read here especially for the parallel coupling schemes, which allow a simultaneous execution of multiple solvers (Chapter 3) and the realization of all main features on distributed data (Chapter 4).
+* Benjamin Uekermann introduced inter- and intra-solver parallelization in his dissertation [Partitioned Fluid-Structure Interaction on Massively Parallel Systems](https://mediatum.ub.tum.de/1320661) (2016). Chapter 2 gives a compact introduction to preCICE. Furthermore, read here especially for the parallel coupling schemes, which allow a simultaneous execution of multiple solvers (Chapter 3) and the realization of all main features on distributed data (Chapter 4).
 
 The list of completed dissertations also includes:
 

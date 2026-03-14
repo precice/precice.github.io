@@ -22,6 +22,10 @@ This has a few important benefits:
 
 ## Installation
 
+{% tip %}
+This tool is also available as part of the [preCICE CLI](tooling-cli.html).
+{% endtip %}
+
 We provide two python packages ways of visualizing preCICE configurations.
 
 1. `precice-config-visualizer` which translates preCICE configuration files to a graph and optionally renders them as an image.
