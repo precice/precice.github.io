@@ -45,7 +45,7 @@ Talking about preCICE, at any level? Then, read and cite the latest preCICE refe
 {% endif %}
 {% endfor %}
 
-Talking specifically about preCICE v1? Then keep citing the [preCICE v1 reference paper](http://www.sciencedirect.com/science/article/pii/S0045793016300974).
+Talking specifically about preCICE v1? Then keep citing the [preCICE v1 reference paper](https://www.sciencedirect.com/science/article/pii/S0045793016300974).
 
 ### Adapters
 
@@ -141,7 +141,7 @@ Are you looking for how to start coupling your code? Then the [documentation](co
 
 * The latest reference article for preCICE is [preCICE v2: A sustainable and user-friendly coupling library](https://doi.org/10.12688/openreseurope.14445.2). This gives a wide overview over the complete preCICE ecosystem and is a great place to start reading about the modern preCICE (most probably even for the versions after v2).
 
-* The original reference article for preCICE is [preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling](http://www.sciencedirect.com/science/article/pii/S0045793016300974). This may not be the best introduction for new users because of its condensed form.
+* The original reference article for preCICE is [preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling](https://www.sciencedirect.com/science/article/pii/S0045793016300974). This may not be the best introduction for new users because of its condensed form.
 
 A very good first reading is the dissertations of the core preCICE developers:
 
