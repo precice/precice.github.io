@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="{{ '/css/community-spotlight.css' | relative_url }}">
+
+<div class="contributor-preview-container">
+  {% assign core_team = site.data.developer.leads | concat: site.data.developer.main | concat: site.data.developer['main-inactive'] | concat: site.data.developer.contributors %}
+  {% assign shown_githubs = '' %}
+  {% assign avatar_count = 0 %}
+  {% assign max_avatars = 99 %}
+
+  <div class="contributor-preview-grid">
+    {% for person in core_team %}
+      {% if avatar_count >= max_avatars %}{% break %}{% endif %}
+
+      {% if person.github and shown_githubs contains person.github %}{% continue %}{% endif %}
+
+      {% if person.github %}
+        <a href="https://github.com/{{ person.github }}" target="_blank" rel="noopener noreferrer" title="{{ person.fullname }}">
+          <img class="contributor-preview-avatar" src="https://github.com/{{ person.github }}.png?size=120" alt="{{ person.fullname }}" loading="lazy">
+        </a>
+        {% assign shown_githubs = shown_githubs | append: person.github | append: ',' %}
+        {% assign avatar_count = avatar_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
