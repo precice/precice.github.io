@@ -5,31 +5,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in an overlapping-Schwarz-type domain decomposition.">
+<meta name="description" content="The Partitioned Pipe — Geometric Axial Multiscale tutorial couples a 1D pipe model with a 3D CFD pipe using preCICE.">
 
-<meta name="keywords" content=" FEniCS, heat conduction, overlap">
+<meta name="keywords" content=" OpenFOAM, Nutils, preCICE, geometric multiscale, fluid">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Partitioned heat conduction with overlapping Schwarz-type domain decomposition | preCICE - The Coupling Library</title>
+<title>Partitioned pipe — Geometric multiscale | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Partitioned heat conduction with overlapping Schwarz-type domain decomposition" />
+<meta property="og:title" content="Partitioned pipe — Geometric multiscale" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://precice.org/tutorials-partitioned-heat-conduction-overlap.html" />
+<meta property="og:url" content="https://precice.org/tutorials-partitioned-pipe-multiscale.html" />
 <meta property="og:image" content="https://precice.org/images/icon-310x310.png" />
-<meta property="og:description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in an overlapping-Schwarz-type domain decomposition.">
+<meta property="og:description" content="The Partitioned Pipe — Geometric Axial Multiscale tutorial couples a 1D pipe model with a 3D CFD pipe using preCICE.">
 
 <!-- Twitter Card metadata -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Partitioned heat conduction with overlapping Schwarz-type domain decomposition" />
-<meta name="twitter:description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in an overlapping-Schwarz-type domain decomposition.">
+<meta name="twitter:title" content="Partitioned pipe — Geometric multiscale" />
+<meta name="twitter:description" content="The Partitioned Pipe — Geometric Axial Multiscale tutorial couples a 1D pipe model with a 3D CFD pipe using preCICE.">
 <meta name="twitter:image" content="https://precice.org/images/icon-310x310.png" />
 
 <!-- Canonical link -->
-<link rel="canonical" href="https://precice.org/tutorials-partitioned-heat-conduction-overlap" >
+<link rel="canonical" href="https://precice.org/tutorials-partitioned-pipe-multiscale" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -97,7 +97,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     var qrDiv = document.createElement("div");
     qrDiv.id = "print-qr-code";
     var qr = qrcode(0, "M");
-    qr.addData("https://precice.org/tutorials-partitioned-heat-conduction-overlap.html");
+    qr.addData("https://precice.org/tutorials-partitioned-pipe-multiscale.html");
     qr.make();
     qrDiv.innerHTML = qr.createImgTag(3, 0);
     document.body.appendChild(qrDiv);
@@ -711,7 +711,7 @@ document.addEventListener('keydown', function(e) {
           
           
           
-          <li><a title="Partitioned pipe multiscale" href="tutorials-partitioned-pipe-multiscale.html">Partitioned pipe multiscale</a></li>
+          <li class="active"><a title="Partitioned pipe multiscale" href="tutorials-partitioned-pipe-multiscale.html">Partitioned pipe multiscale</a></li>
           
           
           
@@ -750,7 +750,7 @@ document.addEventListener('keydown', function(e) {
           
           
           
-          <li class="active"><a title="Overlapping Schwarz" href="tutorials-partitioned-heat-conduction-overlap.html">Overlapping Schwarz</a></li>
+          <li><a title="Overlapping Schwarz" href="tutorials-partitioned-heat-conduction-overlap.html">Overlapping Schwarz</a></li>
           
           
           
@@ -843,7 +843,7 @@ document.addEventListener('keydown', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Partitioned heat conduction with overlapping Schwarz-type domain decomposition</h1>
+   <h1 class="post-title-main">Partitioned pipe — Geometric multiscale</h1>
 </div>
 
 
@@ -853,7 +853,7 @@ document.addEventListener('keydown', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        We solve a simple heat equation. The domain is partitioned and the coupling is established in an overlapping-Schwarz-type domain decomposition.
+        The Partitioned Pipe — Geometric Axial Multiscale tutorial couples a 1D pipe model with a 3D CFD pipe using preCICE.
 
     </div>
     
@@ -899,7 +899,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/partitioned-heat-conduction-overlap/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/partitioned-pipe-multiscale/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
@@ -911,35 +911,280 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-heat-conduction-overlap">case files of this tutorial</a>, as continuously rendered here, or see the <a href="https://github.com/precice/tutorials/tree/master/partitioned-heat-conduction-overlap">latest released version</a> (if there is already one). Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-pipe-multiscale">case files of this tutorial</a>, as continuously rendered here, or see the <a href="https://github.com/precice/tutorials/tree/master/partitioned-pipe-multiscale">latest released version</a> (if there is already one). Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
 <h2 id="setup">Setup</h2>
 
-<p>We solve a partitioned heat equation, but apply an overlapping Schwarz-type domain decomposition method in this tutorial.</p>
+<p>We solve a simple <strong>partitioned pipe problem</strong> using a 1D–3D coupling approach.<br />
+In this tutorial, the computational domain is split into two coupled regions: a 1D pipe section and a 3D pipe section.<br />
+The coupling is performed using <strong>preCICE</strong>.</p>
 
-<p><img src="images/tutorials-partitioned-heat-conduction-overlap-setup.png" alt="Case setup of partitioned-heat-conduction case with overlapping Schwarz-type domain decomposition" /></p>
+<p>In addition to the 1D–3D setup, this tutorial also includes configurations for <strong>1D–1D</strong> and <strong>3D–3D</strong> coupling.<br />
+These variants can be beneficial for validation studies, solver comparisons, or for investigating the influence of model dimensionality.</p>
 
-<p>Note that this case applies an overlapping Schwarz-type coupling method and not (like most other tutorials in this repository) a Dirichlet-Neumann coupling. This results in a symmetric setup of the solvers.</p>
+<p>In the following, $\mathrm{1D}$ denotes the reduced-order domain (e.g., a Nutils solver) and $\mathrm{3D}$ denotes the full 3D CFD domain (e.g., OpenFOAM).</p>
+
+<p>The problem consists of a straight pipe of length $L = 40 \mathrm{m}$ and diameter $D = 10 \mathrm{m}$. We partition the domain at $z_c = 20 \mathrm{m}$, where the coupling interface is located. The pipe axis is aligned with the z-axis.
+The <strong>1D domain</strong> solves the flow equations using Nutils, while the <strong>3D domain</strong> is solved using OpenFOAM.<br />
+Both solvers are coupled via preCICE by exchanging the <strong>pressure</strong> and <strong>axial velocity</strong> at the interface.</p>
+
+<p>Two coupling directions are possible:</p>
+
+<ul>
+  <li><strong>1D → 3D</strong>: The 1D solver provides the interface velocity to the 3D solver, which responds with pressure.</li>
+  <li><strong>3D → 1D</strong>: The 3D solver provides the velocity, and the 1D solver returns the pressure.</li>
+</ul>
+
+<p>The global outlet (end of the rightmost domain) is set to $p_{\mathrm{out}} = 0 \mathrm{Pa}$.</p>
+
+<p>For the <strong>3D → 1D</strong> coupling, the 3D inlet velocity is prescribed as a <strong>parabolic (Poiseuille)</strong> profile with a bulk velocity of $u_{\mathrm{in}} = 0.1 \mathrm{m/s}$
+implemented using a <code class="language-plaintext highlighter-rouge">codedFixedValue</code> boundary condition. This ensures a physically realistic velocity distribution consistent with the 1D model.</p>
+
+<p>For the <strong>1D → 3D</strong> coupling, the inlet velocity is set to $u_{\mathrm{in}} = 0.1 \mathrm{m/s}$.</p>
 
 <h2 id="configuration">Configuration</h2>
 
-<p>preCICE configuration (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
+<p>preCICE configuration for the 1D-3D simulation (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
 
-<p><img src="images/tutorials-partitioned-heat-conduction-overlap-precice-config.png" alt="preCICE configuration visualization" /></p>
+<p><img src="images/tutorials-partitioned-pipe-multiscale-1d3d-config.png" alt="preCICE configuration visualization 1D-3D" /></p>
 
-<h2 id="running-the-simulation">Running the simulation</h2>
+<p>preCICE configuration for the 3D-1D simulation:</p>
 
-<p>This tutorial is for FEniCS.</p>
+<p><img src="images/tutorials-partitioned-pipe-multiscale-3d1d-config.png" alt="preCICE configuration visualization 3D-1D" /></p>
 
-<p>For choosing whether you want to run the left or right participant, please provide the following commandline input:</p>
+<h2 id="available-solvers">Available solvers</h2>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">python3 heat.py left</code> flag will run the left participant.</li>
-  <li><code class="language-plaintext highlighter-rouge">python3 heat.py right</code> flag will run the right participant.</li>
+  <li>OpenFOAM (<strong>pimpleFoam</strong>). An incompressible/transient OpenFOAM solver. See the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
+  <li>Nutils. A Python-based finite element framework. For more information, see the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a></li>
 </ul>
 
-<p>Like for the case <code class="language-plaintext highlighter-rouge">partitioned-heat-conduction</code> (using Dirichlet-Neumann coupling), we can also expect for the overlapping domain decomposition applied here to recover the analytical solution. <code class="language-plaintext highlighter-rouge">errorcomputation.py</code> checks this explicitly, by comparing the numerical to the analytical solution and raising an error, if the approximation error is not within a given tolerance.</p>
+<h2 id="running-the-simulation">Running the Simulation</h2>
+
+<p>First, select which coupling you want to run. This sets the correct <code class="language-plaintext highlighter-rouge">precice-config.xml</code> symlink (by default, set to <code class="language-plaintext highlighter-rouge">1d3d</code>):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Choose one configuration</span>
+./setcase.sh 1d3d
+<span class="c"># or</span>
+./setcase.sh 3d1d
+<span class="c"># or</span>
+./setcase.sh 1d1d
+<span class="c"># or</span>
+./setcase.sh 3d3d
+</code></pre></div></div>
+
+<p>Open <strong>two terminals</strong> and start the corresponding participants for your chosen setup.</p>
+
+<h3 id="example-a--1d--3d-coupling">Example A — 1D → 3D coupling</h3>
+
+<p>Terminal 1:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid1d-left-nutils
+./run.sh
+</code></pre></div></div>
+
+<p>Terminal 2:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid3d-right-openfoam
+./run.sh
+</code></pre></div></div>
+
+<h3 id="example-b--3d--1d-coupling">Example B — 3D → 1D coupling</h3>
+
+<p>Run <code class="language-plaintext highlighter-rouge">./setcase.sh 3d1d</code> and then navigate to the respective directories.</p>
+
+<p>Terminal 1:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid3d-left-openfoam
+./run.sh
+</code></pre></div></div>
+
+<p>Terminal 2:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid1d-right-nutils
+./run.sh
+</code></pre></div></div>
+
+<h2 id="visualization">Visualization</h2>
+
+<p>The output of the coupled simulation is written into the folders <code class="language-plaintext highlighter-rouge">fluid1d-left-nutils</code>, <code class="language-plaintext highlighter-rouge">fluid1d-right-nutils</code>, <code class="language-plaintext highlighter-rouge">fluid3d-left-openfoam</code>, and <code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam</code>, depending on which coupling direction (<code class="language-plaintext highlighter-rouge">1d3d</code> or <code class="language-plaintext highlighter-rouge">3d1d</code>) you selected.</p>
+
+<h3 id="3d-domain-openfoam">3D domain (OpenFOAM)</h3>
+
+<p>For the 3D participant, all simulation results are stored in the time directories inside the respective case folder (e.g., <code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam/</code>).<br />
+You can visualize the flow field and pressure distribution using <strong>ParaView</strong> by opening the case file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>paraview fluid3d-right-openfoam/fluid3d-right-openfoam.foam
+</code></pre></div></div>
+
+<p>or, for the left domain if applicable:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>paraview fluid3d-left-openfoam/fluid3d-left-openfoam.foam
+</code></pre></div></div>
+
+<p>Typical fields to inspect include:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">p</code> – pressure</li>
+  <li><code class="language-plaintext highlighter-rouge">U</code> – velocity</li>
+</ul>
+
+<p>We also record pressure and velocity at fixed points each time step using the OpenFOAM <code class="language-plaintext highlighter-rouge">probes</code> function object.</p>
+
+<p><strong>Probe setup (excerpt):</strong></p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#includeEtc "caseDicts/postProcessing/probes/probes.cfg"
+</span>
+<span class="n">fields</span> <span class="p">(</span><span class="n">p</span> <span class="n">U</span><span class="p">);</span>
+<span class="n">probeLocations</span>
+<span class="p">(</span>
+    <span class="p">(</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="p">(</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">40</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="c1">// For the left 3D domain use instead:</span>
+<span class="c1">// probeLocations ((0 0 0) (0 0 20));</span>
+</code></pre></div></div>
+
+<p><strong>Output location:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam/postProcessing/probes/0/p</code></li>
+  <li><code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam/postProcessing/probes/0/U</code></li>
+</ul>
+
+<p>In addition to point probes, the 3D participant samples the <strong>axial pressure distribution</strong> along the pipe centerline using <code class="language-plaintext highlighter-rouge">sampleDict</code>. This provides the spatial pressure variation along the pipe and allows direct comparison with the 1D solution at the latest time step.</p>
+
+<p>The tutorial includes a <code class="language-plaintext highlighter-rouge">sampleDict</code> in the 3D cases:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fluid3d-left-openfoam/system/sampleDict</code></li>
+  <li><code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam/system/sampleDict</code></li>
+</ul>
+
+<p><strong>sampleDict (excerpt):</strong></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FoamFile</span>
+<span class="p">{</span>
+    <span class="n">version</span>     <span class="mf">2.0</span><span class="p">;</span>
+    <span class="n">format</span>      <span class="n">ascii</span><span class="p">;</span>
+    <span class="k">class</span>       <span class="nc">dictionary</span><span class="p">;</span>
+    <span class="n">location</span>    <span class="s">"system"</span><span class="p">;</span>
+    <span class="n">object</span>      <span class="n">sampleDict</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">type</span>            <span class="n">sets</span><span class="p">;</span>
+<span class="n">libs</span>            <span class="p">(</span><span class="s">"libsampling.so"</span><span class="p">);</span>
+
+<span class="n">setFormat</span>       <span class="n">raw</span><span class="p">;</span>
+
+<span class="n">sets</span>
+<span class="p">(</span>
+    <span class="n">centerline</span>
+    <span class="p">{</span>
+        <span class="n">type</span>    <span class="n">uniform</span><span class="p">;</span>
+        <span class="n">axis</span>    <span class="n">z</span><span class="p">;</span>
+        <span class="n">start</span>   <span class="p">(</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">end</span>     <span class="p">(</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">20</span><span class="p">);</span>
+        <span class="n">nPoints</span> <span class="mi">200</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="n">fields</span> <span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The sampling is executed automatically during the run.</p>
+
+<p><strong>Output location:</strong></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postProcessing/sampleDict/&lt;latestTime&gt;/centerline_p.xy
+</code></pre></div></div>
+
+<p>The file contains two columns:</p>
+
+<ol>
+  <li>axial coordinate <code class="language-plaintext highlighter-rouge">z</code></li>
+  <li>pressure <code class="language-plaintext highlighter-rouge">p</code></li>
+</ol>
+
+<h3 id="1d-domain-nutils">1D domain (Nutils)</h3>
+
+<p>The 1D solver writes a <code class="language-plaintext highlighter-rouge">probes.txt</code> with semicolon-separated time series:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time; p_in; u_in; p_out; u_out; p_mid; u_mid
+</code></pre></div></div>
+
+<p>where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">p_in</code>, <code class="language-plaintext highlighter-rouge">u_in</code> → pressure and velocity at the inlet of the 1D domain</li>
+  <li><code class="language-plaintext highlighter-rouge">p_out</code>, <code class="language-plaintext highlighter-rouge">u_out</code> → pressure and velocity at the outlet of the 1D domain</li>
+  <li><code class="language-plaintext highlighter-rouge">p_mid</code>, <code class="language-plaintext highlighter-rouge">u_mid</code> → pressure and velocity at the midpoint of the 1D domain</li>
+</ul>
+
+<p>The 1D solver also writes a <code class="language-plaintext highlighter-rouge">final_fields.txt</code> with space-separated values:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x u p
+</code></pre></div></div>
+
+<p>They correspond to the axial position, velocity and pressure at the last time-step, i.e., at $t = 5 \mathrm{s}$.</p>
+
+<h3 id="plotting-axial-pressure-distribution-optional">Plotting axial pressure distribution (optional)</h3>
+
+<p>To reproduce the axial pressure distribution shown in the figure below, a helper script is provided:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python plot-pressure-distribution.py
+</code></pre></div></div>
+
+<p>By default, the script uses the <code class="language-plaintext highlighter-rouge">1d3d</code> case.</p>
+
+<p>You can also specify the coupling configuration explicitly:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python plot-pressure-distribution.py 1d3d
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python plot-pressure-distribution.py 3d1d
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python plot-pressure-distribution.py 1d1d
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python plot-pressure-distribution.py 3d3d
+</code></pre></div></div>
+
+<p>Allowed cases are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">1d3d</code></li>
+  <li><code class="language-plaintext highlighter-rouge">3d1d</code></li>
+  <li><code class="language-plaintext highlighter-rouge">1d1d</code></li>
+  <li><code class="language-plaintext highlighter-rouge">3d3d</code></li>
+</ul>
+
+<p>Depending on the selected case, the script reads:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">final_fields.txt</code> from the 1D Nutils solver</li>
+  <li><code class="language-plaintext highlighter-rouge">centerline_p.xy</code> from the 3D OpenFOAM participant</li>
+</ul>
+
+<p>and combines both datasets to plot the pressure distribution along the coupled pipe.</p>
+
+<p>By default, the figures are saved to:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>images/pressure_distribution_&lt;case&gt;.png
+</code></pre></div></div>
+
+<h3 id="example-visualization">Example visualization</h3>
+
+<p><img src="images/tutorials-partitioned-pipe-multiscale-3d1d-pressure-distribution.png" alt="Pressure distribution along the main axis in the 3D-1D Coupled Pipe" /></p>
+
+<p><strong>Pressure along the pipe centerline.</strong> The pressure decreases nearly linearly from <strong>≈12.8 Pa</strong> at the 3D inlet to <strong>0 Pa</strong> at the 1D outlet, consistent with steady, laminar Poiseuille flow. The 3D (0–20 m) and 1D (20–40 m) sections connect smoothly at the coupling interface.</p>
+
+<p><img src="images/tutorials-partitioned-pipe-multiscale-3d1d-velocityProfileInterface3d.png" alt="Velocity at the 3D coupling interface in the 3D-1D Coupled Pipe" /></p>
+
+<p><strong>Parabolic velocity profile at the 3D outlet / coupling interface (z = 20 m).</strong><br />
+The profile is Poiseuille-like with a bulk velocity of <strong>0.1 m/s</strong>; consequently the <strong>centerline velocity is ≈ 0.2 m/s</strong> (≈ 2 × bulk) and vanishes at the wall (no-slip). This is the velocity state at the interface used for coupling to the 1D domain.</p>
 
 
     

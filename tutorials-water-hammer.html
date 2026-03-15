@@ -5,31 +5,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in an overlapping-Schwarz-type domain decomposition.">
+<meta name="description" content="The water hammer tutorial simulates unsteady pressure wave propagation in pipe systems using different 1D and 3D configurations coupled via preCICE.">
 
-<meta name="keywords" content=" FEniCS, heat conduction, overlap">
+<meta name="keywords" content=" OpenFOAM, Nutils, preCICE, geometric-multiscale, fluid, transient">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Partitioned heat conduction with overlapping Schwarz-type domain decomposition | preCICE - The Coupling Library</title>
+<title>Water hammer | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Partitioned heat conduction with overlapping Schwarz-type domain decomposition" />
+<meta property="og:title" content="Water hammer" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://precice.org/tutorials-partitioned-heat-conduction-overlap.html" />
+<meta property="og:url" content="https://precice.org/tutorials-water-hammer.html" />
 <meta property="og:image" content="https://precice.org/images/icon-310x310.png" />
-<meta property="og:description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in an overlapping-Schwarz-type domain decomposition.">
+<meta property="og:description" content="The water hammer tutorial simulates unsteady pressure wave propagation in pipe systems using different 1D and 3D configurations coupled via preCICE.">
 
 <!-- Twitter Card metadata -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Partitioned heat conduction with overlapping Schwarz-type domain decomposition" />
-<meta name="twitter:description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in an overlapping-Schwarz-type domain decomposition.">
+<meta name="twitter:title" content="Water hammer" />
+<meta name="twitter:description" content="The water hammer tutorial simulates unsteady pressure wave propagation in pipe systems using different 1D and 3D configurations coupled via preCICE.">
 <meta name="twitter:image" content="https://precice.org/images/icon-310x310.png" />
 
 <!-- Canonical link -->
-<link rel="canonical" href="https://precice.org/tutorials-partitioned-heat-conduction-overlap" >
+<link rel="canonical" href="https://precice.org/tutorials-water-hammer" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -97,7 +97,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     var qrDiv = document.createElement("div");
     qrDiv.id = "print-qr-code";
     var qr = qrcode(0, "M");
-    qr.addData("https://precice.org/tutorials-partitioned-heat-conduction-overlap.html");
+    qr.addData("https://precice.org/tutorials-water-hammer.html");
     qr.make();
     qrDiv.innerHTML = qr.createImgTag(3, 0);
     document.body.appendChild(qrDiv);
@@ -717,7 +717,7 @@ document.addEventListener('keydown', function(e) {
           
           
           
-          <li><a title="Water hammer" href="tutorials-water-hammer.html">Water hammer</a></li>
+          <li class="active"><a title="Water hammer" href="tutorials-water-hammer.html">Water hammer</a></li>
           
           
           
@@ -750,7 +750,7 @@ document.addEventListener('keydown', function(e) {
           
           
           
-          <li class="active"><a title="Overlapping Schwarz" href="tutorials-partitioned-heat-conduction-overlap.html">Overlapping Schwarz</a></li>
+          <li><a title="Overlapping Schwarz" href="tutorials-partitioned-heat-conduction-overlap.html">Overlapping Schwarz</a></li>
           
           
           
@@ -843,7 +843,7 @@ document.addEventListener('keydown', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Partitioned heat conduction with overlapping Schwarz-type domain decomposition</h1>
+   <h1 class="post-title-main">Water hammer</h1>
 </div>
 
 
@@ -853,7 +853,7 @@ document.addEventListener('keydown', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        We solve a simple heat equation. The domain is partitioned and the coupling is established in an overlapping-Schwarz-type domain decomposition.
+        The water hammer tutorial simulates unsteady pressure wave propagation in pipe systems using different 1D and 3D configurations coupled via preCICE.
 
     </div>
     
@@ -899,7 +899,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/partitioned-heat-conduction-overlap/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/water-hammer/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
@@ -911,35 +911,247 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-heat-conduction-overlap">case files of this tutorial</a>, as continuously rendered here, or see the <a href="https://github.com/precice/tutorials/tree/master/partitioned-heat-conduction-overlap">latest released version</a> (if there is already one). Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/develop/water-hammer">case files of this tutorial</a>, as continuously rendered here, or see the <a href="https://github.com/precice/tutorials/tree/master/water-hammer">latest released version</a> (if there is already one). Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
 <h2 id="setup">Setup</h2>
 
-<p>We solve a partitioned heat equation, but apply an overlapping Schwarz-type domain decomposition method in this tutorial.</p>
+<p>We solve a <strong>partitioned water hammer problem</strong> using a 1D–3D coupling approach.<br />
+In this tutorial, the computational domain is split into two coupled regions: a 1D pipe section and a 3D pipe section.<br />
+The coupling is performed using <strong>preCICE</strong>.</p>
 
-<p><img src="images/tutorials-partitioned-heat-conduction-overlap-setup.png" alt="Case setup of partitioned-heat-conduction case with overlapping Schwarz-type domain decomposition" /></p>
+<p>In addition to the 1D–3D setup, this tutorial also includes configurations for <strong>1D–1D</strong> and <strong>3D–3D</strong> coupling.<br />
+These variants can be beneficial for validation studies, solver comparisons, or for investigating the influence of model dimensionality on transient wave propagation.</p>
 
-<p>Note that this case applies an overlapping Schwarz-type coupling method and not (like most other tutorials in this repository) a Dirichlet-Neumann coupling. This results in a symmetric setup of the solvers.</p>
+<p>The case setup is inspired by [1].<br />
+This tutorial extends the study conducted in [2], which implemented the water hammer benchmark using a 1D–3D coupling with preCICE.<br />
+In that study, the cross-section of the pipe was square. In this tutorial, this has been changed to a circular cross-section.<br />
+In the following, $\mathrm{1D}$ denotes the reduced-order domain (e.g., a Nutils solver) and $\mathrm{3D}$ denotes the full 3D CFD domain (e.g., OpenFOAM).</p>
+
+<p>The problem consists of a straight pipe of length  $L = 1000 \mathrm{m}$ and diameter $D = 2 \mathrm{m}$. We partition the domain at $y_c = 500 \mathrm{m}$, where the coupling interface is located.<br />
+The <strong>1D domain</strong> solves the unsteady compressible flow equations using Nutils, while the <strong>3D domain</strong> is solved using OpenFOAM.<br />
+Both solvers are coupled via preCICE by exchanging the <strong>pressure</strong> and <strong>axial velocity</strong> at the interface.</p>
+
+<p>Two coupling directions are possible:</p>
+
+<ul>
+  <li><strong>1D → 3D</strong>: The 1D solver provides the interface pressure to the 3D solver, which responds with velocity.</li>
+  <li><strong>3D → 1D</strong>: The 3D solver provides the pressure, and the 1D solver returns the velocity.</li>
+</ul>
+
+<p>The initial inlet pressure is set to $p_{\mathrm{in}} = 98100 \mathrm{Pa}$.
+The opening valve at the outlet is modeled through a prescribed outlet velocity, which increases linearly from $0 \mathrm{m/s}$ to $1 \mathrm{m/s}$ over the first $t = 5 \mathrm{s}$, and remains constant afterwards.<br />
+This sudden valve opening generates pressure disturbances that propagate through the pipe, resulting in the characteristic <strong>pressure wave oscillations</strong> known as the <em>water hammer</em> phenomenon.</p>
+
+<hr />
 
 <h2 id="configuration">Configuration</h2>
 
-<p>preCICE configuration (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
+<p>preCICE configuration for the 1D–3D simulation (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
 
-<p><img src="images/tutorials-partitioned-heat-conduction-overlap-precice-config.png" alt="preCICE configuration visualization" /></p>
+<p><img src="images/tutorials-water-hammer-1d3d-precice-config.png" alt="preCICE configuration visualization 1D–3D" /></p>
 
-<h2 id="running-the-simulation">Running the simulation</h2>
+<p>preCICE configuration for the 3D–1D simulation:</p>
 
-<p>This tutorial is for FEniCS.</p>
+<p><img src="images/tutorials-water-hammer-3d1d-precice-config.png" alt="preCICE configuration visualization 3D–1D" /></p>
 
-<p>For choosing whether you want to run the left or right participant, please provide the following commandline input:</p>
+<hr />
+
+<h2 id="available-solvers">Available solvers</h2>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">python3 heat.py left</code> flag will run the left participant.</li>
-  <li><code class="language-plaintext highlighter-rouge">python3 heat.py right</code> flag will run the right participant.</li>
+  <li>OpenFOAM (sonicLiquidFoam). A compressible OpenFOAM solver. For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
+  <li>Nutils. A Python-based finite element framework. For more information, see the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a>.</li>
 </ul>
 
-<p>Like for the case <code class="language-plaintext highlighter-rouge">partitioned-heat-conduction</code> (using Dirichlet-Neumann coupling), we can also expect for the overlapping domain decomposition applied here to recover the analytical solution. <code class="language-plaintext highlighter-rouge">errorcomputation.py</code> checks this explicitly, by comparing the numerical to the analytical solution and raising an error, if the approximation error is not within a given tolerance.</p>
+<hr />
+
+<h2 id="running-the-simulation">Running the Simulation</h2>
+
+<p>First, select which coupling you want to run. This sets the correct <code class="language-plaintext highlighter-rouge">precice-config.xml</code> symlink (by default, set to <code class="language-plaintext highlighter-rouge">1d3d</code>).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Choose one configuration</span>
+./setcase.sh 1d3d
+<span class="c"># or</span>
+./setcase.sh 3d1d
+<span class="c"># or</span>
+./setcase.sh 1d1d
+<span class="c"># or</span>
+./setcase.sh 3d3d
+</code></pre></div></div>
+
+<p>The additional 1D–1D and 3D–3D configurations are particularly useful for validation purposes and for comparing reduced-order and full-order modeling approaches.</p>
+
+<p>Open <strong>two terminals</strong> and start the corresponding participants for your chosen setup.</p>
+
+<h3 id="example-a--1d--3d-coupling">Example A — 1D → 3D coupling</h3>
+
+<p>Terminal 1:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid1d-left-nutils
+./run.sh
+</code></pre></div></div>
+
+<p>Terminal 2:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid3d-right-openfoam
+./run.sh
+</code></pre></div></div>
+
+<h3 id="example-b--3d--1d-coupling">Example B — 3D → 1D coupling</h3>
+
+<p>Run <code class="language-plaintext highlighter-rouge">./setcase.sh 3d1d</code> and then navigate to the respective directories.</p>
+
+<p>Terminal 1:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid3d-left-openfoam
+./run.sh
+</code></pre></div></div>
+
+<p>Terminal 2:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid1d-right-nutils
+./run.sh
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="visualization">Visualization</h2>
+
+<p>The output of the coupled simulation is written into the folders <code class="language-plaintext highlighter-rouge">fluid1d-left-nutils</code>, <code class="language-plaintext highlighter-rouge">fluid1d-right-nutils</code>, <code class="language-plaintext highlighter-rouge">fluid3d-left-openfoam</code>, and <code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam</code>, depending on which coupling direction (<code class="language-plaintext highlighter-rouge">1d3d</code> or <code class="language-plaintext highlighter-rouge">3d1d</code>) you selected.</p>
+
+<h3 id="3d-domain-openfoam">3D domain (OpenFOAM)</h3>
+
+<p>For the 3D participant, all simulation results are stored in the time directories inside the respective case folder (e.g., <code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam/</code>).<br />
+You can visualize the flow field and pressure distribution using <strong>ParaView</strong> by opening the case file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>paraview fluid3d-right-openfoam/fluid3d-right-openfoam.foam
+</code></pre></div></div>
+
+<p>or, for the left domain if applicable:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>paraview fluid3d-left-openfoam/fluid3d-left-openfoam.foam
+</code></pre></div></div>
+
+<p>Typical fields to inspect include:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">p</code> – pressure (to observe the pressure wave propagation)</li>
+  <li><code class="language-plaintext highlighter-rouge">U</code> – velocity (to visualize the flow development near the coupling interface)</li>
+</ul>
+
+<p>In ParaView, you can also create line plots along the pipe centerline or use temporal filters to observe wave propagation over time.</p>
+
+<p>We also record pressure and velocity at fixed points each time step using the OpenFOAM <code class="language-plaintext highlighter-rouge">probes</code> function object.</p>
+
+<p><strong>Probe setup (excerpt):</strong></p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#includeEtc "caseDicts/postProcessing/probes/probes.cfg"
+</span>
+<span class="n">fields</span> <span class="p">(</span><span class="n">p</span> <span class="n">U</span><span class="p">);</span>
+<span class="n">probeLocations</span>
+<span class="p">(</span>
+    <span class="p">(</span><span class="mi">0</span> <span class="mi">999</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">(</span><span class="mi">0</span> <span class="mi">500</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="c1">// For the left 3D domain use instead:</span>
+<span class="c1">// probeLocations ((0 0 0) (0 500 0));</span>
+</code></pre></div></div>
+
+<p><strong>Output location:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam/postProcessing/probes/0/p</code></li>
+  <li><code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam/postProcessing/probes/0/U</code></li>
+</ul>
+
+<p>Each file contains a header (commented with <code class="language-plaintext highlighter-rouge">#</code>) and time-series columns for each probe.</p>
+
+<hr />
+
+<h3 id="1d-domain-nutils">1D domain (Nutils)</h3>
+
+<p>The 1D participant writes results to a file named <code class="language-plaintext highlighter-rouge">probes.txt</code>, containing the temporal evolution of key quantities at selected spatial locations.</p>
+
+<p>The structure of each line in the file is:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time; p_in; u_in; p_out; u_out; p_mid; u_mid
+</code></pre></div></div>
+
+<p>where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">p_in</code>, <code class="language-plaintext highlighter-rouge">u_in</code> → pressure and velocity at the inlet of the 1D domain</li>
+  <li><code class="language-plaintext highlighter-rouge">p_out</code>, <code class="language-plaintext highlighter-rouge">u_out</code> → pressure and velocity at the outlet of the 1D domain</li>
+  <li><code class="language-plaintext highlighter-rouge">p_mid</code>, <code class="language-plaintext highlighter-rouge">u_mid</code> → pressure and velocity at the midpoint of the 1D domain</li>
+</ul>
+
+<hr />
+
+<h3 id="plotting-outlet-pressure-optional">Plotting outlet pressure (optional)</h3>
+
+<p>To reproduce the outlet pressure time history shown in the figure below, a helper script is provided:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python plot-pressure.py
+</code></pre></div></div>
+
+<p>By default, the script reads the probe data from the OpenFOAM case:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fluid3d-right-openfoam/postProcessing/probes/0/p
+</code></pre></div></div>
+
+<p>and generates the outlet pressure plot.</p>
+
+<p>You can also specify the case directory explicitly:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python plot-pressure.py fluid3d-right-openfoam
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python plot-pressure.py fluid1d-right-nutils
+</code></pre></div></div>
+
+<p>The script automatically selects the correct input file depending on the solver:</p>
+
+<ul>
+  <li>
+    <p><strong>OpenFOAM case (<code class="language-plaintext highlighter-rouge">fluid3d-right-openfoam</code>)</strong><br />
+Reads probe data from<br />
+<code class="language-plaintext highlighter-rouge">postProcessing/probes/0/p</code></p>
+  </li>
+  <li>
+    <p><strong>Nutils case (<code class="language-plaintext highlighter-rouge">fluid1d-right-nutils</code>)</strong><br />
+Reads probe data from<br />
+<code class="language-plaintext highlighter-rouge">probes.txt</code></p>
+  </li>
+</ul>
+
+<p>The generated plot is saved to:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>images/p_outlet_&lt;<span class="k">case</span><span class="nt">-directory</span><span class="o">&gt;</span>.png
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="example-visualization">Example visualization</h3>
+
+<p><img src="images/tutorials-water-hammer-1d3d-outlet-pressure.png" alt="Pressure evolution at the outlet of the 3D domain in the 1D–3D simulation" /></p>
+
+<p>Pressure evolution at the outlet of the 3D domain during the 1D–3D water hammer simulation.</p>
+
+<hr />
+
+<h2 id="references">References</h2>
+
+<p>[1] C. Wang, H. Nilsson, J. Yang, <em>et al.</em><br />
+<strong>1D–3D coupling for hydraulic system transient simulations.</strong><br />
+<em>Computer Physics Communications</em>, 210:1–9, 2017.<br />
+<a href="https://doi.org/10.1016/j.cpc.2016.09.007">https://doi.org/10.1016/j.cpc.2016.09.007</a></p>
+
+<p>[2] G. Chourdakis, B. Uekermann, G. van Zwieten, and H. van Brummelen.<br />
+<strong>Coupling OpenFOAM to different solvers, physics, models, and dimensions using preCICE.</strong><br />
+<a href="https://mediatum.ub.tum.de/doc/1515271/1515271.pdf">https://mediatum.ub.tum.de/doc/1515271/1515271.pdf</a></p>
 
 
     
