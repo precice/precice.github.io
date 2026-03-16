@@ -78,6 +78,7 @@ We are looking for proposals of maximum 4 A4 pages, in a PDF file. Use the follo
 - E-mail
 - GitHub username
 - Matrix username, if available
+- Link to your introduction thread on the preCICE Discourse forum.
 - Short summary as a written paragraph of your education and code experience.
 - Short summary as a written paragraph of what motivates you personally to contribute to preCICE including first contact.
 - List one PR in the preCICE organization that you think reflects your technical skills relevant for the project and your eye for details. It does not need to be reviewed/merged.
