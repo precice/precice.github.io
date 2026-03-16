@@ -61,6 +61,11 @@ We value quality higher than quantity. If you find something interesting, take y
 We expect to work with the accepted GSoC participants in the summer. Our capacity to review external contributions before that is very limited.
 {% endimportant %}
 
+{% important %}
+We have already received too many pull requests in the period before proposals open. For this reason, we have now restricted interactions with the preCICE repositories to collaborators. If you have not reached out so far, chances for selection are very small.
+{% endimportant %}
+
+
 ### Submitting proposals
 
 You need to [submit a proposal on the GSoC system](https://google.github.io/gsocguides/student/writing-a-proposal). The proposal has to follow the following guidelines. Not following will lead to automatic rejection. You can edit your proposal on the GSoC system until the end of the [proposal submission deadline](https://summerofcode.withgoogle.com/organizations/precice/programs/2026/timeline). Due to the amount of interest, we do not have the capacity to provide feedback on drafts.
