@@ -82,6 +82,7 @@ We are looking for proposals of maximum 4 A4 pages, in a PDF file. Longer propos
 - Short summary as a written paragraph of what motivates you personally to contribute to preCICE including first contact.
 - List one PR in the preCICE organization that you think reflects your technical skills relevant for the project and your eye for details. It does not need to be reviewed/merged.
 - List one PR in the preCICE organization that you think reflects your communication skills. It does not need to be reviewed/merged.
+- Which tools did you use for these PRs, and how much time approximately did you need?
 - Optionally, list up to two PR in any other project that you think show skills relevant to the proposed project.
 
 **Page 2: About the project you want to work on**
