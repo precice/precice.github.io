@@ -70,9 +70,9 @@ We have already received too many pull requests in the period before proposals o
 
 You need to [submit a proposal on the GSoC system](https://google.github.io/gsocguides/student/writing-a-proposal). The proposal has to follow the following guidelines. Not following will lead to automatic rejection. You can edit your proposal on the GSoC system until the end of the [proposal submission deadline](https://summerofcode.withgoogle.com/organizations/precice/programs/2026/timeline). Due to the amount of interest, we do not have the capacity to provide feedback on drafts.
 
-We are looking for proposals of maximum 4 A4 pages, in a PDF file. Longer proposals will generally be rejected, unless there is a good reason for that.
+We are looking for proposals of maximum 4 A4 pages, including figures, in a PDF file. Use the following order, and balance the pages as you want, while staying under the limit.
 
-**Page 1: About yourself**
+**Part 1: About yourself**
 
 - Full name
 - E-mail
@@ -85,7 +85,7 @@ We are looking for proposals of maximum 4 A4 pages, in a PDF file. Longer propos
 - Which tools did you use for these PRs, and how much time approximately did you need?
 - Optionally, list up to two PR in any other project that you think show skills relevant to the proposed project.
 
-**Page 2: About the project you want to work on**
+**Part 2: About the project you want to work on**
 
 - Project title (can be the project idea)
 - Short summary as a written paragraph what the project idea is based on. This can include project idea/issue/interest/paper.
@@ -94,7 +94,7 @@ We are looking for proposals of maximum 4 A4 pages, in a PDF file. Longer propos
 
 Deviating from the proposed ideas is welcome, if you see a good reason for it / you have your own idea. But, as a new and small organization, we will probably only be allocated very few slots.
 
-**Page 3: Project plan**
+**Part 3: Project plan**
 
 - Milestones of the project in multiple sections
 - Description of steps
@@ -103,8 +103,6 @@ Deviating from the proposed ideas is welcome, if you see a good reason for it / 
   - What are you intending to do?
   - How to test the contribution?
 - What would you expect as a result of a good project? What could be possible stretch goals?
-
-**Page 4** is an optional page exclusively for large figures, images or code.
 
 ### Project: Website modernization
 
