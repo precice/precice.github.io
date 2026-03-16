@@ -85,6 +85,8 @@ You need to [submit a proposal on the GSoC system](https://google.github.io/gsoc
 - Short summary as a written paragraph about the benefit for the community.
 - Short summary as a written paragraph why you are personally interested in the project.
 
+Deviating from the proposed ideas is welcome, if you see a good reason for it / you have your own idea. But, as a new and small organization, we will probably only be allocated very few slots.
+
 **Page 3: Project plan**
 
 - Milestones of the project in multiple sections
