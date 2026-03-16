@@ -61,6 +61,42 @@ We value quality higher than quantity. If you find something interesting, take y
 We expect to work with the accepted GSoC participants in the summer. Our capacity to review external contributions before that is very limited.
 {% endimportant %}
 
+### Submitting proposals
+
+You need to [submit a proposal on the GSoC system](https://google.github.io/gsocguides/student/writing-a-proposal). The proposal has to follow the following guidelines. Not following will lead to automatic rejection. You can edit your proposal on the GSoC system until the end of the [proposal submission deadline](https://summerofcode.withgoogle.com/organizations/precice/programs/2026/timeline). Due to the amount of interest, we do not have the capacity to provide feedback on drafts.
+
+**Page 1: About yourself**
+
+- Full name
+- E-mail
+- GitHub username
+- Matrix username, if available
+- Short summary as a written paragraph of your education and code experience.
+- Short summary as a written paragraph of what motivates you personally to contribute to preCICE including first contact.
+- List two PRs in the preCICE organization that you think:
+  1. reflect your technical skills relevant for the project and your eye for details
+  2. your communication skills.
+  These can be the same and don't have to be merged.
+
+**Page 2: About the project you want to work on**
+
+- Project title (can be the project idea)
+- Short summary as a written paragraph what the project idea is based on. This can include project idea/issue/interest/paper.
+- Short summary as a written paragraph about the benefit for the community.
+- Short summary as a written paragraph why you are personally interested in the project.
+
+**Page 3: Project plan**
+
+- Milestones of the project in multiple sections
+- Description of steps
+  - What are related issues / PRs / discussions?
+  - What is the context in code (classes, files with line numbers)?
+  - What are you intending to do?
+  - How to test the feature?
+- What would you expect as a result of a good project? What could be possible stretch goals?
+
+**Page 4** is an optional page exclusively for large figures, images or code.
+
 ### Project: Website modernization
 
 This website is built with [Jekyll](https://jekyllrb.com/),
