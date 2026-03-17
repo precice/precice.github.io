@@ -30,9 +30,20 @@ const github_api_endpoint = 'https://api.github.com/repos/precice/precice/releas
           const tag = data[0].name;
           const published_at = data[0].published_at;
           const url = data[0].html_url;
-            // Format the text, which contains the link, the title, and the date.
-            const text = '<a href="' + url + '" class="btn btn-secondary no-icon action-button" role="button" target="_blank" rel="noopener noreferrer">Latest ' + tag + ' (' + formatDate(published_at) + ') &nbsp;<i class="fas fa-download"></i></a>';
-            document.getElementById('latest-release').innerHTML = text;
+
+          var link = document.createElement('a');
+          link.setAttribute('href', url);
+          link.className = 'btn btn-secondary no-icon action-button';
+          link.setAttribute('role', 'button');
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+          link.appendChild(document.createTextNode('Latest ' + tag + ' (' + formatDate(published_at) + ') \u00A0'));
+          var icon = document.createElement('i');
+          icon.className = 'fas fa-download';
+          link.appendChild(icon);
+
+          var container = document.getElementById('latest-release');
+          container.replaceChildren(link);
         });
     }
     else throw new Error("Problem with fetching releases");
@@ -55,8 +66,24 @@ document.addEventListener("DOMContentLoaded", function() {
       if (response.ok) {
         response.json().then(function(data) {
           const count = data.stargazers_count;
-          const text = '<a href="https://github.com/precice/precice/" class="btn btn-default no-icon action-button" role="button" target="_blank" rel="noopener noreferrer">Star on GitHub &nbsp;<i class="fas fa-star"></i><span id="stargazers"> ' + count + '</span></a>';
-          document.getElementById('github-button').innerHTML = text;
+
+          var link = document.createElement('a');
+          link.setAttribute('href', 'https://github.com/precice/precice/');
+          link.className = 'btn btn-default no-icon action-button';
+          link.setAttribute('role', 'button');
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+          link.appendChild(document.createTextNode('Star on GitHub \u00A0'));
+          var icon = document.createElement('i');
+          icon.className = 'fas fa-star';
+          link.appendChild(icon);
+          var span = document.createElement('span');
+          span.id = 'stargazers';
+          span.textContent = ' ' + count;
+          link.appendChild(span);
+
+          var container = document.getElementById('github-button');
+          container.replaceChildren(link);
       });
     }
     else throw new Error("Problem with fetching stargazers");
