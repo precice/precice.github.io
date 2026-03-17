@@ -35,7 +35,7 @@ jobs:
           path: website
           fetch-depth: 0 # full history required to determine last edit
 
-# actions/checkout shallow-clones submodules regardless of fetch-depth: 0. This unshallows each submodule so git log can find the real last commit date per file, which inject_dates.sh needs to work correctly.
+# actions/checkout shallow-clones submodules regardless of fetch-depth: 0. This unshallows each submodule so _plugins/imported_dates.rb can resolve the correct last commit date per file during jekyll build.
       - name: Fetch full history for submodules
         working-directory: website
         run: git submodule foreach --recursive "git fetch --unshallow --all 2>/dev/null || git fetch --all"
