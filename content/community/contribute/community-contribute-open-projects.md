@@ -61,6 +61,47 @@ We value quality higher than quantity. If you find something interesting, take y
 We expect to work with the accepted GSoC participants in the summer. Our capacity to review external contributions before that is very limited.
 {% endimportant %}
 
+{% important %}
+We have already received too many pull requests in the period before proposals open. For this reason, we have now restricted interactions with the preCICE repositories to collaborators. If you have not reached out so far, chances for selection are very small.
+{% endimportant %}
+
+### Submitting proposals
+
+You need to [submit a proposal on the GSoC system](https://google.github.io/gsocguides/student/writing-a-proposal). The proposal has to follow the following guidelines. Not following will lead to automatic rejection. You can edit your proposal on the GSoC system until the end of the [proposal submission deadline](https://summerofcode.withgoogle.com/organizations/precice/programs/2026/timeline). Due to the amount of interest, we do not have the capacity to provide feedback on drafts.
+
+We are looking for proposals of maximum 4 A4 pages, in a PDF file. Use the following order, and start every part in a new page, so that we can quickly navigate.
+
+- **Page 1: About yourself**
+  - Full name
+  - E-mail
+  - GitHub username
+  - Matrix username, if available
+  - Link to your introduction thread on the preCICE Discourse forum.
+  - Short summary as a written paragraph of your education and code experience.
+  - Short summary as a written paragraph of what motivates you personally to contribute to preCICE including first contact.
+  - List one PR in the preCICE organization that you think reflects your technical skills relevant for the project and your eye for details. It does not need to be reviewed/merged.
+  - List one PR in the preCICE organization that you think reflects your communication skills. It does not need to be reviewed/merged.
+  - Which tools did you use for these PRs, and how much time approximately did you need?
+  - Optionally, list up to two PR in any other project that you think show skills relevant to the proposed project.
+
+- **Page 2: About the project you want to work on**
+  - Project title (can be the project idea)
+  - Short summary as a written paragraph what the project idea is based on. This can include project idea/issue/interest/paper.
+  - Short summary as a written paragraph about the benefit for the community (current and future users of preCICE).
+  - Short summary as a written paragraph why you are personally interested in the project.
+  - Deviating from the proposed ideas is welcome, if you see a good reason for it / you have your own idea. But, as a new and small organization, we will probably only be allocated very few slots.
+
+- **Page 3: Project plan**
+  - Milestones of the project in multiple sections
+  - Description of steps
+    - What are related issues / PRs / discussions?
+    - What is the context in code (classes, files with line numbers)?
+    - What are you intending to do?
+    - How to test the contribution?
+  - What would you expect as a result of a good project? What could be possible stretch goals?
+
+- **Page 4: Figures**: This is an optional page exclusively for large figures, images or code.
+
 ### Project: Website modernization
 
 This website is built with [Jekyll](https://jekyllrb.com/),

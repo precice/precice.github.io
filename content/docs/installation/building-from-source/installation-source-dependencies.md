@@ -124,7 +124,7 @@ export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z
 
 ### Boost
 
-preCICE uses [Boost](http://www.boost.org/) for several features.
+preCICE uses [Boost](https://www.boost.org/) for several features.
 The minimum required version is 1.74.0, but newer Boost versions are not always compatible to previous ones.
 
 You might save some time and space by installing only the necessary libraries:
@@ -159,7 +159,7 @@ For help, see also the ranges set in the [Spack recipe](https://github.com/spack
 
 #### Build boost from source
 
-1. [Download](http://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
+1. [Download](https://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
 2. Prepare the installation, selecting only the libraries that need to be built (this does not affect the header-only libraries).
    Select a prefix to install Boost to. This will later contain the directories `include` and `lib`.
    On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).
@@ -188,7 +188,7 @@ For help, see also the ranges set in the [Spack recipe](https://github.com/spack
 
    The path points to the file `BoostConfig.cmake` which is required by CMake. If this path does not exist, you can also run `locate BoostConfig.cmake` to determine the path to the file.
 
-For more information, please refer to the "[Getting Started](http://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
+For more information, please refer to the "[Getting Started](https://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
 
 ### libxml2
 
