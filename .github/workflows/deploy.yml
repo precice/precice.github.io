@@ -40,10 +40,6 @@ jobs:
         working-directory: website
         run: git submodule foreach --recursive "git fetch --unshallow --all 2>/dev/null || git fetch --all"
 
-      - name: Inject last_modified_at dates from submodules
-        working-directory: website
-        run: bash inject_dates.sh
-
       - name: Fetch - precice develop
         uses: actions/checkout@v4
         with:
@@ -80,22 +76,6 @@ jobs:
         with:
           bundler-cache: true
           working-directory: website
-
-# jekyll-last-modified-at unconditionally overwrites last_modified_at on every page by running git log from the parent repo's git directory. 
-# For submodule files this always returns nothing since the parent repo has no individual file history for them, causing a fallback to filesystem mtime (always todays date in CI). 
-# Changing = to ||= makes the plugin respect the dates already injected into frontmatter by inject_dates.sh instead of overwriting them.
-      - name: Patch jekyll-last-modified-at to respect frontmatter
-        working-directory: website
-        run: |
-            set -euo pipefail
-            shopt -s nullglob
-            hook_files=(vendor/bundle/ruby/*/gems/jekyll-last-modified-at-*/lib/jekyll-last-modified-at/hook.rb)
-            if [ "${#hook_files[@]}" -ne 1 ]; then
-              echo "Expected exactly one jekyll-last-modified-at hook.rb file, found ${#hook_files[@]}:" >&2
-              printf '  %s\n' "${hook_files[@]}" >&2
-              exit 1
-            fi
-            sed -i 's/item\.data\["last_modified_at"\] = Determinator/item.data["last_modified_at"] ||= Determinator/' "${hook_files[0]}"
 
       - name: Build website
         working-directory: website
