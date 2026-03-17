@@ -1,3 +1,5 @@
+require 'open3'
+
 module Jekyll
   class LastModifiedAtGenerator < Generator
     safe true
@@ -25,7 +27,8 @@ module Jekyll
 
       # Get the timestamp from git log specifically from the file's directory.
       # This naturally works for submodules because we run it inside the submodule dir.
-      timestamp = `git -C "#{dir}" log -1 --format="%ct" -- "#{base}" 2>/dev/null`.strip
+      stdout_str, status = Open3.capture2e("git", "-C", dir, "log", "-1", "--format=%ct", "--", base)
+      timestamp = status.success? ? stdout_str.strip : ""
 
       if timestamp.empty?
         # Fallback to filesystem mtime if git history is not available
