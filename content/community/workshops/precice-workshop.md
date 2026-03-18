@@ -97,7 +97,7 @@ aiming to reach out to a wider community that typically cannot travel to Europe.
 
 | Date | Event |
 | ---  | ---   |
-| October 2026 | [preCICE Online Training (Americas)](TODO) |
+| October 2026 | [preCICE Online Training (Americas)](./precice-training-2026-10.html) |
 | July 2020   | [Second preCICE Community hour](https://precice.discourse.group/t/267) |
 | April 2020  | [First preCICE Community hour](https://precice.discourse.group/t/196)  |
 
