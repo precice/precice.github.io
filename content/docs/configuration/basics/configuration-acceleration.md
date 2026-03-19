@@ -119,7 +119,7 @@ For some cases, the default settings are not sufficient and a more detailed conf
 For `IQN-ILS`, the complete configuration with all options specified explicitly to the default settings is as follows:
 
 ```xml
-<acceleration:IQN-ILS reduced-time-grid="true">
+<acceleration:IQN-ILS reduced-time-grid="true" on-bound-violation="scale">
   <data name="Displacements" mesh="StructureMesh"/>
   <data name="Forces" mesh="StructureMesh"/>
   <preconditioner type="residual-sum" update-on-threshold="true" freeze-after="-1"/>
@@ -133,7 +133,7 @@ For `IQN-ILS`, the complete configuration with all options specified explicitly 
 and for `IQN-IMVJ`, it is:
 
 ```xml
-<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
+<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true" on-bound-violation="scale">
   <data name="Displacements" mesh="StructureMesh"/>
   <data name="Forces" mesh="StructureMesh"/>
   <preconditioner type="residual-sum" update-on-threshold="true" freeze-after="-1"/>
@@ -149,6 +149,7 @@ For the detailed meaning of the various options, please refer to the [configurat
 
 Here are some brief explanations and hints on good combinations of choices for the configuration options:
 
+* The attribute `on-bound-violation` is used to handle the quasi-Newton acceleration steps that violate the bound configured for scalar or component(s) of vector under the `data` tag. This attribute can be set to different options to constrain the acceleration step to stay in the bound. While `discard` and `clamp` are convenient options for single value or occasional bound violation, `scale` helps to retain the direction of the QN step by only shortening the step length. The best option for this attribute is problem-dependent.
 * If several primary data fields are configured, e.g. when parallel coupling is used, an equal order of magnitude of them has to be ensured. This is done by defining a `preconditioner`.
   * As `type`, we recommend to use `"residual-sum"` as in the default setting.
   * The option `update-on-threshold` can be used to avoid updates of the preconditioner in case of small changes of the preconditioning factors.
