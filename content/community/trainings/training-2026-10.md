@@ -2,7 +2,7 @@
 title: preCICE online training 2026
 keywords: precice training 2026, event, events, training
 summary:
-permalink: precice-training-2026-10.html
+permalink: precice-online-training-2026-oct.html
 toc: false
 ---
 
