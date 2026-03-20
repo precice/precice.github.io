@@ -2,6 +2,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   const newsContainer = document.getElementById("news-container");
   const loadingText = document.getElementById("loading-news");
 
+  function isSafeUrl(url) {
+    try {
+      var parsed = new URL(url, window.location.origin);
+      return parsed.protocol === "https:" || parsed.protocol === "http:";
+    } catch (e) {
+      return false;
+    }
+  }
+
   try {
     const response = await fetch("/assets/data/news.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -22,12 +31,32 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       const date = new Date(topic.created_at || topic.last_posted_at).toLocaleDateString("en-GB");
 
-      card.innerHTML = `<a href="${topic.url}" target="_blank" rel="noopener noreferrer" class="news-link no-external-marker">
-        <h4><strong>${topic.title}</strong></h4>
-        <p>${topic.description}</p>
-        <p class="text-muted"><small>${date}</small></p>
-      </a>`;
+      const link = document.createElement("a");
+      if (isSafeUrl(topic.url)) {
+        link.setAttribute("href", topic.url);
+      }
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+      link.className = "news-link no-external-marker";
 
+      const h4 = document.createElement("h4");
+      const strong = document.createElement("strong");
+      strong.textContent = topic.title;
+      h4.appendChild(strong);
+
+      const descP = document.createElement("p");
+      descP.textContent = topic.description;
+
+      const dateP = document.createElement("p");
+      dateP.className = "text-muted";
+      const small = document.createElement("small");
+      small.textContent = date;
+      dateP.appendChild(small);
+
+      link.appendChild(h4);
+      link.appendChild(descP);
+      link.appendChild(dateP);
+      card.appendChild(link);
       col.appendChild(card);
       newsContainer.appendChild(col);
     }

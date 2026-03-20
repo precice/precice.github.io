@@ -41,7 +41,7 @@ module Jekyll
 
         next unless File.directory?(site.in_source_dir(images))
 
-        static_files = Dir.foreach(images).reject{ |f| File.directory?(f) || f.end_with?(".")}
+        static_files = Dir.foreach(images).reject{ |f| File.directory?(File.join(images, f)) || f.end_with?(".")}
         static_files.each do |image|
           from = File.join(images, image)
           to = File.join(image_dest, image)
@@ -69,7 +69,7 @@ module Jekyll
 
       # Reject all existing statics
       existing_statics = site.static_files.map { |sf| sf.relative_path.delete_prefix('/') }.to_set
-      new_static_files.reject! { |static_file| existing_statics.include?(static_file.relative_path) }
+      new_static_files.reject! { |static_file| existing_statics.include?(static_file.relative_path.delete_prefix('/')) }
 
       # Register all statics
       site.static_files += new_static_files
