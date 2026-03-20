@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;61d1092</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;879e995</span>
    </div>
   </td>
  </tr>
@@ -105,7 +105,7 @@ Collaboration diagram for precice::acceleration::BaseQNAcceleration:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab01b570d3846749ca41683ef3eff3cbe" id="r_ab01b570d3846749ca41683ef3eff3cbe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab01b570d3846749ca41683ef3eff3cbe">BaseQNAcceleration</a> (double initialRelaxation, bool forceInitialRelaxation, int maxIterationsUsed, int timeWindowsReused, int filter, double singularityLimit, <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt; dataIDs, <a class="el" href="namespaceprecice_1_1acceleration_1_1impl.html#a225b56e2b1e7f3fe2854a86e57dac3f9">impl::PtrPreconditioner</a> preconditioner, bool reducedTimeGrid)</td></tr>
+<tr class="memitem:af7de2a5d4b0bf9ed6212fcf5a124ec52" id="r_af7de2a5d4b0bf9ed6212fcf5a124ec52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7de2a5d4b0bf9ed6212fcf5a124ec52">BaseQNAcceleration</a> (double initialRelaxation, bool forceInitialRelaxation, int maxIterationsUsed, int timeWindowsReused, int filter, double singularityLimit, <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt; dataIDs, <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81">OnBoundViolation</a> onBoundViolation, <a class="el" href="namespaceprecice_1_1acceleration_1_1impl.html#a225b56e2b1e7f3fe2854a86e57dac3f9">impl::PtrPreconditioner</a> preconditioner, bool reducedTimeGrid)</td></tr>
 <tr class="memitem:a4cda307c0a96d49a7702b9ed882146a8" id="r_a4cda307c0a96d49a7702b9ed882146a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cda307c0a96d49a7702b9ed882146a8">~BaseQNAcceleration</a> () override</td></tr>
 <tr class="memdesc:a4cda307c0a96d49a7702b9ed882146a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, empty.  <br /></td></tr>
 <tr class="memitem:a22c542ecb7bb7f671adb64a923b3c6d9" id="r_a22c542ecb7bb7f671adb64a923b3c6d9"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22c542ecb7bb7f671adb64a923b3c6d9">getPrimaryDataIDs</a> () const final override</td></tr>
@@ -114,6 +114,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aaa0cd21ba53e97017e1e49d3db16ca69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the acceleration.  <br /></td></tr>
 <tr class="memitem:ae8fb4aaeecfe3799572328c1b14b73c4" id="r_ae8fb4aaeecfe3799572328c1b14b73c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8fb4aaeecfe3799572328c1b14b73c4">performAcceleration</a> (<a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, double windowStart, double windowEnd) final override</td></tr>
 <tr class="memdesc:ae8fb4aaeecfe3799572328c1b14b73c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs one acceleration step.  <br /></td></tr>
+<tr class="memitem:a76b4933bdc33b0627da9928b6a943b6d" id="r_a76b4933bdc33b0627da9928b6a943b6d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76b4933bdc33b0627da9928b6a943b6d">checkBoundViolation</a> (Eigen::VectorXd &amp;data, <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData) const</td></tr>
+<tr class="memdesc:a76b4933bdc33b0627da9928b6a943b6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check bound violations caused by performing QN update.  <br /></td></tr>
+<tr class="memitem:a3c84df13da7b19a9a8238afd72c31070" id="r_a3c84df13da7b19a9a8238afd72c31070"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c84df13da7b19a9a8238afd72c31070">onBoundViolationsClamp</a> (Eigen::VectorXd &amp;data, <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;violatingIDs)</td></tr>
+<tr class="memdesc:a3c84df13da7b19a9a8238afd72c31070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles bound violations after QN update by clamping.  <br /></td></tr>
+<tr class="memitem:a103a0494180ad8b06b3514a34347b721" id="r_a103a0494180ad8b06b3514a34347b721"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a103a0494180ad8b06b3514a34347b721">onBoundViolationsScale</a> (Eigen::VectorXd &amp;data, <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;violatingIDs, Eigen::VectorXd &amp;xUpdate)</td></tr>
+<tr class="memdesc:a103a0494180ad8b06b3514a34347b721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles bound violations after QN update by scaling the QN step.  <br /></td></tr>
+<tr class="memitem:ad3a5bb8664996eb7cb9faf5d5ccd9e72" id="r_ad3a5bb8664996eb7cb9faf5d5ccd9e72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3a5bb8664996eb7cb9faf5d5ccd9e72">clampToBounds</a> (Eigen::Map&lt; Eigen::MatrixXd &gt; &amp;data, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; &gt; &amp;lowerBound, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; &gt; &amp;upperBound)</td></tr>
+<tr class="memdesc:ad3a5bb8664996eb7cb9faf5d5ccd9e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clamp data to their bounds.  <br /></td></tr>
+<tr class="memitem:a0fe254d61fb0b5e60f1eadbfcbbbd5d4" id="r_a0fe254d61fb0b5e60f1eadbfcbbbd5d4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fe254d61fb0b5e60f1eadbfcbbbd5d4">computeShorteningFactor</a> (Eigen::Map&lt; Eigen::MatrixXd &gt; &amp;data, Eigen::Map&lt; Eigen::MatrixXd &gt; &amp;update, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; &gt; &amp;lowerBound, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; &gt; &amp;upperBound)</td></tr>
+<tr class="memdesc:a0fe254d61fb0b5e60f1eadbfcbbbd5d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate the shortening factor to fit the violating data to the bounds  <br /></td></tr>
 <tr class="memitem:ae77ccab463490e4bfba82a355c4a481b" id="r_ae77ccab463490e4bfba82a355c4a481b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae77ccab463490e4bfba82a355c4a481b">iterationsConverged</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, double windowStart) final override</td></tr>
 <tr class="memdesc:ae77ccab463490e4bfba82a355c4a481b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a iteration sequence as converged.  <br /></td></tr>
 <tr class="memitem:a9123adb2d1475485b995fa951623fb2c" id="r_a9123adb2d1475485b995fa951623fb2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9123adb2d1475485b995fa951623fb2c">exportState</a> (<a class="el" href="classprecice_1_1io_1_1TXTWriter.html">io::TXTWriter</a> &amp;writer) final override</td></tr>
@@ -174,10 +184,13 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:ab94cf7d9201c2496ae2b28d02914aadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data IDs of primary data to be involved in the IQN coefficient computation.  <br /></td></tr>
 <tr class="memitem:ae0952490cad7d1798ccfecc4149fc011" id="r_ae0952490cad7d1798ccfecc4149fc011"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0952490cad7d1798ccfecc4149fc011">_dataIDs</a></td></tr>
 <tr class="memdesc:ae0952490cad7d1798ccfecc4149fc011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data IDs of all coupling data.  <br /></td></tr>
+<tr class="memitem:a4b28fe3afb8f40301abab547b20621fe" id="r_a4b28fe3afb8f40301abab547b20621fe"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b28fe3afb8f40301abab547b20621fe">_idsWithBounds</a></td></tr>
+<tr class="memdesc:a4b28fe3afb8f40301abab547b20621fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data IDs of all coupling data that have bounds defined.  <br /></td></tr>
 <tr class="memitem:ac63102e8b69a33c577fbc4277d1a8f12" id="r_ac63102e8b69a33c577fbc4277d1a8f12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac63102e8b69a33c577fbc4277d1a8f12">_firstIteration</a> = true</td></tr>
 <tr class="memdesc:ac63102e8b69a33c577fbc4277d1a8f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates the first iteration, where constant relaxation is used.  <br /></td></tr>
 <tr class="memitem:a8acb1d3a2cde364ad4e3b3ba51ce56fe" id="r_a8acb1d3a2cde364ad4e3b3ba51ce56fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8acb1d3a2cde364ad4e3b3ba51ce56fe">_firstTimeWindow</a> = true</td></tr>
 <tr class="memitem:a64d49d2a26432c6e4b4a7f59349b77e9" id="r_a64d49d2a26432c6e4b4a7f59349b77e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64d49d2a26432c6e4b4a7f59349b77e9">_hasNodesOnInterface</a> = true</td></tr>
+<tr class="memitem:a4df6a7c080aa42261f84cefc05f2b6dc" id="r_a4df6a7c080aa42261f84cefc05f2b6dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81">OnBoundViolation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4df6a7c080aa42261f84cefc05f2b6dc">_onBoundViolation</a></td></tr>
 <tr class="memitem:ae2bd1d2a29960d0e4a03a768caef2049" id="r_ae2bd1d2a29960d0e4a03a768caef2049"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2bd1d2a29960d0e4a03a768caef2049">_forceInitialRelaxation</a></td></tr>
 <tr class="memitem:a61d8a00e9f34cb65910edef331ede257" id="r_a61d8a00e9f34cb65910edef331ede257"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61d8a00e9f34cb65910edef331ede257">_resetLS</a> = false</td></tr>
 <tr class="memdesc:a61d8a00e9f34cb65910edef331ede257"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, the LS system has been modified (reset or recomputed) in such a way, that mere updating of matrices _Wtil, Q, R etc.. is not feasible any more and need to be recomputed.  <br /></td></tr>
@@ -250,6 +263,12 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_types_classprecice_1_1acceleration_1_1Acceleration"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classprecice_1_1acceleration_1_1Acceleration')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html">precice::acceleration::Acceleration</a></td></tr>
+<tr class="memitem:a02caac069f8a22cf00f11cddd955dd81 inherit pub_types_classprecice_1_1acceleration_1_1Acceleration" id="r_a02caac069f8a22cf00f11cddd955dd81"><td class="memItemLeft" align="right" valign="top">enum struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81">OnBoundViolation</a> { <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81afd038fc7f319e48f3115d92bf5bdbef9">Ignore</a>
+, <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81a08825280e3f8137556325061ba67ff8c">Clamp</a>
+, <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81ad94b42030b9785fd754d5c1754961269">Discard</a>
+, <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81a227abcf3785f2b96628dd906e1153481">ScaleToBound</a>
+ }</td></tr>
+<tr class="memdesc:a02caac069f8a22cf00f11cddd955dd81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for handling bound violations.  <a href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81">More...</a><br /></td></tr>
 <tr class="memitem:a2fa35acb07623c57c9ee601eb3fcca65 inherit pub_types_classprecice_1_1acceleration_1_1Acceleration" id="r_a2fa35acb07623c57c9ee601eb3fcca65"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a>&lt;int, <a class="el" href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">cplscheme::PtrCouplingData</a>&gt;</td></tr>
 <tr class="memdesc:a2fa35acb07623c57c9ee601eb3fcca65 inherit pub_types_classprecice_1_1acceleration_1_1Acceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map from data ID to data values.  <br /></td></tr>
 <tr class="inherit_header pub_static_attribs_classprecice_1_1acceleration_1_1Acceleration"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_classprecice_1_1acceleration_1_1Acceleration')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Attributes inherited from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html">precice::acceleration::Acceleration</a></td></tr>
@@ -268,8 +287,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00064">64</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab01b570d3846749ca41683ef3eff3cbe" name="ab01b570d3846749ca41683ef3eff3cbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab01b570d3846749ca41683ef3eff3cbe">&#9670;&#160;</a></span>BaseQNAcceleration()</h2>
+<a id="af7de2a5d4b0bf9ed6212fcf5a124ec52" name="af7de2a5d4b0bf9ed6212fcf5a124ec52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7de2a5d4b0bf9ed6212fcf5a124ec52">&#9670;&#160;</a></span>BaseQNAcceleration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,6 +327,11 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>dataIDs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81">OnBoundViolation</a></td>          <td class="paramname"><span class="paramname"><em>onBoundViolation</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -351,7 +375,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Destructor, empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00080">80</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00081">81</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -383,7 +407,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a6894d3796c7fe57060ea982f762fc809">precice::acceleration::Acceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00756">756</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00935">935</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -417,12 +441,72 @@ Here is the call graph for this function:</div>
 
 <p>Applies the filter method for the least-squares system, defined in the configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00368">368</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00547">547</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a3e23afa5b5496a0d74c1d322dd947522_cgraph.svg" width="655" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="a76b4933bdc33b0627da9928b6a943b6d" name="a76b4933bdc33b0627da9928b6a943b6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76b4933bdc33b0627da9928b6a943b6d">&#9670;&#160;</a></span>checkBoundViolation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; precice::acceleration::BaseQNAcceleration::checkBoundViolation </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cplData</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check bound violations caused by performing QN update. </p>
+
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00117">117</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a76b4933bdc33b0627da9928b6a943b6d_cgraph.svg" width="394" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ad3a5bb8664996eb7cb9faf5d5ccd9e72" name="ad3a5bb8664996eb7cb9faf5d5ccd9e72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3a5bb8664996eb7cb9faf5d5ccd9e72">&#9670;&#160;</a></span>clampToBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::acceleration::BaseQNAcceleration::clampToBounds </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::Map&lt; Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>lowerBound</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>upperBound</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clamp data to their bounds. </p>
+
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00225">225</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 
 </div>
 </div>
@@ -452,6 +536,46 @@ Here is the call graph for this function:</div>
 <p>Computes the quasi-Newton update using the specified pp scheme (IQNIMVJ, IQNILS) </p>
 
 <p>Implemented in <a class="el" href="classprecice_1_1acceleration_1_1IQNILSAcceleration.html#aec976cf306d8001bf9517161fc17a751">precice::acceleration::IQNILSAcceleration</a>, and <a class="el" href="classprecice_1_1acceleration_1_1IQNIMVJAcceleration.html#a6e8c300fd08145d0e51d07aec8dea870">precice::acceleration::IQNIMVJAcceleration</a>.</p>
+
+</div>
+</div>
+<a id="a0fe254d61fb0b5e60f1eadbfcbbbd5d4" name="a0fe254d61fb0b5e60f1eadbfcbbbd5d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fe254d61fb0b5e60f1eadbfcbbbd5d4">&#9670;&#160;</a></span>computeShorteningFactor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double precice::acceleration::BaseQNAcceleration::computeShorteningFactor </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::Map&lt; Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Map&lt; Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>update</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>lowerBound</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>upperBound</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculate the shortening factor to fit the violating data to the bounds </p>
+
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00237">237</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a0fe254d61fb0b5e60f1eadbfcbbbd5d4_cgraph.svg" width="334" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -504,7 +628,7 @@ Here is the call graph for this function:</div>
 
 <p>Samples and concatenates the data and old data in cplData into a long vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00637">637</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00816">816</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -540,7 +664,7 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#aee2b56615f73e633f9b3296f52aa856a">precice::acceleration::Acceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00558">558</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00737">737</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 
 </div>
 </div>
@@ -561,7 +685,7 @@ Here is the call graph for this function:</div>
 
 <p>how many QN columns were deleted in this time window </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00568">568</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00747">747</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 
 </div>
 </div>
@@ -582,7 +706,7 @@ Here is the call graph for this function:</div>
 
 <p>how many QN columns were dropped (went out of scope) in this time window </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00573">573</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00752">752</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 
 </div>
 </div>
@@ -603,7 +727,7 @@ Here is the call graph for this function:</div>
 
 <p>: computes number of cols in least squares system, i.e, number of cols in _matrixV, _matrixW, _qrV, etc.. This is only necessary if some procs do not have any nodes on the coupling interface. In this case, the matrices are not constructed and we have no information about the number of cols. This info is needed for intra-participant communication. Number of its =! _cols in general. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00578">578</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00757">757</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 
 </div>
 </div>
@@ -630,7 +754,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00602">602</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00781">781</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -656,7 +780,7 @@ Here is the call graph for this function:</div>
 
 <p>Get the maximum number of reused iterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00592">592</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00771">771</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 
 </div>
 </div>
@@ -677,7 +801,7 @@ Here is the call graph for this function:</div>
 
 <p>Get the maximum number of reused time windows. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00597">597</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00776">776</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 
 </div>
 </div>
@@ -708,7 +832,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a08262c833ce0dd114d6f8c9e4ab42a31">precice::acceleration::Acceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00093">93</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00094">94</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -735,7 +859,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00610">610</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00789">789</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -772,7 +896,7 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a0183a78339fbb7dae1953bdd49f69cf2">precice::acceleration::Acceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00563">563</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00742">742</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 
 </div>
 </div>
@@ -808,7 +932,7 @@ autotoc_md0</h2>
 
 <p>Implements <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a4af532c9509d7c95f749f5f932e94ef3">precice::acceleration::Acceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00080">80</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00082">82</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -848,7 +972,7 @@ Here is the call graph for this function:</div>
 <p>make dimensions public to all procs, last entry _dimOffsets[<a class="el" href="classIntraComm.html#a288038e87868e4078aed49436aa20264" title="Number of ranks. This includes ranks from both participants, e.g. minimal size is 2.">IntraComm::getSize()</a>] holds the global dimension, global,n</p>
 <p>provide vertex offset information for all processors mesh-&gt;getVertexOffsets() provides an array that stores the number of mesh vertices on each processor This information needs to be gathered for all meshes. To get the number of respective unknowns of a specific processor we need to multiply the number of vertices with the dimensionality of the vector-valued data for each coupling data.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00661">661</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00840">840</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -896,11 +1020,86 @@ updates F and C according to the number of reused time windows</h2>
 
 <p>Implements <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a8418c1b69b27fea6593da0211e2c9a92">precice::acceleration::Acceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00426">426</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00605">605</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_ae77ccab463490e4bfba82a355c4a481b_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a3c84df13da7b19a9a8238afd72c31070" name="a3c84df13da7b19a9a8238afd72c31070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c84df13da7b19a9a8238afd72c31070">&#9670;&#160;</a></span>onBoundViolationsClamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::acceleration::BaseQNAcceleration::onBoundViolationsClamp </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cplData</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>violatingIDs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles bound violations after QN update by clamping. </p>
+
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00151">151</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a3c84df13da7b19a9a8238afd72c31070_cgraph.svg" width="416" height="263"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a103a0494180ad8b06b3514a34347b721" name="a103a0494180ad8b06b3514a34347b721"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a103a0494180ad8b06b3514a34347b721">&#9670;&#160;</a></span>onBoundViolationsScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::acceleration::BaseQNAcceleration::onBoundViolationsScale </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cplData</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>violatingIDs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>xUpdate</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles bound violations after QN update by scaling the QN step. </p>
+
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00176">176</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a103a0494180ad8b06b3514a34347b721_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -952,7 +1151,7 @@ autotoc_md2</h2>
 
 <p>Implements <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#afbcb3aa2f209dcac5a6561029ef3b3cd">precice::acceleration::Acceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00213">213</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00364">364</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -993,7 +1192,7 @@ autotoc_md4</h2>
 
 <p>Reimplemented in <a class="el" href="classprecice_1_1acceleration_1_1IQNILSAcceleration.html#abea672e84c711bf860b1888a2b03bba1">precice::acceleration::IQNILSAcceleration</a>, and <a class="el" href="classprecice_1_1acceleration_1_1IQNIMVJAcceleration.html#a723ecb0377d9c12574ebe67c2bb724a3">precice::acceleration::IQNIMVJAcceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00530">530</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00709">709</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1091,7 +1290,7 @@ Here is the call graph for this function:</div>
 
 <p>Splits up QN system vector back into the waveforms in coupling data. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00390">390</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00569">569</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1132,7 +1331,7 @@ updates the difference matrices F and C.</h2>
 
 <p>Reimplemented in <a class="el" href="classprecice_1_1acceleration_1_1IQNILSAcceleration.html#afaa1a41cb3dcb75c0ad838f261dd6d63">precice::acceleration::IQNILSAcceleration</a>, and <a class="el" href="classprecice_1_1acceleration_1_1IQNIMVJAcceleration.html#a342b188bbebfa76f55473d50c9ecad83">precice::acceleration::IQNIMVJAcceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00115">115</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00266">266</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1170,7 +1369,7 @@ Here is the call graph for this function:</div>
 
 <p>Writes info to the _infostream (also in parallel) </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00618">618</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00797">797</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1206,7 +1405,7 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#ac1fa6621302495e1e51dbca96dffc86f">precice::acceleration::Acceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00763">763</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00942">942</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1238,7 +1437,7 @@ Here is the call graph for this function:</div>
 
 <p>Data IDs of all coupling data. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00180">180</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00200">200</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1264,7 +1463,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores the local dimensions, i.e., the offsets in _invJacobian for all processors. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00255">255</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00280">280</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1290,7 +1489,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores the local dimensions regarding primary data,. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00259">259</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00284">284</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1316,7 +1515,7 @@ Here is the call graph for this function:</div>
 
 <p>filter method that is used to maintain good conditioning of the least-squares system Either of two types: QR1FILTER or QR2Filter </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00233">233</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00258">258</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1342,7 +1541,7 @@ Here is the call graph for this function:</div>
 
 <p>Indicates the first iteration, where constant relaxation is used. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00183">183</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00206">206</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1366,7 +1565,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00188">188</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00211">211</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1390,7 +1589,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00199">199</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00224">224</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1414,7 +1613,33 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00193">193</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00216">216</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a4b28fe3afb8f40301abab547b20621fe" name="a4b28fe3afb8f40301abab547b20621fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b28fe3afb8f40301abab547b20621fe">&#9670;&#160;</a></span>_idsWithBounds</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a>&gt; precice::acceleration::BaseQNAcceleration::_idsWithBounds</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Data IDs of all coupling data that have bounds defined. </p>
+
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00203">203</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1438,7 +1663,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00263">263</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00288">288</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1464,7 +1689,7 @@ Here is the call graph for this function:</div>
 
 <p>write some debug/acceleration info to file </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00262">262</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00287">287</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1490,7 +1715,7 @@ Here is the call graph for this function:</div>
 
 <p>Constant relaxation factor used for first iteration. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00168">168</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00188">188</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1514,7 +1739,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00162">162</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00182">182</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1541,7 +1766,7 @@ Here is the call graph for this function:</div>
 <p>Indices (of columns in W, V matrices) of 1st iterations of time windows. </p>
 <p>When old time windows are reused (_timeWindowsReused &gt; 0), the indices of the first iteration of each time window needs to be stored, such that, e.g., all iterations of the last time window, or one specific iteration that leads to a singular matrix in the QR decomposition can be removed and tracked. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00250">250</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00275">275</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1565,7 +1790,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00339">339</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00364">364</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1591,7 +1816,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores residual deltas. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00219">219</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00244">244</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1617,7 +1842,7 @@ Here is the call graph for this function:</div>
 
 <p>backup of the V,W and matrixCols data structures. Needed for the skipping of initial relaxation, if previous time window converged within one iteration i.e., V and W are empty &ndash; in this case restore V and W with time window t-2. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00337">337</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00362">362</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1643,7 +1868,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores x tilde deltas, where x tilde are values computed by solvers. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00222">222</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00247">247</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1667,7 +1892,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00338">338</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00363">363</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1693,7 +1918,7 @@ Here is the call graph for this function:</div>
 
 <p>Maximum number of old data iterations kept. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00171">171</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00191">191</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1719,7 +1944,7 @@ Here is the call graph for this function:</div>
 
 <p>Number of filtered out columns in this time window. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00342">342</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00367">367</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1745,7 +1970,7 @@ Here is the call graph for this function:</div>
 
 <p>Number of dropped columns in this time window (old time window out of scope) </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00345">345</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00370">370</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1771,7 +1996,7 @@ Here is the call graph for this function:</div>
 
 <p>Difference between solver input and output from last time window regarding primary data. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00325">325</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00350">350</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1797,7 +2022,7 @@ Here is the call graph for this function:</div>
 
 <p>Concatenation of all old primary data involved in the QN system. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00322">322</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00347">347</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1823,7 +2048,7 @@ Here is the call graph for this function:</div>
 
 <p>Solver output regarding primary data from last iteration. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00207">207</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00232">232</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1849,7 +2074,7 @@ Here is the call graph for this function:</div>
 
 <p>Concatenation of all old primary and secondary data involved in the QN system. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00331">331</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00356">356</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1875,7 +2100,31 @@ Here is the call graph for this function:</div>
 
 <p>Solver output from last iteration. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00210">210</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00235">235</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a4df6a7c080aa42261f84cefc05f2b6dc" name="a4df6a7c080aa42261f84cefc05f2b6dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4df6a7c080aa42261f84cefc05f2b6dc">&#9670;&#160;</a></span>_onBoundViolation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a02caac069f8a22cf00f11cddd955dd81">OnBoundViolation</a> precice::acceleration::BaseQNAcceleration::_onBoundViolation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00218">218</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1901,7 +2150,7 @@ Here is the call graph for this function:</div>
 
 <p><a class="el" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html" title="Interface for preconditioner variants that can be applied to quasi-Newton acceleration schemes.">Preconditioner</a> for least-squares system if vectorial system is used. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00165">165</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00185">185</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1927,7 +2176,7 @@ Here is the call graph for this function:</div>
 
 <p>Data IDs of primary data to be involved in the IQN coefficient computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00177">177</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00197">197</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1953,7 +2202,7 @@ Here is the call graph for this function:</div>
 
 <p>Current iteration residuals of primary IQN data. Temporary. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00213">213</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00238">238</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -1979,7 +2228,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores the time grids to which the primary data involved in the QN system will be interpolated to. If _reducedTimeGrids is true then this will only contain the last time stamp of the time window, see <a href="https://doi.org/10.1002/nme.6443">https://doi.org/10.1002/nme.6443</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00316">316</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00341">341</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2005,7 +2254,7 @@ Here is the call graph for this function:</div>
 
 <p>Concatenation of all primary data involved in the QN system. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00319">319</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00344">344</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2031,7 +2280,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores the current QR decomposition ov _matrixV, can be updated via deletion/insertion of columns. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00228">228</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00253">253</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2057,7 +2306,7 @@ Here is the call graph for this function:</div>
 
 <p>if _reducedTimeGrid = false uses the full QN-WI and if _reducedTimeGrid = true uses rQN-WI form the paper <a href="https://onlinelibrary.wiley.com/doi/10.1002/nme.6443">https://onlinelibrary.wiley.com/doi/10.1002/nme.6443</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00225">225</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00250">250</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2083,7 +2332,7 @@ Here is the call graph for this function:</div>
 
 <p>If true, the LS system has been modified (reset or recomputed) in such a way, that mere updating of matrices _Wtil, Q, R etc.. is not feasible any more and need to be recomputed. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00204">204</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00229">229</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2109,7 +2358,7 @@ Here is the call graph for this function:</div>
 
 <p>Current iteration residuals of IQN data. Temporary. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00216">216</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00241">241</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2136,7 +2385,7 @@ Here is the call graph for this function:</div>
 <p>Determines sensitivity when two matrix columns are considered equal. </p>
 <p>When during the QR decomposition of the V matrix a pivot element smaller than the singularity limit is found, the matrix is considered to be singular and the corresponding (older) iteration is removed. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00241">241</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00266">266</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2162,7 +2411,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores the time grids to which the primary and secondary data involved in the QN system will be interpolated to. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00312">312</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00337">337</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2188,7 +2437,7 @@ Here is the call graph for this function:</div>
 
 <p>Maximum number of old time windows (with data values) kept. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00174">174</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00194">194</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2214,7 +2463,7 @@ Here is the call graph for this function:</div>
 
 <p>Concatenation of all primary and secondary data involved in the QN system. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00328">328</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00353">353</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2238,7 +2487,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00294">294</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00319">319</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
@@ -2262,7 +2511,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00294">294</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8hpp_source.html#l00319">319</a> of file <a class="el" href="BaseQNAcceleration_8hpp_source.html">BaseQNAcceleration.hpp</a>.</p>
 
 </div>
 </div>
