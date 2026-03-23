@@ -511,7 +511,7 @@ document.addEventListener('keydown', function(e) {
                 </div>
             
             <div class="text-right">
-              <small>Updated 14 Jan 26</small>
+              <small>Updated 23 Mar 26</small>
             </div>
           </aside>
           
@@ -651,6 +651,13 @@ cmake <span class="nb">.</span> <span class="o">&amp;&amp;</span> make
 <p>You may be curious what displacements OpenFOAM received from the rigid body solver. We can actually easily visualize the coupling meshes, including the exchanged coupling data: preCICE generates the relevant files during the simulation and stores them in the directory <code class="language-plaintext highlighter-rouge">solid-cpp/precice-exports</code>. Load these VTK files in ParaView and apply a <code class="language-plaintext highlighter-rouge">Glyph</code> filter with <code class="language-plaintext highlighter-rouge">Glyph Type: Arrow</code>,<code class="language-plaintext highlighter-rouge">Orientation Array: Displacement</code>, and <code class="language-plaintext highlighter-rouge">Scale Array: No scale array</code>. You can further add a <code class="language-plaintext highlighter-rouge">Warp By Vector</code> filter with <code class="language-plaintext highlighter-rouge">Displacement</code> to deform the coupling data. The result should look as follows:</p>
 
 <p><img src="images/quickstart-result.png" alt="result" /></p>
+
+<p>Additionally, as we defined a watchpoint on the <code class="language-plaintext highlighter-rouge">Solid</code> participant at the flap tip (see <code class="language-plaintext highlighter-rouge">precice-config.xml</code>), we can plot it with gnuplot:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./plotDisplacement.sh
+</code></pre></div></div>
+
+<p>The resulting plot shows the y-displacement of the flap tip over time.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-hands-wash"></i> <b>Disclaimer:</b> 
 This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM®  and OpenCFD®  trade marks.
@@ -793,8 +800,8 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
         </a>
         </p>
         <p>
-        Page last updated: Jan 14, 2026<br>
-        Site last updated: Mar 21, 2026
+        Page last updated: Mar 23, 2026<br>
+        Site last updated: Mar 23, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
