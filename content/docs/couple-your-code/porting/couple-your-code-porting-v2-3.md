@@ -16,7 +16,7 @@ There are [guidelines for adapters](community-guidelines-adapters.html) and [gui
 {% endtip %}
 
 {% tip %}
-Also have a look at the [source documentation](dev-docs-sourcedocs.html) and [minimal reference implementations](couple-your-code-api.html#minimal-reference-implementations).
+Also have a look at the [API documentation](couple-your-code-api.html) and [minimal reference implementations](couple-your-code-api.html#minimal-reference-implementations).
 {% endtip %}
 
 ## preCICE API
