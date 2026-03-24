@@ -1497,13 +1497,6 @@ document.addEventListener('keydown', function(e) {
       
       
       
-      <li><a title="Source documentation" href="dev-docs-sourcedocs.html">Source documentation</a></li>
-      
-      
-      
-      
-      
-      
       <li><a title="General coding conventions" href="dev-docs-dev-conventions.html">General coding conventions</a></li>
       
       
@@ -1716,154 +1709,98 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 24 Mar 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <p>preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. If you are new to the preCICE API, we recommended that you first follow the <a href="couple-your-code-preparing-your-solver.html">step-by-step guide</a>.</p>
+   <p>preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. If you are new to the preCICE API, we recommended that you first follow the <a href="couple-your-code-preparing-your-solver.html">step-by-step guide</a>. If you are using an older version, see the <a href="couple-your-code-porting-overview">porting guides</a> to port an adapter between major version of preCICE.</p>
 
-<h2 id="native-api">Native API</h2>
+<p>Next to the native C++ API, bindings for further languages are also available. In this page, we provide an overview of all supported languages, including location, installation, and minimal reference implementations.</p>
 
-<p>The definite documentation of the C++ API is available on <a href="https://precice.org/doxygen/main/classprecice_1_1Participant.html">the preCICE API doxygen pages for the latest release</a>, or <a href="dev-docs-sourcedocs.html">see more options</a>.</p>
+<p>The reference implementations are the so called <em>solver dummies</em>, which can be a great source to copy from. The community also maintains <a href="https://github.com/ajaust/precice-parallel-solverdummies">MPI-parallel versions of some of these solver dummies</a>.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Language</th>
-      <th>Location</th>
-      <th>Installation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>C++</td>
-      <td><a href="https://github.com/precice/precice/tree/main/src/precice/Participant.hpp"><code class="language-plaintext highlighter-rouge">precice/precice/tree/main/src/precice/Participant.hpp</code></a></td>
-      <td>Automatically included</td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="c">C++</h2>
 
-<h2 id="bindings">Bindings</h2>
+<p>This is the native API of preCICE.</p>
 
-<p>Besides the C++ API, there are also bindings to other languages available:</p>
+<ul>
+  <li>Location: <a href="https://github.com/precice/precice/tree/main/src/precice/Participant.hpp"><code class="language-plaintext highlighter-rouge">precice/precice/src/precice/Participant.hpp</code></a></li>
+  <li>Installation: Automatically included</li>
+  <li>Usage: <code class="language-plaintext highlighter-rouge">#include "precice/precice.hpp"</code></li>
+  <li>Reference implementation: <a href="https://github.com/precice/precice/tree/main/examples/solverdummies/cpp"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/cpp</code></a></li>
+  <li>C++ API documentation: <a href="https://api.precice.org/cpp/latest/classprecice_1_1Participant.html">latest release</a>, <a href="https://api.precice.org/cpp/develop/classprecice_1_1Participant.html">development version</a></li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Language</th>
-      <th>Location</th>
-      <th>Installation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>C</td>
-      <td><a href="https://github.com/precice/precice/tree/main/extras/bindings/c"><code class="language-plaintext highlighter-rouge">precice/precice/tree/main/extras/bindings/c</code></a></td>
-      <td><a href="installation-source-advanced.html#disabling-native-bindings">native bindings</a></td>
-    </tr>
-    <tr>
-      <td>Fortran</td>
-      <td><a href="https://github.com/precice/precice/tree/main/extras/bindings/fortran"><code class="language-plaintext highlighter-rouge">precice/precice/tree/main/extras/bindings/fortran</code></a></td>
-      <td><a href="installation-source-advanced.html#disabling-native-bindings">native bindings</a></td>
-    </tr>
-    <tr>
-      <td>Fortran Module</td>
-      <td><a href="https://github.com/precice/fortran-module"><code class="language-plaintext highlighter-rouge">precice/fortran-module</code></a></td>
-      <td><a href="installation-bindings-fortran.html"><code class="language-plaintext highlighter-rouge">make</code></a></td>
-    </tr>
-    <tr>
-      <td>Python</td>
-      <td><a href="https://github.com/precice/python-bindings"><code class="language-plaintext highlighter-rouge">precice/python-bindings</code></a></td>
-      <td><a href="installation-bindings-python.html"><code class="language-plaintext highlighter-rouge">pip3 install pyprecice</code></a></td>
-    </tr>
-    <tr>
-      <td>Matlab</td>
-      <td><a href="https://github.com/precice/matlab-bindings"><code class="language-plaintext highlighter-rouge">precice/matlab-bindings</code></a></td>
-      <td><a href="installation-bindings-matlab.html">installation script</a></td>
-    </tr>
-    <tr>
-      <td>Julia</td>
-      <td><a href="https://github.com/precice/PreCICE.jl"><code class="language-plaintext highlighter-rouge">precice/PreCICE.jl</code></a></td>
-      <td><a href="installation-bindings-julia.html"><code class="language-plaintext highlighter-rouge">add PreCICE</code></a></td>
-    </tr>
-    <tr>
-      <td>Rust</td>
-      <td><a href="https://github.com/precice/rust-bindings"><code class="language-plaintext highlighter-rouge">precice/rust-bindings</code></a></td>
-      <td><a href="installation-bindings-rust.html"><code class="language-plaintext highlighter-rouge">cargo add precice</code></a></td>
-    </tr>
-  </tbody>
-</table>
+<p>See also the source code documentation (Doxygen pages) for the <a href="https://api.precice.org/cpp/latest/">latest release</a>, or the <a href="https://api.precice.org/cpp/develop/">development version</a>.</p>
 
-<p>The community is also working on the following bindings:</p>
+<h2 id="c-1">C</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Language</th>
-      <th>Location</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Rust</td>
-      <td><a href="https://github.com/ajaust/rust-precice"><code class="language-plaintext highlighter-rouge">ajaust/rust-precice</code></a></td>
-      <td>Experimental prototype / work in progress</td>
-    </tr>
-  </tbody>
-</table>
+<p>C bindings are included in the main repository.</p>
 
-<h2 id="minimal-reference-implementations">Minimal reference implementations</h2>
+<ul>
+  <li>Location: <a href="https://github.com/precice/precice/tree/main/extras/bindings/c"><code class="language-plaintext highlighter-rouge">precice/precice/extras/bindings/c</code></a></li>
+  <li>Installation: <a href="installation-source-advanced.html#disabling-native-bindings">native bindings</a></li>
+  <li>Usage: <code class="language-plaintext highlighter-rouge">#include "precice/preciceC.h"</code></li>
+  <li>Reference implementation: <a href="https://github.com/precice/precice/tree/main/examples/solverdummies/c"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/c</code></a></li>
+  <li>C API documentation: <a href="https://api.precice.org/cpp/latest/preciceC_8h.html">latest release</a>, <a href="https://api.precice.org/cpp/develop/preciceC_8h.html">development version</a></li>
+</ul>
 
-<p>For all languages, we provide minimal reference implementations, so called <em>solver dummies</em>. They can be a great source to copy from.</p>
+<h2 id="fortran">Fortran</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Language</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>C++</td>
-      <td><a href="https://github.com/precice/precice/tree/main/examples/solverdummies/cpp"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/cpp</code></a></td>
-    </tr>
-    <tr>
-      <td>C</td>
-      <td><a href="https://github.com/precice/precice/tree/main/examples/solverdummies/c"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/c</code></a></td>
-    </tr>
-    <tr>
-      <td>Fortran</td>
-      <td><a href="https://github.com/precice/precice/tree/main/examples/solverdummies/fortran"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/fortran</code></a></td>
-    </tr>
-    <tr>
-      <td>Fortran Module</td>
-      <td><a href="https://github.com/precice/fortran-module/tree/master/examples/solverdummy"><code class="language-plaintext highlighter-rouge">precice/fortran-module/examples/solverdummy</code></a></td>
-    </tr>
-    <tr>
-      <td>Python</td>
-      <td><a href="https://github.com/precice/python-bindings/tree/master/examples/solverdummy"><code class="language-plaintext highlighter-rouge">precice/python-bindings/examples/solverdummy</code></a></td>
-    </tr>
-    <tr>
-      <td>Matlab</td>
-      <td><a href="https://github.com/precice/matlab-bindings/tree/master/solverdummy"><code class="language-plaintext highlighter-rouge">precice/matlab-bindings/solverdummy</code></a></td>
-    </tr>
-    <tr>
-      <td>Julia</td>
-      <td><a href="https://github.com/precice/PreCICE.jl/tree/main/solverdummy"><code class="language-plaintext highlighter-rouge">precice/PreCICE.jl/solverdummy</code></a></td>
-    </tr>
-    <tr>
-      <td>Rust</td>
-      <td><a href="https://github.com/precice/rust-bindings/tree/main/examples/solverdummy"><code class="language-plaintext highlighter-rouge">precice/rust-bindings/examples/solverdummy</code></a></td>
-    </tr>
-  </tbody>
-</table>
+<p>Fortran bindings are included in the main repository.</p>
 
-<p>The community also maintains <a href="https://github.com/ajaust/precice-parallel-solverdummies">MPI-parallel versions of some of these solver dummies</a>.</p>
+<ul>
+  <li>Location: <a href="https://github.com/precice/precice/tree/main/extras/bindings/fortran"><code class="language-plaintext highlighter-rouge">precice/precice/extras/bindings/fortran</code></a></li>
+  <li>Installation: <a href="installation-source-advanced.html#disabling-native-bindings">native bindings</a></li>
+  <li>Reference implementation: <a href="https://github.com/precice/precice/tree/main/examples/solverdummies/fortran"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/fortran</code></a></li>
+  <li>Fortran API documentation: <a href="https://api.precice.org/cpp/latest/preciceFortran_8hpp.html">latest release</a>, <a href="https://api.precice.org/cpp/develop/preciceFortran_8hpp.html">development version</a></li>
+</ul>
+
+<h2 id="fortran-module">Fortran module</h2>
+
+<ul>
+  <li>Location: <a href="https://github.com/precice/fortran-module"><code class="language-plaintext highlighter-rouge">precice/fortran-module</code></a></li>
+  <li>Installation: <a href="installation-bindings-fortran.html"><code class="language-plaintext highlighter-rouge">make</code></a></li>
+  <li>Usage: <code class="language-plaintext highlighter-rouge">use precice</code></li>
+  <li>Reference implementation: <a href="https://github.com/precice/fortran-module/tree/master/examples/solverdummy"><code class="language-plaintext highlighter-rouge">precice/fortran-module/examples/solverdummy</code></a></li>
+</ul>
+
+<h2 id="python">Python</h2>
+
+<ul>
+  <li>Location:<a href="https://github.com/precice/python-bindings"><code class="language-plaintext highlighter-rouge">precice/python-bindings</code></a></li>
+  <li>Installation: <a href="installation-bindings-python.html"><code class="language-plaintext highlighter-rouge">pip3 install pyprecice</code></a></li>
+  <li>Usage: <code class="language-plaintext highlighter-rouge">import precice</code></li>
+  <li>Reference implementation: <a href="https://github.com/precice/python-bindings/tree/master/examples/solverdummy"><code class="language-plaintext highlighter-rouge">precice/python-bindings/examples/solverdummy</code></a></li>
+</ul>
+
+<h2 id="matlab">Matlab</h2>
+
+<ul>
+  <li>Location:<a href="https://github.com/precice/matlab-bindings"><code class="language-plaintext highlighter-rouge">precice/matlab-bindings</code></a></li>
+  <li>Installation: <a href="installation-bindings-matlab.html">installation script</a></li>
+  <li>Reference implementation: <a href="https://github.com/precice/matlab-bindings/tree/master/examples/solverdummy"><code class="language-plaintext highlighter-rouge">precice/matlab-bindings/examples/solverdummy</code></a></li>
+</ul>
+
+<h2 id="julia">Julia</h2>
+
+<ul>
+  <li>Location: <a href="https://github.com/precice/PreCICE.jl"><code class="language-plaintext highlighter-rouge">precice/PreCICE.jl</code></a></li>
+  <li>Installation: <a href="installation-bindings-julia.html"><code class="language-plaintext highlighter-rouge">add PreCICE</code></a></li>
+  <li>Usage: <code class="language-plaintext highlighter-rouge">using PreCICE</code></li>
+  <li>Reference implementation: <a href="https://github.com/precice/PreCICE.jl/tree/main/solverdummy"><code class="language-plaintext highlighter-rouge">precice/PreCICE.jl/solverdummy</code></a></li>
+</ul>
+
+<h2 id="rust">Rust</h2>
+
+<ul>
+  <li>Location: <a href="https://github.com/precice/rust-bindings"><code class="language-plaintext highlighter-rouge">precice/rust-bindings</code></a></li>
+  <li>Installation:<a href="installation-bindings-rust.html"><code class="language-plaintext highlighter-rouge">cargo add precice</code></a></li>
+  <li>Reference implementation: <a href="https://github.com/precice/rust-bindings/tree/main/examples/solverdummy"><code class="language-plaintext highlighter-rouge">precice/rust-bindings/examples/solverdummy</code></a></li>
+</ul>
 
 <h2 id="architectural-overview-of-bindings">Architectural overview of bindings</h2>
 
@@ -2176,10 +2113,6 @@ $('#toc').on('click', 'a', function() {
 
 
 
-
-
-
-
 ]}
 </script>
 
@@ -2258,7 +2191,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Mar 24, 2026<br>
         Site last updated: Mar 24, 2026
         </p>
         <p>
