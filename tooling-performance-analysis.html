@@ -1709,7 +1709,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 11 Mar 26</small>
+              <small>Updated 24 Mar 26</small>
             </div>
           </aside>
           
@@ -1775,12 +1775,25 @@ Fundamental events should give you an insight in the overhead of preCICE as well
 <p>Fundamental events are:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">_GLOBAL</code> time spent from the initialization of the events framework to the finalization. Starts in the construction of the participant and ends in finalize or the destructor.</li>
-  <li><code class="language-plaintext highlighter-rouge">construction</code> time spent in construction of the Participant, including configuration and setting up the intra-communication of each participant.</li>
-  <li><code class="language-plaintext highlighter-rouge">solver.initialize</code> time spent in the solver until <code class="language-plaintext highlighter-rouge">initialize()</code> is called. This normally includes setting meshes, defining initial data and preparing the solver.</li>
-  <li><code class="language-plaintext highlighter-rouge">initialize()</code> time spent in preCICE <code class="language-plaintext highlighter-rouge">initialize()</code>. This includes establishing communication between participants, mesh and data transfer, as well as mapping computation.</li>
-  <li><code class="language-plaintext highlighter-rouge">solver.advance</code> time spent in the solver between <code class="language-plaintext highlighter-rouge">advance()</code> calls, including the time between <code class="language-plaintext highlighter-rouge">initialize()</code> and the first <code class="language-plaintext highlighter-rouge">advance()</code> call.</li>
-  <li><code class="language-plaintext highlighter-rouge">advance()</code> time spent in preCICE <code class="language-plaintext highlighter-rouge">advance()</code>. This includes data mapping, data transfer, acceleration.</li>
+  <li><code class="language-plaintext highlighter-rouge">_GLOBAL</code> <em>Deprecated</em>: Time from profiling framework initialization (<code class="language-plaintext highlighter-rouge">EventRegistry::initialize</code>) to finalization (<code class="language-plaintext highlighter-rouge">EventRegistry::finalize</code>), spanning the full participant lifetime.</li>
+  <li><code class="language-plaintext highlighter-rouge">construction</code>: Time in participant construction, including setup checks, <code class="language-plaintext highlighter-rouge">configure</code>, profiling backend startup, MPI setup, and optional intra-participant communication initialization.</li>
+  <li><code class="language-plaintext highlighter-rouge">configure</code>: Time spent parsing and applying the preCICE XML configuration.</li>
+  <li><code class="language-plaintext highlighter-rouge">com.initializeMPI</code>: Time spent initializing or detecting MPI and validating communicator consistency.</li>
+  <li><code class="language-plaintext highlighter-rouge">com.initializeIntraCom</code>: Time spent establishing intra-participant communication independent of backend.</li>
+  <li><code class="language-plaintext highlighter-rouge">solver.initialize</code>: Solver-side time between participant construction and calling <code class="language-plaintext highlighter-rouge">initialize()</code>. This typically includes mesh setup, initial data, and solver preparation.</li>
+  <li><code class="language-plaintext highlighter-rouge">initialize</code>: Total time inside preCICE <code class="language-plaintext highlighter-rouge">initialize()</code>, including inter-participant communication setup, initial mapping/data handling, coupling-scheme initialization, and initial exports.</li>
+  <li><code class="language-plaintext highlighter-rouge">reinitialize</code>: Time spent in participant reinitialization, includes large parts of <code class="language-plaintext highlighter-rouge">initialize</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">initalizeCouplingScheme</code>: Time spent initializing coupling scheme and acceleration.</li>
+  <li><code class="language-plaintext highlighter-rouge">m2n.requestPrimaryRankConnection.&lt;participant&gt;</code> and <code class="language-plaintext highlighter-rouge">m2n.acceptPrimaryRankConnection.&lt;participant&gt;</code>: Time spent establishing primary-rank inter-communication, including handshake and compatibility checks.</li>
+  <li><code class="language-plaintext highlighter-rouge">mapping</code>: Time spent mapping samples in configured read and write mappings.</li>
+  <li><code class="language-plaintext highlighter-rouge">solver.advance</code>: Solver-side time for computing each time-step. It contains the time between <code class="language-plaintext highlighter-rouge">initialize()</code>, the first <code class="language-plaintext highlighter-rouge">advance()</code> and following <code class="language-plaintext highlighter-rouge">advance()</code> calls.</li>
+  <li><code class="language-plaintext highlighter-rouge">advance</code>: Total time inside preCICE <code class="language-plaintext highlighter-rouge">advance()</code>, including timestep handling, mapping/data actions, and coupling advancement.</li>
+  <li><code class="language-plaintext highlighter-rouge">advanceCoupling</code>: Time spent inside coupling-scheme advancement and synchronization/exchange steps. Note that for serial coupling-schemes, this includes the timestep of the other participant.</li>
+  <li><code class="language-plaintext highlighter-rouge">syncTimestep</code>: Time spent synchronizing and validating timestep sizes across all ranks of a single participant.</li>
+  <li><code class="language-plaintext highlighter-rouge">waitAndSendData</code> and <code class="language-plaintext highlighter-rouge">waitAndReceiveData</code>: Time spent exchanging coupling data.</li>
+  <li><code class="language-plaintext highlighter-rouge">accelerate</code>: Time spent in implicit-coupling acceleration routines.</li>
+  <li><code class="language-plaintext highlighter-rouge">sendConvergence</code> and <code class="language-plaintext highlighter-rouge">receiveConvergence</code>: Time spent exchanging the evaluated convergence criteria in implicit coupling.</li>
+  <li><code class="language-plaintext highlighter-rouge">finalize</code>: Time inside preCICE <code class="language-plaintext highlighter-rouge">finalize()</code>, including coupling finalization, communication shutdown, profiling finalization, and MPI finalization if applicable.</li>
 </ul>
 
 <h2 id="full-api-profiling">Full API-profiling</h2>
@@ -2546,7 +2559,7 @@ If you create tables make sure to use <code class="language-plaintext highlighte
         </a>
         </p>
         <p>
-        Page last updated: Mar 11, 2026<br>
+        Page last updated: Mar 24, 2026<br>
         Site last updated: Mar 24, 2026
         </p>
         <p>
