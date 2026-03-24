@@ -149,7 +149,13 @@ For the detailed meaning of the various options, please refer to the [configurat
 
 Here are some brief explanations and hints on good combinations of choices for the configuration options:
 
-* The attribute `on-bound-violation` is used to handle the quasi-Newton acceleration steps that violate the bound configured for scalar or component(s) of vector under the `data` tag. This attribute can be set to different options to constrain the acceleration step to stay in the bound. While `discard` and `clamp` are convenient options for single value or occasional bound violation, `scale` helps to retain the direction of the QN step by only shortening the step length. The best option for this attribute is problem-dependent.
+* The attribute `on-bound-violation` is used to handle the quasi-Newton(QN) acceleration steps that violate the bound configured for scalar or component(s) of vector under the `data` tag. This attribute can be set to different options to constrain the acceleration step to stay in the bound. The options avaiable are:
+  * `ignore`: default option. preCICE will not check if the accelerated values are violating the bound, thus no warning etc.
+  * `discard`: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. If any violation is found, this update step will be discarded, i.e. next iteration will start with the output from last iteration.
+  * `clamp`: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. The violating values will be clamped to the bounds respectively. Non-violating values are not influenced by this check.
+  * `scale`: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. If any violation is found, the update from this QN step is scaled by a scalar factor between 0 and 1, to fit all the violating values into the bounded range.
+
+    While `discard` and `clamp` are convenient options for single value or occasional bound violation, `scale` helps to retain the direction of the QN step by only shortening the step length. The best option for this attribute is problem-dependent.
 * If several primary data fields are configured, e.g. when parallel coupling is used, an equal order of magnitude of them has to be ensured. This is done by defining a `preconditioner`.
   * As `type`, we recommend to use `"residual-sum"` as in the default setting.
   * The option `update-on-threshold` can be used to avoid updates of the preconditioner in case of small changes of the preconditioning factors.
