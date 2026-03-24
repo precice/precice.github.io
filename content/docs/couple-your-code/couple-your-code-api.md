@@ -14,7 +14,7 @@ Next to the native C++ API, bindings for further languages are also available. I
 
 The reference implementations are the so called _solver dummies_, which can be a great source to copy from. The community also maintains [MPI-parallel versions of some of these solver dummies](https://github.com/ajaust/precice-parallel-solverdummies).
 
-## C++
+## C++ {#cpp}
 
 This is the native API of preCICE.
 
