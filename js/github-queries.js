@@ -10,10 +10,10 @@
 // Get the updated field of an entry of the feed and format it like "Jan 1, 1970"
 function formatDate(updated) {
   // Extract the date and create a Date object
-  var date = new Date(updated);
+  const date = new Date(updated);
 
   // Names for the months (we do not need an external library just for this)
-  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   // Returns e.g. "Jan 1, 1970"
   return monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
@@ -22,14 +22,14 @@ function formatDate(updated) {
 // Wait until the complete page has loaded (so that the latest-release exists)
 document.addEventListener("DOMContentLoaded", function() {
 
-var github_api_endpoint = 'https://api.github.com/repos/precice/precice/releases'
+const github_api_endpoint = 'https://api.github.com/repos/precice/precice/releases'
 
     fetch(github_api_endpoint).then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
-          var tag = data[0].name;
-          var published_at = data[0].published_at;
-          var url = data[0].html_url;
+          const tag = data[0].name;
+          const published_at = data[0].published_at;
+          const url = data[0].html_url;
 
           var link = document.createElement('a');
           link.setAttribute('href', url);
@@ -60,12 +60,12 @@ var github_api_endpoint = 'https://api.github.com/repos/precice/precice/releases
 // Exact copy of the script to get latest release, but this time we get the number of stars, or 'stargazers_count' in Github lingo
 document.addEventListener("DOMContentLoaded", function() {
 
-    var github_api_endpoint = 'https://api.github.com/repos/precice/precice'
+    const github_api_endpoint = 'https://api.github.com/repos/precice/precice'
 
     fetch(github_api_endpoint).then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
-          var count = data.stargazers_count;
+          const count = data.stargazers_count;
 
           var link = document.createElement('a');
           link.setAttribute('href', 'https://github.com/precice/precice/');

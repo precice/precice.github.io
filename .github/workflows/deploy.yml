@@ -72,6 +72,10 @@ jobs:
           bundler-cache: true
           working-directory: website
 
+      - name: Fetch full history for submodules
+        working-directory: website
+        run: git submodule foreach --recursive "git fetch --unshallow --all 2>/dev/null || git fetch --all"
+
       - name: Build website
         working-directory: website
         env:
