@@ -52,3 +52,27 @@ $(function() {
         }
     });
 });
+
+// this makes the logos toggle as per the option choosed by clicking on the specific buttons.
+$(function() {
+    $(document).on('click', '.logowall-filter .filter-btn', function(event) {
+        var $button = $(this);
+        var filter = String($button.data('filter') || '').toLowerCase();
+        var $filterBar = $button.closest('.logowall-filter');
+        var $items = $filterBar.next('.logo-wall-grid').find('.logo-item');
+
+        if (!$items.length) {
+            return;
+        }
+
+        event.preventDefault();
+
+        $filterBar.find('.filter-btn').removeClass('active');
+        $button.addClass('active');
+
+        $items.each(function() {
+            var matches = filter === 'all' || String($(this).data('category') || '').toLowerCase() === filter;
+            $(this).toggleClass('hidden', !matches);
+        });
+    });
+});
