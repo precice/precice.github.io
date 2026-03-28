@@ -7,8 +7,8 @@ summary: "Do you wonder why there is no `sendData` and `receiveData` in preCICE?
 
 preCICE distinguishes between serial and parallel coupling schemes:
 
-* **serial**: the participants run after one another,
-* **parallel**: the participants run simultaneously.
+- **serial**: the participants run after one another,
+- **parallel**: the participants run simultaneously.
 
 ## Serial coupling schemes
 
@@ -30,9 +30,83 @@ In our example, we currently use a serial coupling scheme:
 
 ***
 
-<img class="img-responsive" src="images/docs/couple-your-code-serial-coupling.svg" alt="Serial coupling flow" style="width:100%">
+<!-- Approach A -->
+<!-- {% mermaid %}
+sequenceDiagram
+    participant FluidSolver
+    participant SolidSolver
+    Note over FluidSolver,SolidSolver: Initialization
+    FluidSolver->>FluidSolver: precice.initialize()
+    SolidSolver->>SolidSolver: precice.initialize()
+    SolidSolver->>FluidSolver: send mesh (SolidMesh)
+    FluidSolver->>FluidSolver: receive mesh
+    loop Coupling timestep
+        Note over FluidSolver: Solve fluid timestep
+        FluidSolver->>FluidSolver: solveTimeStep(...)
+        FluidSolver->>FluidSolver: precice.advance()
+        Note over FluidSolver: Map write Forces<br/>FluidMesh → SolidMesh
+        FluidSolver->>SolidSolver: send Forces
+        Note over SolidSolver: Waiting for Forces
+        SolidSolver->>SolidSolver: receive Forces
+        SolidSolver->>SolidSolver: solveTimeStep(...)
+        SolidSolver->>SolidSolver: precice.advance()
+        SolidSolver->>FluidSolver: send Displacements
+        Note over FluidSolver: receive Displacements
+        FluidSolver->>FluidSolver: Map read Displacements<br/>SolidMesh → FluidMesh
+    end
+    Note over FluidSolver,SolidSolver: Finalization
+    FluidSolver->>FluidSolver: precice.finalize()
+    SolidSolver->>SolidSolver: precice.finalize()
+{% endmermaid %} -->
 
-***
+<!-- Approach B -->
+{% mermaid %}
+sequenceDiagram
+participant F as FluidSolver
+participant S as SolidSolver
+
+    Note over F: Participant("FluidSolver", ...)
+    Note over S: Participant("SolidSolver", ...)
+
+    Note over F: precice.initialize()
+    Note over S: precice.initialize()
+
+    S->>F: SolidMesh (send mesh → receive mesh)
+
+    Note over F: solveTimeStep(...)
+    Note over F: precice.advance()
+
+    Note over S: waiting
+
+    Note over F: map write data<br/>FluidMesh ––→ SolidMesh<br/>(Forces)
+    F->>S: Forces (send data → receive data)
+
+    Note over F: waiting
+
+    Note over S: solveTimeStep(...)
+    Note over S: precice.advance()
+
+    S-->>F: Displacements (send data → receive data)
+
+    Note over F: map read data<br/>FluidMesh ←–– SolidMesh<br/>(Displacements)
+
+    Note over F: solveTimeStep(...)
+    Note over F: precice.advance()
+
+    Note over S: waiting
+
+    Note over F: map write data<br/>FluidMesh ––→ SolidMesh<br/>(Forces)
+    F->>S: Forces (send data → receive data)
+
+    Note over S: solveTimeStep(...)
+    Note over S: precice.advance()
+
+    Note over F: precice.finalize()
+    Note over S: precice.finalize()
+
+{% endmermaid %}
+
+---
 
 Try to swap the roles of `first` and `second` in your example. Do you see the difference? If everything is just too fast, add some `sleep` calls.
 
