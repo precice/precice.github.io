@@ -1,0 +1,33 @@
+name: Generate Ubuntu Baseline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python deps
+        run: pip install PyYAML
+
+      - name: Generate baseline
+        run: |
+          python3 scripts/generate_ubuntu_baseline.py \
+            --lts 22.04 24.04
+
+      - name: Commit if changed
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add _data/ubuntu-baseline.yml
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Update Ubuntu baseline"
+            git push
+          fi
