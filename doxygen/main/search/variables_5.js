@@ -27,8 +27,9 @@ var searchData=
   ['executor_5fcuda_24',['EXECUTOR_CUDA',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a9cf5f93c1eebe24d92afa7086557ca52',1,'precice::mapping::MappingConfiguration']]],
   ['executor_5fhip_25',['EXECUTOR_HIP',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a37046d1121aac104a9269e579fa1901c',1,'precice::mapping::MappingConfiguration']]],
   ['executor_5fomp_26',['EXECUTOR_OMP',['../classprecice_1_1mapping_1_1MappingConfiguration.html#af0fad1401ab95f7ecc7478385026dec9',1,'precice::mapping::MappingConfiguration']]],
-  ['exist_5fok_27',['exist_ok',['../namespacecompileAndTest.html#a6ede50e93f5f578f2a566eecb1ca7d17',1,'compileAndTest']]],
-  ['exporter_28',['exporter',['../structprecice_1_1io_1_1ExportContext.html#acf178ee3785c8a399f448a880c453edb',1,'precice::io::ExportContext']]],
-  ['extent_29',['extent',['../classprecice_1_1span.html#a8e76649e5f5cc866c60693e1f0c7a02e',1,'precice::span::extent'],['../classspan.html#a8e76649e5f5cc866c60693e1f0c7a02e',1,'span::extent']]],
-  ['extent_5fv_30',['extent_v',['http://en.cppreference.com/w/cpp/types/extent.html',1,'std::extent_v'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::extent_v']]]
+  ['executor_5fsycl_27',['EXECUTOR_SYCL',['../classprecice_1_1mapping_1_1MappingConfiguration.html#aad54d230ff55ac721913748db8d284a7',1,'precice::mapping::MappingConfiguration']]],
+  ['exist_5fok_28',['exist_ok',['../namespacecompileAndTest.html#a6ede50e93f5f578f2a566eecb1ca7d17',1,'compileAndTest']]],
+  ['exporter_29',['exporter',['../structprecice_1_1io_1_1ExportContext.html#acf178ee3785c8a399f448a880c453edb',1,'precice::io::ExportContext']]],
+  ['extent_30',['extent',['../classprecice_1_1span.html#a8e76649e5f5cc866c60693e1f0c7a02e',1,'precice::span::extent'],['../classspan.html#a8e76649e5f5cc866c60693e1f0c7a02e',1,'span::extent']]],
+  ['extent_5fv_31',['extent_v',['http://en.cppreference.com/w/cpp/types/extent.html',1,'std::extent_v'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::extent_v']]]
 ];

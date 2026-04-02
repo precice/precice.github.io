@@ -1,13 +1,20 @@
 var searchData=
 [
   ['gamma_0',['gamma',['../structprecice_1_1acceleration_1_1impl_1_1QRFactorization_1_1givensRot.html#aacce06b0f97f91ff80c1709a00b87a4f',1,'precice::acceleration::impl::QRFactorization::givensRot']]],
-  ['geofilter_1',['geoFilter',['../structprecice_1_1impl_1_1MeshContext.html#a43d76b814b37d5edaee62376b69e5a05',1,'precice::impl::MeshContext']]],
+  ['geofilter_1',['geoFilter',['../structprecice_1_1impl_1_1ReceivedMeshContext.html#a5ea307dccabeff66a64f4c2441c8908b',1,'precice::impl::ReceivedMeshContext']]],
   ['geometric_5fmultiscale_5faxis_5fx_2',['GEOMETRIC_MULTISCALE_AXIS_X',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a0a05e9ae219760aa416c0d87fca42b09',1,'precice::mapping::MappingConfiguration']]],
   ['geometric_5fmultiscale_5faxis_5fy_3',['GEOMETRIC_MULTISCALE_AXIS_Y',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a8bf9c11a7fd5a0dd28983889dd416ec7',1,'precice::mapping::MappingConfiguration']]],
   ['geometric_5fmultiscale_5faxis_5fz_4',['GEOMETRIC_MULTISCALE_AXIS_Z',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a69788f655e5b12d588d7103612b3efa9',1,'precice::mapping::MappingConfiguration']]],
-  ['geometric_5fmultiscale_5ftype_5fcollect_5',['GEOMETRIC_MULTISCALE_TYPE_COLLECT',['../classprecice_1_1mapping_1_1MappingConfiguration.html#afba0c46dcdfbeeeb451d539403432dd5',1,'precice::mapping::MappingConfiguration']]],
-  ['geometric_5fmultiscale_5ftype_5fspread_6',['GEOMETRIC_MULTISCALE_TYPE_SPREAD',['../classprecice_1_1mapping_1_1MappingConfiguration.html#ae7ecb8c9fcc6b12e3ea0924204e5b5a8',1,'precice::mapping::MappingConfiguration']]],
-  ['ginkgo_7',['ginkgo',['../structprecice_1_1testing_1_1TestSetup.html#ae64ea6efe2a38c0ed7b6f8a943cdeda1',1,'precice::testing::TestSetup']]],
-  ['gradients_8',['gradients',['../structprecice_1_1time_1_1Sample.html#a172b282ddf6ddff5f500c549aa8bf411',1,'precice::time::Sample']]],
-  ['group_9',['group',['../structprecice_1_1profiling_1_1Event_1_1Options.html#ad0368c2eb51571e5e1498d323cb164a7',1,'precice::profiling::Event::Options::group'],['../structEvent_1_1Options.html#ad0368c2eb51571e5e1498d323cb164a7',1,'Event::Options::group']]]
+  ['geometric_5fmultiscale_5fcross_5fsection_5fcircle_5',['GEOMETRIC_MULTISCALE_CROSS_SECTION_CIRCLE',['../classprecice_1_1mapping_1_1MappingConfiguration.html#aa3605bcca7b82dd1404abbeb11803c7f',1,'precice::mapping::MappingConfiguration']]],
+  ['geometric_5fmultiscale_5fcross_5fsection_5fprofile_5fparabolic_6',['GEOMETRIC_MULTISCALE_CROSS_SECTION_PROFILE_PARABOLIC',['../classprecice_1_1mapping_1_1MappingConfiguration.html#abec79ad8c350cf99b709c1ffec8d8dfd',1,'precice::mapping::MappingConfiguration']]],
+  ['geometric_5fmultiscale_5fcross_5fsection_5fprofile_5funiform_7',['GEOMETRIC_MULTISCALE_CROSS_SECTION_PROFILE_UNIFORM',['../classprecice_1_1mapping_1_1MappingConfiguration.html#aa43c8a8005af2c62afa818762cc212f2',1,'precice::mapping::MappingConfiguration']]],
+  ['geometric_5fmultiscale_5fcross_5fsection_5fsquare_8',['GEOMETRIC_MULTISCALE_CROSS_SECTION_SQUARE',['../classprecice_1_1mapping_1_1MappingConfiguration.html#aa16c801c430067b8d5f11a45f6f08a70',1,'precice::mapping::MappingConfiguration']]],
+  ['geometric_5fmultiscale_5fdimension_5f1d2d_9',['GEOMETRIC_MULTISCALE_DIMENSION_1D2D',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a72f597cff219def2334a151794d51dee',1,'precice::mapping::MappingConfiguration']]],
+  ['geometric_5fmultiscale_5fdimension_5f1d3d_10',['GEOMETRIC_MULTISCALE_DIMENSION_1D3D',['../classprecice_1_1mapping_1_1MappingConfiguration.html#ac8f9a49f806af75743793edddca1e595',1,'precice::mapping::MappingConfiguration']]],
+  ['geometric_5fmultiscale_5fdimension_5f2d3d_11',['GEOMETRIC_MULTISCALE_DIMENSION_2D3D',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a0dcec072606db73eb17bcb2629eff0b4',1,'precice::mapping::MappingConfiguration']]],
+  ['geometric_5fmultiscale_5ftype_5fcollect_12',['GEOMETRIC_MULTISCALE_TYPE_COLLECT',['../classprecice_1_1mapping_1_1MappingConfiguration.html#afba0c46dcdfbeeeb451d539403432dd5',1,'precice::mapping::MappingConfiguration']]],
+  ['geometric_5fmultiscale_5ftype_5fspread_13',['GEOMETRIC_MULTISCALE_TYPE_SPREAD',['../classprecice_1_1mapping_1_1MappingConfiguration.html#ae7ecb8c9fcc6b12e3ea0924204e5b5a8',1,'precice::mapping::MappingConfiguration']]],
+  ['ginkgo_14',['ginkgo',['../structprecice_1_1testing_1_1TestSetup.html#ae64ea6efe2a38c0ed7b6f8a943cdeda1',1,'precice::testing::TestSetup']]],
+  ['gradients_15',['gradients',['../structprecice_1_1time_1_1Sample.html#a172b282ddf6ddff5f500c549aa8bf411',1,'precice::time::Sample']]],
+  ['group_16',['group',['../structprecice_1_1profiling_1_1Event_1_1Options.html#ad0368c2eb51571e5e1498d323cb164a7',1,'precice::profiling::Event::Options::group'],['../structEvent_1_1Options.html#ad0368c2eb51571e5e1498d323cb164a7',1,'Event::Options::group']]]
 ];

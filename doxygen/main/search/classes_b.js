@@ -24,5 +24,6 @@ var searchData=
   ['logical_5fnot_21',['logical_not',['http://en.cppreference.com/w/cpp/utility/functional/logical_not.html',1,'std']]],
   ['logical_5for_22',['logical_or',['http://en.cppreference.com/w/cpp/utility/functional/logical_or.html',1,'std']]],
   ['loglocation_23',['LogLocation',['../structprecice_1_1logging_1_1LogLocation.html',1,'precice::logging']]],
-  ['lognormal_5fdistribution_24',['lognormal_distribution',['http://en.cppreference.com/w/cpp/numeric/random/lognormal_distribution.html',1,'std']]]
+  ['lognormal_5fdistribution_24',['lognormal_distribution',['http://en.cppreference.com/w/cpp/numeric/random/lognormal_distribution.html',1,'std']]],
+  ['lucykernelfunction_25',['LucyKernelFunction',['../classprecice_1_1mapping_1_1impl_1_1LucyKernelFunction.html',1,'precice::mapping::impl']]]
 ];

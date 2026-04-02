@@ -22,7 +22,7 @@ var searchData=
   ['read_19',['read',['../structprecice_1_1impl_1_1ParticipantImpl_1_1MappedSamples.html#a46c68e489b72d28b3d85862b4fb67a70',1,'precice::impl::ParticipantImpl::MappedSamples']]],
   ['read_5fmapping_5fpost_20',['READ_MAPPING_POST',['../classprecice_1_1action_1_1ActionConfiguration.html#a4d3aee1a45695c7671802cd3b8206722',1,'precice::action::ActionConfiguration']]],
   ['readdataname_21',['readDataName',['../structprecice_1_1testing_1_1QuickTest.html#a30aa6165ef7b3c5fb363fb81eb427d52',1,'precice::testing::QuickTest']]],
-  ['receivemeshfrom_22',['receiveMeshFrom',['../structprecice_1_1impl_1_1MeshContext.html#aa07c1a3fa61f03ac4ba021e89f882c86',1,'precice::impl::MeshContext']]],
+  ['receivemeshfrom_22',['receiveMeshFrom',['../structprecice_1_1impl_1_1ReceivedMeshContext.html#abf1b8b2bba71f328c19883adac166187',1,'precice::impl::ReceivedMeshContext']]],
   ['records_23',['records',['../classprecice_1_1action_1_1RecorderAction.html#a5291d7287f6875fd43b32f310388e18c',1,'precice::action::RecorderAction']]],
   ['recvbuffer_24',['recvBuffer',['../structprecice_1_1m2n_1_1PointToPointCommunication_1_1Mapping.html#a7c6d981c698c5166b9e4e2ff87bf0c1e',1,'precice::m2n::PointToPointCommunication::Mapping']]],
   ['reducedtimegridqn_25',['reducedTimeGridQN',['../structprecice_1_1acceleration_1_1AccelerationConfiguration_1_1ConfigurationData.html#a7f43c432a52934c1698a06b372b7f871',1,'precice::acceleration::AccelerationConfiguration::ConfigurationData']]],

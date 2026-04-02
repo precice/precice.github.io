@@ -1731,7 +1731,7 @@ You can generate the reference yourself:
 </pre>
 </div>
 
-<!-- generated with preCICE 3.3.1 -->
+<!-- generated with preCICE 3.4.0 -->
 <h1 id="precice-configuration">precice-configuration</h1>
 
 <p>Main tag containing preCICE configuration.</p>
@@ -1743,7 +1743,7 @@ You can generate the reference yourself:
     ...
   <span class="nt">&lt;/log&gt;</span>
   <span class="nt">&lt;profiling</span> <span class="na">mode=</span><span class="s">"fundamental"</span> <span class="na">flush-every=</span><span class="s">"50"</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">synchronize=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">waveform-degree=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">waveform-degree=</span><span class="s">"1"</span> <span class="na">lower-bound=</span><span class="s">"-inf"</span> <span class="na">upper-bound=</span><span class="s">"inf"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">dimensions=</span><span class="s">"{integer}"</span><span class="nt">&gt;</span>
     ...
   <span class="nt">&lt;/mesh&gt;</span>
@@ -1972,11 +1972,11 @@ You can generate the reference yourself:
 
 <h2 id="datascalar">data:scalar</h2>
 
-<p>Defines a scalar data set to be assigned to meshes.</p>
+<p>Defines a scalar data set to be assigned to meshes. Lower and upper bound of the data can be specified to prevent acceleration methods of IQN family violating the physical value range.</p>
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">waveform-degree=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">waveform-degree=</span><span class="s">"1"</span> <span class="na">lower-bound=</span><span class="s">"-inf"</span> <span class="na">upper-bound=</span><span class="s">"inf"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -2002,6 +2002,20 @@ You can generate the reference yourself:
       <td>integer</td>
       <td>Polynomial degree of waveform that is used for time interpolation.</td>
       <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>lower-bound</td>
+      <td>float</td>
+      <td>Lower bound for the scalar data. Example is 0 for temperature in Kelvin.</td>
+      <td><code class="language-plaintext highlighter-rouge">-inf</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>upper-bound</td>
+      <td>float</td>
+      <td>Upper bound for the scalar data. Example is 1 for volumetric phase fraction</td>
+      <td><code class="language-plaintext highlighter-rouge">inf</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -2009,11 +2023,11 @@ You can generate the reference yourself:
 
 <h2 id="datavector">data:vector</h2>
 
-<p>Defines a vector data set to be assigned to meshes. The number of components of each data entry depends on the spatial dimensions of the mesh.</p>
+<p>Defines a vector data set to be assigned to meshes. The number of components of each data entry depends on the spatial dimensions of the mesh.Lower and upper bound for each component can be specified to prevent acceleration methods of IQN family violating the physical value range.</p>
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">waveform-degree=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">waveform-degree=</span><span class="s">"1"</span> <span class="na">lower-bound-x=</span><span class="s">"-inf"</span> <span class="na">lower-bound-y=</span><span class="s">"-inf"</span> <span class="na">lower-bound-z=</span><span class="s">"-inf"</span> <span class="na">upper-bound-x=</span><span class="s">"inf"</span> <span class="na">upper-bound-y=</span><span class="s">"inf"</span> <span class="na">upper-bound-z=</span><span class="s">"inf"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -2039,6 +2053,48 @@ You can generate the reference yourself:
       <td>integer</td>
       <td>Polynomial degree of waveform that is used for time interpolation.</td>
       <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>lower-bound-x</td>
+      <td>float</td>
+      <td>Lower bound for the x-component of the vector data.</td>
+      <td><code class="language-plaintext highlighter-rouge">-inf</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>lower-bound-y</td>
+      <td>float</td>
+      <td>Lower bound for the y-component of the vector data.</td>
+      <td><code class="language-plaintext highlighter-rouge">-inf</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>lower-bound-z</td>
+      <td>float</td>
+      <td>Lower bound for the z-component of the vector data.</td>
+      <td><code class="language-plaintext highlighter-rouge">-inf</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>upper-bound-x</td>
+      <td>float</td>
+      <td>Upper bound for the x-component of the vector data.</td>
+      <td><code class="language-plaintext highlighter-rouge">inf</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>upper-bound-y</td>
+      <td>float</td>
+      <td>Upper bound for the y-component of the vector data.</td>
+      <td><code class="language-plaintext highlighter-rouge">inf</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>upper-bound-z</td>
+      <td>float</td>
+      <td>Upper bound for the z-component of the vector data.</td>
+      <td><code class="language-plaintext highlighter-rouge">inf</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -2392,6 +2448,7 @@ You can generate the reference yourself:
       <li><a href="#mappingrbf-global-direct">rbf-global-direct</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
       <li><a href="#mappingrbf-pum-direct">rbf-pum-direct</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
       <li><a href="#mappingrbf">rbf</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
+      <li><a href="#mappingcoarse-graining">coarse-graining</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
       <li><a href="#mappingaxial-geometric-multiscale">axial-geometric-multiscale</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
       <li><a href="#mappingradial-geometric-multiscale">radial-geometric-multiscale</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
     </ul>
@@ -2474,7 +2531,7 @@ You can generate the reference yourself:
 
 <h3 id="mappingnearest-neighbor">mapping:nearest-neighbor</h3>
 
-<p>Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes and run nearest-neighbour queries.</p>
+<p>Nearest-neighbour mapping which uses a rstar-spatial index tree to index meshes and run nearest-neighbour queries.</p>
 
 <p><strong>Example:</strong></p>
 
@@ -2525,7 +2582,7 @@ You can generate the reference yourself:
 
 <h3 id="mappingnearest-projection">mapping:nearest-projection</h3>
 
-<p>Nearest-projection mapping which uses a rstar-spacial index tree to index meshes and locate the nearest projections.</p>
+<p>Nearest-projection mapping which uses a rstar-spatial index tree to index meshes and locate the nearest projections.</p>
 
 <p><strong>Example:</strong></p>
 
@@ -2627,7 +2684,7 @@ You can generate the reference yourself:
 
 <h3 id="mappinglinear-cell-interpolation">mapping:linear-cell-interpolation</h3>
 
-<p>Linear cell interpolation mapping which uses a rstar-spacial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.</p>
+<p>Linear cell interpolation mapping which uses a rstar-spatial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.</p>
 
 <p><strong>Example:</strong></p>
 
@@ -2824,8 +2881,8 @@ You can generate the reference yourself:
   <tbody>
     <tr>
       <td>gpu-device-id</td>
-      <td>integer</td>
-      <td>Specifies the ID of the GPU that should be used for the Ginkgo GPU backend.</td>
+      <td>string</td>
+      <td>Setting of the GPU device: Set “auto” to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID.</td>
       <td><code class="language-plaintext highlighter-rouge">0</code></td>
       <td>none</td>
     </tr>
@@ -2854,8 +2911,8 @@ You can generate the reference yourself:
   <tbody>
     <tr>
       <td>gpu-device-id</td>
-      <td>integer</td>
-      <td>Specifies the ID of the GPU that should be used for the Ginkgo GPU backend.</td>
+      <td>string</td>
+      <td>Setting of the GPU device: Set “auto” to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID.</td>
       <td><code class="language-plaintext highlighter-rouge">0</code></td>
       <td>none</td>
     </tr>
@@ -3327,8 +3384,8 @@ You can generate the reference yourself:
   <tbody>
     <tr>
       <td>gpu-device-id</td>
-      <td>integer</td>
-      <td>Specifies the ID of the GPU that should be used for the Ginkgo GPU backend.</td>
+      <td>string</td>
+      <td>Setting of the GPU device: Set “auto” to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID.</td>
       <td><code class="language-plaintext highlighter-rouge">0</code></td>
       <td>none</td>
     </tr>
@@ -3357,8 +3414,8 @@ You can generate the reference yourself:
   <tbody>
     <tr>
       <td>gpu-device-id</td>
-      <td>integer</td>
-      <td>Specifies the ID of the GPU that should be used for the Ginkgo GPU backend.</td>
+      <td>string</td>
+      <td>Setting of the GPU device: Set “auto” to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID.</td>
       <td><code class="language-plaintext highlighter-rouge">0</code></td>
       <td>none</td>
     </tr>
@@ -3763,18 +3820,170 @@ You can generate the reference yourself:
   <li>executor
     <ul>
       <li><a href="#executorcpu-1">cpu</a> <code class="language-plaintext highlighter-rouge">0..1</code></li>
+      <li><a href="#executorcuda-1">cuda</a> <code class="language-plaintext highlighter-rouge">0..1</code></li>
+      <li><a href="#executorhip-1">hip</a> <code class="language-plaintext highlighter-rouge">0..1</code></li>
+      <li><a href="#executorsycl">sycl</a> <code class="language-plaintext highlighter-rouge">0..1</code></li>
+      <li><a href="#executoropenmp-1">openmp</a> <code class="language-plaintext highlighter-rouge">0..1</code></li>
     </ul>
   </li>
 </ul>
 
 <h4 id="executorcpu-2">executor:cpu</h4>
 
-<p>The default (and currently only) executor using a CPU and a distributed memory parallelism via MPI.</p>
+<p>The default executor using a CPU and a distributed memory parallelism via MPI.</p>
 
 <p><strong>Example:</strong></p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:cpu/&gt;</span>
 </code></pre></div></div>
+
+<h4 id="executorcuda-2">executor:cuda</h4>
+
+<p>Cuda (Nvidia) executor, which uses Kokkos-kernels, fully parallel</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:cuda</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span> <span class="na">execution-mode=</span><span class="s">"minimal-memory"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>gpu-device-id</td>
+      <td>string</td>
+      <td>Setting of the GPU device: Set “auto” to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID.</td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>execution-mode</td>
+      <td>string</td>
+      <td>Toggle to switch between a minimal-memory vs a minimal-compute algorithm. For option “minimal-memory”, the RBF evaluation is recomputed for each data mapping on-the-fly, which saves approximately half the memory consumption (if meshes have a similar resolution), but may (!) be slower (depends heavily on the hardware). For the option “minimal-compute”, the RBF evaluation is precomputed, which may be faster, but consumes more memory.</td>
+      <td><code class="language-plaintext highlighter-rouge">minimal-memory</code></td>
+      <td><code class="language-plaintext highlighter-rouge">minimal-memory</code>, <code class="language-plaintext highlighter-rouge">minimal-compute</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="executorhip-2">executor:hip</h4>
+
+<p>Hip (AMD/Nvidia) executor, which uses Kokkos-kernels, fully parallel.</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:hip</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span> <span class="na">execution-mode=</span><span class="s">"minimal-memory"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>gpu-device-id</td>
+      <td>string</td>
+      <td>Setting of the GPU device: Set “auto” to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID.</td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>execution-mode</td>
+      <td>string</td>
+      <td>Toggle to switch between a minimal-memory vs a minimal-compute algorithm. For option “minimal-memory”, the RBF evaluation is recomputed for each data mapping on-the-fly, which saves approximately half the memory consumption (if meshes have a similar resolution), but may (!) be slower (depends heavily on the hardware). For the option “minimal-compute”, the RBF evaluation is precomputed, which may be faster, but consumes more memory.</td>
+      <td><code class="language-plaintext highlighter-rouge">minimal-memory</code></td>
+      <td><code class="language-plaintext highlighter-rouge">minimal-memory</code>, <code class="language-plaintext highlighter-rouge">minimal-compute</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="executorsycl">executor:sycl</h4>
+
+<p>SYCL (e.g. Intel) executor, which uses Kokkos-kernels, fully parallel.</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:sycl</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span> <span class="na">execution-mode=</span><span class="s">"minimal-memory"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>gpu-device-id</td>
+      <td>string</td>
+      <td>Setting of the GPU device: Set “auto” to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID.</td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>execution-mode</td>
+      <td>string</td>
+      <td>Toggle to switch between a minimal-memory vs a minimal-compute algorithm. For option “minimal-memory”, the RBF evaluation is recomputed for each data mapping on-the-fly, which saves approximately half the memory consumption (if meshes have a similar resolution), but may (!) be slower (depends heavily on the hardware). For the option “minimal-compute”, the RBF evaluation is precomputed, which may be faster, but consumes more memory.</td>
+      <td><code class="language-plaintext highlighter-rouge">minimal-memory</code></td>
+      <td><code class="language-plaintext highlighter-rouge">minimal-memory</code>, <code class="language-plaintext highlighter-rouge">minimal-compute</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="executoropenmp-1">executor:openmp</h4>
+
+<p>OpenMP executor, which uses Kokkos-kernel, fully parallel.</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:openmp</span> <span class="na">n-threads=</span><span class="s">"0"</span> <span class="na">execution-mode=</span><span class="s">"minimal-memory"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>n-threads</td>
+      <td>integer</td>
+      <td>Specifies the number of threads for the OpenMP executor that should be used for the Ginkgo OpenMP backend. If a value of “0” is set, preCICE doesn’t set the number of threads and the default behavior of OpenMP applies.</td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>execution-mode</td>
+      <td>string</td>
+      <td>Toggle to switch between a minimal-memory vs a minimal-compute algorithm. For option “minimal-memory”, the RBF evaluation is recomputed for each data mapping on-the-fly, which saves approximately half the memory consumption (if meshes have a similar resolution), but may (!) be slower (depends heavily on the hardware). For the option “minimal-compute”, the RBF evaluation is precomputed, which may be faster, but consumes more memory.</td>
+      <td><code class="language-plaintext highlighter-rouge">minimal-memory</code></td>
+      <td><code class="language-plaintext highlighter-rouge">minimal-memory</code>, <code class="language-plaintext highlighter-rouge">minimal-compute</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <h4 id="basis-functioncompact-polynomial-c0-2">basis-function:compact-polynomial-c0</h4>
 
@@ -4460,13 +4669,13 @@ You can generate the reference yourself:
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:volume-splines/&gt;</span>
 </code></pre></div></div>
 
-<h3 id="mappingaxial-geometric-multiscale">mapping:axial-geometric-multiscale</h3>
+<h3 id="mappingcoarse-graining">mapping:coarse-graining</h3>
 
-<p>Axial geometric multiscale mapping between one 1D and multiple 3D vertices.</p>
+<p>Coarse graining specifically designed for particle-mesh coupling to write data from the particles to the mesh. The mapping transforms an extensive quantity (e.g., volume, force) into an intensive quantity (e.g., porosity, force-density).  Currently implemented as just-in-time mapping. Although the constraint does not really fit here (the input is conservative, the output not), we classify it as “conservative” for the configuration.</p>
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:axial-geometric-multiscale</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">multiscale-type=</span><span class="s">"{string}"</span> <span class="na">multiscale-axis=</span><span class="s">"{string}"</span> <span class="na">multiscale-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:coarse-graining</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">radius=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -4509,6 +4718,71 @@ You can generate the reference yourself:
       <td><code class="language-plaintext highlighter-rouge">conservative</code>, <code class="language-plaintext highlighter-rouge">consistent</code>, <code class="language-plaintext highlighter-rouge">scaled-consistent-surface</code>, <code class="language-plaintext highlighter-rouge">scaled-consistent-volume</code></td>
     </tr>
     <tr>
+      <td>radius</td>
+      <td>float</td>
+      <td>Radius or range of the coarsening function (Lucy function).</td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>none</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="mappingaxial-geometric-multiscale">mapping:axial-geometric-multiscale</h3>
+
+<p>Axial geometric multiscale mapping between one 1D and multiple 3D vertices.</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:axial-geometric-multiscale</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">multiscale-dimension=</span><span class="s">"{string}"</span> <span class="na">multiscale-type=</span><span class="s">"{string}"</span> <span class="na">multiscale-axis=</span><span class="s">"{string}"</span> <span class="na">multiscale-radius=</span><span class="s">"{float}"</span> <span class="na">multiscale-cross-section-profile=</span><span class="s">"uniform"</span> <span class="na">multiscale-cross-section=</span><span class="s">"circle"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>from</td>
+      <td>string</td>
+      <td>The mesh to map the data from. The default name is an empty mesh name, which is only valid for a just-in-time mapping (using the API functions “writeAndMapData” or “mapAndReadData”).</td>
+      <td>``</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>to</td>
+      <td>string</td>
+      <td>The mesh to map the data to. The default name is an empty mesh name, which is only valid for a just-in-time mapping (using the API functions “writeAndMapData” or “mapAndReadData”).</td>
+      <td>``</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>direction</td>
+      <td>string</td>
+      <td>Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data.</td>
+      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">write</code>, <code class="language-plaintext highlighter-rouge">read</code></td>
+    </tr>
+    <tr>
+      <td>constraint</td>
+      <td>string</td>
+      <td>Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent-surface or scaled-consistent-volume for normalized quantities where conservation of integral values (surface or volume) is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent.</td>
+      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">conservative</code>, <code class="language-plaintext highlighter-rouge">consistent</code>, <code class="language-plaintext highlighter-rouge">scaled-consistent-surface</code>, <code class="language-plaintext highlighter-rouge">scaled-consistent-volume</code></td>
+    </tr>
+    <tr>
+      <td>multiscale-dimension</td>
+      <td>string</td>
+      <td>Specifies the dimensionality pairing used in geometric multiscale mapping. Options: ‘1D-3D’, ‘1D-2D’ or ‘2D-3D’.</td>
+      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">1d-3d</code>, <code class="language-plaintext highlighter-rouge">1d-2d</code>, <code class="language-plaintext highlighter-rouge">2d-3d</code></td>
+    </tr>
+    <tr>
       <td>multiscale-type</td>
       <td>string</td>
       <td>Type of geometric multiscale mapping. Either ‘spread’ or ‘collect’.</td>
@@ -4525,9 +4799,23 @@ You can generate the reference yourself:
     <tr>
       <td>multiscale-radius</td>
       <td>float</td>
-      <td>Radius of the circular interface between the 1D and 3D participant.</td>
+      <td>Radius of the cross-sectional interface between the participants.</td>
       <td><em>none</em></td>
       <td>none</td>
+    </tr>
+    <tr>
+      <td>multiscale-cross-section-profile</td>
+      <td>string</td>
+      <td>Profile of the mapped variable along the cross-sectional interface: ‘uniform’ or ‘parabolic’</td>
+      <td><code class="language-plaintext highlighter-rouge">uniform</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uniform</code>, <code class="language-plaintext highlighter-rouge">parabolic</code></td>
+    </tr>
+    <tr>
+      <td>multiscale-cross-section</td>
+      <td>string</td>
+      <td>Cross section of the interface of the participants: ‘circle’ or ‘square’</td>
+      <td><code class="language-plaintext highlighter-rouge">circle</code></td>
+      <td><code class="language-plaintext highlighter-rouge">circle</code>, <code class="language-plaintext highlighter-rouge">square</code></td>
     </tr>
   </tbody>
 </table>
@@ -4597,7 +4885,7 @@ You can generate the reference yourself:
     <tr>
       <td>multiscale-radius</td>
       <td>float</td>
-      <td>Radius of the circular interface between the 1D and 3D participant.</td>
+      <td>Radius of the cross-sectional interface between the participants.</td>
       <td><em>none</em></td>
       <td>none</td>
     </tr>
@@ -6401,11 +6689,11 @@ You can generate the reference yourself:
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span> <span class="na">on-bound-violation=</span><span class="s">"ignore"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-ILS&gt;</span>
@@ -6428,6 +6716,13 @@ You can generate the reference yourself:
       <td>Whether only the last time step of each time window is used to construct the Jacobian.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
+    </tr>
+    <tr>
+      <td>on-bound-violation</td>
+      <td>string</td>
+      <td>Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds.</td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code>, <code class="language-plaintext highlighter-rouge">clamp</code>, <code class="language-plaintext highlighter-rouge">discard</code>, <code class="language-plaintext highlighter-rouge">scale</code></td>
     </tr>
   </tbody>
 </table>
@@ -6546,7 +6841,7 @@ You can generate the reference yourself:
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -6561,13 +6856,6 @@ You can generate the reference yourself:
   </thead>
   <tbody>
     <tr>
-      <td>scaling</td>
-      <td>float</td>
-      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
-      <td><code class="language-plaintext highlighter-rouge">1</code></td>
-      <td>none</td>
-    </tr>
-    <tr>
       <td>name</td>
       <td>string</td>
       <td>The name of the data.</td>
@@ -6579,6 +6867,13 @@ You can generate the reference yourself:
       <td>string</td>
       <td>The name of the mesh which holds the data.</td>
       <td><em>none</em></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>scaling</td>
+      <td>float</td>
+      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -6691,12 +6986,12 @@ You can generate the reference yourself:
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span> <span class="na">on-bound-violation=</span><span class="s">"ignore"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-IMVJ&gt;</span>
@@ -6726,6 +7021,13 @@ You can generate the reference yourself:
       <td>Whether only the last time step of each time window is used to construct the Jacobian.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
+    </tr>
+    <tr>
+      <td>on-bound-violation</td>
+      <td>string</td>
+      <td>Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds.</td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code>, <code class="language-plaintext highlighter-rouge">clamp</code>, <code class="language-plaintext highlighter-rouge">discard</code>, <code class="language-plaintext highlighter-rouge">scale</code></td>
     </tr>
   </tbody>
 </table>
@@ -6896,7 +7198,7 @@ You can generate the reference yourself:
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -6911,13 +7213,6 @@ You can generate the reference yourself:
   </thead>
   <tbody>
     <tr>
-      <td>scaling</td>
-      <td>float</td>
-      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
-      <td><code class="language-plaintext highlighter-rouge">1</code></td>
-      <td>none</td>
-    </tr>
-    <tr>
       <td>name</td>
       <td>string</td>
       <td>The name of the data.</td>
@@ -6929,6 +7224,13 @@ You can generate the reference yourself:
       <td>string</td>
       <td>The name of the mesh which holds the data.</td>
       <td><em>none</em></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>scaling</td>
+      <td>float</td>
+      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -7760,11 +8062,11 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span> <span class="na">on-bound-violation=</span><span class="s">"ignore"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-ILS&gt;</span>
@@ -7787,6 +8089,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
       <td>Whether only the last time step of each time window is used to construct the Jacobian.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
+    </tr>
+    <tr>
+      <td>on-bound-violation</td>
+      <td>string</td>
+      <td>Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds.</td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code>, <code class="language-plaintext highlighter-rouge">clamp</code>, <code class="language-plaintext highlighter-rouge">discard</code>, <code class="language-plaintext highlighter-rouge">scale</code></td>
     </tr>
   </tbody>
 </table>
@@ -7905,7 +8214,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -7920,13 +8229,6 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
   </thead>
   <tbody>
     <tr>
-      <td>scaling</td>
-      <td>float</td>
-      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
-      <td><code class="language-plaintext highlighter-rouge">1</code></td>
-      <td>none</td>
-    </tr>
-    <tr>
       <td>name</td>
       <td>string</td>
       <td>The name of the data.</td>
@@ -7938,6 +8240,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
       <td>string</td>
       <td>The name of the mesh which holds the data.</td>
       <td><em>none</em></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>scaling</td>
+      <td>float</td>
+      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -8050,12 +8359,12 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span> <span class="na">on-bound-violation=</span><span class="s">"ignore"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-IMVJ&gt;</span>
@@ -8085,6 +8394,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
       <td>Whether only the last time step of each time window is used to construct the Jacobian.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
+    </tr>
+    <tr>
+      <td>on-bound-violation</td>
+      <td>string</td>
+      <td>Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds.</td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code>, <code class="language-plaintext highlighter-rouge">clamp</code>, <code class="language-plaintext highlighter-rouge">discard</code>, <code class="language-plaintext highlighter-rouge">scale</code></td>
     </tr>
   </tbody>
 </table>
@@ -8255,7 +8571,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -8270,13 +8586,6 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
   </thead>
   <tbody>
     <tr>
-      <td>scaling</td>
-      <td>float</td>
-      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
-      <td><code class="language-plaintext highlighter-rouge">1</code></td>
-      <td>none</td>
-    </tr>
-    <tr>
       <td>name</td>
       <td>string</td>
       <td>The name of the data.</td>
@@ -8288,6 +8597,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
       <td>string</td>
       <td>The name of the mesh which holds the data.</td>
       <td><em>none</em></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>scaling</td>
+      <td>float</td>
+      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -9117,11 +9433,11 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span> <span class="na">on-bound-violation=</span><span class="s">"ignore"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-ILS&gt;</span>
@@ -9144,6 +9460,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
       <td>Whether only the last time step of each time window is used to construct the Jacobian.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
+    </tr>
+    <tr>
+      <td>on-bound-violation</td>
+      <td>string</td>
+      <td>Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds.</td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code>, <code class="language-plaintext highlighter-rouge">clamp</code>, <code class="language-plaintext highlighter-rouge">discard</code>, <code class="language-plaintext highlighter-rouge">scale</code></td>
     </tr>
   </tbody>
 </table>
@@ -9262,7 +9585,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -9277,13 +9600,6 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
   </thead>
   <tbody>
     <tr>
-      <td>scaling</td>
-      <td>float</td>
-      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
-      <td><code class="language-plaintext highlighter-rouge">1</code></td>
-      <td>none</td>
-    </tr>
-    <tr>
       <td>name</td>
       <td>string</td>
       <td>The name of the data.</td>
@@ -9295,6 +9611,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
       <td>string</td>
       <td>The name of the mesh which holds the data.</td>
       <td><em>none</em></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>scaling</td>
+      <td>float</td>
+      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -9407,12 +9730,12 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span> <span class="na">on-bound-violation=</span><span class="s">"ignore"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-IMVJ&gt;</span>
@@ -9442,6 +9765,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
       <td>Whether only the last time step of each time window is used to construct the Jacobian.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
+    </tr>
+    <tr>
+      <td>on-bound-violation</td>
+      <td>string</td>
+      <td>Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds.</td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ignore</code>, <code class="language-plaintext highlighter-rouge">clamp</code>, <code class="language-plaintext highlighter-rouge">discard</code>, <code class="language-plaintext highlighter-rouge">scale</code></td>
     </tr>
   </tbody>
 </table>
@@ -9612,7 +9942,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <p><strong>Example:</strong></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scaling=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -9627,13 +9957,6 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
   </thead>
   <tbody>
     <tr>
-      <td>scaling</td>
-      <td>float</td>
-      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
-      <td><code class="language-plaintext highlighter-rouge">1</code></td>
-      <td>none</td>
-    </tr>
-    <tr>
       <td>name</td>
       <td>string</td>
       <td>The name of the data.</td>
@@ -9645,6 +9968,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
       <td>string</td>
       <td>The name of the mesh which holds the data.</td>
       <td><em>none</em></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>scaling</td>
+      <td>float</td>
+      <td>To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = “constant”. For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
       <td>none</td>
     </tr>
   </tbody>

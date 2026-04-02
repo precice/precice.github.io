@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['safetyfactor_0',['safetyFactor',['../structprecice_1_1impl_1_1MeshContext.html#afe5aef5214e3010cfe74f3927e592387',1,'precice::impl::MeshContext']]],
+  ['safetyfactor_0',['safetyFactor',['../structprecice_1_1impl_1_1ReceivedMeshContext.html#ac57b0c598346c564f641dd444b554556',1,'precice::impl::ReceivedMeshContext']]],
   ['sample_1',['sample',['../structprecice_1_1time_1_1Stample.html#acb57ace057840337629fc8b921610302',1,'precice::time::Stample']]],
   ['scalings_2',['scalings',['../structprecice_1_1acceleration_1_1AccelerationConfiguration_1_1ConfigurationData.html#a9e5599dc8494ffa4f975c35a7cf564ca',1,'precice::acceleration::AccelerationConfiguration::ConfigurationData']]],
   ['second_3',['second',['http://en.cppreference.com/w/cpp/utility/pair.html',1,'std::pair']]],

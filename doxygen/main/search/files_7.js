@@ -9,12 +9,10 @@ var searchData=
   ['geometry_2ecpp_6',['geometry.cpp',['../geometry_8cpp.html',1,'']]],
   ['geometry_2ehpp_7',['geometry.hpp',['../geometry_8hpp.html',1,'']]],
   ['geometrytest_2ecpp_8',['GeometryTest.cpp',['../GeometryTest_8cpp.html',1,'']]],
-  ['ginkgo_2ecpp_9',['Ginkgo.cpp',['../Ginkgo_8cpp.html',1,'']]],
-  ['ginkgo_2ehpp_10',['Ginkgo.hpp',['../Ginkgo_8hpp.html',1,'']]],
-  ['ginkgodefinitions_2ehpp_11',['GinkgoDefinitions.hpp',['../GinkgoDefinitions_8hpp.html',1,'']]],
-  ['ginkgoradialbasisfctsolver_2ehpp_12',['GinkgoRadialBasisFctSolver.hpp',['../GinkgoRadialBasisFctSolver_8hpp.html',1,'']]],
-  ['ginkgoradialbasisfctsolvertest_2ecpp_13',['GinkgoRadialBasisFctSolverTest.cpp',['../GinkgoRadialBasisFctSolverTest_8cpp.html',1,'']]],
-  ['ginkgorbfkernels_2ecpp_14',['GinkgoRBFKernels.cpp',['../GinkgoRBFKernels_8cpp.html',1,'']]],
-  ['ginkgorbfkernels_2ehpp_15',['GinkgoRBFKernels.hpp',['../GinkgoRBFKernels_8hpp.html',1,'']]],
-  ['globalfixtures_2ecpp_16',['GlobalFixtures.cpp',['../GlobalFixtures_8cpp.html',1,'']]]
+  ['ginkgodefinitions_2ehpp_9',['GinkgoDefinitions.hpp',['../GinkgoDefinitions_8hpp.html',1,'']]],
+  ['ginkgoradialbasisfctsolver_2ehpp_10',['GinkgoRadialBasisFctSolver.hpp',['../GinkgoRadialBasisFctSolver_8hpp.html',1,'']]],
+  ['ginkgoradialbasisfctsolvertest_2ecpp_11',['GinkgoRadialBasisFctSolverTest.cpp',['../GinkgoRadialBasisFctSolverTest_8cpp.html',1,'']]],
+  ['ginkgorbfkernels_2ecpp_12',['GinkgoRBFKernels.cpp',['../GinkgoRBFKernels_8cpp.html',1,'']]],
+  ['ginkgorbfkernels_2ehpp_13',['GinkgoRBFKernels.hpp',['../GinkgoRBFKernels_8hpp.html',1,'']]],
+  ['globalfixtures_2ecpp_14',['GlobalFixtures.cpp',['../GlobalFixtures_8cpp.html',1,'']]]
 ];

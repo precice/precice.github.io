@@ -6,7 +6,7 @@ var searchData=
   ['laguerref_3',['laguerref',['http://en.cppreference.com/w/cpp/numeric/special_math/laguerre.html',1,'std']]],
   ['laguerrel_4',['laguerrel',['http://en.cppreference.com/w/cpp/numeric/special_math/laguerre.html',1,'std']]],
   ['lambda_5',['lambda',['http://en.cppreference.com/w/cpp/numeric/random/exponential_distribution/lambda.html',1,'std::exponential_distribution']]],
-  ['last_6',['last',['http://en.cppreference.com/w/cpp/container/span/last.html',1,'std::span::last()'],['../classprecice_1_1span.html#a8818a10dd4b390610ac12a3ee22c74f2',1,'precice::span::last() const'],['../classprecice_1_1span.html#afbbe4367ae4a4cb179a75d73b028cbd4',1,'precice::span::last(size_type count) const'],['../classprecice_1_1time_1_1Storage.html#aecf86758ba1ce3769371b3b5325ff402',1,'precice::time::Storage::last()'],['../classspan.html#a8818a10dd4b390610ac12a3ee22c74f2',1,'span::last() const'],['../classspan.html#afbbe4367ae4a4cb179a75d73b028cbd4',1,'span::last(size_type count) const']]],
+  ['last_6',['last',['http://en.cppreference.com/w/cpp/container/span/last.html',1,'std::span::last()'],['../classprecice_1_1span.html#a8818a10dd4b390610ac12a3ee22c74f2',1,'precice::span::last() const'],['../classprecice_1_1span.html#afbbe4367ae4a4cb179a75d73b028cbd4',1,'precice::span::last(size_type count) const'],['../classprecice_1_1time_1_1Waveform.html#a8612fe9d7b3fbc47404e21f78d6598c8',1,'precice::time::Waveform::last()'],['../classspan.html#a8818a10dd4b390610ac12a3ee22c74f2',1,'span::last() const'],['../classspan.html#afbbe4367ae4a4cb179a75d73b028cbd4',1,'span::last(size_type count) const']]],
   ['last_5fwrite_5ftime_7',['last_write_time',['http://en.cppreference.com/w/cpp/experimental/fs/last_write_time.html',1,'std::experimental::filesystem::last_write_time()'],['http://en.cppreference.com/w/cpp/filesystem/last_write_time.html',1,'std::filesystem::last_write_time()']]],
   ['launder_8',['launder',['http://en.cppreference.com/w/cpp/utility/launder.html',1,'std']]],
   ['lcm_9',['lcm',['http://en.cppreference.com/w/cpp/numeric/lcm.html',1,'std::lcm()'],['http://en.cppreference.com/w/cpp/experimental/lcm.html',1,'std::experimental::lcm()']]],
@@ -69,5 +69,6 @@ var searchData=
   ['lowest_66',['lowest',['http://en.cppreference.com/w/cpp/types/numeric_limits/lowest.html',1,'std::numeric_limits']]],
   ['lrint_67',['lrint',['http://en.cppreference.com/w/cpp/numeric/math/rint.html',1,'std']]],
   ['lround_68',['lround',['http://en.cppreference.com/w/cpp/numeric/math/round.html',1,'std']]],
-  ['lt_69',['lt',['http://en.cppreference.com/w/cpp/string/char_traits/cmp.html',1,'std::char_traits']]]
+  ['lt_69',['lt',['http://en.cppreference.com/w/cpp/string/char_traits/cmp.html',1,'std::char_traits']]],
+  ['lucykernelfunction_70',['LucyKernelFunction',['../classprecice_1_1mapping_1_1impl_1_1LucyKernelFunction.html#aa4178088bf242faa8fe54bf34a7dd134',1,'precice::mapping::impl::LucyKernelFunction']]]
 ];
