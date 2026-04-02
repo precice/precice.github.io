@@ -1713,7 +1713,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 14 Jan 26</small>
+              <small>Updated 01 Apr 26</small>
             </div>
           </aside>
           
@@ -2037,7 +2037,9 @@ Please include the generated reference results in the pull request as they are s
 <p>Since the docker containers are still a bit mixed in terms of capabilities and support for different build_argument combinations the following rules apply:</p>
 
 <ul>
-  <li>A build_argument ending in <strong>_REF</strong> means that it refers to a git commit-ish (like a tag or commit) beeing used to build the image. Its important to not use branch names here as we heavily rely on dockers build cache to speedup things. But since the input variable to the docker builder will not change, we might have wrong cache hits.</li>
+  <li>A build argument ending in <code class="language-plaintext highlighter-rouge">_REF</code> refers to a git commit-ish (like a tag or commit) being used to build the image. It is important to not use branch names here as we heavily rely on Docker’s build cache to speedup things. But since the input variable to the docker builder will not change, we might have wrong cache hits.</li>
+  <li>Some workflows set variables ending in <code class="language-plaintext highlighter-rouge">_PR</code>. These specify the GitHub pull request which provides the above <code class="language-plaintext highlighter-rouge">_REF</code> and can be on a fork.</li>
+  <li>A build argument ending in <code class="language-plaintext highlighter-rouge">_VERSION</code> refers to the version of a third-party dependency to use (e.g., DUNE).</li>
   <li>All other build_arguments are free of rules and up to the container maintainer.</li>
 </ul>
 
@@ -2491,8 +2493,8 @@ Please note that these files should always be kept in the git lfs.</p>
         </a>
         </p>
         <p>
-        Page last updated: Jan 14, 2026<br>
-        Site last updated: Apr 1, 2026
+        Page last updated: Apr 1, 2026<br>
+        Site last updated: Apr 2, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
