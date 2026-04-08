@@ -32,6 +32,7 @@ jobs:
         run: |
           python tools/fetch-news.py
           python tools/fetch-faq.py
+          python tools/fetch-community-metrics.py
 
       - name: Configure Git author
         run: |
@@ -42,6 +43,7 @@ jobs:
         run: |
           git add assets/data/news.json
           git add assets/data/faq.json
+          git add assets/data/community-metrics.json
           git commit -m "Update Discourse data data [skip ci]" || echo "No changes to commit"
 
       - name: Push commit
