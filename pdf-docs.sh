@@ -10,8 +10,7 @@ bundle exec jekyll serve --detach --config _config.yml,pdfconfigs/config_docs_pd
 echo "done";
 
 echo "Building the PDF ...";
-prince --javascript --input-list=_site/pdfconfigs/prince-list.txt -o pdf/docs.pdf;
-
+prince --javascript --raster-images-res 150 --input-list=_site/pdfconfigs/prince-list.txt -o pdf/docs.pdf;
 echo "Done. Look in the pdf directory to see if it printed successfully."
 
 # bundle exec jekyll serve --config "_config.yml,pdfconfigs/config_docs_pdf.yml"

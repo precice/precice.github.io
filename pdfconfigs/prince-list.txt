@@ -3,28 +3,53 @@ layout: none
 search: exclude
 ---
 
- {% assign sidebar = site.data.sidebars[site.pdf_sidebar].entries %}
+ {% assign docs_sidebar = site.data.sidebars.docs_sidebar.entries %}
+ {% assign tutorial_sidebar = site.data.sidebars.tutorial_sidebar.entries %}
 
-   {% for entry in sidebar %}
+{{site.url}}{{site.baseurl}}/docs_part_title.html
 
-   {% for folder in entry.folders %}
-      {% if folder.output contains "pdf" %}
-              {% for folderitem in folder.folderitems %}
-                 {% if folderitem.output contains "pdf"  %}
-                    {{site.url}}{{site.baseurl}}{{folderitem.url}}
-                          {% for subfolders in folderitem.subfolders %}
-                             {% if subfolders.output contains "pdf" %}
-                                        {% for subfolderitem in subfolders.subfolderitems %}
-                                           {% if subfolderitem.output contains "pdf" %}
-                                              {{site.url}}{{site.baseurl}}{{subfolderitem.url}}
+ {% for entry in docs_sidebar %}
+    {% for folder in entry.folders %}
+         {% if folder.output contains "pdf" %}
+                     {% for folderitem in folder.folderitems %}
+                         {% if folderitem.output contains "pdf"  %}
+                              {{site.url}}{{site.baseurl}}{{folderitem.url}}
+                                       {% for subfolders in folderitem.subfolders %}
+                                           {% if subfolders.output contains "pdf" %}
+                                                        {% for subfolderitem in subfolders.subfolderitems %}
+                                                            {% if subfolderitem.output contains "pdf" %}
+                                                                 {{site.url}}{{site.baseurl}}{{subfolderitem.url}}
+                                                            {% endif %}
+                                                        {% endfor %}
                                            {% endif %}
-                                        {% endfor %}
-                             {% endif %}
-                          {% endfor %}
-                {% endif %}
-             {% endfor %}
-      {% endif %}
-  {% endfor %}
+                                       {% endfor %}
+                        {% endif %}
+                   {% endfor %}
+         {% endif %}
+   {% endfor %}
+ {% endfor %}
+
+{{site.url}}{{site.baseurl}}/tutorials_part_title.html
+
+ {% for entry in tutorial_sidebar %}
+    {% for folder in entry.folders %}
+         {% if folder.output contains "web" %}
+                     {% for folderitem in folder.folderitems %}
+                         {% if folderitem.output contains "web"  %}
+                              {{site.url}}{{site.baseurl}}{{folderitem.url}}
+                                       {% for subfolders in folderitem.subfolders %}
+                                           {% if subfolders.output contains "web" %}
+                                                        {% for subfolderitem in subfolders.subfolderitems %}
+                                                            {% if subfolderitem.output contains "web" %}
+                                                                 {{site.url}}{{site.baseurl}}{{subfolderitem.url}}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                           {% endif %}
+                                       {% endfor %}
+                        {% endif %}
+                   {% endfor %}
+         {% endif %}
+   {% endfor %}
  {% endfor %}
 
 
