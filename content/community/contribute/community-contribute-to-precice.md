@@ -209,6 +209,227 @@ Read on our [Roadmap](fundamentals-roadmap.html) what is already in our to-do li
 There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
 {% endtip %}
 
+### Repository anatomy
+
+Before contributing code to the core [`precice/precice`](https://github.com/precice/precice) repository, it is highly beneficial to familiarize yourself with its structure. Understanding how the codebase is organized will help you navigate the source efficiently, identify where changes should be made, and ensure that contributions follow the established conventions. The following provides a thorough overview of every major directory, its subdirectories, and the key root-level files present in the repository.
+
+#### Top-level directory overview
+
+At the root of the repository, the following directories and files form the backbone of the project:
+
+```text
+precice/
+├── src/                  # Core C++ library source code
+├── tests/                # Integration and system-level tests
+├── docs/                 # Developer documentation and guidelines
+├── cmake/                # CMake build system modules and helpers
+├── tools/                # Development and maintenance utilities
+├── benchmarks/           # Performance benchmark programs
+├── examples/             # Solver dummy examples in C, C++, and Fortran
+├── extras/               # Supplementary tools and language bindings
+├── thirdparty/           # Bundled third-party dependencies
+├── .github/              # GitHub-specific CI workflows and templates
+├── CMakeLists.txt        # Primary CMake build configuration
+├── CMakePresets.json      # CMake build presets for common configurations
+├── CHANGELOG.md          # Version-by-version record of changes
+├── CODE_OF_CONDUCT.md    # Community code of conduct
+├── LICENSE               # Project license (LGPLv3)
+├── Doxyfile              # Doxygen API documentation configuration
+├── .clang-format         # C++ code formatting rules
+├── .clang-tidy           # C++ static analysis configuration
+├── .pre-commit-config.yaml  # Pre-commit hook definitions
+├── .codespellrc          # Spell checking configuration
+├── .gitignore            # Git ignore patterns
+├── .gitattributes        # Git attributes for line endings and diffs
+├── .mailmap              # Author name and email normalization
+└── .python-version       # Python version specification for tooling
+```
+
+#### The `src/` directory -- core library source code
+
+The `src/` directory is the heart of the preCICE library. It contains the complete C++ implementation, organized into modular subdirectories. Each subdirectory encapsulates a distinct area of functionality within the coupling library.
+
+- **`src/precice/`** -- This is the public API module. It contains the `Participant` class (formerly `SolverInterface`) and the C and Fortran bindings. Any solver adapter interacts with preCICE exclusively through the interfaces defined here. When implementing new API functions or modifying the public interface, changes are made in this directory.
+
+- **`src/acceleration/`** -- Implements the acceleration (convergence acceleration) schemes used in implicit coupling. This includes implementations of Aitken under-relaxation, the IQN-ILS (Interface Quasi-Newton Inverse Least Squares) method, the IQN-IMVJ (Multi-Vector) method, and related data filtering techniques. These methods are critical for achieving stable and fast convergence in strongly-coupled simulations.
+
+- **`src/action/`** -- Contains the action framework, which allows users to define operations to be executed at specific points during the coupling workflow. Actions can include computing derived quantities, scaling data, or performing summation operations on coupling data between time steps or iterations.
+
+- **`src/com/`** -- The communication module handles all inter-process and inter-participant data exchange. It provides abstractions over different communication backends, including MPI (both point-to-point and ports-based) and TCP/IP sockets. This module defines how participants discover each other and exchange coupling data in both intra- and inter-machine scenarios.
+
+- **`src/cplscheme/`** -- Implements the coupling scheme logic, which governs the overall orchestration of the coupled simulation. This includes explicit (staggered) and implicit (iterative) coupling schemes, as well as multi-coupling schemes involving more than two participants. The coupling scheme decides when to advance, when to iterate, and when convergence has been achieved.
+
+- **`src/drivers/`** -- Contains the entry points and driver programs for the preCICE library. This includes the main driver logic and any standalone executables shipped with the library.
+
+- **`src/io/`** -- Handles all input/output operations, including reading and writing of mesh data, export of results in formats such as VTK and VTU, and configuration parsing for data persistence.
+
+- **`src/logging/`** -- Provides the internal logging framework used throughout the library. It wraps around the Boost.Log library and defines log levels, formatting, and output targets. Proper use of this module is important for producing consistent and meaningful log output.
+
+- **`src/m2n/`** -- The mesh-to-mesh networking module manages the communication layer specifically between coupling participants. While `src/com/` provides the raw communication primitives, `src/m2n/` builds on top of it to handle the specific patterns of mesh-based data exchange, point-to-point connections, and gather-scatter operations needed for coupled simulations.
+
+- **`src/mapping/`** -- Implements the data mapping algorithms that project coupling data from one mesh to another. This includes nearest-neighbor mapping, nearest-projection mapping, and radial basis function (RBF) interpolation with various kernel functions. Mapping is one of the core functionalities of preCICE and is often the most computationally intensive part of the coupling.
+
+- **`src/math/`** -- Provides common mathematical utilities, including linear algebra operations, geometric computations, Barycentric coordinate calculations, and other numerical helper functions used across other modules.
+
+- **`src/mesh/`** -- Defines the mesh data structures used throughout the library. This includes the representation of vertices, edges, triangles, tetrahedra, and the associated data containers. It also handles mesh indexing through spatial trees for efficient nearest-neighbor and projection queries.
+
+- **`src/partition/`** -- Contains the mesh partitioning logic that distributes mesh data among parallel processes. This module computes which portions of a mesh a given process is responsible for and handles the repartitioning and filtering required when coupling meshes of different participants in a parallel setting.
+
+- **`src/profiling/`** -- Implements the internal profiling and performance instrumentation framework. It produces structured profiling events that can be analyzed to identify performance bottlenecks in the coupling workflow.
+
+- **`src/query/`** -- Provides spatial query functionality, enabling efficient geometric queries such as finding the nearest vertex, the nearest projection onto a surface element, or determining containment within mesh boundaries.
+
+- **`src/testing/`** -- Contains the testing infrastructure used by the preCICE unit tests. This includes test fixtures, helper functions, and MPI-aware test contexts that simplify writing and running parallel tests.
+
+- **`src/time/`** -- Manages time interpolation and time stepping control within the coupling. It implements waveform relaxation approaches and provides functions for interpolating coupling data between different time grids across participants.
+
+- **`src/utils/`** -- A collection of general utility functions and classes, including string handling, assertion macros, multi-lock mechanisms, algorithm helpers, and common type definitions used throughout the codebase.
+
+- **`src/xml/`** -- Implements the XML configuration parser that reads and validates the `precice-config.xml` file. This module builds an internal representation of the preCICE configuration, ensures semantic correctness, and populates the runtime objects accordingly.
+
+- **`src/sources.cmake`** -- A CMake script that enumerates all source files in the `src/` directory for inclusion in the build.
+
+- **`src/tests.cmake`** -- A CMake script that enumerates and configures the unit test sources located alongside the source code modules.
+
+#### The `tests/` directory -- integration and system tests
+
+The `tests/` directory contains integration-level and system-level tests that exercise preCICE across multiple participants and processes. These are distinct from the unit tests co-located in `src/`. The integration tests are organized by test scenario:
+
+- **`tests/serial/`** -- Tests that run coupling scenarios in serial (single-process per participant).
+- **`tests/parallel/`** -- Tests that run coupling scenarios with multiple MPI ranks per participant, verifying correct behavior under parallelism.
+- **`tests/fundamental/`** -- Basic sanity tests that verify core functionality of the library in isolation.
+- **`tests/quasi-newton/`** -- Tests specifically targeting quasi-Newton acceleration schemes and their convergence properties.
+- **`tests/geometric-multiscale/`** -- Tests for geometric multiscale coupling features, such as coupling between 1D and 3D domains.
+- **`tests/remeshing/`** -- Tests for scenarios involving dynamic remeshing during a coupled simulation.
+- **`tests/exporter/`** -- Tests for the VTK/VTU export functionality.
+- **`tests/config/`** -- XML configuration files used by the various integration tests.
+- **`tests/tests.cmake`** -- The CMake file that registers and configures all the integration tests with CTest.
+
+#### The `docs/` directory -- documentation
+
+The `docs/` directory contains in-repository documentation intended primarily for developers:
+
+- **`docs/README.md`** -- An overview of the developer-facing documentation structure and how to navigate it.
+- **`docs/CONTRIBUTING.md`** -- Guidelines for contributing to the preCICE core library, including workflow conventions, branching strategies, and code style expectations.
+- **`docs/ISSUE_TEMPLATE.md`** -- A template for filing issue reports.
+- **`docs/changelog/`** -- Change fragments used for assembling the changelog of upcoming releases.
+- **`docs/documents/`** -- Structural diagrams, design documents, and technical notes describing the internal architecture of the library.
+- **`docs/fragments/`** -- Reusable documentation snippets used in assembling release notes and changelogs.
+- **`docs/man/`** -- Man page sources for any command-line tools distributed with preCICE.
+
+#### The `cmake/` directory -- build system
+
+The `cmake/` directory contains all the CMake modules, helper scripts, and configuration templates required to build, test, package, and install the preCICE library:
+
+- **`cmake/modules/`** -- Custom CMake find-modules for locating third-party dependencies (e.g., PETSc, Eigen, libxml2) that are not natively supported by CMake's built-in module set.
+- **`cmake/CPackConfig.cmake`** -- Configuration for CPack, which generates distributable packages (DEB, RPM, etc.) for the library.
+- **`cmake/CTestConfig.cmake`** -- Configuration for CTest, defining how tests are discovered, categorized, and executed (including parallel test configurations).
+- **`cmake/CheckSTL.cmake`** -- Compiler feature checks to verify support for standard library features required by preCICE.
+- **`cmake/DetectGitRevision.cmake`** -- Automatically detects the current Git commit hash and embeds version information into the built library.
+- **`cmake/GenerateVersionInformation.cmake`** -- Generates structured version metadata for runtime reporting and compatibility checks.
+- **`cmake/Validation.cmake`** -- Validates the build configuration and flags potential problems or unsupported combinations.
+- **`cmake/preciceConfig.cmake`** -- The CMake package configuration file installed alongside the library, enabling downstream projects to use `find_package(precice)`.
+- **`cmake/XSDKMacros.cmake`** & **`cmake/XSDKOptions.cmake`** -- Macros and options for compliance with the xSDK (Extreme-scale Scientific Software Development Kit) community policies.
+- **`cmake/discover_tests.py`** -- A Python helper script for automated test discovery in the CTest framework.
+- **`cmake/runsolverdummies.cmake`** & **`cmake/runsolverdummies.sh`** -- Scripts for running the solver dummy examples as part of the test suite to verify a correct build.
+- **`cmake/PrintHelper.cmake`** -- Utility for formatted console output during the CMake configuration process.
+- **`cmake/TestInstall.cmake`** & **`cmake/Uninstall.cmake`** -- Scripts for verifying correct installation and for uninstalling the library from the system.
+
+#### The `tools/` directory -- development utilities
+
+The `tools/` directory provides scripts and utilities that assist developers in day-to-day development, code quality, and release workflows:
+
+- **`tools/building/`** -- Helper scripts for automating common build tasks such as configuring CMake with specific options, running parallel builds, and managing build directories.
+- **`tools/linting/`** -- Scripts for running code linters and formatters beyond what pre-commit handles, including specialized checks for naming conventions and header guards.
+- **`tools/profiling/`** -- Utilities for analyzing preCICE profiling output, generating performance reports, and converting profiling events into visualizations.
+- **`tools/releasing/`** -- Automation scripts for the release process, including version bumping, changelog generation, and creating release tarballs.
+- **`tools/testing/`** -- Additional testing utilities and scripts for running specialized test configurations, including parallel test orchestration.
+
+#### The `benchmarks/` directory -- performance benchmarks
+
+The `benchmarks/` directory contains C++ programs for measuring the performance of critical code paths within preCICE. These are built using the Google Benchmark framework and include:
+
+- **`benchmarks/bb.cpp`** -- Benchmarks for bounding box computations.
+- **`benchmarks/mesh-index.cpp`** -- Benchmarks for mesh spatial indexing operations (R-tree queries).
+- **`benchmarks/mesh-tagging.cpp`** -- Benchmarks for mesh tagging routines.
+- **`benchmarks/rbf-assembly-kernels.cpp`** -- Benchmarks for radial basis function (RBF) matrix assembly kernels, a performance-critical component of the mapping module.
+- **`benchmarks/write-data.cpp`** -- Benchmarks for data writing operations.
+- **`benchmarks/write-data.xml`** -- A sample preCICE configuration file used by the write-data benchmark.
+- **`benchmarks/helper.hpp`** -- Shared helper utilities for the benchmark programs.
+- **`benchmarks/main.cpp`** -- The benchmark main entry point.
+- **`benchmarks/sources.cmake`** -- CMake script for registering the benchmark sources.
+
+#### The `examples/` directory -- solver dummy examples
+
+The `examples/` directory contains minimal, self-contained solver dummy programs that demonstrate how to use the preCICE API. These are primarily used for testing the build and installation of the library:
+
+- **`examples/solverdummies/c/`** -- A solver dummy implementation in C, exercising the C bindings.
+- **`examples/solverdummies/cpp/`** -- A solver dummy implementation in C++, using the native C++ `Participant` API.
+- **`examples/solverdummies/fortran/`** -- A solver dummy implementation in Fortran, exercising the Fortran bindings.
+- **`examples/solverdummies/precice-config.xml`** -- A shared preCICE configuration file for running the solver dummies together.
+- **`examples/solverdummies/README.md`** -- Documentation on how to compile and run the solver dummies.
+
+#### The `extras/` directory -- supplementary tools
+
+The `extras/` directory contains additional tools and supplementary components that are not part of the core library but are shipped alongside it:
+
+- **`extras/bindings/`** -- Contains additional language binding related files, including Fortran module definitions used by the Fortran API.
+- **`extras/livegraph/`** -- A live graphing utility for visualizing coupling convergence data in real time during a simulation.
+- **`extras/mpiportstester/`** -- A diagnostic tool for testing MPI port-based communication, which is useful for debugging inter-process connectivity on various HPC systems.
+- **`extras/rbfShape/`** -- Tools for computing and visualizing radial basis function shape parameters, aiding in the selection of appropriate RBF kernels for data mapping.
+
+#### The `thirdparty/` directory -- bundled dependencies
+
+The `thirdparty/` directory contains external libraries that are bundled directly with the preCICE repository to reduce external dependency requirements:
+
+- **`thirdparty/fmt/`** -- A vendored copy of the [{fmt}](https://fmt.dev/) formatting library, providing fast and safe string formatting as an alternative to `printf` and `iostream`.
+- **`thirdparty/libbacktrace/`** -- A vendored copy of [libbacktrace](https://github.com/ianlancetaylor/libbacktrace), used for generating readable stack traces in error reports and assertions.
+
+#### The `.github/` directory -- CI and project management
+
+The `.github/` directory contains all GitHub-specific configurations that drive continuous integration, issue management, and pull request workflows:
+
+- **`.github/workflows/`** -- Contains GitHub Actions workflow definitions. These automate the build, test, and quality assurance pipeline on every push and pull request, covering multiple compilers, MPI implementations, and operating system configurations.
+- **`.github/ISSUE_TEMPLATE/`** -- Issue templates that guide users and contributors to provide structured information when reporting bugs or requesting features.
+- **`.github/pull_request_template.md`** -- A pull request template that provides a checklist and description format for all incoming contributions.
+- **`.github/dependabot.yml`** -- Configuration for Dependabot, which automatically opens pull requests when upstream GitHub Actions dependencies have new versions available.
+
+#### Root-level files
+
+The following root-level files serve important purposes in the project:
+
+- **`CMakeLists.txt`** -- The main entry point for the CMake build system. It defines the project, locates dependencies, configures compiler flags, assembles the library target from all source files, and sets up installation rules. This is the first file the build system reads when a developer runs `cmake`.
+- **`CMakePresets.json`** -- Provides predefined CMake configuration presets (e.g., debug, release, or CI-specific builds) that simplify the build invocation and ensure consistency across environments.
+- **`CHANGELOG.md`** -- A comprehensive, version-by-version record of all notable changes, including new features, bug fixes, deprecated functionality, and breaking changes. Contributors should reference this file to understand the historical evolution of the library.
+- **`CODE_OF_CONDUCT.md`** -- Defines the expectations for interaction within the preCICE community and the consequences for unacceptable behavior. All contributors are expected to adhere to this code.
+- **`LICENSE`** -- The full text of the GNU Lesser General Public License version 3 (LGPLv3) under which the preCICE library is distributed.
+- **`Doxyfile`** -- The configuration file for the Doxygen documentation generator. Running Doxygen with this file produces a comprehensive API reference from the annotated source code comments.
+- **`.clang-format`** -- Defines the C++ code formatting rules enforced throughout the project, ensuring a consistent style across all contributions. Contributors should run `clang-format` or use the pre-commit hooks to format their code before submitting.
+- **`.clang-tidy`** -- Configures the Clang-Tidy static analysis tool, specifying which checks are enabled and what coding practices are enforced at the compiler level.
+- **`.pre-commit-config.yaml`** -- Defines the set of pre-commit hooks that run automatically before each commit. These hooks enforce formatting, check for trailing whitespace, validate YAML files, and run other lightweight quality checks.
+- **`.codespellrc`** -- Configuration for the codespell tool, which detects common spelling errors in the source code and documentation.
+- **`.gitignore`** -- Specifies files and directories that Git should ignore, such as build artifacts, editor swap files, and local configuration directories.
+- **`.gitattributes`** -- Defines Git attributes for the repository, controlling line ending normalization and diff behavior for specific file types.
+- **`.mailmap`** -- Maps different author name and email address variations to a canonical form, ensuring consistent attribution in the Git history.
+- **`.python-version`** -- Specifies the Python version used by the project's tooling, ensuring consistency when running Python-based development scripts.
+
+#### Branching model
+
+The preCICE repository follows a branching model with two main branches:
+
+- **`develop`** -- The primary development branch. All new features, bug fixes, and improvements are merged into this branch. Contributors should always branch off from `develop` and submit pull requests targeting `develop`.
+- **`main`** -- The stable release branch. It is updated only during official releases and always points to the latest released version of the library.
+
+#### The broader preCICE ecosystem
+
+The core library at `precice/precice` is part of a larger ecosystem of repositories maintained under the [`precice` GitHub organization](https://github.com/precice). When contributing, it is helpful to be aware of these related repositories:
+
+- **[`precice/tutorials`](https://github.com/precice/tutorials)** -- Ready-to-run tutorial cases demonstrating preCICE usage with various solvers.
+- **[`precice/precice.github.io`](https://github.com/precice/precice.github.io)** -- The source for the preCICE website and user-facing documentation.
+- **Adapter repositories** -- Official adapters for simulation software such as [`precice/openfoam-adapter`](https://github.com/precice/openfoam-adapter), [`precice/calculix-adapter`](https://github.com/precice/calculix-adapter), [`precice/fenics-adapter`](https://github.com/precice/fenics-adapter), and others. Each adapter has its own repository, contributing guidelines, and release cycle.
+- **Language binding repositories** -- Bindings for additional programming languages, including [`precice/python-bindings`](https://github.com/precice/python-bindings), [`precice/julia-bindings`](https://github.com/precice/julia-bindings), [`precice/matlab-bindings`](https://github.com/precice/matlab-bindings), and [`precice/rust-bindings`](https://github.com/precice/rust-bindings).
+
+
 ## Helping other users
 
 We would really appreciate it if you followed our [community channels](community-channels.html) and joined us in answering questions.
