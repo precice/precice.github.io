@@ -32,12 +32,12 @@ Then add the following to your `.profile` (for bash) or `.zshrc` (for zsh).
 ```bash
 # set this to your selected installation prefix
 PRECICE_PREFIX="~/software/prefix"
+
 export PATH="${PRECICE_PREFIX}/bin:${PATH}"
-export LD_LIBRARY_PATH="${PRECICE_PREFIX}/lib:${LD_LIBRARY_PATH}"
-export CPATH="${PRECICE_PREFIX}/include:${CPATH}"
-# Enable detection with pkg-config and CMake
-export PKG_CONFIG_PATH="${PRECICE_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-export CMAKE_PREFIX_PATH="${PRECICE_PREFIX}:${CMAKE_PREFIX_PATH}"
+export CPATH="${PRECICE_PREFIX}/include${CPATH:+:$CPATH}"
+export LD_LIBRARY_PATH="${PRECICE_PREFIX}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export PKG_CONFIG_PATH="${PRECICE_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+export CMAKE_PREFIX_PATH="${PRECICE_PREFIX}${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"
 ```
 
 After adding these variables, start a new session (open a new terminal or logout and login again).
@@ -57,49 +57,79 @@ Then create a file `~/.config/environment.d/99-precice.conf` with the content:
 
 ```conf
 # set this to your selected installation prefix
-PRECICE_PREFIX="${HOME}/software/prefix"
-PATH="${PRECICE_PREFIX}/bin:${PATH}"
-LD_LIBRARY_PATH="${PRECICE_PREFIX}/lib:${LD_LIBRARY_PATH}"
-CPATH="${PRECICE_PREFIX}/include:${CPATH}"
-# Enable detection with pkg-config and CMake
-PKG_CONFIG_PATH="${PRECICE_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-CMAKE_PREFIX_PATH="${PRECICE_PREFIX}:${CMAKE_PREFIX_PATH}"
+PRECICE_PREFIX=${HOME}/software/prefix
+
+PATH=${PRECICE_PREFIX}/bin:${PATH}
+CPATH=${PRECICE_PREFIX}/include${CPATH:+:$CPATH}
+LD_LIBRARY_PATH=${PRECICE_PREFIX}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+PKG_CONFIG_PATH=${PRECICE_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}
+CMAKE_PREFIX_PATH=${PRECICE_PREFIX}${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}
 ```
 
-After adding the file, logout and login again. Opening a new terminal will not be sufficient.
+After adding the file, logout and login again. Opening a new terminal will **not** be sufficient. 
+Verify the changes by listing the loaded environment in a new terminal:
+
+```terminal
+systemctl show-environment
+```
 
 ## Using directly from the binary directory
 
-{% warning %}
-This method is strongly discouraged unless you are a preCICE developer.
-Install preCICE into a prefix unless you have a very good reason not to.
-{% endwarning %}
-
-It may not always be practical to install preCICE repeatedly.
+It may not always be practical to reinstall preCICE repeatedly.
 This is especially the case for simultaneous development of preCICE and an adapter, or while profiling the internals.
 
-This method is discouraged as file layouts are fundamentally different and we make **no** guarantees on keeping them consistent between releases.
+This method is discouraged as file layouts are fundamentally different, and we make **no** guarantees on keeping them consistent across releases.
 Hence, the only reliable methods for using preCICE from the binary directory require `pkg-config` or `CMake`.
-If your adapter or solver isn't using one of these methods, then we strongly suggest to install preCICE to a prefix or port the adapter to `pkg-config`.
+If your adapter or solver isn't using one of these methods, we strongly suggest installing preCICE to a prefix or porting the adapter to `pkg-config` or `CMake`.
 
-First extend `LD_LIBRARY_PATH` with the binary directory if you don't plan to use `rpath` (which `CMake` does by default).
+First, extend `LD_LIBRARY_PATH` with the binary directory if you don't plan to use `rpath` (which `CMake` does by default).
 For `pkg-config` users, extend `PKG_CONFIG_PATH` with the binary directory.
 For `CMake` users, either set the environment variable `precice_DIR` to the binary directory prior to calling `CMake`, or pass it as a `CMake` variable during configuration.
 
 ```conf
 # Only for using preCICE directly from the build directory
 # (as of preCICE v3.3.0 - later versions might differ).
-# Prefer installing to a prefix (see above).
 
 PRECICE_BUILD="/path/to/precice/build"
 PATH="${PRECICE_BUILD}:${PATH}"
-LD_LIBRARY_PATH="${PRECICE_BUILD}:${LD_LIBRARY_PATH}"
-PKG_CONFIG_PATH="${PRECICE_BUILD}:${PKG_CONFIG_PATH}"
-CMAKE_PREFIX_PATH="${PRECICE_BUILD}:${CMAKE_PREFIX_PATH}"
+LD_LIBRARY_PATH="${PRECICE_BUILD}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+PKG_CONFIG_PATH="${PRECICE_BUILD}${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+precice_DIR="${PRECICE_BUILD}"
 ```
+
+After adding the file, logout and login again. Opening a new terminal will **not** be sufficient. 
+Verify the changes by listing the loaded environment in a new terminal:
+
+```terminal
+systemctl show-environment
+```
+
+## Verify your installation
+
+First run:
+
+```terminal
+precice-version
+```
+
+If the binary `precice-version` cannot be found, then `PATH` is incorrect.
+If the library `libprecice.so` cannot be found, then `LD_LIBRARY_PATH` is incorrect.
+If the displayed version differs from the version you expect, then you have multiple conflicting preCICE installations on your system.
+
+Next run:
+
+```terminal
+pkg-config --modversion libprecice
+```
+
+If `libprecice` wasn't found, then your `PKG_CONFIG_PATH` is incorrect.
+If the displayed version differs from the version you expect, then you have multiple conflicting preCICE installations on your system.
+
+At this point, check whether the installation step was successful and whether the used installation prefix contains folders `bin`, `lib`, and `include`.
 
 ## Next steps
 
-This concludes the preCICE installation for custom prefixes and you should have a working installation of preCICE on your system.
+This concludes the preCICE installation for custom prefixes.
+You should now have a working preCICE installation on your system.
 
 To use preCICE in your project, see the page [Linking to preCICE](installation-linking).
