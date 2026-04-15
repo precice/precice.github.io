@@ -139,20 +139,34 @@ ASTE and our [ASTE tutorial](tutorials-aste-turbine.html) enable full insight in
 
 #### Execution backends
 
-Starting from version 3.2, preCICE offers to execute `mapping:rbf-global...` on different executor backends using the linear-operator library Ginkgo in conjunction with Kokkos.
+Since preCICE version 3, we integrated performance-portable mapping implementations into preCICE, allowing to compute mappings on different hardware backends.
+To use this feature, build preCICE from source with [Kokkos-Kernels or Ginkgo enabled](installation-source-dependencies.html). Both implementations rely additionally on Kokkos as a mandatory dependency. Overall, users target `CUDA`, `HIP`, `SYCL`, `OpenMP`, as backend. Note that preCICE inherits the backend from Kokkos at compile time. The `CPU` backend is the (default) regular backend in preCICE, which does not depend on Kokkos.
 
-To use this feature, please build preCICE from source with  [Ginkgo Mappings enabled](installation-source-dependencies.html#ginkgo).
-
-![RBF executors](images/docs/configuration/doc-mapping-rbf-executors.svg)
+| Mapping tag             | Dependencies                                   | `cuda` | `hip` | `sycl` | `openmp` | `cpu` | MPI-parallelization |
+|-------------------------|------------------------------------------------|:------:|:-----:|:------:|:--------:|:-----:|---------------------|
+| `rbf-pum-direct`        | —                                              | —      | —     | —      | —        | ✓     | distributed         |
+| `rbf-pum-direct`        | Kokkos-Kernels and Kokkos (preCICE >= v3.4.1)  | ✓      | ✓     | ✓      | ✓        | —     | distributed         |
+| `rbf-global-direct`     | Ginkgo and Kokkos (preCICE >= v3.2)            | ✓      | ✓     | —      | —        | —     | gather-scatter      |
+| `rbf-global-direct`     | —                                              | —      | —     | —      | —        | ✓     | gather-scatter      |
+| `rbf-global-iterative`  | Ginkgo and Kokkos (preCICE >= v3.2)            | ✓      | ✓     | ✓      | ✓        | —     | gather-scatter      |
+| `rbf-global-iterative`  | PETSc                                          | —      | —     | —      | —        | ✓     | distributed         |
 
 To configure the executor, an additional subtag can be used in the mapping configuration:
 
 ```xml
-<mapping:rbf direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
+<mapping:rbf-pumdirect direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
  <basis-function:compact-polynomial-c6 support-radius="1.8"/>
  <executor:cuda gpu-device-id="0"/>
-</mapping:rbf>
+</mapping:rbf-pum-direct>
 ```
+
+Mapping configurations, which follow a gather-scatter approach are always computes on a single MPI-rank, i.e., the mapping problem is gathered on the primary rank (potentially moved on the GPU), and then a solution is computed. Thus, mappings using a gather-scatter approach are not suitable for massively-parallel runs.
+
+By contrast, distributed mappings solve their rank-local problem in parallel. In practice, this means that the configuration snippet above assigns multiple MPI ranks to a single GPU (with device ID 0). Since oversubscribing a device is typically undesired, use `gpu-device-id="auto"` to assign MPI ranks in a round-robin fashion to the available GPUs. Also note -- due to the different parallelization strategies -- `n-threads` configures the number of threads per executing rank, i.e., for a distributed parallelization, `n-threads=10` assigns 10 OpenMP threads to each MPI rank, whereas for a gather-scatter parallelization `n-threads=10` assigns 10 OpenMP threads to the primary rank only.
+
+{% note %}
+Note that as of preCICE v3.4 the `rbf-pum-direct` executor only supports `consistent` constraints. Supporting a `conservative` is [work in progress](https://github.com/precice/precice/pull/2536).
+{% endnote %}
 
 More details on the feature can be found in [Schneider et al. 2023](https://doi.org/10.23967/c.coupled.2023.016).
 
