@@ -44,6 +44,7 @@ Note that more recent versions of some dependencies (e.g., Boost) might also nee
 | [MPI](#mpi) (opt-out) | [Communication over MPI](configuration-communication.html) | implementation of MPI-3 | Various [implementations](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) |
 | [PETSc](#petsc) (opt-out) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-petsc-blue)](https://pkgs.org/search/?q=petsc){:.no-icon} |
 | [Ginkgo](#ginkgo) (opt-in) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 1.8, with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-ginkgo-blue)](https://pkgs.org/search/?q=ginkgo){:.no-icon} |
+| [Kokkos-Kernels](#kokkos-kernels) (opt-in) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 4.1, with Kokkos >= 4.1 | [![Repology - Kokkos-Kernels](https://img.shields.io/repology/repositories/kokkos-kernels)](https://repology.org/project/kokkos-kernels/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-kokkos-kernels)](https://pkgs.org/search/?q=kokkos-kernels){:.no-icon} |
 | [Python](#python) (opt-out) | [Python Action interface](configuration-action.html#python-callback-interface) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-python-blue)](https://pkgs.org/search/?q=python){:.no-icon} |
 
 ## Dependencies
@@ -276,6 +277,22 @@ History of required versions:
 | ---     | ---             | ---             |
 | 3.2.0   | 1.8.0           | 4.1.0           |
 | 3.3.0   | same as above   | same as above   |
+
+### Kokkos-Kernels
+
+preCICE optionally uses [Kokkos-Kernels](https://kokkos.org/kokkos-kernels/docs/) (and [Kokkos](https://kokkos.org/)) for GPU- and OpenMP-accelerated [PU-RBF radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_KOKKOS_KERNELS_MAPPING=ON`. When building preCICE, it inherits the enabled execution backend from Kokkos automatically. preCICE accepts the backends `CUDA`, `HIP`, `SYCL`, and `OpenMP` from Kokkos. Once you run CMake with Kokkos enabled, CMake also deduces a variable called `PRECICE_WITH_<BACKEND>` (e.g. `PRECICE_WITH_CUDA=ON`), which allows you to check if the backend was successfully configured in preCICE. Further backend-specific parameters are runtime-configurable through the XML configuration, as usual. After compiling preCICE and its tests, you can check that the backend operates as expected using `ctest -R Cuda` (or `Hip`, `Sycl`, `OpenMP`).
+
+{% tip %}
+preCICE can be compiled with Kokkos-kernels through `spack`. Example: `spack install precice +cuda+ kokkos-kernels cuda_arch=80`.
+{% endtip %}
+
+[Kokkos-Kernels](https://github.com/kokkos/kokkos/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases) follow the usual CMake build instructions. For Kokkos, system packages might be available through your package manager as well.
+
+History of required versions:
+
+| preCICE | Kokkos-Kernels required | Kokkos required |
+| ---     | ---                     | ---             |
+| 3.4.1   | 4.1.0                   | 4.1.0           |
 
 ### Python
 
