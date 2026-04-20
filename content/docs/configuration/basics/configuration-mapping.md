@@ -160,7 +160,7 @@ To configure the executor, an additional subtag can be used in the mapping confi
 </mapping:rbf-pum-direct>
 ```
 
-Mapping configurations, which follow a gather-scatter approach are always computes on a single MPI-rank, i.e., the mapping problem is gathered on the primary rank (potentially moved on the GPU), and then a solution is computed. Thus, mappings using a gather-scatter approach are not suitable for massively-parallel runs.
+Mapping configurations that follow a gather-scatter approach are always computed on a single MPI rank, i.e., the mapping problem is gathered on the primary rank (potentially moved to the GPU), and then a solution is computed. Thus, mappings using a gather-scatter approach are not suitable for massively-parallel runs.
 
 By contrast, distributed mappings solve their rank-local problem in parallel. In practice, this means that the configuration snippet above assigns multiple MPI ranks to a single GPU (with device ID 0). Since oversubscribing a device is typically undesired, use `gpu-device-id="auto"` to assign MPI ranks in a round-robin fashion to the available GPUs. Also note -- due to the different parallelization strategies -- `n-threads` configures the number of threads per executing rank, i.e., for a distributed parallelization, `n-threads=10` assigns 10 OpenMP threads to each MPI rank, whereas for a gather-scatter parallelization `n-threads=10` assigns 10 OpenMP threads to the primary rank only.
 
