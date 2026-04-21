@@ -1709,7 +1709,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 09 Mar 26</small>
+              <small>Updated 21 Apr 26</small>
             </div>
           </aside>
           
@@ -1787,8 +1787,6 @@ Do not confuse a participant running in parallel with a parallel coupling scheme
 Instead of using static meshes as described here, you may consider using a <a href="couple-your-code-just-in-time-mapping.html">just-in-time data mapping</a>, where one of both meshes can change at runtime.
 </div>
 
-<h2 id="available-mapping-methods-in-precice">Available mapping methods in preCICE</h2>
-
 <p>The mapping method itself is defined in the xml configuration after the colon <code class="language-plaintext highlighter-rouge">mapping:...</code> (e.g. <code class="language-plaintext highlighter-rouge">&lt;mapping:nearest-neighbor ...</code>). In general, preCICE offers two broader groups of mapping methods</p>
 
 <p><img src="images/docs/configuration/doc-mapping-options.svg" alt="Mapping options" /></p>
@@ -1797,7 +1795,7 @@ Instead of using static meshes as described here, you may consider using a <a hr
 Chapter 3.2 (Data mapping) of the preCICE version 2 <a href="https://doi.org/10.12688/openreseurope.14445.2">reference paper</a> explains and compares a selection of projection-based methods and kernel methods.
 </div>
 
-<h3 id="projection-based-methods">Projection-based methods</h3>
+<h2 id="projection-based-methods">Projection-based methods</h2>
 
 <p>Projection-based data mapping methods are typically cheap to compute as they don’t involve solving expensive linear systems as opposed to the kernel methods. The basic variant, which operates solely on vertex data, is <code class="language-plaintext highlighter-rouge">nearest-neighbor</code> mapping. All other variants require additional information from the user, as shown in the overview figure above.</p>
 
@@ -1812,7 +1810,7 @@ Chapter 3.2 (Data mapping) of the preCICE version 2 <a href="https://doi.org/10.
   <li><code class="language-plaintext highlighter-rouge">nearest-neighbor-gradient</code>: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the <a href="couple-your-code-gradient-data.html">gradient data page</a>, we explain how to add gradient data to the mesh. This method is only applicable with the <code class="language-plaintext highlighter-rouge">consistent</code> constraint. The method was developed <a href="http://dx.doi.org/10.18419/opus-12128">Master’s thesis of Boshra Ariguib</a>, where more detailed information is available.</li>
 </ul>
 
-<h3 id="kernel-methods">Kernel methods</h3>
+<h2 id="kernel-methods">Kernel methods</h2>
 
 <p>Kernel methods are typically more accurate and can deliver higher-order convergence rates, but are computationally more demanding compared to projection-based mapping methods. All kernel methods operate solely on vertex data such that no additional connectivity information is required from the user. Since preCICE version 3, there are two types of kernel methods available:</p>
 
@@ -1835,7 +1833,7 @@ For global rbf methods, the interpolation problem (or rather the polynomial QR s
   <li><code class="language-plaintext highlighter-rouge">rbf-pum-direct</code>, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for <code class="language-plaintext highlighter-rouge">rbf-global-direct</code>, i.e., it is beneficial to configure strictly positive definite basis-functions). The mapping is specifically designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of <code class="language-plaintext highlighter-rouge">vertices-per-cluster</code> can be increased. The method can only handle sufficiently matching geometries and problems might occur if large gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in <a href="https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc">David’s talk at the preCICE workshop 2023</a>. In practical applications, the partition of unity method typically outperforms any of the global rbf variants.</li>
 </ul>
 
-<h4 id="configuration">Configuration</h4>
+<h3 id="configuration">Configuration</h3>
 
 <p>Configuring kernel methods is more involved and offers more options. A full reference of all options can be found in the <a href="configuration-xml-reference.html">xml reference</a>. On a broader level, the configuration consists of two main options: the applied kernel mapping method and the used basis-function including its support radius or shape parameter. As the decision about the used kernel mapping method can be intricate, we provide an alias called <code class="language-plaintext highlighter-rouge">&lt;mapping:rbf ...</code> which decides dynamically for a kernel method according to the setup (e.g. parallel execution, problem size, available dependencies)</p>
 
@@ -1851,7 +1849,7 @@ For global rbf methods, the interpolation problem (or rather the polynomial QR s
 <p>The basis-function has to be defined as a subtag in all kernel methods. In this example the basis-function <code class="language-plaintext highlighter-rouge">compact-polynomial-c6</code> is used with a support radius of <code class="language-plaintext highlighter-rouge">r=1.8</code>.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-We recommend to use the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
+We recommend using the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
 </div>
 
 <p>The configuration of the basis-function is problem-dependent. In general, preCICE offers basis function with global and local support:</p>
@@ -1863,21 +1861,111 @@ We recommend to use the alias tag, as long as there are no further requirements 
 
 <p>ASTE and our <a href="tutorials-aste-turbine.html">ASTE tutorial</a> enable full insight into the accuracy of the configured mapping method.</p>
 
-<h4 id="execution-backends">Execution backends</h4>
+<h3 id="execution-backends">Execution backends</h3>
 
-<p>Starting from version 3.2, preCICE offers to execute <code class="language-plaintext highlighter-rouge">mapping:rbf-global...</code> on different executor backends using the linear-operator library Ginkgo in conjunction with Kokkos.</p>
+<p>Since preCICE version 3, we integrated performance-portable mapping implementations into preCICE, allowing to compute mappings on different hardware backends.
+To use this feature, build preCICE from source with <a href="installation-source-dependencies.html">Kokkos-Kernels or Ginkgo enabled</a>. Both implementations rely additionally on Kokkos as a mandatory dependency. Overall, users may target <code class="language-plaintext highlighter-rouge">CUDA</code>, <code class="language-plaintext highlighter-rouge">HIP</code>, <code class="language-plaintext highlighter-rouge">SYCL</code>, and <code class="language-plaintext highlighter-rouge">OpenMP</code> as executor backend. Note that preCICE inherits the backend from Kokkos at compile time. The <code class="language-plaintext highlighter-rouge">CPU</code> backend is the (default) regular backend in preCICE, which does not depend on Kokkos.</p>
 
-<p>To use this feature, please build preCICE from source with  <a href="installation-source-dependencies.html#ginkgo">Ginkgo Mappings enabled</a>.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Mapping tag</th>
+      <th>Dependencies</th>
+      <th style="text-align: center"><code class="language-plaintext highlighter-rouge">cuda</code></th>
+      <th style="text-align: center"><code class="language-plaintext highlighter-rouge">hip</code></th>
+      <th style="text-align: center"><code class="language-plaintext highlighter-rouge">sycl</code></th>
+      <th style="text-align: center"><code class="language-plaintext highlighter-rouge">openmp</code></th>
+      <th style="text-align: center"><code class="language-plaintext highlighter-rouge">cpu</code></th>
+      <th>MPI-parallelization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rbf-pum-direct</code></td>
+      <td>(Eigen, <a href="https://precice.org/installation-source-dependencies.html#required-dependencies">mandatory</a> for preCICE)</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">✓</td>
+      <td>distributed</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rbf-pum-direct</code></td>
+      <td>Kokkos-Kernels and Kokkos (preCICE &gt;= v3.4.1)</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">—</td>
+      <td>distributed</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rbf-global-direct</code></td>
+      <td>Ginkgo and Kokkos (preCICE &gt;= v3.2)</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td>gather-scatter</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rbf-global-direct</code></td>
+      <td>(Eigen, <a href="https://precice.org/installation-source-dependencies.html#required-dependencies">mandatory</a> for preCICE)</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">✓</td>
+      <td>gather-scatter</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rbf-global-iterative</code></td>
+      <td>Ginkgo and Kokkos (preCICE &gt;= v3.2)</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">—</td>
+      <td>gather-scatter</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rbf-global-iterative</code></td>
+      <td>PETSc</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">—</td>
+      <td style="text-align: center">✓</td>
+      <td>distributed</td>
+    </tr>
+  </tbody>
+</table>
 
-<p><img src="images/docs/configuration/doc-mapping-rbf-executors.svg" alt="RBF executors" /></p>
+<p>To configure the executor, an additional subtag can be used in the mapping configuration (see also the <a href="configuration-xml-reference.html#mappingrbf-pum-direct">corresponding XML-reference</a>):</p>
 
-<p>To configure the executor, an additional subtag can be used in the mapping configuration:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf-pum-direct</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">&gt;</span>
  <span class="nt">&lt;basis-function:compact-polynomial-c6</span> <span class="na">support-radius=</span><span class="s">"1.8"</span><span class="nt">/&gt;</span>
  <span class="nt">&lt;executor:cuda</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/mapping:rbf&gt;</span>
+<span class="nt">&lt;/mapping:rbf-pum-direct&gt;</span>
 </code></pre></div></div>
+
+<p>or for an OpenMP backend</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf-pum-direct</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;basis-function:compact-polynomial-c6</span> <span class="na">support-radius=</span><span class="s">"1.8"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;executor:openmp</span> <span class="na">n-threads=</span><span class="s">"10"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mapping:rbf-pum-direct&gt;</span>
+</code></pre></div></div>
+
+<p>Mapping configurations that follow a gather-scatter approach are always computed on a single MPI rank, i.e., the mapping problem is gathered on the primary rank (potentially moved to the GPU), and then a solution is computed. Thus, mappings using a gather-scatter approach are not suitable for massively-parallel runs.</p>
+
+<p>By contrast, distributed mappings solve their rank-local problem in parallel. In practice, this means that the configuration snippet above assigns multiple MPI ranks to a single GPU (with device ID 0). Since oversubscribing a device is typically undesired, use <code class="language-plaintext highlighter-rouge">gpu-device-id="auto"</code> to assign MPI ranks in a round-robin fashion to the available GPUs. Also note – due to the different parallelization strategies – <code class="language-plaintext highlighter-rouge">n-threads</code> configures the number of threads per executing rank, i.e., for a distributed parallelization, <code class="language-plaintext highlighter-rouge">n-threads=10</code> assigns 10 OpenMP threads to each MPI rank, whereas for a gather-scatter parallelization <code class="language-plaintext highlighter-rouge">n-threads=10</code> assigns 10 OpenMP threads to the primary rank only.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+Note that as of preCICE v3.4 the <code class="language-plaintext highlighter-rouge">rbf-pum-direct</code> executor only supports <code class="language-plaintext highlighter-rouge">consistent</code> constraints. Supporting a <code class="language-plaintext highlighter-rouge">conservative</code> is <a href="https://github.com/precice/precice/pull/2536">work in progress</a>.
+</div>
 
 <p>More details on the feature can be found in <a href="https://doi.org/10.23967/c.coupled.2023.016">Schneider et al. 2023</a>.</p>
 
@@ -2363,7 +2451,7 @@ After applying these changes, you can use the <a href="https://github.com/precic
         </a>
         </p>
         <p>
-        Page last updated: Mar 9, 2026<br>
+        Page last updated: Apr 21, 2026<br>
         Site last updated: Apr 21, 2026
         </p>
         <p>
