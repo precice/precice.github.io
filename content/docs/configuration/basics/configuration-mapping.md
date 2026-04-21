@@ -146,7 +146,7 @@ To use this feature, build preCICE from source with [Kokkos-Kernels or Ginkgo en
 | `rbf-pum-direct`        | Kokkos-Kernels and Kokkos (preCICE >= v3.4.1)                                                                      | ✓      | ✓     | ✓      | ✓        | —     | distributed         |
 | `rbf-global-direct`     | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | —      | —        | —     | gather-scatter      |
 | `rbf-global-direct`     | (Eigen, [mandatory](https://precice.org/installation-source-dependencies.html#required-dependencies) for preCICE)  | —      | —     | —      | —        | ✓     | gather-scatter      |
-| `rbf-global-iterative`  | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | ✓      | ✓        | —     | gather-scatter      |
+| `rbf-global-iterative`  | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | —      | ✓        | —     | gather-scatter      |
 | `rbf-global-iterative`  | PETSc                                                                                                              | —      | —     | —      | —        | ✓     | distributed         |
 
 To configure the executor, an additional subtag can be used in the mapping configuration (see also the [corresponding XML-reference](configuration-xml-reference.html#mappingrbf-pum-direct)):
