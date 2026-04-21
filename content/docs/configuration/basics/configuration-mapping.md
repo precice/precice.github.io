@@ -72,8 +72,6 @@ Do not confuse a participant running in parallel with a parallel coupling scheme
 Instead of using static meshes as described here, you may consider using a [just-in-time data mapping](couple-your-code-just-in-time-mapping.html), where one of both meshes can change at runtime.
 {% endtip %}
 
-## Available mapping methods in preCICE
-
 The mapping method itself is defined in the xml configuration after the colon `mapping:...` (e.g. `<mapping:nearest-neighbor ...`). In general, preCICE offers two broader groups of mapping methods
 
 ![Mapping options](images/docs/configuration/doc-mapping-options.svg)
@@ -82,7 +80,7 @@ The mapping method itself is defined in the xml configuration after the colon `m
 Chapter 3.2 (Data mapping) of the preCICE version 2 [reference paper](https://doi.org/10.12688/openreseurope.14445.2) explains and compares a selection of projection-based methods and kernel methods.
 {% endnote %}
 
-### Projection-based methods
+## Projection-based methods
 
 Projection-based data mapping methods are typically cheap to compute as they don't involve solving expensive linear systems as opposed to the kernel methods. The basic variant, which operates solely on vertex data, is `nearest-neighbor` mapping. All other variants require additional information from the user, as shown in the overview figure above.
 
@@ -95,7 +93,7 @@ Available methods are:
 * `linear-cell-interpolation`: Instead of mapping to surface-elements as the `nearest-projection`, `linear-cell-interpolation` uses volumetric elements, i.e., it is designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. Hence, connectivity information for volumetric elements needs to be defined. If none are found, it falls back on `nearest-projection` or `nearest-neighbor` (depending on the available connectivity information). The method was developed in the [Master's thesis of Boris Martin](https://mediatum.ub.tum.de/doc/1685618/1685618.pdf), where more detailed information is available.
 * `nearest-neighbor-gradient`: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the [gradient data page](couple-your-code-gradient-data.html), we explain how to add gradient data to the mesh. This method is only applicable with the `consistent` constraint. The method was developed [Master's thesis of Boshra Ariguib](http://dx.doi.org/10.18419/opus-12128), where more detailed information is available.
 
-### Kernel methods
+## Kernel methods
 
 Kernel methods are typically more accurate and can deliver higher-order convergence rates, but are computationally more demanding compared to projection-based mapping methods. All kernel methods operate solely on vertex data such that no additional connectivity information is required from the user. Since preCICE version 3, there are two types of kernel methods available:
 
@@ -110,7 +108,7 @@ For global rbf methods, the interpolation problem (or rather the polynomial QR s
 
 * `rbf-pum-direct`, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for `rbf-global-direct`, i.e., it is beneficial to configure strictly positive definite basis-functions). The mapping is specifically designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of `vertices-per-cluster` can be increased. The method can only handle sufficiently matching geometries and problems might occur if large gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in [David's talk at the preCICE workshop 2023](https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc). In practical applications, the partition of unity method typically outperforms any of the global rbf variants.
 
-#### Configuration
+### Configuration
 
 Configuring kernel methods is more involved and offers more options. A full reference of all options can be found in the [xml reference](configuration-xml-reference.html). On a broader level, the configuration consists of two main options: the applied kernel mapping method and the used basis-function including its support radius or shape parameter. As the decision about the used kernel mapping method can be intricate, we provide an alias called `<mapping:rbf ...` which decides dynamically for a kernel method according to the setup (e.g. parallel execution, problem size, available dependencies)
 
@@ -137,7 +135,7 @@ The configuration of the basis-function is problem-dependent. In general, preCIC
 
 ASTE and our [ASTE tutorial](tutorials-aste-turbine.html) enable full insight into the accuracy of the configured mapping method.
 
-#### Execution backends
+### Execution backends
 
 Since preCICE version 3, we integrated performance-portable mapping implementations into preCICE, allowing to compute mappings on different hardware backends.
 To use this feature, build preCICE from source with [Kokkos-Kernels or Ginkgo enabled](installation-source-dependencies.html). Both implementations rely additionally on Kokkos as a mandatory dependency. Overall, users may target `CUDA`, `HIP`, `SYCL`, and `OpenMP` as executor backend. Note that preCICE inherits the backend from Kokkos at compile time. The `CPU` backend is the (default) regular backend in preCICE, which does not depend on Kokkos.
