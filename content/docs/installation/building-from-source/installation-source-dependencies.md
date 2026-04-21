@@ -280,10 +280,10 @@ History of required versions:
 
 ### Kokkos-Kernels
 
-preCICE optionally uses [Kokkos-Kernels](https://kokkos.org/kokkos-kernels/docs/) (and [Kokkos](https://kokkos.org/)) for GPU- and OpenMP-accelerated [PU-RBF radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_KOKKOS_KERNELS_MAPPING=ON`. When building preCICE, it inherits the enabled execution backend from Kokkos automatically. preCICE accepts the backends `CUDA`, `HIP`, `SYCL`, and `OpenMP` from Kokkos. Once you run CMake with Kokkos enabled, CMake also deduces a variable called `PRECICE_WITH_<BACKEND>` (e.g. `PRECICE_WITH_CUDA=ON`), which allows you to check if the backend was successfully configured in preCICE. Further backend-specific parameters are runtime-configurable through the XML configuration, as usual. After compiling preCICE and its tests, you can check that the backend operates as expected using `ctest -R Cuda` (or `Hip`, `Sycl`, `OpenMP`).
+preCICE optionally uses [Kokkos-Kernels](https://kokkos.org/kokkos-kernels/docs/) (and [Kokkos](https://kokkos.org/)) for GPU- and OpenMP-accelerated [PU-RBF radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_KOKKOS_KERNELS_MAPPING=ON`. When building preCICE, it inherits the enabled execution backend from Kokkos automatically. preCICE accepts the backends `CUDA`, `HIP`, `SYCL`, and `OpenMP` from Kokkos. Further backend-specific parameters are runtime-configurable through the XML configuration, as usual. After compiling preCICE and its tests, you can check that the backend operates as expected using `ctest -R Cuda` (or `Hip`, `Sycl`, `OpenMP`).
 
 {% tip %}
-preCICE can be compiled with Kokkos-kernels through [`spack`](installation-spack.html). Example: `spack install precice +cuda+ kokkos-kernels cuda_arch=80`.
+preCICE can be compiled with Kokkos-kernels through [`spack`](installation-spack.html). Example: `spack install precice +kokkos-kernels +cuda ^kokkos cuda_arch=80`.
 {% endtip %}
 
 [Kokkos-Kernels](https://github.com/kokkos/kokkos/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases) follow the usual CMake build instructions. For Kokkos, system packages might be available through your package manager as well.

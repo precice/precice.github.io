@@ -127,7 +127,7 @@ An RBF mapping configuration could look as follows
 The basis-function has to be defined as a subtag in all kernel methods. In this example the basis-function `compact-polynomial-c6` is used with a support radius of `r=1.8`.
 
 {% note %}
-We recommend to use the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
+We recommend using the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
 {% endnote %}
 
 The configuration of the basis-function is problem-dependent. In general, preCICE offers basis function with global and local support:
@@ -140,23 +140,32 @@ ASTE and our [ASTE tutorial](tutorials-aste-turbine.html) enable full insight in
 #### Execution backends
 
 Since preCICE version 3, we integrated performance-portable mapping implementations into preCICE, allowing to compute mappings on different hardware backends.
-To use this feature, build preCICE from source with [Kokkos-Kernels or Ginkgo enabled](installation-source-dependencies.html). Both implementations rely additionally on Kokkos as a mandatory dependency. Overall, users target `CUDA`, `HIP`, `SYCL`, `OpenMP`, as backend. Note that preCICE inherits the backend from Kokkos at compile time. The `CPU` backend is the (default) regular backend in preCICE, which does not depend on Kokkos.
+To use this feature, build preCICE from source with [Kokkos-Kernels or Ginkgo enabled](installation-source-dependencies.html). Both implementations rely additionally on Kokkos as a mandatory dependency. Overall, users may target `CUDA`, `HIP`, `SYCL`, and `OpenMP` as executor backend. Note that preCICE inherits the backend from Kokkos at compile time. The `CPU` backend is the (default) regular backend in preCICE, which does not depend on Kokkos.
 
-| Mapping tag             | Dependencies                                   | `cuda` | `hip` | `sycl` | `openmp` | `cpu` | MPI-parallelization |
-|-------------------------|------------------------------------------------|:------:|:-----:|:------:|:--------:|:-----:|---------------------|
-| `rbf-pum-direct`        | —                                              | —      | —     | —      | —        | ✓     | distributed         |
-| `rbf-pum-direct`        | Kokkos-Kernels and Kokkos (preCICE >= v3.4.1)  | ✓      | ✓     | ✓      | ✓        | —     | distributed         |
-| `rbf-global-direct`     | Ginkgo and Kokkos (preCICE >= v3.2)            | ✓      | ✓     | —      | —        | —     | gather-scatter      |
-| `rbf-global-direct`     | —                                              | —      | —     | —      | —        | ✓     | gather-scatter      |
-| `rbf-global-iterative`  | Ginkgo and Kokkos (preCICE >= v3.2)            | ✓      | ✓     | ✓      | ✓        | —     | gather-scatter      |
-| `rbf-global-iterative`  | PETSc                                          | —      | —     | —      | —        | ✓     | distributed         |
+| Mapping tag             | Dependencies                                                                                                       | `cuda` | `hip` | `sycl` | `openmp` | `cpu` | MPI-parallelization |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------|:------:|:-----:|:------:|:--------:|:-----:|---------------------|
+| `rbf-pum-direct`        | (Eigen, [mandatory](https://precice.org/installation-source-dependencies.html#required-dependencies) for preCICE)  | —      | —     | —      | —        | ✓     | distributed         |
+| `rbf-pum-direct`        | Kokkos-Kernels and Kokkos (preCICE >= v3.4.1)                                                                      | ✓      | ✓     | ✓      | ✓        | —     | distributed         |
+| `rbf-global-direct`     | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | —      | —        | —     | gather-scatter      |
+| `rbf-global-direct`     | (Eigen, [mandatory](https://precice.org/installation-source-dependencies.html#required-dependencies) for preCICE)  | —      | —     | —      | —        | ✓     | gather-scatter      |
+| `rbf-global-iterative`  | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | ✓      | ✓        | —     | gather-scatter      |
+| `rbf-global-iterative`  | PETSc                                                                                                              | —      | —     | —      | —        | ✓     | distributed         |
 
-To configure the executor, an additional subtag can be used in the mapping configuration:
+To configure the executor, an additional subtag can be used in the mapping configuration (see also the [corresponding XML-reference](configuration-xml-reference.html#mappingrbf-pum-direct)):
 
 ```xml
-<mapping:rbf-pumdirect direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
+<mapping:rbf-pum-direct direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
  <basis-function:compact-polynomial-c6 support-radius="1.8"/>
  <executor:cuda gpu-device-id="0"/>
+</mapping:rbf-pum-direct>
+```
+
+or for an OpenMP backend
+
+```xml
+<mapping:rbf-pum-direct direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
+ <basis-function:compact-polynomial-c6 support-radius="1.8"/>
+ <executor:openmp n-threads="10"/>
 </mapping:rbf-pum-direct>
 ```
 
