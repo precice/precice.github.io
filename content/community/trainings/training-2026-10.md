@@ -18,6 +18,26 @@ Registration will be available in September. Places will be limited.
 
 Holders of a [support license](community-support-precice.html) get free registration to the preCICE workshops and trainings.
 
+## Program
+
+We are preparing an interactive online event with 3h slots over a week. Preliminary schedule, details might change (all times are EDT (UTC-4)):
+
+- Monday (hands-on):
+  - 12:00-13:00: Introduction to the preCICE and the [training course](community-training.html)
+  - 13:00-15:00: Training course: Basics - Gerasimos Chourdakis
+- Tuesday (hands-on):
+  - 12:00-14:30: Training course: Implicit coupling - Benjamin Uekermann
+  - 14:30-15:00: Q&A session
+- Wednesday (talks):
+  - 12:00-12:30: News from preCICE
+  - 12:30-13:30: Developer talks
+  - 13:30-15:00: User talks
+- Thursday (hands-on):
+  - 12:00-15:00: Training course: Data mapping - Benjamin Uekermann
+- Friday (hands-on):
+  - 12:00-14:30: Training course: Workflow for FSI simulations - Gerasimos Chourdakis
+  - 14:30-15:00: Q&A session and wrap-up
+
 ## Help us advertise
 
 Feel free to use [this advertising material](https://ipvscloud.informatik.uni-stuttgart.de/s/5tMqRPek4MKq9F9).
