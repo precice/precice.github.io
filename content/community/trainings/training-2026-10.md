@@ -24,19 +24,19 @@ We are preparing an interactive online event with 3h slots over a week. Prelimin
 
 - Monday (hands-on):
   - 12:00-13:00: Introduction to the preCICE and the [training course](community-training.html)
-  - 13:00-15:00: Training course: Basics - Gerasimos Chourdakis
+  - 13:00-15:00: Training course: Basics
 - Tuesday (hands-on):
-  - 12:00-14:30: Training course: Implicit coupling - Benjamin Uekermann
-  - 14:30-15:00: Q&A session
+  - 12:00-14:30: Training course: Implicit coupling
+  - 14:30-15:00: General Q&A session
 - Wednesday (talks):
   - 12:00-12:30: News from preCICE
   - 12:30-13:30: Developer talks
   - 13:30-15:00: User talks
 - Thursday (hands-on):
-  - 12:00-15:00: Training course: Data mapping - Benjamin Uekermann
-- Friday (hands-on):
-  - 12:00-14:30: Training course: Workflow for FSI simulations - Gerasimos Chourdakis
-  - 14:30-15:00: Q&A session and wrap-up
+  - 12:00-15:00: Training course: Data mapping
+- Friday (discussion):
+  - 12:00-12:30: General Q&A session
+  - 12:30-15:00: In parallel: User support session | Further training
 
 ## Help us advertise
 
