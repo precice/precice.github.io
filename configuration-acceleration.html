@@ -1709,7 +1709,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 11 Nov 25</small>
+              <small>Updated 23 Apr 26</small>
             </div>
           </aside>
           
@@ -1827,7 +1827,7 @@ Hence, <code class="language-plaintext highlighter-rouge">Forces</code> should b
 
 <p>For <code class="language-plaintext highlighter-rouge">IQN-ILS</code>, the complete configuration with all options specified explicitly to the default settings is as follows:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span> <span class="na">on-bound-violation=</span><span class="s">"scale"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"StructureMesh"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"StructureMesh"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"residual-sum"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
@@ -1840,7 +1840,7 @@ Hence, <code class="language-plaintext highlighter-rouge">Forces</code> should b
 
 <p>and for <code class="language-plaintext highlighter-rouge">IQN-IMVJ</code>, it is:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span> <span class="na">on-bound-violation=</span><span class="s">"scale"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"StructureMesh"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"StructureMesh"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"residual-sum"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
@@ -1857,6 +1857,18 @@ Hence, <code class="language-plaintext highlighter-rouge">Forces</code> should b
 <p>Here are some brief explanations and hints on good combinations of choices for the configuration options:</p>
 
 <ul>
+  <li>The attribute <code class="language-plaintext highlighter-rouge">on-bound-violation</code> is used to handle the quasi-Newton(QN) acceleration steps that violate the bound configured for scalar or component(s) of vector under the <code class="language-plaintext highlighter-rouge">data</code> tag. This attribute can be set to different options to constrain the acceleration step to stay in the bound. The options avaiable are:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ignore</code>: default option. preCICE will not check if the accelerated values are violating the bound, thus no warning etc.</li>
+      <li><code class="language-plaintext highlighter-rouge">discard</code>: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. If any violation is found, this update step will be discarded, i.e. next iteration will start with the output from last iteration.</li>
+      <li><code class="language-plaintext highlighter-rouge">clamp</code>: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. The violating values will be clamped to the bounds respectively. Non-violating values are not influenced by this check.</li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">scale</code>: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. If any violation is found, the update from this QN step is scaled by a scalar factor between 0 and 1, to fit all the violating values into the bounded range.</p>
+
+        <p>While <code class="language-plaintext highlighter-rouge">discard</code> and <code class="language-plaintext highlighter-rouge">clamp</code> are convenient options for single value or occasional bound violation, <code class="language-plaintext highlighter-rouge">scale</code> helps to retain the direction of the QN step by only shortening the step length. The best option for this attribute is problem-dependent.</p>
+      </li>
+    </ul>
+  </li>
   <li>If several primary data fields are configured, e.g. when parallel coupling is used, an equal order of magnitude of them has to be ensured. This is done by defining a <code class="language-plaintext highlighter-rouge">preconditioner</code>.
     <ul>
       <li>As <code class="language-plaintext highlighter-rouge">type</code>, we recommend to use <code class="language-plaintext highlighter-rouge">"residual-sum"</code> as in the default setting.</li>
@@ -1896,6 +1908,10 @@ Hence, <code class="language-plaintext highlighter-rouge">Forces</code> should b
   </li>
   <li>It’s to note that a necessary prerequisite for convergence of the implicit coupling loop is the proper convergence of each participant internally. Inner convergence measure (e.g. of the fluid solver) should be two orders of magnitude stricter than the coupling convergence-measure to achieve good performance with quasi-Newton.</li>
 </ul>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
+The feature of setting bounds to data and <code class="language-plaintext highlighter-rouge">on-bound-violation</code> attribute for QN acceleration is new in 3.4.0.
+</div>
 
 
     
@@ -2275,8 +2291,8 @@ Hence, <code class="language-plaintext highlighter-rouge">Forces</code> should b
         </a>
         </p>
         <p>
-        Page last updated: Nov 11, 2025<br>
-        Site last updated: Apr 21, 2026
+        Page last updated: Apr 23, 2026<br>
+        Site last updated: Apr 23, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
