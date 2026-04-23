@@ -155,7 +155,7 @@ Integrations tests:
 Inside the test, `PRECICE_TEST()` applies the defined test setup to the current environment.
 It handles unnecessary ranks and partitions MPI communicators to represent the correct communicator sizes.
 
-It also defines a [TestContext](https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) named `context`, which provides context of the currently running test.
+It also defines a [TestContext](https://api.precice.org/cpp/develop/classprecice_1_1testing_1_1TestContext.html) named `context`, which provides context of the currently running test.
 Information is accessible directly and checkable as predicates.
 You can safely pass this per reference (`const precice::testing::TestContext&`) to other functions to refactor common test functionality.
 

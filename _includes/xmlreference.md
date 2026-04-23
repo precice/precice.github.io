@@ -1,4 +1,4 @@
-<!-- generated with preCICE 3.3.1 -->
+<!-- generated with preCICE 3.4.1 -->
 # precice-configuration
 
 Main tag containing preCICE configuration.
@@ -11,7 +11,7 @@ Main tag containing preCICE configuration.
     ...
   </log>
   <profiling mode="fundamental" flush-every="50" directory="." synchronize="false"/>
-  <data:scalar name="{string}" waveform-degree="1"/>
+  <data:scalar name="{string}" waveform-degree="1" lower-bound="-inf" upper-bound="inf"/>
   <mesh name="{string}" dimensions="{integer}">
     ...
   </mesh>
@@ -116,35 +116,43 @@ Allows configuring the profiling functionality of preCICE.
 
 ## data:scalar
 
-Defines a scalar data set to be assigned to meshes.
+Defines a scalar data set to be assigned to meshes. Lower and upper bound of the data can be specified to prevent acceleration methods of IQN family violating the physical value range.
 
 **Example:**  
 
 ```xml
-<data:scalar name="{string}" waveform-degree="1"/>
+<data:scalar name="{string}" waveform-degree="1" lower-bound="-inf" upper-bound="inf"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
 | waveform-degree | integer | Polynomial degree of waveform that is used for time interpolation. | `1` | none |
+| lower-bound | float | Lower bound for the scalar data. Example is 0 for temperature in Kelvin. | `-inf` | none |
+| upper-bound | float | Upper bound for the scalar data. Example is 1 for volumetric phase fraction | `inf` | none |
 
 
 
 ## data:vector
 
-Defines a vector data set to be assigned to meshes. The number of components of each data entry depends on the spatial dimensions of the mesh.
+Defines a vector data set to be assigned to meshes. The number of components of each data entry depends on the spatial dimensions of the mesh.Lower and upper bound for each component can be specified to prevent acceleration methods of IQN family violating the physical value range.
 
 **Example:**  
 
 ```xml
-<data:vector name="{string}" waveform-degree="1"/>
+<data:vector name="{string}" waveform-degree="1" lower-bound-x="-inf" lower-bound-y="-inf" lower-bound-z="-inf" upper-bound-x="inf" upper-bound-y="inf" upper-bound-z="inf"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
 | waveform-degree | integer | Polynomial degree of waveform that is used for time interpolation. | `1` | none |
+| lower-bound-x | float | Lower bound for the x-component of the vector data. | `-inf` | none |
+| lower-bound-y | float | Lower bound for the y-component of the vector data. | `-inf` | none |
+| lower-bound-z | float | Lower bound for the z-component of the vector data. | `-inf` | none |
+| upper-bound-x | float | Upper bound for the x-component of the vector data. | `inf` | none |
+| upper-bound-y | float | Upper bound for the y-component of the vector data. | `inf` | none |
+| upper-bound-z | float | Upper bound for the z-component of the vector data. | `inf` | none |
 
 
 
@@ -308,6 +316,7 @@ Represents one solver using preCICE. At least two participants have to be define
   * [rbf-global-direct](#mappingrbf-global-direct) `0..*`
   * [rbf-pum-direct](#mappingrbf-pum-direct) `0..*`
   * [rbf](#mappingrbf) `0..*`
+  * [coarse-graining](#mappingcoarse-graining) `0..*`
   * [axial-geometric-multiscale](#mappingaxial-geometric-multiscale) `0..*`
   * [radial-geometric-multiscale](#mappingradial-geometric-multiscale) `0..*`
 
@@ -348,7 +357,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 ### mapping:nearest-neighbor
 
-Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes and run nearest-neighbour queries.
+Nearest-neighbour mapping which uses a rstar-spatial index tree to index meshes and run nearest-neighbour queries.
 
 **Example:**  
 
@@ -367,7 +376,7 @@ Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes 
 
 ### mapping:nearest-projection
 
-Nearest-projection mapping which uses a rstar-spacial index tree to index meshes and locate the nearest projections.
+Nearest-projection mapping which uses a rstar-spatial index tree to index meshes and locate the nearest projections.
 
 **Example:**  
 
@@ -405,7 +414,7 @@ Nearest-neighbor-gradient mapping which uses nearest-neighbor mapping with an ad
 
 ### mapping:linear-cell-interpolation
 
-Linear cell interpolation mapping which uses a rstar-spacial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.
+Linear cell interpolation mapping which uses a rstar-spatial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.
 
 **Example:**  
 
@@ -492,7 +501,7 @@ Cuda (Nvidia) executor, which uses Ginkgo with a gather-scatter parallelism.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| gpu-device-id | integer | Specifies the ID of the GPU that should be used for the Ginkgo GPU backend. | `0` | none |
+| gpu-device-id | string | Setting of the GPU device: Set "auto" to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID. | `0` | none |
 
 
 
@@ -508,7 +517,7 @@ Hip (AMD/Nvidia) executor, which uses hipSolver with a gather-scatter parallelis
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| gpu-device-id | integer | Specifies the ID of the GPU that should be used for the Ginkgo GPU backend. | `0` | none |
+| gpu-device-id | string | Setting of the GPU device: Set "auto" to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID. | `0` | none |
 
 
 
@@ -767,7 +776,7 @@ Cuda (Nvidia) executor, which uses cuSolver/Ginkgo and a direct QR decomposition
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| gpu-device-id | integer | Specifies the ID of the GPU that should be used for the Ginkgo GPU backend. | `0` | none |
+| gpu-device-id | string | Setting of the GPU device: Set "auto" to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID. | `0` | none |
 
 
 
@@ -783,7 +792,7 @@ Hip (AMD/Nvidia) executor, which uses hipSolver/Ginkgo and a direct QR decomposi
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| gpu-device-id | integer | Specifies the ID of the GPU that should be used for the Ginkgo GPU backend. | `0` | none |
+| gpu-device-id | string | Setting of the GPU device: Set "auto" to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID. | `0` | none |
 
 
 
@@ -998,17 +1007,89 @@ Radial-basis-function mapping using a partition of unity method, which supports 
   * [volume-splines](#basis-functionvolume-splines-1) `0..1`
 * executor
   * [cpu](#executorcpu-1) `0..1`
+  * [cuda](#executorcuda-1) `0..1`
+  * [hip](#executorhip-1) `0..1`
+  * [sycl](#executorsycl) `0..1`
+  * [openmp](#executoropenmp-1) `0..1`
 
 
 #### executor:cpu
 
-The default (and currently only) executor using a CPU and a distributed memory parallelism via MPI.
+The default executor using a CPU and a distributed memory parallelism via MPI.
 
 **Example:**  
 
 ```xml
 <executor:cpu/>
 ```
+
+
+
+#### executor:cuda
+
+Cuda (Nvidia) executor, which uses Kokkos-kernels, fully parallel
+
+**Example:**  
+
+```xml
+<executor:cuda gpu-device-id="0" execution-mode="minimal-memory"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| gpu-device-id | string | Setting of the GPU device: Set "auto" to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID. | `0` | none |
+| execution-mode | string | Toggle to switch between a minimal-memory vs a minimal-compute algorithm. For option "minimal-memory", the RBF evaluation is recomputed for each data mapping on-the-fly, which saves approximately half the memory consumption (if meshes have a similar resolution), but may (!) be slower (depends heavily on the hardware). For the option "minimal-compute", the RBF evaluation is precomputed, which may be faster, but consumes more memory. | `minimal-memory` | `minimal-memory`, `minimal-compute` |
+
+
+
+#### executor:hip
+
+Hip (AMD/Nvidia) executor, which uses Kokkos-kernels, fully parallel.
+
+**Example:**  
+
+```xml
+<executor:hip gpu-device-id="0" execution-mode="minimal-memory"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| gpu-device-id | string | Setting of the GPU device: Set "auto" to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID. | `0` | none |
+| execution-mode | string | Toggle to switch between a minimal-memory vs a minimal-compute algorithm. For option "minimal-memory", the RBF evaluation is recomputed for each data mapping on-the-fly, which saves approximately half the memory consumption (if meshes have a similar resolution), but may (!) be slower (depends heavily on the hardware). For the option "minimal-compute", the RBF evaluation is precomputed, which may be faster, but consumes more memory. | `minimal-memory` | `minimal-memory`, `minimal-compute` |
+
+
+
+#### executor:sycl
+
+SYCL (e.g. Intel) executor, which uses Kokkos-kernels, fully parallel.
+
+**Example:**  
+
+```xml
+<executor:sycl gpu-device-id="0" execution-mode="minimal-memory"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| gpu-device-id | string | Setting of the GPU device: Set "auto" to assign GPUs to each MPI rank in a round robin fashion or specify a number between 0 and the number of available GPUs-1 to assign all MPI ranks to one GPU device with the given ID. | `0` | none |
+| execution-mode | string | Toggle to switch between a minimal-memory vs a minimal-compute algorithm. For option "minimal-memory", the RBF evaluation is recomputed for each data mapping on-the-fly, which saves approximately half the memory consumption (if meshes have a similar resolution), but may (!) be slower (depends heavily on the hardware). For the option "minimal-compute", the RBF evaluation is precomputed, which may be faster, but consumes more memory. | `minimal-memory` | `minimal-memory`, `minimal-compute` |
+
+
+
+#### executor:openmp
+
+OpenMP executor, which uses Kokkos-kernel, fully parallel.
+
+**Example:**  
+
+```xml
+<executor:openmp n-threads="0" execution-mode="minimal-memory"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| n-threads | integer | Specifies the number of threads for the OpenMP executor that should be used for the Ginkgo OpenMP backend. If a value of "0" is set, preCICE doesn't set the number of threads and the default behavior of OpenMP applies. | `0` | none |
+| execution-mode | string | Toggle to switch between a minimal-memory vs a minimal-compute algorithm. For option "minimal-memory", the RBF evaluation is recomputed for each data mapping on-the-fly, which saves approximately half the memory consumption (if meshes have a similar resolution), but may (!) be slower (depends heavily on the hardware). For the option "minimal-compute", the RBF evaluation is precomputed, which may be faster, but consumes more memory. | `minimal-memory` | `minimal-memory`, `minimal-compute` |
 
 
 
@@ -1392,14 +1473,14 @@ Volume splines
 
 
 
-### mapping:axial-geometric-multiscale
+### mapping:coarse-graining
 
-Axial geometric multiscale mapping between one 1D and multiple 3D vertices.
+Coarse graining specifically designed for particle-mesh coupling to write data from the particles to the mesh. The mapping transforms an extensive quantity (e.g., volume, force) into an intensive quantity (e.g., porosity, force-density).  Currently implemented as just-in-time mapping. Although the constraint does not really fit here (the input is conservative, the output not), we classify it as "conservative" for the configuration.
 
 **Example:**  
 
 ```xml
-<mapping:axial-geometric-multiscale from="" to="" direction="{string}" constraint="{string}" multiscale-type="{string}" multiscale-axis="{string}" multiscale-radius="{float}"/>
+<mapping:coarse-graining from="" to="" direction="{string}" constraint="{string}" radius="0"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1408,9 +1489,32 @@ Axial geometric multiscale mapping between one 1D and multiple 3D vertices.
 | to | string | The mesh to map the data to. The default name is an empty mesh name, which is only valid for a just-in-time mapping (using the API functions "writeAndMapData" or "mapAndReadData"). | `` | none |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent-surface or scaled-consistent-volume for normalized quantities where conservation of integral values (surface or volume) is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent-surface`, `scaled-consistent-volume` |
+| radius | float | Radius or range of the coarsening function (Lucy function). | `0` | none |
+
+
+
+### mapping:axial-geometric-multiscale
+
+Axial geometric multiscale mapping between one 1D and multiple 3D vertices.
+
+**Example:**  
+
+```xml
+<mapping:axial-geometric-multiscale from="" to="" direction="{string}" constraint="{string}" multiscale-dimension="{string}" multiscale-type="{string}" multiscale-axis="{string}" multiscale-radius="{float}" multiscale-cross-section-profile="uniform" multiscale-cross-section="circle"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| from | string | The mesh to map the data from. The default name is an empty mesh name, which is only valid for a just-in-time mapping (using the API functions "writeAndMapData" or "mapAndReadData"). | `` | none |
+| to | string | The mesh to map the data to. The default name is an empty mesh name, which is only valid for a just-in-time mapping (using the API functions "writeAndMapData" or "mapAndReadData"). | `` | none |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent-surface or scaled-consistent-volume for normalized quantities where conservation of integral values (surface or volume) is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent-surface`, `scaled-consistent-volume` |
+| multiscale-dimension | string | Specifies the dimensionality pairing used in geometric multiscale mapping. Options: '1D-3D', '1D-2D' or '2D-3D'. | _none_ | `1d-3d`, `1d-2d`, `2d-3d` |
 | multiscale-type | string | Type of geometric multiscale mapping. Either 'spread' or 'collect'. | _none_ | `spread`, `collect` |
 | multiscale-axis | string | Principle axis along which geometric multiscale mapping is performed. | _none_ | `x`, `y`, `z` |
-| multiscale-radius | float | Radius of the circular interface between the 1D and 3D participant. | _none_ | none |
+| multiscale-radius | float | Radius of the cross-sectional interface between the participants. | _none_ | none |
+| multiscale-cross-section-profile | string | Profile of the mapped variable along the cross-sectional interface: 'uniform' or 'parabolic' | `uniform` | `uniform`, `parabolic` |
+| multiscale-cross-section | string | Cross section of the interface of the participants: 'circle' or 'square' | `circle` | `circle`, `square` |
 
 
 
@@ -1432,7 +1536,7 @@ Radial geometric multiscale mapping between multiple 1D and multiple 3D vertices
 | constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent-surface or scaled-consistent-volume for normalized quantities where conservation of integral values (surface or volume) is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent-surface`, `scaled-consistent-volume` |
 | multiscale-type | string | Type of geometric multiscale mapping. Either 'spread' or 'collect'. | _none_ | `spread`, `collect` |
 | multiscale-axis | string | Principle axis along which geometric multiscale mapping is performed. | _none_ | `x`, `y`, `z` |
-| multiscale-radius | float | Radius of the circular interface between the 1D and 3D participant. | _none_ | none |
+| multiscale-radius | float | Radius of the cross-sectional interface between the participants. | _none_ | none |
 
 
 
@@ -2345,11 +2449,11 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 **Example:**  
 
 ```xml
-<acceleration:IQN-ILS reduced-time-grid="true">
+<acceleration:IQN-ILS reduced-time-grid="true" on-bound-violation="ignore">
   <initial-relaxation value="{float}" enforce="false"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
-  <data scaling="1" name="{string}" mesh="{string}"/>
+  <data name="{string}" mesh="{string}" scaling="1"/>
   <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-ILS>
@@ -2358,6 +2462,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | reduced-time-grid | boolean | Whether only the last time step of each time window is used to construct the Jacobian. | `true` | none |
+| on-bound-violation | string | Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds. | `ignore` | `ignore`, `clamp`, `discard`, `scale` |
 
 **Valid Subtags:**
 
@@ -2425,14 +2530,14 @@ The data used to compute the acceleration.
 **Example:**  
 
 ```xml
-<data scaling="1" name="{string}" mesh="{string}"/>
+<data name="{string}" mesh="{string}" scaling="1"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 | name | string | The name of the data. | _none_ | none |
 | mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 
 
 
@@ -2495,12 +2600,12 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 **Example:**  
 
 ```xml
-<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
+<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true" on-bound-violation="ignore">
   <initial-relaxation value="{float}" enforce="false"/>
   <imvj-restart-mode type="RS-SVD" chunk-size="8" reused-time-windows-at-restart="8" truncation-threshold="0.0001"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
-  <data scaling="1" name="{string}" mesh="{string}"/>
+  <data name="{string}" mesh="{string}" scaling="1"/>
   <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-IMVJ>
@@ -2510,6 +2615,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 | --- | --- | --- | --- | --- |
 | always-build-jacobian | boolean | If set to true, the IMVJ will set up the Jacobian matrix in each coupling iteration, which is inefficient. If set to false (or not set) the Jacobian is only build in the last iteration and the updates are computed using (relatively) cheap MATVEC products. | `false` | none |
 | reduced-time-grid | boolean | Whether only the last time step of each time window is used to construct the Jacobian. | `true` | none |
+| on-bound-violation | string | Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds. | `ignore` | `ignore`, `clamp`, `discard`, `scale` |
 
 **Valid Subtags:**
 
@@ -2597,14 +2703,14 @@ The data used to compute the acceleration.
 **Example:**  
 
 ```xml
-<data scaling="1" name="{string}" mesh="{string}"/>
+<data name="{string}" mesh="{string}" scaling="1"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 | name | string | The name of the data. | _none_ | none |
 | mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 
 
 
@@ -3025,11 +3131,11 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 **Example:**  
 
 ```xml
-<acceleration:IQN-ILS reduced-time-grid="true">
+<acceleration:IQN-ILS reduced-time-grid="true" on-bound-violation="ignore">
   <initial-relaxation value="{float}" enforce="false"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
-  <data scaling="1" name="{string}" mesh="{string}"/>
+  <data name="{string}" mesh="{string}" scaling="1"/>
   <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-ILS>
@@ -3038,6 +3144,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | reduced-time-grid | boolean | Whether only the last time step of each time window is used to construct the Jacobian. | `true` | none |
+| on-bound-violation | string | Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds. | `ignore` | `ignore`, `clamp`, `discard`, `scale` |
 
 **Valid Subtags:**
 
@@ -3105,14 +3212,14 @@ The data used to compute the acceleration.
 **Example:**  
 
 ```xml
-<data scaling="1" name="{string}" mesh="{string}"/>
+<data name="{string}" mesh="{string}" scaling="1"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 | name | string | The name of the data. | _none_ | none |
 | mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 
 
 
@@ -3175,12 +3282,12 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 **Example:**  
 
 ```xml
-<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
+<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true" on-bound-violation="ignore">
   <initial-relaxation value="{float}" enforce="false"/>
   <imvj-restart-mode type="RS-SVD" chunk-size="8" reused-time-windows-at-restart="8" truncation-threshold="0.0001"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
-  <data scaling="1" name="{string}" mesh="{string}"/>
+  <data name="{string}" mesh="{string}" scaling="1"/>
   <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-IMVJ>
@@ -3190,6 +3297,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 | --- | --- | --- | --- | --- |
 | always-build-jacobian | boolean | If set to true, the IMVJ will set up the Jacobian matrix in each coupling iteration, which is inefficient. If set to false (or not set) the Jacobian is only build in the last iteration and the updates are computed using (relatively) cheap MATVEC products. | `false` | none |
 | reduced-time-grid | boolean | Whether only the last time step of each time window is used to construct the Jacobian. | `true` | none |
+| on-bound-violation | string | Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds. | `ignore` | `ignore`, `clamp`, `discard`, `scale` |
 
 **Valid Subtags:**
 
@@ -3277,14 +3385,14 @@ The data used to compute the acceleration.
 **Example:**  
 
 ```xml
-<data scaling="1" name="{string}" mesh="{string}"/>
+<data name="{string}" mesh="{string}" scaling="1"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 | name | string | The name of the data. | _none_ | none |
 | mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 
 
 
@@ -3705,11 +3813,11 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 **Example:**  
 
 ```xml
-<acceleration:IQN-ILS reduced-time-grid="true">
+<acceleration:IQN-ILS reduced-time-grid="true" on-bound-violation="ignore">
   <initial-relaxation value="{float}" enforce="false"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
-  <data scaling="1" name="{string}" mesh="{string}"/>
+  <data name="{string}" mesh="{string}" scaling="1"/>
   <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-ILS>
@@ -3718,6 +3826,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | reduced-time-grid | boolean | Whether only the last time step of each time window is used to construct the Jacobian. | `true` | none |
+| on-bound-violation | string | Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds. | `ignore` | `ignore`, `clamp`, `discard`, `scale` |
 
 **Valid Subtags:**
 
@@ -3785,14 +3894,14 @@ The data used to compute the acceleration.
 **Example:**  
 
 ```xml
-<data scaling="1" name="{string}" mesh="{string}"/>
+<data name="{string}" mesh="{string}" scaling="1"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 | name | string | The name of the data. | _none_ | none |
 | mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 
 
 
@@ -3855,12 +3964,12 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 **Example:**  
 
 ```xml
-<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
+<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true" on-bound-violation="ignore">
   <initial-relaxation value="{float}" enforce="false"/>
   <imvj-restart-mode type="RS-SVD" chunk-size="8" reused-time-windows-at-restart="8" truncation-threshold="0.0001"/>
   <max-used-iterations value="{integer}"/>
   <time-windows-reused value="{integer}"/>
-  <data scaling="1" name="{string}" mesh="{string}"/>
+  <data name="{string}" mesh="{string}" scaling="1"/>
   <filter limit="1e-16" type="QR3"/>
   <preconditioner type="{string}" update-on-threshold="true" freeze-after="-1"/>
 </acceleration:IQN-IMVJ>
@@ -3870,6 +3979,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 | --- | --- | --- | --- | --- |
 | always-build-jacobian | boolean | If set to true, the IMVJ will set up the Jacobian matrix in each coupling iteration, which is inefficient. If set to false (or not set) the Jacobian is only build in the last iteration and the updates are computed using (relatively) cheap MATVEC products. | `false` | none |
 | reduced-time-grid | boolean | Whether only the last time step of each time window is used to construct the Jacobian. | `true` | none |
+| on-bound-violation | string | Defines the strategy to handle updates that violate variable bounds. Use ignore when no special handling is desired. Use clamp to limit the violating components to their bounds. Use discard to skip the QN update when a bound violation occurs. Use scale to scale the QN step with a constant to fit all violating components into the bounds. | `ignore` | `ignore`, `clamp`, `discard`, `scale` |
 
 **Valid Subtags:**
 
@@ -3957,14 +4067,14 @@ The data used to compute the acceleration.
 **Example:**  
 
 ```xml
-<data scaling="1" name="{string}" mesh="{string}"/>
+<data name="{string}" mesh="{string}" scaling="1"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 | name | string | The name of the data. | _none_ | none |
 | mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| scaling | float | To improve the performance of a parallel or a multi coupling schemes, each data set can be manually scaled using this scaling factor with preconditioner type = "constant". For all other preconditioner types, the factor is ignored. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
 
 
 

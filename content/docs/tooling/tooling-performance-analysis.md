@@ -60,12 +60,25 @@ Fundamental events should give you an insight in the overhead of preCICE as well
 
 Fundamental events are:
 
-* `_GLOBAL` time spent from the initialization of the events framework to the finalization. Starts in the construction of the participant and ends in finalize or the destructor.
-* `construction` time spent in construction of the Participant, including configuration and setting up the intra-communication of each participant.
-* `solver.initialize` time spent in the solver until `initialize()` is called. This normally includes setting meshes, defining initial data and preparing the solver.
-* `initialize()` time spent in preCICE `initialize()`. This includes establishing communication between participants, mesh and data transfer, as well as mapping computation.
-* `solver.advance` time spent in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
-* `advance()` time spent in preCICE `advance()`. This includes data mapping, data transfer, acceleration.
+* `_GLOBAL` *Deprecated*: Time from profiling framework initialization (`EventRegistry::initialize`) to finalization (`EventRegistry::finalize`), spanning the full participant lifetime.
+* `construction`: Time in participant construction, including setup checks, `configure`, profiling backend startup, MPI setup, and optional intra-participant communication initialization.
+* `configure`: Time spent parsing and applying the preCICE XML configuration.
+* `com.initializeMPI`: Time spent initializing or detecting MPI and validating communicator consistency.
+* `com.initializeIntraCom`: Time spent establishing intra-participant communication independent of backend.
+* `solver.initialize`: Solver-side time between participant construction and calling `initialize()`. This typically includes mesh setup, initial data, and solver preparation.
+* `initialize`: Total time inside preCICE `initialize()`, including inter-participant communication setup, initial mapping/data handling, coupling-scheme initialization, and initial exports.
+* `reinitialize`: Time spent in participant reinitialization, includes large parts of `initialize`.
+* `initalizeCouplingScheme`: Time spent initializing coupling scheme and acceleration.
+* `m2n.requestPrimaryRankConnection.<participant>` and `m2n.acceptPrimaryRankConnection.<participant>`: Time spent establishing primary-rank inter-communication, including handshake and compatibility checks.
+* `mapping`: Time spent mapping samples in configured read and write mappings.
+* `solver.advance`: Solver-side time for computing each time-step. It contains the time between `initialize()`, the first `advance()` and following `advance()` calls.
+* `advance`: Total time inside preCICE `advance()`, including timestep handling, mapping/data actions, and coupling advancement.
+* `advanceCoupling`: Time spent inside coupling-scheme advancement and synchronization/exchange steps. Note that for serial coupling-schemes, this includes the timestep of the other participant.
+* `syncTimestep`: Time spent synchronizing and validating timestep sizes across all ranks of a single participant.
+* `waitAndSendData` and `waitAndReceiveData`: Time spent exchanging coupling data.
+* `accelerate`: Time spent in implicit-coupling acceleration routines.
+* `sendConvergence` and `receiveConvergence`: Time spent exchanging the evaluated convergence criteria in implicit coupling.
+* `finalize`: Time inside preCICE `finalize()`, including coupling finalization, communication shutdown, profiling finalization, and MPI finalization if applicable.
 
 ## Full API-profiling
 
@@ -250,7 +263,7 @@ This trace format can then be visualized using the following tools:
 * [ui.perfetto.dev](https://ui.perfetto.dev), which can handle [larger traces](https://perfetto.dev/docs/visualization/large-traces)
 * [profiler.firefox.com](https://profiler.firefox.com/)
 * [speedscope.app](https://www.speedscope.app/)
-* [`chrome://tracing/`](chrome://tracing/) in Chromium browsers [_(see full list)_](https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active)
+* [`chrome://tracing/`](chrome://tracing/) in Chromium browsers [*(see full list)*](https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active)
 
 Use `precice-cli profiling trace --web` to directly open the exported trace in the browser.
 
