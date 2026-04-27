@@ -1,7 +1,7 @@
 ---
 title: "preCICE Coupling for the Final Phase Simulator"
 author: "Bevan Jones"
-author_link: "TODO"
+author_link: "mailto:bevan.jones@ariane.group"
 organisation: "ArianeGroup"
 organisation_link: "https://www.ariane.group/"
 img: testimonial-27-ariane-fips.png
