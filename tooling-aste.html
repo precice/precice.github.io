@@ -1902,6 +1902,10 @@ You can use <code class="language-plaintext highlighter-rouge">ctest</code> in o
 The input mesh filename passed with the <code class="language-plaintext highlighter-rouge">--mesh</code> option does not need to coincide with the mesh names defined in the preCICE configuration file.
 </div>
 
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+For massively parallel runs, the logging configuration in ASTE can critically affect performance. In practice, this typically depends on the filesystem. In such cases, consider disabling logging entirely.
+</div>
+
 <p>For example, mapping the data “dummyData” from a mesh named <code class="language-plaintext highlighter-rouge">fine_mesh.vtk</code> to an output mesh <code class="language-plaintext highlighter-rouge">coarse_mesh.vtk</code> and saving the resulting mesh into the variable “mappedData” on the mesh <code class="language-plaintext highlighter-rouge">mappedMesh</code> would read as follows:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-run <span class="nt">-p</span> A <span class="nt">--mesh</span> fine_mesh <span class="nt">--data</span> <span class="s2">"dummyData"</span>
