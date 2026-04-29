@@ -1713,7 +1713,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 06 Feb 25</small>
+              <small>Updated 29 Apr 26</small>
             </div>
           </aside>
           
@@ -1726,7 +1726,7 @@ $('#toc').on('click', 'a', function() {
 
 <ol>
   <li>
-    <p>Reproducing a specific mapping setup of a coupled case, e.g., a case crashes since the mapping fails or the mapping seems to behave unexpected. ASTE allows to rerun such a case (in parallel if needed) and investigate the mapping in terms of accuracy as well as runtime.</p>
+    <p>Reproducing a specific mapping setup of a coupled case, e.g., a case crashes since the mapping fails or the mapping seems to behave unexpectedly. ASTE allows for rerunning such a case (in parallel if needed) and investigating the mapping in terms of accuracy as well as runtime.</p>
   </li>
   <li>
     <p>Replay mode, where we replace a participant in a coupled setup with ASTE resulting in a uni-directional coupling. This is useful for debugging, for developing new adapters, but also for efficiency reasons (explicit instead of implicit coupling, no computationally demanding solver needs to be executed).</p>
@@ -1743,13 +1743,13 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="installation">Installation</h2>
 
-<p>The core module, which interfaces with preCICE, is called <code class="language-plaintext highlighter-rouge">precice-aste-run</code> and written in C++. In addition, ASTE offers several tools for pre- and post-processing purposes written in python.</p>
+<p>The core module, which interfaces with preCICE, is called <code class="language-plaintext highlighter-rouge">precice-aste-run</code> and written in C++. In addition, ASTE offers several tools for pre- and post-processing purposes written in Python.</p>
 
 <h3 id="dependencies">Dependencies</h3>
 
-<p>The C++ core module of ASTE depends on a C++ compiler, <code class="language-plaintext highlighter-rouge">CMake</code>, <code class="language-plaintext highlighter-rouge">MPI</code>, <code class="language-plaintext highlighter-rouge">Boost</code>, <code class="language-plaintext highlighter-rouge">VTK</code> and <code class="language-plaintext highlighter-rouge">preCICE</code>. Many of these dependencies are similar to dependencies of preCICE itself. In particular, the C++ compiler, <code class="language-plaintext highlighter-rouge">CMake</code>, <code class="language-plaintext highlighter-rouge">MPI</code> and <code class="language-plaintext highlighter-rouge">Boost</code>. Have a look at the <a href="https://precice.org/installation-source-dependencies.html">corresponding preCICE documentation</a> for required versions and on how to install these dependencies if needed. In addition, ASTE relies on <code class="language-plaintext highlighter-rouge">preCICE</code> (version &gt;= 3.0) and the <code class="language-plaintext highlighter-rouge">VTK</code> library (version &gt;= 7) to handle mesh files.</p>
+<p>The C++ core module of ASTE depends on a C++ compiler, <code class="language-plaintext highlighter-rouge">CMake</code>, <code class="language-plaintext highlighter-rouge">MPI</code>, <code class="language-plaintext highlighter-rouge">Boost</code>, <code class="language-plaintext highlighter-rouge">VTK</code>, and <code class="language-plaintext highlighter-rouge">preCICE</code>. Many of these dependencies are similar to dependencies of preCICE itself. In particular, the C++ compiler, <code class="language-plaintext highlighter-rouge">CMake</code>, <code class="language-plaintext highlighter-rouge">MPI</code>, and <code class="language-plaintext highlighter-rouge">Boost</code>. Have a look at the <a href="https://precice.org/installation-source-dependencies.html">corresponding preCICE documentation</a> for required versions and on how to install these dependencies if needed. In addition, ASTE relies on <code class="language-plaintext highlighter-rouge">preCICE</code> (version &gt;= 3.0) and the <code class="language-plaintext highlighter-rouge">VTK</code> library (version &gt;= 7) to handle mesh files.</p>
 
-<p>Detailed installation instructions for the preCICE library are available in the preCICE <a href="https://precice.org/installation-overview.html">installation documentation</a>. On Ubuntu, e.g., <a href="https://precice.org/installation-packages.html#ubuntu">system packages</a> are availble through <a href="https://github.com/precice/precice/releases">GitHub releases</a> and can be installed through the package manager, e.g.,</p>
+<p>Detailed installation instructions for the preCICE library are available in the preCICE <a href="https://precice.org/installation-overview.html">installation documentation</a>. On Ubuntu, e.g., <a href="https://precice.org/installation-packages.html#ubuntu">system packages</a> are available through <a href="https://github.com/precice/precice/releases">GitHub releases</a> and can be installed through the package manager, e.g.,</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/precice/precice/releases/download/&lt;VERSION&gt;/libprecice&lt;VERSION&gt;.deb
 <span class="nb">sudo </span>apt <span class="nb">install</span> ./libprecice&lt;VERSION&gt;.deb
@@ -1761,14 +1761,14 @@ $('#toc').on('click', 'a', function() {
 </code></pre></div></div>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
-The VTK package also installs a compatible python interface to VTK, which is used in ASTE. If you already have a python VTK installation on your system (e.g. through pip), make sure that your python-vtk version is compatible with your C++ VTK version.
+The VTK package also installs a compatible Python interface to VTK, which is used in ASTE. If you already have a Python VTK installation on your system (e.g., through pip), make sure that your Python-vtk version is compatible with your C++ VTK version.
 </div>
 
-<p>However, a packaged VTK version combined with the python interface is known to be rather fragile:</p>
+<p>However, a packaged VTK version combined with the Python interface is known to be rather fragile:</p>
 
 <ul>
   <li>For VTK 9, particularly the <a href="https://github.com/precice/aste/pull/182#issuecomment-2012144407">vtkXMLParser</a> is broken.</li>
-  <li>For VTK 7, the python interface is incompatible with more recent versions of numpy (messages like <code class="language-plaintext highlighter-rouge">np.bool</code> was a deprecated alias for the builtin <code class="language-plaintext highlighter-rouge">bool</code>…) and the <code class="language-plaintext highlighter-rouge">xmlParser</code> might not work either.</li>
+  <li>For VTK 7, the Python interface is incompatible with more recent versions of numpy (messages like <code class="language-plaintext highlighter-rouge">np.bool</code> were a deprecated alias for the built-in <code class="language-plaintext highlighter-rouge">bool</code>…), and the <code class="language-plaintext highlighter-rouge">xmlParser</code> might not work either.</li>
 </ul>
 
 <p>Therefore, a <a href="https://docs.vtk.org/en/latest/build_instructions/build.html#obtaining-the-sources">manual installation of VTK</a> is the safest way to install VTK on your operating system. Once the sources are downloaded, you can use <code class="language-plaintext highlighter-rouge">cmake</code> to configure and build the project as follows:</p>
@@ -1776,7 +1776,7 @@ The VTK package also installs a compatible python interface to VTK, which is use
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span><span class="s2">"/path/to/install"</span> <span class="nt">-DVTK_WRAP_PYTHON</span><span class="o">=</span><span class="s2">"ON"</span> <span class="nt">-DVTK_USE_MPI</span><span class="o">=</span><span class="s2">"ON"</span> <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release ..
 </code></pre></div></div>
 
-<p>This configuration installs the required python bindings along with VTK. The python bindings will be installed in your <code class="language-plaintext highlighter-rouge">CMAKE_INSTALL_PREFIX/lib/&lt;PYTHON-VERSION&gt;/site-packages</code> (as opposed to the pip packages, which are typically installed in the <code class="language-plaintext highlighter-rouge">dist-packages</code> directory). You might need to add the <code class="language-plaintext highlighter-rouge">site-package</code> directory to your <code class="language-plaintext highlighter-rouge">PYTHONPATH</code> to make it discoverable for python:</p>
+<p>This configuration installs the required Python bindings along with VTK. The Python bindings will be installed in your <code class="language-plaintext highlighter-rouge">CMAKE_INSTALL_PREFIX/lib/&lt;PYTHON-VERSION&gt;/site-packages</code> (as opposed to the pip packages, which are typically installed in the <code class="language-plaintext highlighter-rouge">dist-packages</code> directory). You might need to add the <code class="language-plaintext highlighter-rouge">site-package</code> directory to your <code class="language-plaintext highlighter-rouge">PYTHONPATH</code> to make it discoverable for Python:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s2">"CMAKE_INSTALL_PREFIX/lib/&lt;PYTHON-VERSION&gt;/site-packages:</span><span class="nv">$PYTHONPATH</span><span class="s2">"</span>
 </code></pre></div></div>
@@ -1786,7 +1786,7 @@ The VTK package also installs a compatible python interface to VTK, which is use
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libmetis-dev
 </code></pre></div></div>
 
-<p>The python tools require</p>
+<p>The Python tools require</p>
 
 <ul>
   <li>NumPy</li>
@@ -1827,14 +1827,14 @@ You can use <code class="language-plaintext highlighter-rouge">ctest</code> in o
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">precice-aste-run</code>: core module interfacing with preCICE</li>
-  <li><code class="language-plaintext highlighter-rouge">precice-aste-evaluate</code>: python tool to compute and store data on mesh files</li>
-  <li><code class="language-plaintext highlighter-rouge">precice-aste-partition</code>: python tool to partition a single mesh file into several ones for parallel runs</li>
-  <li><code class="language-plaintext highlighter-rouge">precice-aste-join</code>: python tool to join several mesh files into a single mesh file for parallel runs.</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-aste-evaluate</code>: Python tool to compute and store data on mesh files</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-aste-partition</code>: a Python tool to partition a single mesh file into several ones for parallel runs</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-aste-join</code>: Python tool to join several mesh files into a single mesh file for parallel runs.</li>
 </ul>
 
 <p>All ASTE tools are executed from the command line and running a particular executable with <code class="language-plaintext highlighter-rouge">--help</code> prints a complete list of available command line arguments and their meaning. There is also an ASTE tutorial <a href="https://precice.org/tutorials-aste-turbine.html">in the preCICE tutorials</a>.</p>
 
-<p>The following subsections explain each part of ASTE in more detail. All ASTE modules have the following three command line arguments in common</p>
+<p>The following subsections explain each part of ASTE in more detail. All ASTE modules have the following three command-line arguments in common</p>
 
 <table>
   <thead>
@@ -1861,7 +1861,7 @@ You can use <code class="language-plaintext highlighter-rouge">ctest</code> in o
 
 <h3 id="precice-aste-run">precice-aste-run</h3>
 
-<p><code class="language-plaintext highlighter-rouge">precice-aste-run</code> calls the preCICE API and can be executed in serial as well as in parallel (using MPI). As stated in the introduction, there are two different use-cases, one for investigating mappings and one for replacing participants in a coupled scenario (replay mode). Configuring the replay mode in ASTE relies on a <code class="language-plaintext highlighter-rouge">json</code> configuration file (see further below). Therefore, the replay mode takes usually only the <code class="language-plaintext highlighter-rouge">--aste-config &lt;FILE.json&gt;</code> option as a command line argument. All other command line arguments are mostly used for reproducing mappings.</p>
+<p><code class="language-plaintext highlighter-rouge">precice-aste-run</code> calls the preCICE API and can be executed in serial as well as in parallel (using MPI). As stated in the introduction, there are two different use cases, one for investigating mappings and one for replacing participants in a coupled scenario (replay mode). Configuring the replay mode in ASTE relies on a <code class="language-plaintext highlighter-rouge">json</code> configuration file (see further below). Therefore, the replay mode usually takes only the <code class="language-plaintext highlighter-rouge">--aste-config &lt;FILE.json&gt;</code> option as a command line argument. All other command-line arguments are mostly used for reproducing mappings.</p>
 
 <table>
   <thead>
@@ -1908,7 +1908,7 @@ The input mesh filename passed with the <code class="language-plaintext highligh
 precice-aste-run <span class="nt">-p</span> B <span class="nt">--mesh</span> coarse_mesh <span class="nt">--data</span> <span class="s2">"mappedData"</span> <span class="nt">--output</span> mappedMesh
 </code></pre></div></div>
 
-<p>Exporting output mesh on participant B is optional and can be disabled by omitting the <code class="language-plaintext highlighter-rouge">--output</code> and <code class="language-plaintext highlighter-rouge">--data</code> flags from the command line. This is useful for repeatedly running the appication to collect multiple runtime measurements as it speeds up the process and avoids wear of the storage.</p>
+<p>Exporting output mesh on participant B is optional and can be disabled by omitting the <code class="language-plaintext highlighter-rouge">--output</code> and <code class="language-plaintext highlighter-rouge">--data</code> flags from the command line. This is useful for repeatedly running the application to collect multiple runtime measurements as it speeds up the process and avoids wear on the storage.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-run <span class="nt">-p</span> A <span class="nt">--mesh</span> fine_mesh <span class="nt">--data</span> <span class="s2">"dummyData"</span>
 precice-aste-run <span class="nt">-p</span> B <span class="nt">--mesh</span> coarse_mesh <span class="c"># no output mesh</span>
@@ -1922,7 +1922,7 @@ If you want to reproduce a specific setup of your solvers, you can use the <a hr
 
 <h3 id="precice-aste-partition">precice-aste-partition</h3>
 
-<p>Reads a single mesh file (either <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> extension) and partitions it into several mesh files. The resulting mesh files are are stored as <code class="language-plaintext highlighter-rouge">output_1.vtu, output_2.vtu, ...</code>. There are three algorithms available in order to execute the partitioning. The <code class="language-plaintext highlighter-rouge">meshfree</code> and <code class="language-plaintext highlighter-rouge">uniform</code> algorithm are rather simple algorithms, which don’t require any mesh topology information. The <code class="language-plaintext highlighter-rouge">topological</code> algorithm relies on the optional dependency METIS and is more powerful, but needs topology information.</p>
+<p>Reads a single mesh file (either <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> extension) and partitions it into several mesh files. The resulting mesh files are stored as <code class="language-plaintext highlighter-rouge">output_1.vtu, output_2.vtu, ...</code>. There are three algorithms available in order to execute the partitioning. The <code class="language-plaintext highlighter-rouge">meshfree</code> and <code class="language-plaintext highlighter-rouge">uniform</code> algorithms are rather simple algorithms, which don’t require any mesh topology information. The <code class="language-plaintext highlighter-rouge">topological</code> algorithm relies on the optional dependency METIS and is more powerful, but needs topology information.</p>
 
 <table>
   <thead>
@@ -1957,7 +1957,7 @@ METIS is written in C++ and used through a library interface called <code class=
 </div>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-<code class="language-plaintext highlighter-rouge">precice-aste-partition</code> creates also a <code class="language-plaintext highlighter-rouge">recovery.json</code> file in order to store connectivity information between the individual mesh files. The recovery file is optional and allows to restore the original connectivity information.
+<code class="language-plaintext highlighter-rouge">precice-aste-partition</code> also creates a <code class="language-plaintext highlighter-rouge">recovery.json</code> file in order to store connectivity information between the individual mesh files. The recovery file is optional and allows restoring the original connectivity information.
 </div>
 
 <h3 id="precice-aste-join">precice-aste-join</h3>
@@ -2065,7 +2065,7 @@ The <code class="language-plaintext highlighter-rouge">-r</code> flag also recov
   </tbody>
 </table>
 
-<p>All function provided have 3D and 2D variants (which should be applied depending on your mesh topology). Example: calculate and store the Eggholder function on given mesh</p>
+<p>All functions provided have 3D and 2D variants (which should be applied depending on your mesh topology). Example: calculate and store the Eggholder function on given mesh</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-evaluate <span class="nt">--mesh</span> 3DMesh.vtk <span class="nt">--function</span> <span class="s2">"eggholder3d"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
 precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonXY.vtk <span class="nt">--function</span> <span class="s2">"eggholder2d(xy)"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
@@ -2073,7 +2073,7 @@ precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonXZ.vtk <span class=
 precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonYZ.vtk <span class="nt">--function</span> <span class="s2">"eggholder2d(yz)"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
 </code></pre></div></div>
 
-<p>Example: calculating the function “sin(x)+exp(y)” on mesh <code class="language-plaintext highlighter-rouge">MeshA</code> and store the result in “MyFunc”</p>
+<p>Example: calculating the function “sin(x)+exp(y)” on mesh <code class="language-plaintext highlighter-rouge">MeshA</code> and storing the result in “MyFunc”</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-evaluate <span class="nt">--mesh</span> MeshA.vtk <span class="nt">--function</span> <span class="s2">"sin(x)+exp(y)"</span> <span class="nt">--data</span> <span class="s2">"MyFunc"</span>
 </code></pre></div></div>
@@ -2544,8 +2544,8 @@ precice-aste-run <span class="nt">--aste-config</span> solid-config.json
         </a>
         </p>
         <p>
-        Page last updated: Feb 6, 2025<br>
-        Site last updated: Apr 28, 2026
+        Page last updated: Apr 29, 2026<br>
+        Site last updated: Apr 29, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
