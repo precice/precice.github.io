@@ -240,7 +240,8 @@ B
 profiling.db
 ```
 
-The merge command searches passed directories for the event files.
+The merge command searches the current directory recursively for event files.
+You can also pass individual directories to be searched, or individual event files to use.
 You can also pass individual files if you are not interested in all ranks.
 To tell the merge to search only folders A and B run:
 
