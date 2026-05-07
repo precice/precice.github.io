@@ -32,7 +32,17 @@ Installed 1 executable: precice-cli
 
 ## Usage
 
-`precice-cli` offers some basic sub commands and categories:
+`precice-cli` offers some basic sub-commands and categories:
+
+### help
+
+```bash
+precice-cli
+precice-cli -h
+precice-cli --help
+```
+
+Shows general help, including the supported sub-commands.
 
 ### version
 
