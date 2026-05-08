@@ -193,42 +193,57 @@ img.precice-support {
 }
 
 /* Logowall */
-.filter-btn {
-  margin: 4px;
-  padding: 8px 20px;
-  border: 2px solid #0A76BB;
-  background: transparent;
-  color: #0A76BB;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-  background: #0A76BB;
-  color: #fff;
-}
-
 .logowall-filter {
-  margin-bottom: 50px;
+  margin-bottom: 26px;
+}
+
+.logowall-filter .filter-btn {
+  margin: 4px;
+  border: 1px solid #0A76BB;
+  color: #0A76BB;
+  background-color: #fff;
+}
+
+.logowall-filter .filter-btn:hover {
+  background-color: #eaf4fb;
+}
+
+.logowall-filter .filter-btn.btn-primary,
+.logowall-filter .filter-btn.active {
+  border-color: #0A76BB;
+  background-color: #0A76BB;
+  color: #fff;
 }
 
 .logowall-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  margin-left: -6px;
+  margin-right: -6px;
   margin-bottom: 50px;
 }
 
 .logo-item {
   transition: opacity 0.2s ease;
+  float: none;
   width: 12.5%;
+  max-width: 12.5%;
+  flex: 0 0 12.5%;
+  margin-bottom: 14px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: left;
 }
 
-.logo-item.hidden {
-  display: none;
+@media (max-width: 767px) {
+  .logo-item {
+    width: 25%;
+    max-width: 25%;
+    flex: 0 0 25%;
+    margin-bottom: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
 }
 
 .logo, .logo > div, .logo > p {
@@ -256,22 +271,42 @@ img.precice-support {
   transform: scale(1.05);
 }
 p.institution {
-  font-size: 0.8em;
+  font-size: 0.68em;
   font-weight: 400;
-  line-height: 1.2em;
-  margin-top: 0.5em;
+  line-height: 1.1em;
+  margin-top: 0.35em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 p.country {
-  font-size: 0.8em;
+  font-size: 0.68em;
   font-weight: 700;
-  /*margin-top: -0.25em;*/
-  margin-bottom: 1em;
+  line-height: 1.1em;
+  margin-bottom: 0.55em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 div.logo-holder {
-  height: 75px;
+  height: 42px;
 }
 div.logo-holder > img {
-  max-height: 75px;
+  max-height: 42px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+@media (max-width: 767px) {
+  p.institution,
+  p.country {
+    font-size: 0.62em;
+    line-height: 1.02em;
+  }
+  div.logo-holder {
+    height: 36px;
+  }
+  div.logo-holder > img {
+    max-height: 36px;
+  }
 }
 .no-padding {
   padding: 0;

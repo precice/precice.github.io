@@ -67,8 +67,8 @@ $(function() {
 
         event.preventDefault();
 
-        $filterBar.find('.filter-btn').removeClass('active');
-        $button.addClass('active');
+        $filterBar.find('.filter-btn').removeClass('active btn-primary').addClass('btn-default');
+        $button.addClass('active btn-primary').removeClass('btn-default');
 
         $items.each(function() {
             var matches = filter === 'all' || String($(this).data('category') || '').toLowerCase() === filter;
