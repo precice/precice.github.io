@@ -53,7 +53,7 @@ $(function() {
     });
 });
 
-// this makes the logos toggle as per the option choosed by clicking on the specific buttons.
+// this makes the logos toggle as per the option chosen by clicking on the specific buttons.
 $(function() {
     $(document).on('click', '.logowall-filter .filter-btn', function(event) {
         var $button = $(this);
