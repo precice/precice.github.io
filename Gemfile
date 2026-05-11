@@ -32,3 +32,5 @@ gem "open-uri"
 
 # For current Ruby installations (3+?)
 gem "webrick"
+
+gem "ostruct", "~> 0.6.3"
