@@ -59,16 +59,18 @@ $(function() {
         var $button = $(this);
         var filter = String($button.data('filter') || '').toLowerCase();
         var $filterBar = $button.closest('.logowall-filter');
-        var $items = $filterBar.next('.logowall-grid').find('.logo-item');
+        var targetSel = $filterBar.attr('data-logowall-target');
+        var $grid = targetSel ? $(targetSel) : $();
+        var $items = $grid.find('.logo-item');
 
-        if (!$items.length) {
+        if (!$grid.length || !$items.length) {
             return;
         }
 
         event.preventDefault();
 
-        $filterBar.find('.filter-btn').removeClass('active btn-primary').addClass('btn-default');
-        $button.addClass('active btn-primary').removeClass('btn-default');
+        $filterBar.find('.filter-btn').removeClass('active btn-primary').addClass('btn-default').attr('aria-pressed', 'false');
+        $button.addClass('active btn-primary').removeClass('btn-default').attr('aria-pressed', 'true');
 
         $items.each(function() {
             var matches = filter === 'all' || String($(this).data('category') || '').toLowerCase() === filter;

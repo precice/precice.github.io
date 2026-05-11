@@ -218,8 +218,8 @@ img.precice-support {
 .logowall-grid {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -6px;
-  margin-right: -6px;
+  margin-left: -4px;
+  margin-right: -4px;
   margin-bottom: 50px;
 }
 
@@ -230,19 +230,92 @@ img.precice-support {
   max-width: 12.5%;
   flex: 0 0 12.5%;
   margin-bottom: 14px;
-  padding-left: 5px;
-  padding-right: 5px;
-  text-align: left;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: center;
+}
+
+/* Center logo inside flex holder (vertical-align is display:flex without justify-content) */
+.logo-item .logo-holder.vertical-align {
+  justify-content: center;
+}
+
+.logo-item a.logo {
+  display: block;
+  text-align: center;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 @media (max-width: 767px) {
+  .logowall-grid {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .logo-item {
     width: 25%;
     max-width: 25%;
     flex: 0 0 25%;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .logo-item p.institution,
+  .logo-item p.country {
+    font-size: 0.78em;
+    line-height: 1.28em;
+    overflow-wrap: normal;
+    word-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  div.logo-holder {
+    height: 48px;
+  }
+
+  div.logo-holder > img {
+    max-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logowall-grid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .logo-item {
+    margin-bottom: 20px;
     padding-left: 4px;
     padding-right: 4px;
+  }
+
+  div.logo-holder {
+    height: 40px;
+  }
+
+  div.logo-holder > img {
+    max-height: 40px;
+  }
+
+  .logo-item p.institution,
+  .logo-item p.country {
+    font-size: 0.72em;
+    line-height: 1.28em;
+    overflow-wrap: normal;
+    word-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
   }
 }
 
@@ -251,6 +324,7 @@ img.precice-support {
   opacity: 0.5;
   filter: grayscale(100%);
   transition: all 200ms;
+  padding: 0;
 }
 @media (max-width: 992px) {
    .logo, .logo > div, .logo > p {
@@ -271,45 +345,38 @@ img.precice-support {
   transform: scale(1.05);
 }
 p.institution {
-  font-size: 0.68em;
+  font-size: 0.85em;
   font-weight: 400;
-  line-height: 1.1em;
-  margin-top: 0.35em;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  line-height: 1.22em;
+  margin-top: 0.5em;
+  text-align: center;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
 }
 p.country {
-  font-size: 0.68em;
+  font-size: 0.85em;
   font-weight: 700;
-  line-height: 1.1em;
-  margin-bottom: 0.55em;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  line-height: 1.22em;
+  margin-bottom: 1em;
+  text-align: center;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
 }
 div.logo-holder {
-  height: 42px;
+  height: 80px;
 }
 div.logo-holder > img {
-  max-height: 42px;
-  margin-left: 0;
+  max-height: 80px;
+  margin-left: auto;
   margin-right: auto;
-}
-
-@media (max-width: 767px) {
-  p.institution,
-  p.country {
-    font-size: 0.62em;
-    line-height: 1.02em;
-  }
-  div.logo-holder {
-    height: 36px;
-  }
-  div.logo-holder > img {
-    max-height: 36px;
-  }
-}
-.no-padding {
-  padding: 0;
 }
 
 /* Latest News Section */
