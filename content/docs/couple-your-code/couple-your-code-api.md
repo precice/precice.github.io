@@ -18,11 +18,11 @@ The reference implementations are the so called _solver dummies_, which can be a
 
 This is the native API of preCICE.
 
-- Location: [`precice/precice/src/precice/Participant.hpp`](https://github.com/precice/precice/tree/main/src/precice/Participant.hpp)
 - Installation: Automatically included
 - Usage: `#include "precice/precice.hpp"`
 - Reference implementation: [`precice/precice/examples/solverdummies/cpp`](https://github.com/precice/precice/tree/main/examples/solverdummies/cpp)
 - C++ API documentation: [latest release](https://api.precice.org/cpp/latest/classprecice_1_1Participant.html), [development version](https://api.precice.org/cpp/develop/classprecice_1_1Participant.html)
+- Source code: [`precice/precice/src/precice`](https://github.com/precice/precice/tree/main/src/precice)
 
 See also the source code documentation (Doxygen pages) for the [latest release](https://api.precice.org/cpp/latest/), or the [development version](https://api.precice.org/cpp/develop/).
 
@@ -30,53 +30,53 @@ See also the source code documentation (Doxygen pages) for the [latest release](
 
 C bindings are included in the main repository.
 
-- Location: [`precice/precice/extras/bindings/c`](https://github.com/precice/precice/tree/main/extras/bindings/c)
 - Installation: [native bindings](installation-source-advanced.html#disabling-native-bindings)
 - Usage: `#include "precice/preciceC.h"`
 - Reference implementation: [`precice/precice/examples/solverdummies/c`](https://github.com/precice/precice/tree/main/examples/solverdummies/c)
 - C API documentation: [latest release](https://api.precice.org/cpp/latest/preciceC_8h.html), [development version](https://api.precice.org/cpp/develop/preciceC_8h.html)
+- Source code: [`precice/precice/extras/bindings/c`](https://github.com/precice/precice/tree/main/extras/bindings/c)
 
 ## Fortran
 
 Fortran bindings are included in the main repository.
 
-- Location: [`precice/precice/extras/bindings/fortran`](https://github.com/precice/precice/tree/main/extras/bindings/fortran)
 - Installation: [native bindings](installation-source-advanced.html#disabling-native-bindings)
 - Reference implementation: [`precice/precice/examples/solverdummies/fortran`](https://github.com/precice/precice/tree/main/examples/solverdummies/fortran)
 - Fortran API documentation: [latest release](https://api.precice.org/cpp/latest/preciceFortran_8hpp.html), [development version](https://api.precice.org/cpp/develop/preciceFortran_8hpp.html)
+- Source code: [`precice/precice/extras/bindings/fortran`](https://github.com/precice/precice/tree/main/extras/bindings/fortran)
 
 ## Fortran module
 
-- Location: [`precice/fortran-module`](https://github.com/precice/fortran-module)
 - Installation: [`make`](installation-bindings-fortran.html)
 - Usage: `use precice`
 - Reference implementation: [`precice/fortran-module/examples/solverdummy`](https://github.com/precice/fortran-module/tree/master/examples/solverdummy)
+- Source code: [`precice/fortran-module`](https://github.com/precice/fortran-module)
 
 ## Python
 
-- Location:[`precice/python-bindings`](https://github.com/precice/python-bindings)
 - Installation: [`pip3 install pyprecice`](installation-bindings-python.html)
 - Usage: `import precice`
 - Reference implementation: [`precice/python-bindings/examples/solverdummy`](https://github.com/precice/python-bindings/tree/master/examples/solverdummy)
+- Source code: [`precice/python-bindings`](https://github.com/precice/python-bindings)
 
 ## Matlab
 
-- Location:[`precice/matlab-bindings`](https://github.com/precice/matlab-bindings)
 - Installation: [installation script](installation-bindings-matlab.html)
 - Reference implementation: [`precice/matlab-bindings/examples/solverdummy`](https://github.com/precice/matlab-bindings/tree/master/examples/solverdummy)
+- Source code: [`precice/matlab-bindings`](https://github.com/precice/matlab-bindings)
 
 ## Julia
 
-- Location: [`precice/PreCICE.jl`](https://github.com/precice/PreCICE.jl)
 - Installation: [`add PreCICE`](installation-bindings-julia.html)
 - Usage: `using PreCICE`
 - Reference implementation: [`precice/PreCICE.jl/solverdummy`](https://github.com/precice/PreCICE.jl/tree/main/solverdummy)
+- Source code: [`precice/PreCICE.jl`](https://github.com/precice/PreCICE.jl)
 
 ## Rust
 
-- Location: [`precice/rust-bindings`](https://github.com/precice/rust-bindings)
 - Installation:[`cargo add precice`](installation-bindings-rust.html)
 - Reference implementation: [`precice/rust-bindings/examples/solverdummy`](https://github.com/precice/rust-bindings/tree/main/examples/solverdummy)  
+- Source code: [`precice/rust-bindings`](https://github.com/precice/rust-bindings)
 
 ## Architectural overview of bindings
 
