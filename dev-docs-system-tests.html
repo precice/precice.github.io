@@ -454,7 +454,7 @@ document.addEventListener('keydown', function(e) {
 
 
     </header>
-    <div class="container" style="margin-bottom:50px">
+    <div class="container page-content" style="margin-bottom:50px">
         
         <div class="row">
           <div class="col-md-3" id="tg-sb-sidebar">
@@ -1713,7 +1713,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Apr 26</small>
+              <small>Updated 11 May 26</small>
             </div>
           </aside>
           
@@ -1836,6 +1836,8 @@ Inside the archive, a test-specific subfolder like <code class="language-plainte
 
 <p>To add a testsuite just open the <code class="language-plaintext highlighter-rouge">tests.yaml</code> file and use the output of <code class="language-plaintext highlighter-rouge">python print_case_combinations.py</code> to add the right case combinations you want to test. Note that you can specify a <code class="language-plaintext highlighter-rouge">reference_result</code> which is not yet present. The <code class="language-plaintext highlighter-rouge">generate_reference_data.py</code> will pick that up and create it for you.
 Note that its important to carefully check the paths of the <code class="language-plaintext highlighter-rouge">reference_result</code> in order to not have typos in there. Also note that same cases in different testsuites should use the same <code class="language-plaintext highlighter-rouge">reference_result</code>.</p>
+
+<p>To cap the preCICE simulation time for a specific test without editing <code class="language-plaintext highlighter-rouge">precice-config.xml</code>, add an optional <code class="language-plaintext highlighter-rouge">max_time</code> (positive float, overrides <code class="language-plaintext highlighter-rouge">&lt;max-time&gt;</code>) or <code class="language-plaintext highlighter-rouge">max_time_windows</code> (positive integer, overrides <code class="language-plaintext highlighter-rouge">&lt;max-time-windows&gt;</code>) field to the tutorial entry. Applies to both test runs and reference result generation.</p>
 
 <h3 id="generate-reference-results">Generate reference results</h3>
 
@@ -2493,8 +2495,8 @@ Please note that these files should always be kept in the git lfs.</p>
         </a>
         </p>
         <p>
-        Page last updated: Apr 1, 2026<br>
-        Site last updated: May 11, 2026
+        Page last updated: May 11, 2026<br>
+        Site last updated: May 12, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
