@@ -2094,7 +2094,10 @@ Please include the generated reference results in the pull request as they are s
           <span class="pi">-</span> <span class="s">fluid-openfoam</span>
           <span class="pi">-</span> <span class="s">solid-fenics</span>
         <span class="na">reference_result</span><span class="pi">:</span> <span class="s">./flow-over-heated-plate/reference-results/fluid-openfoam_solid-fenics.tar.gz</span>
+        <span class="na">timeout</span><span class="pi">:</span> <span class="m">1200</span>
 </code></pre></div></div>
+
+<p>The optional <code class="language-plaintext highlighter-rouge">timeout</code> field (in seconds) sets the maximum time for the solver run and fieldcompare phases of that specific case. If omitted, it defaults to <code class="language-plaintext highlighter-rouge">GLOBAL_TIMEOUT</code> (currently 900s, overridable via the <code class="language-plaintext highlighter-rouge">PRECICE_SYSTEMTESTS_TIMEOUT</code> environment variable).</p>
 
 <p>This defines two test suites, namely <code class="language-plaintext highlighter-rouge">openfoam_adapter_pr</code> and <code class="language-plaintext highlighter-rouge">openfoam_adapter_release</code>. Each of them defines which case combinations of which tutorials to run.</p>
 
