@@ -32,3 +32,4 @@ gem "open-uri"
 
 # For current Ruby installations (3+?)
 gem "webrick"
+
