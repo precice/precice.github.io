@@ -7,7 +7,7 @@
 
 <meta name="description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in a Dirichlet-Neumann fashion.">
 
-<meta name="keywords" content=" FEniCS, Nutils, Heat conduction">
+<meta name="keywords" content=" FEniCS, Nutils, G+Smo, Heat conduction">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -903,7 +903,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 18 Mar 26</small>
+              <small>Updated 13 May 26</small>
             </div>
           </aside>
           
@@ -949,6 +949,9 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-h
   <li>
     <p>OpenFOAM. This case uses the custom <a href="https://github.com/precice/tutorials/blob/master/partitioned-heat-conduction/solver-openfoam/heatTransfer.C">heatTransfer</a> solver (find it in <code class="language-plaintext highlighter-rouge">solver-openfoam</code> and build with <code class="language-plaintext highlighter-rouge">wmake</code>). Read more details in the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter</a>.</p>
   </li>
+  <li>
+    <p>G+Smo. Install the <a href="https://precice.org/adapter-gismo.html">G+Smo adapter</a>.</p>
+  </li>
 </ul>
 
 <h2 id="running-the-simulation">Running the simulation</h2>
@@ -982,6 +985,30 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-h
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-n</span> &lt;N_PROC&gt; heat.py <span class="nt">-d</span>
 </code></pre></div></div>
 
+<p>For running G+Smo, follow the <a href="https://precice.org/adapter-gismo.html">G+Smo adapter installation instructions</a> to build the <code class="language-plaintext highlighter-rouge">partitioned-heat-conduction</code> example. This tutorial only requires the <code class="language-plaintext highlighter-rouge">gsPreCICE</code> submodule:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"gsPreCICE"</span>
+make partitioned-heat-conduction
+</code></pre></div></div>
+
+<p>Then link the compiled executable to the <code class="language-plaintext highlighter-rouge">dirichlet-gismo</code> and <code class="language-plaintext highlighter-rouge">neumann-gismo</code> folders:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> &lt;tutorial-directory&gt;/partitioned-heat-conduction/dirichlet-gismo
+<span class="nb">ln</span> <span class="nt">-sf</span> &lt;gismo-build-directory&gt;/bin/partitioned-heat-conduction ./partitioned-heat-conduction
+<span class="nb">cd</span> ../neumann-gismo
+<span class="nb">ln</span> <span class="nt">-sf</span> &lt;gismo-build-directory&gt;/bin/partitioned-heat-conduction ./partitioned-heat-conduction
+</code></pre></div></div>
+
+<p>Then open two terminals and run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>dirichlet-gismo
+./run.sh
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>neumann-gismo
+./run.sh
+</code></pre></div></div>
+
 <h3 id="note-on-the-combination-of-nutils--fenics">Note on the combination of Nutils &amp; FEniCS</h3>
 
 <p>You can mix the Nutils and FEniCS solver, if you like. Note that the error for a pure FEniCS simulation is lower than for a mixed one. We did not yet study the origin of this error, but assume that this is due to the fact that Nutils uses Gauss points as coupling mesh and therefore entails extrapolation in the data mapping at the top and bottom corners.</p>
@@ -993,6 +1020,8 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-h
 <p>For FEniCS you can visualize the content with paraview by opening the <code class="language-plaintext highlighter-rouge">*.pvd</code> files. The files <code class="language-plaintext highlighter-rouge">Dirichlet.pvd</code> and <code class="language-plaintext highlighter-rouge">Neumann.pvd</code> correspond to the numerical solution of the Dirichlet, respectively Neumann, problem, while the files with the prefix <code class="language-plaintext highlighter-rouge">ref</code> correspond to the analytical reference solution, the files with <code class="language-plaintext highlighter-rouge">error</code> show the error and the files with <code class="language-plaintext highlighter-rouge">ranks</code> the ranks of the solvers (if executed in parallel).</p>
 
 <p>For Nutils, please use the files <code class="language-plaintext highlighter-rouge">Dirichlet-*.vtk</code> or <code class="language-plaintext highlighter-rouge">Neumann-*.vtk</code>. Please note that these files contain the temperature as well as the reference solution.</p>
+
+<p>For G+Smo, please use the generated <code class="language-plaintext highlighter-rouge">solution.pvd</code> files in the dirichlet-gismo and neumann-gismo directories.</p>
 
 <p><img src="images/tutorials-partitioned-heat-conduction-FEniCS-movie.gif" alt="Animation of the partitioned heat equation" /></p>
 
@@ -1238,7 +1267,7 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-h
         </a>
         </p>
         <p>
-        Page last updated: Mar 18, 2026<br>
+        Page last updated: May 13, 2026<br>
         Site last updated: May 13, 2026
         </p>
         <p>
