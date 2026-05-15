@@ -2,7 +2,7 @@
 title: Python bindings
 permalink: installation-bindings-python.html
 keywords: configuration, basics, overview, installation, bindings
-summary: "Use pip3 install --user pyprecice to install the python language bindings from PyPI"
+summary: "Use pip3 install pyprecice to install the python language bindings from PyPI"
 ---
 
 ## The versioning scheme
@@ -13,7 +13,7 @@ Example: version `1` of the python bindings for preCICE version `2.2.0` is `2.2.
 
 ## Installation
 
-The python bindings for preCICE are [published on PyPI](https://pypi.org/project/pyprecice/) with the package `pyprecice`. You can use your python package manager for installing the language bindings. For example, `pip3 install --user pyprecice`. This will automatically install the latest version of the bindings compatible with the latest version of preCICE. If you are using an older version of preCICE, you have to explicitly tell pip to download the correct version (For example, `pip3 install --user pyprecice==2.2.0.2` for preCICE version `2.2.0`). See [the PyPI release history](https://pypi.org/project/pyprecice/#history) for a list of available version. Note that preCICE and MPI have to be installed on your system.
+The python bindings for preCICE are [published on PyPI](https://pypi.org/project/pyprecice/) with the package `pyprecice`. You can use your python package manager for installing the language bindings. For example, run `pip3 install pyprecice` in a [virtual environment](https://docs.python.org/3/library/venv.html#creating-virtual-environments). This will automatically install the latest version of the bindings compatible with the latest version of preCICE. If you are using an older version of preCICE, you have to explicitly tell pip to download the correct version (For example, `pip3 install pyprecice==2.2.0.2` for preCICE version `2.2.0`). See [the PyPI release history](https://pypi.org/project/pyprecice/#history) for a list of available version. Note that preCICE and MPI have to be installed on your system.
 
 ### Alternatives & Community packages
 

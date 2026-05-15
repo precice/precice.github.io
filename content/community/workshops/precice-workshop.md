@@ -7,6 +7,7 @@ toc: true
 ---
 
 The preCICE Workshop is the place to be for everyone working on or simply interested to start with preCICE. We are meeting every year since 2020 to train new people, collect feedback, and work together, trying to make every year's event better than the previous one.
+Read about our [experiences](https://doi.org/10.14279/eceasst.v85.2700) or about [organizing a preCICE Workshop](precice-workshop-organizing.html).
 
 <img class="img-responsive center-block" src="images/events/precice2023-group-inside.jpeg" alt="Group picture" style="width: 70%; margin:auto;">
 
@@ -83,6 +84,7 @@ in particular if this makes sense in the context of a research funding proposal 
 
 | N  | Date                                      | Place       | Host                                 |
 |--- | ---                                       | ---         | ---                                  |
+| 7  | [March 2027](./precice-workshop-2027)     | Delft       | Delft University of Technology       |
 | 6  | [September 2025](./precice-workshop-2025) | Hamburg     | Helmut-Schmidt University of Hamburg |
 | 5  | [September 2024](./precice-workshop-2024) | Stuttgart   | University of Stuttgart              |
 | 4  | [February 2023](./precice-workshop-2023)  | Munich      | Technical University of Munich / LRZ |
@@ -95,6 +97,7 @@ aiming to reach out to a wider community that typically cannot travel to Europe.
 
 | Date | Event |
 | ---  | ---   |
+| October 2026 | [preCICE Online Training (Americas)](./precice-training-2026-10.html) |
 | July 2020   | [Second preCICE Community hour](https://precice.discourse.group/t/267) |
 | April 2020  | [First preCICE Community hour](https://precice.discourse.group/t/196)  |
 

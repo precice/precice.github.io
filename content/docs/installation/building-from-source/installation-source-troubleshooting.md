@@ -96,3 +96,19 @@ In this case, the FindPETSc module cannot locate PETSc.
 
 * Check the values of `PETSC_DIR` and `PETSC_ARCH`.
 * Make sure `ls $PETSC_DIR/$PETSC_ARCH/include` does not result in an error.
+
+### Compilation failed with redefinition errors
+
+If you encounter an error such as:
+
+```log
+error: redefinition of ‘std::unique_ptr<precice::Participant> impl’
+```
+
+it might be caused by CMake’s Unity (Jumbo) build mode. To work around this issue, disable Unity builds when configuring preCICE:
+
+```bash
+cmake -DPRECICE_BUILD_UNITY=OFF ../
+```
+
+and consider [opening an issue](https://github.com/precice/precice/issues).

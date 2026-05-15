@@ -56,7 +56,7 @@ my_ldadd += @preCICE_LIBS@
 
 ## Make and scripts in general
 
-The recommended way to link preCICE to another project is by embedding pkg-config commands into a building script/Makefile to extract the necessary flags from the generated `liprecice.pc` file.
+The recommended way to link preCICE to another project is by embedding pkg-config commands into a building script/Makefile to extract the necessary flags from the generated `libprecice.pc` file.
 
 Use the following two commands to fetch necessary flags:
 

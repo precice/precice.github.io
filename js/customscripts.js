@@ -18,7 +18,7 @@ $( document ).ready(function() {
     /**
      * AnchorJS
      */
-    anchors.add('h2:not(.no-anchor),h3:not(.no-anchor),h4:not(.no-anchor),h5:not(.no-anchor)');
+    anchors.add('main h2:not(.no-anchor),main h3:not(.no-anchor),main h4:not(.no-anchor),main h5:not(.no-anchor)');
 
 });
 
@@ -50,5 +50,31 @@ $(function() {
         if (!json[$this.attr("id")]) {
             return $this.find("a[data-toggle=tab]:first, a[data-toggle=pill]:first").tab("show");
         }
+    });
+});
+
+// this makes the logos toggle as per the option chosen by clicking on the specific buttons.
+$(function() {
+    $(document).on('click', '.logowall-filter .filter-btn', function(event) {
+        var $button = $(this);
+        var filter = String($button.data('filter') || '').toLowerCase();
+        var $filterBar = $button.closest('.logowall-filter');
+        var targetSel = $filterBar.attr('data-logowall-target');
+        var $grid = targetSel ? $(targetSel) : $();
+        var $items = $grid.find('.logo-item');
+
+        if (!$grid.length || !$items.length) {
+            return;
+        }
+
+        event.preventDefault();
+
+        $filterBar.find('.filter-btn').removeClass('active btn-primary').addClass('btn-default').attr('aria-pressed', 'false');
+        $button.addClass('active btn-primary').removeClass('btn-default').attr('aria-pressed', 'true');
+
+        $items.each(function() {
+            var matches = filter === 'all' || String($(this).data('category') || '').toLowerCase() === filter;
+            $(this).toggleClass('hidden', !matches);
+        });
     });
 });

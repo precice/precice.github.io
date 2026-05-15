@@ -76,7 +76,7 @@ If you roughly follow the guidelines in this section, your contribution could be
 Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape.
 {% endtip %}
 
-First time working with Git? Watch a [short lecture on the GitHub workflow](https://www.youtube.com/watch?v=kAqp2hhv-DU), or a [longer lecture on Git](https://missing.csail.mit.edu/2020/version-control/).
+First time working with Git? Watch a [lecture on Git](https://missing.csail.mit.edu/2020/version-control/).
 
 ### What to contribute and where?
 
@@ -187,7 +187,7 @@ The content of the tutorials is sourced from the develop branch of the tutorials
 1. Trigger the [update submodules workflow](https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml) and, after it completes, create a new branch and pull request (this may also happen automatically, or someone from the preCICE team may have to do it for you).
 2. Edit the [`_config.yml` file](https://github.com/precice/precice.github.io/blob/master/_config.yml) to append the directory name of your tutorial under `subprojects:`.
 3. Edit the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) to add your tutorial permalink (defined in the heading of the `README.md` you created) to a fitting place, next to a similar tutorial.
-4. Edit the [tutorials landing page](https://github.com/precice/precice.github.io/blob/sidebar-ff-tuts/pages/tutorials/tutorials.md) to add your tutorial to the overview.
+4. Edit the [tutorials landing page](https://github.com/precice/precice.github.io/blob/master/content/tutorials/tutorials.md) to add your tutorial to the overview.
 
 After your PR gets reviewed, approved, and merged, the website will be built automatically, and your tutorial will appear online in a couple of minutes.
 
@@ -205,9 +205,13 @@ Look for [contributing guidelines](https://github.com/precice/precice/blob/devel
 Read on our [Roadmap](fundamentals-roadmap.html) what is already in our to-do list before starting to write large parts of code.
 {% endtip %}
 
+{% tip %}
+There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
+{% endtip %}
+
 ## Helping other users
 
 We would really appreciate it if you followed our [community channels](community-channels.html) and joined us in answering questions.
-It is often much easier that you think!
+It is often much easier than you think!
 
 If you want to help there, then you may also want bookmark and visit the forum and/or chatroom regularly. You can also try to answer some of the [still unanswered forum questions](https://precice.discourse.group/search?expanded=true&q=status%3Aunsolved%20order%3Alatest). There is a special place in our hearts for users that help each other! 🤗

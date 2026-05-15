@@ -43,7 +43,11 @@ libxml2 is part of the `-devel` packages, which are loaded by default on the log
 (3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:
 
 ```bash
-cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my/install/prefix" -DPRECICE_FEATURE_PETSC_MAPPING=ON -DPETSc_INCLUDE_DIRS="$PETSC_DIR/include" -DPETSc_LIBRARIES="$PETSC_DIR/lib/libpetsc.so" -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF /path/to/precice/source
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my/install/prefix" \
+      -DPRECICE_FEATURE_PETSC_MAPPING=ON \
+      -DPETSc_INCLUDE_DIRS="$PETSC_DIR/include" -DPETSc_LIBRARIES="$PETSC_DIR/lib/libpetsc.so" \
+      -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF \
+      /path/to/precice/source
 
 make install -j 16
 ```
@@ -107,7 +111,8 @@ export EIGEN3_ROOT="$HOME/Software/eigen3"
 (2) [Download latest boost](https://www.boost.org/), copy it to SuperMUC and build yourself:
 
 ```bash
-./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test --prefix=$HOME/Software/boost-install
+./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test \
+               --prefix=$HOME/Software/boost-install
 ./b2 install
 ```
 
@@ -156,8 +161,8 @@ module load slurm_setup
 rm -rf tests
 mkdir tests
 cd tests
-mpiexec -np 4 ../../Software/precice-1.6.1/build/debug/testprecice --log_level=test_suite --run_test="\!@MPI_Ports"
-
+mpiexec -np 4 ../../Software/precice-1.6.1/build/debug/testprecice \
+        --log_level=test_suite --run_test="\!@MPI_Ports"
 ```
 
 #### Notes on OpenFOAM
@@ -319,7 +324,8 @@ This gives on `module list`:
 
 ```bash
 Currently Loaded Modulefiles:
- 1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1   5) gcc/8.4.0   6) intel-mpi/2019-gcc   7) precice/2.2.0-gcc8-impi
+ 1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1
+ 5) gcc/8.4.0   6) intel-mpi/2019-gcc   7) precice/2.2.0-gcc8-impi
 ```
 
 **Note:** If you want to use FEniCS (see below), please stick to GCC from the very beginning.
@@ -359,7 +365,9 @@ Before running the command `module load mpi.intel/2019.12_gcc` the user has to r
 
 ```bash
 mkdir build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_FEATURE_PETSC_MAPPING=OFF -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF -DPRECICE_FEATURE_MPI_COMMUNICATION=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_FEATURE_PETSC_MAPPING=OFF -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF \
+      -DPRECICE_FEATURE_MPI_COMMUNICATION=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation \
+      -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
 make -j 12
 make install
 ```
@@ -379,7 +387,8 @@ If you want to install a solver/adapter which depends on **yaml-cpp** (e.g. Open
 ```bash
 tar -xzvf boost_1_65_1.tar.gz
 cd boost_1_65_1
-./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test --prefix=/path/to/installation/target
+./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test
+               --prefix=/path/to/installation/target
 ./b2 install
 ```
 
@@ -405,7 +414,7 @@ There are some available versions of PETSc. You might want to pick one of them a
 git clone -b maint https://bitbucket.org/petsc/petsc petsc
 ```
 
-PETSc depends on BLAS and LAPACK. You could either download the LAPACK tar ball, which includes also BLAS from their [webpage](http://www.netlib.org/lapack/) or you let PETSc download and compile it automatically, which is shown below.
+PETSc depends on BLAS and LAPACK. You could either download the LAPACK tar ball, which includes also BLAS from their [webpage](https://www.netlib.org/lapack/) or you let PETSc download and compile it automatically, which is shown below.
 
 The PETSc `configure` script will fail on the login nodes, (probably) since MPI is disabled. Hence, you need to start an interactive job, before you run the script. Details on how to do this can be found on the [LRZ documentation](https://doku.lrz.de/display/PUBLIC/Running+parallel+jobs+on+the+Linux-Cluster).
 
@@ -418,7 +427,8 @@ salloc --ntasks=12
 As mentioned above, we want to use `mpi.intel/2018_gcc`. You may get an error message if you run the configuration script without specifying the `mpi-dir`. If you use another version, you can look it up with `module show` under `I_MPI_ROOT`. Then, run the `configure` script and follow the instructions:
 
 ```bash
-./configure --with-mpi-dir=/lrz/sys/intel/studio2018_p4/impi/2018.4.274 --download-fblaslapack=1
+./configure --with-mpi-dir=/lrz/sys/intel/studio2018_p4/impi/2018.4.274
+            --download-fblaslapack=1
 ```
 
 You may additionally specify a `--prefix` for the target directory. Then, you just need to set `PETSC_DIR= prefix`.
@@ -435,7 +445,9 @@ Afterwards, you could follow the usual building instructions:
 
 ```bash
 mkdir build && cd build
-CC=mpicc CXX=mpicxx cmake -DPETSC=ON -DPYTHON=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation -DCMAKE_BUILD_TYPE=Release ../..
+CC=mpicc CXX=mpicxx cmake -DPETSC=ON -DPYTHON=OFF \
+                          -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation \
+                          -DCMAKE_BUILD_TYPE=Release ../..
 make -j 12
 make install
 ```
@@ -585,7 +597,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 You might face this problem:
 
 ```bash
-/.../.conda/envs/precice/lib/python3.12/site-packages/dolfin/jit/jit.py:46: RuntimeWarning: mpi4py.MPI.Session size changed, may indicate binary incompatibility. Expected 32 from C header, got 40 from PyObject                                                                                                                                       
+/.../.conda/envs/precice/lib/python3.12/site-packages/dolfin/jit/jit.py:46:
+  RuntimeWarning: mpi4py.MPI.Session size changed, may indicate binary incompatibility.
+  Expected 32 from C header, got 40 from PyObject                                                                                                                                       
 ```
 
 Please check your `mpi4py` version via `python -c "import mpi4py; print(mpi4py.__version__)`. If you are using a version `>= 4.x`, downgrade to the `3.x` version by running
@@ -887,6 +901,7 @@ module list
 
 rm -rf build
 mkdir -p build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DMPI_CXX_COMPILER=mpigcc -DCMAKE_BUILD_TYPE=Debug -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF ..
+cmake -DBUILD_SHARED_LIBS=ON -DMPI_CXX_COMPILER=mpigcc -DCMAKE_BUILD_TYPE=Debug \
+      -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF ..
 make -j
 ```

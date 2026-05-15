@@ -27,7 +27,7 @@ The workshop stretches from Monday noon to Thursday evening.
 * 15:00 - 17:00 preCICE Course I (Main Hall)
 
   <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics and Tools</summary>
-  <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
   <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
   <p>We will couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
@@ -88,7 +88,7 @@ The workshop stretches from Monday noon to Thursday evening.
 * 14:15 - 16:15 preCICE Course II (Main Hall)
 
   <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
-  <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
   <p>A hands-on introduction to implicit coupling details in preCICE, recommended for new users that want to learn how to make their coupled simulations more accurate and numerically efficient.</p>
   <p>We will couple OpenFOAM and Nutils for Conjugate Heat Transfer, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
