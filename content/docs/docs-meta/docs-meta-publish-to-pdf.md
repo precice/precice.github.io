@@ -136,23 +136,11 @@ the PDF will contain `apples.html` but not `oranges.html`.
 
 For `tutorial_sidebar`, all entries with output `web` are also included in the PDF build.
 
-Furthermore two more pages have to be included in `docs_sidebar.yml`:
+Furthermore two more pages have to be included in `prince-list.txt`:
 
-```yml
-  - title:
-    output: pdf
-    type: frontmatter
-    folderitems:
-
-    - title:
-      url: /titlepage.html
-      output: pdf
-      type: frontmatter
-
-    - title:
-      url: /tocpage.html
-      output: pdf
-      type: frontmatter
+```html
+{{site.url}}{{site.baseurl}}/titlepage.html
+{{site.url}}{{site.baseurl}}/tocpage.html
 ```
 
 These two pages are located in `pdfconfigs/` and govern the layout of the title page as well as the table of contents.
