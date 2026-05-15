@@ -1699,7 +1699,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 14 Mar 26</small>
+              <small>Updated 15 May 26</small>
             </div>
           </aside>
           
@@ -1741,7 +1741,11 @@ libxml2 is part of the <code class="language-plaintext highlighter-rouge">-devel
 
 <p>(3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Debug <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span><span class="s2">"my/install/prefix"</span> <span class="nt">-DPRECICE_FEATURE_PETSC_MAPPING</span><span class="o">=</span>ON <span class="nt">-DPETSc_INCLUDE_DIRS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PETSC_DIR</span><span class="s2">/include"</span> <span class="nt">-DPETSc_LIBRARIES</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PETSC_DIR</span><span class="s2">/lib/libpetsc.so"</span> <span class="nt">-DPRECICE_FEATURE_PYTHON_ACTIONS</span><span class="o">=</span>OFF /path/to/precice/source
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Debug <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span><span class="s2">"my/install/prefix"</span> <span class="se">\</span>
+      <span class="nt">-DPRECICE_FEATURE_PETSC_MAPPING</span><span class="o">=</span>ON <span class="se">\</span>
+      <span class="nt">-DPETSc_INCLUDE_DIRS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PETSC_DIR</span><span class="s2">/include"</span> <span class="nt">-DPETSc_LIBRARIES</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PETSC_DIR</span><span class="s2">/lib/libpetsc.so"</span> <span class="se">\</span>
+      <span class="nt">-DPRECICE_FEATURE_PYTHON_ACTIONS</span><span class="o">=</span>OFF <span class="se">\</span>
+      /path/to/precice/source
 
 make <span class="nb">install</span> <span class="nt">-j</span> 16
 </code></pre></div></div>
@@ -1800,7 +1804,8 @@ These are built with PETSc as well as MPI using both GCC and the Intel compiler.
 
 <p>(2) <a href="https://www.boost.org/">Download latest boost</a>, copy it to SuperMUC and build yourself:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bootstrap.sh <span class="nt">--with-libraries</span><span class="o">=</span>log,thread,system,filesystem,program_options,test <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$HOME</span>/Software/boost-install
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bootstrap.sh <span class="nt">--with-libraries</span><span class="o">=</span>log,thread,system,filesystem,program_options,test <span class="se">\</span>
+               <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$HOME</span>/Software/boost-install
 ./b2 <span class="nb">install</span>
 </code></pre></div></div>
 
@@ -1845,8 +1850,8 @@ module load slurm_setup
 <span class="nb">rm</span> <span class="nt">-rf</span> tests
 <span class="nb">mkdir </span>tests
 <span class="nb">cd </span>tests
-mpiexec <span class="nt">-np</span> 4 ../../Software/precice-1.6.1/build/debug/testprecice <span class="nt">--log_level</span><span class="o">=</span>test_suite <span class="nt">--run_test</span><span class="o">=</span><span class="s2">"</span><span class="se">\!</span><span class="s2">@MPI_Ports"</span>
-
+mpiexec <span class="nt">-np</span> 4 ../../Software/precice-1.6.1/build/debug/testprecice <span class="se">\</span>
+        <span class="nt">--log_level</span><span class="o">=</span>test_suite <span class="nt">--run_test</span><span class="o">=</span><span class="s2">"</span><span class="se">\!</span><span class="s2">@MPI_Ports"</span>
 </code></pre></div></div>
 
 <h4 id="notes-on-openfoam-1">Notes on OpenFOAM</h4>
@@ -2003,7 +2008,8 @@ module load precice/2.2.0-gcc8-impi
 <p>This gives on <code class="language-plaintext highlighter-rouge">module list</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Currently Loaded Modulefiles:
- 1<span class="o">)</span> admin/1.0   2<span class="o">)</span> tempdir/1.0   3<span class="o">)</span> lrz/1.0   4<span class="o">)</span> spack/21.1.1   5<span class="o">)</span> gcc/8.4.0   6<span class="o">)</span> intel-mpi/2019-gcc   7<span class="o">)</span> precice/2.2.0-gcc8-impi
+ 1<span class="o">)</span> admin/1.0   2<span class="o">)</span> tempdir/1.0   3<span class="o">)</span> lrz/1.0   4<span class="o">)</span> spack/21.1.1
+ 5<span class="o">)</span> gcc/8.4.0   6<span class="o">)</span> intel-mpi/2019-gcc   7<span class="o">)</span> precice/2.2.0-gcc8-impi
 </code></pre></div></div>
 
 <p><strong>Note:</strong> If you want to use FEniCS (see below), please stick to GCC from the very beginning.</p>
@@ -2040,7 +2046,9 @@ module load git/2.40.0
 <p>Before running the command <code class="language-plaintext highlighter-rouge">module load mpi.intel/2019.12_gcc</code> the user has to run <code class="language-plaintext highlighter-rouge">module unload mpi.intel</code> to unload the preloaded mpi version. Afterwards, follow the usual <a href="https://precice.org/installation-source-preparation.html">building instructions for CMake</a>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
-cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DPRECICE_FEATURE_PETSC_MAPPING</span><span class="o">=</span>OFF <span class="nt">-DPRECICE_FEATURE_PYTHON_ACTIONS</span><span class="o">=</span>OFF <span class="nt">-DPRECICE_FEATURE_MPI_COMMUNICATION</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>RelWithDebInfo ..
+cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DPRECICE_FEATURE_PETSC_MAPPING</span><span class="o">=</span>OFF <span class="nt">-DPRECICE_FEATURE_PYTHON_ACTIONS</span><span class="o">=</span>OFF <span class="se">\</span>
+      <span class="nt">-DPRECICE_FEATURE_MPI_COMMUNICATION</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="se">\</span>
+      <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>RelWithDebInfo ..
 make <span class="nt">-j</span> 12
 make <span class="nb">install</span>
 </code></pre></div></div>
@@ -2058,7 +2066,8 @@ make <span class="nb">install</span>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xzvf</span> boost_1_65_1.tar.gz
 <span class="nb">cd </span>boost_1_65_1
-./bootstrap.sh <span class="nt">--with-libraries</span><span class="o">=</span>log,thread,system,filesystem,program_options,test <span class="nt">--prefix</span><span class="o">=</span>/path/to/installation/target
+./bootstrap.sh <span class="nt">--with-libraries</span><span class="o">=</span>log,thread,system,filesystem,program_options,test
+               <span class="nt">--prefix</span><span class="o">=</span>/path/to/installation/target
 ./b2 <span class="nb">install</span>
 </code></pre></div></div>
 
@@ -2093,7 +2102,8 @@ prefix. If the boost installation is done in a separate folder, result might loo
 
 <p>As mentioned above, we want to use <code class="language-plaintext highlighter-rouge">mpi.intel/2018_gcc</code>. You may get an error message if you run the configuration script without specifying the <code class="language-plaintext highlighter-rouge">mpi-dir</code>. If you use another version, you can look it up with <code class="language-plaintext highlighter-rouge">module show</code> under <code class="language-plaintext highlighter-rouge">I_MPI_ROOT</code>. Then, run the <code class="language-plaintext highlighter-rouge">configure</code> script and follow the instructions:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure <span class="nt">--with-mpi-dir</span><span class="o">=</span>/lrz/sys/intel/studio2018_p4/impi/2018.4.274 <span class="nt">--download-fblaslapack</span><span class="o">=</span>1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure <span class="nt">--with-mpi-dir</span><span class="o">=</span>/lrz/sys/intel/studio2018_p4/impi/2018.4.274
+            <span class="nt">--download-fblaslapack</span><span class="o">=</span>1
 </code></pre></div></div>
 
 <p>You may additionally specify a <code class="language-plaintext highlighter-rouge">--prefix</code> for the target directory. Then, you just need to set <code class="language-plaintext highlighter-rouge">PETSC_DIR= prefix</code>.
@@ -2108,7 +2118,9 @@ If you don’t specify it, you need to set <code class="language-plaintext highl
 <p>Afterwards, you could follow the usual building instructions:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
-<span class="nv">CC</span><span class="o">=</span>mpicc <span class="nv">CXX</span><span class="o">=</span>mpicxx cmake <span class="nt">-DPETSC</span><span class="o">=</span>ON <span class="nt">-DPYTHON</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release ../..
+<span class="nv">CC</span><span class="o">=</span>mpicc <span class="nv">CXX</span><span class="o">=</span>mpicxx cmake <span class="nt">-DPETSC</span><span class="o">=</span>ON <span class="nt">-DPYTHON</span><span class="o">=</span>OFF <span class="se">\</span>
+                          <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="se">\</span>
+                          <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release ../..
 make <span class="nt">-j</span> 12
 make <span class="nb">install</span>
 </code></pre></div></div>
@@ -2245,7 +2257,9 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 
 <p>You might face this problem:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/.../.conda/envs/precice/lib/python3.12/site-packages/dolfin/jit/jit.py:46: RuntimeWarning: mpi4py.MPI.Session size changed, may indicate binary incompatibility. Expected 32 from C header, got 40 from PyObject                                                                                                                                       
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/.../.conda/envs/precice/lib/python3.12/site-packages/dolfin/jit/jit.py:46:
+  RuntimeWarning: mpi4py.MPI.Session size changed, may indicate binary incompatibility.
+  Expected 32 from C header, got 40 from PyObject                                                                                                                                       
 </code></pre></div></div>
 
 <p>Please check your <code class="language-plaintext highlighter-rouge">mpi4py</code> version via <code class="language-plaintext highlighter-rouge">python -c "import mpi4py; print(mpi4py.__version__)</code>. If you are using a version <code class="language-plaintext highlighter-rouge">&gt;= 4.x</code>, downgrade to the <code class="language-plaintext highlighter-rouge">3.x</code> version by running</p>
@@ -2537,7 +2551,8 @@ module list
 
 <span class="nb">rm</span> <span class="nt">-rf</span> build
 <span class="nb">mkdir</span> <span class="nt">-p</span> build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
-cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DMPI_CXX_COMPILER</span><span class="o">=</span>mpigcc <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Debug <span class="nt">-DPRECICE_FEATURE_PYTHON_ACTIONS</span><span class="o">=</span>OFF ..
+cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DMPI_CXX_COMPILER</span><span class="o">=</span>mpigcc <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Debug <span class="se">\</span>
+      <span class="nt">-DPRECICE_FEATURE_PYTHON_ACTIONS</span><span class="o">=</span>OFF ..
 make <span class="nt">-j</span>
 </code></pre></div></div>
 
@@ -2914,7 +2929,7 @@ make <span class="nt">-j</span>
         </a>
         </p>
         <p>
-        Page last updated: Mar 14, 2026<br>
+        Page last updated: May 15, 2026<br>
         Site last updated: May 15, 2026
         </p>
         <p>
