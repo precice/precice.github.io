@@ -44,6 +44,7 @@ Note that more recent versions of some dependencies (e.g., Boost) might also nee
 | [MPI](#mpi) (opt-out) | [Communication over MPI](configuration-communication.html) | implementation of MPI-3 | Various [implementations](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) |
 | [PETSc](#petsc) (opt-out) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-petsc-blue)](https://pkgs.org/search/?q=petsc){:.no-icon} |
 | [Ginkgo](#ginkgo) (opt-in) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 1.8, with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-ginkgo-blue)](https://pkgs.org/search/?q=ginkgo){:.no-icon} |
+| [Kokkos-Kernels](#kokkos-kernels) (opt-in) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 4.1, with Kokkos >= 4.1 | [![Repology - Kokkos-Kernels](https://img.shields.io/repology/repositories/kokkos-kernels)](https://repology.org/project/kokkos-kernels/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-kokkos-kernels)](https://pkgs.org/search/?q=kokkos-kernels){:.no-icon} |
 | [Python](#python) (opt-out) | [Python Action interface](configuration-action.html#python-callback-interface) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-python-blue)](https://pkgs.org/search/?q=python){:.no-icon} |
 
 ## Dependencies
@@ -124,7 +125,7 @@ export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z
 
 ### Boost
 
-preCICE uses [Boost](http://www.boost.org/) for several features.
+preCICE uses [Boost](https://www.boost.org/) for several features.
 The minimum required version is 1.74.0, but newer Boost versions are not always compatible to previous ones.
 
 You might save some time and space by installing only the necessary libraries:
@@ -159,7 +160,7 @@ For help, see also the ranges set in the [Spack recipe](https://github.com/spack
 
 #### Build boost from source
 
-1. [Download](http://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
+1. [Download](https://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
 2. Prepare the installation, selecting only the libraries that need to be built (this does not affect the header-only libraries).
    Select a prefix to install Boost to. This will later contain the directories `include` and `lib`.
    On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).
@@ -188,7 +189,7 @@ For help, see also the ranges set in the [Spack recipe](https://github.com/spack
 
    The path points to the file `BoostConfig.cmake` which is required by CMake. If this path does not exist, you can also run `locate BoostConfig.cmake` to determine the path to the file.
 
-For more information, please refer to the "[Getting Started](http://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
+For more information, please refer to the "[Getting Started](https://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
 
 ### libxml2
 
@@ -276,6 +277,22 @@ History of required versions:
 | ---     | ---             | ---             |
 | 3.2.0   | 1.8.0           | 4.1.0           |
 | 3.3.0   | same as above   | same as above   |
+
+### Kokkos-Kernels
+
+preCICE optionally uses [Kokkos-Kernels](https://kokkos.org/kokkos-kernels/docs/) (and [Kokkos](https://kokkos.org/)) for GPU- and OpenMP-accelerated [PU-RBF radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_KOKKOS_KERNELS_MAPPING=ON`. When building preCICE, it inherits the enabled execution backend from Kokkos automatically. preCICE accepts the backends `CUDA`, `HIP`, `SYCL`, and `OpenMP` from Kokkos. Further backend-specific parameters are runtime-configurable through the XML configuration, as usual. After compiling preCICE and its tests, you can check that the backend operates as expected using `ctest -R Cuda` (or `Hip`, `Sycl`, `OpenMP`).
+
+{% tip %}
+preCICE can be compiled with Kokkos-kernels through [`spack`](installation-spack.html). Example: `spack install precice +kokkos-kernels +cuda ^kokkos cuda_arch=80`.
+{% endtip %}
+
+[Kokkos-Kernels](https://github.com/kokkos/kokkos/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases) follow the usual CMake build instructions. For Kokkos, system packages might be available through your package manager as well.
+
+History of required versions:
+
+| preCICE | Kokkos-Kernels required | Kokkos required |
+| ---     | ---                     | ---             |
+| 3.4.1   | 4.1.0                   | 4.1.0           |
 
 ### Python
 

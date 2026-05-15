@@ -12,13 +12,13 @@ There are various codes - free and proprietary ones - currently coupled with pre
 We host adapters for the following codes in the [preCICE GitHub organization](https://github.com/precice/) and we maintain them to work with the latest release of preCICE (unless stated otherwise).
 
 | Adapter for | Contact | Resources | Typical applications | Comments |
-| [CalculiX](http://www.calculix.de/) | preCICE Developers | [code](https://github.com/precice/calculix-adapter), [docs](adapter-calculix-overview.html) | Structure part in CHT, FSI | |
+| [CalculiX](https://www.calculix.de/) | preCICE Developers | [code](https://github.com/precice/calculix-adapter), [docs](adapter-calculix-overview.html) | Structure part in CHT, FSI | |
 | [code_aster](https://code-aster.org/) | preCICE Developers | [code](https://github.com/precice/code_aster-adapter), [docs](adapter-code_aster.html) | Structure part in CHT | |
 | [deal.II](https://www.dealii.org/) | preCICE Developers | [code](https://github.com/precice/dealii-adapter), [docs](adapter-dealii-overview.html) | Structure part in FSI, any FEM | |
 | [DuMuX](https://dumux.org/) | preCICE Developers | [code](https://github.com/precice/dumux-adapter), [docs](adapter-dumux.html) | Darcy-scale in multiscale, porous media | |
 | [DUNE](https://www.dune-project.org/) | preCICE Developers | [code](https://github.com/precice/dune-adapter), [docs](adapter-dune.html) | Structure part in FSI | |
 | [FEniCS](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | See also [FEniCS-X](https://github.com/precice/fenicsx-adapter) below (WIP) |
-| [Nutils](http://www.nutils.org/) | preCICE Developers | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
+| [Nutils](https://www.nutils.org/) | preCICE Developers | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
 | [OpenFOAM](https://www.openfoam.com/) | preCICE Developers | [code](https://github.com/precice/openfoam-adapter), [docs](adapter-openfoam-overview.html) | Fluid part in CHT, FSI, FF | |
 | [SU2](https://su2code.github.io/) | preCICE Developers | [code](https://github.com/precice/su2-adapter), [docs](adapter-su2-overview.html) | Fluid part in FSI | [Maintainer needed](https://github.com/precice/su2-adapter/issues/16) |
 

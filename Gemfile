@@ -12,7 +12,6 @@ group :jekyll_plugins do
   gem 'jekyll-seo-tag'
   gem 'jekyll-sitemap'
   gem 'jekyll-redirect-from'
-  gem "jekyll-last-modified-at"
   gem 'jekyll-mermaid'
 end
 
@@ -33,3 +32,4 @@ gem "open-uri"
 
 # For current Ruby installations (3+?)
 gem "webrick"
+

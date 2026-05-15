@@ -405,7 +405,7 @@ There are some available versions of PETSc. You might want to pick one of them a
 git clone -b maint https://bitbucket.org/petsc/petsc petsc
 ```
 
-PETSc depends on BLAS and LAPACK. You could either download the LAPACK tar ball, which includes also BLAS from their [webpage](http://www.netlib.org/lapack/) or you let PETSc download and compile it automatically, which is shown below.
+PETSc depends on BLAS and LAPACK. You could either download the LAPACK tar ball, which includes also BLAS from their [webpage](https://www.netlib.org/lapack/) or you let PETSc download and compile it automatically, which is shown below.
 
 The PETSc `configure` script will fail on the login nodes, (probably) since MPI is disabled. Hence, you need to start an interactive job, before you run the script. Details on how to do this can be found on the [LRZ documentation](https://doku.lrz.de/display/PUBLIC/Running+parallel+jobs+on+the+Linux-Cluster).
 

@@ -12,6 +12,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   loadingText.textContent = "Loading FAQs...";
   list.parentElement.insertBefore(loadingText, list);
 
+  function isSafeUrl(url) {
+    try {
+      var parsed = new URL(url, window.location.origin);
+      return parsed.protocol === "https:" || parsed.protocol === "http:";
+    } catch (e) {
+      return false;
+    }
+  }
+
   try {
     const res = await fetch("/assets/data/faq.json");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -50,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function renderTopics() {
-      list.innerHTML = "";
+      list.replaceChildren();
 
       const shown = filteredTopics.slice(0, visibleCount);
 
@@ -72,22 +81,39 @@ document.addEventListener("DOMContentLoaded", async function () {
             ? t.excerpt
             : "No description available.";
 
-        card.innerHTML = `
-          <h4 style="margin-bottom:8px;">
-            <strong>${t.title}</strong>
-          </h4>
-          <p style="color:#333;line-height:1.4;">
-            ${excerpt}
-            <a href="${t.url}" target="_blank" rel="noopener noreferrer" 
-               style="text-decoration:none;color:#0069c2;" data-noicon>
-              Read more
-            </a>
-          </p>
-          <p style="color:#666;font-size:0.9em;">
-            Last updated: ${new Date(t.last_posted_at).toLocaleDateString("en-GB")} |
-            Replies: ${t.posts_count} | Views: ${t.views}
-          </p>
-        `;
+        var h4 = document.createElement("h4");
+        h4.style.cssText = "margin-bottom:8px;";
+        var strong = document.createElement("strong");
+        strong.textContent = t.title;
+        h4.appendChild(strong);
+
+        var excerptP = document.createElement("p");
+        excerptP.style.cssText = "color:#333;line-height:1.4;";
+        excerptP.textContent = excerpt + " ";
+        var readMore = document.createElement("a");
+        if (isSafeUrl(t.url)) {
+          readMore.setAttribute("href", t.url);
+        }
+        readMore.setAttribute("target", "_blank");
+        readMore.setAttribute("rel", "noopener noreferrer");
+        readMore.style.cssText = "text-decoration:none;color:#0069c2;";
+        readMore.dataset.noicon = "";
+        readMore.textContent = "Read more";
+        excerptP.appendChild(readMore);
+
+        var metaP = document.createElement("p");
+        metaP.style.cssText = "color:#666;font-size:0.9em;";
+        metaP.textContent =
+          "Last updated: " +
+          new Date(t.last_posted_at).toLocaleDateString("en-GB") +
+          " | Replies: " +
+          t.posts_count +
+          " | Views: " +
+          t.views;
+
+        card.appendChild(h4);
+        card.appendChild(excerptP);
+        card.appendChild(metaP);
         list.appendChild(card);
       });
 
@@ -103,7 +129,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         list.appendChild(btn);
       }
 
-      // 🧽 JS-based CSS injection to remove external icon pseudo-element
+      // JS-based CSS injection to remove external icon pseudo-element
       if (!document.getElementById("noicon-style")) {
         const style = document.createElement("style");
         style.id = "noicon-style";

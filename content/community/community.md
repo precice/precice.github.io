@@ -40,3 +40,7 @@ You can find many more use cases on the [community stories page](community-proje
 ## Contributions to preCICE
 
 Since its first commit in 2008, preCICE has been developed by three generations of doctoral students: look at the [list of active and previous developers](community-contributors.html). Your (small or large) [contributions are welcome](community-contribute-to-precice.html).
+
+Some of the people that have significantly contributed to repositories of preCICE on GitHub (arbitrary order):
+
+{% include community_spotlight.html %}

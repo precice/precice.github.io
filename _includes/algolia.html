@@ -45,7 +45,7 @@ const hitTemplate = function(hit) {
 algoliaSearch.addWidget(
   instantsearch.widgets.searchBox({
     container: '#search-input',
-    placeholder: 'Search ...',
+    placeholder: 'Search (' + (/Mac|iPhone|iPad/.test(navigator.platform) ? '⌘K' : 'Ctrl+K') + ')',
     poweredBy: true, // This is required if you're on the free Community plan
     magnifier: false,
     autofocus: false,
@@ -133,9 +133,19 @@ document.addEventListener('mouseup', function(e) {
   }
 });
 
+// Cmd+K / Ctrl+K keyboard shortcut to focus search, Escape to dismiss
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' || e.keyCode === 27) {
+  var isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+  if ((isMac ? e.metaKey : e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    var input = document.querySelector('.ais-search-box--input');
+    if (input) {
+      input.focus();
+      input.select();
+    }
+  }
 
+  if (e.key === 'Escape' || e.keyCode === 27) {
     var results = document.getElementById('search-results');
     var inputContainer = document.getElementById('search-input');
     var activeElement = document.activeElement;
@@ -156,7 +166,5 @@ document.addEventListener('keydown', function(e) {
     }
   }
 });
-
-
 
 </script>
