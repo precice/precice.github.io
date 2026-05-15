@@ -14,7 +14,7 @@ search: exclude
     {% for folder in entry.folders %}
          {% if folder.output contains "pdf" %}
                      {% for folderitem in folder.folderitems %}
-                         {% if folderitem.output contains "pdf"  %}
+                         {% if folderitem.output contains "pdf" %}
                               {{site.url}}{{site.baseurl}}{{folderitem.url}}
                                        {% for subfolders in folderitem.subfolders %}
                                            {% if subfolders.output contains "pdf" %}
@@ -35,14 +35,14 @@ search: exclude
 
  {% for entry in tutorial_sidebar %}
     {% for folder in entry.folders %}
-         {% if folder.output contains "web" %}
+         {% if folder.output contains "pdf" %}
                      {% for folderitem in folder.folderitems %}
-                         {% if folderitem.output contains "web"  %}
+                         {% if folderitem.output contains "pdf" %}
                               {{site.url}}{{site.baseurl}}{{folderitem.url}}
                                        {% for subfolders in folderitem.subfolders %}
-                                           {% if subfolders.output contains "web" %}
+                                           {% if subfolders.output contains "pdf" %}
                                                         {% for subfolderitem in subfolders.subfolderitems %}
-                                                            {% if subfolderitem.output contains "web" %}
+                                                            {% if subfolderitem.output contains "pdf" %}
                                                                  {{site.url}}{{site.baseurl}}{{subfolderitem.url}}
                                                             {% endif %}
                                                         {% endfor %}
