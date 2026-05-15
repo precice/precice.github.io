@@ -134,8 +134,6 @@ and `docs_sidebar.yml` is
 
 the PDF will contain `apples.html` but not `oranges.html`.
 
-For `tutorial_sidebar`, all entries with output `web` are also included in the PDF build.
-
 Furthermore two more pages have to be included in `prince-list.txt`:
 
 ```html
