@@ -40,7 +40,7 @@ All data mappings are executed during `advance` and not in `readData`, cf. the s
 
 Each mapping defines a `constraint`, which defines how the data is mapped between the meshes:
 
-* `conservative` constraint: `conservative` mappings ensure that the global sum of data at the input and output mesh are the same. As an example, one could consider a nearest-neighbor mapping from a fine to a coarse grid: the value at a coarse node is computed as an aggregation of the corresponding fine nodes, such that the total coupling value (in our example `Forces`) on the coarse and fine mesh is the same. This is required for quantities that are physically conservative (extensive quantities, such as force, mass, etc.). Visually, the conservative nearest-neighbor example would like like the following:
+* `conservative` constraint: `conservative` mappings ensure that the global sum of data at the input and output mesh are the same. As an example, one could consider a nearest-neighbor mapping from a fine to a coarse grid: the value at a coarse node is computed as an aggregation of the corresponding fine nodes, such that the total coupling value (in our example `Forces`) on the coarse and fine mesh is the same. This is required for quantities that are physically conservative (extensive quantities, such as force, mass, etc.). Visually, the conservative nearest-neighbor example would look like the following:
 
 ```text
      f=2    f=1    f=2    f=1    f=1

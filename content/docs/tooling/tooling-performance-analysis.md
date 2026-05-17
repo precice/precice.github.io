@@ -121,7 +121,7 @@ Some parts of preCICE involve communication, which cannot be interleaved efficie
 Measuring the runtime of such operations can be tricky, as the time spent waiting should not be misinterpreted.
 Synchronizing all ranks using a barrier solves the issue, but has an impact on performance.
 
-To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchonization before required events.
+To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchronization before required events.
 Use the `synchronize` attribute to enable such synchronization if you need it.
 
 ```xml
@@ -395,7 +395,7 @@ selection = df[ (df["participant"] == "A") & (df["rank"] == 0) ]
 ## Advanced analysis with perfetto
 
 So far, we used [perfetto](https://perfetto.dev) for visualizing the traces.
-Sometimes, theses traces are either too large to inspect visually or one needs to extract more detailed data from the tarces than simple event-wise duration sums.
+Sometimes, these traces are either too large to inspect visually or one needs to extract more detailed data from the traces than simple event-wise duration sums.
 
 The perfetto project additionally provides a complete ecosystem of tools for trace processing.
 [PerfettoSQL](https://perfetto.dev/docs/analysis/perfetto-sql-getting-started) and the [trace processor](https://perfetto.dev/docs/analysis/trace-processor-python) allow to systematically extract data from large profiling records.
@@ -475,7 +475,7 @@ If you create tables make sure to use `CREATE PERFETTO TABLE` to get a table tun
 
 ### Helper
 
-The following table gives for every slice, the total time spend in `.sync` events in case synchronization is enabled in the configuration.
+The following table gives for every slice, the total time spent in `.sync` events in case synchronization is enabled in the configuration.
 
 ```sql
 CREATE PERFETTO TABLE synctime AS
@@ -486,7 +486,7 @@ WHERE s.name GLOB '*.sync'
 GROUP BY a.id;
 ```
 
-The following is a view that uses preCICE terminology and allows to work with `participant` and numberic `ranks`:
+The following is a view that uses preCICE terminology and allows to work with `participant` and numeric `ranks`:
 
 ```sql
 CREATE VIEW precice AS

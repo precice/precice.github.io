@@ -25,7 +25,7 @@ Executing `mpirun ...` in the job script then automatically distributes the job 
 
 ## SLURM and partitioned simulations
 
-Running multiple MPI jobs in parallel in a single job script is a very unusual use case and leads to problems tough.
+Running multiple MPI jobs in parallel in a single job script is a very unusual use case and leads to problems though.
 Each invocation of `mpirun ...` uses the environment variables set by SLURM to determine which nodes to run on.
 As both see the identical list of nodes, they double allocate the nodes starting at node 1.
 This leads to an increased workload on the doubly-allocated nodes, while some nodes are unused (assuming as parallel coupling scheme).

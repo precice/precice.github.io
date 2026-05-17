@@ -45,7 +45,7 @@ Discussion of this approach:
 
 ## Define two separate meshes as `read_mesh` and `write_mesh`
 
-We create a `write_mesh` where we call `precice::setMeshVertex(...)` *only* for the vertices owned by the rank. We do no add any copies of vertices to the `write_mesh`, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via `precice::writeData(...)`) to vertices on that mesh.
+We create a `write_mesh` where we call `precice::setMeshVertex(...)` *only* for the vertices owned by the rank. We do not add any copies of vertices to the `write_mesh`, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via `precice::writeData(...)`) to vertices on that mesh.
 
 Additionally, we create a `read_mesh`, where we call `precice::setMeshVertex(...)` for vertices owned by the rank *and* vertices where a copy is required. This allows the rank to read the values for owned as well as for copied vertices (e.g. via `precice::readData(...)`).
 

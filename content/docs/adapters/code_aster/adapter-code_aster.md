@@ -157,7 +157,7 @@ See the respective [issue](https://github.com/precice/code_aster-adapter/issues/
 
 There are two methods to visualize the results for Code_Aster:
 
-1. [Salome-Meca](https://www.code-aster.org/spip.php?article303) is an integated graphical interface, which also offers a post-processing unit called ParaViS (based on ParaView). The nice thing about ParaViS, is that it can open both the results of OpenFOAM and Code-Aster at the same time. Please make sure to have salome-meca 2018 or newer, as the med files are not compatible with older versions. Before installing Salome-Meca, please make sure that the environment on your system uses Python 2.7 (see the respective [Salome-Meca issue](https://code-aster.org/forum2/viewtopic.php?id=23294)).
+1. [Salome-Meca](https://www.code-aster.org/spip.php?article303) is an integrated graphical interface, which also offers a post-processing unit called ParaViS (based on ParaView). The nice thing about ParaViS, is that it can open both the results of OpenFOAM and Code-Aster at the same time. Please make sure to have salome-meca 2018 or newer, as the med files are not compatible with older versions. Before installing Salome-Meca, please make sure that the environment on your system uses Python 2.7 (see the respective [Salome-Meca issue](https://code-aster.org/forum2/viewtopic.php?id=23294)).
 
 2. [GMSH](http://gmsh.info/) is a stand-alone visualization tool that can open files of med format. Please make sure to get a version that is compatible with med 4.0 (GMSH 4.5 is known to work).
 

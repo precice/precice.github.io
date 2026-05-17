@@ -26,7 +26,7 @@ This example multiplies the stresses values by the respective element area, tran
 `timing` defines _when_ the action is executed. Options are:
 
 * `write-mapping-post`: at the end of a time window, directly after the write mappings are applied, but still before data communication.
-* `read-mapping-post`: at the end of a time window, directly after the read mappings are applied, and thus also after data communcation.
+* `read-mapping-post`: at the end of a time window, directly after the read mappings are applied, and thus also after data communication.
 
 Pre-implemented actions are:
 

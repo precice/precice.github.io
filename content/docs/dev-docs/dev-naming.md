@@ -32,7 +32,7 @@ preCICE-related tools that are meant to be started as executables should be prep
 - `precice-micro-manager`
 - `precice-aste`
 
-This allows easy auto-completion and grouping or related tools.
+This allows easy auto-completion and grouping of related tools.
 
 As an exception, even if it is an executable developed in the context of preCICE, we consider the [fmiprecice](https://precice.org/tooling-fmi-runner.html) to follow the naming conventions of adapters, as it is seen from the perspective of the FMI community.
 

@@ -18,7 +18,7 @@ Feel free to ask questions in the [corresponding thread of the forum](https://pr
 
 ### Tuesday, June 6, 8:30 - 10:30
 
-Room: Impreial - Hall II,
+Room: Imperial - Hall II,
 Session: [IS14 - I](https://coupled2023.cimne.com/event/session/80059f84-e478-11ed-9a1c-000c29ddfc0c)
 
 * **Frédéric Simonis et al.:** [An introduction to the preCICE coupling library](https://coupled2023.cimne.com/event/contribution/f525c38f-a2f6-11ed-b019-000c29ddfc0c)
@@ -40,7 +40,7 @@ Session: [IS14 - II](https://coupled2023.cimne.com/event/session/5ef3d5c8-e503-1
 
 ### Wednesday, June 7, 09:00 - 10:00
 
-Room: Imprerial - Hall II,
+Room: Imperial - Hall II,
 Session: [IS14 - III](https://coupled2023.cimne.com/event/session/a022f5b7-e50c-11ed-9a1c-000c29ddfc0c)
 
 * **Markus Mühlhäußer et al.:** [Partitioned Flow Simulations with preCICE and OpenFOAM](https://coupled2023.cimne.com/event/contribution/a6344f6f-a346-11ed-b019-000c29ddfc0c)
