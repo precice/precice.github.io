@@ -65,7 +65,7 @@ Data with name "DaTTa" used by mesh "MyCloud" is not defined. Please define a da
 No coupling scheme defined for participant "LonelyWolf". Please make sure to provide at least one <coupling-scheme:TYPE> in your precice-config.xml that couples this participant using the <participants .../> tag.
 ```
 
-Examples of wanings:
+Examples of warnings:
 
 ```text
 3D Mesh "MyCloud" does not contain triangles. Nearest projection mapping will map to primitives of lower dimension.
@@ -75,7 +75,7 @@ The relative convergence limit="1e-8" is close to the hard-coded numerical resol
 ## Formatting
 
 We use the `fmtlib` for formatting the messages, which reimplements the python format syntax.
-See the [offical syntax reference](https://fmt.dev/).
+See the [official syntax reference](https://fmt.dev/).
 
 ```cpp
 // Simple message

@@ -1,7 +1,7 @@
 ---
 title: Step 5 – Non-matching time step sizes
 permalink: couple-your-code-time-step-sizes.html
-keywords: api, adapter, advance, timestepping, subcycling, adaptivity
+keywords: api, adapter, advance, time-stepping, subcycling, adaptivity
 summary: "In this step, you learn how preCICE handles non-matching time step sizes and a few more things about simulation time."
 redirect_from:
   - couple-your-code-timestep-sizes.html
@@ -73,7 +73,7 @@ Let us have a closer look at both options.
 The preCICE configuration defines a fixed time window. Both participants can use smaller time step sizes, but then they _subcycle_, i.e. coupling data is only communicated at the end of each time window.
 The figure below illustrates this procedure (k is the subcycling index, the dashed lines mark the time window):
 
-![Timestepping with a fixed time window](images/docs/couple-your-code-timestepping-fixed.png)
+![Time-stepping with a fixed time window](images/docs/couple-your-code-timestepping-fixed.png)
 
 * After each time step, both participants tell preCICE which time step size `dt` they just used by calling `precice.advance(dt)`. This way, preCICE can keep track of the total time. `preciceDt` is the remainder time to the next window:
 
@@ -160,7 +160,7 @@ The last time step ended up close to the end of the time-window without reaching
 Such small time steps can lead to problems in the solver.
 
 One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
-The follow example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `minDt`.
+The following example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `minDt`.
 <ul id="apiTabs" class="nav nav-tabs">
     <li class="active"><a href="#cpp-5" data-toggle="tab">C++</a></li>
     <li><a href="#python-5" data-toggle="tab">Python</a></li>
@@ -327,7 +327,7 @@ dt = min(precice_dt, solver_dt)
 {% endnote %}
 
 {% important %}
-You never need to alter your code if you want to switch the first and second participant, if you want to switch between a serial and a parallel coupling scheme, or if you want to switch between `fixed` and `first-participant` timestepping. Everything can be configured. Even if implicit coupling is used.
+You never need to alter your code if you want to switch the first and second participant, if you want to switch between a serial and a parallel coupling scheme, or if you want to switch between `fixed` and `first-participant` time-stepping. Everything can be configured. Even if implicit coupling is used.
 {% endimportant %}
 
 ## Steering the end of the simulation

@@ -10,7 +10,7 @@ This section lists systems and instructions on how to install these packages.
 
 [Repology](https://repology.org/project/precice/versions) compiles a list of packages and versions in distribution repositories.
 This contains a good overview of packages also in community repositories.
-Note, however that Ubuntu and Debian are absent from this list as official packages for those Distros would lack too far behind in time.
+Note, however that Ubuntu and Debian are absent from this list as official packages for those Distros would lag too far behind in time.
 
 ![Packaging status](https://repology.org/badge/vertical-allrepos/precice.svg?header=&columns=2&exclude_sources=site)
 
@@ -27,7 +27,7 @@ sudo apt install ./libprecice3_{{ site.precice_version }}_noble.deb
 ```
 
 We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release.
-Check the [official release-cyle](https://ubuntu.com/about/release-cycle) for more information and the version code names.
+Check the [official release-cycle](https://ubuntu.com/about/release-cycle) for more information and the version code names.
 As an example, change `noble` to `jammy` for 22.04 (Jammy Jellyfish).
 
 Is a newer preCICE release out, and have we not yet updated the above links? Please edit this page.

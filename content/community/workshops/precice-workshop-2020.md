@@ -75,7 +75,7 @@ More details have been sent to registered participants.
 
 <details class="workshop-event" id="workshop"><summary>Hands-on introductory workshop</summary>
 <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://github.com/uekerman">Benjamin Uekermann</a><br/>
-Affiliation: Technical Univerisy of Munich, Eindhoven University of Technology, preCICE developers.</p>
+Affiliation: Technical University of Munich, Eindhoven University of Technology, preCICE developers.</p>
 <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
 <p>We will couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
 <p>Please bring your own laptop, with preCICE v2, Python 3.6 or newer, and the Python bindings installed. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. A VM image for VirtualBox will also be available.</p>

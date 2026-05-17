@@ -73,7 +73,7 @@ set -m
 
 ## Run locally in parallel using MPI
 
-If your solvers support it, your can run simulations in parallel using MPI.
+If your solver supports it, your can run simulations in parallel using MPI.
 Whilst relatively simple to do on a single machine, this gets more complicated when dealing with [distributed systems](running-distributed) and job managers like [SLURM](running-slurm), which are handled in following steps.
 
 Running a single solver in parallel is the simplest case.

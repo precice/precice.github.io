@@ -241,7 +241,7 @@ for tri in solver.triangular_faces:
 
 ### Solver supports custom attributes
 
-You solver doesn't provide a unique identifier for each vertex.
+Your solver doesn't provide a unique identifier for each vertex.
 It does provide a functionality to attach some kind of customised attribute to a vertex.
 This attribute is also available when iterating over faces.
 

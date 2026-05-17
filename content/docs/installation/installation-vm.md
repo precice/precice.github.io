@@ -86,7 +86,7 @@ that you start it with `vagrant up` to set up these features.
 The default keyboard layout is US English (QWERTY).
 Change this clicking on the `Keyboard` link on the Desktop.
 Switch to the `Layout` tab, add your layout and remove the default.
-Finally, use the menu in the very top left to to logout and login for the change to take effect.
+Finally, use the menu in the very top left to logout and login for the change to take effect.
 
 ### Adjusting the window scaling
 
