@@ -1672,52 +1672,52 @@ document.addEventListener('keydown', function(e) {
                 </div>
             
             <div class="text-right">
-              <small>Updated 14 Mar 26</small>
+              <small>Updated 17 May 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <p>If you installed preCICE in a custom prefix, then one still needs to make it discoverable by the system.</p>
+   <p>If you installed preCICE in a custom prefix, then you still need to make it discoverable by the system.</p>
 
 <p>The preCICE library needs to be discoverable in various ways:</p>
 
 <ol>
-  <li>The location of headers needs to be available during compilation.
+  <li>The location of headers must be available during compilation.
 Compilers use hints from <code class="language-plaintext highlighter-rouge">CPATH</code> if no extra compilation flags were passed to them using <code class="language-plaintext highlighter-rouge">-I</code>.</li>
-  <li>The shared library needs to be available during linking and execution.
-The dynamic linker uses hints from <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> (<code class="language-plaintext highlighter-rouge">DYLD_LIBRARY_PATH</code> on MacOS X).</li>
-  <li>The preCICE executables need to be in <code class="language-plaintext highlighter-rouge">PATH</code> (optional, only for additional tools).</li>
+  <li>The shared library must be available during linking and execution.
+The dynamic linker uses hints from <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> (<code class="language-plaintext highlighter-rouge">DYLD_LIBRARY_PATH</code> on macOS).</li>
+  <li>The preCICE executables must be in <code class="language-plaintext highlighter-rouge">PATH</code> (optional, only for additional tools).</li>
 </ol>
 
 <p>As this setup can become tedious to maintain, there are some tools that expose the above details.
 However, they also need to find preCICE in some way:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">pkg-config</code> and <code class="language-plaintext highlighter-rouge">pkgconf</code> use <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> to search for additional <code class="language-plaintext highlighter-rouge">.pc</code> files.</li>
-  <li><code class="language-plaintext highlighter-rouge">CMake</code> uses <code class="language-plaintext highlighter-rouge">CMAKE_PREFIX_PATH</code> for additional installation prefixes.
+  <li>pkg-config and pkgconf use <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> to search for additional <code class="language-plaintext highlighter-rouge">.pc</code> files.</li>
+  <li>CMake uses <code class="language-plaintext highlighter-rouge">CMAKE_PREFIX_PATH</code> for additional installation prefixes.
 Alternatively, one can specify the location of the preCICE CMake configuration file using <code class="language-plaintext highlighter-rouge">precice_DIR</code>.</li>
 </ul>
 
 <h2 id="using-the-shell">Using the shell</h2>
 
-<p>If you are using a Unix-like system, you are using a shell, which offers an easy and straight forward way to make preCICE discoverable.</p>
+<p>If you are using a Unix-like system, you are using a shell, which offers an easy and straightforward way to make preCICE discoverable.</p>
 
 <p>Let <code class="language-plaintext highlighter-rouge">PRECICE_PREFIX</code> be the installation prefix chosen during the <a href="installation-source-preparation#installation-prefix">preparation step</a>.
 Then add the following to your <code class="language-plaintext highlighter-rouge">.profile</code> (for bash) or <code class="language-plaintext highlighter-rouge">.zshrc</code> (for zsh).</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set this to your selected installation prefix</span>
-<span class="nv">PRECICE_PREFIX</span><span class="o">=</span><span class="s2">"~/software/prefix"</span>
+<span class="nv">PRECICE_PREFIX</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">HOME</span><span class="k">}</span><span class="s2">/software/prefix"</span>
+
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}</span><span class="s2">/bin:</span><span class="k">${</span><span class="nv">PATH</span><span class="k">}</span><span class="s2">"</span>
-<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}</span><span class="s2">/lib:</span><span class="k">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="k">}</span><span class="s2">"</span>
-<span class="nb">export </span><span class="nv">CPATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}</span><span class="s2">/include:</span><span class="k">${</span><span class="nv">CPATH</span><span class="k">}</span><span class="s2">"</span>
-<span class="c"># Enable detection with pkg-config and CMake</span>
-<span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}</span><span class="s2">/lib/pkgconfig:</span><span class="k">${</span><span class="nv">PKG_CONFIG_PATH</span><span class="k">}</span><span class="s2">"</span>
-<span class="nb">export </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}</span><span class="s2">:</span><span class="k">${</span><span class="nv">CMAKE_PREFIX_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">CPATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}</span><span class="s2">/include</span><span class="k">${</span><span class="nv">CPATH</span>:+:<span class="nv">$CPATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}</span><span class="s2">/lib</span><span class="k">${</span><span class="nv">LD_LIBRARY_PATH</span>:+:<span class="nv">$LD_LIBRARY_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}</span><span class="s2">/lib/pkgconfig</span><span class="k">${</span><span class="nv">PKG_CONFIG_PATH</span>:+:<span class="nv">$PKG_CONFIG_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PRECICE_PREFIX</span><span class="k">}${</span><span class="nv">CMAKE_PREFIX_PATH</span>:+:<span class="nv">$CMAKE_PREFIX_PATH</span><span class="k">}</span><span class="s2">"</span>
 </code></pre></div></div>
 
-<p>After adding these variables, start a new session (open a new terminal or logout and login again).</p>
+<p>After adding these variables, start a new session (open a new terminal or log out and in again).</p>
 
 <h2 id="using-systemd-environmentd">Using systemd environment.d</h2>
 
@@ -1733,48 +1733,68 @@ Then create a file <code class="language-plaintext highlighter-rouge">~/.config/
 
 <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set this to your selected installation prefix
 </span><span class="n">PRECICE_PREFIX</span>=<span class="s2">"${HOME}/software/prefix"</span>
+
 <span class="n">PATH</span>=<span class="s2">"${PRECICE_PREFIX}/bin:${PATH}"</span>
-<span class="n">LD_LIBRARY_PATH</span>=<span class="s2">"${PRECICE_PREFIX}/lib:${LD_LIBRARY_PATH}"</span>
-<span class="n">CPATH</span>=<span class="s2">"${PRECICE_PREFIX}/include:${CPATH}"</span>
-<span class="c"># Enable detection with pkg-config and CMake
-</span><span class="n">PKG_CONFIG_PATH</span>=<span class="s2">"${PRECICE_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}"</span>
-<span class="n">CMAKE_PREFIX_PATH</span>=<span class="s2">"${PRECICE_PREFIX}:${CMAKE_PREFIX_PATH}"</span>
+<span class="n">CPATH</span>=<span class="s2">"${PRECICE_PREFIX}/include${CPATH:+:$CPATH}"</span>
+<span class="n">LD_LIBRARY_PATH</span>=<span class="s2">"${PRECICE_PREFIX}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"</span>
+<span class="n">PKG_CONFIG_PATH</span>=<span class="s2">"${PRECICE_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"</span>
+<span class="n">CMAKE_PREFIX_PATH</span>=<span class="s2">"${PRECICE_PREFIX}${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"</span>
 </code></pre></div></div>
 
-<p>After adding the file, logout and login again. Opening a new terminal will not be sufficient.</p>
+<p>After adding the file, log out and in again. Opening a new terminal will <strong>not</strong> be sufficient.
+Verify the changes by listing the loaded environment in a new terminal:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">systemctl show-environment
+</span></code></pre></div></div>
 
 <h2 id="using-directly-from-the-binary-directory">Using directly from the binary directory</h2>
 
-<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-This method is strongly discouraged unless you are a preCICE developer.
-Install preCICE into a prefix unless you have a very good reason not to.
-</div>
+<p>It may not always be practical to reinstall preCICE repeatedly.
+This is especially the case for simultaneous development of preCICE and an adapter or while profiling the internals.</p>
 
-<p>It may not always be practical to install preCICE repeatedly.
-This is especially the case for simultaneous development of preCICE and an adapter, or while profiling the internals.</p>
+<p>This method is discouraged as file layouts are fundamentally different, and we make <strong>no</strong> guarantees on keeping them consistent across releases.
+Hence, the only reliable methods for using preCICE from the binary directory require pkg-config or CMake.
+If your adapter or solver isn’t using one of these methods, we strongly suggest installing preCICE to a prefix or porting the adapter to pkg-config or CMake.</p>
 
-<p>This method is discouraged as file layouts are fundamentally different and we make <strong>no</strong> guarantees on keeping them consistent between releases.
-Hence, the only reliable methods for using preCICE from the binary directory require <code class="language-plaintext highlighter-rouge">pkg-config</code> or <code class="language-plaintext highlighter-rouge">CMake</code>.
-If your adapter or solver isn’t using one of these methods, then we strongly suggest to install preCICE to a prefix or port the adapter to <code class="language-plaintext highlighter-rouge">pkg-config</code>.</p>
-
-<p>First extend <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> with the binary directory if you don’t plan to use <code class="language-plaintext highlighter-rouge">rpath</code> (which <code class="language-plaintext highlighter-rouge">CMake</code> does by default).
-For <code class="language-plaintext highlighter-rouge">pkg-config</code> users, extend <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> with the binary directory.
-For <code class="language-plaintext highlighter-rouge">CMake</code> users, either set the environment variable <code class="language-plaintext highlighter-rouge">precice_DIR</code> to the binary directory prior to calling <code class="language-plaintext highlighter-rouge">CMake</code>, or pass it as a <code class="language-plaintext highlighter-rouge">CMake</code> variable during configuration.</p>
+<p>First, extend <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> with the binary directory if you don’t plan to use <code class="language-plaintext highlighter-rouge">rpath</code> (which CMake does by default).
+For pkg-config users, extend <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> with the binary directory.
+For CMake users, either set the environment variable <code class="language-plaintext highlighter-rouge">precice_DIR</code> to the binary directory before calling CMake or pass it as a CMake variable during configuration.</p>
 
 <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Only for using preCICE directly from the build directory
-# (as of preCICE v3.3.0 - later versions might differ).
-# Prefer installing to a prefix (see above).
+# (as of preCICE v3.4.0 - later versions might differ).
 </span>
 <span class="n">PRECICE_BUILD</span>=<span class="s2">"/path/to/precice/build"</span>
 <span class="n">PATH</span>=<span class="s2">"${PRECICE_BUILD}:${PATH}"</span>
-<span class="n">LD_LIBRARY_PATH</span>=<span class="s2">"${PRECICE_BUILD}:${LD_LIBRARY_PATH}"</span>
-<span class="n">PKG_CONFIG_PATH</span>=<span class="s2">"${PRECICE_BUILD}:${PKG_CONFIG_PATH}"</span>
-<span class="n">CMAKE_PREFIX_PATH</span>=<span class="s2">"${PRECICE_BUILD}:${CMAKE_PREFIX_PATH}"</span>
+<span class="n">LD_LIBRARY_PATH</span>=<span class="s2">"${PRECICE_BUILD}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"</span>
+<span class="n">PKG_CONFIG_PATH</span>=<span class="s2">"${PRECICE_BUILD}${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"</span>
+<span class="n">precice_DIR</span>=<span class="s2">"${PRECICE_BUILD}"</span>
 </code></pre></div></div>
+
+<h2 id="verify-your-installation">Verify your installation</h2>
+
+<p>First, run:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">precice-version
+</span></code></pre></div></div>
+
+<p>If the binary <code class="language-plaintext highlighter-rouge">precice-version</code> cannot be found, then <code class="language-plaintext highlighter-rouge">PATH</code> is incorrect.
+If the library <code class="language-plaintext highlighter-rouge">libprecice.so</code> cannot be found, then <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> is incorrect.
+If the displayed version differs from the version you expect, then you have multiple conflicting preCICE installations on your system.</p>
+
+<p>Next, run:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">pkg-config --modversion libprecice
+</span></code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">libprecice</code> wasn’t found, then your <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> is incorrect.
+If the displayed version differs from the version you expect, then you have multiple conflicting preCICE installations on your system.</p>
+
+<p>At this point, check whether the installation step was successful and whether the used installation prefix contains folders <code class="language-plaintext highlighter-rouge">bin</code>, <code class="language-plaintext highlighter-rouge">lib</code>, and <code class="language-plaintext highlighter-rouge">include</code>.</p>
 
 <h2 id="next-steps">Next steps</h2>
 
-<p>This concludes the preCICE installation for custom prefixes and you should have a working installation of preCICE on your system.</p>
+<p>This concludes the preCICE installation for custom prefixes.
+You should now have a working preCICE installation on your system.</p>
 
 <p>To use preCICE in your project, see the page <a href="installation-linking">Linking to preCICE</a>.</p>
 
@@ -2154,8 +2174,8 @@ For <code class="language-plaintext highlighter-rouge">CMake</code> users, eithe
         </a>
         </p>
         <p>
-        Page last updated: Mar 14, 2026<br>
-        Site last updated: May 16, 2026
+        Page last updated: May 17, 2026<br>
+        Site last updated: May 17, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
