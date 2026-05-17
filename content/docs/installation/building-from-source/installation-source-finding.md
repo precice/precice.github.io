@@ -116,7 +116,7 @@ If the binary `precice-version` cannot be found, then `PATH` is incorrect.
 If the library `libprecice.so` cannot be found, then `LD_LIBRARY_PATH` is incorrect.
 If the displayed version differs from the version you expect, then you have multiple conflicting preCICE installations on your system.
 
-Next run:
+Next, run:
 
 ```terminal
 pkg-config --modversion libprecice
