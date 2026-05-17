@@ -16,7 +16,7 @@ There are [guidelines for adapters](community-guidelines-adapters.html) and [gui
 {% endtip %}
 
 {% tip %}
-Also have a look at the [source documentation](dev-docs-sourcedocs.html) and [minimal reference implementations](couple-your-code-api.html#minimal-reference-implementations).
+Also have a look at the [API documentation](couple-your-code-api.html) and [minimal reference implementations](couple-your-code-api.html#minimal-reference-implementations).
 {% endtip %}
 
 ## preCICE API
@@ -127,7 +127,7 @@ The following is a diff of how an adapter-port could look like. The guide contin
   - Replace the use of mesh IDs with the mesh name.
   - Replace the use of data IDs with the respective mesh and data names (both are needed).
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
-  - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
+  - Directly define face elements or cells of your coupling mesh available in your solver by passing their vertices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
   - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`.
 - Implicit coupling
@@ -138,10 +138,10 @@ The following is a diff of how an adapter-port could look like. The guide contin
   - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with the single command `readData`.
   - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with the single command `writeData`.
   - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with the single command `writeGradientData`.
-  - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `precice::span<const VertexID>`, `precice::span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a contigous container. Examples for the latter are `std::vector`, `std:array`, `Eigen::VectorXd`, and also `std::span`.
-  - To simplify migration to `readData()`, use `getMaxTimeStepSize()` as relative read time for now to always read data at the end of the time window. Read up on [time interpolation](couple-your-code-waveform.html) once you finished the port.
+  - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `precice::span<const VertexID>`, `precice::span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a contiguous container. Examples for the latter are `std::vector`, `std:array`, `Eigen::VectorXd`, and also `std::span`.
+  - To simplify migration to `readData()`, use `getMaxTimeStepSize()` as relative read time for now to always read data at the end of the time window. Read up on [time interpolation](couple-your-code-waveform.html) once you have finished the port.
 - Migrate data initialization
-  - Move the data initalization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.
+  - Move the data initialization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.
   - Remove `initializeData()`. The function `initializeData()` has been merged into `ìnitialize()`.
   - Remove `precice::constants::actionWriteInitialData()`.
   - Remove `markActionFulfilled()` of write initial data.
@@ -154,7 +154,7 @@ The following is a diff of how an adapter-port could look like. The guide contin
   - Remove `mapWriteDataFrom()` and `mapReadDataTo()` as custom timings were removed.
   - Remove `hasMesh()` and `hasData()` as there is no real usecase for them. All errors are unrecoverable.
   - Remove `hasToEvaluateSurrogateModel()` and `hasToEvaluateFineModel()` as they were stubs of a long-removed feature.
-  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter. We docummented [strategies on how to handle this](couple-your-code-defining-mesh-connectivity.html) in adapters.
+  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter. We documented [strategies on how to handle this](couple-your-code-defining-mesh-connectivity.html) in adapters.
   - Remove `isReadDataAvailable()` and `isWriteDataRequired()`. Due to time interpolation, writing generates samples in time, and reading is always possible between the current time and the end of the current time window.
 
 ### Add `relativeReadTime` for all read data calls
@@ -258,7 +258,7 @@ See the [tutorials](tutorials.html) for some examples, and the [configuration re
     - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
     - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
     - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
-    - Using actions with multiple couping schemes and mixed time window sizes is not well defined!
+    - Using actions with multiple coupling schemes and mixed time window sizes is not well defined!
 
 - Coupling schemes
   - Remove `<extrapolation-order value="..." />` in `<coupling-scheme>`. Contact us if you need this feature.

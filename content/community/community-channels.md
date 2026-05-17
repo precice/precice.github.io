@@ -21,7 +21,7 @@ For quick orientation questions, feel free to drop us a short message on the [pr
 
 Apart from joining the [preCICE forum](https://precice.discourse.group/), you can also:
 
-- Subscribe to the [preCICE newsletter](https://share.mailercloud.com/form?id=R3hmWkAzMTQ0NkAwMDAwMA==) to get the summary (four emails per year).
+- Subscribe to the [preCICE newsletter](https://share.mailercloud.com/form?id=R3hmWkAzMTQ0NkAwMDAwMA==) to get the summary (four emails per year) - [archive](https://precice.discourse.group/t/the-precice-newsletter-archive/2868).
 - Follow us on [GitHub](https://github.com/precice/) and star the repositories of your interest.
 - Follow us on [LinkedIn](https://www.linkedin.com/company/precice).
 - Follow us on [Mastodon](https://fosstodon.org/@precice) and on [Bluesky](https://bsky.app/profile/precice.org).

@@ -87,11 +87,11 @@ Exactly one participant needs to take `control` of the coupling. preCICE compute
 
 {% version 2.3.0 %}
 Prior to version 2.3.0, this controlling participant needs to be centric.
-This means that it requrires `m2n` connections to all other participants and the `exchange` tags needs to be properly configured.
+This means that it requires `m2n` connections to all other participants and the `exchange` tags needs to be properly configured.
 Version 2.3.0 allows non-centric participants as long as they run in serial.
 {% endversion %}
 
-Data being exchanged between multiple solvers must be configured indentically in terms of data initialization and substeps.
+Data being exchanged between multiple solvers must be configured identically in terms of data initialization and substeps.
 All other tags are similar to a normal [implicit coupling](configuration-coupling.html#implicit-coupling-schemes).
 
 To find out more about multi coupling, you can also read Section 3.8 in [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf) or have a look at the [tutorial of multiple perpendicular flaps in a channel](tutorials-multiple-perpendicular-flaps.html).

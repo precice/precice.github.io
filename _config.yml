@@ -1,4 +1,4 @@
-repository: precice/precice.github.io_future
+repository: precice/precice.github.io
 
 output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
@@ -12,11 +12,8 @@ site_title: preCICE - The Coupling Library
 company_name: preCICE
 # this appears in the footer
 
-github_editme_path: https://github.com/precice/precice.github.io_future/edit/master/
+github_editme_path: https://github.com/precice/precice.github.io/edit/master/
 # if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank. Ends in trailing slash.
-
-# gitlab_editme_path: tomjoht/documentation-theme-jekyll/edit/gh-pages/
-# if you're using GitLab, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 
 google_analytics:
 # if you have google-analytics ID, put it in. if not, edit this value to blank.
@@ -36,26 +33,11 @@ exclude:
   - README.md
   - var/
   - pdf/
-  - createtag
   - pdf-docs.sh
   - doxygen/
   - tools/
   - content/**/_index.md
 # these are the files and directories that jekyll will exclude from the build
-
-feedback_subject_line: XXX
-
-feedback_email: email
-# used as a contact email for the Feedback link in the top navigation bar
-
-# feedback_disable: true
-# if you uncomment the previous line, the Feedback link gets removed
-
-# feedback_text: "Need help?"
-# if you uncomment the previous line, it changes the Feedback text
-
-# feedback_link: "http://helpy.io/"
-# if you uncomment the previous line, it changes where the feedback link points to
 
 highlighter: rouge
 # library used for syntax highlighting
@@ -86,7 +68,7 @@ defaults:
       type: "pages"
     values:
       layout: "page"
-      comments: true
+      comments: false
       # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
       search: true
       sidebar: home_sidebar
@@ -214,6 +196,18 @@ defaults:
       github_editme_path: https://github.com/precice/dumux-adapter/edit/develop/ # ends in /
   -
     scope:
+      path: "imported/fenicsx-adapter/"
+      type: "pages"
+    values:
+      layout: "page"
+      comments: false
+      search: true
+      sidebar: docs_sidebar
+      topnav: topnav
+      toc: true
+      github_editme_path: https://github.com/precice/fenicsx-adapter/edit/develop/ # ends in /
+  -
+    scope:
       path: "imported/preeco-orga/"
       type: "pages"
     values:
@@ -231,7 +225,6 @@ defaults:
     values:
       layout: "page"
       comments: false
-      # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
       search: true
       sidebar: community_sidebar
       topnav: topnav
@@ -242,10 +235,10 @@ defaults:
 sidebars:
 - home_sidebar
 - docs_sidebar
-- tutorials_sidebar
+- tutorial_sidebar
 - community_sidebar
 
-description: "preCICE (Precise Code Interaction Coupling Environment) is an open-source coupling library for partitioned simulations of multi-physics scenarios such as fluid-structure interaction or fluid-structure-acoustic interaction."
+description: "preCICE is an open-source coupling library and ecosystem for general partitioned multi-physics and multi-scale simulations, including surface and volume coupling."
 
 # the description is used in the feed.xml file
 
@@ -268,7 +261,6 @@ mermaid:
 plugins:
   - jekyll-redirect-from
   - jekyll-sitemap
-  - jekyll-last-modified-at
 
 subprojects:
   - imported/aste/docs
@@ -279,6 +271,7 @@ subprojects:
   - imported/openfoam-adapter/docs
   - imported/preeco-orga/guidelines
   - imported/su2-adapter/docs
+  - imported/fenicsx-adapter/docs
   - imported/tutorials/aste-turbine
   - imported/tutorials/breaking-dam-2d
   - imported/tutorials/channel-transport
@@ -305,6 +298,7 @@ subprojects:
   - imported/tutorials/partitioned-heat-conduction-direct
   - imported/tutorials/partitioned-heat-conduction-overlap
   - imported/tutorials/partitioned-pipe
+  - imported/tutorials/partitioned-pipe-multiscale
   - imported/tutorials/partitioned-pipe-two-phase
   - imported/tutorials/perpendicular-flap
   - imported/tutorials/perpendicular-flap-stress
@@ -315,11 +309,12 @@ subprojects:
   - imported/tutorials/two-scale-heat-conduction
   - imported/tutorials/volume-coupled-diffusion
   - imported/tutorials/volume-coupled-flow
+  - imported/tutorials/water-hammer
 
 # We use these versions to centrally update links
 # and other version-specific information.
 # Note that Jekyll cuts off trailing zeros: https://stackoverflow.com/questions/37862167/trailing-zeros-in-jekyll-liquid
-precice_version: 3.3.1
+precice_version: 3.4.1
 calculix_version: "2.20"
 calculix_adapter_version: "2.20.1"
 

@@ -18,3 +18,5 @@ The best way to learn how to couple a [Nutils](http://www.nutils.org/) applicati
 We recommend using a Python virtual environment to install different Nutils versions. See the `requirements.txt` and the `run.sh` of the cases included in the preCICE tutorials for an example.
 
 Version 8 requires `bottombar` as a dependency. `pip` might automatically install version `2.0`, which has [known issues](https://github.com/precice/precice/issues/1443) when used with preCICE. A [patch](https://github.com/evalf/bottombar/commit/fd2dc3a76db282e5ba1f12047683100a299cf651) was implemented in version `2.1`, thus a workaround is to explicitly re-install version `2.1`: `pip3 install bottombar==2.1` (in the same [virtual environment](https://docs.python.org/3/library/venv.html#creating-virtual-environments)).
+
+In case you get an error `nutils.Matrix.MatrixError: reordering problem`, this might be an issue with the [solver backend](https://nutils.org/install-matrix.html) on your system. In that case, try setting `NUTILS_MATRIX=scipy` before calling the respective Nutils solver (requires installing the Python package `scipy`).

@@ -27,7 +27,7 @@ There are different ways how to support preCICE and get priority support from th
 
 ## How our community is using preCICE
 
-We have compiled a community showcase with several of the most impressive preCICE implementations. The range of application fields is diverse, including e.g.  simulating the [temperatures on the moon](community-projects.html#simulation-of-temperatures-on-the-moon-with-thermos),  the [biomechanics of the heart valve](community-projects.html#evaluation-of-heart-valve-biomechanics), [modelling wind in urban areas](community-projects.html#hybrid-simulation-methods-for-wind-modelling-in-urban-areas), and simluating [high impact loads on structures](community-projects.html#fsi-simulations-of-high-impact-loads-on-structures).
+We have compiled a community showcase with several of the most impressive preCICE implementations. The range of application fields is diverse, including e.g.  simulating the [temperatures on the moon](community-projects.html#simulation-of-temperatures-on-the-moon-with-thermos),  the [biomechanics of the heart valve](community-projects.html#evaluation-of-heart-valve-biomechanics), [modelling wind in urban areas](community-projects.html#hybrid-simulation-methods-for-wind-modelling-in-urban-areas), and simulating [high impact loads on structures](community-projects.html#fsi-simulations-of-high-impact-loads-on-structures).
 You can find many more use cases on the [community stories page](community-projects.html).
 
 {% assign testimonials = site.testimonials | reverse %}
@@ -40,3 +40,7 @@ You can find many more use cases on the [community stories page](community-proje
 ## Contributions to preCICE
 
 Since its first commit in 2008, preCICE has been developed by three generations of doctoral students: look at the [list of active and previous developers](community-contributors.html). Your (small or large) [contributions are welcome](community-contribute-to-precice.html).
+
+Some of the people that have significantly contributed to repositories of preCICE on GitHub (arbitrary order):
+
+{% include community_spotlight.html %}

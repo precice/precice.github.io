@@ -120,7 +120,7 @@ The workshop stretches from Monday noon to Thursday evening.
 
     <details class="workshop-event" id="Uekermann"><summary>Benjamin Uekermann: Macro-Micro Coupling with preCICE</summary>
     <p>Authors: <a>Benjamin Uekermann</a> <br/></p>
-    <p>For many challenging applications in simulation technology, micro-scale phenomena can dominate macro-scale behavior. Using micro-scale models to simulate the complete macro-scale domain of interest is however oftentimes infeasible due to excessive computational cost. Thus, multiscale consideration is a necessity. In this presentation, we will outline how we want to extent preCICE to tackle macro-micro coupling in the coming years.</p>
+    <p>For many challenging applications in simulation technology, micro-scale phenomena can dominate macro-scale behavior. Using micro-scale models to simulate the complete macro-scale domain of interest is however oftentimes infeasible due to excessive computational cost. Thus, multiscale consideration is a necessity. In this presentation, we will outline how we want to extend preCICE to tackle macro-micro coupling in the coming years.</p>
     </details>
 
     <details class="workshop-event" id="Rodenberg"><summary>Benjamin Rodenberg: Language Bindings</summary>

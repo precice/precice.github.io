@@ -503,32 +503,38 @@ layout: landing_page
       </div>
     </div>
 
+    <div class="row less-bottom-margin logowall-filter" data-logowall-target="#logowall-items">
+      <div class="col-lg-12 text-center" role="group" aria-label="Filter organizations by category">
+        <button type="button" class="btn btn-primary filter-btn active" data-filter="all" aria-pressed="true" aria-controls="logowall-items">All</button>
+        <button type="button" class="btn btn-default filter-btn" data-filter="Academic" aria-pressed="false" aria-controls="logowall-items">Academia</button>
+        <button type="button" class="btn btn-default filter-btn" data-filter="Research" aria-pressed="false" aria-controls="logowall-items">Research</button>
+        <button type="button" class="btn btn-default filter-btn" data-filter="Industry" aria-pressed="false" aria-controls="logowall-items">Industry</button>
+      </div>
+    </div>
+    
     {% assign logowall = site.data.logowall %}
-
+    <div id="logowall-items" class="row logowall-grid" role="region" aria-label="Community logos">
     {% for row in logowall %}
-    <div class="row no-margin">
     {% for column in row.columns %}
-      <div class="col-md-6 col-xs-12 no-padding">
     {% for logo in column.logos %}
-        <div class="col-md-3 col-sm-3 col-xs-3 text-center"> <!--  vertical-align -->
-          <a href="{{logo.link}}" class="logo no-icon">
-            <div class="logo-holder vertical-align "> <!-- center-block -->
-              <img class="img-responsive center-block" src="images/logo/{{logo.logo}}" alt="{{logo.name}}, {{logo.country}}"
+      <div class="col-md-3 col-sm-3 col-xs-3 text-center logo-item" data-category="{{logo.category}}"> <!-- vertical-align -->
+        <a href="{{logo.link}}" class="logo no-icon">
+          <div class="logo-holder vertical-align "> <!-- center-block -->
+            <img class="img-responsive center-block" src="images/logo/{{logo.logo}}" alt="{{logo.name}}, {{logo.country}}"
              loading="lazy">
-            </div>
-            <p class="institution">{{logo.name}}</p>
-            <p class="country">{{logo.country}}</p>
-          </a>
-        </div>
-    {% endfor %}
+          </div>
+          <p class="institution">{{logo.name}}</p>
+          <p class="country">{{logo.country}}</p>
+        </a>
       </div>
     {% endfor %}
-    </div>
     {% endfor %}
+    {% endfor %}
+    </div>
 
     <div class="row">
       <div class="col-lg-12">
-        <a href="community.html" class="btn btn-primary" role="button">Explore preCICE community &nbsp;<i class="fas fa-chevron-right"></i></a>
+        <a href="community.html" class="btn btn-primary" role="button">Explore the preCICE community &nbsp;<i class="fas fa-chevron-right"></i></a>
       </div>
     </div>
 
