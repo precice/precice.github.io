@@ -68,7 +68,7 @@ If you are using Debian/Ubuntu, the `build-essential` package will install every
 
 When compiling with MPI enabled (the default) and using your MPI compiler wrapper as compiler, then it needs to use a suitable compiler.
 For example, check if the `mpicxx --version` reports a compatible compiler version.
-Check the section on [MPI](#mpi) for more information.j
+Check the section on [MPI](#mpi) for more information.
 
 ### CMake
 
@@ -394,7 +394,7 @@ Rocky Linux very closely follows the conventions previously set by CentOS. We fi
    sudo dnf groupinstall "Development Tools"
    ```
 
-2. Then, enable the CRB repostitory to install Eigen3, and the install the rest of the available preCICE dependencies:
+2. Then, enable the CRB repository to install Eigen3, and the install the rest of the available preCICE dependencies:
 
    ```bash
    sudo dnf config-manager --set-enabled crb

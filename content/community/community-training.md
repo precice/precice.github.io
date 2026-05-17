@@ -72,7 +72,7 @@ We have prepared a modified Ubuntu image that includes all the tools we will use
 With the training instructions, you will receive a URL with an up-to-date image for the specific training.
 With this `.iso` file, you can either:
 
-- prepare a virtual machin (VM), e.g., using [VirtualBox](https://www.virtualbox.org/)
+- prepare a virtual machine (VM), e.g., using [VirtualBox](https://www.virtualbox.org/)
 - create a bootable USB stick, e.g., using [Etcher](https://etcher.balena.io/), and use your system directly
 
 In both cases, you can either install the modified Ubuntu image, or try a live session, without any permanent changes (or result file saves) to your system.

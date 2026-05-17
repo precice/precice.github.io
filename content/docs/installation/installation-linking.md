@@ -103,7 +103,7 @@ There are two reasons you may be getting this error:
 
 ### `preciceC.h` cannot be found
 
-Simiarly to the C++ version, there are two reasons you may be getting this error:
+Similarly to the C++ version, there are two reasons you may be getting this error:
 
 * `pkg-config` could not find a `libprecice.pc` file (keep reading)
 * you are including the file as `preciceC.hpp` and not as `precice/preciceC.hpp`

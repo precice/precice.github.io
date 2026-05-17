@@ -248,4 +248,4 @@ There are a few minor non-local tasks, which can be easily distributed to others
 
 - Preparing and announcing feedback form. Ideally, participants can fill out the feedback form already during the last day of the workshop.
 - Ordering and preparing swag.
-- Managing the word café (collecting topcis, introducing the concept, keeping the time)
+- Managing the word café (collecting topics, introducing the concept, keeping the time)

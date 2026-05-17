@@ -80,7 +80,7 @@ subsection System properties
 end
 ```
 
-This section defines the material properties and allows the definition of body forces. Possion's ratio and lambda define the material properties. For an overview of all available parameters and conversion formulas have a look at the conversion table at the bottom of the [elastic moduli wikipedia article](https://en.wikipedia.org/wiki/Elastic_modulus):
+This section defines the material properties and allows the definition of body forces. Poisson's ratio and lambda define the material properties. For an overview of all available parameters and conversion formulas have a look at the conversion table at the bottom of the [elastic moduli wikipedia article](https://en.wikipedia.org/wiki/Elastic_modulus):
 Body forces are usually gravitational forces and defined direction-wise (x,y,z).
 
 ```text

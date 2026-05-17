@@ -2,7 +2,7 @@
 title: Moving or changing meshes
 permalink: couple-your-code-moving-or-changing-meshes.html
 keywords: api, adapter, ALE, geometries, CFD
-summary: "preCICE supports ALE-methods, direct-mesh-access, and pseudo-meshes to handle most scenarios of moving or changing meshes. A remeshing API is on the roadmap and being actively developped."
+summary: "preCICE supports ALE-methods, direct-mesh-access, and pseudo-meshes to handle most scenarios of moving or changing meshes. A remeshing API is on the roadmap and being actively developed."
 ---
 
 ## Static reference domain

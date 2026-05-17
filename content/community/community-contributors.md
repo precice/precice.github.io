@@ -40,7 +40,7 @@ If you are interested in joining the team of preCICE maintainers, please [contac
 
 ## Previous maintainers
 
-Previous mantainers and their affiliation at the time of their last significant contribution.
+Previous maintainers and their affiliation at the time of their last significant contribution.
 
 <br>
 {% assign dev_premain = site.data.developer.main-inactive | sort: "name" %}
