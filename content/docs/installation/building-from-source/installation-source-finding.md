@@ -5,15 +5,15 @@ keywords: configuration, basics, cmake, installation, building, source, bash, pr
 toc: false
 ---
 
-If you installed preCICE in a custom prefix, then one still needs to make it discoverable by the system.
+If you installed preCICE in a custom prefix, then you still need to make it discoverable by the system.
 
 The preCICE library needs to be discoverable in various ways:
 
-1. The location of headers needs to be available during compilation.
+1. The location of headers must be available during compilation.
    Compilers use hints from `CPATH` if no extra compilation flags were passed to them using `-I`.
-2. The shared library needs to be available during linking and execution.
-   The dynamic linker uses hints from `LD_LIBRARY_PATH` (`DYLD_LIBRARY_PATH` on MacOS X).
-3. The preCICE executables need to be in `PATH` (optional, only for additional tools).
+2. The shared library must be available during linking and execution.
+   The dynamic linker uses hints from `LD_LIBRARY_PATH` (`DYLD_LIBRARY_PATH` on macOS).
+3. The preCICE executables must be in `PATH` (optional, only for additional tools).
 
 As this setup can become tedious to maintain, there are some tools that expose the above details.
 However, they also need to find preCICE in some way:
@@ -24,7 +24,7 @@ However, they also need to find preCICE in some way:
 
 ## Using the shell
 
-If you are using a Unix-like system, you are using a shell, which offers an easy and straight forward way to make preCICE discoverable.
+If you are using a Unix-like system, you are using a shell, which offers an easy and straightforward way to make preCICE discoverable.
 
 Let `PRECICE_PREFIX` be the installation prefix chosen during the [preparation step](installation-source-preparation#installation-prefix).
 Then add the following to your `.profile` (for bash) or `.zshrc` (for zsh).
@@ -40,7 +40,7 @@ export PKG_CONFIG_PATH="${PRECICE_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_
 export CMAKE_PREFIX_PATH="${PRECICE_PREFIX}${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"
 ```
 
-After adding these variables, start a new session (open a new terminal or logout and login again).
+After adding these variables, start a new session (open a new terminal or log out and in again).
 
 ## Using systemd environment.d
 
@@ -66,7 +66,7 @@ PKG_CONFIG_PATH="${PRECICE_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_
 CMAKE_PREFIX_PATH="${PRECICE_PREFIX}${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"
 ```
 
-After adding the file, logout and login again. Opening a new terminal will **not** be sufficient.
+After adding the file, log out and in again. Opening a new terminal will **not** be sufficient.
 Verify the changes by listing the loaded environment in a new terminal:
 
 ```terminal
@@ -76,7 +76,7 @@ systemctl show-environment
 ## Using directly from the binary directory
 
 It may not always be practical to reinstall preCICE repeatedly.
-This is especially the case for simultaneous development of preCICE and an adapter, or while profiling the internals.
+This is especially the case for simultaneous development of preCICE and an adapter or while profiling the internals.
 
 This method is discouraged as file layouts are fundamentally different, and we make **no** guarantees on keeping them consistent across releases.
 Hence, the only reliable methods for using preCICE from the binary directory require pkg-config or CMake.
@@ -84,7 +84,7 @@ If your adapter or solver isn't using one of these methods, we strongly suggest 
 
 First, extend `LD_LIBRARY_PATH` with the binary directory if you don't plan to use `rpath` (which CMake does by default).
 For pkg-config users, extend `PKG_CONFIG_PATH` with the binary directory.
-For CMake users, either set the environment variable `precice_DIR` to the binary directory prior to calling CMake, or pass it as a CMake variable during configuration.
+For CMake users, either set the environment variable `precice_DIR` to the binary directory before calling CMake or pass it as a CMake variable during configuration.
 
 ```conf
 # Only for using preCICE directly from the build directory
@@ -99,7 +99,7 @@ precice_DIR="${PRECICE_BUILD}"
 
 ## Verify your installation
 
-First run:
+First, run:
 
 ```terminal
 precice-version
