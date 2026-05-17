@@ -1707,7 +1707,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 17 May 26</small>
             </div>
           </aside>
           
@@ -1759,7 +1759,7 @@ goes via that one port:</p>
 </code></pre></div></div>
 
 <p>In preCICE, we always start simulations in separated MPI communicators (remember: we start solvers in different terminals, with their own <code class="language-plaintext highlighter-rouge">mpirun</code> commands), a feature that highly improves flexibility (solvers do not need to be in the same MPI communicator at any time). As the MPI ports functionality is not a highly used feature of MPI (at least not with separated <code class="language-plaintext highlighter-rouge">MPI_COMM_WORLD</code> communicators), it has robustness issues for several MPI implementations (<a href="https://github.com/precice/precice/issues/746">for OpenMPI, for example</a>). In principle, MPI gives you faster communication roughly by a factor of 10 (see <a href="https://mediatum.ub.tum.de/doc/1320661/document.pdf">Benjamin Uekermann’s dissertation</a>, section 4.2.3), but, for most applications, you will not feel any difference as both are very fast. We recommend using <code class="language-plaintext highlighter-rouge">sockets</code> by default, unless you are performing large performance-critical simulations with very large coupling meshes combined with a high total time-window count.
-There are no hard limits regarding vertex or time-window count for when this change makes sense, as the the preCICE configuration and the solver-provided mesh partitioning hugely impact the required communication load. The only reliable decision process is to measure the impact of the change on the run-time of <code class="language-plaintext highlighter-rouge">initialize</code> and <code class="language-plaintext highlighter-rouge">advance</code> calls. See the section on <a href="tooling-performance-analysis">performance analysis</a> for more information.</p>
+There are no hard limits regarding vertex or time-window count for when this change makes sense, as the preCICE configuration and the solver-provided mesh partitioning hugely impact the required communication load. The only reliable decision process is to measure the impact of the change on the run-time of <code class="language-plaintext highlighter-rouge">initialize</code> and <code class="language-plaintext highlighter-rouge">advance</code> calls. See the section on <a href="tooling-performance-analysis">performance analysis</a> for more information.</p>
 
 <p>Which participant is <code class="language-plaintext highlighter-rouge">acceptor</code> and which one is <code class="language-plaintext highlighter-rouge">connector</code> makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, <a href="https://precice.discourse.group/new-topic">ask us for advice</a>.</p>
 
@@ -2156,7 +2156,7 @@ If you face any problems with establishing the communication, have a look <a hre
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: May 17, 2026<br>
         Site last updated: May 17, 2026
         </p>
         <p>

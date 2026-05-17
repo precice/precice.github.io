@@ -1707,7 +1707,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 24 Mar 26</small>
+              <small>Updated 17 May 26</small>
             </div>
           </aside>
           
@@ -1849,7 +1849,7 @@ Also have a look at the <a href="couple-your-code-api.html">API documentation</a
   </li>
   <li>Migrate connectivity information to the vertex-only API. All <code class="language-plaintext highlighter-rouge">setMeshX</code> methods take vertex IDs as input and return nothing.
     <ul>
-      <li>Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See <a href="couple-your-code-defining-mesh-connectivity">Mesh Connectivity</a> for more information.</li>
+      <li>Directly define face elements or cells of your coupling mesh available in your solver by passing their vertices to preCICE, which automatically handles edges of triangles etc. See <a href="couple-your-code-defining-mesh-connectivity">Mesh Connectivity</a> for more information.</li>
       <li>Rename <code class="language-plaintext highlighter-rouge">setMeshTriangleWithEdges</code> to <code class="language-plaintext highlighter-rouge">setMeshTriangle</code> and <code class="language-plaintext highlighter-rouge">setMeshQuadWithEdges</code> to <code class="language-plaintext highlighter-rouge">setMeshQuad</code>. The edge-based implementation was removed.</li>
       <li>Use the new bulk functions to reduce sanitization overhead: <code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangles</code>, <code class="language-plaintext highlighter-rouge">setMeshQuads</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedra</code>.</li>
     </ul>
@@ -1869,13 +1869,13 @@ Also have a look at the <a href="couple-your-code-api.html">API documentation</a
       <li>Replace the commands to read data: <code class="language-plaintext highlighter-rouge">readBlockVectorData</code>, <code class="language-plaintext highlighter-rouge">readVectorData</code>, <code class="language-plaintext highlighter-rouge">readBlockScalarData</code>, <code class="language-plaintext highlighter-rouge">readScalarData</code> with the single command <code class="language-plaintext highlighter-rouge">readData</code>.</li>
       <li>Replace the commands to write data: <code class="language-plaintext highlighter-rouge">writeBlockVectorData</code>, <code class="language-plaintext highlighter-rouge">writeVectorData</code>, <code class="language-plaintext highlighter-rouge">writeBlockScalarData</code>, <code class="language-plaintext highlighter-rouge">writeScalarData</code> with the single command <code class="language-plaintext highlighter-rouge">writeData</code>.</li>
       <li>Replace the commands to write gradient data: <code class="language-plaintext highlighter-rouge">writeBlockVectorGradientData</code>, <code class="language-plaintext highlighter-rouge">writeVectorGradientData</code>, <code class="language-plaintext highlighter-rouge">writeBlockScalarGradientData</code>, <code class="language-plaintext highlighter-rouge">writeScalarGradientData</code> with the single command <code class="language-plaintext highlighter-rouge">writeGradientData</code>.</li>
-      <li>The signature of <code class="language-plaintext highlighter-rouge">readData</code>, <code class="language-plaintext highlighter-rouge">writeData</code> and <code class="language-plaintext highlighter-rouge">writeGradientData</code> has changed from <code class="language-plaintext highlighter-rouge">const int*</code>, <code class="language-plaintext highlighter-rouge">const double*</code>, and <code class="language-plaintext highlighter-rouge">double*</code> to <code class="language-plaintext highlighter-rouge">precice::span&lt;const VertexID&gt;</code>, <code class="language-plaintext highlighter-rouge">precice::span&lt;const double&gt;</code>, and <code class="language-plaintext highlighter-rouge">span&lt;double&gt;</code>. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a contigous container. Examples for the latter are <code class="language-plaintext highlighter-rouge">std::vector</code>, <code class="language-plaintext highlighter-rouge">std:array</code>, <code class="language-plaintext highlighter-rouge">Eigen::VectorXd</code>, and also <code class="language-plaintext highlighter-rouge">std::span</code>.</li>
-      <li>To simplify migration to <code class="language-plaintext highlighter-rouge">readData()</code>, use <code class="language-plaintext highlighter-rouge">getMaxTimeStepSize()</code> as relative read time for now to always read data at the end of the time window. Read up on <a href="couple-your-code-waveform.html">time interpolation</a> once you finished the port.</li>
+      <li>The signature of <code class="language-plaintext highlighter-rouge">readData</code>, <code class="language-plaintext highlighter-rouge">writeData</code> and <code class="language-plaintext highlighter-rouge">writeGradientData</code> has changed from <code class="language-plaintext highlighter-rouge">const int*</code>, <code class="language-plaintext highlighter-rouge">const double*</code>, and <code class="language-plaintext highlighter-rouge">double*</code> to <code class="language-plaintext highlighter-rouge">precice::span&lt;const VertexID&gt;</code>, <code class="language-plaintext highlighter-rouge">precice::span&lt;const double&gt;</code>, and <code class="language-plaintext highlighter-rouge">span&lt;double&gt;</code>. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a contiguous container. Examples for the latter are <code class="language-plaintext highlighter-rouge">std::vector</code>, <code class="language-plaintext highlighter-rouge">std:array</code>, <code class="language-plaintext highlighter-rouge">Eigen::VectorXd</code>, and also <code class="language-plaintext highlighter-rouge">std::span</code>.</li>
+      <li>To simplify migration to <code class="language-plaintext highlighter-rouge">readData()</code>, use <code class="language-plaintext highlighter-rouge">getMaxTimeStepSize()</code> as relative read time for now to always read data at the end of the time window. Read up on <a href="couple-your-code-waveform.html">time interpolation</a> once you have finished the port.</li>
     </ul>
   </li>
   <li>Migrate data initialization
     <ul>
-      <li>Move the data initalization before the call to <code class="language-plaintext highlighter-rouge">initialize()</code>. You have to initialize the data if <code class="language-plaintext highlighter-rouge">requiresInitialData()</code> returns <code class="language-plaintext highlighter-rouge">true</code>.</li>
+      <li>Move the data initialization before the call to <code class="language-plaintext highlighter-rouge">initialize()</code>. You have to initialize the data if <code class="language-plaintext highlighter-rouge">requiresInitialData()</code> returns <code class="language-plaintext highlighter-rouge">true</code>.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">initializeData()</code>. The function <code class="language-plaintext highlighter-rouge">initializeData()</code> has been merged into <code class="language-plaintext highlighter-rouge">ìnitialize()</code>.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">precice::constants::actionWriteInitialData()</code>.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">markActionFulfilled()</code> of write initial data.</li>
@@ -1894,7 +1894,7 @@ Also have a look at the <a href="couple-your-code-api.html">API documentation</a
       <li>Remove <code class="language-plaintext highlighter-rouge">mapWriteDataFrom()</code> and <code class="language-plaintext highlighter-rouge">mapReadDataTo()</code> as custom timings were removed.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">hasMesh()</code> and <code class="language-plaintext highlighter-rouge">hasData()</code> as there is no real usecase for them. All errors are unrecoverable.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">hasToEvaluateSurrogateModel()</code> and <code class="language-plaintext highlighter-rouge">hasToEvaluateFineModel()</code> as they were stubs of a long-removed feature.</li>
-      <li>Remove <code class="language-plaintext highlighter-rouge">getMeshVertices()</code> and <code class="language-plaintext highlighter-rouge">getMeshVertexIDsFromPositions()</code>. This information is already known by the adapter. We docummented <a href="couple-your-code-defining-mesh-connectivity.html">strategies on how to handle this</a> in adapters.</li>
+      <li>Remove <code class="language-plaintext highlighter-rouge">getMeshVertices()</code> and <code class="language-plaintext highlighter-rouge">getMeshVertexIDsFromPositions()</code>. This information is already known by the adapter. We documented <a href="couple-your-code-defining-mesh-connectivity.html">strategies on how to handle this</a> in adapters.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">isReadDataAvailable()</code> and <code class="language-plaintext highlighter-rouge">isWriteDataRequired()</code>. Due to time interpolation, writing generates samples in time, and reading is always possible between the current time and the end of the current time window.</li>
     </ul>
   </li>
@@ -1999,7 +1999,7 @@ Also have a look at the <a href="couple-your-code-api.html">API documentation</a
           <li>Removed <code class="language-plaintext highlighter-rouge">ComputeCurvatureAction</code> and <code class="language-plaintext highlighter-rouge">ScaleByDtAction</code> actions.</li>
           <li>Removed callback functions <code class="language-plaintext highlighter-rouge">vertexCallback</code> and <code class="language-plaintext highlighter-rouge">postAction</code> from <code class="language-plaintext highlighter-rouge">PythonAction</code> interface.</li>
           <li>Removed timewindowsize from the <code class="language-plaintext highlighter-rouge">performAction</code> signature of <code class="language-plaintext highlighter-rouge">PythonAction</code>. The new signature is <code class="language-plaintext highlighter-rouge">performAction(time, data)</code></li>
-          <li>Using actions with multiple couping schemes and mixed time window sizes is not well defined!</li>
+          <li>Using actions with multiple coupling schemes and mixed time window sizes is not well defined!</li>
         </ul>
       </li>
     </ul>
@@ -2427,7 +2427,7 @@ Also have a look at the <a href="couple-your-code-api.html">API documentation</a
         </a>
         </p>
         <p>
-        Page last updated: Mar 24, 2026<br>
+        Page last updated: May 17, 2026<br>
         Site last updated: May 17, 2026
         </p>
         <p>

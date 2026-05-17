@@ -1707,7 +1707,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 05 May 26</small>
+              <small>Updated 17 May 26</small>
             </div>
           </aside>
           
@@ -1834,7 +1834,7 @@ Here we want to profile the time taken to solve the timestep in the coupling loo
 Measuring the runtime of such operations can be tricky, as the time spent waiting should not be misinterpreted.
 Synchronizing all ranks using a barrier solves the issue, but has an impact on performance.</p>
 
-<p>To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchonization before required events.
+<p>To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchronization before required events.
 Use the <code class="language-plaintext highlighter-rouge">synchronize</code> attribute to enable such synchronization if you need it.</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration&gt;</span>
@@ -2101,7 +2101,7 @@ Writing to profiling.csv
 <h2 id="advanced-analysis-with-perfetto">Advanced analysis with perfetto</h2>
 
 <p>So far, we used <a href="https://perfetto.dev">perfetto</a> for visualizing the traces.
-Sometimes, theses traces are either too large to inspect visually or one needs to extract more detailed data from the tarces than simple event-wise duration sums.</p>
+Sometimes, these traces are either too large to inspect visually or one needs to extract more detailed data from the traces than simple event-wise duration sums.</p>
 
 <p>The perfetto project additionally provides a complete ecosystem of tools for trace processing.
 <a href="https://perfetto.dev/docs/analysis/perfetto-sql-getting-started">PerfettoSQL</a> and the <a href="https://perfetto.dev/docs/analysis/trace-processor-python">trace processor</a> allow to systematically extract data from large profiling records.</p>
@@ -2180,7 +2180,7 @@ If you create tables make sure to use <code class="language-plaintext highlighte
 
 <h3 id="helper">Helper</h3>
 
-<p>The following table gives for every slice, the total time spend in <code class="language-plaintext highlighter-rouge">.sync</code> events in case synchronization is enabled in the configuration.</p>
+<p>The following table gives for every slice, the total time spent in <code class="language-plaintext highlighter-rouge">.sync</code> events in case synchronization is enabled in the configuration.</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="n">PERFETTO</span> <span class="k">TABLE</span> <span class="n">synctime</span> <span class="k">AS</span>
 <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">sid</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">dur</span><span class="p">)</span> <span class="k">AS</span> <span class="n">synctime</span>
@@ -2190,7 +2190,7 @@ If you create tables make sure to use <code class="language-plaintext highlighte
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p>The following is a view that uses preCICE terminology and allows to work with <code class="language-plaintext highlighter-rouge">participant</code> and numberic <code class="language-plaintext highlighter-rouge">ranks</code>:</p>
+<p>The following is a view that uses preCICE terminology and allows to work with <code class="language-plaintext highlighter-rouge">participant</code> and numeric <code class="language-plaintext highlighter-rouge">ranks</code>:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">precice</span> <span class="k">AS</span>
 <span class="k">SELECT</span> <span class="n">process_name</span> <span class="k">as</span> <span class="n">participant</span><span class="p">,</span> <span class="n">cast_int</span><span class="o">!</span><span class="p">(</span><span class="n">SUBSTR</span><span class="p">(</span><span class="n">thread_name</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="k">AS</span> <span class="n">rank</span><span class="p">,</span> <span class="o">*</span>
@@ -2574,7 +2574,7 @@ If you create tables make sure to use <code class="language-plaintext highlighte
         </a>
         </p>
         <p>
-        Page last updated: May 5, 2026<br>
+        Page last updated: May 17, 2026<br>
         Site last updated: May 17, 2026
         </p>
         <p>

@@ -7,7 +7,7 @@
 
 <meta name="description" content="In this step, you learn how preCICE handles non-matching time step sizes and a few more things about simulation time.">
 
-<meta name="keywords" content=" api, adapter, advance, timestepping, subcycling, adaptivity">
+<meta name="keywords" content=" api, adapter, advance, time-stepping, subcycling, adaptivity">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -1707,7 +1707,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 17 May 26</small>
             </div>
           </aside>
           
@@ -1779,7 +1779,7 @@ $('#toc').on('click', 'a', function() {
 <p>The preCICE configuration defines a fixed time window. Both participants can use smaller time step sizes, but then they <em>subcycle</em>, i.e. coupling data is only communicated at the end of each time window.
 The figure below illustrates this procedure (k is the subcycling index, the dashed lines mark the time window):</p>
 
-<p><img src="images/docs/couple-your-code-timestepping-fixed.png" alt="Timestepping with a fixed time window" /></p>
+<p><img src="images/docs/couple-your-code-timestepping-fixed.png" alt="Time-stepping with a fixed time window" /></p>
 
 <ul>
   <li>After each time step, both participants tell preCICE which time step size <code class="language-plaintext highlighter-rouge">dt</code> they just used by calling <code class="language-plaintext highlighter-rouge">precice.advance(dt)</code>. This way, preCICE can keep track of the total time. <code class="language-plaintext highlighter-rouge">preciceDt</code> is the remainder time to the next window:</li>
@@ -1865,7 +1865,7 @@ For parallel coupling, both solvers run together and everything happens simultan
 Such small time steps can lead to problems in the solver.</p>
 
 <p>One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
-The follow example extends the time step negotiation between the solver and preCICE to ensure the next time step size <code class="language-plaintext highlighter-rouge">preciceDt - solverDt</code> stays over some threshold <code class="language-plaintext highlighter-rouge">minDt</code>.</p>
+The following example extends the time step negotiation between the solver and preCICE to ensure the next time step size <code class="language-plaintext highlighter-rouge">preciceDt - solverDt</code> stays over some threshold <code class="language-plaintext highlighter-rouge">minDt</code>.</p>
 <ul id="apiTabs" class="nav nav-tabs">
     <li class="active"><a href="#cpp-5" data-toggle="tab">C++</a></li>
     <li><a href="#python-5" data-toggle="tab">Python</a></li>
@@ -2030,7 +2030,7 @@ These two cases are again reflected in the formula:</p>
 </div>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
-You never need to alter your code if you want to switch the first and second participant, if you want to switch between a serial and a parallel coupling scheme, or if you want to switch between <code class="language-plaintext highlighter-rouge">fixed</code> and <code class="language-plaintext highlighter-rouge">first-participant</code> timestepping. Everything can be configured. Even if implicit coupling is used.
+You never need to alter your code if you want to switch the first and second participant, if you want to switch between a serial and a parallel coupling scheme, or if you want to switch between <code class="language-plaintext highlighter-rouge">fixed</code> and <code class="language-plaintext highlighter-rouge">first-participant</code> time-stepping. Everything can be configured. Even if implicit coupling is used.
 </div>
 
 <h2 id="steering-the-end-of-the-simulation">Steering the end of the simulation</h2>
@@ -2456,7 +2456,7 @@ You never need to alter your code if you want to switch the first and second par
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: May 17, 2026<br>
         Site last updated: May 17, 2026
         </p>
         <p>

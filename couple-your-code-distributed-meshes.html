@@ -1707,7 +1707,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 17 May 26</small>
             </div>
           </aside>
           
@@ -1758,7 +1758,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="define-two-separate-meshes-as-read_mesh-and-write_mesh">Define two separate meshes as <code class="language-plaintext highlighter-rouge">read_mesh</code> and <code class="language-plaintext highlighter-rouge">write_mesh</code></h2>
 
-<p>We create a <code class="language-plaintext highlighter-rouge">write_mesh</code> where we call <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code> <em>only</em> for the vertices owned by the rank. We do no add any copies of vertices to the <code class="language-plaintext highlighter-rouge">write_mesh</code>, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via <code class="language-plaintext highlighter-rouge">precice::writeData(...)</code>) to vertices on that mesh.</p>
+<p>We create a <code class="language-plaintext highlighter-rouge">write_mesh</code> where we call <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code> <em>only</em> for the vertices owned by the rank. We do not add any copies of vertices to the <code class="language-plaintext highlighter-rouge">write_mesh</code>, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via <code class="language-plaintext highlighter-rouge">precice::writeData(...)</code>) to vertices on that mesh.</p>
 
 <p>Additionally, we create a <code class="language-plaintext highlighter-rouge">read_mesh</code>, where we call <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code> for vertices owned by the rank <em>and</em> vertices where a copy is required. This allows the rank to read the values for owned as well as for copied vertices (e.g. via <code class="language-plaintext highlighter-rouge">precice::readData(...)</code>).</p>
 
@@ -2149,7 +2149,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: May 17, 2026<br>
         Site last updated: May 17, 2026
         </p>
         <p>
