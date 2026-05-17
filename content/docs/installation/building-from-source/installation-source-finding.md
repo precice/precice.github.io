@@ -88,7 +88,7 @@ For `CMake` users, either set the environment variable `precice_DIR` to the bina
 
 ```conf
 # Only for using preCICE directly from the build directory
-# (as of preCICE v3.3.0 - later versions might differ).
+# (as of preCICE v3.4.0 - later versions might differ).
 
 PRECICE_BUILD="/path/to/precice/build"
 PATH="${PRECICE_BUILD}:${PATH}"
