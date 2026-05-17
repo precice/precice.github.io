@@ -903,7 +903,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 15 Mar 26</small>
+              <small>Updated 17 May 26</small>
             </div>
           </aside>
           
@@ -943,8 +943,6 @@ Both solvers are coupled via preCICE by exchanging the <strong>pressure</strong>
 The opening valve at the outlet is modeled through a prescribed outlet velocity, which increases linearly from $0 \mathrm{m/s}$ to $1 \mathrm{m/s}$ over the first $t = 5 \mathrm{s}$, and remains constant afterwards.<br />
 This sudden valve opening generates pressure disturbances that propagate through the pipe, resulting in the characteristic <strong>pressure wave oscillations</strong> known as the <em>water hammer</em> phenomenon.</p>
 
-<hr />
-
 <h2 id="configuration">Configuration</h2>
 
 <p>preCICE configuration for the 1D–3D simulation (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
@@ -955,16 +953,12 @@ This sudden valve opening generates pressure disturbances that propagate through
 
 <p><img src="images/tutorials-water-hammer-3d1d-precice-config.png" alt="preCICE configuration visualization 3D–1D" /></p>
 
-<hr />
-
 <h2 id="available-solvers">Available solvers</h2>
 
 <ul>
   <li>OpenFOAM (sonicLiquidFoam). A compressible OpenFOAM solver. For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
   <li>Nutils. A Python-based finite element framework. For more information, see the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a>.</li>
 </ul>
-
-<hr />
 
 <h2 id="running-the-simulation">Running the Simulation</h2>
 
@@ -1013,8 +1007,6 @@ This sudden valve opening generates pressure disturbances that propagate through
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid1d-right-nutils
 ./run.sh
 </code></pre></div></div>
-
-<hr />
 
 <h2 id="visualization">Visualization</h2>
 
@@ -1067,8 +1059,6 @@ You can visualize the flow field and pressure distribution using <strong>ParaVie
 
 <p>Each file contains a header (commented with <code class="language-plaintext highlighter-rouge">#</code>) and time-series columns for each probe.</p>
 
-<hr />
-
 <h3 id="1d-domain-nutils">1D domain (Nutils)</h3>
 
 <p>The 1D participant writes results to a file named <code class="language-plaintext highlighter-rouge">probes.txt</code>, containing the temporal evolution of key quantities at selected spatial locations.</p>
@@ -1085,8 +1075,6 @@ You can visualize the flow field and pressure distribution using <strong>ParaVie
   <li><code class="language-plaintext highlighter-rouge">p_out</code>, <code class="language-plaintext highlighter-rouge">u_out</code> → pressure and velocity at the outlet of the 1D domain</li>
   <li><code class="language-plaintext highlighter-rouge">p_mid</code>, <code class="language-plaintext highlighter-rouge">u_mid</code> → pressure and velocity at the midpoint of the 1D domain</li>
 </ul>
-
-<hr />
 
 <h3 id="plotting-outlet-pressure-optional">Plotting outlet pressure (optional)</h3>
 
@@ -1132,15 +1120,11 @@ Reads probe data from<br />
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>images/p_outlet_&lt;<span class="k">case</span><span class="nt">-directory</span><span class="o">&gt;</span>.png
 </code></pre></div></div>
 
-<hr />
-
 <h3 id="example-visualization">Example visualization</h3>
 
 <p><img src="images/tutorials-water-hammer-1d3d-outlet-pressure.png" alt="Pressure evolution at the outlet of the 3D domain in the 1D–3D simulation" /></p>
 
 <p>Pressure evolution at the outlet of the 3D domain during the 1D–3D water hammer simulation.</p>
-
-<hr />
 
 <h2 id="references">References</h2>
 
@@ -1384,7 +1368,7 @@ Reads probe data from<br />
         </a>
         </p>
         <p>
-        Page last updated: Mar 15, 2026<br>
+        Page last updated: May 17, 2026<br>
         Site last updated: May 17, 2026
         </p>
         <p>
