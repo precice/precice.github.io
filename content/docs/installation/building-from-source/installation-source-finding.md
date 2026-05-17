@@ -97,13 +97,6 @@ PKG_CONFIG_PATH="${PRECICE_BUILD}${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
 precice_DIR="${PRECICE_BUILD}"
 ```
 
-After adding the file, logout and login again. Opening a new terminal will **not** be sufficient. 
-Verify the changes by listing the loaded environment in a new terminal:
-
-```terminal
-systemctl show-environment
-```
-
 ## Verify your installation
 
 First run:
