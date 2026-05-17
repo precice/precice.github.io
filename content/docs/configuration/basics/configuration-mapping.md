@@ -72,8 +72,6 @@ Do not confuse a participant running in parallel with a parallel coupling scheme
 Instead of using static meshes as described here, you may consider using a [just-in-time data mapping](couple-your-code-just-in-time-mapping.html), where one of both meshes can change at runtime.
 {% endtip %}
 
-## Available mapping methods in preCICE
-
 The mapping method itself is defined in the xml configuration after the colon `mapping:...` (e.g. `<mapping:nearest-neighbor ...`). In general, preCICE offers two broader groups of mapping methods
 
 ![Mapping options](images/docs/configuration/doc-mapping-options.svg)
@@ -82,7 +80,7 @@ The mapping method itself is defined in the xml configuration after the colon `m
 Chapter 3.2 (Data mapping) of the preCICE version 2 [reference paper](https://doi.org/10.12688/openreseurope.14445.2) explains and compares a selection of projection-based methods and kernel methods.
 {% endnote %}
 
-### Projection-based methods
+## Projection-based methods
 
 Projection-based data mapping methods are typically cheap to compute as they don't involve solving expensive linear systems as opposed to the kernel methods. The basic variant, which operates solely on vertex data, is `nearest-neighbor` mapping. All other variants require additional information from the user, as shown in the overview figure above.
 
@@ -95,7 +93,7 @@ Available methods are:
 * `linear-cell-interpolation`: Instead of mapping to surface-elements as the `nearest-projection`, `linear-cell-interpolation` uses volumetric elements, i.e., it is designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. Hence, connectivity information for volumetric elements needs to be defined. If none are found, it falls back on `nearest-projection` or `nearest-neighbor` (depending on the available connectivity information). The method was developed in the [Master's thesis of Boris Martin](https://mediatum.ub.tum.de/doc/1685618/1685618.pdf), where more detailed information is available.
 * `nearest-neighbor-gradient`: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the [gradient data page](couple-your-code-gradient-data.html), we explain how to add gradient data to the mesh. This method is only applicable with the `consistent` constraint. The method was developed [Master's thesis of Boshra Ariguib](http://dx.doi.org/10.18419/opus-12128), where more detailed information is available.
 
-### Kernel methods
+## Kernel methods
 
 Kernel methods are typically more accurate and can deliver higher-order convergence rates, but are computationally more demanding compared to projection-based mapping methods. All kernel methods operate solely on vertex data such that no additional connectivity information is required from the user. Since preCICE version 3, there are two types of kernel methods available:
 
@@ -110,7 +108,7 @@ For global rbf methods, the interpolation problem (or rather the polynomial QR s
 
 * `rbf-pum-direct`, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for `rbf-global-direct`, i.e., it is beneficial to configure strictly positive definite basis-functions). The mapping is specifically designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of `vertices-per-cluster` can be increased. The method can only handle sufficiently matching geometries and problems might occur if large gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in [David's talk at the preCICE workshop 2023](https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc). In practical applications, the partition of unity method typically outperforms any of the global rbf variants.
 
-#### Configuration
+### Configuration
 
 Configuring kernel methods is more involved and offers more options. A full reference of all options can be found in the [xml reference](configuration-xml-reference.html). On a broader level, the configuration consists of two main options: the applied kernel mapping method and the used basis-function including its support radius or shape parameter. As the decision about the used kernel mapping method can be intricate, we provide an alias called `<mapping:rbf ...` which decides dynamically for a kernel method according to the setup (e.g. parallel execution, problem size, available dependencies)
 
@@ -127,7 +125,7 @@ An RBF mapping configuration could look as follows
 The basis-function has to be defined as a subtag in all kernel methods. In this example the basis-function `compact-polynomial-c6` is used with a support radius of `r=1.8`.
 
 {% note %}
-We recommend to use the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
+We recommend using the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
 {% endnote %}
 
 The configuration of the basis-function is problem-dependent. In general, preCICE offers basis function with global and local support:
@@ -137,22 +135,45 @@ The configuration of the basis-function is problem-dependent. In general, preCIC
 
 ASTE and our [ASTE tutorial](tutorials-aste-turbine.html) enable full insight into the accuracy of the configured mapping method.
 
-#### Execution backends
+### Execution backends
 
-Starting from version 3.2, preCICE offers to execute `mapping:rbf-global...` on different executor backends using the linear-operator library Ginkgo in conjunction with Kokkos.
+Since preCICE version 3, we integrated performance-portable mapping implementations into preCICE, allowing to compute mappings on different hardware backends.
+To use this feature, build preCICE from source with [Kokkos-Kernels or Ginkgo enabled](installation-source-dependencies.html). Both implementations rely additionally on Kokkos as a mandatory dependency. Overall, users may target `CUDA`, `HIP`, `SYCL`, and `OpenMP` as executor backend. Note that preCICE inherits the backend from Kokkos at compile time. The `CPU` backend is the (default) regular backend in preCICE, which does not depend on Kokkos.
 
-To use this feature, please build preCICE from source with  [Ginkgo Mappings enabled](installation-source-dependencies.html#ginkgo).
+| Mapping tag             | Dependencies                                                                                                       | `cuda` | `hip` | `sycl` | `openmp` | `cpu` | MPI-parallelization |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------|:------:|:-----:|:------:|:--------:|:-----:|---------------------|
+| `rbf-pum-direct`        | (Eigen, [mandatory](https://precice.org/installation-source-dependencies.html#required-dependencies) for preCICE)  | —      | —     | —      | —        | ✓     | distributed         |
+| `rbf-pum-direct`        | Kokkos-Kernels and Kokkos (preCICE >= v3.4.1)                                                                      | ✓      | ✓     | ✓      | ✓        | —     | distributed         |
+| `rbf-global-direct`     | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | —      | —        | —     | gather-scatter      |
+| `rbf-global-direct`     | (Eigen, [mandatory](https://precice.org/installation-source-dependencies.html#required-dependencies) for preCICE)  | —      | —     | —      | —        | ✓     | gather-scatter      |
+| `rbf-global-iterative`  | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | —      | ✓        | —     | gather-scatter      |
+| `rbf-global-iterative`  | PETSc                                                                                                              | —      | —     | —      | —        | ✓     | distributed         |
 
-![RBF executors](images/docs/configuration/doc-mapping-rbf-executors.svg)
-
-To configure the executor, an additional subtag can be used in the mapping configuration:
+To configure the executor, an additional subtag can be used in the mapping configuration (see also the [corresponding XML-reference](configuration-xml-reference.html#mappingrbf-pum-direct)):
 
 ```xml
-<mapping:rbf direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
+<mapping:rbf-pum-direct direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
  <basis-function:compact-polynomial-c6 support-radius="1.8"/>
  <executor:cuda gpu-device-id="0"/>
-</mapping:rbf>
+</mapping:rbf-pum-direct>
 ```
+
+or for an OpenMP backend
+
+```xml
+<mapping:rbf-pum-direct direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
+ <basis-function:compact-polynomial-c6 support-radius="1.8"/>
+ <executor:openmp n-threads="10"/>
+</mapping:rbf-pum-direct>
+```
+
+Mapping configurations that follow a gather-scatter approach are always computed on a single MPI rank, i.e., the mapping problem is gathered on the primary rank (potentially moved to the GPU), and then a solution is computed. Thus, mappings using a gather-scatter approach are not suitable for massively-parallel runs.
+
+By contrast, distributed mappings solve their rank-local problem in parallel. In practice, this means that the configuration snippet above assigns multiple MPI ranks to a single GPU (with device ID 0). Since oversubscribing a device is typically undesired, use `gpu-device-id="auto"` to assign MPI ranks in a round-robin fashion to the available GPUs. Also note -- due to the different parallelization strategies -- `n-threads` configures the number of threads per executing rank, i.e., for a distributed parallelization, `n-threads=10` assigns 10 OpenMP threads to each MPI rank, whereas for a gather-scatter parallelization `n-threads=10` assigns 10 OpenMP threads to the primary rank only.
+
+{% note %}
+Note that as of preCICE v3.4 the `rbf-pum-direct` executor only supports `consistent` constraints. Supporting a `conservative` is [work in progress](https://github.com/precice/precice/pull/2536).
+{% endnote %}
 
 More details on the feature can be found in [Schneider et al. 2023](https://doi.org/10.23967/c.coupled.2023.016).
 

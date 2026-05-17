@@ -12,7 +12,7 @@ permalink: dev-docs-release-strategy.html
 
 ## Dependency tree
 
-![Release dependencies](images/docs/dev-docs-release-dependencies.svg)
+<img class="img-responsive center-block" src="images/docs/dev-docs-release-dependencies.svg" alt="Release dependencies" style="min-width: 100%; width:800px; margin: auto;">
 
 ## Release procedure
 
@@ -67,7 +67,7 @@ Goal: Release pyprecice version `1.2.3`.
 Root repository: `precice/pyprecice`
 Name of release branch: `pyprecice-v1.2.3`
 
-![Release example](images/docs/dev-docs-release-example.svg)
+<img class="img-responsive center-block" src="images/docs/dev-docs-release-example.svg" alt="Release example" style="min-width: 100%; width:800px; margin: auto;">
 
 1. Create branch `pyprecice-v1.2.3` from `precice/pyprecice:develop`
 2. Prepare the release (bump version etc)
