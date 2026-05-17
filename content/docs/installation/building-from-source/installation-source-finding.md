@@ -31,7 +31,7 @@ Then add the following to your `.profile` (for bash) or `.zshrc` (for zsh).
 
 ```bash
 # set this to your selected installation prefix
-PRECICE_PREFIX="~/software/prefix"
+PRECICE_PREFIX="${HOME}/software/prefix"
 
 export PATH="${PRECICE_PREFIX}/bin:${PATH}"
 export CPATH="${PRECICE_PREFIX}/include${CPATH:+:$CPATH}"
