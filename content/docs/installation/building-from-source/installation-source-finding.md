@@ -57,13 +57,13 @@ Then create a file `~/.config/environment.d/99-precice.conf` with the content:
 
 ```conf
 # set this to your selected installation prefix
-PRECICE_PREFIX=${HOME}/software/prefix
+PRECICE_PREFIX="${HOME}/software/prefix"
 
-PATH=${PRECICE_PREFIX}/bin:${PATH}
-CPATH=${PRECICE_PREFIX}/include${CPATH:+:$CPATH}
-LD_LIBRARY_PATH=${PRECICE_PREFIX}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-PKG_CONFIG_PATH=${PRECICE_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}
-CMAKE_PREFIX_PATH=${PRECICE_PREFIX}${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}
+PATH="${PRECICE_PREFIX}/bin:${PATH}"
+CPATH="${PRECICE_PREFIX}/include${CPATH:+:$CPATH}"
+LD_LIBRARY_PATH="${PRECICE_PREFIX}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+PKG_CONFIG_PATH="${PRECICE_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+CMAKE_PREFIX_PATH="${PRECICE_PREFIX}${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"
 ```
 
 After adding the file, logout and login again. Opening a new terminal will **not** be sufficient.
