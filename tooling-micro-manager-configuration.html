@@ -1711,7 +1711,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 15 Apr 26</small>
+              <small>Updated 19 May 26</small>
             </div>
           </aside>
           
@@ -1720,9 +1720,26 @@ $('#toc').on('click', 'a', function() {
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  In the preCICE XML configuration the Micro Manager is a participant with the name <code class="language-plaintext highlighter-rouge">Micro-Manager</code>. </div>
 
-<p>The Micro Manager is configured with a JSON file. Several parameters can be set.</p>
+<p>The Micro Manager is configured with a <a href="https://en.wikipedia.org/wiki/JSON#Syntax">JSON</a> file. Several parameters can be set, in different sections. For example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python/micro.py"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"precice_config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"macro_mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Macro-Mesh"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Macro-Scalar"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Macro-Vector"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Micro-Scalar"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Micro-Vector"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <h2 id="micro-manager-configuration">Micro Manager Configuration</h2>
+
+<p>These parameters are in the outer section.</p>
 
 <table>
   <thead>
@@ -1767,6 +1784,8 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="coupling-parameters">Coupling Parameters</h2>
 
+<p>These parameters are in the section <code class="language-plaintext highlighter-rouge">coupling_params</code>.</p>
+
 <table>
   <thead>
     <tr>
@@ -1795,6 +1814,8 @@ $('#toc').on('click', 'a', function() {
 </table>
 
 <h2 id="simulation-parameters">Simulation Parameters</h2>
+
+<p>These parameters are in the section <code class="language-plaintext highlighter-rouge">simulation_params</code>.</p>
 
 <table>
   <thead>
@@ -1848,6 +1869,8 @@ $('#toc').on('click', 'a', function() {
 <p>Non-uniform domain decomposition is based on a geometric progression.</p>
 
 <h2 id="diagnostics">Diagnostics</h2>
+
+<p>These parameters are in the section <code class="language-plaintext highlighter-rouge">diagnostics</code>.</p>
 
 <table>
   <thead>
@@ -1996,7 +2019,7 @@ $('#toc').on('click', 'a', function() {
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">micro_file_names</code></td>
-      <td>List of paths to the files containing the Python importable micro simulation classes. If the files are not in the working directory, give the relative path from the directory where the Micro Manager is executed. Requires a minimum of 2 files.</td>
+      <td>List of paths to the files containing the Python importable micro simulation classes, in order of decreasing model fidelity. If the files are not in the working directory, give the relative path from the directory where the Micro Manager is executed. Requires a minimum of 2 files.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">switching_function</code></td>
@@ -2492,7 +2515,7 @@ The following parameters can be set</p>
         </a>
         </p>
         <p>
-        Page last updated: Apr 15, 2026<br>
+        Page last updated: May 19, 2026<br>
         Site last updated: May 19, 2026
         </p>
         <p>
