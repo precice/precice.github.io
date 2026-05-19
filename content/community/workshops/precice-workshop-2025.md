@@ -210,7 +210,7 @@ Preliminary schedule:
       <p>Frédéric Simonis* (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>), Benjamin Uekermann<br/>
       University of Stuttgart, Germany - <a href="https://doi.org/10.5281/zenodo.17349604">slides</a></p>
       </summary>
-      <p>preCICE is an open-source coupling library for partitioned multi-physics simulations. It provides a flexible framework for exchanging mesh-based data between different simulation codes, enabling the simulation of complex multi-physics problems involving multiple solvers. These solvers may run on massively parallel systems with large meshes partitioned among their ranks. To facilitate leveraging parallel systems, preCICE requires solver meshes to remain static during the simulation. This restricts users in need of moving geometries to either using ALE methods relying on a static reference domain, or to use direct-mesh access and handle data-mapping themselves. In this talk, I showcase the current state of dynamic meshes to preCICE as well as cost-effective use-cases. This includes the necessary orchestration to ensure a consistent state between solvers, the challenges of handling the shift of work from one-time to reoccurring operations, and open questions regarding implicit coupling.</p>
+      <p>preCICE is an open-source coupling library for partitioned multi-physics simulations. It provides a flexible framework for exchanging mesh-based data between different simulation codes, enabling the simulation of complex multi-physics problems involving multiple solvers. These solvers may run on massively parallel systems with large meshes partitioned among their ranks. To facilitate leveraging parallel systems, preCICE requires solver meshes to remain static during the simulation. This restricts users in need of moving geometries to either using ALE methods relying on a static reference domain, or to use direct-mesh access and handle data-mapping themselves. In this talk, I showcase the current state of dynamic meshes to preCICE as well as cost-effective use-cases. This includes the necessary orchestration to ensure a consistent state between solvers, the challenges of handling the shift of work from one-time to recurring operations, and open questions regarding implicit coupling.</p>
     </details>
   - 15:00-15:30: ☕️ *Coffee break*
   - 15:30-16:30: Talks
@@ -261,7 +261,7 @@ A few weeks after the workshop, we will also have an online follow-up user suppo
 </details>
 <details class="workshop-event" id="poster-desai"><br/>
     <summary>
-      Micro Manager: a tool to faciliate multiscale coupling with preCICE<br/>
+      Micro Manager: a tool to facilitate multiscale coupling with preCICE<br/>
       <p>Ishaan Desai* (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Desai/">webpage</a>, <a href="https://github.com/IshaanDesai">GitHub</a>), Carina Bringedal, Benjamin Uekermann<br/>
       University of Stuttgart, Germany</p>
     </summary>

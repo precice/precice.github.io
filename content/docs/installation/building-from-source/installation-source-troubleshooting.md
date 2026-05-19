@@ -27,7 +27,7 @@ cmake -DPRECICE_FEATURE_PYTHON_ACTIONS=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8
 
 Note: PETSc is an optional dependency, only needed for parallel RBF mapping, which you can switch off. Since preCICE v2.1.0, single-node-parallel RBF mapping is also possible without PETSc.
 
-There are multiple problems than can lead to FindPETSc failing:
+There are multiple problems that can lead to FindPETSc failing:
 
 1. `PETSC_DIR`and `PETSC_ARCH` not set, or set incorrectly.  
    In this case, FindPETSc fails **before** running tests.

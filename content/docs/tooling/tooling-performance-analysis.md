@@ -121,7 +121,7 @@ Some parts of preCICE involve communication, which cannot be interleaved efficie
 Measuring the runtime of such operations can be tricky, as the time spent waiting should not be misinterpreted.
 Synchronizing all ranks using a barrier solves the issue, but has an impact on performance.
 
-To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchonization before required events.
+To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchronization before required events.
 Use the `synchronize` attribute to enable such synchronization if you need it.
 
 ```xml
@@ -222,25 +222,45 @@ where the naming pattern is `participant-rank-file_number`. To find and merge th
 $ ls
 A
 B
-$ precice-cli profiling merge A B
-Searching A : found 1 files in A/precice-profiling
-Searching B : found 1 files in B/precice-profiling
-Found 2 unique event files
+$ precice-cli profiling merge
+Found 2 files in .
 Found a single run for participant B
 Found a single run for participant A
-Loading event files
-Globalizing event names
-Grouping events
-Aligning B (-179us) with A
-Writing to profiling.db
+Loading 2 event files
+Loading precice-profiling/B-0-1.txt
+Processing precice-profiling/B-0-1.txt
+Loading precice-profiling/A-0-1.txt
+Processing precice-profiling/A-0-1.txt
+Align participant ranks
+Align participants
+Aligning B with A shift latter by 5
 $ ls
 A
 B
 profiling.db
 ```
 
-The merge command searches passed directories for the event files.
+The merge command searches the current directory recursively for event files.
+You can also pass individual directories to be searched, or individual event files to use.
 You can also pass individual files if you are not interested in all ranks.
+To tell the merge to search only folders A and B run:
+
+```console
+precice-cli profiling merge A B 
+Found 1 files in A
+Found 1 files in B
+Found 2 profiling files in total
+Found a single run for participant A
+Found a single run for participant B
+Loading 2 event files
+Loading A/precice-profiling/A-0-1.txt
+Processing A/precice-profiling/A-0-1.txt
+Loading B/precice-profiling/B-0-1.txt
+Processing B/precice-profiling/B-0-1.txt
+Align participant ranks
+Align participants
+Aligning B with A shift latter by 5
+```
 
 The merge command is written in pure Python, without external dependencies, to make it easy to use on clusters.
 After you run `precice-cli profiling merge`, you end up with a single file, which can be additionally compressed and transferred to another machine.
@@ -375,7 +395,7 @@ selection = df[ (df["participant"] == "A") & (df["rank"] == 0) ]
 ## Advanced analysis with perfetto
 
 So far, we used [perfetto](https://perfetto.dev) for visualizing the traces.
-Sometimes, theses traces are either too large to inspect visually or one needs to extract more detailed data from the tarces than simple event-wise duration sums.
+Sometimes, these traces are either too large to inspect visually or one needs to extract more detailed data from the traces than simple event-wise duration sums.
 
 The perfetto project additionally provides a complete ecosystem of tools for trace processing.
 [PerfettoSQL](https://perfetto.dev/docs/analysis/perfetto-sql-getting-started) and the [trace processor](https://perfetto.dev/docs/analysis/trace-processor-python) allow to systematically extract data from large profiling records.
@@ -455,7 +475,7 @@ If you create tables make sure to use `CREATE PERFETTO TABLE` to get a table tun
 
 ### Helper
 
-The following table gives for every slice, the total time spend in `.sync` events in case synchronization is enabled in the configuration.
+The following table gives for every slice, the total time spent in `.sync` events in case synchronization is enabled in the configuration.
 
 ```sql
 CREATE PERFETTO TABLE synctime AS
@@ -466,7 +486,7 @@ WHERE s.name GLOB '*.sync'
 GROUP BY a.id;
 ```
 
-The following is a view that uses preCICE terminology and allows to work with `participant` and numberic `ranks`:
+The following is a view that uses preCICE terminology and allows to work with `participant` and numeric `ranks`:
 
 ```sql
 CREATE VIEW precice AS

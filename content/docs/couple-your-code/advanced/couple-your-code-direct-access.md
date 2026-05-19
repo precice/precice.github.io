@@ -13,7 +13,7 @@ This concept is required if you want to access received meshes directly. It migh
     // a received mesh directly is disabled in a usual preCICE configuration.
     const std::string otherMesh = "ReceivedMeshName";
 
-    // Get the spacial dimensionality of the mesh
+    // Get the spatial dimensionality of the mesh
     const int dim = precice.getMeshDimensions(otherMesh);
 
     // Allocate and fill the  'boundingBox' according to the interested region

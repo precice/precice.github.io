@@ -119,7 +119,7 @@ For some cases, the default settings are not sufficient and a more detailed conf
 For `IQN-ILS`, the complete configuration with all options specified explicitly to the default settings is as follows:
 
 ```xml
-<acceleration:IQN-ILS reduced-time-grid="true">
+<acceleration:IQN-ILS reduced-time-grid="true" on-bound-violation="scale">
   <data name="Displacements" mesh="StructureMesh"/>
   <data name="Forces" mesh="StructureMesh"/>
   <preconditioner type="residual-sum" update-on-threshold="true" freeze-after="-1"/>
@@ -133,7 +133,7 @@ For `IQN-ILS`, the complete configuration with all options specified explicitly 
 and for `IQN-IMVJ`, it is:
 
 ```xml
-<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true">
+<acceleration:IQN-IMVJ always-build-jacobian="false" reduced-time-grid="true" on-bound-violation="scale">
   <data name="Displacements" mesh="StructureMesh"/>
   <data name="Forces" mesh="StructureMesh"/>
   <preconditioner type="residual-sum" update-on-threshold="true" freeze-after="-1"/>
@@ -149,6 +149,13 @@ For the detailed meaning of the various options, please refer to the [configurat
 
 Here are some brief explanations and hints on good combinations of choices for the configuration options:
 
+* The attribute `on-bound-violation` is used to handle the quasi-Newton(QN) acceleration steps that violate the bound configured for scalar or component(s) of vector under the `data` tag. This attribute can be set to different options to constrain the acceleration step to stay in the bound. The options avaiable are:
+  * `ignore`: default option. preCICE will not check if the accelerated values are violating the bound, thus no warning etc.
+  * `discard`: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. If any violation is found, this update step will be discarded, i.e. next iteration will start with the output from last iteration.
+  * `clamp`: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. The violating values will be clamped to the bounds respectively. Non-violating values are not influenced by this check.
+  * `scale`: preCICE checks the accelerated values against the given bound(s) after a QN update step is computed. If any violation is found, the update from this QN step is scaled by a scalar factor between 0 and 1, to fit all the violating values into the bounded range.
+
+    While `discard` and `clamp` are convenient options for single value or occasional bound violation, `scale` helps to retain the direction of the QN step by only shortening the step length. The best option for this attribute is problem-dependent.
 * If several primary data fields are configured, e.g. when parallel coupling is used, an equal order of magnitude of them has to be ensured. This is done by defining a `preconditioner`.
   * As `type`, we recommend to use `"residual-sum"` as in the default setting.
   * The option `update-on-threshold` can be used to avoid updates of the preconditioner in case of small changes of the preconditioning factors.
@@ -169,3 +176,7 @@ Here are some brief explanations and hints on good combinations of choices for t
 * While the `IQN-IMVJ` method exhibits excellent convergence properties as a result of implicit reuse of prior information, it also causes quadratic storage and runtime complexity because of the explicit computation of Jacobian matrix. To make this method practical for large-scale simulations, we introduced a set of `imvj-restart-mode` variants, which reduce the method's complexity to a linear one.
   * In particular, the `RS-SVD` mode gives good performance comparing to other options while retaining the original multi-vector convergence properties, although its performance slightly depends on the choice of the truncation parameter.
 * It's to note that a necessary prerequisite for convergence of the implicit coupling loop is the proper convergence of each participant internally. Inner convergence measure (e.g. of the fluid solver) should be two orders of magnitude stricter than the coupling convergence-measure to achieve good performance with quasi-Newton.
+
+{% version 3.4.0 %}
+The feature of setting bounds to data and `on-bound-violation` attribute for QN acceleration is new in 3.4.0.
+{% endversion %}
