@@ -48,7 +48,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [MercuryDPM](https://www.mercurydpm.org/) | [via MercuryDPM](precice@mercurydpm.org) | [code example](https://bitbucket.org/mercurydpm/mercurydpm/src/master/Drivers/PreCICE/) | tutorial upcoming ||
 | [OpenFAST](https://openfast.readthedocs.io/en/main/) | [Leonard Willeke](https://github.com/LeonardWilleke), [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/openfast-adapter), [report](https://doi.org/10.5281/zenodo.14809779) | Structure part in FSI | Experimental |
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) | |
-https://github.com/r-walloner/LIGGGHTS-PUBLIC
+
 ## Legacy adapters
 
 These adapters and/or the respective solvers are not maintained and might not work anymore, but are listed here as an example of which other projects have used preCICE in the past.
