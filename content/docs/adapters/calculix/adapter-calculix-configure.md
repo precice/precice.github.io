@@ -312,7 +312,7 @@ To restart a CalculiX simulation, we need to enable restart files (`<name>.rout`
 
    ```text
    *RESTART,READ,STEP=1
-   *STEP,NLGEOM,  INC=1000000
+   *STEP, INC=1000000
    *DYNAMIC, ALPHA=0.0, DIRECT
    1.E-2, 0.1
    *RESTART,WRITE,FREQUENCY=1
