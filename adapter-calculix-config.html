@@ -1707,7 +1707,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 17 May 26</small>
+              <small>Updated 22 May 26</small>
             </div>
           </aside>
           
@@ -1987,6 +1987,61 @@ For defining which nodes of the CalculiX domain belong to the FSI interface, a n
 
 <p>CalculiX comes with OpenMP and the SPOOLES library which itself can use OpenMP. The adapter also supports this and parallel runs can be used in the same way as with the uncoupled version of CalculiX. You can specify the number of threads via the <code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS</code> environment variable. For a finer configuration, look at the CalculiX documentation.
 You can also try <a href="adapter-calculix-pastix-build.html">GPU acceleration with PaStiX</a>.</p>
+
+<h2 id="restarting">Restarting</h2>
+
+<p>To restart a CalculiX simulation, we need to enable restart files (<code class="language-plaintext highlighter-rouge">&lt;name&gt;.rout</code>), run the first simulation, and then restart the second simulation from that using a modified input file and renaming the <code class="language-plaintext highlighter-rouge">&lt;name&gt;.rout</code> to <code class="language-plaintext highlighter-rouge">&lt;name&gt;.rin</code>. See an <a href="https://pawel-lojek.medium.com/resuming-fsi-simulations-with-openfoam-calculix-896088861ae">example from the community</a>.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+This section might be incomplete or contain inaccuracies. Help improve this page: Click “Edit me” to draft your suggestions.
+</div>
+
+<ol>
+  <li>
+    <p>In the <code class="language-plaintext highlighter-rouge">&lt;name&gt;.inp</code>, modify the end time in the following section:</p>
+
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*DYNAMIC, ALPHA=0.0, DIRECT
+1.E-2, 0.1
+</code></pre></div>    </div>
+
+    <p>The first number is the time step size, the second number is the end time.</p>
+  </li>
+  <li>
+    <p>Under the section specifying the time step size and end time, enable writing restart files (in this case, for every step):</p>
+
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*RESTART,WRITE,FREQUENCY=1
+</code></pre></div>    </div>
+
+    <p>At the very end of the simulation, and after a normal exit, a file <code class="language-plaintext highlighter-rouge">&lt;name&gt;.rout</code> will be generated.
+Rename this file to <code class="language-plaintext highlighter-rouge">&lt;name&gt;.rin</code>.</p>
+  </li>
+  <li>
+    <p>To restart the simulation, we need the following line in the input file, before the <code class="language-plaintext highlighter-rouge">STEP</code> definition:</p>
+  </li>
+</ol>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  *RESTART,READ,STEP=1
+</code></pre></div></div>
+
+<p>For every new step of restarting the simulation, increase the respective number: when you restart again to go further beyond in time, set <code class="language-plaintext highlighter-rouge">STEP=2</code>.</p>
+<ol>
+  <li>
+    <p>Since all the rest of the configuration is included in the restart file, we need to remove the rest of the definitions. In the end, the input file should look like this:</p>
+
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*RESTART,READ,STEP=1
+*STEP, INC=1000000
+*DYNAMIC, ALPHA=0.0, DIRECT
+1.E-2, 0.1
+*RESTART,WRITE,FREQUENCY=1
+*END STEP
+</code></pre></div>    </div>
+
+    <p>Note that, in CalculiX configuration files, you can add comment lines with two asterisks: <code class="language-plaintext highlighter-rouge">** comment</code>.</p>
+  </li>
+  <li>
+    <p>Make the respective adjustments in the other participants as well. For example, see <a href="https://precice.org/adapter-openfoam-config.html#restarting-fsi-simulations">notes on restarting OpenFOAM simulations</a>. Search also the <a href="https://precice.discourse.group/search?q=restarting%20order%3Alatest">preCICE forum</a> and help improve this documentation.</p>
+  </li>
+</ol>
 
 
     
@@ -2364,7 +2419,7 @@ You can also try <a href="adapter-calculix-pastix-build.html">GPU acceleration w
         </a>
         </p>
         <p>
-        Page last updated: May 17, 2026<br>
+        Page last updated: May 22, 2026<br>
         Site last updated: May 22, 2026
         </p>
         <p>
