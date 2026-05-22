@@ -285,6 +285,10 @@ You can also try [GPU acceleration with PaStiX](adapter-calculix-pastix-build.ht
 
 To restart a CalculiX simulation, we need to enable restart files (`<name>.rout`), run the first simulation, and then restart the second simulation from that using a modified input file and renaming the `<name>.rout` to `<name>.rin`. See an [example from the community](https://pawel-lojek.medium.com/resuming-fsi-simulations-with-openfoam-calculix-896088861ae).
 
+{% note %}
+This section might be incomplete or contain inaccuracies. Help improve this page: Click "Edit me" to draft your suggestions.
+{% endnote %}
+
 1. In the `<name>.inp`, modify the end time in the following section:
 
    ```text
