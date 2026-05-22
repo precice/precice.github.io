@@ -36,7 +36,7 @@ We are preparing an interactive online event with 3h slots over a week. Prelimin
   - 12:00-15:00: Training course: Data mapping
 - Friday (discussion):
   - 12:00-12:30: General Q&A session
-  - 12:30-15:00: In parallel: User support session | Further training
+  - 12:30-15:00: In parallel: User support session, Further training
 
 ## Help us advertise
 
