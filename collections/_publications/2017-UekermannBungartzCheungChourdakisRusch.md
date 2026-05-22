@@ -1,6 +1,6 @@
 ---
 title: "Official preCICE Adapters for Standard Open-Source Solvers"
-pub-url: https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf
+pub-url: https://doi.org/10.18419/opus-9334
 year: 2017
 authors: "Benjamin Uekermann, Hans-Joachim Bungartz, Lucia Cheung Yau, Gerasimos Chourdakis, Alexander Rusch"
 journal:

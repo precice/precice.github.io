@@ -1,6 +1,6 @@
 ---
 title: "The Coupling Library preCICE -- Past, Present and Future"
-pub-url: https://www5.in.tum.de/quartl/2016/quartl80_n.pdf
+pub-url: https://www.cs.cit.tum.de/fileadmin/w00cfj/sccs/_my_direct_uploads/quartl80_n.pdf
 year: 2016
 authors: "Benjamin Uekermann"
 ---

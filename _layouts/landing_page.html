@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	{% include head.html %}
 </head>
+
 <body>
 	<header>
 		{% include topnav.html %}
 		<!-- News banner -->
-    {% include news_banner.html onlanding=true %}
+		{% include news_banner.html onlanding=true %}
 	</header>
 	<main>
-    <!-- Page Content -->
+		<!-- Page Content -->
 		{{content}}
 	</main>
 
 	{% include footer.html %}
+	{% include scroll_to_top.html %}
 
-	<script src="{{ "js/github-queries.js" }}"></script>
+	<script src="{{ '/js/github-queries.js' | relative_url }}"></script>
+
+	<script src="{{ '/js/news-collect.js' | relative_url }}"></script>
 
 </body>
 
@@ -25,6 +30,3 @@
 {% endif %}
 
 </html>
-
-
-

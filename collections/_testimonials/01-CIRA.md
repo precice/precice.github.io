@@ -1,7 +1,7 @@
 ---
 title: "FLEXCFD – Aeronautic fluid-structure interaction problems"
 author: "Davide Cinquegrana, PhD"
-author_link: https://www.cira.it/en/competences/fluid-mechanics/__subnav/fluidodinamica-numerica
+author_link: https://web.archive.org/web/20210727121119/https://www.cira.it/en/competences/fluid-mechanics/__subnav/fluidodinamica-numerica
 organisation: "CFD Laboratory, CIRA - Italian Aerospace Research Centre, Italy"
 organisation_link:
 img: testimonial-cira.jpg
