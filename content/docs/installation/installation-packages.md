@@ -28,7 +28,7 @@ sudo apt install ./libprecice3_{{ site.precice_version }}_noble.deb
 
 We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release.
 Check the [official release-cycle](https://ubuntu.com/about/release-cycle) for more information and the version code names.
-As an example, change `noble` to `jammy` for 22.04 (Jammy Jellyfish).
+As an example, change `noble` to `resolute` for 26.04 (Resolute Raccoon).
 
 Is a newer preCICE release out, and have we not yet updated the above links? Please edit this page.
 
