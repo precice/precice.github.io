@@ -9,8 +9,10 @@ layout: default
 {% if page.simple_map == true %}
 
 <script>
-    $(document).ready ( function(){
-        $('.box{{page.box_number}}').addClass('active');
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.box{{page.box_number}}').forEach(function (el) {
+            el.classList.add('active');
+        });
     });
 </script>
 
@@ -19,8 +21,10 @@ layout: default
 {% elsif page.complex_map == true %}
 
 <script>
-    $(document).ready ( function(){
-        $('.modalButton{{page.box_number}}').addClass('active');
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.modalButton{{page.box_number}}').forEach(function (el) {
+            el.classList.add('active');
+        });
     });
 </script>
 
@@ -38,7 +42,7 @@ layout: default
     {% endif %}
 
     <div class="row">
-        <div class="col-md-9 col-sm-8">
+        <div class="col-md-9">
           {% unless page.toc == false %}
           <nav aria-label="table of contents">
           {% if page.tocheaders %}
@@ -50,7 +54,7 @@ layout: default
           {% endunless %}
         </div>
 
-        <div class="col-md-3 col-sm-4">
+        <div class="col-md-3">
           {% unless page.editme == false %}
           <aside>
             {% if page.github_editme_path %}
@@ -61,15 +65,15 @@ layout: default
                 {% assign array = page.github_editme_path | split: "/" %}
                 {% assign repository = array[4] %}
                 {% assign github_file_path = page.path | remove: "imported/" | remove: repository | remove_first: "/" %}
-                <div class="text-right">
-                    <a target="_blank" rel="noopener" href="{{page.github_editme_path}}{{github_file_path}}" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                <div class="text-end">
+                    <a target="_blank" rel="noopener" href="{{page.github_editme_path}}{{github_file_path}}" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             {% elsif site.github_editme_path %}
-                <div class="text-right">
-                    <a target="_blank" rel="noopener" href="{{site.github_editme_path}}{{page.path}}" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                <div class="text-end">
+                    <a target="_blank" rel="noopener" href="{{site.github_editme_path}}{{page.path}}" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             {% endif %}
-            <div class="text-right">
+            <div class="text-end">
               <small>Updated {{ page.last_modified_at | date:  '%d %b %y' -}}</small>
             </div>
           </aside>
@@ -85,7 +89,7 @@ layout: default
         {% assign projectTags = site.data.tags.allowed-tags %}
         {% for tag in page.tags %}
         {% if projectTags contains tag %}
-        <a href="{{ "tag_" | append: tag | append: ".html" }}" class="btn btn-default navbar-btn cursorNorm" role="button">{{page.tagName}}{{tag}}</a>
+        <a href="{{ "tag_" | append: tag | append: ".html" }}" class="btn btn-outline-secondary cursorNorm" role="button">{{page.tagName}}{{tag}}</a>
         {% endif %}
         {% endfor %}
     </div>

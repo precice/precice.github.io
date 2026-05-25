@@ -1,35 +1,25 @@
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" aria-label="Main">
+<nav class="navbar navbar-expand-xl fixed-top" data-bs-theme="light" aria-label="Main">
     <div class="container topnavlinks">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <div class="navbar-header navbar-header-group">
             <a class="navbar-brand no-icon" href="{{ site.url }}">
-            <span class="navbar-brand-icon">
-            <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE"></span>
+                <span class="navbar-brand-icon">
+                    <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE">
+                </span>
             </a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- toggle sidebar button -->
-                {% comment %}
-                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fas fa-toggle-on"></i> Nav</a></li>
-                {% endcomment %}
+            <ul class="nav navbar-nav ms-auto">
                 <!-- entries without drop-downs appear here -->
-
-                {% assign topnav = site.data[page.topnav] %}
-                {% assign topnav_dropdowns = site.data[page.topnav].topnav_dropdowns %}
+                {% assign topnav_key = page.topnav | default: 'topnav' %}
+                {% assign topnav = site.data[topnav_key] %}
+                {% assign topnav_dropdowns = topnav.topnav_dropdowns %}
 
                 {% for entry in topnav.topnav %}
                 {% for item in entry.items %}
-                {% comment %}
-                Whenever page.url contains item.url the "active" class is applied, which does not work on sub pages
-                To solve this issue we exploit the association of sections of the website with sidebars, as scoped in _config.yml
-                {% endcomment %}
                 {% assign section_sidebar = item.section | append: '_sidebar' %}
                 {% if item.external_url %}
                 <li><a href="{{item.external_url}}" target="_blank" rel="noopener">{{item.title}}</a></li>
@@ -42,12 +32,13 @@
                 {% endif %}
                 {% endfor %}
                 {% endfor %}
+
                 <!-- entries with drop-downs appear here -->
-                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                {% if topnav_dropdowns %}
                 {% for entry in topnav_dropdowns %}
                 {% for folder in entry.folders %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ folder.title }}<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{ folder.title }}</a>
                     <ul class="dropdown-menu">
                         {% for folderitem in folder.folderitems %}
                         {% if folderitem.external_url %}
@@ -62,40 +53,35 @@
                 </li>
                 {% endfor %}
                 {% endfor %}
+                {% endif %}
 
-                {% if site.feedback_disable == null or site.feedback_disable == false %}
-        			{% comment %}
-                    {% include feedback.html %}
-                    {% endcomment %}
-		        {% endif %}
                 <!--comment out this block if you want to hide search-->
-                <li>
                     <!--start search-->
+                <li class="navbar-search-li">
                     <div id="search-demo-container">
                         <div id="search-input"></div>
                         <div id="search-results"></div>
                         {% include algolia.html %}
                     </div>
+                </li>
                     <!--end search-->
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" rel="noopener noreferrer" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
                 </li>
                 <li>
-                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" rel="noopener noreferrer" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                    <a class="no-icon nav-external" href="https://github.com/precice" target="_blank" rel="noopener noreferrer" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
                 </li>
                 <li>
-                    <a class="no-icon nav-external" href="https://github.com/precice" target="_blank" rel="noopener noreferrer" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                    <a class="no-icon nav-external" href="https://www.linkedin.com/company/precice" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </li>
-                <li>
-                    <a class="no-icon nav-external" href="https://www.linkedin.com/company/precice" target="_blank" rel="noopener noreferrer" data-show-count="false" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </li>
-                <li>
                     <!-- rel="me" required by Mastodon for verification -->
-                    <a rel="me noopener noreferrer" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" data-show-count="false" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a>
+                <li>
+                    <a rel="me noopener noreferrer" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a>
                 </li>
                 <li>
-                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" rel="noopener noreferrer" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" rel="noopener noreferrer" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
                 </li>
             </ul>
         </div>
-        </div>
-        <!-- /.container -->
+    </div>
 </nav>

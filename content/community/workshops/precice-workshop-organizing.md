@@ -12,30 +12,7 @@ In this page, we document common steps and lessons learned, aiming to make onboa
 
 We have also published our experiences and recommendations together with the [ESPResSo](https://espressomd.org/) and [DuMux](https://dumux.org/) teams:
 
-{% for pub in site.publications %}
-{% if pub.title == "Organizing software community workshops: Experiences from three independent simulation software projects" %}
-<div class="row">
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary panel-precice">
-    <div class="panel-heading-precice">
-      <strong>{{ pub.title }}</strong>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>{{ pub.authors }}</em>,
-        {{ pub.journal.name }},
-        Volume {{ pub.journal.volume }},
-        {{ pub.journal.publisher }},
-        {{ pub.year }}.
-      </p>
-      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
-      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-    </div>
-  </div>
-</div>
-</div>
-{% endif %}
-{% endfor %}
+{% include publication_panel.html title="Organizing software community workshops: Experiences from three independent simulation software projects" %}
 
 ## First urgent steps
 
