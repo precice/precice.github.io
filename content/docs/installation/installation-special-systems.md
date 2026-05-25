@@ -551,7 +551,7 @@ Additionally, we want to make sure to only use the channel `conda-forge`:
 (precice) $ conda config --env --set channel_priority strict
 ```
 
-See [here](https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us) and [here](https://conda-forge.org/docs/user/transitioning_from_defaults/) for more background information.
+See [one announcement](https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us) and [another announceent](https://conda-forge.org/docs/user/transitioning_from_defaults/) for more background information.
 
 ##### Installing the Python bindings
 
