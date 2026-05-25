@@ -421,8 +421,8 @@ sudo apt update && \
 sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
 
-These instructions are known to work for Ubuntu 22.04, 24.04, and they should apply to later releases as well ([release history](https://endoflife.date/ubuntu)).
-See also the [Ubuntu Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-ubuntu-2404.dockerfile).
+These instructions are known to work for Ubuntu 24.04, 26.04, and they should apply to later releases as well ([release history](https://endoflife.date/ubuntu)).
+See also the [Ubuntu Dockerfile used in the preCICE tests](https://github.com/precice/ci-images/blob/master/ci-ubuntu-2604.dockerfile).
 
 ### macOS
 
