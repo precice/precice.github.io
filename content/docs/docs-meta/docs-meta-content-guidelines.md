@@ -5,6 +5,8 @@ keywords: pages, migration, guideline, content, best practices, style guide
 summary: "Learn which style to follow when writing documentation and how to write good titles, content, and page summaries."
 ---
 
+<!-- markdownlint-configure-file {"MD059": false } -->
+
 ## Language & style
 
 This is the style we aim for, even if not all documentation pages are currently ticking all the boxes (nice opportunity for [contributing](community-contribute-to-precice.html)):
