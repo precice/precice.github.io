@@ -1,0 +1,82 @@
+{% comment %}
+  Renders a blue-bordered publication citation box (same as precice.org / landing page).
+
+  Usage:
+    {% include publication_panel.html title="Exact publication title" %}
+    {% include publication_panel.html pub=pub %}
+    {% include publication_panel.html pub=pub flexible=true wrapper=false show_doi_in_body=true %}
+
+  Parameters:
+    title / pub          — lookup or pass publication from site.publications
+    flexible             — optional journal fields (fenics related literature)
+    wrapper              — wrap in row + col-md-10 offset-md-1 (default: true)
+    show_doi_in_body     — append doi link in the citation line
+    require_pub_url      — only show Publisher's site when pub-url is set
+{% endcomment %}
+
+{% if include.pub %}
+  {% assign pub = include.pub %}
+{% elsif include.title %}
+  {% assign pub = nil %}
+  {% for p in site.publications %}
+    {% if p.title == include.title %}
+      {% assign pub = p %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if pub %}
+  {% if pub.doi %}
+    {% assign publisher_url = pub.doi | prepend: 'https://www.doi.org/' %}
+  {% else %}
+    {% assign publisher_url = pub.pub-url %}
+  {% endif %}
+
+  {% assign use_wrapper = true %}
+  {% if include.wrapper == false %}
+    {% assign use_wrapper = false %}
+  {% endif %}
+
+  {% if use_wrapper %}
+<div class="row">
+<div class="col-md-10 offset-md-1">
+  {% endif %}
+  <div class="card border-primary panel-precice">
+    <div class="card-header-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="card-body">
+      <p>
+        {% if include.flexible %}
+        <em>{{ pub.authors }}</em>{% if pub.journal.name %} {{ pub.journal.name }}, {% endif %}{% if pub.journal.volume %}Volume {{ pub.journal.volume }}, {% endif %}{% if pub.journal.publisher %}{{ pub.journal.publisher }}, {% endif %}{{ pub.year }}{% if include.show_doi_in_body and pub.doi %}, <a href="https://www.doi.org/{{ pub.doi }}">doi:{{ pub.doi }}</a>{% endif %}.
+        {% elsif pub.journal.issue %}
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        {{ pub.year }},
+        {{ pub.journal.volume }}:{{ pub.journal.issue }}{% if include.show_doi_in_body and pub.doi %}, <a href="https://www.doi.org/{{ pub.doi }}">doi:{{ pub.doi }}</a>{% endif %}.
+        {% else %}
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }}{% if pub.journal.volume %},
+        Volume {{ pub.journal.volume }}{% endif %}{% if pub.journal.publisher %},
+        {{ pub.journal.publisher }}{% endif %},
+        {{ pub.year }}{% if include.show_doi_in_body and pub.doi %}, <a href="https://www.doi.org/{{ pub.doi }}">doi:{{ pub.doi }}</a>{% endif %}.
+        {% endif %}
+      </p>
+      {% if include.flexible and include.require_pub_url %}
+        {% if pub.pub-url %}
+      <a href="{{ pub.pub-url }}">Publisher's site</a>&nbsp;&nbsp;
+        {% endif %}
+      {% elsif publisher_url %}
+      <a href="{{ publisher_url }}">Publisher's site</a>&nbsp;&nbsp;
+      {% endif %}
+      {% if pub.bibtex %}
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+      {% endif %}
+    </div>
+  </div>
+  {% if use_wrapper %}
+</div>
+</div>
+  {% endif %}
+{% endif %}

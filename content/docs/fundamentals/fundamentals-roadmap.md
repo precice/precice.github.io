@@ -54,7 +54,7 @@ meaning that the respective API or configuration might change in a minor release
 This is a list of changes that are present on develop and ready for the [next release](dev-docs-release-strategy.html#release-schedule).
 
 <div id="changelog">
-  <button id="loadBtn" class="btn btn-default">Click to load</button>
+  <button id="loadBtn" class="btn btn-secondary">Click to load</button>
   <span id="spinner" style="text-align:center; display:none"><i class="fa fa-spinner fa-spin fa-3x"></i></span></div>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>

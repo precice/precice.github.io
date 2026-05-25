@@ -20,30 +20,8 @@ Even further, please cite all components you are using, next to the latest refer
 
 Talking about preCICE, at any level? Then, read and cite the latest preCICE reference paper:
 
-<!-- Do you want to add a new publication? Careful where you are copying from. Depending on the type, every publication renders different fields.  -->
-{% for pub in site.publications %}
-{% if pub.title == "preCICE v2: A sustainable and user-friendly coupling library [version 2; peer review: 2 approved]" %}
-<div class="row">
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary panel-precice">
-    <div class="panel-heading-precice">
-      <strong>{{ pub.title }}</strong>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>{{ pub.authors }}</em>,
-        {{ pub.journal.name }},
-        {{ pub.year }},
-        {{ pub.journal.volume }}:{{ pub.journal.issue }}.
-      </p>
-      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
-      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-    </div>
-  </div>
-</div>
-</div>
-{% endif %}
-{% endfor %}
+<!-- Do you want to add a new publication? Use {% include publication_panel.html title="..." %} -->
+{% include publication_panel.html title="preCICE v2: A sustainable and user-friendly coupling library [version 2; peer review: 2 approved]" %}
 
 Talking specifically about preCICE v1? Then keep citing the [preCICE v1 reference paper](https://www.sciencedirect.com/science/article/pii/S0045793016300974).
 
@@ -51,81 +29,12 @@ Talking specifically about preCICE v1? Then keep citing the [preCICE v1 referenc
 
 Are you using any of the adapters? Then, please also read and cite the respective references. The following adapters currently have reference papers:
 
-{% for pub in site.publications %}
-{% if pub.title == "OpenFOAM-preCICE: Coupling OpenFOAM with External Solvers for Multi-Physics Simulations" %}
-<div class="row">
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary panel-precice">
-    <div class="panel-heading-precice">
-      <strong>{{ pub.title }}</strong>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>{{ pub.authors }}</em>,
-        {{ pub.journal.name }},
-        Volume {{ pub.journal.volume }},
-        {{ pub.year }}.
-      </p>
-      <a href="https://www.doi.org/{{pub.doi}}">Publisher's site</a>&nbsp;&nbsp;
-      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-    </div>
-  </div>
-</div>
-</div>
-{% endif %}
-{% endfor %}
-
-{% for pub in site.publications %}
-{% if pub.title == "FEniCS–preCICE: Coupling FEniCS to other simulation software" %}
-<div class="row">
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary panel-precice">
-    <div class="panel-heading-precice">
-      <strong>{{ pub.title }}</strong>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>{{ pub.authors }}</em>,
-        {{ pub.journal.name }},
-        Volume {{ pub.journal.volume }},
-        {{ pub.journal.publisher }},
-        {{ pub.year }}.
-      </p>
-      <a href="https://www.doi.org/{{pub.doi}}">Publisher's site</a>&nbsp;&nbsp;
-      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-    </div>
-  </div>
-</div>
-</div>
-{% endif %}
-{% endfor %}
+{% include publication_panel.html title="OpenFOAM-preCICE: Coupling OpenFOAM with External Solvers for Multi-Physics Simulations" %}
+{% include publication_panel.html title="FEniCS–preCICE: Coupling FEniCS to other simulation software" %}
 
 For the CalculiX, SU2, and code_aster adapters, as well as for the concept of an adapter, please read and cite this overview paper:
 
-{% for pub in site.publications %}
-{% if pub.title == "Official preCICE Adapters for Standard Open-Source Solvers" %}
-<div class="row">
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary panel-precice">
-    <div class="panel-heading-precice">
-      <strong>{{ pub.title }}</strong>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>{{ pub.authors }}</em>,
-        {{ pub.journal.name }},
-        Volume {{ pub.journal.volume }},
-        {{ pub.journal.publisher }},
-        {{ pub.year }}.
-      </p>
-      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
-      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-    </div>
-  </div>
-</div>
-</div>
-{% endif %}
-{% endfor %}
+{% include publication_panel.html title="Official preCICE Adapters for Standard Open-Source Solvers" %}
 
 ### Reproducibility
 
