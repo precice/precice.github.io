@@ -76,6 +76,7 @@ In the following cases, you can explore different aspects of preCICE:
 - [Turek-Hron FSI3](tutorials-turek-hron-fsi3.html): The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II. Nutils participants are also available.
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
 - [Volume-coupled flow](tutorials-volume-coupled-flow.html): An experimental volume coupling scenario, coupling a source term coded in Nutils with a flow in OpenFOAM.
+- [Wolf-sheep-grass model with soil creep](tutorials-wolf-sheep-soil-creep.html): An agent-based wolf-sheep-grass model in MESA coupled with a soil creep model in Landlab.
 
 ## Community projects
 
