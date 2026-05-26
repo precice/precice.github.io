@@ -56,7 +56,7 @@ We parallelize the same Python codes used in the Basics module, we analyze the p
 
 ### Macro-micro coupling
 
-We use the [Micro Manager](tooling-micro-manager-overview.html) to setup python and C++ micro simulations, learn how manage runtime using adaptivity, implement model adaptivity and run the micro simulations in parallel with adaptivity and load balancing.
+We use the [Micro Manager](tooling-micro-manager-overview.html) to set up Python and C++ micro simulations, learn how manage runtime using adaptivity, implement model adaptivity, and run the micro simulations in parallel with adaptivity and load balancing.
 
 ![Macro-Micro training: Adaptivity](images/training/training-mm.png)
 
@@ -163,8 +163,8 @@ The FSI workflow module also needs:
 - [ccx2paraview](https://github.com/calculix/ccx2paraview) (`pip3 install ccx2paraview`, check by starting a Python terminal and executing `import ccx2paraview`)
 - [PyFoam](https://pypi.org/project/PyFoam/) (`pip3 install pyfoam`, check by running `pyFoamPlotWatcher.py --help`)
 
-The macro-micro module also needs:
+The macro-micro coupling module also needs:
 
-- A C++ compiler (for example g++ or clang++)
+- A C++ compiler (for example, g++ or clang++)
 - [Micro Manager](tooling-micro-manager-overview.html) (`pip3 install micro-manager-precice`, check by running `micro-manager-precice -h`)
 - [pybind11](https://pybind11.readthedocs.io/en/stable/index.html) (v3 or later, install on Ubuntu with `apt install python3-pybind11`, check with `pybind11-config --includes --extension-suffix`)
