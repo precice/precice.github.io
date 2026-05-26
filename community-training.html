@@ -860,7 +860,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 17 May 26</small>
+              <small>Updated 26 May 26</small>
             </div>
           </aside>
           
@@ -914,6 +914,12 @@ $('#toc').on('click', 'a', function() {
 <p>We parallelize the same Python codes used in the Basics module, we analyze the performance-related events, run partitioned simulations in parallel on SLURM-enabled systems, and look deeper into common performance-related pitfalls.</p>
 
 <p><img src="images/training/training-hpc.png" alt="HPC training: Tracing" /></p>
+
+<h3 id="macro-micro-coupling">Macro-micro coupling</h3>
+
+<p>We couple many micro simulations to a macro simulation: We use the <a href="tooling-micro-manager-overview.html">Micro Manager</a> to set up Python and C++ micro simulations, learn how manage runtime using adaptivity, implement model adaptivity, and run the micro simulations in parallel with adaptivity and load balancing.</p>
+
+<p><img src="images/training/training-mm.png" alt="Macro-Micro training: Adaptivity" /></p>
 
 <h2 id="how-to-prepare">How to prepare?</h2>
 
@@ -1040,6 +1046,14 @@ Do not remove the USB during a live session.
   <li><a href="https://www.freecad.org/">FreeCAD</a> 0.21 or later (check by starting the GUI)</li>
   <li><a href="https://github.com/calculix/ccx2paraview">ccx2paraview</a> (<code class="language-plaintext highlighter-rouge">pip3 install ccx2paraview</code>, check by starting a Python terminal and executing <code class="language-plaintext highlighter-rouge">import ccx2paraview</code>)</li>
   <li><a href="https://pypi.org/project/PyFoam/">PyFoam</a> (<code class="language-plaintext highlighter-rouge">pip3 install pyfoam</code>, check by running <code class="language-plaintext highlighter-rouge">pyFoamPlotWatcher.py --help</code>)</li>
+</ul>
+
+<p>The macro-micro coupling module also needs:</p>
+
+<ul>
+  <li>A C++ compiler (for example, g++ or clang++)</li>
+  <li><a href="tooling-micro-manager-overview.html">Micro Manager</a> (<code class="language-plaintext highlighter-rouge">pip3 install micro-manager-precice</code>, check by running <code class="language-plaintext highlighter-rouge">micro-manager-precice -h</code>)</li>
+  <li><a href="https://pybind11.readthedocs.io/en/stable/index.html">pybind11</a> (v3 or later, install on Ubuntu with <code class="language-plaintext highlighter-rouge">apt install python3-pybind11</code>, check with <code class="language-plaintext highlighter-rouge">pybind11-config --includes --extension-suffix</code>)</li>
 </ul>
 
 
@@ -1290,8 +1304,8 @@ Do not remove the USB during a live session.
         </a>
         </p>
         <p>
-        Page last updated: May 17, 2026<br>
-        Site last updated: May 25, 2026
+        Page last updated: May 26, 2026<br>
+        Site last updated: May 26, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
