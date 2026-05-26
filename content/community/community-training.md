@@ -56,7 +56,7 @@ We parallelize the same Python codes used in the Basics module, we analyze the p
 
 ### Macro-micro coupling
 
-We use the [Micro Manager](tooling-micro-manager-overview.html) to set up Python and C++ micro simulations, learn how manage runtime using adaptivity, implement model adaptivity, and run the micro simulations in parallel with adaptivity and load balancing.
+We couple many micro simulations to a macro simulation: We use the [Micro Manager](tooling-micro-manager-overview.html) to set up Python and C++ micro simulations, learn how manage runtime using adaptivity, implement model adaptivity, and run the micro simulations in parallel with adaptivity and load balancing.
 
 ![Macro-Micro training: Adaptivity](images/training/training-mm.png)
 
