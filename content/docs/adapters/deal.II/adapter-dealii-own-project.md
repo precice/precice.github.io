@@ -15,7 +15,7 @@ In addition to our coupled solid mechanics related codes of the dealii-adapter r
 [Contact us](community-channels.html) if you have any questions. Even if you don't have any questions, please let us know about your experience when your adapter is ready!
 {% endnote %}
 
-### Which information is needed by preCICE?
+## Which information is needed by preCICE?
 
 preCICE uses a black-box coupling approach, which means the solver only needs to provide a minimal set of information. In the simplest case, this includes configuration information, e.g. the name of the participant and the coordinates of the data you want to exchange (the interface mesh vertices). If you want to use a nearest-projection mapping, you need to additionally [specify mesh connectivity between the vertices](couple-your-code-defining-mesh-connectivity.html), which is currently not included in this adapter example.
 
