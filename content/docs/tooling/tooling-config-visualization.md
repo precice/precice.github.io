@@ -43,7 +43,7 @@ Please first install the dependencies:
   sudo apt install libcairo2-dev libgirepository2.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
   ```
 
-Then install the latest version straight from PyPi:
+Then install the latest version straight from PyPI:
 
 ```bash
 pipx install precice-config-visualizer
