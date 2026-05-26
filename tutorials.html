@@ -899,7 +899,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 05 Feb 26</small>
+              <small>Updated 26 May 26</small>
             </div>
           </aside>
           
@@ -925,8 +925,8 @@ Releases originate from the <code class="language-plaintext highlighter-rouge">m
 <p>We recommend that you start from one of the following cases, which you can quickly run on your laptop:</p>
 
 <ul>
-  <li><a href="tutorials-flow-over-heated-plate.html">Flow over a heated plate</a>: A <strong>conjugate heat transfer</strong> scenario. Try OpenFOAM, FEniCS, Nutils, or DUNE-FEM.</li>
-  <li><a href="tutorials-partitioned-heat-conduction.html">Partitioned heat conduction</a>: The mathematician’s dream: split the <strong>heat equation</strong> in two and glue it again. Pick your Dirichlet and Neumann solvers among FEniCS, Nutils, and OpenFOAM.</li>
+  <li><a href="tutorials-flow-over-heated-plate.html">Flow over a heated plate</a>: A <strong>conjugate heat transfer</strong> scenario. Try OpenFOAM, SU2, FEniCS, FEniCSx, Nutils, or DUNE-FEM.</li>
+  <li><a href="tutorials-partitioned-heat-conduction.html">Partitioned heat conduction</a>: The mathematician’s dream: split the <strong>heat equation</strong> in two and glue it again. Pick your Dirichlet and Neumann solvers among FEniCS, FEniCSx, G+Smo, Nutils, and OpenFOAM.</li>
   <li>Flow in a channel with an elastic <a href="tutorials-perpendicular-flap.html">perpendicular flap</a>: A <strong>fluid-structure interaction</strong> scenario. Feel free to combine different solvers, among OpenFOAM, SU2, deal.II, FEniCS, Nutils, CalculiX, solids4Foam, and DUNE.</li>
 </ul>
 
@@ -946,12 +946,13 @@ Releases originate from the <code class="language-plaintext highlighter-rouge">m
   <li>Channel transport collection
     <ul>
       <li><a href="tutorials-channel-transport.html">Basic variant</a>: A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.</li>
+      <li><a href="tutorials-channel-transport-particles.html">Particles variant</a>: A channel flow (OpenFOAM, Nutils) coupled to a particles code (MercuryDPM) in a uni-directional way.</li>
       <li><a href="tutorials-channel-transport-reaction.html">Transport + reaction variant</a>: A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.</li>
     </ul>
   </li>
-  <li><a href="tutorials-elastic-tube-1d.html">Elastic tube 1D</a>: A 1D fluid-structure interaction scenario, with toy solvers in Python, C++ and Rust.</li>
+  <li><a href="tutorials-elastic-tube-1d.html">Elastic tube 1D</a>: A 1D fluid-structure interaction scenario, with toy solvers in Python, C++, Fortran, and Rust.</li>
   <li><a href="tutorials-elastic-tube-3d.html">Elastic tube 3D</a>: A 3D fluid-structure interaction scenario, with OpenFOAM, CalculiX, and FEniCS.</li>
-  <li><a href="tutorials-flow-around-controlled-moving-cylinder.html">Flow around controlled moving cylinder</a>: A flow around a rigid moving cylinder with an FMI-based controller to dampen out the oscillation.</li>
+  <li><a href="tutorials-flow-around-controlled-moving-cylinder.html">Flow around controlled moving cylinder</a>: A flow around a rigid moving cylinder (OpenFOAM) with an FMI-based controller to dampen out the oscillation.</li>
   <li>Flow over a heated plate collection
     <ul>
       <li><a href="tutorials-flow-over-heated-plate.html">Basic variant</a> (as in “featured”)</li>
@@ -973,13 +974,15 @@ Releases originate from the <code class="language-plaintext highlighter-rouge">m
       <li><a href="tutorials-flow-over-heated-plate-partitioned-flow.html">Partitioned flow over a heated plate</a>: A three-participant case, similar to the flow over a heated plate with OpenFOAM solvers, but with a partitioned channel flow.</li>
       <li><a href="tutorials-partitioned-pipe.html">Partitioned pipe</a>: A fluid-fluid coupling scenario, with two OpenFOAM solvers.</li>
       <li><a href="tutorials-partitioned-pipe-two-phase.html">Partitioned pipe two-phae</a>: A two-phase variant of the partitioned pipe tutorial.</li>
+      <li><a href="tutorials-partitioned-pipe-multiscale.html">Partitioned pipe multiscale</a>: A geometric multiscale tutorial coupling a 1D with a 3D pipe in Nutils and OpenFOAM.</li>
+      <li><a href="tutorials-water-hammer.html">Water hammer</a>: A geometric multiscale tutorial coupling two 1D and 3D pipes in Nutils and OpenFOAM.</li>
     </ul>
   </li>
   <li>Partitioned heat conduction collection
     <ul>
       <li><a href="tutorials-partitioned-heat-conduction.html">Basic variant</a> (as in “featured”)</li>
       <li><a href="tutorials-partitioned-heat-conduction-complex.html">Complex variant</a>: A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.</li>
-      <li><a href="tutorials-partitioned-heat-conduction-direct.html">Direct mesh access variant</a>: A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.</li>
+      <li><a href="tutorials-partitioned-heat-conduction-direct.html">Direct mesh access variant</a>: A partitioned heat conduction case with Nutils and G+Smo, showcasing the direct mesh access feature.</li>
       <li><a href="tutorials-partitioned-heat-conduction-overlap.html">Overlapping Schwarz variant</a>: An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.</li>
     </ul>
   </li>
@@ -989,9 +992,9 @@ Releases originate from the <code class="language-plaintext highlighter-rouge">m
       <li><a href="tutorials-perpendicular-flap-stress.html">Stress variant</a>: Exchanging stresses instead of forces, coupling OpenFOAM and G+Smo.</li>
     </ul>
   </li>
-  <li><a href="tutorials-resonant-circuit.html">Resonant circuit</a>: The basic LC circuit, with MATLAB and Python based solvers.</li>
-  <li><a href="tutorials-two-scale-heat-conduction.html">Two-scale heat conduction</a>: A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale. Coupling DuMux and Nutils based solvers.</li>
+  <li><a href="tutorials-resonant-circuit.html">Resonant circuit</a>: The basic LC circuit, with MATLAB, Python, and Julia based solvers.</li>
   <li><a href="tutorials-turek-hron-fsi3.html">Turek-Hron FSI3</a>: The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II. Nutils participants are also available.</li>
+  <li><a href="tutorials-two-scale-heat-conduction.html">Two-scale heat conduction</a>: A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale. Coupling DuMux and Nutils based solvers.</li>
   <li><a href="tutorials-volume-coupled-diffusion.html">Volume-coupled diffusion</a>: An experimental volume coupling scenario, with two FEniCS solvers.</li>
   <li><a href="tutorials-volume-coupled-flow.html">Volume-coupled flow</a>: An experimental volume coupling scenario, coupling a source term coded in Nutils with a flow in OpenFOAM.</li>
 </ul>
@@ -1240,7 +1243,7 @@ Releases originate from the <code class="language-plaintext highlighter-rouge">m
         </a>
         </p>
         <p>
-        Page last updated: Feb 5, 2026<br>
+        Page last updated: May 26, 2026<br>
         Site last updated: May 26, 2026
         </p>
         <p>
