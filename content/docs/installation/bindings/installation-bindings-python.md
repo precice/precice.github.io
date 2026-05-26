@@ -38,4 +38,4 @@ You can use Python's `help()` function for getting detailed usage information. E
 
 ## More details & troubleshooting
 
-The python package and detailed documentation for the python bindings can be found [here](https://github.com/precice/python-bindings).
+The python package and detailed documentation for the python bindings can be found [in the README](https://github.com/precice/python-bindings).
