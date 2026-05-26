@@ -40,7 +40,7 @@ Please first install the dependencies:
   In particular, in Ubuntu, you might need to install the following packages:
 
   ```bash
-  sudo apt install libcairo2-dev libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
+  sudo apt install libcairo2-dev libgirepository2.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
   ```
 
 Then install the latest version straight from PyPi:
