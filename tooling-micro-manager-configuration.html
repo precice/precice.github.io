@@ -1711,7 +1711,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 25 May 26</small>
+              <small>Updated 28 May 26</small>
             </div>
           </aside>
           
@@ -1981,6 +1981,126 @@ $('#toc').on('click', 'a', function() {
       <td><code class="language-plaintext highlighter-rouge">load_balancing</code></td>
       <td>Set to <code class="language-plaintext highlighter-rouge">true</code> to dynamically balance simulations for parallel runs. See <a href="#load-balancing">load balancing settings</a> below.</td>
       <td><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mappings</code></td>
+      <td>Optional interpolation of results. Set to list of mapping configurations. See below for further details.</td>
+      <td><code class="language-plaintext highlighter-rouge">[]</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Results of inactive simulations can be interpolated from active simulations using radial basis function interpolation. For data in <code class="language-plaintext highlighter-rouge">write_data_names</code>, a function
+can be defined from <code class="language-plaintext highlighter-rouge">read_data_names</code> to <code class="language-plaintext highlighter-rouge">write_data_names</code>. When using multiple functions, their interpolation target, i.e., fields
+of <code class="language-plaintext highlighter-rouge">write_data_names</code> must be mutually disjunct. Mappings can be defined as:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"mappings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"src_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"input1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"input2"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"dst_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"output1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"output2"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"n_neighbors"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rbf_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"basis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"domain_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"max_filling"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"coarsening_factor"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"projection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"target_dims"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src_fields</code></td>
+      <td>List of entries from <code class="language-plaintext highlighter-rouge">read_data_names</code></td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dst_fields</code></td>
+      <td>List of entries from <code class="language-plaintext highlighter-rouge">write_data_names</code></td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">n_neighbours</code></td>
+      <td>The minimum amount of support points.</td>
+      <td><code class="language-plaintext highlighter-rouge">50</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rbf_config</code></td>
+      <td>RBF interpolation configuration.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">domain_config</code></td>
+      <td>Function source domain description.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A selection of basis functions is available: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code>.
+The domain must be described/further configured as input data is shared across ranks and must be redistributed for interpolation.
+Towards this, spatial discretization techniques are used. For better performance, data can be projected to a lower dimensional space
+using the fields with the highest standard deviation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">use_pu</code></td>
+      <td>Enables PU-RBF. (currently not supported)</td>
+      <td><code class="language-plaintext highlighter-rouge">False</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pu_overlap</code></td>
+      <td>Controlls overlap radius for PU decomposition.</td>
+      <td><code class="language-plaintext highlighter-rouge">0.1</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">basis</code></td>
+      <td>RBF basis function: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code></td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">max_filling</code></td>
+      <td>Tunes maximum filling of tree nodes used during decomposition.</td>
+      <td><code class="language-plaintext highlighter-rouge">8</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">coarsening_factor</code></td>
+      <td>Adjusts the fidelity of the discretized domain. Only integer values &gt;= 1.</td>
+      <td><code class="language-plaintext highlighter-rouge">2</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">projection</code></td>
+      <td>Either <code class="language-plaintext highlighter-rouge">std</code> or <code class="language-plaintext highlighter-rouge">identity</code>.</td>
+      <td><code class="language-plaintext highlighter-rouge">identity</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">target_dims</code></td>
+      <td>Only if <code class="language-plaintext highlighter-rouge">std</code> is used. Denotes the target dimension after projection.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
     </tr>
   </tbody>
 </table>
@@ -2515,7 +2635,7 @@ The following parameters can be set</p>
         </a>
         </p>
         <p>
-        Page last updated: May 25, 2026<br>
+        Page last updated: May 28, 2026<br>
         Site last updated: May 28, 2026
         </p>
         <p>
