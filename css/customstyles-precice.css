@@ -103,9 +103,8 @@ a:hover>.navbar-brand-icon:before {
 }
 
 /* .nav styles both topnav and sidenav, so use .nav.navbar-nav */
-.nav.navbar-nav>li>a,
-.navbar>.container.topnavlinks .nav.navbar-nav>li>a,
-.navbar>.container.topnavlinks .nav.navbar-nav .nav-link {
+.nav.navbar-nav :is(li > a, .nav-link),
+.navbar>.container.topnavlinks .nav.navbar-nav :is(li > a, .nav-link) {
   font-size: 14px;
   line-height: 20px;
   padding: 4px 10px;
@@ -114,9 +113,8 @@ a:hover>.navbar-brand-icon:before {
 }
 
 /* rightmost icons */
-.nav>li>a.nav-external,
-.navbar>.container.topnavlinks .nav.navbar-nav>li>a.nav-external,
-.navbar>.container.topnavlinks .nav.navbar-nav .nav-link.nav-external {
+.nav :is(li > a, .nav-link).nav-external,
+.navbar>.container.topnavlinks .nav.navbar-nav :is(li > a, .nav-link).nav-external {
   font-size: 24px;
   line-height: 20px;
   padding: 2px 0;
@@ -187,8 +185,7 @@ a:hover>.navbar-brand-icon:before {
     float: none;
   }
 
-  .navbar>.container.topnavlinks .nav.navbar-nav>li>a,
-  .navbar>.container.topnavlinks .nav.navbar-nav .nav-link {
+  .navbar>.container.topnavlinks .nav.navbar-nav :is(li > a, .nav-link) {
     margin-top: 0;
     padding: 10px 15px;
     float: none;
