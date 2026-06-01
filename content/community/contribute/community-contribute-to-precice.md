@@ -95,6 +95,7 @@ Our tutorials generally follow a file structure similar to this:
   - README.md                     # description of the case
   - precice.config.xml            # a works-with-all preCICE configuration file
   - clean-tutorial.sh             # a symbolic link (see ../tools/)
+  - metadata.yaml                 # machine-readable description
   - <participant1-solver1>/       # e.g. fluid-openfoam/
     - run.sh                      # a short script to run the solver1 case
     - clean.sh                    # a short script to clean the solver1 case
@@ -144,8 +145,39 @@ In the `README.md` file, following the general structure of the existing tutoria
 - Don't forget to adapt the `permalink:` field in the beginning of the file.
 
 {% note %}
-If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io). Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
+If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io).
 {% endnote  %}
+
+### The metadata file
+
+The `metadata.yaml` file provides a machine-readable description of the tutorial, and is mainly used in the [system regression tests](dev-docs-system-tests.html). By default, we strive to have all tutorial cases integrated with these nightly tests, and you can help us safeguard that our changes in preCICE or the adapters will not break your tutorial by adding it to these tests. Example, from the Quickstart:
+
+```yaml
+name: Quickstart                         # Short, human-readable name
+path: quickstart                         # Path relative to tutorials repository
+url: https://precice.org/quickstart.html # Link to the website
+
+participants:                            # Same as in the precice-config.xml
+  - Fluid 
+  - Solid 
+
+cases:                                   # The different case directories
+  fluid-openfoam:                        # Just a name, by default the same as the case path
+    participant: Fluid                   # This case corresponds to the Fluid participants, and there can be more Fluid cases
+    directory: ./fluid-openfoam
+    run: ./run.sh                        # What to run in that directory
+    component: openfoam-adapter          # Which system tests component it needs (see tools/tests/component-templates and dockerfiles)
+  
+  solid-cpp:
+    participant: Solid
+    directory: ./solid-cpp
+    run: cmake . && make && ./run.sh 
+    component: bare                      # The bare component is just preCICE
+```
+
+After adding or extending the `metadata.yaml` file, you can also define combinations of `cases` as tests in `tools/tests.yaml`. By default, we define a test suite per tutorial, and we add most cases to the release test suite and to the test suites of the involved components. We also restrict the simulated time with `max_time`/`max_time_windows`, to keep the tests reasonably long (~1min of execution time).
+
+After testing and merging, we will generate the reference results of the new tests.
 
 ### Naming conventions
 
