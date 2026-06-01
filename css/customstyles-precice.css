@@ -316,7 +316,11 @@ a:hover>.navbar-brand-icon:before {
   color: #ffffff !important;
 }
 
-.sidebar-nav li.nav-item .collapse a.nav-link:not(.collapsed)[data-bs-toggle="collapse"] {
+/* During BS5 collapse animation the class transitions:
+   .collapse → .collapsing → .collapse.show
+   Include .collapsing via :is() so items keep their nested style during the transition. */
+
+.sidebar-nav li.nav-item :is(.collapse, .collapsing) a.nav-link:not(.collapsed)[data-bs-toggle="collapse"] {
   background-color: #ED762C !important;
   color: #ffffff !important;
 }
@@ -326,34 +330,34 @@ a:hover>.navbar-brand-icon:before {
   color: #ffffff !important;
 }
 
-.sidebar-nav .collapse a.nav-link {
+.sidebar-nav :is(.collapse, .collapsing) a.nav-link {
   background-color: #FAFAFA !important;
   color: #333 !important;
 }
 
-.sidebar-nav .collapse a.nav-link:hover {
+.sidebar-nav :is(.collapse, .collapsing) a.nav-link:hover {
   background-color: #ED762C !important;
   color: #ffffff !important;
 }
 
-.sidebar-nav .collapse a.nav-link.active {
+.sidebar-nav :is(.collapse, .collapsing) a.nav-link.active {
   background-color: #8D8D8D !important;
   color: #ffffff !important;
 }
 
-.sidebar-nav .collapse .nav-link {
+.sidebar-nav :is(.collapse, .collapsing) .nav-link {
   padding-left: 20px !important;
 }
 
-.sidebar-nav .collapse .collapse .nav-link {
+.sidebar-nav :is(.collapse, .collapsing) :is(.collapse, .collapsing) .nav-link {
   padding-left: 30px !important;
 }
 
-.sidebar-nav .collapse .collapse .collapse .nav-link {
+.sidebar-nav :is(.collapse, .collapsing) :is(.collapse, .collapsing) :is(.collapse, .collapsing) .nav-link {
   padding-left: 40px !important;
 }
 
-.sidebar-nav .collapse .collapse .collapse .collapse .nav-link {
+.sidebar-nav :is(.collapse, .collapsing) :is(.collapse, .collapsing) :is(.collapse, .collapsing) :is(.collapse, .collapsing) .nav-link {
   padding-left: 50px !important;
 }
 
@@ -423,7 +427,7 @@ h2.page-header {
 /* General utility classes */
 
 .less-bottom-margin {
-  margin-bottom: -20px;
+  margin-bottom: 0px;
 }
 .citation-link {
   margin-top: 15px;
