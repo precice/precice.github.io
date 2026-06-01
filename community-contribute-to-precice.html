@@ -852,7 +852,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 23 Feb 26</small>
+              <small>Updated 01 Jun 26</small>
             </div>
           </aside>
           
@@ -951,6 +951,7 @@ Get in touch with us early and we will be very happy to help you with every step
   - README.md                     <span class="c"># description of the case</span>
   - precice.config.xml            <span class="c"># a works-with-all preCICE configuration file</span>
   - clean-tutorial.sh             <span class="c"># a symbolic link (see ../tools/)</span>
+  - metadata.yaml                 <span class="c"># machine-readable description</span>
   - &lt;participant1-solver1&gt;/       <span class="c"># e.g. fluid-openfoam/</span>
     - run.sh                      <span class="c"># a short script to run the solver1 case</span>
     - clean.sh                    <span class="c"># a short script to clean the solver1 case</span>
@@ -1001,8 +1002,38 @@ Get in touch with us early and we will be very happy to help you with every step
 </ul>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-If you add a complete new tutorial case, the case also needs to be added to the <a href="https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml">tutorials sidebar</a> on the <a href="tutorials.html">tutorials website section</a>. Please open a pull request to the <a href="https://github.com/precice/precice.github.io">website repository</a>. Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
+If you add a complete new tutorial case, the case also needs to be added to the <a href="https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml">tutorials sidebar</a> on the <a href="tutorials.html">tutorials website section</a>. Please open a pull request to the <a href="https://github.com/precice/precice.github.io">website repository</a>.
 </div>
+
+<h3 id="the-metadata-file">The metadata file</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">metadata.yaml</code> file provides a machine-readable description of the tutorial, and is mainly used in the <a href="dev-docs-system-tests.html">system regression tests</a>. By default, we strive to have all tutorial cases integrated with these nightly tests, and you can help us safeguard that our changes in preCICE or the adapters will not break your tutorial by adding it to these tests. Example, from the Quickstart:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Quickstart</span>                         <span class="c1"># Short, human-readable name</span>
+<span class="na">path</span><span class="pi">:</span> <span class="s">quickstart</span>                         <span class="c1"># Path relative to tutorials repository</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s">https://precice.org/quickstart.html</span> <span class="c1"># Link to the website</span>
+
+<span class="na">participants</span><span class="pi">:</span>                            <span class="c1"># Same as in the precice-config.xml</span>
+  <span class="pi">-</span> <span class="s">Fluid</span> 
+  <span class="pi">-</span> <span class="s">Solid</span> 
+
+<span class="na">cases</span><span class="pi">:</span>                                   <span class="c1"># The different case directories</span>
+  <span class="na">fluid-openfoam</span><span class="pi">:</span>                        <span class="c1"># Just a name, by default the same as the case path</span>
+    <span class="na">participant</span><span class="pi">:</span> <span class="s">Fluid</span>                   <span class="c1"># This case corresponds to the Fluid participants, and there can be more Fluid cases</span>
+    <span class="na">directory</span><span class="pi">:</span> <span class="s">./fluid-openfoam</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="s">./run.sh</span>                        <span class="c1"># What to run in that directory</span>
+    <span class="na">component</span><span class="pi">:</span> <span class="s">openfoam-adapter</span>          <span class="c1"># Which system tests component it needs (see tools/tests/component-templates and dockerfiles)</span>
+  
+  <span class="na">solid-cpp</span><span class="pi">:</span>
+    <span class="na">participant</span><span class="pi">:</span> <span class="s">Solid</span>
+    <span class="na">directory</span><span class="pi">:</span> <span class="s">./solid-cpp</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="s">cmake . &amp;&amp; make &amp;&amp; ./run.sh</span> 
+    <span class="na">component</span><span class="pi">:</span> <span class="s">bare</span>                      <span class="c1"># The bare component is just preCICE</span>
+</code></pre></div></div>
+
+<p>After adding or extending the <code class="language-plaintext highlighter-rouge">metadata.yaml</code> file, you can also define combinations of <code class="language-plaintext highlighter-rouge">cases</code> as tests in <code class="language-plaintext highlighter-rouge">tools/tests.yaml</code>. By default, we define a test suite per tutorial, and we add most cases to the release test suite and to the test suites of the involved components. We also restrict the simulated time with <code class="language-plaintext highlighter-rouge">max_time</code>/<code class="language-plaintext highlighter-rouge">max_time_windows</code>, to keep the tests reasonably long (~1min of execution time).</p>
+
+<p>After testing and merging, we will generate the reference results of the new tests.</p>
 
 <h3 id="naming-conventions">Naming conventions</h3>
 
@@ -1359,7 +1390,7 @@ It is often much easier than you think!</p>
         </a>
         </p>
         <p>
-        Page last updated: Feb 23, 2026<br>
+        Page last updated: Jun 1, 2026<br>
         Site last updated: Jun 1, 2026
         </p>
         <p>
