@@ -95,7 +95,7 @@ Our tutorials generally follow a file structure similar to this:
   - README.md                     # description of the case
   - precice.config.xml            # a works-with-all preCICE configuration file
   - clean-tutorial.sh             # a symbolic link (see ../tools/)
-  - metadata.yaml
+  - metadata.yaml                 # machine-readable description
   - <participant1-solver1>/       # e.g. fluid-openfoam/
     - run.sh                      # a short script to run the solver1 case
     - clean.sh                    # a short script to clean the solver1 case
