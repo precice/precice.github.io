@@ -54,6 +54,12 @@ We parallelize the same Python codes used in the Basics module, we analyze the p
 
 ![HPC training: Tracing](images/training/training-hpc.png)
 
+### Macro-micro coupling
+
+We couple many micro simulations to a macro simulation: We use the [Micro Manager](tooling-micro-manager-overview.html) to set up Python and C++ micro simulations, learn how manage runtime using adaptivity, implement model adaptivity, and run the micro simulations in parallel with adaptivity and load balancing.
+
+![Macro-Micro training: Adaptivity](images/training/training-mm.png)
+
 ## How to prepare?
 
 On the technical side, the training course involves multiple components of the preCICE ecosystem, as well as third-party solvers and pre- and post-processing tools.
@@ -156,3 +162,9 @@ The FSI workflow module also needs:
 - [FreeCAD](https://www.freecad.org/) 0.21 or later (check by starting the GUI)
 - [ccx2paraview](https://github.com/calculix/ccx2paraview) (`pip3 install ccx2paraview`, check by starting a Python terminal and executing `import ccx2paraview`)
 - [PyFoam](https://pypi.org/project/PyFoam/) (`pip3 install pyfoam`, check by running `pyFoamPlotWatcher.py --help`)
+
+The macro-micro coupling module also needs:
+
+- A C++ compiler (for example, g++ or clang++)
+- [Micro Manager](tooling-micro-manager-overview.html) (`pip3 install micro-manager-precice`, check by running `micro-manager-precice -h`)
+- [pybind11](https://pybind11.readthedocs.io/en/stable/index.html) (v3 or later, install on Ubuntu with `apt install python3-pybind11`, check with `pybind11-config --includes --extension-suffix`)

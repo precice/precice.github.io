@@ -17,7 +17,7 @@ There are three different ways to fund and support the development of preCICE an
 
 ### 1. Research project partner
 
-Include preCICE as a project partner in your research project proposal or team up with the preCICE developers to write a proposal. This is the best option when you want to benefit from the research and scientific expertise of the preCICE team, and increase the chances that your project is funded. The developers of preCICE are experts in numerical methods, high-performance computing, and software engineering for multi-X coupled problems. Reviewers appreciate the highly recognized expertise of preCICE, demonstrated by our fast growing [number of citations](https://scholar.google.com/scholar?hl=en&cites=5053469347483527186), and [vibrant community](community-projects.html).
+Include preCICE as a project partner in your research project proposal or team up with the preCICE developers to write a proposal. This is the best option when you want to benefit from the research and scientific expertise of the preCICE team, and increase the chances that your project is funded. The developers of preCICE are experts in numerical methods, high-performance computing, and software engineering for multi-X coupled problems. Reviewers appreciate the highly recognized expertise of preCICE, demonstrated by our fast-growing number of citations of our [first](https://scholar.google.com/scholar?hl=en&cites=5053469347483527186) and [second reference paper](https://scholar.google.com/scholar?cites=17974677460269868025), and [vibrant community](community-projects.html).
 
 ### 2. Support license
 
