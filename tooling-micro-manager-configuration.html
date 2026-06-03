@@ -1711,7 +1711,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 28 May 26</small>
+              <small>Updated 03 Jun 26</small>
             </div>
           </aside>
           
@@ -1723,7 +1723,7 @@ $('#toc').on('click', 'a', function() {
 <p>The Micro Manager is configured with a <a href="https://en.wikipedia.org/wiki/JSON#Syntax">JSON</a> file. Several parameters can be set, in different sections. For example:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python/micro.py"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"micro_file_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python/micro.py"</span><span class="p">],</span><span class="w">
     </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"precice_config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"macro_mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Macro-Mesh"</span><span class="p">,</span><span class="w">
@@ -1751,13 +1751,13 @@ $('#toc').on('click', 'a', function() {
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">micro_file_name</code></td>
-      <td>Path to the file containing the Python importable micro simulation class. If the file is not in the working directory, give the relative path from the directory where the Micro Manager is executed.</td>
+      <td><code class="language-plaintext highlighter-rouge">micro_file_names</code></td>
+      <td>Paths to the files containing the Python importable micro simulation classes. If the files are not in the working directory, give the relative paths from the directory where the Micro Manager is executed.</td>
       <td>-</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">micro_stateless</code></td>
-      <td>Boolean if micro simulation is stateless allowing model instancing.</td>
+      <td><code class="language-plaintext highlighter-rouge">micro_stateless_flags</code></td>
+      <td>List of booleans if micro simulation is stateless allowing model instancing.</td>
       <td>False</td>
     </tr>
     <tr>
@@ -2138,16 +2138,8 @@ using the fields with the highest standard deviation.</p>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">micro_file_names</code></td>
-      <td>List of paths to the files containing the Python importable micro simulation classes, in order of decreasing model fidelity. If the files are not in the working directory, give the relative path from the directory where the Micro Manager is executed. Requires a minimum of 2 files.</td>
-    </tr>
-    <tr>
       <td><code class="language-plaintext highlighter-rouge">switching_function</code></td>
       <td>Path to the file containing the Python importable switching function. If the file is not in the working directory, give the relative path from the directory where the Micro Manager is executed.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">micro_stateless</code></td>
-      <td>List of boolean values, whether the respective micro simulation model is stateless and can use model instancing.</td>
     </tr>
   </tbody>
 </table>
@@ -2157,9 +2149,7 @@ using the fields with the highest standard deviation.</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"model_adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"model_adaptivity_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"micro_file_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">],</span><span class="w">
         </span><span class="nl">"switching_function"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mada_switcher"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"micro_stateless"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">False</span><span class="p">,</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span><span class="err">True</span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
@@ -2635,7 +2625,7 @@ The following parameters can be set</p>
         </a>
         </p>
         <p>
-        Page last updated: May 28, 2026<br>
+        Page last updated: Jun 3, 2026<br>
         Site last updated: Jun 3, 2026
         </p>
         <p>
