@@ -36,7 +36,6 @@ We are preparing an interactive online event with 3h slots over a week. Prelimin
 - Friday (discussion):
   - 12:00-12:30: General Q&A session
   - 12:30-15:00: In parallel: User support session, Further training
- 
 ## Invited user talks
 
 - [Mike Tree, Corvid Technologies](https://www.corvidtec.com/digital-engineering), *title tba*
