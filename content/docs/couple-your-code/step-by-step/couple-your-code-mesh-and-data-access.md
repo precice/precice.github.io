@@ -14,7 +14,7 @@ Coupling meshes and associated data fields are defined in the preCICE configurat
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-1" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
 
 ```cpp
 VertexID setMeshVertex(
@@ -28,7 +28,7 @@ void setMeshVertices(
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-1" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
 
 ```python
 vertex_id = set_mesh_vertex(mesh_name, position)
@@ -46,7 +46,7 @@ To write data to the coupling data structure the following API function is neede
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-2" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
 ```cpp
 void Participant::writeData(
@@ -57,7 +57,7 @@ void Participant::writeData(
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-2" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
 
 ```python
 write_data(mesh_name, data_name, vertex_ids, values)
@@ -71,7 +71,7 @@ Similarly, there is a `readData` API function for reading coupling data:
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-3" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
 
 ```cpp
 void readData(
@@ -83,7 +83,7 @@ void readData(
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-3" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
 
 ```python
 values = read_data(mesh_name, data_name, vertex_ids, relative_read_time)
@@ -99,7 +99,7 @@ Let's define coupling meshes and access coupling data in our example code:
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-4" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
 
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
@@ -141,7 +141,7 @@ turnOffSolver();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-4" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-4" markdown="1">
 
 ```python
 turn_on_solver() # e.g. setup and partition mesh

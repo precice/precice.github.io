@@ -14,7 +14,7 @@ The handle to the preCICE API is the class `precice::Participant`. Its construct
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane fade show active" id="cpp-1" markdown="1">
+  <div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
 
 ```cpp
 Participant( String participantName, String configurationFileName, int rank, int size );
@@ -24,7 +24,7 @@ void finalize();
 ```
 
   </div>
-  <div role="tabpanel" class="tab-pane fade" id="python-1" markdown="1">
+  <div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
 
 ```python
 participant = Participant(participant_name, configuration_file_name, rank, size)
@@ -47,14 +47,14 @@ The following function allows us to query the maximum allowed time step size fro
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane fade show active" id="cpp-2" markdown="1">
+  <div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
 ```cpp
 double getMaxTimeStepSize();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-2" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
 
 ```python
 get_max_time_step_size()
@@ -69,7 +69,7 @@ But let's ignore the details of time step sizes for the moment. This will be the
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
 </ul>
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane fade show active" id="cpp-3" markdown="1">
+  <div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
 
 ```cpp
 #include <precice/precice.hpp>
@@ -96,7 +96,7 @@ turnOffSolver();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-3" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
 
 ```python
 import precice

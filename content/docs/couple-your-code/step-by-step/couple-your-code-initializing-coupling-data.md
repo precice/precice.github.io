@@ -11,14 +11,14 @@ By default preCICE assumes that all coupling variables are zero initially. If yo
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-1" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
 
 ```cpp
 bool requiresInitialData()
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-1" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
 
 ```python
 requires_initial_data()
@@ -32,7 +32,7 @@ To support data initialization, we extend our example as follows:
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-2" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
 ```cpp
 
@@ -50,7 +50,7 @@ while (precice.isCouplingOngoing()){
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-2" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
 
 ```python
 [...]

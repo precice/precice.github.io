@@ -19,7 +19,7 @@ All kind of connectivity can be built up directly from vertices. Triangles and q
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-1" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
 
 ```cpp
 void setMeshEdge(precice::string_view meshName, VertexID firstVertexID, VertexID secondVertexID);
@@ -29,7 +29,7 @@ void setMeshTetrahedron(precice::string_view meshName, VertexID firstVertexID, V
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-1" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
 
 ```python
 set_mesh_edge(mesh_name, first_vertex_id, second_vertex_id)
@@ -46,7 +46,7 @@ There are also bulk versions of these methods, which can be easier to handle in 
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-2" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
 ```cpp
 void setMeshEdges(precice::string_view meshName, precice::span<const VertexID> vertices);
@@ -56,7 +56,7 @@ void setMeshTetrahedra(precice::string_view meshName, precice::span<const Vertex
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-2" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
 
 ```python
 set_mesh_edges(mesh_name, vertices)
@@ -73,14 +73,14 @@ If you do not configure any features in the preCICE configuration that require m
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-3" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
 
 ```cpp
 bool requiresMeshConnectivityFor(precice::string_view meshName);
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-3" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
 
 ```python
 requires_mesh_connectivity_for(mesh_name)   
@@ -105,7 +105,7 @@ The following code shows how mesh connectivity can be defined in our example. Fo
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-4" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
 
 ```cpp
 /* ... */
@@ -138,7 +138,7 @@ if (precice.requiresMeshConnectivityFor(meshName)) {
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-4" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-4" markdown="1">
 
 ```python
 # We define the unit square in 2D with vertices A, B, C, D
@@ -192,7 +192,7 @@ Then map these Solver IDs to preCICE IDs, and use those to define your connectiv
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-5">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-5" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-5" markdown="1">
 
 ```cpp
 Participant participant(...);
@@ -216,7 +216,7 @@ for (auto& tri: solver.triangularFaces) {
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-5" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-5" markdown="1">
 
 ```python
 participant = precice.Participant(...)
@@ -258,7 +258,7 @@ When iterating over faces, get the preCICE vertex IDs from the point labels, and
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-6">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-6" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-6" markdown="1">
 
 ```cpp
 Participant participant(...);
@@ -279,7 +279,7 @@ for (auto& tri: solver.triangularFaces) {
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-6" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-6" markdown="1">
 
 ```python
 participant = precice.Participant(...)
@@ -313,7 +313,7 @@ An alternative would be to use a spatial index as a data structure to store this
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-7">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-7" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-7" markdown="1">
 
 ```cpp
 Participant participant(...);
@@ -366,7 +366,7 @@ class IDLookup {
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-7" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-7" markdown="1">
 
 ```py
 import rtree

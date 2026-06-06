@@ -21,7 +21,7 @@ Now, we will learn how to write gradient data to the mesh. For this purpose, we 
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-1" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
 
 ```cpp
 void writeGradientData(
@@ -32,7 +32,7 @@ void writeGradientData(
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-1" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
 
 ```python
 write_gradient_data(mesh_name, data_name, vertex_ids, gradients)
@@ -56,7 +56,7 @@ Let's add gradient data to our example code:
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-2" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
 ```cpp
 precice::Participant precice("FluidSolver", "precice-config.xml", rank, size); // constructor
@@ -96,7 +96,7 @@ while (not simulationDone()){ // time loop
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-2" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
 
 ```python
 precice = precice.Participant("FluidSolver", "precice-config.xml", rank, size)

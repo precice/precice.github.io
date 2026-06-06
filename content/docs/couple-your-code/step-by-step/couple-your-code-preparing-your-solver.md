@@ -12,7 +12,7 @@ Let's say you want to prepare a fluid solver for fluid-structure interaction and
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python">Python</a></li>
 </ul>
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane fade show active" id="cpp" markdown="1">
+  <div role="tabpanel" class="tab-pane active" id="cpp" markdown="1">
 
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
@@ -29,7 +29,7 @@ turnOffSolver();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python" markdown="1">
 
 ```python
 turn_on_solver() #e.g. setup and partition mesh

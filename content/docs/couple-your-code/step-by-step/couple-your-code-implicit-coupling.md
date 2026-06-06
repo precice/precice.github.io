@@ -11,7 +11,7 @@ The main ingredient needed for implicit coupling is move backwards in time. For 
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-1" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
 
 ```cpp
 bool requiresWritingCheckpoint()
@@ -19,7 +19,7 @@ bool requiresReadingCheckpoint()
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-1" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
 
 ```python
 requires_writing_checkpoint()
@@ -39,7 +39,7 @@ Let's extend our example code to also handle implicit coupling.
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-2" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
@@ -54,7 +54,7 @@ double dt; // actual time step size
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-2" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
 
 ```python
 turn_on_solver() # eg: setup and partition mesh
@@ -71,7 +71,7 @@ precice = precice.Participant("FluidSolver", "precice-config.xml", rank, size) #
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-3" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
 
 ```cpp
 precice.initialize();
@@ -100,7 +100,7 @@ turnOffSolver();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-3" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
 
 ```python
 precice.initialize()

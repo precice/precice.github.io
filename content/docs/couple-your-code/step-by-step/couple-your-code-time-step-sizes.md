@@ -13,7 +13,7 @@ In previous steps, you have already seen that there are quite some things going 
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-1" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
 
 ```cpp
 ...
@@ -33,7 +33,7 @@ while (not simulationDone()){ // time loop
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-1" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
 
 ```python
 ...
@@ -82,14 +82,14 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-2" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
 ```c++
 preciceDt = precice.getMaxTimeStepSize();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-2" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
 
 ```python
 precice_dt = precice.get_max_time_step_size()
@@ -103,14 +103,14 @@ precice_dt = precice.get_max_time_step_size()
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-3" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
 
 ```c++
 solverDt = beginTimeStep();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-3" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
 
 ```python
 solver_dt = begin_time_step()
@@ -126,14 +126,14 @@ These two cases are reflected in:
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-4" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
 
 ```c++
 dt = min(preciceDt, solverDt)
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-4" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-4" markdown="1">
 
 ```python
 dt = min(precice_dt, solver_dt)
@@ -166,7 +166,7 @@ The following example extends the time step negotiation between the solver and p
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-5">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-5" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-5" markdown="1">
 
 ```cpp
 ...
@@ -193,7 +193,7 @@ precice.advance(dt);
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-5" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-5" markdown="1">
 
 ```python
 ...
@@ -238,14 +238,14 @@ The `first` participant sets the time step size. This requires that the `second`
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-6">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-6" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-6" markdown="1">
 
 ```c++
 precice.advance(dt);
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-6" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-6" markdown="1">
 
 ```python
 precice.advance(dt)
@@ -259,14 +259,14 @@ precice.advance(dt)
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-7">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-7" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-7" markdown="1">
 
 ```c++
 preciceDt = precice.getMaxTimeStepSize();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-7" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-7" markdown="1">
 
 ```python
 precice_dt = precice.get_max_time_step_size()
@@ -280,14 +280,14 @@ precice_dt = precice.get_max_time_step_size()
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-8">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-8" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-8" markdown="1">
 
 ```c++
 solverDt = beginTimeStep();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-8" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-8" markdown="1">
 
 ```python
 solver_dt = begin_time_step()
@@ -304,14 +304,14 @@ These two cases are again reflected in the formula:
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-9">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-9" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-9" markdown="1">
 
 ```c++
 dt = min(preciceDt, solverDt);
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-9" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-9" markdown="1">
 
 ```python
 dt = min(precice_dt, solver_dt)
@@ -338,14 +338,14 @@ One last thing about time. There is also a helper function in preCICE that allow
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-10">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-10" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-10" markdown="1">
 
 ```c++
 bool isCouplingOngoing();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-10" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-10" markdown="1">
 
 ```python
 is_ongoing = is_coupling_ongoing()
@@ -360,7 +360,7 @@ This functions looks at `max-time-windows` and `max-time` as defined in the preC
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-11">Python</a></li>
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane fade show active" id="cpp-11" markdown="1">
+<div role="tabpanel" class="tab-pane active" id="cpp-11" markdown="1">
 
 ```c++
 while (precice.isCouplingOngoing()){ // time loop
@@ -370,7 +370,7 @@ precice.finalize();
 ```
 
 </div>
-<div role="tabpanel" class="tab-pane fade" id="python-11" markdown="1">
+<div role="tabpanel" class="tab-pane" id="python-11" markdown="1">
 
 ```python
 while precice.is_coupling_ongoing(): # time loop
