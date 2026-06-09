@@ -7,7 +7,7 @@ permalink: docs-meta-landing-page.html
 
 ## So you want to edit the landing page
 
-The preCICE documentation uses the popular [Bootstrap 3.4](https://getbootstrap.com/docs/3.4/) framework, based on [documentation-theme-jekyll](docs-meta-overview.html). The general idea is to adapt the layout and styling of the original theme as little as possible ('never change a running system') and style the landing page `index.html` relative to the original styling.
+The preCICE documentation uses [Bootstrap 5.3.8](https://getbootstrap.com/docs/5.3/), based on [documentation-theme-jekyll](docs-meta-overview.html). The general idea is to adapt the layout and styling of the original theme as little as possible and style the landing page `index.html` relative to the original styling.
 
 ## Style sheets
 
@@ -21,7 +21,7 @@ For the preCICE site these have been adapted to
 - `customstyles.css`: as before
 - `customstyles-precice.css`: material changes to the above style sheet
 - `theme-precice.css`: adaptation of color schemes
-- `landing-page`: styles specific to the landing page.
+- `landing-page.css`: styles specific to the landing page.
 
 ## Full-bleed layout
 
@@ -57,8 +57,8 @@ Let's further break down the structure of the code example.
 </div>
 ```
 
-The highlighted classes implement the [Bootstrap grid](https://getbootstrap.com/docs/3.4/css/#grid) whereas `.section` is a custom style.
-As a quick visual example, when the following `.row`s are placed in `.container` we have a number of `.col-X-Y` column classes available, where `X` targets the viewport and `Y` denotes width from 1-12. For more information see the [Bootstrap docs](https://getbootstrap.com/docs/3.4/css/#grid).
+The highlighted classes implement the [Bootstrap grid](https://getbootstrap.com/docs/5.3/layout/grid/) whereas `.section` is a custom style.
+As a quick visual example, when the following `.row`s are placed in `.container` we use column classes like `.col-md-8` or `.col-lg-12`: the middle token is the breakpoint (`sm`, `md`, `lg`, `xl`, `xxl`) and the number is the span from 1–12. For more information see the [Bootstrap docs](https://getbootstrap.com/docs/5.3/layout/grid/).
 
 Code:
 
