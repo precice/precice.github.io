@@ -7,9 +7,9 @@ toc: false
 redirect_from: /preCICE2022/
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2022.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/precice2022.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
-<img class="img-responsive center-block" src="images/events/precice2022-group.png" alt="Group picture" style="width: 100%; margin:auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/precice2022-group.png" alt="Group picture" style="width: 100%; margin:auto;">
 
 The 3rd preCICE Workshop was held virtually through [SimTech](https://www.simtech.uni-stuttgart.de/) and the [University of Stuttgart](https://www.uni-stuttgart.de/en/), on February 21-24, 2022. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
 
