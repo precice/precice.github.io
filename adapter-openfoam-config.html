@@ -1711,7 +1711,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 27 May 26</small>
+              <small>Updated 10 Jun 26</small>
             </div>
           </aside>
           
@@ -2025,6 +2025,27 @@ The FF module is still experimental and the boundary conditions presented here h
 <p>Explicitly setting <code class="language-plaintext highlighter-rouge">locations volumeCenters;</code> in preciceDict is required for volume coupling. If omitted, it defaults to surface coupling on <code class="language-plaintext highlighter-rouge">faceCenters</code>. Volume coupling data is always assumed as values for now, i.e., cannot set volume gradient.</p>
 
 <p>When reading on the OpenFOAM side, the Generic module automatically detects the boundary condition type of the coupled patch to apply the received data. The boundary condition must be respected, therefore the data received is applied either as a <code class="language-plaintext highlighter-rouge">fixedValue</code> or <code class="language-plaintext highlighter-rouge">fixedGradient</code> boundary condition, determined by the type set in the <code class="language-plaintext highlighter-rouge">0/</code> files.</p>
+
+<p>Additionally, the Robin or mixed boundary condition is now supported for scalar surface coupling. The OpenFOAM boundary type <code class="language-plaintext highlighter-rouge">mixed</code> or <code class="language-plaintext highlighter-rouge">mixedCoded</code> must be set for the coupled patch in the <code class="language-plaintext highlighter-rouge">0/</code> files like so:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// File 0/T</span>
+<span class="n">boundaryField</span>
+<span class="p">{</span>
+    <span class="n">interface</span>
+    <span class="p">{</span>
+        <span class="n">type</span>            <span class="n">mixed</span><span class="p">;</span>
+        <span class="n">refValue</span>        <span class="n">uniform</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">refGradient</span>     <span class="n">uniform</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">valueFraction</span>   <span class="n">uniform</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Any of the three fields <code class="language-plaintext highlighter-rouge">refValue</code>, <code class="language-plaintext highlighter-rouge">refGradient</code>, and <code class="language-plaintext highlighter-rouge">valueFraction</code> can be read from another participant (the initial values will be overwritten by the adapter). To do so, specify the <code class="language-plaintext highlighter-rouge">operation</code> for each coupling data in <code class="language-plaintext highlighter-rouge">preciceDict</code> as <code class="language-plaintext highlighter-rouge">ref-value</code>, <code class="language-plaintext highlighter-rouge">ref-gradient</code>, or <code class="language-plaintext highlighter-rouge">value-fraction</code>. Be careful when using the <code class="language-plaintext highlighter-rouge">value-fraction</code> operation, as it is not a physical quantity and must be within the range of [0, 1].</p>
+
+<p>These three operations are only supported for the read side. To write coupling data from a mixed boundary patch, just use the standard <code class="language-plaintext highlighter-rouge">value</code> or <code class="language-plaintext highlighter-rouge">surface-normal-gradient</code> operation. The <code class="language-plaintext highlighter-rouge">valueFraction</code> field of the mixed boundary condition is not exposed by the adapter for writing.</p>
+
+<p>Please note that if you intend to use the <code class="language-plaintext highlighter-rouge">mixed</code> boundary condition for a heat transfer problem, the <code class="language-plaintext highlighter-rouge">valueFraction</code> is not the same as the heat transfer coefficient and it’s not possible to explicitly set the heat transfer coefficient as a parameter.</p>
 
 <p>Limitations:</p>
 
@@ -2788,7 +2809,7 @@ to be a useful reference (file changes).</p>
         </a>
         </p>
         <p>
-        Page last updated: May 27, 2026<br>
+        Page last updated: Jun 10, 2026<br>
         Site last updated: Jun 10, 2026
         </p>
         <p>
