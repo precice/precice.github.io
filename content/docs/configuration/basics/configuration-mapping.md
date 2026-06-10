@@ -143,7 +143,7 @@ To use this feature, build preCICE from source with [Kokkos-Kernels or Ginkgo en
 | Mapping tag             | Dependencies                                                                                                       | `cuda` | `hip` | `sycl` | `openmp` | `cpu` | MPI-parallelization |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------|:------:|:-----:|:------:|:--------:|:-----:|---------------------|
 | `rbf-pum-direct`        | (Eigen, [mandatory](https://precice.org/installation-source-dependencies.html#required-dependencies) for preCICE)  | —      | —     | —      | —        | ✓     | distributed         |
-| `rbf-pum-direct`        | Kokkos-Kernels and Kokkos (preCICE >= v3.4.1)                                                                      | ✓      | ✓     | ✓      | ✓        | —     | distributed         |
+| `rbf-pum-direct`        | Kokkos Kernels and Kokkos (preCICE >= v3.5)                                                                        | ✓      | ✓     | ✓      | ✓        | —     | distributed         |
 | `rbf-global-direct`     | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | —      | —        | —     | gather-scatter      |
 | `rbf-global-direct`     | (Eigen, [mandatory](https://precice.org/installation-source-dependencies.html#required-dependencies) for preCICE)  | —      | —     | —      | —        | ✓     | gather-scatter      |
 | `rbf-global-iterative`  | Ginkgo and Kokkos (preCICE >= v3.2)                                                                                | ✓      | ✓     | —      | ✓        | —     | gather-scatter      |
@@ -171,9 +171,9 @@ Mapping configurations that follow a gather-scatter approach are always computed
 
 By contrast, distributed mappings solve their rank-local problem in parallel. In practice, this means that the configuration snippet above assigns multiple MPI ranks to a single GPU (with device ID 0). Since oversubscribing a device is typically undesired, use `gpu-device-id="auto"` to assign MPI ranks in a round-robin fashion to the available GPUs. Also note -- due to the different parallelization strategies -- `n-threads` configures the number of threads per executing rank, i.e., for a distributed parallelization, `n-threads=10` assigns 10 OpenMP threads to each MPI rank, whereas for a gather-scatter parallelization `n-threads=10` assigns 10 OpenMP threads to the primary rank only.
 
-{% note %}
-Note that as of preCICE v3.4 the `rbf-pum-direct` executor only supports `consistent` constraints. Supporting a `conservative` is [work in progress](https://github.com/precice/precice/pull/2536).
-{% endnote %}
+{% version 3.5.0 %}
+Note that as of preCICE v3.4 the `rbf-pum-direct` executor only supports `consistent` constraints. The `conservative` constraint is supported since v3.5.0.
+{% endversion %}
 
 More details on the feature can be found in [Schneider et al. 2023](https://doi.org/10.23967/c.coupled.2023.016).
 
