@@ -111,11 +111,12 @@ but now starts to feel a bit restrictive
 We envy the dark theme, the nice footer that showcases contributions, and the nice search engine support
 when we look at the documentation of other community projects, such as [GitLab](https://docs.gitlab.com/user/) or [Docker](https://docs.docker.com/get-started/).
 We also required some hacky jekyll plugins to integrate multiple repositories into one jekyll website, which are a bit error-prone.
-Our technology stack could still use modernization:
-The front-end uses [Bootstrap](https://getbootstrap.com/docs/5.3/) 5.3.8, with some custom CSS on top.
+Our technology stack is also a bit outdated:
+For example, the front-end is using [Bootstrap](https://getbootstrap.com/docs/) 3.3.7, with some custom CSS on top.
 We have done some [preliminary work](https://github.com/orgs/precice/projects/22/views/1) porting to hugo,
 but web development is not what we are good at.
-We would like to switch to the [Hugo static site generator](https://gohugo.io/),
+As a first step, we would like to [upgrade to a newer Bootstrap version](https://github.com/precice/precice.github.io/issues/691).
+After that, we would like to switch to the [Hugo static site generator](https://gohugo.io/),
 aiming to have a framework that we can upgrade and maintain with minimal effort.
 
 **Entry test:** To figure out if this is for you, try [building the website locally](https://github.com/precice/precice.github.io/blob/master/README.md)
