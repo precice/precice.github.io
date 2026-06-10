@@ -21,12 +21,7 @@ group :dev do
   gem 'jekyll-watch'
 end
 
-# For googlescholar.rb
-gem "nokogiri"
-gem "open-uri"
-
 # Maybe in the future
-# https://rubygems.org/gems/jekyll-scholar
 # https://rubygems.org/gems/jekyll-assets
 # https://rubygems.org/gems/jekyll-minifier
 

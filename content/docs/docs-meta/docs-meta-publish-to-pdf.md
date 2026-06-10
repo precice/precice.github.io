@@ -9,7 +9,7 @@ summary:
 
 At the core of PDF generation process is [Prince](https://www.princexml.com/), which converts HTML/CSS (and even some JS) to print quality PDF with bookmarks, links, page numbers etc. Unfortunately there are no open-source alternatives that operate at the same level as Prince (yet) - however, Prince offers a [non-commercial license](https://www.princexml.com/purchase/license_faq/#non-commercial) that is perfectly suited for our use-case. As a requisite a water-mark is displayed on the first page of the PDF and we must place prominent links to the Prince website at the places we intend to serve the PDF.
 
-Prince can be downloaded [here](https://www.princexml.com/download/). The minimum version for MathJax 3 support is `20210624` which you can find [here](https://www.princexml.com/latest/).
+[Download Prince](https://www.princexml.com/download/): The minimum version for MathJax 3 support is `20210624`, so get the [latest release](https://www.princexml.com/latest/).
 
 On a Windows environment it makes sense to add the location of the Prince executable, e.g. `C:\Program Files (x86)\Prince\engine\bin`, to the `PATH`.
 
@@ -143,7 +143,7 @@ Furthermore two more pages have to be included in `prince-list.txt`:
 
 These two pages are located in `pdfconfigs/` and govern the layout of the title page as well as the table of contents.
 
-For further information see [here](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_generating_pdfs.html).
+For further information, see the [Jekyll theme documentation](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_generating_pdfs.html).
 
 ## Troubleshooting and common issues
 

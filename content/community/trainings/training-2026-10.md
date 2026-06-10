@@ -29,14 +29,21 @@ We are preparing an interactive online event with 3h slots over a week. Prelimin
   - 12:00-14:30: Training course: Implicit coupling
   - 14:30-15:00: General Q&A session
 - Wednesday (talks):
-  - 12:00-12:30: News from preCICE
-  - 12:30-13:30: Developer talks
-  - 13:30-15:00: User talks
+  - 12:00-13:00: News from preCICE
+  - 13:00-15:00: User talks
 - Thursday (hands-on):
   - 12:00-15:00: Training course: Data mapping
 - Friday (discussion):
   - 12:00-12:30: General Q&A session
-  - 12:30-15:00: In parallel: User support session | Further training
+  - 12:30-15:00: In parallel: User support session, Further training
+
+## Invited user talks
+
+- [Mike Tree, Corvid Technologies](https://www.corvidtec.com/digital-engineering), *title tba*
+- [Alihossein Sepahvand, INSIM LLC](https://insim.ai/), *Spice-FEM co-simulation using preCICE*
+- [Daniel J. Bodony, University of Illinois Urbana-Champaign](https://aerospace.illinois.edu/directory/profile/bodony), *title tba*
+- [Arpan Sircar, Oak Ridge National Laboratory](https://www.ornl.gov/staff-profile/arpan-sircar), *title tba*
+- [Jerome M. Solberg, Lawrence Livermore National Laboratory](https://people.llnl.gov/solberg2), *title tba*
 
 ## Help us advertise
 

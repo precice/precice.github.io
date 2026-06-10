@@ -38,6 +38,8 @@ Linux is the easiest option, see figure above. We provide [binary packages](inst
 
 The recommended way is to [use Homebrew to install preCICE](installation-packages.html#macos).
 
+Alternatively, in case any of the solvers you want to couple do not work natively on macOS, you can use [container](https://github.com/apple/container) to get a Linux system on macOS.
+
 **Microsoft Windows**
 
 The recommended way is to [use MYSYS2 to install preCICE](installation-packages.html#msys2).
