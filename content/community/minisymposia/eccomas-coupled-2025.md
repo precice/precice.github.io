@@ -6,7 +6,7 @@ permalink: eccomas-coupled-2025.html
 toc: false
 ---
 
-The [ECCOMAS Coupled Problems 2025](https://coupled2025.cimne.com/) will take place on Sardinia, Italy from May 26 to 29.
+The [ECCOMAS Coupled Problems 2025](https://coupled2025.cimne.com/) took place on Sardinia, Italy from May 26 to 29.
 
 We organized a preCICE minisymposium: [Multi-Physics and Multi-Scale Simulations with the Coupling Library preCICE](https://coupled2025.cimne.com/event/session/e430d14b-0b28-11f0-9835-000c29ddfc0c) ([abstract](https://coupled2025.cimne.com/event/area/3dec3ef1-70ff-11ef-bbc6-000c29ddfc0c)) (IS042).
 
@@ -52,4 +52,4 @@ In [IS049B Numerical methods that enable the heterogeneous coupling of conventio
 
 ## Further events
 
-We are organized a coming together of the preCICE community on Monday evening, advertised among participants of the preCICE minisymposium.
+We organized a coming together of the preCICE community on Monday evening, advertised among participants of the preCICE minisymposium.
