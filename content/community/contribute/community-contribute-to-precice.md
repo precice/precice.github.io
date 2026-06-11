@@ -112,7 +112,9 @@ Other files you may encounter are the following:
 - <tutorial>/                     
   - <visualization scripts>       # gnuplot or simple Python scripts
   - images/                       # any images used by the documentation
+  - utils/                        # further utilities, e.g., for pre-/post-processing
   - solver-<code>/                # any configurable, tutorial-specific code, e.g., solver-fenics
+  - .gitignore                    # tutorial-specific files to be ignored in Git repositories
   - reference-results/            # results from different case combinations, used for regression tests
     - <case_combination>.tar.gz   # Git LFS objects, generated from GitHub Actions
 ```
