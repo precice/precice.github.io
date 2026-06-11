@@ -609,12 +609,38 @@ ul.devlist>li {
 /* print styles */
 @media print {
   /* https://www.matuzo.at/blog/i-totally-forgot-about-print-style-sheets/ */
+  body > header,
+  body > footer,
   #tg-sb-sidebar,
-  .githubEditButton {
-    display: none;
+  .githubEditButton,
+  #scroll-to-top,
+  .scroll-to-top,
+  .copy-code-btn,
+  .anchorjs-link {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
   }
   body {
-    padding-top: 0;
+    display: block !important;
+    min-height: auto !important;
+    padding-top: 0 !important;
+  }
+  .page-content,
+  .page-content > .row,
+  #tg-sb-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .page-content > .row {
+    display: block !important;
+  }
+  #tg-sb-content {
+    flex: 0 0 100% !important;
   }
 }
 
