@@ -59,10 +59,10 @@ The website in its current form was planned and implemented by CH Lorenz Researc
 
 ## Funding
 
-<div class="row">
+<div class="row gy-3">
 {% for item in site.data.funding %}
 <div class="col-md-6 d-flex flex-column">
-        <div class="card panel-custom h-100">
+        <div class="card h-100">
           <div class="card-body">
             <a href="{{ item.url }}" target="_blank" class="no-icon card-title">
               <strong>

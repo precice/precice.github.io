@@ -29,12 +29,16 @@
         // wrap tables into a div to make them scrollable on small viewports
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('table').forEach(function (table) {
-        table.classList.add('table');
+        table.classList.add('table', 'table-striped', 'table-hover', 'table-bordered', 'w-100');
+        var tableHead = table.querySelector('thead');
+        if (tableHead) {
+          tableHead.classList.add('table-primary');
+        }
         if (table.parentElement && table.parentElement.classList.contains('table-responsive')) {
           return;
         }
         var wrapper = document.createElement('div');
-        wrapper.className = 'table-responsive';
+        wrapper.className = 'table-responsive w-100';
         table.parentNode.insertBefore(wrapper, table);
         wrapper.appendChild(table);
       });
