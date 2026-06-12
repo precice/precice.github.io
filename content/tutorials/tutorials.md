@@ -70,7 +70,8 @@ In the following cases, you can explore different aspects of preCICE:
   - [Basic variant](tutorials-partitioned-heat-conduction.html) (as in "featured")
   - [Complex variant](tutorials-partitioned-heat-conduction-complex.html): A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.
   - [Direct mesh access variant](tutorials-partitioned-heat-conduction-direct.html): A partitioned heat conduction case with Nutils and G+Smo, showcasing the direct mesh access feature.
-  - [Overlapping Schwarz variant](tutorials-partitioned-heat-conduction-overlap.html): An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.
+  - [Overlapping Schwarz variant](tutorials-partitioned-heat-conduction-overlap.html): An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants implemented in FEniCS.
+  - [3D variant](tutorials-partitioned-heat-conduction-3d.html): A three-dimensional variant of the basic tutorial, with FEniCSx.
 - Perpendicular flap collection
   - [Basic variant](tutorials-perpendicular-flap.html) (as in "featured")
   - [Stress variant](tutorials-perpendicular-flap-stress.html): Exchanging stresses instead of forces, coupling OpenFOAM and G+Smo.
