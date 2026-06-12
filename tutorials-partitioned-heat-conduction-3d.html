@@ -5,31 +5,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="This tutorial is the advanced version of the "partitioned heat conduction" tutorial, showcasing more advanced features and geometries.">
+<meta name="description" content="We solve a simple heat equation on a 3D domain. The domain is partitioned and the coupling is established in a Dirichlet-Neumann fashion.">
 
-<meta name="keywords" content=" FEniCS, Heat conduction">
+<meta name="keywords" content=" FEniCSx, Heat conduction">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Partitioned heat conduction (complex setup) | preCICE - The Coupling Library</title>
+<title>3D partitioned heat conduction | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Partitioned heat conduction (complex setup)" />
+<meta property="og:title" content="3D partitioned heat conduction" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://precice.org/tutorials-partitioned-heat-conduction-complex.html" />
+<meta property="og:url" content="https://precice.org/tutorials-partitioned-heat-conduction-3d.html" />
 <meta property="og:image" content="https://precice.org/images/icon-310x310.png" />
-<meta property="og:description" content="This tutorial is the advanced version of the "partitioned heat conduction" tutorial, showcasing more advanced features and geometries.">
+<meta property="og:description" content="We solve a simple heat equation on a 3D domain. The domain is partitioned and the coupling is established in a Dirichlet-Neumann fashion.">
 
 <!-- Twitter Card metadata -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Partitioned heat conduction (complex setup)" />
-<meta name="twitter:description" content="This tutorial is the advanced version of the "partitioned heat conduction" tutorial, showcasing more advanced features and geometries.">
+<meta name="twitter:title" content="3D partitioned heat conduction" />
+<meta name="twitter:description" content="We solve a simple heat equation on a 3D domain. The domain is partitioned and the coupling is established in a Dirichlet-Neumann fashion.">
 <meta name="twitter:image" content="https://precice.org/images/icon-310x310.png" />
 
 <!-- Canonical link -->
-<link rel="canonical" href="https://precice.org/tutorials-partitioned-heat-conduction-complex" >
+<link rel="canonical" href="https://precice.org/tutorials-partitioned-heat-conduction-3d" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -97,7 +97,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     var qrDiv = document.createElement("div");
     qrDiv.id = "print-qr-code";
     var qr = qrcode(0, "M");
-    qr.addData("https://precice.org/tutorials-partitioned-heat-conduction-complex.html");
+    qr.addData("https://precice.org/tutorials-partitioned-heat-conduction-3d.html");
     qr.make();
     qrDiv.innerHTML = qr.createImgTag(3, 0);
     document.body.appendChild(qrDiv);
@@ -738,7 +738,7 @@ document.addEventListener('keydown', function(e) {
           
           
           
-          <li class="active"><a title="Complex variant" href="tutorials-partitioned-heat-conduction-complex.html">Complex variant</a></li>
+          <li><a title="Complex variant" href="tutorials-partitioned-heat-conduction-complex.html">Complex variant</a></li>
           
           
           
@@ -756,7 +756,7 @@ document.addEventListener('keydown', function(e) {
           
           
           
-          <li><a title="3D variant" href="tutorials-partitioned-heat-conduction-3d.html">3D variant</a></li>
+          <li class="active"><a title="3D variant" href="tutorials-partitioned-heat-conduction-3d.html">3D variant</a></li>
           
           
           
@@ -856,7 +856,7 @@ document.addEventListener('keydown', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Partitioned heat conduction (complex setup)</h1>
+   <h1 class="post-title-main">3D partitioned heat conduction</h1>
 </div>
 
 
@@ -866,7 +866,7 @@ document.addEventListener('keydown', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        This tutorial is the advanced version of the “partitioned heat conduction” tutorial, showcasing more advanced features and geometries.
+        We solve a simple heat equation on a 3D domain. The domain is partitioned and the coupling is established in a Dirichlet-Neumann fashion.
 
     </div>
     
@@ -912,11 +912,11 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/partitioned-heat-conduction-complex/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/partitioned-heat-conduction-3d/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
-              <small>Updated 03 Feb 26</small>
+              <small>Updated 12 Jun 26</small>
             </div>
           </aside>
           
@@ -924,35 +924,55 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-heat-conduction-complex">case files of this tutorial</a>, as continuously rendered here, or see the <a href="https://github.com/precice/tutorials/tree/master/partitioned-heat-conduction-complex">latest released version</a> (if there is already one). Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-heat-conduction-3d">case files of this tutorial</a>, as continuously rendered here, or see the <a href="https://github.com/precice/tutorials/tree/master/partitioned-heat-conduction-3d">latest released version</a> (if there is already one). Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
 <h2 id="setup">Setup</h2>
 
-<p>This case is an advanced version of <code class="language-plaintext highlighter-rouge">partitioned-heat-conduction</code>. Some advanced features offered by this case:</p>
+<p>We solve a partitioned heat equation. For information on the two dimensional non-partitioned case, please refer to [1, p.37ff]. In this tutorial the computational domain is partitioned and coupled via preCICE. The coupling roughly follows the approach described in [2].</p>
 
-<ul>
-  <li>Geometries may be chosen arbitrarily. One possibility is to use a circle and a rectangular plate with a hole, but you can also provide your own geometry, if you want.</li>
-  <li>You may combine arbitrary mesh resolutions at the coupling interface.</li>
-  <li>Nearest projection mapping is used.</li>
-  <li>The Dirichlet and Neumann participants may be swapped arbitrarily.</li>
-  <li>The exchanged temperature is still scalar valued, but the heat flux is vector valued.</li>
-  <li>You can decide to use a time dependent heat flux and right-hand side to make the problem more challenging.</li>
-</ul>
+<p><img src="images/tutorials-partitioned-heat-conduction-3d-setup.png" alt="Case setup of partitioned-heat-conduction case" /></p>
+
+<p>The computational domain can be seen in the picture above. To get a better overview of the domain, the domains of the participants are translated.
+The domain of the Neumann participant is the small box, and the Dirichlet participant’s domain is the rest. In the simulation, the small box is fully contained in the Dirichlet domain. This means, the coupling interface consists of five sides of the box.</p>
 
 <h2 id="configuration">Configuration</h2>
 
 <p>preCICE configuration (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
 
-<p><img src="images/tutorials-partitioned-heat-conduction-complex-precice-config.png" alt="preCICE configuration visualization" /></p>
+<p><img src="images/tutorials-partitioned-heat-conduction-3d-precice-config.png" alt="preCICE configuration visualization" /></p>
 
 <h2 id="available-solvers-and-dependencies">Available solvers and dependencies</h2>
 
-<p>See <code class="language-plaintext highlighter-rouge">partitioned-heat-conduction</code>, only <code class="language-plaintext highlighter-rouge">fenics</code> is provided as a solver.</p>
+<p>You can either couple a solver with itself or different solvers with each other. In any case you will need to have preCICE and the python bindings installed on your system.</p>
+
+<ul>
+  <li>FEniCSx. Install <a href="https://fenicsproject.org/download/">FEniCS</a> and the <a href="https://github.com/precice/fenicsx-adapter">FEniCSx-adapter</a>. The code is adapted from the existing <a href="https://github.com/hplgit/fenics-tutorial/blob/master/pub/python/vol1/ft03_heat.py">fenics-tutorial</a> from [1].</li>
+</ul>
 
 <h2 id="running-the-simulation">Running the simulation</h2>
 
-<p>See <code class="language-plaintext highlighter-rouge">partitioned-heat-conduction</code>. The additional featured mentioned above can be activated via command line arguments. Please run <code class="language-plaintext highlighter-rouge">python3 solver-fenics/heat.py --help</code> for a full list of provided arguments.</p>
+<p>You can find the corresponding <code class="language-plaintext highlighter-rouge">run.sh</code> script for running the case in the folders corresponding to the participant you want to use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>dirichlet-fenicsx
+./run.sh
+</code></pre></div></div>
+
+<p>and</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>neumann-fenicsx
+./run.sh
+</code></pre></div></div>
+
+<h2 id="visualization">Visualization</h2>
+
+<p>Output is written into the folders of the FEniCSx solvers (<code class="language-plaintext highlighter-rouge">neumann-fenicsx/output-neumann.bp</code> and <code class="language-plaintext highlighter-rouge">dirichlet-fenicsx/output-dirichlet.bp</code>).</p>
+
+<p>It is sufficient to import the folders to ParaView to get the visualization of the simulation.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Hans Petter Langtangen and Anders Logg. “Solving PDEs in Minutes-The FEniCS Tutorial Volume I.” (2016). <a href="https://fenicsproject.org/pub/tutorial/pdf/fenics-tutorial-vol1.pdf">pdf</a></p>
 
 
     
@@ -1189,7 +1209,7 @@ Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-h
         </a>
         </p>
         <p>
-        Page last updated: Feb 3, 2026<br>
+        Page last updated: Jun 12, 2026<br>
         Site last updated: Jun 12, 2026
         </p>
         <p>
