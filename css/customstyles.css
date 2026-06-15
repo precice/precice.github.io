@@ -1,3 +1,19 @@
+/* BS5 Reboot underlines links by default; match pre-BS5 body link styling */
+a {
+    text-decoration: none;
+}
+/* Nav, buttons, and card wrappers keep their own hover styles */
+.nav a:hover,
+.navbar a:hover,
+.navbar-nav a:hover,
+a.nav-link:hover,
+a.btn:hover,
+a.adapter:hover,
+a.github-link:hover {
+    text-decoration: none;
+}
+
+
 .bs-callout {
     padding: 20px;
     margin: 20px 0;
@@ -118,8 +134,22 @@ margin-top: -40px
     color: gray;
 }
 
+/* BS5 migration fix: BS5 reboot sets border-style:solid and border-width:0
+   on all table elements, stripping borders. Reset border-style to none so
+   the explicit border rules below take full effect via their shorthands. */
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+    border-style: none;
+    border-width: 0;
+}
+
 table {
     background-color: transparent;
+    border-collapse: collapse;
 }
 caption {
     padding-top: 8px;
@@ -200,6 +230,13 @@ p.post-meta {font-size: 80%; color: #777;}
 .entry-date{font-size:14px;font-size:0.875rem;line-height:1.71429;margin-bottom:0;text-transform:uppercase;}
 
 /* search area */
+.navbar-nav .nav-item {
+    padding: 0;
+}
+#search-demo-container {
+    padding-top: 0;
+    margin-left: 0;
+}
 #search-demo-container ul#results-container {
     list-style: none;
     font-size: 12px;
@@ -221,20 +258,7 @@ ul#results-container a:hover {
 }
 
 
-/*#search-demo-container a:hover {
-    color: black;
-}
-#search-input {
-    padding: .5em;
-    margin-left:20px;
-    width:20em;
-    font-size: 0.8em;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin-top: 7px;
-    border-color: #0A76BB;
-}*/
+
 /* end search */
 
 .filter-options {
@@ -289,9 +313,9 @@ li.dropdownActive a {
 }
 
 
-.navbar-inverse .navbar-nav > li > a {
+.navbar .navbar-nav > li > a,
+.navbar .nav.navbar-nav > li > a {
     background-color: transparent;
-    margin-top:10px;
 }
 
 .post-content .rssfeedLink {
@@ -300,17 +324,10 @@ li.dropdownActive a {
 
 footer {
     font-size: smaller;
+    padding: 50px 0;
 }
 
-/* FAQ page */
-#accordion .panel-heading {
-    font-size: 12px;
-}
 
-a.accordion-toggle, a.accordion-collapsed {
-    font-size: 14px;
-    text-decoration: none;
-}
 
 /* navgoco sidebar styles (customized) */
 .nav, .nav ul, .nav li {
@@ -389,19 +406,19 @@ background-color: #347DBE;
 }
 
 ul#mysidebar {
-    border-radius:0px;
+    border-radius: 0px;
+    display: block !important;
+}
+
+ul#mysidebar li {
+    display: block !important;
 }
 
 .nav ul li ul li a {
     padding-left:40px;
 }
 
-.nav li.thirdlevel > a {
-    color: #248EC2;
-    font-weight:bold;
-    padding-left:20px;
-    background-color: whitesmoke !important;
-}
+
 
 
 .nav ul li a {
@@ -422,11 +439,16 @@ ul#mysidebar {
 }
 /* end sidebar */
 
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+.navbar .navbar-nav > .active > a,
+.navbar .nav.navbar-nav > li.active > a,
+.navbar .navbar-nav > .active > a:hover,
+.navbar .nav.navbar-nav > li.active > a:hover,
+.navbar .navbar-nav > .active > a:focus,
+.navbar .nav.navbar-nav > li.active > a:focus {
     border-radius:4px;
 }
 
-.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+.navbar .navbar-nav>.show>a, .navbar .navbar-nav>.show>a:focus, .navbar .navbar-nav>.show>a:hover {
     border-radius: 4px;
 }
 
@@ -435,9 +457,6 @@ span.projectTitle {
     font-weight: 500;
 }
 
-.footer {
-    text-align: right;
-}
 
 .footerMeta {
     background-color: whitesmoke;
@@ -543,17 +562,15 @@ button.cursorNorm {
     cursor: default;
 }
 
-a.dropdown-toggle, .navbar-inverse .navbar-nav > li > a  {
+a.dropdown-toggle, .navbar .navbar-nav > li > a,
+.navbar .nav.navbar-nav > li > a {
     margin-left: 10px;
 }
 
 hr.faded {
     border: 0;
     height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+    background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
 }
 
 hr.shaded {
@@ -576,7 +593,7 @@ i.border {
     background-color: whitesmoke;
 }
 
-a[data-toggle] {
+a[data-bs-toggle] {
     color: #248EC2;
 }
 
@@ -606,10 +623,7 @@ h4 {color: #808080; font-weight:normal; font-size:120%; font-style:italic;}
     overflow: hidden;
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    background-color: #248ec2;
-    color: white;
-}
+
 
 ol li ol li {list-style-type: lower-alpha;}
 ol li ul li {list-style-type: disc;}
@@ -658,12 +672,18 @@ div.tags {padding: 10px 5px;}
     font-weight: normal;
 }
 
+/* BS5 migration fix: BS5 sets border:0; border-top:1px solid; opacity:.25
+   which makes hr nearly invisible. Override all of these. */
 hr {
-    background: #999;
     margin: 30px 0px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    color: #999;
+    background-color: transparent;
+    border: 0;
+    border-top: 1px solid #999;
+    opacity: 1;
 }
 
 button.cursorNorm {
@@ -678,11 +698,7 @@ span.otherProgrammingLanguages {
     font-style: normal;
 }
 
-a[data-toggle="tooltip"] {
-    color: #649345;
-    font-style: italic;
-    cursor: default;
-}
+
 
 .seriesNext, .seriesContext {
     margin-top: 15px;
@@ -720,7 +736,7 @@ ol.series li {
 }
 
 /* not sure if using this ...*/
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+.navbar .navbar-collapse, .navbar .navbar-form {
     border-color: #248ec2 !important;
 }
 
@@ -737,21 +753,11 @@ ol.series li {
 }
 .nav ul.series {
     padding-left: 30px;
-}
-
-.nav ul.series {
     background-color: #FAFAFA;
 }
 
-/*
-a.dropdown-toggle.otherProgLangs {
-    color: #f7e68f !important;
-}
-*/
-
 span.muted {color: #666;}
 
-table code {background-color: transparent;}
 
 .highlight .err {
     color: #a61717;
@@ -764,15 +770,22 @@ table p {
 }
 
 pre, table code {
-    white-space: pre-wrap;       /* css-3 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 
 pre {
+    display: block;
+    padding: 9.5px;
     margin: 25px 0px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 #json-box-container pre {
@@ -797,9 +810,6 @@ dd {margin-left:20px;}
 .post-content img.inline {
     margin:0px;
     margin-bottom:6px;
-}
-.panel-heading {
-    font-weight: bold;
 }
 
 .note code, .alert code, .warning code, div#toc code, h2 code, h3 code, h4 code {
@@ -858,7 +868,7 @@ span.soft {
 }
 
 @media (max-width: 767px) {
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    .navbar .navbar-nav .show .dropdown-menu > li > a {
         color: #444;
     }
 }
@@ -883,32 +893,13 @@ span.soft {
     }
 }
 
-.col-md-9 img {
+.col-lg-9 img {
     max-width: 100%;
     max-height: 100%;
 }
 
 
-.post-content img {
-    margin: 12px 0px 3px 0px;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-}
-.col-md-9 img {
-    max-width: 100%;
-    max-height: 100%;
-}
 
-
-.post-content img {
-    margin: 12px 0px 3px 0px;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-}
 
 .videoThumbs img {
     float: left;
@@ -917,12 +908,7 @@ span.soft {
 }
 
 
-/*@media only screen and (min-width: 900px), only screen and (min-device-width: 900px) {
-    .col-md-9 img {
-        max-width: 700px;
-        max-height: 700px;
-    }
-}*/
+
 
 *:hover > .anchorjs-link {
     transition: color .25s linear;
@@ -954,9 +940,6 @@ a.no_icon:after
     padding-left: 0;
 }
 
-.btn-default {
-    /*margin-bottom: 10px;*/
-}
 
 /* algolia search */
 
@@ -1005,11 +988,11 @@ p.post-meta time {
     margin-right: 0px;
 }
 
-span.label.label-default {
+span.badge.text-bg-secondary {
     background-color: gray;
 }
 
-span.label.label-primary {
+span.badge.text-bg-primary {
     background-color: #f0ad4e;
 }
 .col-lg-12 .nav li a {background-color: white}
@@ -1103,9 +1086,6 @@ div.content {
     float: left;
 }
 
-.clearfix {
-    clear: both;
-}
 
 
 #userMap div.arrow {
@@ -1142,30 +1122,11 @@ div.box.box1 {
 }
 
 #userMap .btn-lg  {
-        white-space: pre-wrap;       /* css-3 */
-        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-        white-space: -pre-wrap;      /* Opera 4-6 */
-        white-space: -o-pre-wrap;    /* Opera 7 */
-        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
         font-size: 14px;
     }
 
-/*
- * Let's target IE to respect aspect ratios and sizes for img tags containing SVG files
- *
- * [1] IE9
- * [2] IE10+
- */
-/* 1 */
-.ie9 img[src$=".svg"] {
-    width: 100%;
-}
-/* 2 */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    img[src$=".svg"] {
-        width: 100%;
-    }
-}
 
 h4.panel-title {
     padding-top: 0px;
@@ -1174,44 +1135,21 @@ h4.panel-title {
 
 /*set navbar breakpoint so that it converts to hamburger earlier */
 
-@media (max-width: 1200px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-left,.navbar-right {
-        float: none !important;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
+@media (max-width: 1199.98px) {
+    .navbar .navbar-collapse {
         border-top: 1px solid transparent;
     }
-    .navbar-fixed-top {
-        top: 0;
-        border-width: 0 0 1px;
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
+    .navbar .navbar-nav {
         margin-top: 7.5px;
     }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
+    .navbar .navbar-nav .nav-link {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    .collapse.in{
-        display:block !important;
-    }
 }
 
-/* News banner on pages other than the landing page */
-.banner {
+/* News banner */
+.news-banner {
   padding: 15px 0;
 }
 

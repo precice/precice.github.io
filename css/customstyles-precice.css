@@ -3,68 +3,375 @@
 body {
     font-size: 16px;
     font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    padding-top: 70px;      /* https://getbootstrap.com/docs/3.4/components/#navbar-fixed-top */
+    padding-top: 70px;      /* fixed navbar offset */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
+
+.btn {
+  font-size: 14px;
+  line-height: 1.42857143;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+h1,
+.h1 {
+  font-size: 36px;
+}
+
 .page-content,
 main {
-    flex: 1;
+  flex: 1;
 }
 
 .banner-container {
   margin-top:-20px;
 }
-a.navbar-brand {
-    padding-top: 12px;
+
+/* Match the fixed collapsed navbar height on narrow screens. */
+@media (max-width: 1199.98px) {
+  body {
+    padding-top: 68px;
+  }
+  .banner-container {
+    margin-top: 0;
+  }
 }
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1170px;
+  }
+}
+
+.container {
+  --bs-gutter-x: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar-brand {
+  margin-bottom: 0;
+}
+
+a.navbar-brand {
+  padding-top: 15px;
+  padding-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.navbar-header-group .navbar-brand {
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .navbar-brand-text {
     height: 28px;
     padding-left: 1px; /* 1px */
     display: inline;
     vertical-align: top;
 }
+
 /* use :before pseudo-class to rotate icon independent of text */
 .navbar-brand-icon:before {
-    width: 25px;
-    height: 25px;
-    content: '';
-    display: inline-block;
-    background: url('../images/icon.svg');
-    background-size: 25px 25px;
-    background-repeat: no-repeat;
-    background-position: top left;
-    transition: all 400ms;
+  width: 25px;
+  height: 25px;
+  content: '';
+  display: inline-block;
+  background: url('../images/icon.svg');
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: top left;
+  transition: all 400ms;
+  vertical-align: middle;
 }
-a:hover > .navbar-brand-icon:before{
-    transform: rotate(180deg);
+
+a:hover>.navbar-brand-icon:before {
+  transform: rotate(180deg);
 }
+
 /* .nav styles both topnav and sidenav, so use .nav.navbar-nav */
-.nav.navbar-nav > li > a {
-    font-size: 14px;
-    line-height: 20px;
-    padding: 4px 10px;
-    font-weight: 500;
-    margin-top: 11px;
+.nav.navbar-nav :is(li > a, .nav-link),
+.navbar>.container.topnavlinks .nav.navbar-nav :is(li > a, .nav-link) {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 4px 10px;
+  font-weight: 500;
+  margin-top: 11px;
 }
-.nav > li > a {
-    font-size: 14px;
-    line-height: 20px;
-    padding: 4px 10px;
-}
+
 /* rightmost icons */
-.nav > li > a.nav-external {
-    font-size: 24px;
-    line-height: 20px;
-    padding: 2px 0px;
-    margin-top: 11px;
+.nav :is(li > a, .nav-link).nav-external,
+.navbar>.container.topnavlinks .nav.navbar-nav :is(li > a, .nav-link).nav-external {
+  font-size: 24px;
+  line-height: 20px;
+  padding: 2px 0;
+  margin-top: 11px;
 }
+
 @media (max-width: 1200px) {
-    .nav > li > a.nav-external {
-        float: left;
-    }
+  .nav>li>a.nav-external {
+    float: left;
+  }
 }
+
+.navbar-header-group .navbar-toggler {
+  margin-right: 0;
+}
+
+@media (max-width: 1199.98px) {
+  .navbar>.container.topnavlinks {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .navbar>.container.topnavlinks .navbar-header-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: static;
+    top: auto;
+    padding: 8px 0;
+  }
+
+  .navbar>.container.topnavlinks .navbar-header-group .navbar-brand {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-right: auto;
+    float: none;
+  }
+
+  .navbar>.container.topnavlinks .navbar-header-group .navbar-toggler {
+    flex-shrink: 0;
+    margin-left: 15px;
+    padding: 9px 10px;
+  }
+
+  .navbar>.container.topnavlinks .navbar-toggler:focus,
+  .navbar>.container.topnavlinks .navbar-toggler:active {
+    box-shadow: none;
+    outline: 0;
+  }
+
+  .navbar>.container.topnavlinks .navbar-toggler[aria-expanded="true"] {
+    background-color: #ecf7fe;
+  }
+
+  .navbar>.container.topnavlinks .navbar-collapse {
+    flex-basis: 100%;
+    width: 100%;
+    border-top: 1px solid transparent;
+    padding-bottom: 10px;
+  }
+
+  .navbar>.container.topnavlinks .navbar-nav.ms-auto {
+    display: block;
+    margin-left: 0 !important;
+    margin-right: 0;
+    width: 100%;
+    float: none;
+  }
+
+  .navbar>.container.topnavlinks .nav.navbar-nav :is(li > a, .nav-link) {
+    margin-top: 0;
+    padding: 10px 15px;
+    float: none;
+  }
+
+  .navbar>.container.topnavlinks .nav.navbar-nav>li {
+    float: none;
+    width: 100%;
+  }
+
+  .navbar>.container.topnavlinks .nav.navbar-nav>li.navbar-search-li {
+    width: 100%;
+    align-self: stretch;
+    display: block;
+    margin-top: 7.5px;
+    padding: 0 15px 10px;
+    box-sizing: border-box;
+  }
+
+  .navbar>.container.topnavlinks #search-demo-container {
+    width: 100%;
+  }
+
+  .navbar>.container.topnavlinks .ais-search-box {
+    width: 100% !important;
+    max-width: none;
+    margin: 0 !important;
+    height: 50px;
+  }
+
+  .navbar>.container.topnavlinks .nav.navbar-nav>li.navbar-search-li~li {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+
+  .navbar>.container.topnavlinks .nav.navbar-nav>li.navbar-search-li~li:first-of-type>a.nav-external {
+    padding-left: 15px;
+  }
+
+  .navbar>.container.topnavlinks .nav.navbar-nav>li.navbar-search-li~li>a.nav-external {
+    margin-top: 0;
+    padding: 10px 12px 10px 0;
+    font-size: 24px;
+  }
+}
+
+#search-demo-container {
+  padding-top: 0;
+  position: relative;
+}
+
+.ais-search-box--powered-by {
+  margin-top: -15px;
+  padding-right: 5px;
+  pointer-events: none;
+}
+
+.nav li a.ais-search-box--powered-by-link {
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+  pointer-events: auto;
+}
+
+.ais-search-box--reset {
+  z-index: 10;
+  cursor: pointer;
+}
+
+.ais-search-box--input {
+  padding-left: 10px;
+  border-color: #0a76bb;
+}
+
+.ais-search-box {
+  padding: 0.5em;
+  margin-bottom: 0;
+  margin-left: 10px;
+  margin-top: 0;
+  width: 20em;
+  font-size: 0.8em;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+/* Doc pages: align main title with sidebar title (li.sidebarTitle margin-top: 20px) */
+#tg-sb-content > .post-header {
+  margin-top: 20px;
+}
+
+#tg-sb-content .post-header h1.post-title-main {
+  margin-top: 0;
+}
+
+/* Sidebar (BS5 collapse accordion) */
+.sidebar-nav {
+  list-style: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sidebar-nav a.nav-link {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 4px 10px !important;
+  color: #333 !important;
+  background-color: #e8e8e8 !important;
+  border-top: 1px solid whitesmoke;
+}
+
+.sidebar-nav a.nav-link:hover {
+  background-color: #ED762C !important;
+  color: #ffffff !important;
+}
+
+.sidebar-nav>li.nav-item>a.nav-link:not(.collapsed)[data-bs-toggle="collapse"] {
+  background-color: #347DBE !important;
+  color: #ffffff !important;
+}
+
+/* During BS5 collapse animation the class transitions:
+   .collapse → .collapsing → .collapse.show
+   Include .collapsing via :is() so items keep their nested style during the transition. */
+
+.sidebar-nav li.nav-item :is(.collapse, .collapsing) a.nav-link:not(.collapsed)[data-bs-toggle="collapse"] {
+  background-color: #ED762C !important;
+  color: #ffffff !important;
+}
+
+.sidebar-nav a.nav-link.active:not([data-bs-toggle="collapse"]) {
+  background-color: #8D8D8D !important;
+  color: #ffffff !important;
+}
+
+.sidebar-nav :is(.collapse, .collapsing) a.nav-link {
+  background-color: #FAFAFA !important;
+  color: #333 !important;
+}
+
+.sidebar-nav :is(.collapse, .collapsing) a.nav-link:hover {
+  background-color: #ED762C !important;
+  color: #ffffff !important;
+}
+
+.sidebar-nav :is(.collapse, .collapsing) a.nav-link.active {
+  background-color: #8D8D8D !important;
+  color: #ffffff !important;
+}
+
+.sidebar-nav :is(.collapse, .collapsing) .nav-link {
+  padding-left: 20px !important;
+}
+
+.sidebar-nav :is(.collapse, .collapsing) :is(.collapse, .collapsing) .nav-link {
+  padding-left: 30px !important;
+}
+
+.sidebar-nav :is(.collapse, .collapsing) :is(.collapse, .collapsing) :is(.collapse, .collapsing) .nav-link {
+  padding-left: 40px !important;
+}
+
+.sidebar-nav :is(.collapse, .collapsing) :is(.collapse, .collapsing) :is(.collapse, .collapsing) :is(.collapse, .collapsing) .nav-link {
+  padding-left: 50px !important;
+}
+
+.sidebar-nav .nav-link[data-bs-toggle="collapse"]::after {
+  content: '\25be';
+  float: right;
+  transition: transform 0.2s;
+}
+
+.sidebar-nav .nav-link[data-bs-toggle="collapse"]:not(.collapsed)::after {
+  transform: rotate(180deg);
+}
+
 /* Fix Firefox/normalize.css bug https://github.com/necolas/normalize.css/issues/740 */
 details > summary {
   display: list-item;
@@ -75,71 +382,45 @@ details > summary {
 
 h2.page-header {
   /*border-bottom: 1px solid #0A76BB;*/
-  border-bottom: 1px solid rgba(10,118,187, 0);
+  border-bottom: 1px solid rgba(10, 118, 187, 0);
   font-size: 28px;
 }
 .row {
   margin-bottom: 0px;
 }
-.panel-precice {
+
+.card.border-primary.panel-precice {
   padding-top: 5px;
+  margin-bottom: 20px;
+  background-color: #fff;
 }
-.panel-heading-precice {
+
+.card-header-precice {
   position: relative;
-  /*left: -5px;
-  padding: 10px 15px 10px 18px;
-  border-left: 2px solid #ED762C;*/
   margin-bottom: -15px;
   padding: 10px 15px;
+  min-height: 4em;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: none;
 }
-.panel-heading-precice strong {
+
+.card-header-precice strong {
   font-size: 1.2em;
   line-height: 1.2em;
   font-weight: 500;
 }
 
-/* General utility classes */
+.card.border-primary.panel-precice > .card-body {
+  padding: 15px;
+}
 
-.no-margin {
-  margin: 0;
-}
-.less-top-margin {
-  margin-top: -20px;
-}
-.less-bottom-margin {
-  margin-bottom: -20px;
-}
-.citation-link {
-  margin-top: 15px;
-}
-.vertical-align { /* https://stackoverflow.com/questions/20547819/vertical-align-with-bootstrap-3/25517025#25517025 */
-    display: flex;
-    align-items: center;
-}
-/* https://stackoverflow.com/questions/19695784/how-can-i-make-bootstrap-columns-all-the-same-height */
-/* https://stackoverflow.com/questions/20503064/twitter-bootstrap-3-panels-of-equal-height-in-a-fluid-row */
-/*.equal {
-  display: flex;
-  display: -webkit-flex;
-  flex-wrap: wrap;
-}*/
-@media (min-width: 992px) {
-   .equal{
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-    }
-}
 /* add horizontal scoll on code blocks */
 pre > code {
   overflow: auto;
   word-wrap: normal;
   white-space: pre;
-}
-div.col-flex {
-  display: flex;
-  flex-flow: column;
-  align-content: stretch;  /* file up remaining space */
 }
 
 /* Search bar and results */
@@ -240,7 +521,6 @@ ul.devlist>li {
 
 .devlist>li .devlist-img {
   flex: 0 0 auto;
-  width: auto;
   width: 50px;
   margin-right: 1rem;
 
@@ -301,15 +581,53 @@ ul.devlist>li {
   }
 }
 
+.post-content .table-responsive,
+.post-content .table {
+  width: 100%;
+  max-width: 100%;
+}
+
+.post-content .table thead {
+  --bs-table-color: #fff;
+  --bs-table-bg: #777;
+  --bs-table-border-color: #777;
+}
+
 /* print styles */
 @media print {
   /* https://www.matuzo.at/blog/i-totally-forgot-about-print-style-sheets/ */
+  body > header,
+  body > footer,
   #tg-sb-sidebar,
-  .githubEditButton {
-    display: none;
+  .githubEditButton,
+  #scroll-to-top,
+  .scroll-to-top,
+  .copy-code-btn,
+  .anchorjs-link {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
   }
   body {
-    padding-top: 0;
+    display: block !important;
+    min-height: auto !important;
+    padding-top: 0 !important;
+  }
+  .page-content,
+  .page-content > .row,
+  #tg-sb-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .page-content > .row {
+    display: block !important;
+  }
+  #tg-sb-content {
+    flex: 0 0 100% !important;
   }
 }
 
@@ -418,4 +736,20 @@ div.highlighter-rouge:hover .copy-code-btn {
     background-color: #28a745;
     color: white;
     border-color: #28a745;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+  border-radius: 0;
 }

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="description" content="This tutorial is an example case for ASTE, where we investigate different preCICE mappings using ASTE.">
@@ -41,17 +40,15 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 <!-- Bootstrap -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/modern-business.css">
-<link rel="stylesheet" href="css/customstyles.css">
-<link rel="stylesheet" href="css/customstyles-precice.css">
-<link rel="stylesheet" href="css/boxshadowproperties.css">
-<link rel="stylesheet" href="css/bookcover.css">
+<link rel="stylesheet" href="css/customstyles.css?v=1781523190">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1781523190">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781523190">
+<link rel="stylesheet" href="css/bookcover.css?v=1781523190">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css">
+<link rel="stylesheet" href="css/theme-precice.css?v=1781523190">
 <!-- Styling for landing page -->
 
 
@@ -62,19 +59,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
 
 <!-- Bootstrap JavaScript (requires jquery) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 <!-- Local JS -->
-<script src="js/jquery.navgoco.min.js"></script>
 <script src="js/toc.js"></script>
 <script src="js/customscripts.js"></script>
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+
 
 <!-- KaTeX -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
@@ -110,7 +101,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
   @media print {
     #print-qr-code {
       display: block;
-      position: fixed;
+      position: absolute;
       top: 0;
       right: 0;
     }
@@ -119,91 +110,73 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <!-- Plausible Analytics -->
 <script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
+
+
     <script>
-        $(document).ready(function() {
-            // Initialize navgoco with default options
-            $("#mysidebar").navgoco({
-                caretHtml: '',
-                accordion: true,
-                openClass: 'active', // open
-                save: false, // leave false or nav highlighting doesn't work right
-                cookie: {
-                    name: 'navgoco',
-                    expires: false,
-                    path: '/'
-                },
-                slide: {
-                    duration: 400,
-                    easing: 'swing'
-                }
-            });
-
-            $("#collapseAll").click(function(e) {
-                e.preventDefault();
-                $("#mysidebar").navgoco('toggle', false);
-            });
-
-            $("#expandAll").click(function(e) {
-                e.preventDefault();
-                $("#mysidebar").navgoco('toggle', true);
-            });
-
-        });
-
-    </script>
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("#tg-sb-link").click(function() {
-                $("#tg-sb-sidebar").toggle();
-                $("#tg-sb-content").toggleClass('col-md-9');
-                $("#tg-sb-content").toggleClass('col-md-12');
-                $("#tg-sb-icon").toggleClass('fa-toggle-on');
-                $("#tg-sb-icon").toggleClass('fa-toggle-off');
-            });
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggleLink = document.getElementById('tg-sb-link');
+      if (!toggleLink) return;
+      toggleLink.addEventListener('click', function () {
+        var sidebar = document.getElementById('tg-sb-sidebar');
+        var content = document.getElementById('tg-sb-content');
+        var icon = document.getElementById('tg-sb-icon');
+        if (sidebar) {
+          sidebar.hidden = !sidebar.hidden;
+        }
+        if (content) {
+          content.classList.toggle('col-md-9');
+          content.classList.toggle('col-md-12');
+        }
+        if (icon) {
+          icon.classList.toggle('fa-toggle-on');
+          icon.classList.toggle('fa-toggle-off');
+        }
+      });
+    });
     </script>
     <script>
         // wrap tables into a div to make them scrollable on small viewports
-        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
-        $(document).ready(function() {
-            $('table').addClass('table');
-            $('table').wrap('<div class="table-responsive"></div>');
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('table').forEach(function (table) {
+        table.classList.add('table', 'table-striped', 'table-hover', 'table-bordered', 'w-100');
+        var tableHead = table.querySelector('thead');
+        if (tableHead) {
+          tableHead.classList.add('table-primary');
+        }
+        if (table.parentElement && table.parentElement.classList.contains('table-responsive')) {
+          return;
+        }
+        var wrapper = document.createElement('div');
+        wrapper.className = 'table-responsive w-100';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      });
+    });
     </script>
     
 </head>
 <body>
     <header>
         <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" aria-label="Main">
+<nav class="navbar navbar-expand-xl fixed-top" data-bs-theme="light" aria-label="Main">
     <div class="container topnavlinks">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand no-icon" href="https://precice.org">
-            <span class="navbar-brand-icon">
-            <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE"></span>
+        <div class="navbar-header navbar-header-group">
+            <a class="navbar-brand no-icon" href="/">
+                <span class="navbar-brand-icon">
+                    <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE">
+                </span>
             </a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- toggle sidebar button -->
-                
+            <ul class="nav navbar-nav ms-auto">
                 <!-- entries without drop-downs appear here -->
+                
+                
+                
 
-                
-                
-
-                
                 
                 
                 
@@ -213,9 +186,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 
                 
                 
-                
                 <li><a href="docs.html">Docs</a></li>
-                
                 
                 
                 
@@ -225,9 +196,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 
                 
                 
-                
                 <li><a href="community.html">Community</a></li>
-                
                 
                 
                 
@@ -237,19 +206,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 
                 
                 
-                
                 <li><a href="about.html">About</a></li>
                 
                 
                 
+
                 <!-- entries with drop-downs appear here -->
-                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
                 
 
-                
                 <!--comment out this block if you want to hide search-->
-                <li>
                     <!--start search-->
+                <li class="navbar-search-li">
                     <div id="search-demo-container">
                         <div id="search-input"></div>
                         <div id="search-results"></div>
@@ -258,14 +225,14 @@ const algoliaSearch = instantsearch({
   appId: 'LIT6P0EW26',
   apiKey: '760ed6be3e165d08b4a798ac4aa82fe4',
   indexName: 'jekyll',
-  searchFunction: function(helper) {          // hide search result in init query
-    var searchResults = $('#search-results');
+  searchFunction: function(helper) {
+    var searchResults = document.getElementById('search-results');
     if (helper.state.query === '') {
-      searchResults.hide();
+      if (searchResults) searchResults.style.display = 'none';
       return;
     }
     helper.search();
-    searchResults.show();
+    if (searchResults) searchResults.style.display = 'block';
   }
 });
 
@@ -320,58 +287,43 @@ algoliaSearch.addWidget(
 
 algoliaSearch.start();
 
-// Patch the style of the search input bar generated by the above script
-// The equivalent CSS is below, however, including <style> in <body> is against the W3C commandments
-// Chrome and Firefox had baby called scope, but it didn't make it
-// https://stackoverflow.com/questions/2830296/using-style-tags-in-the-body-with-other-html
-var elem = document.querySelector('.ais-search-box--powered-by');
-elem.style.marginTop = '-15px';
-elem.style.paddingRight = '5px';
-
-var elem = document.querySelector('.nav li a.ais-search-box--powered-by-link');
-elem.style.padding = '0';
-elem.style.backgroundColor = 'transparent';
-elem.style.display = "inline-block";
-
-var elem = document.querySelector('.ais-search-box--input');
-elem.style.paddingLeft = '10px';
-elem.style.borderColor = '#0A76BB';
-
-var elem = document.querySelector('.ais-search-box');
-elem.style.padding = '.5em';
-elem.style.marginBottom = '0px';
-elem.style.marginLeft = '10px';
-elem.style.marginTop = '0px';
-elem.style.width = '20em';
-elem.style.fontSize = '0.8em';
-elem.style.height = '50px';
-elem.style.boxSizing = 'border-box';
-
-/*<style type="text/css">
-.ais-search-box--powered-by {
-  margin-top: -15px;
-  padding-right: 5px;
-}
-.nav li a.ais-search-box--powered-by-link {
-  padding: 0;
-  background-color: transparent;
-  display: inline-block;
-}
-.ais-search-box--input {
-  padding-left: 10px;
-  border-color: #0A76BB;
-}
-.ais-search-box {
-  padding: .5em;
-  margin-bottom: 0px;
-  margin-left: 10px;
-  margin-top: 0px;
-  width: 20em;
-  font-size: 0.8em;
-  box-sizing: border-box;
-  height: 50px;
-}
-</style>*/
+// Navbar search layout (patch after start — same as precice.org)
+(function patchAlgoliaNavbarStyles() {
+  var box = document.querySelector('.navbar .ais-search-box');
+  var input = document.querySelector('.navbar .ais-search-box--input');
+  var reset = document.querySelector('.navbar .ais-search-box--reset');
+  var poweredBy = document.querySelector('.navbar .ais-search-box--powered-by');
+  var poweredByLink = document.querySelector('.navbar .nav li a.ais-search-box--powered-by-link');
+  if (poweredBy) {
+    poweredBy.style.marginTop = '-15px';
+    poweredBy.style.paddingRight = '5px';
+    poweredBy.style.pointerEvents = 'none';
+  }
+  if (poweredByLink) {
+    poweredByLink.style.padding = '0';
+    poweredByLink.style.backgroundColor = 'transparent';
+    poweredByLink.style.display = 'inline-block';
+    poweredByLink.style.pointerEvents = 'auto';
+  }
+  if (reset) {
+    reset.style.zIndex = '10';
+    reset.style.cursor = 'pointer';
+  }
+  if (input) {
+    input.style.paddingLeft = '10px';
+    input.style.borderColor = '#0A76BB';
+  }
+  if (box) {
+    box.style.padding = '.5em';
+    box.style.marginBottom = '0';
+    box.style.marginLeft = '10px';
+    box.style.marginTop = '0';
+    box.style.width = '20em';
+    box.style.fontSize = '0.8em';
+    box.style.height = '50px';
+    box.style.boxSizing = 'border-box';
+  }
+})();
 
 // some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
 document.addEventListener('mouseup', function(e) {
@@ -424,28 +376,27 @@ document.addEventListener('keydown', function(e) {
 
 </script>
                     </div>
+                </li>
                     <!--end search-->
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" rel="noopener noreferrer" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
                 </li>
                 <li>
-                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" rel="noopener noreferrer" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                    <a class="no-icon nav-external" href="https://github.com/precice" target="_blank" rel="noopener noreferrer" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
                 </li>
                 <li>
-                    <a class="no-icon nav-external" href="https://github.com/precice" target="_blank" rel="noopener noreferrer" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                    <a class="no-icon nav-external" href="https://www.linkedin.com/company/precice" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </li>
-                <li>
-                    <a class="no-icon nav-external" href="https://www.linkedin.com/company/precice" target="_blank" rel="noopener noreferrer" data-show-count="false" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </li>
-                <li>
                     <!-- rel="me" required by Mastodon for verification -->
-                    <a rel="me noopener noreferrer" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" data-show-count="false" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a>
+                <li>
+                    <a rel="me noopener noreferrer" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a>
                 </li>
                 <li>
-                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" rel="noopener noreferrer" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" rel="noopener noreferrer" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
                 </li>
             </ul>
         </div>
-        </div>
-        <!-- /.container -->
+    </div>
 </nav>
 
           <!-- News banner -->
@@ -454,404 +405,1845 @@ document.addEventListener('keydown', function(e) {
 
 
     </header>
-    <div class="container page-content" style="margin-bottom:50px">
+    <div class="container page-content mb-5">
         
         <div class="row">
-          <div class="col-md-3" id="tg-sb-sidebar">
+          <div class="col-md-3 mb-4 mb-md-0" id="tg-sb-sidebar">
             
 
 <nav aria-label="Tutorials">
-<ul id="mysidebar" class="nav">
+<ul id="mysidebar" class="sidebar-nav flex-column">
   <li class="sidebarTitle">Tutorials </li>
+
+  
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
   
   
   
+
   
-  <!-- Parent menu item has folderitems -->
-  <li>
-    <a title="Introduction" href="#">Introduction</a>
-    <ul>
-      
-      
-      
-      <li><a title="Overview" href="tutorials.html">Overview</a></li>
+    
       
       
       
       
+    
       
       
-      <li><a title="Visualization" href="tutorials-visualization.html">Visualization</a></li>
       
       
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Introduction"
+       data-bs-toggle="collapse" href="#sb-1-introduction"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-1-introduction">
+       Introduction
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-1-introduction" data-bs-parent="#mysidebar">
+
       
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Overview" href="tutorials.html">
+       Overview
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Visualization" href="tutorials-visualization.html">
+       Visualization
+    </a>
+  </li>
+
+
+          
+        
+      
+
+      
+
       
     </ul>
   </li>
+
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
   
   
   
+
   
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
   
-  <!-- Parent menu item has folderitems -->
-  <li>
-    <a title="Basic cases" href="#">Basic cases</a>
-    <ul>
+
+  
+    
+  
+
+  
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Basic cases"
+       data-bs-toggle="collapse" href="#sb-1-basic-cases"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-1-basic-cases">
+       Basic cases
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-1-basic-cases" data-bs-parent="#mysidebar">
+
       
+
       
+
       
-      <li><a title="Quickstart" href="quickstart.html">Quickstart</a></li>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Quickstart" href="quickstart.html">
+       Quickstart
+    </a>
+  </li>
+
+
+          
+        
       
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Flow over heated plate" href="tutorials-flow-over-heated-plate.html">
+       Flow over heated plate
+    </a>
+  </li>
+
+
+          
+        
       
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned heat conduction" href="tutorials-partitioned-heat-conduction.html">
+       Partitioned heat conduction
+    </a>
+  </li>
+
+
+          
+        
       
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Perpendicular flap" href="tutorials-perpendicular-flap.html">
+       Perpendicular flap
+    </a>
+  </li>
+
+
+          
+        
       
+
       
-      
-      <li><a title="Flow over heated plate" href="tutorials-flow-over-heated-plate.html">Flow over heated plate</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Partitioned heat conduction" href="tutorials-partitioned-heat-conduction.html">Partitioned heat conduction</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Perpendicular flap" href="tutorials-perpendicular-flap.html">Perpendicular flap</a></li>
-      
-      
-      
+
       
     </ul>
   </li>
+
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
   
   
   
+
+  
+    
+      
+      
+  
+
+  
+
+  
+
+  <li class="nav-item">
+    <a class="nav-link active"
+       title="All tutorials"
+       data-bs-toggle="collapse" href="#sb-1-all-tutorials"
+       role="button"
+       aria-expanded="true"
+       aria-controls="sb-1-all-tutorials">
+       All tutorials
+    </a>
+    <ul class="collapse show sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-1-all-tutorials" data-bs-parent="#mysidebar">
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link active"
+       title="ASTE turbine" href="tutorials-aste-turbine.html">
+       ASTE turbine
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Breaking dam with flexible pillar 2D" href="tutorials-breaking-dam-2d.html">
+       Breaking dam with flexible pillar 2D
+    </a>
+  </li>
+
+
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
-  <!-- Parent menu item has folderitems -->
-  <li>
-    <a title="All tutorials" href="#">All tutorials</a>
-    <ul>
-      
-      
-      
-      <li  class="active"  ><a title="ASTE turbine" href="tutorials-aste-turbine.html">ASTE turbine</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Breaking dam with flexible pillar 2D" href="tutorials-breaking-dam-2d.html">Breaking dam with flexible pillar 2D</a></li>
-      
-      
-      
-      <li class="subfolders">
-        <a title="Channel transport" href="#">Channel transport</a>
-        <ul>
-          
-          
-          
-          <li><a title="Basic variant" href="tutorials-channel-transport.html">Basic variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Reaction" href="tutorials-channel-transport-reaction.html">Reaction</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Particles" href="tutorials-channel-transport-particles.html">Particles</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Elastic tube 1D" href="tutorials-elastic-tube-1d.html">Elastic tube 1D</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Elastic tube 3D" href="tutorials-elastic-tube-3d.html">Elastic tube 3D</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Flow around controlled moving cylinder" href="tutorials-flow-around-controlled-moving-cylinder.html">Flow around controlled moving cylinder</a></li>
-      
-      
-      
-      <li class="subfolders">
-        <a title="Flow over a heated plate" href="#">Flow over a heated plate</a>
-        <ul>
-          
-          
-          
-          <li><a title="Basic variant" href="tutorials-flow-over-heated-plate.html">Basic variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Nearest-projection mapping" href="tutorials-flow-over-heated-plate-nearest-projection.html">Nearest-projection mapping</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Steady state" href="tutorials-flow-over-heated-plate-steady-state.html">Steady state</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Two meshes" href="tutorials-flow-over-heated-plate-two-meshes.html">Two meshes</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Free flow over porous media" href="tutorials-free-flow-over-porous-media.html">Free flow over porous media</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Heat exchanger" href="tutorials-heat-exchanger.html">Heat exchanger</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Heat exchanger simplified" href="tutorials-heat-exchanger-simplified.html">Heat exchanger simplified</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Multiple perpendicular flaps" href="tutorials-multiple-perpendicular-flaps.html">Multiple perpendicular flaps</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Oscillator" href="tutorials-oscillator.html">Oscillator</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Oscillator overlap" href="tutorials-oscillator-overlap.html">Oscillator overlap</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Partitioned elastic beam" href="tutorials-partitioned-elastic-beam.html">Partitioned elastic beam</a></li>
-      
-      
-      
-      <li class="subfolders">
-        <a title="Partitioned flow" href="#">Partitioned flow</a>
-        <ul>
-          
-          
-          
-          <li><a title="Partitioned flow over a b.f. step" href="tutorials-partitioned-backwards-facing-step.html">Partitioned flow over a b.f. step</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Partitioned flow over heated plate" href="tutorials-flow-over-heated-plate-partitioned-flow.html">Partitioned flow over heated plate</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Partitioned pipe" href="tutorials-partitioned-pipe.html">Partitioned pipe</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Partitioned pipe two-phase" href="tutorials-partitioned-pipe-two-phase.html">Partitioned pipe two-phase</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Partitioned pipe multiscale" href="tutorials-partitioned-pipe-multiscale.html">Partitioned pipe multiscale</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Water hammer" href="tutorials-water-hammer.html">Water hammer</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      <li class="subfolders">
-        <a title="Partitioned heat conduction" href="#">Partitioned heat conduction</a>
-        <ul>
-          
-          
-          
-          <li><a title="Basic variant" href="tutorials-partitioned-heat-conduction.html">Basic variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Complex variant" href="tutorials-partitioned-heat-conduction-complex.html">Complex variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Direct mesh access" href="tutorials-partitioned-heat-conduction-direct.html">Direct mesh access</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Overlapping Schwarz" href="tutorials-partitioned-heat-conduction-overlap.html">Overlapping Schwarz</a></li>
-          
-          
-          
-          
-          
-          <li><a title="3D variant" href="tutorials-partitioned-heat-conduction-3d.html">3D variant</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      <li class="subfolders">
-        <a title="Perpendicular flap" href="#">Perpendicular flap</a>
-        <ul>
-          
-          
-          
-          <li><a title="Basic variant" href="tutorials-perpendicular-flap.html">Basic variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Stress variant" href="tutorials-perpendicular-flap-stress.html">Stress variant</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Quickstart" href="quickstart.html">Quickstart</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Resonant circuit" href="tutorials-resonant-circuit.html">Resonant circuit</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Two-scale heat conduction" href="tutorials-two-scale-heat-conduction.html">Two-scale heat conduction</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Turek-Hron FSI3" href="tutorials-turek-hron-fsi3.html">Turek-Hron FSI3</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Volume-coupled diffusion" href="tutorials-volume-coupled-diffusion.html">Volume-coupled diffusion</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Volume-coupled flow" href="tutorials-volume-coupled-flow.html">Volume-coupled flow</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Wolf-sheep-grass model with soil creep" href="tutorials-wolf-sheep-soil-creep.html">Wolf-sheep-grass model with soil creep</a></li>
-      
-      
-      
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Channel transport"
+       data-bs-toggle="collapse" href="#sb-3-channel-transport"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-channel-transport">
+       Channel transport
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-channel-transport" data-bs-parent="#sb-1-all-tutorials">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Basic variant" href="tutorials-channel-transport.html">
+       Basic variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Reaction" href="tutorials-channel-transport-reaction.html">
+       Reaction
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Particles" href="tutorials-channel-transport-particles.html">
+       Particles
+    </a>
+  </li>
+
+
+        
       
     </ul>
   </li>
+
+
+            
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Elastic tube 1D" href="tutorials-elastic-tube-1d.html">
+       Elastic tube 1D
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Elastic tube 3D" href="tutorials-elastic-tube-3d.html">
+       Elastic tube 3D
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Flow around controlled moving cylinder" href="tutorials-flow-around-controlled-moving-cylinder.html">
+       Flow around controlled moving cylinder
+    </a>
+  </li>
+
+
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
   
   
   
+
   
-  <!-- if you aren't using the accordion, uncomment this block:
-  <p class="external">
-  <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
-  </p>
-  -->
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Flow over a heated plate"
+       data-bs-toggle="collapse" href="#sb-3-flow-over-a-heated-plate"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-flow-over-a-heated-plate">
+       Flow over a heated plate
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-flow-over-a-heated-plate" data-bs-parent="#sb-3-channel-transport">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Basic variant" href="tutorials-flow-over-heated-plate.html">
+       Basic variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Nearest-projection mapping" href="tutorials-flow-over-heated-plate-nearest-projection.html">
+       Nearest-projection mapping
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Steady state" href="tutorials-flow-over-heated-plate-steady-state.html">
+       Steady state
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Two meshes" href="tutorials-flow-over-heated-plate-two-meshes.html">
+       Two meshes
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Free flow over porous media" href="tutorials-free-flow-over-porous-media.html">
+       Free flow over porous media
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Heat exchanger" href="tutorials-heat-exchanger.html">
+       Heat exchanger
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Heat exchanger simplified" href="tutorials-heat-exchanger-simplified.html">
+       Heat exchanger simplified
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Multiple perpendicular flaps" href="tutorials-multiple-perpendicular-flaps.html">
+       Multiple perpendicular flaps
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Oscillator" href="tutorials-oscillator.html">
+       Oscillator
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Oscillator overlap" href="tutorials-oscillator-overlap.html">
+       Oscillator overlap
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned elastic beam" href="tutorials-partitioned-elastic-beam.html">
+       Partitioned elastic beam
+    </a>
+  </li>
+
+
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Partitioned flow"
+       data-bs-toggle="collapse" href="#sb-3-partitioned-flow"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-partitioned-flow">
+       Partitioned flow
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-partitioned-flow" data-bs-parent="#sb-3-flow-over-a-heated-plate">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned flow over a b.f. step" href="tutorials-partitioned-backwards-facing-step.html">
+       Partitioned flow over a b.f. step
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned flow over heated plate" href="tutorials-flow-over-heated-plate-partitioned-flow.html">
+       Partitioned flow over heated plate
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned pipe" href="tutorials-partitioned-pipe.html">
+       Partitioned pipe
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned pipe two-phase" href="tutorials-partitioned-pipe-two-phase.html">
+       Partitioned pipe two-phase
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned pipe multiscale" href="tutorials-partitioned-pipe-multiscale.html">
+       Partitioned pipe multiscale
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Water hammer" href="tutorials-water-hammer.html">
+       Water hammer
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Partitioned heat conduction"
+       data-bs-toggle="collapse" href="#sb-3-partitioned-heat-conduction"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-partitioned-heat-conduction">
+       Partitioned heat conduction
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-partitioned-heat-conduction" data-bs-parent="#sb-3-partitioned-flow">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Basic variant" href="tutorials-partitioned-heat-conduction.html">
+       Basic variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Complex variant" href="tutorials-partitioned-heat-conduction-complex.html">
+       Complex variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Direct mesh access" href="tutorials-partitioned-heat-conduction-direct.html">
+       Direct mesh access
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Overlapping Schwarz" href="tutorials-partitioned-heat-conduction-overlap.html">
+       Overlapping Schwarz
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="3D variant" href="tutorials-partitioned-heat-conduction-3d.html">
+       3D variant
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Perpendicular flap"
+       data-bs-toggle="collapse" href="#sb-3-perpendicular-flap"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-perpendicular-flap">
+       Perpendicular flap
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-perpendicular-flap" data-bs-parent="#sb-3-partitioned-heat-conduction">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Basic variant" href="tutorials-perpendicular-flap.html">
+       Basic variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Stress variant" href="tutorials-perpendicular-flap-stress.html">
+       Stress variant
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Quickstart" href="quickstart.html">
+       Quickstart
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Resonant circuit" href="tutorials-resonant-circuit.html">
+       Resonant circuit
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Two-scale heat conduction" href="tutorials-two-scale-heat-conduction.html">
+       Two-scale heat conduction
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Turek-Hron FSI3" href="tutorials-turek-hron-fsi3.html">
+       Turek-Hron FSI3
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Volume-coupled diffusion" href="tutorials-volume-coupled-diffusion.html">
+       Volume-coupled diffusion
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Volume-coupled flow" href="tutorials-volume-coupled-flow.html">
+       Volume-coupled flow
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Wolf-sheep-grass model with soil creep" href="tutorials-wolf-sheep-soil-creep.html">
+       Wolf-sheep-grass model with soil creep
+    </a>
+  </li>
+
+
+          
+        
+      
+
+      
+
+      
+    </ul>
+  </li>
+
+
+      
+    
+  
 </ul>
 </nav>
-
-<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
-<script>$("li.active").parents('li').toggleClass("active");</script>
 
           </div>
           <main class="col-md-9" id="tg-sb-content">
@@ -872,7 +2264,7 @@ document.addEventListener('keydown', function(e) {
     
 
     <div class="row">
-        <div class="col-md-9 col-sm-8">
+        <div class="col-md-9">
           
           <nav aria-label="table of contents">
           
@@ -903,7 +2295,7 @@ $('#toc').on('click', 'a', function() {
           
         </div>
 
-        <div class="col-md-3 col-sm-4">
+        <div class="col-md-3">
           
           <aside>
             
@@ -911,11 +2303,11 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 
-                <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/aste-turbine/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                <div class="text-end">
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/aste-turbine/README.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
-            <div class="text-right">
+            <div class="text-end">
               <small>Updated 03 Feb 26</small>
             </div>
           </aside>
@@ -1091,9 +2483,9 @@ The error measures used here are only useful for consistent mapping configuratio
   <div class="container">
 
 
-    <div class="row equal">
-      <div class="col-md-4" style="background:white;border-radius:1rem;padding:0 3rem;margin:0 auto 50px auto;">
-        <h2> The preCICE newsletter </h2>
+    <div class="row">
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 bg-white rounded-4 p-4 mx-auto mb-5">
+        <h2 class="text-center fs-5 fw-medium mt-1 mb-3 text-dark" style="font-family: 'Fira Sans', Roboto, sans-serif;">The preCICE newsletter</h2>
         <script charset="utf-8" type="text/javascript" src="https://js.mailercloud.com/form/form.js"></script>
 <script>
 (function() {
@@ -1104,11 +2496,11 @@ The error measures used here are only useful for consistent mapping configuratio
 })();
 </script>
 
-        </div>
+      </div>
     </div>
 
 
-    <div class="row equal text-center">
+    <div class="row text-center">
       <div class="col-md-4">
         <nav aria-label="Footer left">
           <ul class="list-unstyled">

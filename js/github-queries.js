@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
           var link = document.createElement('a');
           link.setAttribute('href', 'https://github.com/precice/precice/');
-          link.className = 'btn btn-default no-icon action-button';
+          link.className = 'btn btn-secondary no-icon action-button';
           link.setAttribute('role', 'button');
           link.setAttribute('target', '_blank');
           link.setAttribute('rel', 'noopener noreferrer');
