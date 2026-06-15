@@ -57,7 +57,7 @@ Did you know? Many past participants only discovered this workshop via a direct 
 
 ## Supporters
 
-We are currently looking into funding options.
+<div class="col-md-2 col-flex"><a href="https://www.4tu.nl/ami/" title="4TU+.Applied Mathematics Institute" class="no-icon"><img src="images/funding/4tu+_ami.png" alt="4TU+.AMI logo" style="max-height:50px;"></a></div>
 
 <script type="application/ld+json">
     {
