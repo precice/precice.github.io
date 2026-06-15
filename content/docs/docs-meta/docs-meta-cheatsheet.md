@@ -170,19 +170,19 @@ Result:
 ### Resize: 100% width svg
 
 ```html
-<img class="img-responsive" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width: 100%">
+<img class="img-fluid" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width: 100%;">
 ```
 
-Use the class 'img-responsive' and style 'width: 100%'.
+Use the class `img-fluid` to keep images within their container. Add `style="width: 100%;"` when the image should fill the available width.
 
-[Reference](https://stackoverflow.com/questions/21943108/bootstrap-3-img-responsive-images-are-not-responsive-inside-fieldset-in-firefox)
+[Reference](https://getbootstrap.com/docs/5.3/content/images/#responsive-images)
 
 ### Center
 
-In addition to the last example add class 'center-block', an absolute 'width' and values 'margin: auto;' to the element's style.
+In addition to the last example, add the Bootstrap utilities `d-block mx-auto` and set a maximum width in the element's style.
 
 ```html
-<img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%;">
 ```
 
 ## Markdown in HTML block

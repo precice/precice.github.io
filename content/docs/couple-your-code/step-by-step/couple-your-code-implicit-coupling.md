@@ -7,8 +7,8 @@ summary: "In previous steps, we only considered explicit coupling. We now move o
 
 The main ingredient needed for implicit coupling is move backwards in time. For that, we need a [flux capacitor](https://www.youtube.com/watch?v=VcZe8_RZO8c). Just kidding 😉. What we really need is that your solver can write and read iteration checkpoints. An iteration checkpoint should contain all the information necessary to reload a previous state of your solver. What exactly is needed depends solely on your solver. preCICE tells you when you need to write and read checkpoints. To this end, preCICE uses the following interface:
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
-    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
@@ -35,8 +35,8 @@ These functions perform double duty:
 
 Let's extend our example code to also handle implicit coupling.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
-    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
@@ -67,8 +67,8 @@ precice = precice.Participant("FluidSolver", "precice-config.xml", rank, size) #
 </div>
 <!-- Long code blocks need to be split. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272 -->
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-3" data-toggle="tab">C++</a></li>
-    <li><a href="#python-3" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">

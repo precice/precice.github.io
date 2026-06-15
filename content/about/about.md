@@ -16,7 +16,7 @@ redirect_from:
 preCICE is developed in the groups of [Benjamin Uekermann (Usability and Sustainability of Simulation Software)](https://www.ipvs.uni-stuttgart.de/departments/us3/) and [Miriam Schulte (Simulation of Large Systems)](https://www.ipvs.uni-stuttgart.de/departments/sgs/) at the University of Stuttgart and in the group of [Hans-Joachim Bungartz (Scientific Computing in Computer Science)](https://www.cs.cit.tum.de/en/sccs/home/) at the Technical University of Munich. [Support contracts](community-support-precice.html) are offered through [TTI GmbH](https://www.tti-stuttgart.de/).
 
 <br>
-<img class="img-responsive center-block" src="images/developer/precice-devs.png" alt="preCICE contributors" style="width: 800px; margin: auto;">
+<img class="img-fluid mx-auto d-block" src="images/developer/precice-devs.png" alt="preCICE contributors" style="max-width: 800px; width: 100%;">
 <br>
 
 For the full list of contributors to preCICE please see our [community page](community-contributors).
@@ -59,22 +59,20 @@ The website in its current form was planned and implemented by CH Lorenz Researc
 
 ## Funding
 
-<div class="row">
+<div class="row gy-3">
 {% for item in site.data.funding %}
-<div class="col-md-6">
-        <div class="panel panel-default panel-custom">
-          <div class="panel-heading-precice">
-                <a href="{{ item.url }}" target="_blank" class="no-icon panel-title">
-                <strong>
-            {{ item.title }}
-                </strong>
-                </a>
-          </div>
-          <div class="panel-body">
-            <div class="row">
+<div class="col-md-6 d-flex flex-column">
+        <div class="card h-100">
+          <div class="card-body">
+            <a href="{{ item.url }}" target="_blank" class="no-icon card-title">
+              <strong>
+                {{ item.title }}
+              </strong>
+            </a>
+            <div class="row align-items-center">
               <div class="col-sm-4">
                 <a href="{{ item.url }}" target="_blank" class="no-icon">
-                <img src="{{ item.img }}" alt="Logo" class="img-responsive">
+                  <img src="{{ item.img }}" alt="Logo" class="img-fluid">
                 </a>
               </div>
               <div class="col-sm-8">

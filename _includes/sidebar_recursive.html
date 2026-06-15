@@ -1,0 +1,122 @@
+{% comment %}
+  Recursive sidebar: renders nested doc nav from _data/sidebars via folder.folderitems.
+  Parameters: item (folder node), level (1–4), parent_id (element id for data-bs-parent accordion group).
+  Branch rows use BS5 Collapse (data-bs-toggle, .collapse.show); leaves are plain nav-links.
+  Active state compares page.url (no leading slash) to each item url.
+{% endcomment %}
+
+{% assign page_url_clean = page.url | remove_first: "/" %}
+
+{% assign item = include.item %}
+{% assign title = item.title %}
+{% assign url = item.url %}
+{% assign folderitems = item.folderitems %}
+{% assign subfolders = item.subfolders %}
+{% assign subfolderitems = item.subfolderitems %}
+
+{% assign is_branch = false %}
+{% if include.level == 1 %}
+  {% if folderitems.size > 0 %}
+    {% assign is_branch = true %}
+  {% endif %}
+{% elsif include.level == 3 %}
+  {% assign is_branch = true %}
+{% endif %}
+
+{% if is_branch == false %}
+  {% assign current_url_clean = url | remove_first: "/" %}
+  <li class="nav-item">
+    <a class="nav-link {% if page_url_clean == current_url_clean %}active{% endif %}"
+       title="{{ title }}" href="{{ url | remove_first: "/" }}">
+       {{ title }}
+    </a>
+  </li>
+{% else %}
+  {% capture current_uid %}{{ include.level }}-{{ title | slugify }}{% endcapture %}
+  {% assign current_id = current_uid | prepend: "sb-" %}
+
+  {% assign any_active = false %}
+  {% assign current_url_clean = url | remove_first: "/" %}
+  {% if page_url_clean == current_url_clean and current_url_clean != "" %}{% assign any_active = true %}{% endif %}
+
+  {% if any_active == false %}
+    {% for fi in folderitems %}
+      {% assign fi_url = fi.url | remove_first: "/" %}
+      {% if page_url_clean == fi_url and fi_url != "" %}{% assign any_active = true %}{% break %}{% endif %}
+      {% for sf in fi.subfolders %}
+        {% for sfi in sf.subfolderitems %}
+          {% assign sfi_url = sfi.url | remove_first: "/" %}
+          {% if page_url_clean == sfi_url and sfi_url != "" %}{% assign any_active = true %}{% break %}{% endif %}
+        {% endfor %}
+        {% if any_active %}{% break %}{% endif %}
+      {% endfor %}
+      {% if any_active %}{% break %}{% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if any_active == false %}
+    {% for sf in subfolders %}
+      {% for sfi in sf.subfolderitems %}
+        {% assign sfi_url = sfi.url | remove_first: "/" %}
+        {% if page_url_clean == sfi_url and sfi_url != "" %}{% assign any_active = true %}{% break %}{% endif %}
+      {% endfor %}
+      {% if any_active %}{% break %}{% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if any_active == false %}
+    {% for sfi in subfolderitems %}
+      {% assign sfi_url = sfi.url | remove_first: "/" %}
+      {% if page_url_clean == sfi_url and sfi_url != "" %}{% assign any_active = true %}{% break %}{% endif %}
+    {% endfor %}
+  {% endif %}
+
+  <li class="nav-item">
+    <a class="nav-link {% if any_active %}active{% else %}collapsed{% endif %}"
+       title="{{ title }}"
+       data-bs-toggle="collapse" href="#{{ current_id }}"
+       role="button"
+       aria-expanded="{% if any_active %}true{% else %}false{% endif %}"
+       aria-controls="{{ current_id }}">
+       {{ title }}
+    </a>
+    <ul class="collapse {% if any_active %}show{% endif %} sidebar-nav flex-column list-unstyled mb-0"
+        id="{{ current_id }}" data-bs-parent="#{{ include.parent_id }}">
+
+      {% if url %}
+        <li class="nav-item">
+          {% assign current_url_clean = url | remove_first: "/" %}
+          <a class="nav-link {% if page_url_clean == current_url_clean %}active{% endif %}"
+             title="{{ title }}" href="{{ url | remove_first: "/" }}">
+             {{ title }} Overview
+          </a>
+        </li>
+      {% endif %}
+
+      {% assign next_level = include.level | plus: 1 %}
+
+      {% for fi in folderitems %}
+        {% if fi.output contains "web" %}
+          {% include sidebar_recursive.html item=fi level=next_level parent_id=current_id %}
+          {% for sf in fi.subfolders %}
+            {% if sf.output contains "web" %}
+              {% include sidebar_recursive.html item=sf level=3 parent_id=current_id %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+
+      {% for sf in subfolders %}
+        {% if sf.output contains "web" %}
+          {% include sidebar_recursive.html item=sf level=next_level parent_id=current_id %}
+        {% endif %}
+      {% endfor %}
+
+      {% for sfi in subfolderitems %}
+        {% if sfi.output contains "web" %}
+          {% include sidebar_recursive.html item=sfi level=next_level parent_id=current_id %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </li>
+{% endif %}

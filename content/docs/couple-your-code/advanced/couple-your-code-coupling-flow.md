@@ -30,7 +30,7 @@ In our example, we currently use a serial coupling scheme:
 
 ***
 
-<img class="img-responsive" src="images/docs/couple-your-code-serial-coupling.svg" alt="Serial coupling flow" style="width:100%">
+<img class="img-fluid" src="images/docs/couple-your-code-serial-coupling.svg" alt="Serial coupling flow" style="width:100%">
 
 ***
 
@@ -42,7 +42,7 @@ In a way, parallel coupling schemes are much easier here (numerically, they are 
 
 ***
 
-<img class="img-responsive" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width:100%">
+<img class="img-fluid" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width:100%">
 
 ***
 

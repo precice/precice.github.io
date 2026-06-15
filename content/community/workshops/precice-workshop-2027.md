@@ -7,7 +7,7 @@ toc: true
 redirect_from: /workshop2027/
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2027/precice2027-path.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/precice2027/precice2027-path.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
 The 7th preCICE Workshop will be held for the first time outside Germany, at the [Delft University of Technology](https://www.tudelft.nl/en/) in The Netherlands, on March 1-5, 2027, co-organized by [Matthias Möller](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics/people/dr-m-matthias-moeller) and his team within the [Numerical Analysis group](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics/numerical-analysis) and the [G+Smo community](https://gismo.github.io/). The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
 
@@ -57,7 +57,7 @@ Did you know? Many past participants only discovered this workshop via a direct 
 
 ## Supporters
 
-<div class="col-md-2 col-flex"><a href="https://www.4tu.nl/ami/" title="4TU+.Applied Mathematics Institute" class="no-icon"><img src="images/funding/4tu+_ami.png" alt="4TU+.AMI logo" style="max-height:50px;"></a></div>
+<div class="col-md-2 d-flex flex-column"><a href="https://www.4tu.nl/ami/" title="4TU+.Applied Mathematics Institute" class="no-icon"><img src="images/funding/4tu+_ami.png" alt="4TU+.AMI logo" style="max-height:50px;"></a></div>
 
 <script type="application/ld+json">
     {

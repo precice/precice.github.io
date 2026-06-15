@@ -9,8 +9,8 @@ redirect_from:
 
 In previous steps, you have already seen that there are quite some things going on with time step sizes. Let us now have a look at what is actually happening.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
-    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
@@ -78,8 +78,8 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
 * After each time step, both participants tell preCICE which time step size `dt` they just used by calling `precice.advance(dt)`. This way, preCICE can keep track of the total time. `preciceDt` is the remainder time to the next window:
 
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
-    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
@@ -99,8 +99,8 @@ precice_dt = precice.get_max_time_step_size()
 </div>
 * Both participants compute their next (adaptive) time step size. It can be larger or smaller than the remainder `preciceDt`.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-3" data-toggle="tab">C++</a></li>
-    <li><a href="#python-3" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
@@ -122,8 +122,8 @@ If it is larger, the remainder `preciceDt` is used instead (orange participant, 
 If it is smaller, the participant's time step size `solverDt` can be used (blue participant, dark blue is used).
 These two cases are reflected in:
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-4" data-toggle="tab">C++</a></li>
-    <li><a href="#python-4" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-4">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
@@ -162,8 +162,8 @@ Such small time steps can lead to problems in the solver.
 One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
 The following example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `minDt`.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-5" data-toggle="tab">C++</a></li>
-    <li><a href="#python-5" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-5">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-5">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-5" markdown="1">
@@ -234,8 +234,8 @@ The `first` participant sets the time step size. This requires that the `second`
 * In `advance`, this time step size is given to preCICE (Step 2).
 
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-6" data-toggle="tab">C++</a></li>
-    <li><a href="#python-6" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-6">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-6">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-6" markdown="1">
@@ -255,8 +255,8 @@ precice.advance(dt)
 </div>
 * preCICE has tracked the time level of the orange participant A and returns the remainder to reach B's time step size.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-7" data-toggle="tab">C++</a></li>
-    <li><a href="#python-7" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-7">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-7">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-7" markdown="1">
@@ -276,8 +276,8 @@ precice_dt = precice.get_max_time_step_size()
 </div>
 * A computes its next (adaptive) time step size. It can now be larger or smaller than the remainder.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-8" data-toggle="tab">C++</a></li>
-    <li><a href="#python-8" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-8">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-8">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-8" markdown="1">
@@ -300,8 +300,8 @@ If it is larger, the remainder `preciceDt` is used instead (the case below in St
 If it is smaller, the participant's time step size `solverDt` can be used (not visualized).
 These two cases are again reflected in the formula:
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-9" data-toggle="tab">C++</a></li>
-    <li><a href="#python-9" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-9">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-9">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-9" markdown="1">
@@ -334,8 +334,8 @@ You never need to alter your code if you want to switch the first and second par
 
 One last thing about time. There is also a helper function in preCICE that allows you to steer the end of a coupled simulation:
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-10" data-toggle="tab">C++</a></li>
-    <li><a href="#python-10" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-10">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-10">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-10" markdown="1">
@@ -356,8 +356,8 @@ is_ongoing = is_coupling_ongoing()
 
 This functions looks at `max-time-windows` and `max-time` as defined in the preCICE configuration and knows when it is time to go. Then, you should call `finalize`. It replaces your `simulationDone()`.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-11" data-toggle="tab">C++</a></li>
-    <li><a href="#python-11" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-11">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-11">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-11" markdown="1">

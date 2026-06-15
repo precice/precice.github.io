@@ -7,13 +7,13 @@ toc: false
 editme: true
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2027/precice2027-path.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/precice2027/precice2027-path.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
 
 ## preCICE workshops
 
 Do you want to meet the community and learn what is new in preCICE? There is no better way than to join [one of our workshops](precice-workshop.html) or [trainings](community-training.html)!
 
-<img class="img-responsive center-block img-rounded" src="images/events/precice2023-group.jpg" alt="preCICE Workshop group picture">
+<img class="img-fluid d-block mx-auto rounded" src="images/events/precice2023-group.jpg" alt="preCICE Workshop group picture">
 
 ## The preCICE forum
 

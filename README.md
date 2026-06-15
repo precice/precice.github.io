@@ -71,9 +71,9 @@ A good starting point is the following:
 ```html
 <div class="background-light banner-container">
   <div class="container">
-    <div class="row no-margin">
+    <div class="row m-0">
       <div class="col-lg-12 banner">
-        <p class="no-margin">
+        <p class="m-0">
           This is the text of my news banner.
         </p>
       </div>

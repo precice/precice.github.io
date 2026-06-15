@@ -7,7 +7,7 @@ toc: true
 redirect_from: /preCICE2024/
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2024.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/precice2024.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
 {% note %}
 This workshop is now over. See you next in the preCICE minisymposium in [COUPLED 2025](https://precice.org/eccomas-coupled-2025.html). The [next preCICE workshop](https://precice.org/precice-workshop-2025.html) will be in Hamburg, on September 8-12, 2025.
@@ -17,7 +17,7 @@ The 5th preCICE Workshop was held at the [University of Stuttgart](https://www.u
 Like in former workshops, the workshop consisted of a hands-on training [course](https://precice.org/community-training.html), followed by several talks and interactive sessions. A new part was added to the hands-on course, showcasing a fluid-structure interaction simulation with CalculiX and OpenFOAM, and was very well received by the participants. Some other highlights of the workshop were the poster session, that took place for the very first time,
 and the World Café, which this year revolved around the implementation of guidelines for adapters and application cases.
 
-<img class="img-responsive center-block" src="images/events/workshop24-group.jpg" alt="Group picture" style="max-width: 100%; margin:auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/workshop24-group.jpg" alt="Group picture" style="max-width: 100%; margin:auto;">
 
 ## Important dates
 

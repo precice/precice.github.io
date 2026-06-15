@@ -157,7 +157,9 @@ Due to these two points, taken together, Prince can output a long number of warn
 
 ### Make resources available locally
 
-Because Prince consumes HTML pages one at a time, it is convenient to make resources (stylesheets, scripts, fonts etc.) available locally and not have them fetched from a CDN. For this purpose a separate `_includes/head_print.html` exists. Note that also secondary resources (resources referenced in resources) need to be held locally, e.g. `bootstrap.min.css` references `bootstrap.min.css.map`.
+Because Prince consumes HTML pages one at a time, it is convenient to make resources (stylesheets, scripts, fonts etc.) available locally and not have them fetched from a CDN. For this purpose a separate `_includes/head_print.html` exists.
+
+The print head references the local Bootstrap stylesheet in `css/bootstrap.min.css`. Keep the matching `css/bootstrap.min.css.map` next to it, since the minified stylesheet references that source map. The regular web head may still load Bootstrap from a CDN, but the print head should stay self-contained so that PDF generation does not depend on network access.
 
 ### Missing glyphs or fonts
 
@@ -165,11 +167,10 @@ If Prince complains about missing glyphs or fonts make sure that the specified f
 
 * Fira Sans Light, Regular, Medium, Bold, Italic (in `./fonts`)
 * Fira Mono Regular (in `./fonts`)
-* Font Awesome 5 (in `./webfonts`)
-* Glyphicons halflings (in `./fonts`)
+* Font Awesome 6.7.2 (in `./webfonts`)
 * KaTeX fonts (in `./css/fonts`)
 
-The location of these fonts has to be relative to where they are referenced, e.g. `css/fontawesome5.14.0.min.css` mentions `url(../webfonts/fa-brands-400.woff2)`.
+The location of these fonts has to be relative to where they are referenced, e.g. `css/fontawesome.6.7.2.all.min.css` mentions `url(../webfonts/fa-brands-400.woff2)`.
 
 For further information see the [Prince documentation on missing fonts](https://www.princexml.com/doc/troubleshooting/).
 
@@ -179,21 +180,9 @@ A useful hack is to modify `prince-list.txt` to only contain reference to a sing
 
 For further information see the [Prince documentation on troubleshooting](https://www.princexml.com/doc/troubleshooting/).
 
-### Overriding bootstrap print styles
+### Overriding Bootstrap print styles
 
-Bootstrap by default sets color values to black for all elements for `@media print`. To override this behaviour modify the (local) minified `bootstrap.min.css` from
-
-```css
-@media print{*,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important}
-```
-
-to
-
-```css
-@media print{*,:after,:before{/*color:#000!important;*/text-shadow:none!important;/*background:0 0!important*/;-webkit-box-shadow:none!important;box-shadow:none!important}
-```
-
-This is considered a hack and needs to be repeated with every update of Bootstrap. For more information see [documentation-theme-jekyll docs](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_generating_pdfs.html#overriding-bootstrap-print-styles).
+Do not edit the minified Bootstrap vendor file directly. Bootstrap is vendored as `css/bootstrap.min.css` for PDF builds, and project-specific print overrides belong in `css/printstyles.css`. If a Bootstrap update changes PDF output, add the required scoped overrides there and replace `css/bootstrap.min.css` and `css/bootstrap.min.css.map` together.
 
 ### KaTeX
 

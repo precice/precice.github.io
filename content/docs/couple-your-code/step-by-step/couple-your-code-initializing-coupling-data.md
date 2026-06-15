@@ -7,8 +7,8 @@ summary: "As default values, preCICE assumes that all coupling variables are zer
 
 By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling `initialize()`. This data will then be used as initial data. To check whether initial data is required, you can use the following function:
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
-    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
@@ -28,8 +28,8 @@ requires_initial_data()
 </div>
 To support data initialization, we extend our example as follows:
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
-    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">

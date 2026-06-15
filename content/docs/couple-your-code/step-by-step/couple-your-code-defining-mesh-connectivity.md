@@ -15,8 +15,8 @@ For volume coupling in 2D, mesh connectivity boils down to defining triangles an
 
 All kind of connectivity can be built up directly from vertices. Triangles and quads also allow us to define them using edge IDs.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
-    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
@@ -42,8 +42,8 @@ set_mesh_tetrahedron(mesh_name, first_vertex_id, second_vertex_id, third_vertex_
 </div>
 There are also bulk versions of these methods, which can be easier to handle in some cases:
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
-    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
@@ -69,8 +69,8 @@ set_mesh_tetrahedra(mesh_name, vertices)
 </div>
 If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are [no-ops](https://en.wikipedia.org/wiki/NOP_(code)). Thus, don't worry about performance. If you need a significant workload to already create this connectivity information in your adapter in the first place, you can also explicitly ask preCICE whether it is required:
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-3" data-toggle="tab">C++</a></li>
-    <li><a href="#python-3" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
@@ -101,8 +101,8 @@ Quads are only supported since v2.1. For older version, the methods only exist a
 
 The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define two triangles.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-4" data-toggle="tab">C++</a></li>
-    <li><a href="#python-4" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-4">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
@@ -188,8 +188,8 @@ When iterating over the faces, get the vertex identifiers of defining points.
 For triangular faces, these would be the 3 corner points.
 Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-5" data-toggle="tab">C++</a></li>
-    <li><a href="#python-5" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-5">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-5">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-5" markdown="1">
@@ -254,8 +254,8 @@ In this case you can save preCICE Vertex IDs as labels directly in the solver ve
 Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
 When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-6" data-toggle="tab">C++</a></li>
-    <li><a href="#python-6" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-6">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-6">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-6" markdown="1">
@@ -309,8 +309,8 @@ Hence, a C++ `std::map` without custom comparator, or python `dict` may not be s
 
 An alternative would be to use a spatial index as a data structure to store this information.
 <ul id="apiTabs" class="nav nav-tabs">
-    <li class="active"><a href="#cpp-7" data-toggle="tab">C++</a></li>
-    <li><a href="#python-7" data-toggle="tab">Python</a></li>
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-7">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-7">Python</a></li>
 </ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="cpp-7" markdown="1">

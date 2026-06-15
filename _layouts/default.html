@@ -2,61 +2,47 @@
 <html lang="en">
 <head>
     {% include head.html %}
+
     <script>
-        $(document).ready(function() {
-            // Initialize navgoco with default options
-            $("#mysidebar").navgoco({
-                caretHtml: '',
-                accordion: true,
-                openClass: 'active', // open
-                save: false, // leave false or nav highlighting doesn't work right
-                cookie: {
-                    name: 'navgoco',
-                    expires: false,
-                    path: '/'
-                },
-                slide: {
-                    duration: 400,
-                    easing: 'swing'
-                }
-            });
-
-            $("#collapseAll").click(function(e) {
-                e.preventDefault();
-                $("#mysidebar").navgoco('toggle', false);
-            });
-
-            $("#expandAll").click(function(e) {
-                e.preventDefault();
-                $("#mysidebar").navgoco('toggle', true);
-            });
-
-        });
-
-    </script>
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("#tg-sb-link").click(function() {
-                $("#tg-sb-sidebar").toggle();
-                $("#tg-sb-content").toggleClass('col-md-9');
-                $("#tg-sb-content").toggleClass('col-md-12');
-                $("#tg-sb-icon").toggleClass('fa-toggle-on');
-                $("#tg-sb-icon").toggleClass('fa-toggle-off');
-            });
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggleLink = document.getElementById('tg-sb-link');
+      if (!toggleLink) return;
+      toggleLink.addEventListener('click', function () {
+        var sidebar = document.getElementById('tg-sb-sidebar');
+        var content = document.getElementById('tg-sb-content');
+        var icon = document.getElementById('tg-sb-icon');
+        if (sidebar) {
+          sidebar.hidden = !sidebar.hidden;
+        }
+        if (content) {
+          content.classList.toggle('col-md-9');
+          content.classList.toggle('col-md-12');
+        }
+        if (icon) {
+          icon.classList.toggle('fa-toggle-on');
+          icon.classList.toggle('fa-toggle-off');
+        }
+      });
+    });
     </script>
     <script>
         // wrap tables into a div to make them scrollable on small viewports
-        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
-        $(document).ready(function() {
-            $('table').addClass('table');
-            $('table').wrap('<div class="table-responsive"></div>');
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('table').forEach(function (table) {
+        table.classList.add('table', 'table-striped', 'table-hover', 'table-bordered', 'w-100');
+        var tableHead = table.querySelector('thead');
+        if (tableHead) {
+          tableHead.classList.add('table-primary');
+        }
+        if (table.parentElement && table.parentElement.classList.contains('table-responsive')) {
+          return;
+        }
+        var wrapper = document.createElement('div');
+        wrapper.className = 'table-responsive w-100';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      });
+    });
     </script>
     {% if page.datatable == true %}
     <!-- Include the standard DataTables bits -->
@@ -68,14 +54,15 @@
          Credit here: http://www.beardedhacker.com/blog/2015/08/28/add-class-attribute-to-markdown-table/
       -->
     <script>
-      $(document).ready(function(){
-          $('div.datatable-begin').nextUntil('div.datatable-end', 'table').addClass('display');
-          $('table.display').DataTable( {
-              paging: true,
-              stateSave: true,
-              searching: true
-          });
-       });
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof jQuery === 'undefined' || !jQuery.fn.DataTable) return;
+        jQuery('div.datatable-begin').nextUntil('div.datatable-end', 'table').addClass('display');
+        jQuery('table.display').DataTable({
+          paging: true,
+          stateSave: true,
+          searching: true
+        });
+      });
     </script>
     {% endif %}
 </head>
@@ -85,10 +72,10 @@
           <!-- News banner -->
           {% include news_banner.html onlanding=false %}
     </header>
-    <div class="container page-content" style="margin-bottom:50px">
+    <div class="container page-content mb-5">
         {% unless page.hide_sidebar %}
         <div class="row">
-          <div class="col-md-3" id="tg-sb-sidebar">
+          <div class="col-md-3 mb-4 mb-md-0" id="tg-sb-sidebar">
             {% include sidebar.html %}
           </div>
           <main class="col-md-9" id="tg-sb-content">

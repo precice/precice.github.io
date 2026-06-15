@@ -7,7 +7,7 @@ toc: true
 redirect_from: /preCICE2025/
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2025/precice2025.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/precice2025/precice2025.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
 The 6th preCICE Workshop was held at the [Helmut Schmidt University / University of the German Federal Armed Forces Hamburg](https://www.hsu-hh.de/) on September 8-12, 2025, co-organized by the local user group. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we had user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
 
@@ -367,9 +367,11 @@ Did you know? Many past participants only discovered this workshop via a direct 
 
 ## Supporters
 
-<div class="col-md-2 col-flex"><a href="https://www.dfg.de/en" title="DFG, German Research Foundation" class="no-icon"><img src="images/funding/dfg.jpg" alt="DFG logo" style="max-height:50px;"></a></div>
-<div class="col-md-6 col-flex"><a href="https://dtecbw.de/" title="dtec.bw" class="no-icon"><img src="images/events/precice2025/precice2025-logo-dtec.bw.jpg" alt="dtec.bw logo" style="max-height:50px;"></a></div>
-<div class="col-md-2 col-flex"><a href="https://dtecbw.de/home/forschung/hsu/projekt-hpcbw" title="hpc.bw" class="no-icon"><img src="images/events/precice2025/precice2025-logo-hpc-bw.png" alt="hpc.bw logo" style="max-height:50px;"></a></div>
+<div class="row align-items-center">
+  <div class="col-md-2 d-flex flex-column"><a href="https://www.dfg.de/en" title="DFG, German Research Foundation" class="no-icon"><img src="images/funding/dfg.jpg" alt="DFG logo" style="max-height:50px;"></a></div>
+  <div class="col-md-6 d-flex flex-column"><a href="https://dtecbw.de/" title="dtec.bw" class="no-icon"><img src="images/events/precice2025/precice2025-logo-dtec.bw.jpg" alt="dtec.bw logo" style="max-height:50px;"></a></div>
+  <div class="col-md-2 d-flex flex-column"><a href="https://dtecbw.de/home/forschung/hsu/projekt-hpcbw" title="hpc.bw" class="no-icon"><img src="images/events/precice2025/precice2025-logo-hpc-bw.png" alt="hpc.bw logo" style="max-height:50px;"></a></div>
+</div>
 
 <script type="application/ld+json">
     {

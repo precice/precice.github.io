@@ -7,7 +7,7 @@ toc: true
 redirect_from: /preCICE2020/
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2020.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
+<img class="img-fluid d-block mx-auto" src="images/events/precice2020.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
 Thank you everybody who helped or participated in the workshop. After all the positive feedback, we are confident to repeat the workshop in 2021. Some of the feedback:
 

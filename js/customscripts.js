@@ -1,80 +1,74 @@
-$('#mysidebar').height($(".nav").height());
+/**
+ * Site-wide behaviors (Bootstrap 5 native APIs + vanilla DOM).
+ * jQuery is still loaded in head.html for toc.js and Algolia instantsearch only.
+ */
 
-
-$( document ).ready(function() {
-
-    //this script says, if the height of the viewport is greater than 800px, then insert affix class, which makes the nav bar float in a fixed
-    // position as your scroll. if you have a lot of nav items, this height may not work for you.
-    var h = $(window).height();
-    //console.log (h);
-    if (h > 700) {
-        $( "#mysidebar" ).attr("class", "nav affix");
+// DOMContentLoaded: replaces $(document).ready() for sidebar, tooltips, anchors, collapse
+document.addEventListener('DOMContentLoaded', function () {
+  // Viewport height > 700px → sticky doc sidebar (#mysidebar)
+  if (window.innerHeight > 700) {
+    var sidebar = document.getElementById('mysidebar');
+    if (sidebar) {
+      sidebar.classList.add('sticky-top');
+      sidebar.style.top = '20px';
     }
-    // activate tooltips. although this is a bootstrap js function, it must be activated this way in your theme.
-    $('[data-toggle="tooltip"]').tooltip({
-        placement : 'top'
-    });
+  }
 
-    /**
-     * AnchorJS
-     */
+  // bootstrap.Tooltip replaces $.fn.tooltip()
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+    bootstrap.Tooltip.getOrCreateInstance(el, { placement: 'top' });
+  });
+
+  if (typeof anchors !== 'undefined') {
     anchors.add('main h2:not(.no-anchor),main h3:not(.no-anchor),main h4:not(.no-anchor),main h5:not(.no-anchor)');
+  }
+
+  // Leaf nav clicks: bootstrap.Collapse.hide() replaces $('.collapse.show').collapse('hide')
+  document.querySelectorAll('.sidebar-nav a.nav-link:not([data-bs-toggle="collapse"])').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var parentUl = link.closest('ul');
+      if (!parentUl) return;
+      parentUl.querySelectorAll('.collapse.show').forEach(function (collapseEl) {
+        var instance = bootstrap.Collapse.getInstance(collapseEl);
+        if (instance) {
+          instance.hide();
+        } else {
+          bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false }).hide();
+        }
+      });
+    });
+  });
 
 });
 
-// needed for nav tabs on pages. See Formatting > Nav tabs for more details.
-// script from http://stackoverflow.com/questions/10523433/how-do-i-keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload
-$(function() {
-    var json, tabsState;
-    $('a[data-toggle="pill"], a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-        var href, json, parentId, tabsState;
+// Click delegation: logo wall filter (replaces $(document).on('click', '.logowall-filter .filter-btn', ...))
+document.addEventListener('click', function (event) {
+  var button = event.target.closest('.logowall-filter .filter-btn');
+  if (!button) return;
 
-        tabsState = localStorage.getItem("tabs-state");
-        json = JSON.parse(tabsState || "{}");
-        parentId = $(e.target).parents("ul.nav.nav-pills, ul.nav.nav-tabs").attr("id");
-        href = $(e.target).attr('href');
-        json[parentId] = href;
+  var filter = String(button.dataset.filter || '').toLowerCase();
+  var filterBar = button.closest('.logowall-filter');
+  var targetSel = filterBar && filterBar.getAttribute('data-logowall-target');
+  var grid = targetSel ? document.querySelector(targetSel) : null;
+  if (!grid) return;
 
-        return localStorage.setItem("tabs-state", JSON.stringify(json));
-    });
+  var items = grid.querySelectorAll('.logo-item');
+  if (!items.length) return;
 
-    tabsState = localStorage.getItem("tabs-state");
-    json = JSON.parse(tabsState || "{}");
+  event.preventDefault();
 
-    $.each(json, function(containerId, href) {
-        return $("#" + containerId + " a[href=" + href + "]").tab('show');
-    });
+  filterBar.querySelectorAll('.filter-btn').forEach(function (btn) {
+    btn.classList.remove('active', 'btn-primary');
+    btn.classList.add('btn-secondary');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  button.classList.add('active', 'btn-primary');
+  button.classList.remove('btn-secondary');
+  button.setAttribute('aria-pressed', 'true');
 
-    $("ul.nav.nav-pills, ul.nav.nav-tabs").each(function() {
-        var $this = $(this);
-        if (!json[$this.attr("id")]) {
-            return $this.find("a[data-toggle=tab]:first, a[data-toggle=pill]:first").tab("show");
-        }
-    });
-});
-
-// this makes the logos toggle as per the option chosen by clicking on the specific buttons.
-$(function() {
-    $(document).on('click', '.logowall-filter .filter-btn', function(event) {
-        var $button = $(this);
-        var filter = String($button.data('filter') || '').toLowerCase();
-        var $filterBar = $button.closest('.logowall-filter');
-        var targetSel = $filterBar.attr('data-logowall-target');
-        var $grid = targetSel ? $(targetSel) : $();
-        var $items = $grid.find('.logo-item');
-
-        if (!$grid.length || !$items.length) {
-            return;
-        }
-
-        event.preventDefault();
-
-        $filterBar.find('.filter-btn').removeClass('active btn-primary').addClass('btn-default').attr('aria-pressed', 'false');
-        $button.addClass('active btn-primary').removeClass('btn-default').attr('aria-pressed', 'true');
-
-        $items.each(function() {
-            var matches = filter === 'all' || String($(this).data('category') || '').toLowerCase() === filter;
-            $(this).toggleClass('hidden', !matches);
-        });
-    });
+  items.forEach(function (item) {
+    var category = String(item.dataset.category || '').toLowerCase();
+    var matches = filter === 'all' || category === filter;
+    item.classList.toggle('d-none', !matches);
+  });
 });
