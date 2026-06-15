@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1781523190">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1781523190">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781523190">
-<link rel="stylesheet" href="css/bookcover.css?v=1781523190">
+<link rel="stylesheet" href="css/customstyles.css?v=1781558767">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1781558767">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781558767">
+<link rel="stylesheet" href="css/bookcover.css?v=1781558767">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1781523190">
+<link rel="stylesheet" href="css/theme-precice.css?v=1781558767">
 <!-- Styling for landing page -->
 
 
@@ -6875,7 +6875,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 10 Jun 26</small>
+              <small>Updated 15 Jun 26</small>
             </div>
           </aside>
           
@@ -7165,33 +7165,28 @@ Please include the generated reference results in the pull request as they are s
 <p>The components mentioned in the Metadata are defined in the central <code class="language-plaintext highlighter-rouge">components.yaml</code> file. This file also specifies some arguments and their default values. These arguments can be anything, but most often they are version-related information. For example, the version of the OpenFOAM library used by the openfoam-adapter component, or the openfoam-adapter component version itself. For example:</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">openfoam-adapter</span><span class="pi">:</span>
-  <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/precice/openfoam-adapter</span>
   <span class="na">template</span><span class="pi">:</span> <span class="s">component-templates/openfoam-adapter.yaml</span>
   <span class="na">build_arguments</span><span class="pi">:</span>
-    <span class="na">PRECICE_REF</span><span class="pi">:</span>
-      <span class="na">description</span><span class="pi">:</span> <span class="s">Version of preCICE to use</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">main"</span>
-    <span class="na">PRECICE_PRESET</span><span class="pi">:</span>
-      <span class="na">description</span><span class="pi">:</span> <span class="s">CMake preset of preCICE</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">production-audit"</span>
     <span class="na">PLATFORM</span><span class="pi">:</span>
-      <span class="na">description</span><span class="pi">:</span> <span class="s">Dockerfile platform used</span>
       <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ubuntu_2404"</span>
+    <span class="na">PRECICE_REF</span><span class="pi">:</span>
+      <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/precice/precice</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">develop"</span>
+    <span class="na">PRECICE_PRESET</span><span class="pi">:</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">production-audit"</span>
     <span class="na">TUTORIALS_REF</span><span class="pi">:</span>
-      <span class="na">description</span><span class="pi">:</span> <span class="s">Tutorial git reference to use</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">master"</span>
+      <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/precice/tutorials</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">develop"</span>
     <span class="na">OPENFOAM_EXECUTABLE</span><span class="pi">:</span>
-      <span class="na">description</span><span class="pi">:</span> <span class="s">exectuable of openfoam to use</span>
       <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">openfoam2512"</span>
     <span class="na">OPENFOAM_ADAPTER_REF</span><span class="pi">:</span>
-      <span class="na">description</span><span class="pi">:</span> <span class="s">Reference/tag of the actual OpenFOAM adapter</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">master"</span>
+      <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/precice/openfoam-adapter</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">develop"</span>
 </code></pre></div></div>
 
 <p>This <code class="language-plaintext highlighter-rouge">openfoam-adapter</code> component has the following attributes:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">repository</code>: URL to the Git projects</li>
   <li><code class="language-plaintext highlighter-rouge">template</code>: A template for a Docker Compose service of this component</li>
   <li><code class="language-plaintext highlighter-rouge">build_arguments</code>: Arguments passed to the Docker Compose service (arbitrary)</li>
 </ul>
@@ -7651,7 +7646,7 @@ Please note that these files should always be kept in the git lfs.</p>
         </a>
         </p>
         <p>
-        Page last updated: Jun 10, 2026<br>
+        Page last updated: Jun 15, 2026<br>
         Site last updated: Jun 15, 2026
         </p>
         <p>
