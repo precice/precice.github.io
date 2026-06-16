@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1781560372">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1781560372">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781560372">
-<link rel="stylesheet" href="css/bookcover.css?v=1781560372">
+<link rel="stylesheet" href="css/customstyles.css?v=1781585965">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1781585965">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781585965">
+<link rel="stylesheet" href="css/bookcover.css?v=1781585965">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1781560372">
+<link rel="stylesheet" href="css/theme-precice.css?v=1781585965">
 <!-- Styling for landing page -->
 
 
@@ -6956,7 +6956,7 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run cd tools/tests
   cd tools/tests
-  python systemtests.py --build_args=PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0 --suites=fenics-adapter --log-level=DEBUG
+  python systemtests.py --build_args=PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0 --suites=fenics-adapter --log_level=DEBUG
   cd ../../
   shell: /usr/bin/bash -e {0}
 INFO: About to run the following systemtest in the directory /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/runs:
@@ -6969,7 +6969,7 @@ DEBUG: Building docker image for Flow over heated plate (fluid-openfoam, solid-f
 DEBUG: Running tutorial Flow over heated plate (fluid-openfoam, solid-fenics)
 DEBUG: Running fieldcompare for Flow over heated plate (fluid-openfoam, solid-fenics)
 DEBUG: extracting /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/flow-over-heated-plate/reference-results/fluid-openfoam_solid-fenics.tar.gz into /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/runs/flow-over-heated-plate_fluid-openfoam-solid-fenics_2023-11-19-211723/reference_results
-Using log-level: DEBUG
+Using log_level: DEBUG
 +---------------------------------------------------------+---------+-------------------+-----------------+-----------------------+
 | systemtest                                              | success | building time [s] | solver time [s] | fieldcompare time [s] |
 CRITICAL: Fieldcompare returned non zero exit code, therefore Flow over heated plate (fluid-openfoam, solid-fenics) failed
@@ -6996,14 +6996,14 @@ Inside the archive, a test-specific subfolder like <code class="language-plainte
 
 <h3 id="adding-testsuites">Adding testsuites</h3>
 
-<p>To add a testsuite just open the <code class="language-plaintext highlighter-rouge">tests.yaml</code> file and use the output of <code class="language-plaintext highlighter-rouge">python print_case_combinations.py</code> to add the right case combinations you want to test. Note that you can specify a <code class="language-plaintext highlighter-rouge">reference_result</code> which is not yet present. The <code class="language-plaintext highlighter-rouge">generate_reference_data.py</code> will pick that up and create it for you.
+<p>To add a testsuite just open the <code class="language-plaintext highlighter-rouge">tests.yaml</code> file and use the output of <code class="language-plaintext highlighter-rouge">python print_case_combinations.py</code> to add the right case combinations you want to test. Note that you can specify a <code class="language-plaintext highlighter-rouge">reference_result</code> which is not yet present. The <code class="language-plaintext highlighter-rouge">generate_reference_results.py</code> will pick that up and create it for you.
 Note that its important to carefully check the paths of the <code class="language-plaintext highlighter-rouge">reference_result</code> in order to not have typos in there. Also note that same cases in different testsuites should use the same <code class="language-plaintext highlighter-rouge">reference_result</code>.</p>
 
 <p>To cap the preCICE simulation time for a specific test without editing <code class="language-plaintext highlighter-rouge">precice-config.xml</code>, add an optional <code class="language-plaintext highlighter-rouge">max_time</code> (positive float, overrides <code class="language-plaintext highlighter-rouge">&lt;max-time&gt;</code>) or <code class="language-plaintext highlighter-rouge">max_time_windows</code> (positive integer, overrides <code class="language-plaintext highlighter-rouge">&lt;max-time-windows&gt;</code>) field to the tutorial entry. Applies to both test runs and reference result generation.</p>
 
 <h3 id="generate-reference-results">Generate reference results</h3>
 
-<p>Since we need data to compare against, you need to run <code class="language-plaintext highlighter-rouge">python generate_reference_data.py</code>. This process might take a while.
+<p>Since we need data to compare against, you need to run <code class="language-plaintext highlighter-rouge">python generate_reference_results.py</code>. This process might take a while.
 Please include the generated reference results in the pull request as they are strongly connected to the new testsuites.</p>
 
 <h2 id="adding-repositories">Adding repositories</h2>
@@ -7647,7 +7647,7 @@ Please note that these files should always be kept in the git lfs.</p>
         </p>
         <p>
         Page last updated: Jun 15, 2026<br>
-        Site last updated: Jun 15, 2026
+        Site last updated: Jun 16, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
