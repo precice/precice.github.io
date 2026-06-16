@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1781605956">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1781605956">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781605956">
-<link rel="stylesheet" href="css/bookcover.css?v=1781605956">
+<link rel="stylesheet" href="css/customstyles.css?v=1781619216">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1781619216">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781619216">
+<link rel="stylesheet" href="css/bookcover.css?v=1781619216">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1781605956">
+<link rel="stylesheet" href="css/theme-precice.css?v=1781619216">
 <!-- Styling for landing page -->
 
 
@@ -6882,407 +6882,347 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>The tutorials repository hosts cases that need multiple components from the preCICE ecosystem to run. This directory provides tools that can automatically run complete simulations, using different versions of each component, and compare the results to references. While the main purpose is to run complete tests in the continuous integration workflows of preCICE, you can also run these tests on your laptop.</p>
+   <p>The tutorials repository hosts cases that need multiple components from the preCICE ecosystem to run. Te system tests automatically run tutorials combining the required components and compare the numerical results to references. While the main purpose is to run complete tests in the continuous integration workflows of preCICE, you can also run these tests on your laptop.</p>
+
+<h2 id="running">Running</h2>
+
+<p>The main workflow for the user is executing the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script, which is the same that the <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-latest-components.yml">GitHub Actions workflow</a> executes. Depending on the options given to the script, it reads in the respective metadata files and generates <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> files that can start a fully-defined coupled simulation. For arguments that are not provided, default values from <code class="language-plaintext highlighter-rouge">components.yaml</code> are used.</p>
+
+<h3 id="manual-and-nightly-runs-on-github">Manual and nightly runs on GitHub</h3>
+
+<p>The <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-latest-components.yml">System tests (manual/nightly)</a> workflow executes the <code class="language-plaintext highlighter-rouge">release</code> test suite nightly and can also be triggered manually.</p>
+
+<p>On the workflow page, click <code class="language-plaintext highlighter-rouge">Run workflow</code>. The default values will execute the <code class="language-plaintext highlighter-rouge">release</code> test suite using the latest <code class="language-plaintext highlighter-rouge">develop</code> branches of every component. If you want to override the version of some component, specify it in the respective field. Commit hashes, branches, and tags are all accepted. Branches and tags will get automatically resolved to their current commit on GitHub before starting any test, and all tests will use the same version of any common component.</p>
+
+<p>The available test suites are found in <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/tests.yaml"><code class="language-plaintext highlighter-rouge">tests.yaml</code></a> and common values are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">quickstart</code>, <code class="language-plaintext highlighter-rouge">elastic-tube-1d</code>, or any other tutorial (see <a href="https://github.com/precice/tutorials/issues/448">exceptions</a>)</li>
+  <li><code class="language-plaintext highlighter-rouge">openfoam-adapter</code>, <code class="language-plaintext highlighter-rouge">micro-manager</code>, <code class="language-plaintext highlighter-rouge">fmi-runner</code>, or similar test cases involving the respective component</li>
+  <li><code class="language-plaintext highlighter-rouge">precice</code> is a subset of cases that cover a range of preCICE features</li>
+  <li><code class="language-plaintext highlighter-rouge">release</code> is for all available but some very long or known to fail tests</li>
+  <li><code class="language-plaintext highlighter-rouge">extra</code> is for some longer tests</li>
+  <li><code class="language-plaintext highlighter-rouge">expected-to-fail</code>, <code class="language-plaintext highlighter-rouge">selected</code>, and <code class="language-plaintext highlighter-rouge">system-tests-dev</code> for some special cases</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">Use workflow from</code> is a default option of GitHub Actions that concerns the GHA workflow file itself.</p>
+
+<h3 id="running-from-a-pull-request">Running from a pull request</h3>
+
+<p>Several repositories include a workflow that allows triggering the system tests by adding the <code class="language-plaintext highlighter-rouge">trigger-system-tests</code> label to the pull request. The event is triggered only at the moment of adding the label, so you need to remove the label and add it again if needed.</p>
+
+<p>See the <a href="https://github.com/precice/openfoam-adapter/blob/develop/.github/workflows/system-tests.yaml">system tests workflow in the OpenFOAM adapter</a> for an example.</p>
+
+<h3 id="running-from-the-github-cli">Running from the GitHub CLI</h3>
+
+<p>The <a href="https://cli.github.com/">GitHub CLI</a> allows triggering workflows of a GitHub project. For example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release
+</code></pre></div></div>
+
+<p>More arguments are available, for example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PLATFORM:ubuntu2404,PRECICE_REF:develop"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span><span class="s2">"DEBUG"</span> <span class="nt">--ref</span><span class="o">=</span>develop
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">build_args</code> override the defaults set in <code class="language-plaintext highlighter-rouge">tools/tests/components.yaml</code>.</p>
+
+<h3 id="running-locally">Running locally</h3>
+
+<p>To run locally, you will need Docker, Docker Compose, and Python 3.</p>
+
+<p>Navigate into the directory <code class="language-plaintext highlighter-rouge">tools/tests/</code> of the tutorials, make a Python virtual environment, and install the dependencies:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv .venv <span class="o">&amp;&amp;</span> <span class="nb">source</span> .venv/bin/activate
+python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<p>To test a certain test-suite defined in <code class="language-plaintext highlighter-rouge">tests.yaml</code>, use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python systemtests.py <span class="nt">--suites</span><span class="o">=</span>quickstart
+</code></pre></div></div>
+
+<p>This will build and connect Docker containers and run tutorials in the <code class="language-plaintext highlighter-rouge">runs/</code> directory in the root of the tutorials.</p>
+
+<p>To clean up at the end, you might want to run a <code class="language-plaintext highlighter-rouge">docker system prune -a</code> and remove the <code class="language-plaintext highlighter-rouge">runs/</code> directory to save space.</p>
+
+<p>There are also some auxiliary scripts (run without arguments):</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">print_test_suites.py</code>: Print all test suites defined in <code class="language-plaintext highlighter-rouge">tests.yaml</code></li>
+  <li><code class="language-plaintext highlighter-rouge">print_case_combinations.py</code>: Print all possible combinations of participants in a tutorial, using its <code class="language-plaintext highlighter-rouge">metadata.yaml</code>.</li>
+</ul>
+
+<h2 id="understanding-the-logs">Understanding the logs</h2>
+
+<p>For a local run, look into the <code class="language-plaintext highlighter-rouge">tutorials/runs/</code> directory, where you will find a time-stamped directory for every test executed.</p>
+
+<p>Each of these directories includes the usual tutorial case files and logs, as well as:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">system-tests-build.log</code>: The logs of building the respective components.</li>
+  <li><code class="language-plaintext highlighter-rouge">system-tests-run.log</code>: The logs of running the simulation (intermixed, from all participants).</li>
+  <li><code class="language-plaintext highlighter-rouge">system-tests-compare.log</code>: The logs for the comparison to the reference results.</li>
+</ol>
+
+<p>In addition, in the directories of the cases executed, you can find <code class="language-plaintext highlighter-rouge">system-tests-&lt;case&gt;.log</code> files.</p>
+
+<h3 id="numerical-regressions">Numerical regressions</h3>
+
+<p>When the tests fail at the results comparison step, this typically means that there are numerical regressions (unless something wrong went undetected in a previous step). We use <a href="https://gitlab.com/dglaeser/fieldcompare">fieldcompare</a> to compare all <a href="https://precice.org/configuration-export.html">preCICE exports</a> to reference results generated from a previous run. Relevant files:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">precice-exports/</code>: The coupling meshes of the test run.</li>
+  <li><code class="language-plaintext highlighter-rouge">reference-results/</code>: The coupling meshes of the reference run, as stored on Git LFS, expanded into <code class="language-plaintext highlighter-rouge">reference-results-unpacked</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">diff-results/</code>: Numerical difference of the results in the two directories (computed with <code class="language-plaintext highlighter-rouge">fieldcompare dir --diff precice-exports/ reference/</code>). These are only present on failed comparisons.</li>
+</ul>
+
+<p>To reproduce the comparison locally, use the <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/docker-compose.field_compare.template.yaml">same fieldcompare command</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fieldcompare <span class="nb">dir </span>precice-exports/ reference-results-unpacked/&lt;<span class="k">case</span><span class="o">&gt;</span>/ <span class="se">\</span>
+             <span class="nt">--ignore-missing-reference-files</span> <span class="se">\</span>
+             <span class="nt">--ignore-unsupported-file-formats</span> <span class="se">\</span>
+             <span class="nt">-rtol</span> 3e-7
+</code></pre></div></div>
+
+<p>The differences are only shown per file, and there is no global metric or other summary (see <a href="https://gitlab.com/dglaeser/fieldcompare/-/work_items/69">related discussion in fieldcompare</a>).</p>
+
+<p>Alternatively, <a href="https://precice.org/configuration-export.html#visualization-with-paraview">visualize the <code class="language-plaintext highlighter-rouge">precice-exports/diff_*.vtu</code> in ParaView</a>.</p>
+
+<h2 id="extending">Extending</h2>
+
+<h3 id="adding-new-tests">Adding new tests</h3>
+
+<p>Tests and test suites are defined in <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/tests.yaml"><code class="language-plaintext highlighter-rouge">tests.yaml</code></a>. By convention, every tutorial defines a test suite with the same name as its directory, and several test cases using combinations of the available participants. These test cases are later referenced by other test suites: these are typically the <code class="language-plaintext highlighter-rouge">release</code> and the test suites of different tested components.</p>
+
+<p>The available cases are listed in the <code class="language-plaintext highlighter-rouge">metadata.yaml</code> of each tutorial. To add a new tutorial case as a test, add it to <code class="language-plaintext highlighter-rouge">metadata.yaml</code> and then define a test using it. Include that test in the relevant test suites.</p>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">max_time</code> or <code class="language-plaintext highlighter-rouge">max_time_windows</code> parameters to restrict the runtime of the test to the first few coupling time windows, to save time. Aim for a runtime of less than a minute (assuming cached components), if possible.</p>
+
+<p>You will need to define a reference results file. The reference results can and should be generated on GitHub using the <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml">Generate reference results (manual)</a> workflow for the respective test suite. You might want to temporarily set the <code class="language-plaintext highlighter-rouge">selected</code> test suite for requesting results only for a subset of test cases.</p>
+
+<p>Note that you will need to define the <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> in the file <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml"><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code></a> to match the respective branch. Restore that to <code class="language-plaintext highlighter-rouge">develop</code> after that. See a <a href="https://github.com/precice/tutorials/issues/844">related issue</a>.</p>
+
+<p>The results will be added to a Git LFS, but you will need special push access: just use the aforementioned GitHub Actions workflow, instead.</p>
+
+<h3 id="adding-new-components">Adding new components</h3>
+
+<p>To add a new component, a few changes are needed:</p>
+
+<ol>
+  <li>In the <code class="language-plaintext highlighter-rouge">components.yaml</code>, add a new component, defining all the parameters that it might need.
+    <ul>
+      <li>Add these parameters into the <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code>.</li>
+      <li>Add fields for these parameters into the <code class="language-plaintext highlighter-rouge">system-tests-latest-components.yml</code> workflow.</li>
+    </ul>
+  </li>
+  <li>In the <code class="language-plaintext highlighter-rouge">dockerfiles/&lt;platform&gt;/Dockerfile</code>, define a new stage for building your new component. Use the parameters you defined above.
+    <ul>
+      <li>Defining a <code class="language-plaintext highlighter-rouge">&lt;component&gt;_PR</code> variable will let you integrate the system tests into the respective component repository.</li>
+    </ul>
+  </li>
+  <li>In the <code class="language-plaintext highlighter-rouge">component_templates.yaml</code>, define a component template. These are Jinja templates that are used by Docker Compose, and the main detail is how to run a simulation using that component.</li>
+  <li>Refer to the new component in the <code class="language-plaintext highlighter-rouge">metadata.yaml</code> of some tutorial and define some tests.</li>
+</ol>
+
+<h3 id="adding-new-repositories-that-can-trigger-the-tests">Adding new repositories that can trigger the tests</h3>
+
+<p>If you want to trigger the system tests from a new repository:</p>
+
+<ol>
+  <li>Add a workflow file to that repository (under <code class="language-plaintext highlighter-rouge">.github/workflows/</code>). Example: <a href="https://github.com/precice/openfoam-adapter/blob/develop/.github/workflows/system-tests.yaml">OpenFOAM adapter</a>.</li>
+  <li>Create label as a trigger for workflow (under <code class="language-plaintext highlighter-rouge">Issues</code>-&gt;<code class="language-plaintext highlighter-rouge">Labels</code>-&gt;<code class="language-plaintext highlighter-rouge">New label</code>).</li>
+  <li>Give permissions: In the <a href="https://github.com/organizations/precice/settings">preCICE organization settings</a>, you need to add the new repository to the action secret <code class="language-plaintext highlighter-rouge">WORKFLOW_DISPATCH_TOKEN</code> and to the default actions runner group. Adding the new label directly to the pull request in which you add the workflow should already trigger the system tests.</li>
+</ol>
+
+<h2 id="implementation-details">Implementation details</h2>
+
+<p>Each tutorial contains automation scripts (mainly <code class="language-plaintext highlighter-rouge">run.sh</code> and <code class="language-plaintext highlighter-rouge">clean.sh</code>), as well as metadata (<code class="language-plaintext highlighter-rouge">metadata.yaml</code>). The metadata file describes the available cases, how to run them, as well as their dependencies. A central <code class="language-plaintext highlighter-rouge">tests.yaml</code> file defines test suites, which execute different combinations of cases. The Python script <code class="language-plaintext highlighter-rouge">systemtests.py</code> executes the tests, filter for specific test suites.</p>
 
 <p>Read more about the system tests in the publication <a href="https://doi.org/10.14279/eceasst.v83.2614">System Regression Tests for the preCICE Coupling Ecosystem</a>.</p>
 
 <p><a href="https://doi.org/10.14279/eceasst.v83.2614"><img src="https://img.shields.io/badge/DOI-10.14279%2Feceasst.v83.2614-green" alt="ECEASST" /></a></p>
 
-<h2 id="running-the-system-tests">Running the system tests</h2>
+<details><summary>Expand the implementation details...</summary>
 
-<p>The main workflow for the user is executing the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script. Depending on the options given to the script, it reads in the respective metadata files and generates <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> files that can start a fully-defined coupled simulation.</p>
+### General architecture
 
-<h3 id="running-the-tests-for-a-precice-release">Running the tests for a preCICE release</h3>
+Each tutorial directory contains a metadata file, describing which participants each case directory implements, and how to run it.
 
-<p>Workflow for the preCICE v3 release testing:</p>
+A list of tests describes all tests to be executed, grouped by test suites. Each test is a combination of tutorial cases.
 
-<ol>
-  <li>Collect the Git commits/tags of all components you want to test. The caching mechanism cannot detect changes based on branch names. The same effect might be encountered when rebasing and force-pushing the release branch.</li>
-  <li>In your terminal, navigate to the tutorials repository</li>
-  <li>
-    <p>Trigger the GitHub Actions Workflow. Until we merge the workflow to develop, this can only happen via the <a href="https://cli.github.com/">GitHub CLI</a>:</p>
+Test steps include modifying the tutorial configuration files for the test system, building the Docker containers used by the respective Docker Compose service of each component, and comparing results to reference results using fieldcompare.
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release
-</code></pre></div>    </div>
+Tests are executed by the `systemtests.py` script, which starts the Docker Compose. This can be executed locally, and it is the same script that GitHub Actions also execute.
 
-    <p>More arguments are available, for example:</p>
+The multi-stage Docker build allows building each component separately from the same Dockerfile, while Docker reuses cached layers. The Docker Compose services consider GitHub Actions Cache when building the services, although the cache is currently only updated, but not hit (see https://github.com/precice/tutorials/pull/372#issuecomment-1748335750). For this reason, we are running on a dedicated self-hosted runner.
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PLATFORM:ubuntu2404,PRECICE_REF:develop"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span><span class="s2">"DEBUG"</span> <span class="nt">--ref</span><span class="o">=</span>develop
-</code></pre></div>    </div>
+### File structure
 
-    <p>The <code class="language-plaintext highlighter-rouge">build_args</code> override the defaults set in <code class="language-plaintext highlighter-rouge">tools/tests/components.yaml</code>.</p>
-  </li>
-  <li>Go to the tutorials <a href="https://github.com/precice/tutorials/actions">Actions</a> page and find the running workflow</li>
-  <li>
-    <p>Check the status and the runtimes of each tutorial:</p>
+Metadata and workflow/script files:
 
-    <ul>
-      <li>Very small build times mean that the test is using cached container layers</li>
-      <li>Most commonly, you will see tests failing with <code class="language-plaintext highlighter-rouge">Fieldcompare returned non zero exit code</code>. You will need to check the logs, but if the fieldcompare time is significant, this typically means that the numerical results differ above the tolerance (the test works!).</li>
-    </ul>
-  </li>
-  <li>
-    <p>Download the build artifacts from Summary &gt; runs.</p>
+- `.github/workflows/`
+  - `system-tests.yml`: workflow for running the tests, triggered by other workflows (e.g., other repositories)
+  - `system-tests-latest-components.yml`: manual triggering front-end for `system-tests.yml`
+- `flow-over-a-heated-plate/`
+  - `fluid-openfoam/`
+    - `run.sh`: describes how to execute the respective case
+  - `solid-fenics/`
+  - `solid-openfoam/`
+  - ...
+  - `metadata.yml`: describes each case directory (which participant, which component, which script to run, ...)
+- `tools/tests/`
+  - `component-templates/`: jinja2 templates for Docker Compose services for the components
+    - `calculix-adapter.yaml`
+    - `fenics-adapter.yaml`
+    - `openfoam-adapter.yaml`
+    - ...
+  - `dockerfiles/`
+    - Multi-stage build Dockerfiles that define how to build each component, in a layered approach
+  - `docker-compose.template.yaml`: Describes how to prepare each test (Docker Compose service template)
+  - `docker-compose.field_compare.template.yaml`: Describes how to compare results with fieldcompare (Docker Compose service template)
+  - `components.yaml`: Declares the available components and their parameters/options
+  - `reference_results.metadata.template`: Template for reporting the versions used to generate the reference results
+  - `reference_versions.yaml`: List of arguments to use for generating the reference results
+  - `tests.yaml`: Declares the available tests, grouped in test suites
 
-    <ul>
-      <li>In there, inspect the per-stage logs (<code class="language-plaintext highlighter-rouge">system-tests-build.log</code>, <code class="language-plaintext highlighter-rouge">system-tests-run.log</code>, <code class="language-plaintext highlighter-rouge">system-tests-compare.log</code>).</li>
-      <li>The produced results are in <code class="language-plaintext highlighter-rouge">precice-exports/</code>, the reference results in <code class="language-plaintext highlighter-rouge">reference-results-unpacked</code>.</li>
-      <li>Compare using, e.g., ParaView or <a href="https://gitlab.com/dglaeser/fieldcompare">fieldcompare</a>: <code class="language-plaintext highlighter-rouge">fieldcompare dir precice-exports/ reference/</code>. The <code class="language-plaintext highlighter-rouge">--diff</code> option will give you <code class="language-plaintext highlighter-rouge">precice-exports/diff_*.vtu</code> files, while you can also try different tolerances with <code class="language-plaintext highlighter-rouge">-rtol</code> and <code class="language-plaintext highlighter-rouge">-atol</code>.</li>
-    </ul>
-  </li>
-</ol>
+User-facing tools:
 
-<h3 id="running-specific-test-suites">Running specific test suites</h3>
+- `tools/tests/`
+  - `systemtests.py`: Executes the system tests, starting Docker Compose services of each required component (after building them), running each test, and comparing the results to reference results.
+  - `print_test_suites.py`: Prints the available tests.
+  - `print_metadata.py`: Prints the metadata of each tutorial that contains a `metadata.yaml` file.
+  - `print_case_combinations.py`: Prints all possible combinations of tutorial cases, using the `metadata.yaml` files.
+  - `build_docker_images.py`: Build the Docker images for each test
+  - `generate_reference_results.py`: Executes the system tests with the versions defined in `reference_versions.yaml` and generates the reference data archives, with the names described in `tests.yaml`. (should only be used by the CI Pipeline)
 
-<p>To test a certain test-suite defined in <code class="language-plaintext highlighter-rouge">tests.yaml</code>, use:</p>
+Implementation scripts:
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 systemtests.py <span class="nt">--suites</span><span class="o">=</span>fenics-adapter,&lt;someothersuite&gt;
-</code></pre></div></div>
+- `tools/tests/`
+  - `systemtests.py`: Main entry point
+  - `requirements.txt`: Dependencies (jinja2, pyyaml)
+  - `metadata_parser/`: Reads the YAML files into Python objects (defines the schema)
+  - `systemtests/`: Main implementation classes
+    - `Systemtest.py`
+    - `SystemtestArguments.py`
+    - `TestSuite.py`
 
-<p>To discover all tests, use <code class="language-plaintext highlighter-rouge">python print_test_suites.py</code>.</p>
+### Metadata
 
-<p>To be able to fill in the right case tuple into the <code class="language-plaintext highlighter-rouge">tests.yaml</code>, you can use the <code class="language-plaintext highlighter-rouge">python3 print_case_combinations.py</code> script.</p>
+Every tutorial contains a file called `metadata.yaml` describing some important properties of the tutorial. For example:
 
-<h2 id="running-the-system-tests-on-github-actions">Running the system tests on GitHub Actions</h2>
+```yaml
+name: Elastic tube 3D
+path: elastic-tube-3d
+url: https://precice.org/tutorials-elastic-tube-3d.html
 
-<p>Go to Actions &gt; <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-latest-components.yml">System tests (latest components)</a> to see this workflow.</p>
+participants:
+  - Fluid 
+  - Solid 
 
-<p>After bringing these changes to <code class="language-plaintext highlighter-rouge">master</code>, the manual triggering option should be visible on the top right. Until that happens, we can only trigger this workflow manually from the <a href="https://github.blog/changelog/2021-04-15-github-cli-1-9-enables-you-to-work-with-github-actions-from-your-terminal/">GitHub CLI</a>:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics-adapter <span class="nt">--ref</span><span class="o">=</span>develop
-</code></pre></div></div>
-
-<p>Another example, to use the latest releases and enable debug information of the tests:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics-adapter <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,DEALII_ADAPTER_REF:02c5d18,TUTORIALS_REF:340b447"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
-</code></pre></div></div>
-
-<p>where the <code class="language-plaintext highlighter-rouge">*_REF</code> should be a specific <a href="https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefcommit-ishacommit-ishalsocommittish">commit-ish</a>.</p>
-
-<p>Example output:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run cd tools/tests
-  cd tools/tests
-  python systemtests.py --build_args=PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0 --suites=fenics-adapter --log_level=DEBUG
-  cd ../../
-  shell: /usr/bin/bash -e {0}
-INFO: About to run the following systemtest in the directory /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/runs:
- [Flow over heated plate (fluid-openfoam, solid-fenics)]
-INFO: Started running Flow over heated plate (fluid-openfoam, solid-fenics),  0/1
-DEBUG: Checking out tutorials master before copying
-From https://github.com/precice/tutorials
- * [new branch]      master     -&gt; master
-DEBUG: Building docker image for Flow over heated plate (fluid-openfoam, solid-fenics)
-DEBUG: Running tutorial Flow over heated plate (fluid-openfoam, solid-fenics)
-DEBUG: Running fieldcompare for Flow over heated plate (fluid-openfoam, solid-fenics)
-DEBUG: extracting /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/flow-over-heated-plate/reference-results/fluid-openfoam_solid-fenics.tar.gz into /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/runs/flow-over-heated-plate_fluid-openfoam-solid-fenics_2023-11-19-211723/reference_results
-Using log_level: DEBUG
-+---------------------------------------------------------+---------+-------------------+-----------------+-----------------------+
-| systemtest                                              | success | building time [s] | solver time [s] | fieldcompare time [s] |
-CRITICAL: Fieldcompare returned non zero exit code, therefore Flow over heated plate (fluid-openfoam, solid-fenics) failed
-INFO: Running Flow over heated plate (fluid-openfoam, solid-fenics) took 280.5861554039875 seconds
-ERROR: Failed to run Flow over heated plate (fluid-openfoam, solid-fenics)
-+---------------------------------------------------------+---------+-------------------+-----------------+-----------------------+
-| Flow over heated plate (fluid-openfoam, solid-fenics)   |    0    |      271.80       |      5.60       |         2.42          |
-+---------------------------------------------------------+---------+-------------------+-----------------+-----------------------+
-</code></pre></div></div>
-
-<p>In this case, building and running seems to work out, but the tests fail because the results differ from the reference results. This may be incorrect, as the previous step may have silently failed.</p>
-
-<h2 id="understanding-what-went-wrong">Understanding what went wrong</h2>
-
-<p>The easiest way to debug a systemtest run is first to have a look at the output written into the action on GitHub.
-If this does not provide enough hints, the next step is to download the generated <code class="language-plaintext highlighter-rouge">system_tests_run_&lt;run_id&gt;_&lt;run_attempt&gt;</code> artifact. Note that by default this will only be generated if the systemtests fail.
-Inside the archive, a test-specific subfolder like <code class="language-plaintext highlighter-rouge">flow-over-heated-plate_fluid-openfoam-solid-fenics_2023-11-19-211723</code> contains per-stage logs (<code class="language-plaintext highlighter-rouge">system-tests-build.log</code>, <code class="language-plaintext highlighter-rouge">system-tests-run.log</code>, <code class="language-plaintext highlighter-rouge">system-tests-compare.log</code>). These are a good starting point for further investigation. When fieldcompare runs with <code class="language-plaintext highlighter-rouge">--diff</code>, it writes VTK (.vtu) diff files under <code class="language-plaintext highlighter-rouge">precice-exports/</code>; if the comparison fails, those files are copied into a <code class="language-plaintext highlighter-rouge">diff-results/</code> subfolder in the same run directory (mirroring any subpaths under <code class="language-plaintext highlighter-rouge">precice-exports/</code>) so you can open them (e.g. in ParaView) to see where results differ from the reference. On successful comparisons, <code class="language-plaintext highlighter-rouge">diff-results/</code> is therefore absent.</p>
-
-<h2 id="adding-new-tests">Adding new tests</h2>
-
-<h3 id="adding-tutorials">Adding tutorials</h3>
-
-<p>In order for the systemtests to pick up the tutorial we need to define a <code class="language-plaintext highlighter-rouge">metadata.yaml</code> in the folder of the tutorial. There are a few <code class="language-plaintext highlighter-rouge">metadata.yaml</code> already present to get inspiration from. You can also have a look at the implementation details but normally the currently available ones should be easy to adopt. You can check your metadata parsing by <code class="language-plaintext highlighter-rouge">python print_metadata.py</code> and <code class="language-plaintext highlighter-rouge">python print_case_combinations.py</code></p>
-
-<h3 id="adding-testsuites">Adding testsuites</h3>
-
-<p>To add a testsuite just open the <code class="language-plaintext highlighter-rouge">tests.yaml</code> file and use the output of <code class="language-plaintext highlighter-rouge">python print_case_combinations.py</code> to add the right case combinations you want to test. Note that you can specify a <code class="language-plaintext highlighter-rouge">reference_result</code> which is not yet present. The <code class="language-plaintext highlighter-rouge">generate_reference_results.py</code> will pick that up and create it for you.
-Note that its important to carefully check the paths of the <code class="language-plaintext highlighter-rouge">reference_result</code> in order to not have typos in there. Also note that same cases in different testsuites should use the same <code class="language-plaintext highlighter-rouge">reference_result</code>.</p>
-
-<p>To cap the preCICE simulation time for a specific test without editing <code class="language-plaintext highlighter-rouge">precice-config.xml</code>, add an optional <code class="language-plaintext highlighter-rouge">max_time</code> (positive float, overrides <code class="language-plaintext highlighter-rouge">&lt;max-time&gt;</code>) or <code class="language-plaintext highlighter-rouge">max_time_windows</code> (positive integer, overrides <code class="language-plaintext highlighter-rouge">&lt;max-time-windows&gt;</code>) field to the tutorial entry. Applies to both test runs and reference result generation.</p>
-
-<h3 id="generate-reference-results">Generate reference results</h3>
-
-<p>Since we need data to compare against, you need to run <code class="language-plaintext highlighter-rouge">python generate_reference_results.py</code>. This process might take a while.
-Please include the generated reference results in the pull request as they are strongly connected to the new testsuites.</p>
-
-<h2 id="adding-repositories">Adding repositories</h2>
-
-<p>If you want to trigger a testsuite from a new repository, you need to add a workflow file to that repository (under <code class="language-plaintext highlighter-rouge">.github/workflows/</code>). You can, for example, copy and adjust <a href="https://github.com/precice/openfoam-adapter/blob/develop/.github/workflows/system-tests.yaml">the one from the OpenFOAM adapter</a>. Then, you need a new label to trigger the workflow (e.g. <code class="language-plaintext highlighter-rouge">Issues</code>-&gt;<code class="language-plaintext highlighter-rouge">Labels</code>-&gt;<code class="language-plaintext highlighter-rouge">New label</code>). Last, in the <a href="https://github.com/organizations/precice/settings">preCICE organization settings</a>, you need to add the new repository to the action secret <code class="language-plaintext highlighter-rouge">WORKFLOW_DISPATCH_TOKEN</code> and to the default actions runner group. Adding the new label directly to the pull request in which you add the workflow should already trigger the system tests, compare the <a href="https://github.com/precice/precice/pull/2052">pull request in the <code class="language-plaintext highlighter-rouge">precice</code> repository</a>.</p>
-
-<h2 id="implementation-details">Implementation details</h2>
-
-<p>Each tutorial contains automation scripts (mainly <code class="language-plaintext highlighter-rouge">run.sh</code> and <code class="language-plaintext highlighter-rouge">clean.sh</code>), as well as metadata (<code class="language-plaintext highlighter-rouge">metadata.yaml</code>). The metadata file describes the available cases, how to run them, as well as their dependencies. A central <code class="language-plaintext highlighter-rouge">tests.yaml</code> file in this directory defines test suites, which execute different combinations of cases. The Python script <code class="language-plaintext highlighter-rouge">systemtests.py</code> executes the tests, allowing to filter for specific components or test suites.</p>
-
-<p>Let’s dive deeper into some of these aspects.</p>
-
-<h3 id="general-architecture">General architecture</h3>
-
-<p>Each tutorial directory contains a metadata file, describing which participants each case directory implements, and how to run it.</p>
-
-<p>A list of tests describes all tests to be executed, grouped by test suites. Each test is a combination of tutorial cases.</p>
-
-<p>Test steps include modifying the tutorial configuration files for the test system, building the Docker containers used by the respective Docker Compose service of each component, and comparing results to reference results using fieldcompare.</p>
-
-<p>Tests are executed by the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script, which starts the Docker Compose. This can be executed locally, and it is the same script that GitHub Actions also execute.</p>
-
-<p>The multi-stage Docker build allows building each component separately from the same Dockerfile, while Docker reuses cached layers. The Docker Compose services consider GitHub Actions Cache when building the services, although the cache is currently only updated, but not hit (see https://github.com/precice/tutorials/pull/372#issuecomment-1748335750).</p>
-
-<h3 id="file-structure">File structure</h3>
-
-<p>Metadata and workflow/script files:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">.github/workflows/</code>
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">system-tests.yml</code>: workflow for running the tests, triggered by other workflows (e.g., other repositories)</li>
-      <li><code class="language-plaintext highlighter-rouge">system-tests-latest-components.yml</code>: manual triggering front-end for <code class="language-plaintext highlighter-rouge">system-tests.yml</code></li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">flow-over-a-heated-plate/</code>
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">fluid-openfoam/</code>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">run.sh</code>: describes how to execute the respective case</li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">solid-fenics/</code></li>
-      <li><code class="language-plaintext highlighter-rouge">solid-openfoam/</code></li>
-      <li>…</li>
-      <li><code class="language-plaintext highlighter-rouge">metadata.yml</code>: describes each case directory (which participant, which component, which script to run, …)</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">component-templates/</code>: jinja2 templates for Docker Compose services for the components
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">calculix-adapter.yaml</code></li>
-          <li><code class="language-plaintext highlighter-rouge">fenics-adapter.yaml</code></li>
-          <li><code class="language-plaintext highlighter-rouge">openfoam-adapter.yaml</code></li>
-          <li>…</li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">dockerfiles/</code>
-        <ul>
-          <li>Multi-stage build Dockerfiles that define how to build each component, in a layered approach</li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">docker-compose.template.yaml</code>: Describes how to prepare each test (Docker Compose service template)</li>
-      <li><code class="language-plaintext highlighter-rouge">docker-compose.field_compare.template.yaml</code>: Describes how to compare results with fieldcompare (Docker Compose service template)</li>
-      <li><code class="language-plaintext highlighter-rouge">components.yaml</code>: Declares the available components and their parameters/options</li>
-      <li><code class="language-plaintext highlighter-rouge">reference_results.metadata.template</code>: Template for reporting the versions used to generate the reference results</li>
-      <li><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code>: List of arguments to use for generating the reference results</li>
-      <li><code class="language-plaintext highlighter-rouge">tests.yaml</code>: Declares the available tests, grouped in test suites</li>
-    </ul>
-  </li>
-</ul>
-
-<p>User-facing tools:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">systemtests.py</code>: Executes the system tests, starting Docker Compose services of each required component (after building them), running each test, and comparing the results to reference results.</li>
-      <li><code class="language-plaintext highlighter-rouge">print_test_suites.py</code>: Prints the available tests.</li>
-      <li><code class="language-plaintext highlighter-rouge">print_metadata.py</code>: Prints the metadata of each tutorial that contains a <code class="language-plaintext highlighter-rouge">metadata.yaml</code> file.</li>
-      <li><code class="language-plaintext highlighter-rouge">print_case_combinations.py</code>: Prints all possible combinations of tutorial cases, using the <code class="language-plaintext highlighter-rouge">metadata.yaml</code> files.</li>
-      <li><code class="language-plaintext highlighter-rouge">build_docker_images.py</code>: Build the Docker images for each test</li>
-      <li><code class="language-plaintext highlighter-rouge">generate_reference_results.py</code>: Executes the system tests with the versions defined in <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code> and generates the reference data archives, with the names described in <code class="language-plaintext highlighter-rouge">tests.yaml</code>. (should only be used by the CI Pipeline)</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Implementation scripts:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">systemtests.py</code>: Main entry point</li>
-      <li><code class="language-plaintext highlighter-rouge">requirements.txt</code>: Dependencies (jinja2, pyyaml)</li>
-      <li><code class="language-plaintext highlighter-rouge">metadata_parser/</code>: Reads the YAML files into Python objects (defines the schema)</li>
-      <li><code class="language-plaintext highlighter-rouge">systemtests/</code>: Main implementation classes
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">Systemtest.py</code></li>
-          <li><code class="language-plaintext highlighter-rouge">SystemtestArguments.py</code></li>
-          <li><code class="language-plaintext highlighter-rouge">TestSuite.py</code></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="metadata">Metadata</h3>
-
-<p>Every tutorial contains a file called <code class="language-plaintext highlighter-rouge">metadata.yaml</code> describing some important properties of the tutorial. For example:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Elastic tube 3D</span>
-<span class="na">path</span><span class="pi">:</span> <span class="s">elastic-tube-3d</span>
-<span class="na">url</span><span class="pi">:</span> <span class="s">https://precice.org/tutorials-elastic-tube-3d.html</span>
-
-<span class="na">participants</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">Fluid</span> 
-  <span class="pi">-</span> <span class="s">Solid</span> 
-
-<span class="na">cases</span><span class="pi">:</span>
-  <span class="na">fluid-openfoam</span><span class="pi">:</span>
-    <span class="na">participant</span><span class="pi">:</span> <span class="s">Fluid</span>
-    <span class="na">directory</span><span class="pi">:</span> <span class="s">./fluid-openfoam</span>
-    <span class="na">run</span><span class="pi">:</span> <span class="s">./run.sh</span> 
-    <span class="na">component</span><span class="pi">:</span> <span class="s">openfoam-adapter</span>
+cases:
+  fluid-openfoam:
+    participant: Fluid
+    directory: ./fluid-openfoam
+    run: ./run.sh 
+    component: openfoam-adapter
   
-  <span class="na">solid-calculix</span><span class="pi">:</span>
-    <span class="na">participant</span><span class="pi">:</span> <span class="s">Solid</span>
-    <span class="na">directory</span><span class="pi">:</span> <span class="s">./solid-calculix</span>
-    <span class="na">run</span><span class="pi">:</span> <span class="s">./run.sh</span> 
-    <span class="na">component</span><span class="pi">:</span> <span class="s">calculix-adapter</span> 
+  solid-calculix:
+    participant: Solid
+    directory: ./solid-calculix
+    run: ./run.sh 
+    component: calculix-adapter 
   
-  <span class="na">solid-fenics</span><span class="pi">:</span>
-    <span class="na">participant</span><span class="pi">:</span> <span class="s">Solid</span>
-    <span class="na">directory</span><span class="pi">:</span> <span class="s">./solid-fenics</span>
-    <span class="na">run</span><span class="pi">:</span> <span class="s">./run.sh</span>
-    <span class="na">component</span><span class="pi">:</span> <span class="s">fenics-adapter</span> 
-</code></pre></div></div>
+  solid-fenics:
+    participant: Solid
+    directory: ./solid-fenics
+    run: ./run.sh
+    component: fenics-adapter 
+```
 
-<p>Description:</p>
+Description:
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">name</code>: A human-readable, descriptive name</li>
-  <li><code class="language-plaintext highlighter-rouge">path</code>: Where the tutorial is located, relative to the tutorials repository</li>
-  <li><code class="language-plaintext highlighter-rouge">url</code>: A web page with more information on the tutorial</li>
-  <li><code class="language-plaintext highlighter-rouge">participants</code>: A list of preCICE participants, typically corresponding to different domains of the simulation</li>
-  <li><code class="language-plaintext highlighter-rouge">cases</code>: A list of solver configuration directories. Each element of the list includes:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">participant</code>: Which participant this solver case can serve as</li>
-      <li><code class="language-plaintext highlighter-rouge">directory</code>: Where the case directory is located, relative to the tutorial directory</li>
-      <li><code class="language-plaintext highlighter-rouge">run</code>: Command that executes the tutorial</li>
-      <li><code class="language-plaintext highlighter-rouge">component</code>: Component or list of components that this case depends upon (typically an adapter)</li>
-    </ul>
-  </li>
-</ul>
+- `name`: A human-readable, descriptive name
+- `path`: Where the tutorial is located, relative to the tutorials repository
+- `url`: A web page with more information on the tutorial
+- `participants`: A list of preCICE participants, typically corresponding to different domains of the simulation
+- `cases`: A list of solver configuration directories. Each element of the list includes:
+  - `participant`: Which participant this solver case can serve as
+  - `directory`: Where the case directory is located, relative to the tutorial directory
+  - `run`: Command that executes the tutorial
+  - `component`: Component or list of components that this case depends upon (typically an adapter)
 
-<h3 id="components">Components</h3>
+### Components
 
-<p>The components mentioned in the Metadata are defined in the central <code class="language-plaintext highlighter-rouge">components.yaml</code> file. This file also specifies some arguments and their default values. These arguments can be anything, but most often they are version-related information. For example, the version of the OpenFOAM library used by the openfoam-adapter component, or the openfoam-adapter component version itself. For example:</p>
+The components mentioned in the Metadata are defined in the central `components.yaml` file. This file also specifies some arguments and their default values. These arguments can be anything, but most often they are version-related information. For example, the version of OpenFOAM used by the openfoam-adapter component, or the component version itself. For example:
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">openfoam-adapter</span><span class="pi">:</span>
-  <span class="na">template</span><span class="pi">:</span> <span class="s">component-templates/openfoam-adapter.yaml</span>
-  <span class="na">build_arguments</span><span class="pi">:</span>
-    <span class="na">PLATFORM</span><span class="pi">:</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ubuntu_2404"</span>
-    <span class="na">PRECICE_REF</span><span class="pi">:</span>
-      <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/precice/precice</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">develop"</span>
-    <span class="na">PRECICE_PRESET</span><span class="pi">:</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">production-audit"</span>
-    <span class="na">TUTORIALS_REF</span><span class="pi">:</span>
-      <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/precice/tutorials</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">develop"</span>
-    <span class="na">OPENFOAM_EXECUTABLE</span><span class="pi">:</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">openfoam2512"</span>
-    <span class="na">OPENFOAM_ADAPTER_REF</span><span class="pi">:</span>
-      <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/precice/openfoam-adapter</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">develop"</span>
-</code></pre></div></div>
+```yaml
+openfoam-adapter:
+  template: component-templates/openfoam-adapter.yaml
+  build_arguments:
+    PLATFORM:
+      default: "ubuntu_2404"
+    PRECICE_REF:
+      repository: https://github.com/precice/precice
+      default: "develop"
+    PRECICE_PRESET:
+      default: "production-audit"
+    TUTORIALS_REF:
+      repository: https://github.com/precice/tutorials
+      default: "develop"
+    OPENFOAM_EXECUTABLE:
+      default: "openfoam2512"
+    OPENFOAM_ADAPTER_REF:
+      repository: https://github.com/precice/openfoam-adapter
+      default: "develop"
+```
 
-<p>This <code class="language-plaintext highlighter-rouge">openfoam-adapter</code> component has the following attributes:</p>
+This `openfoam-adapter` component has the following attributes:
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">template</code>: A template for a Docker Compose service of this component</li>
-  <li><code class="language-plaintext highlighter-rouge">build_arguments</code>: Arguments passed to the Docker Compose service (arbitrary)</li>
-</ul>
+- `template`: A template for a Docker Compose service of this component
+- `build_arguments`: Arguments passed to the Docker Compose service (arbitrary)
 
-<h4 id="naming-schema-for-build_arguments">Naming schema for build_arguments</h4>
+#### Naming schema for build_arguments
 
-<p>Since the docker containers are still a bit mixed in terms of capabilities and support for different build_argument combinations the following rules apply:</p>
+The following rules apply for the `build_arguments`:
 
-<ul>
-  <li>A build argument ending in <code class="language-plaintext highlighter-rouge">_REF</code> refers to a git commit-ish (like a tag or commit) being used to build the image.</li>
-  <li>Some workflows set variables ending in <code class="language-plaintext highlighter-rouge">_PR</code>. These specify the GitHub pull request which provides the above <code class="language-plaintext highlighter-rouge">_REF</code> and can be on a fork.</li>
-  <li>A build argument ending in <code class="language-plaintext highlighter-rouge">_VERSION</code> refers to the version of a third-party dependency to use (e.g., DUNE).</li>
-  <li>All other <code class="language-plaintext highlighter-rouge">build_arguments</code> are free of rules and up to the container maintainer.</li>
-</ul>
+- A build argument ending in `_REF` refers to a git commit-ish (like a tag or commit) being used to build the image.
+- The `repository` parameter of any `_REF` argument points to the repository where the respective Git reference should be resolved. This is assumed to be consistent across components and the Dockerfile (and could be simplified).
+- Some workflows set variables ending in `_PR`. These specify the GitHub pull request, which provides the above `_REF` and can be on a fork.
+- A build argument ending in `_VERSION` refers to the version of a third-party dependency to use (e.g., DUNE).
+- All other `build_arguments` are free of rules and up to the container maintainer.
 
-<h3 id="component-templates">Component templates</h3>
+### Component templates
 
-<p>Templates for defining a Docker Compose service for each component are available in <code class="language-plaintext highlighter-rouge">component-templates/</code>. For example:</p>
+Templates for defining a Docker Compose service for each component are available in `component-templates/`. For example:
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image: precice/fenics-adapter</span><span class="pi">:</span>
-<span class="na">depends_on</span><span class="pi">:</span>    
-  <span class="na">prepare</span><span class="pi">:</span>
-    <span class="na">condition</span><span class="pi">:</span> <span class="s">service_completed_successfully</span>
-<span class="na">volumes</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">:/runs</span>
-<span class="na">command</span><span class="pi">:</span> <span class="pi">&gt;</span>
-  <span class="s">/bin/bash -c "id &amp;&amp; </span>
-  <span class="s">cd '/runs//' &amp;&amp;</span>
-   <span class="s">| tee system-tests_.log 2&gt;&amp;1"</span>
-</code></pre></div></div>
+```yaml
+image: precice/fenics-adapter:
+depends_on:    
+  prepare:
+    condition: service_completed_successfully
+volumes:
+  - :/runs
+command: &gt;
+  /bin/bash -c "id &amp;&amp; 
+  cd '/runs//' &amp;&amp;
+   | tee system-tests_.log 2&gt;&amp;1"
+```
 
-<p>This template defines:</p>
+This template defines:
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">image</code>: The base Docker image for this component, including a Git reference (tag), provided to the template as argument (e.g., by the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script).</li>
-  <li><code class="language-plaintext highlighter-rouge">depends_on</code>: Other services this service depends upon, typically a preparation service that fetches all components and tutorials.</li>
-  <li><code class="language-plaintext highlighter-rouge">volumes</code>: Directories mapped between the host and the container. Apart from directories relating to the users and groups, this also defines where to run the cases.</li>
-  <li><code class="language-plaintext highlighter-rouge">command</code>: How to run a case depending on this component, including how and where to redirect any screen output.</li>
-</ul>
+- `image`: The base Docker image for this component, including a Git reference (tag), provided to the template as an argument (e.g., by the `systemtests.py` script).
+- `depends_on`: Other services this service depends upon, typically a preparation service that fetches all components and tutorials.
+- `volumes`: Directories mapped between the host and the container. Apart from directories relating to the users and groups, this also defines where to run the cases.
+- `command`: How to run a case depending on this component, including how and where to redirect any screen output.
 
-<h3 id="tests">Tests</h3>
+### Timeouts
 
-<p>Concrete tests are specified centrally in the file <code class="language-plaintext highlighter-rouge">tests.yaml</code>. For example:</p>
+A `GLOBAL_TIMEOUT` is used for all operations. Its default value is 600s (5min), it is set in the beginning of [`Systemtests.py`](https://github.com/precice/tutorials/blob/develop/tools/tests/systemtests/Systemtest.py), and it can be overridden via the `PRECICE_SYSTEMTESTS_TIMEOUT` environment variable.
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">test_suites</span><span class="pi">:</span>
-  <span class="na">openfoam-adapter</span><span class="pi">:</span>
-    <span class="na">tutorials</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">path</span><span class="pi">:</span> <span class="s">flow-over-heated-plate</span>
-        <span class="na">case_combination</span><span class="pi">:</span>
-          <span class="pi">-</span> <span class="s">fluid-openfoam</span>
-          <span class="pi">-</span> <span class="s">solid-openfoam</span>
-        <span class="na">reference_result</span><span class="pi">:</span> <span class="s">./flow-over-heated-plate/reference-results/fluid-openfoam_solid-openfoam.tar.gz</span>
-      <span class="pi">-</span> <span class="na">path</span><span class="pi">:</span> <span class="s">flow-over-heated-plate</span>
-        <span class="na">case_combination</span><span class="pi">:</span>
-          <span class="pi">-</span> <span class="s">fluid-openfoam</span>
-          <span class="pi">-</span> <span class="s">solid-fenics</span>
-        <span class="na">reference_result</span><span class="pi">:</span> <span class="s">./flow-over-heated-plate/reference-results/fluid-openfoam_solid-fenics.tar.gz</span>
-        <span class="na">timeout</span><span class="pi">:</span> <span class="m">1200</span>
-</code></pre></div></div>
+Tests can define a different `timeout` in their `tests.yaml` entry, which applies to the running and results comparison steps.
 
-<p>The optional <code class="language-plaintext highlighter-rouge">timeout</code> field (in seconds) sets the maximum time for the solver run and fieldcompare phases of that specific case. If omitted, it defaults to <code class="language-plaintext highlighter-rouge">GLOBAL_TIMEOUT</code> (currently 300s (5min), overridable via the <code class="language-plaintext highlighter-rouge">PRECICE_SYSTEMTESTS_TIMEOUT</code> environment variable).</p>
-
-<p>This defines the test suite <code class="language-plaintext highlighter-rouge">openfoam-adapter</code>, with a case combination to run.</p>
-
-<h3 id="generate-reference-results-1">Generate Reference Results</h3>
-
-<h4 id="via-github-workflow-recommended">via GitHub workflow (recommended)</h4>
-
-<p>The preferred way of adding reference results is via the manual <code class="language-plaintext highlighter-rouge">Generate reference results (manual)</code> workflow. This takes two inputs:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">from_ref</code>: branch where the new test configuration (e.g added tests, new reference_versions.yaml) is</li>
-  <li><code class="language-plaintext highlighter-rouge">commit_msg</code>: commit message for adding the reference results into the branch</li>
-</ul>
-
-<p>The workflow will checkout the <code class="language-plaintext highlighter-rouge">from_ref</code>, take the status of the systemtests of that branch and execute <code class="language-plaintext highlighter-rouge">python generate_reference_results.py</code>, upload the LFS objects into the self-hosted LFS server and add a commit with <code class="language-plaintext highlighter-rouge">commit_msg</code> onto the <code class="language-plaintext highlighter-rouge">from_ref</code> branch.</p>
-
-<h4 id="manually">manually</h4>
-
-<p>In order to generate the reference results edit the <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code> to match the required <code class="language-plaintext highlighter-rouge">build_arguments</code> otherwise passed via the cli.
-Executing <code class="language-plaintext highlighter-rouge">generate_reference_results.py</code> will then generate the following files:</p>
-
-<ul>
-  <li>all distinct <code class="language-plaintext highlighter-rouge">.tar.gz</code> defined in the <code class="language-plaintext highlighter-rouge">tests.yaml</code></li>
-  <li>a <code class="language-plaintext highlighter-rouge">reference_results.md</code> in the tutorial folder describing the arguments used and a sha-1 hash of the <code class="language-plaintext highlighter-rouge">tar.gz</code> archive.</li>
-</ul>
-
-<p>The reference result archive will later be unpacked again during the systemtest and compared using <code class="language-plaintext highlighter-rouge">fieldcompare</code>
-Please note that these files should always be kept in the git lfs.</p>
+</details>
 
 
     
