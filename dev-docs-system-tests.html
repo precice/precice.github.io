@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1781596330">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1781596330">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781596330">
-<link rel="stylesheet" href="css/bookcover.css?v=1781596330">
+<link rel="stylesheet" href="css/customstyles.css?v=1781605956">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1781605956">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1781605956">
+<link rel="stylesheet" href="css/bookcover.css?v=1781605956">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1781596330">
+<link rel="stylesheet" href="css/theme-precice.css?v=1781605956">
 <!-- Styling for landing page -->
 
 
@@ -6875,7 +6875,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 15 Jun 26</small>
+              <small>Updated 16 Jun 26</small>
             </div>
           </aside>
           
@@ -6902,8 +6902,15 @@ $('#toc').on('click', 'a', function() {
   <li>
     <p>Trigger the GitHub Actions Workflow. Until we merge the workflow to develop, this can only happen via the <a href="https://cli.github.com/">GitHub CLI</a>:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,DEALII_ADAPTER_REF:02c5d18,TUTORIALS_REF:340b447"</span> <span class="nt">--ref</span><span class="o">=</span>develop
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release
 </code></pre></div>    </div>
+
+    <p>More arguments are available, for example:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PLATFORM:ubuntu2404,PRECICE_REF:develop"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span><span class="s2">"DEBUG"</span> <span class="nt">--ref</span><span class="o">=</span>develop
+</code></pre></div>    </div>
+
+    <p>The <code class="language-plaintext highlighter-rouge">build_args</code> override the defaults set in <code class="language-plaintext highlighter-rouge">tools/tests/components.yaml</code>.</p>
   </li>
   <li>Go to the tutorials <a href="https://github.com/precice/tutorials/actions">Actions</a> page and find the running workflow</li>
   <li>
@@ -6938,16 +6945,16 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="running-the-system-tests-on-github-actions">Running the system tests on GitHub Actions</h2>
 
-<p>Go to Actions &gt; <a href="https://github.com/precice/tutorials/actions/workflows/run_testsuite_manual.yml">Run Testsuite (manual)</a> to see this workflow.</p>
+<p>Go to Actions &gt; <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-latest-components.yml">System tests (latest components)</a> to see this workflow.</p>
 
 <p>After bringing these changes to <code class="language-plaintext highlighter-rouge">master</code>, the manual triggering option should be visible on the top right. Until that happens, we can only trigger this workflow manually from the <a href="https://github.blog/changelog/2021-04-15-github-cli-1-9-enables-you-to-work-with-github-actions-from-your-terminal/">GitHub CLI</a>:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics-adapter <span class="nt">--ref</span><span class="o">=</span>develop
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics-adapter <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div></div>
 
 <p>Another example, to use the latest releases and enable debug information of the tests:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics-adapter <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,DEALII_ADAPTER_REF:02c5d18,TUTORIALS_REF:340b447"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics-adapter <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,DEALII_ADAPTER_REF:02c5d18,TUTORIALS_REF:340b447"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div></div>
 
 <p>where the <code class="language-plaintext highlighter-rouge">*_REF</code> should be a specific <a href="https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefcommit-ishacommit-ishalsocommittish">commit-ish</a>.</p>
@@ -7035,8 +7042,8 @@ Please include the generated reference results in the pull request as they are s
 <ul>
   <li><code class="language-plaintext highlighter-rouge">.github/workflows/</code>
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">run_testsuite_workflow.yml</code>: workflow for running the tests, triggered by other workflows (e.g., other repositories)</li>
-      <li><code class="language-plaintext highlighter-rouge">run_testsuite_manual.yml</code>: manual triggering front-end for <code class="language-plaintext highlighter-rouge">run_testsuite_workflow.yml</code></li>
+      <li><code class="language-plaintext highlighter-rouge">system-tests.yml</code>: workflow for running the tests, triggered by other workflows (e.g., other repositories)</li>
+      <li><code class="language-plaintext highlighter-rouge">system-tests-latest-components.yml</code>: manual triggering front-end for <code class="language-plaintext highlighter-rouge">system-tests.yml</code></li>
     </ul>
   </li>
   <li><code class="language-plaintext highlighter-rouge">flow-over-a-heated-plate/</code>
@@ -7196,10 +7203,10 @@ Please include the generated reference results in the pull request as they are s
 <p>Since the docker containers are still a bit mixed in terms of capabilities and support for different build_argument combinations the following rules apply:</p>
 
 <ul>
-  <li>A build argument ending in <code class="language-plaintext highlighter-rouge">_REF</code> refers to a git commit-ish (like a tag or commit) being used to build the image. It is important to not use branch names here as we heavily rely on Docker’s build cache to speedup things. But since the input variable to the docker builder will not change, we might have wrong cache hits.</li>
+  <li>A build argument ending in <code class="language-plaintext highlighter-rouge">_REF</code> refers to a git commit-ish (like a tag or commit) being used to build the image.</li>
   <li>Some workflows set variables ending in <code class="language-plaintext highlighter-rouge">_PR</code>. These specify the GitHub pull request which provides the above <code class="language-plaintext highlighter-rouge">_REF</code> and can be on a fork.</li>
   <li>A build argument ending in <code class="language-plaintext highlighter-rouge">_VERSION</code> refers to the version of a third-party dependency to use (e.g., DUNE).</li>
-  <li>All other build_arguments are free of rules and up to the container maintainer.</li>
+  <li>All other <code class="language-plaintext highlighter-rouge">build_arguments</code> are free of rules and up to the container maintainer.</li>
 </ul>
 
 <h3 id="component-templates">Component templates</h3>
@@ -7646,7 +7653,7 @@ Please note that these files should always be kept in the git lfs.</p>
         </a>
         </p>
         <p>
-        Page last updated: Jun 15, 2026<br>
+        Page last updated: Jun 16, 2026<br>
         Site last updated: Jun 16, 2026
         </p>
         <p>
