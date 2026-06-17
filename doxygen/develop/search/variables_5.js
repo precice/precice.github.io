@@ -18,8 +18,8 @@ var searchData=
   ['errormsgcreate_15',['errormsgCreate',['../preciceC_8cpp.html#a3a8d8cbc38be6783240abf120bf32074',1,'preciceC.cpp']]],
   ['estimatejacobian_16',['estimateJacobian',['../structprecice_1_1acceleration_1_1AccelerationConfiguration_1_1ConfigurationData.html#a7f61122eff67017881f1a539452c3849',1,'precice::acceleration::AccelerationConfiguration::ConfigurationData']]],
   ['events_17',['events',['../structprecice_1_1testing_1_1TestSetup.html#abe04643f58a1d84b70d5ae5cd0f57352',1,'precice::testing::TestSetup']]],
-  ['everyiteration_18',['everyIteration',['../structprecice_1_1io_1_1ExportContext.html#acf6059d54fae9408733248879c3473e2',1,'precice::io::ExportContext']]],
-  ['everyntimewindows_19',['everyNTimeWindows',['../structprecice_1_1io_1_1ExportContext.html#a86d7c8a4f83d6f665b76960a0115a08d',1,'precice::io::ExportContext']]],
+  ['everyiteration_18',['everyIteration',['../structprecice_1_1io_1_1ConfiguredExport.html#a3ba5214a21e4310be00e5c95b5efadad',1,'precice::io::ConfiguredExport']]],
+  ['everyntimewindows_19',['everyNTimeWindows',['../structprecice_1_1io_1_1ConfiguredExport.html#adc4c248fd721ba8157dbcb6207f47272',1,'precice::io::ConfiguredExport']]],
   ['exchanges_20',['exchanges',['../structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1Config.html#a0a0ba6834f6db7af1841a338798d2152',1,'precice::cplscheme::CouplingSchemeConfiguration::Config']]],
   ['exchangesubsteps_21',['exchangeSubsteps',['../structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1Config_1_1Exchange.html#a5f8bb9c45d66e7b3319cd13230d664b8',1,'precice::cplscheme::CouplingSchemeConfiguration::Config::Exchange']]],
   ['executor_22',['executor',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1GinkgoParameter.html#ae5eabd9677839f3a6dba68c7e563b93b',1,'precice::mapping::MappingConfiguration::GinkgoParameter::executor'],['../structprecice_1_1mapping_1_1MappingConfiguration_1_1ExecutorConfiguration.html#a1375eb634f01737263bc1fd1b7544bd7',1,'precice::mapping::MappingConfiguration::ExecutorConfiguration::executor']]],
@@ -29,7 +29,7 @@ var searchData=
   ['executor_5fomp_26',['EXECUTOR_OMP',['../classprecice_1_1mapping_1_1MappingConfiguration.html#af0fad1401ab95f7ecc7478385026dec9',1,'precice::mapping::MappingConfiguration']]],
   ['executor_5fsycl_27',['EXECUTOR_SYCL',['../classprecice_1_1mapping_1_1MappingConfiguration.html#aad54d230ff55ac721913748db8d284a7',1,'precice::mapping::MappingConfiguration']]],
   ['exist_5fok_28',['exist_ok',['../namespacecompileAndTest.html#a6ede50e93f5f578f2a566eecb1ca7d17',1,'compileAndTest']]],
-  ['exporter_29',['exporter',['../structprecice_1_1io_1_1ExportContext.html#acf178ee3785c8a399f448a880c453edb',1,'precice::io::ExportContext']]],
+  ['exporter_29',['exporter',['../structprecice_1_1io_1_1ExportContext.html#a48e7639fb1cdb00220c61ae87494ee2f',1,'precice::io::ExportContext']]],
   ['extent_30',['extent',['../classprecice_1_1span.html#a8e76649e5f5cc866c60693e1f0c7a02e',1,'precice::span::extent'],['../classspan.html#a8e76649e5f5cc866c60693e1f0c7a02e',1,'span::extent']]],
   ['extent_5fv_31',['extent_v',['http://en.cppreference.com/w/cpp/types/extent.html',1,'std::extent_v'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::extent_v']]]
 ];

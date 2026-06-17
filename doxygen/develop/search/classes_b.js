@@ -8,7 +8,7 @@ var searchData=
   ['linear_5fcongruential_5fengine_5',['linear_congruential_engine',['http://en.cppreference.com/w/cpp/numeric/random/linear_congruential_engine.html',1,'std']]],
   ['linearcellinterpolationmapping_6',['LinearCellInterpolationMapping',['../classprecice_1_1mapping_1_1LinearCellInterpolationMapping.html',1,'precice::mapping']]],
   ['list_7',['list',['http://en.cppreference.com/w/cpp/container/list.html',1,'std::list&lt; T &gt;'],['http://en.cppreference.com/w/cpp/container/list.html',1,'std::pmr::list']]],
-  ['list_3c_20precice_3a_3aio_3a_3aexportcontext_20_3e_8',['list&lt; precice::io::ExportContext &gt;',['http://en.cppreference.com/w/cpp/container/list.html',1,'std']]],
+  ['list_3c_20precice_3a_3aio_3a_3aconfiguredexport_20_3e_8',['list&lt; precice::io::ConfiguredExport &gt;',['http://en.cppreference.com/w/cpp/container/list.html',1,'std']]],
   ['list_3c_20std_3a_3apair_3c_20std_3a_3ashared_5fptr_3c_20precice_3a_3acom_3a_3arequest_20_3e_2c_20std_3a_3ashared_5fptr_3c_20std_3a_3avector_3c_20double_20_3e_20_3e_20_3e_20_3e_9',['list&lt; std::pair&lt; std::shared_ptr&lt; precice::com::Request &gt;, std::shared_ptr&lt; std::vector&lt; double &gt; &gt; &gt; &gt;',['http://en.cppreference.com/w/cpp/container/list.html',1,'std']]],
   ['list_3c_20std_3a_3aunique_5fptr_3c_20action_20_3e_20_3e_10',['list&lt; std::unique_ptr&lt; Action &gt; &gt;',['http://en.cppreference.com/w/cpp/container/list.html',1,'std']]],
   ['listener_11',['Listener',['../structprecice_1_1xml_1_1XMLTag_1_1Listener.html',1,'precice::xml::XMLTag']]],

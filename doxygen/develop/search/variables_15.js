@@ -5,7 +5,7 @@ var searchData=
   ['undefined_5fmin_5fiterations_2',['UNDEFINED_MIN_ITERATIONS',['../classprecice_1_1cplscheme_1_1CouplingScheme.html#a1c2bdd45bc00492eada5aca22d268b6a',1,'precice::cplscheme::CouplingScheme']]],
   ['undefined_5ftime_5fwindow_5fsize_3',['UNDEFINED_TIME_WINDOW_SIZE',['../classprecice_1_1cplscheme_1_1CouplingScheme.html#a9a2e068904d08e037f5f058f0507ad50',1,'precice::cplscheme::CouplingScheme']]],
   ['undefined_5ftime_5fwindows_4',['UNDEFINED_TIME_WINDOWS',['../classprecice_1_1cplscheme_1_1CouplingScheme.html#af5a19d82b4663aa11c2e97f8ac83a78c',1,'precice::cplscheme::CouplingScheme']]],
-  ['updateseries_5',['updateSeries',['../structprecice_1_1io_1_1ExportContext.html#ac6d9f0c778da502b21db81d7914d24c3',1,'precice::io::ExportContext']]],
+  ['updateseries_5',['updateSeries',['../structprecice_1_1io_1_1ConfiguredExport.html#a622cf517c3113f7dae5aca1cfa7bfa2a',1,'precice::io::ConfiguredExport']]],
   ['upperbound_6',['upperBound',['../structprecice_1_1mesh_1_1DataConfiguration_1_1ConfiguredData.html#a7301d96b1a2376ee55babdc2a5e0f9c8',1,'precice::mesh::DataConfiguration::ConfiguredData']]],
   ['useonlyprimarycom_7',['useOnlyPrimaryCom',['../structprecice_1_1testing_1_1ConnectionOptions.html#ac384024bfd7d9f7283af71fd2e2d3139',1,'precice::testing::ConnectionOptions']]],
   ['usepreconditioner_8',['usePreconditioner',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1GinkgoParameter.html#a29d3eed21e883649c0c797b3e0cbcaf1',1,'precice::mapping::MappingConfiguration::GinkgoParameter']]],
