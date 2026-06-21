@@ -4,31 +4,31 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="A guide to the main reference literature for each component and feature of preCICE">
+<meta name="description" content="Micro Manager supports MPI parallelized micro solvers with multi-level parallelization.">
 
-<meta name="keywords" content=" literature, papers, numerics, hpc, cite, publications">
+<meta name="keywords" content=" tooling, macro-micro, parallelization, multi-level parallelization, workers, tasking">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Literature guide | preCICE - The Coupling Library</title>
+<title>Running with multi-level parallelization | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Literature guide" />
+<meta property="og:title" content="Running with multi-level parallelization" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://precice.org/fundamentals-literature-guide.html" />
+<meta property="og:url" content="https://precice.org/tooling-micro-manager-multi-level-parallelization.html" />
 <meta property="og:image" content="https://precice.org/images/icon-310x310.png" />
-<meta property="og:description" content="A guide to the main reference literature for each component and feature of preCICE">
+<meta property="og:description" content="Micro Manager supports MPI parallelized micro solvers with multi-level parallelization.">
 
 <!-- Twitter Card metadata -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Literature guide" />
-<meta name="twitter:description" content="A guide to the main reference literature for each component and feature of preCICE">
+<meta name="twitter:title" content="Running with multi-level parallelization" />
+<meta name="twitter:description" content="Micro Manager supports MPI parallelized micro solvers with multi-level parallelization.">
 <meta name="twitter:image" content="https://precice.org/images/icon-310x310.png" />
 
 <!-- Canonical link -->
-<link rel="canonical" href="https://precice.org/fundamentals-literature-guide" >
+<link rel="canonical" href="https://precice.org/tooling-micro-manager-multi-level-parallelization" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -88,7 +88,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     var qrDiv = document.createElement("div");
     qrDiv.id = "print-qr-code";
     var qr = qrcode(0, "M");
-    qr.addData("https://precice.org/fundamentals-literature-guide.html");
+    qr.addData("https://precice.org/tooling-micro-manager-multi-level-parallelization.html");
     qr.make();
     qrDiv.innerHTML = qr.createImgTag(3, 0);
     document.body.appendChild(qrDiv);
@@ -459,22 +459,44 @@ document.addEventListener('keydown', function(e) {
     
       
       
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
   
 
   
+    
+  
 
+  
+    
   
 
   <li class="nav-item">
-    <a class="nav-link active"
+    <a class="nav-link collapsed"
        title="Fundamentals"
        data-bs-toggle="collapse" href="#sb-1-fundamentals"
        role="button"
-       aria-expanded="true"
+       aria-expanded="false"
        aria-controls="sb-1-fundamentals">
        Fundamentals
     </a>
-    <ul class="collapse show sidebar-nav flex-column list-unstyled mb-0"
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
         id="sb-1-fundamentals" data-bs-parent="#mysidebar">
 
       
@@ -584,7 +606,7 @@ document.addEventListener('keydown', function(e) {
 
   
   <li class="nav-item">
-    <a class="nav-link active"
+    <a class="nav-link "
        title="Literature guide" href="fundamentals-literature-guide.html">
        Literature guide
     </a>
@@ -6815,7 +6837,7 @@ document.addEventListener('keydown', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Literature guide</h1>
+   <h1 class="post-title-main">Running with multi-level parallelization</h1>
 </div>
 
 
@@ -6825,7 +6847,7 @@ document.addEventListener('keydown', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        A guide to the main reference literature for each component and feature of preCICE
+        Micro Manager supports MPI parallelized micro solvers with multi-level parallelization.
 
     </div>
     
@@ -6866,386 +6888,145 @@ $('#toc').on('click', 'a', function() {
           
           <aside>
             
+                
+                
+                
+                
                 <div class="text-end">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io/edit/master/content/docs/fundamentals/fundamentals-literature-guide.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/nested-parallelization.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-end">
-              <small>Updated 15 Jun 26</small>
+              <small>Updated 21 Jun 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <p>The literature one can read to understand different aspects of preCICE may feel a bit overwhelming. This page aims to give some starting points and citation guidelines.</p>
+   <h2 id="overview">Overview</h2>
 
-<h2 id="when-to-cite-what">When to cite what</h2>
+<p>By default, running the Micro Manager in parallel with MPI results in $N$ ranks within the same MPI communicator.
+In this approach, each Micro Manager instance assumes, that micro simulations are either solved in serial or use shared-memory parallelization.
+If one attempts to run individual micro simulations with MPI, incorrect behavior occurs because different micro simulation instances communicate with each other. Further, this will likely lead to race conditions or deadlocks.</p>
 
-<p>preCICE is made by academics: please cite us! 🤗</p>
+<p>To support MPI parallelization for individual micro simulations, multi-level parallelization is introduced. In this execution mode, each Micro Manager rank $n\in [N]$ creates its own sub-process group of $M$ ranks with MPI.
+This results in a total of $N\cdot M$ processes. Each subprocess group consisting of $M$ processes run a “worker” process. The subprocess groups are henceforth referred to as workers. The worker executable is a generic task handler. It receives incoming tasks, decodes them, solves the request, and sends back the results. Workers have a persistent storage, to which all incoming tasks have access.</p>
 
-<p>Even further, please cite all components you are using, next to the latest reference paper. Here are some guidelines:</p>
+<p>The Micro Manager deploys this parallelization by first initializing the persistent storage with Micro Manager-specific task classes and loading the relevant micro simulation classes.
+Solving a micro simulation results in a “Solve-Request” being emitted and transferred to its $M$ workers.
+Each worker receives a request and solves the specified simulation in parallel. Upon completion, the results are transferred back to the Micro Manager rank. All micro simulation calls are parallelized in this manner.</p>
 
-<h3 id="precice-in-general">preCICE in general</h3>
+<h2 id="tasks">Tasks</h2>
 
-<p>Talking about preCICE, at any level? Then, read and cite the latest preCICE reference paper:</p>
+<p>In accordance with the <a href="tooling-micro-manager-prepare-micro-simulation.html">Micro Simulation Interface</a>, each interface method has its corresponding Task implementation.
+During operation, no task objects are pickled (serialized) and transferred between the Micro Manager and its workers. Instead, only a string representation of the respective task class and the required data is transferred.
+This is done for performance reasons. The task classes are transferred only once during worker initialization and are stored under the key “tasks” in each worker’s persistent storage.</p>
 
-<!-- Do you want to add a new publication? Use 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Task</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fn</span> <span class="o">=</span> <span class="n">fn</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
 
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">state_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">fn</span><span class="p">(</span><span class="o">*</span><span class="n">self</span><span class="p">.</span><span class="n">args</span><span class="p">,</span> <span class="n">state_data</span><span class="o">=</span><span class="n">state_data</span><span class="p">,</span> <span class="o">**</span><span class="n">self</span><span class="p">.</span><span class="n">kwargs</span><span class="p">)</span>
 
-  
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">send_args</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="p">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
 
+<span class="k">class</span> <span class="nc">SolveTask</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">sim_input</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">(</span><span class="n">SolveTask</span><span class="p">.</span><span class="n">solve</span><span class="p">,</span> <span class="n">gid</span><span class="o">=</span><span class="n">gid</span><span class="p">,</span> <span class="n">sim_input</span><span class="o">=</span><span class="n">sim_input</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
 
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">sim_input</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">state_data</span><span class="p">):</span>
+        <span class="n">sim_output</span> <span class="o">=</span> <span class="n">state_data</span><span class="p">[</span><span class="sh">"</span><span class="s">sim_instances</span><span class="sh">"</span><span class="p">][</span><span class="n">gid</span><span class="p">].</span><span class="nf">solve</span><span class="p">(</span><span class="n">sim_input</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sim_output</span>
+</code></pre></div></div>
 
- -->
+<p>The code snippet above showcases the “Solve-Task” alongside the “Task” interface.
+The Micro Manager only calls the <code class="language-plaintext highlighter-rouge">send_args</code> method to transfer the required data.
+Workers call the constructor, which registers the to-be-called method with the required parameters.
+When the task is called via <code class="language-plaintext highlighter-rouge">__call__</code>, the registered method receives the previous parameters in addition to the persistent storage of the worker (<code class="language-plaintext highlighter-rouge">state_data</code>).</p>
 
-<div class="row">
-<div class="col-md-10 offset-md-1">
-  
-  <div class="card border-primary panel-precice">
-    <div class="card-header-precice">
-      <strong>preCICE v2: A sustainable and user-friendly coupling library [version 2; peer review: 2 approved]</strong>
-    </div>
-    <div class="card-body">
-      <p>
-        
-        <em>Gerasimos Chourdakis, Kyle Davis, Benjamin Rodenberg, Miriam Schulte, Frédéric Simonis, Benjamin Uekermann et al.</em>,
-        Open Research Europe,
-        2022,
-        2:51.
-        
-      </p>
-      
-      <a href="https://www.doi.org/10.12688/openreseurope.14445.2">Publisher's site</a>&nbsp;&nbsp;
-      
-      
-      <a href="assets/precice-v2.bib">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-      
-    </div>
-  </div>
-  
-</div>
-</div>
+<h2 id="workers">Workers</h2>
 
-<p>Talking specifically about preCICE v1? Then keep citing the <a href="https://www.sciencedirect.com/science/article/pii/S0045793016300974">preCICE v1 reference paper</a>.</p>
+<p>Workers first establish a connection to their respective Micro Manager parent (either via MPI or Sockets) and allocate their persistent storage (<code class="language-plaintext highlighter-rouge">state_data</code>).
+The Micro Manager initializes the <code class="language-plaintext highlighter-rouge">state_data</code> in the following form:</p>
 
-<h3 id="adapters">Adapters</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">task_dict</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">()</span>
+<span class="n">task_dict</span><span class="p">[</span><span class="n">SolveTask</span><span class="p">.</span><span class="n">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">SolveTask</span>
+<span class="n">task_dict</span><span class="p">[...]</span> <span class="o">=</span> <span class="bp">...</span>
+<span class="n">state_data</span><span class="p">[</span><span class="sh">"</span><span class="s">tasks</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">task_dict</span>
+<span class="n">state_data</span><span class="p">[</span><span class="sh">"</span><span class="s">sim_classes</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">()</span>
+<span class="n">state_data</span><span class="p">[</span><span class="sh">"</span><span class="s">sim_instances</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">()</span>
+<span class="n">state_data</span><span class="p">[</span><span class="sh">"</span><span class="s">load_function</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">load_function</span>
+</code></pre></div></div>
 
-<p>Are you using any of the adapters? Then, please also read and cite the respective references. The following adapters currently have reference papers:</p>
+<p>The key <code class="language-plaintext highlighter-rouge">tasks</code> contains all possible task classes that may be encountered during simulation.
+<code class="language-plaintext highlighter-rouge">sim_classes</code> is a dictionary mapping class names to loaded Micro Simulation classes.
+<code class="language-plaintext highlighter-rouge">sim_instances</code> is a dictionary mapping Micro Simulation GIDs to their respective Micro Simulation instance.
+<code class="language-plaintext highlighter-rouge">load_function</code> contains a function capable of loading a Micro Simulation class.</p>
 
-<div class="row">
-<div class="col-md-10 offset-md-1">
-  
-  <div class="card border-primary panel-precice">
-    <div class="card-header-precice">
-      <strong>OpenFOAM-preCICE: Coupling OpenFOAM with External Solvers for Multi-Physics Simulations</strong>
-    </div>
-    <div class="card-body">
-      <p>
-        
-        <em>Gerasimos Chourdakis, David Schneider, and Benjamin Uekermann</em>,
-        OpenFOAM® Journal,
-        Volume 3,
-        2023.
-        
-      </p>
-      
-      <a href="https://www.doi.org/10.51560/ofj.v3.88">Publisher's site</a>&nbsp;&nbsp;
-      
-      
-      <a href="assets/openfoam-precice.bib">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-      
-    </div>
-  </div>
-  
-</div>
-</div>
+<p>Afterwards, the main execution loop is entered:</p>
 
-<div class="row">
-<div class="col-md-10 offset-md-1">
-  
-  <div class="card border-primary panel-precice">
-    <div class="card-header-precice">
-      <strong>FEniCS–preCICE: Coupling FEniCS to other simulation software</strong>
-    </div>
-    <div class="card-body">
-      <p>
-        
-        <em>Benjamin Rodenberg, Ishaan Desai, Richard Hertrich, Alexander Jaust, Benjamin Uekermann</em>,
-        SoftwareX,
-        Volume 16,
-        Elsevier,
-        2021.
-        
-      </p>
-      
-      <a href="https://www.doi.org/10.1016/j.softx.2021.100807">Publisher's site</a>&nbsp;&nbsp;
-      
-      
-      <a href="assets/rodenberg2021.bib">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-      
-    </div>
-  </div>
-  
-</div>
-</div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">handle_task</span><span class="p">(</span><span class="n">state_data</span><span class="p">,</span> <span class="n">task_descriptor</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">task_descriptor</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">state_data</span><span class="p">[</span><span class="sh">"</span><span class="s">tasks</span><span class="sh">"</span><span class="p">][</span><span class="n">name</span><span class="p">](</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nf">task</span><span class="p">(</span><span class="n">state_data</span><span class="p">)</span>
 
-<p>For the CalculiX, SU2, and code_aster adapters, as well as for the concept of an adapter, please read and cite this overview paper:</p>
+<span class="c1"># Worker Main
+</span><span class="n">conn</span><span class="p">,</span> <span class="n">src_id</span><span class="p">,</span> <span class="n">dst_id</span><span class="p">,</span> <span class="n">state_data</span> <span class="o">=</span> <span class="bp">...</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">task_descriptor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="n">src_id</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nf">handle_task</span><span class="p">(</span><span class="n">state_data</span><span class="p">,</span> <span class="n">task_descriptor</span><span class="p">)</span>
+        <span class="n">conn</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">dst_id</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+        <span class="k">break</span>
+<span class="n">conn</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
 
-<div class="row">
-<div class="col-md-10 offset-md-1">
-  
-  <div class="card border-primary panel-precice">
-    <div class="card-header-precice">
-      <strong>Official preCICE Adapters for Standard Open-Source Solvers</strong>
-    </div>
-    <div class="card-body">
-      <p>
-        
-        <em>Benjamin Uekermann, Hans-Joachim Bungartz, Lucia Cheung Yau, Gerasimos Chourdakis, Alexander Rusch</em>,
-        Proceedings of the 7th GACM Colloquium on Computational Mechanics for Young Scientists from Academia,
-        GACM,
-        2017.
-        
-      </p>
-      
-      <a href="https://doi.org/10.18419/opus-9334">Publisher's site</a>&nbsp;&nbsp;
-      
-      
-      <a href="assets/precice-adapters-gacm2017.bib">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-      
-    </div>
-  </div>
-  
-</div>
-</div>
+<p>After receiving a <code class="language-plaintext highlighter-rouge">task_descriptor</code> created by <code class="language-plaintext highlighter-rouge">Task.send_args</code>, <code class="language-plaintext highlighter-rouge">handle_task</code> creates a task instance and attempts to handle the request.
+The resulting output is then sent back to the Micro Manager parent rank.</p>
 
-<h3 id="reproducibility">Reproducibility</h3>
+<h2 id="connection">Connection</h2>
 
-<p>To ensure reproducibility of your results, you can use and cite the <a href="installation-distribution.html">preCICE distribution</a>. This frequently updated snapshot of the preCICE ecosystem includes versions of components that work together, while acknowledging everyone that has contributed to the respective version of any component.</p>
+<p>Connections between workers and Micro Manager ranks are realized as either MPI- or socket-based communication.
+The MPI version (<code class="language-plaintext highlighter-rouge">MPIConnection</code>) internally calls  <code class="language-plaintext highlighter-rouge">MPI_Comm_spawn</code>, which launches a separate process group and yields an MPI communicator between the Micro Manager parent and the newly created process group.
+This approach is known to be more error-prone and requires the definition of the following environment variables:</p>
 
-<p>Besides the distribution, publications are often accompanied by replication data published in the <a href="https://zenodo.org/communities/precice/records">preCICE community on Zenodo</a> and <a href="https://darus.uni-stuttgart.de/dataverse/darus?q=preCICE">DaRUS</a>.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OMPI_MCA_btl</span><span class="o">=</span>self,vader,tcp
+<span class="nb">export </span><span class="nv">OMPI_MCA_btl_tcp_if_include</span><span class="o">=</span>lo
+<span class="nb">export </span><span class="nv">OMPI_MCA_oob_tcp_if_include</span><span class="o">=</span>lo
+</code></pre></div></div>
 
-<h2 id="starting-points">Starting points</h2>
+<p>The socket based version (<code class="language-plaintext highlighter-rouge">SocketConnection</code>) manually creates a sub-process group either using <code class="language-plaintext highlighter-rouge">mpiexec</code> or <code class="language-plaintext highlighter-rouge">srun</code> and establishes socket connections from the Micro Manager rank to all of its workers.</p>
 
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
-Are you looking for how to start coupling your code? Then the <a href="couple-your-code-overview.html">documentation</a> is a more extensive and up-to-date guide than the published resources.
-</div>
+<h3 id="pinning">Pinning</h3>
 
-<ul>
-  <li>
-    <p>The latest reference article for preCICE is <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2: A sustainable and user-friendly coupling library</a>. This gives a wide overview over the complete preCICE ecosystem and is a great place to start reading about the modern preCICE (most probably even for the versions after v2).</p>
-  </li>
-  <li>
-    <p>The original reference article for preCICE is <a href="https://www.sciencedirect.com/science/article/pii/S0045793016300974">preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling</a>. This may not be the best introduction for new users because of its condensed form.</p>
-  </li>
-</ul>
+<p>During the creation of the worker processes, pinning is specified.
+When each Micro Manager (MM) rank $n \in N$ creates its $M$ workers, it is assumed that each MM rank $n$ is pinned to a contiguous domain of size $M$ CPU cores.
+Subsequently, the created workers (W) of rank $n$ are pinned to distinct cores within this region. In the following example $N=8$, $M=2$ and 2 nodes are used.</p>
 
-<p>A very good first reading is the dissertations of the core preCICE developers:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node 0:       ╭─core─╮
+┌──────┬──────┬──────┬──────┐  ┌──────┬──────┬──────┬──────┐
+│MM0 W0│MM0 W1│MM1 W0│MM1 W1│  │MM2 W0│MM2 W1│MM3 W0│MM3 W1│
+└──────┴──────┴──────┴──────┘  └──────┴──────┴──────┴──────┘
+╰──────────socket 0─────────╯  ╰──────────socket 1─────────╯
 
-<ul>
-  <li>
-    <p>Bernhard Gatzhammer introduced preCICE in his dissertation <a href="https://doi.org/10.5281/zenodo.14833701">Efficient and Flexible Partitioned Simulation of Fluid-Structure Interactions</a> (2014). Chapters 1-4 give a detailed introduction of most of the preCICE features and are still valid to a large extent. Start here for an explanation of the different coupling schemes, of the different communication methods, or of the data mapping techniques. Note that the “geometry interface” and “server mode” features have been removed.</p>
-  </li>
-  <li>
-    <p>Benjamin Uekermann introduced inter- and intra-solver parallelization in his dissertation <a href="https://mediatum.ub.tum.de/1320661">Partitioned Fluid-Structure Interaction on Massively Parallel Systems</a> (2016). Chapter 2 gives a compact introduction to preCICE. Furthermore, read here especially for the parallel coupling schemes, which allow a simultaneous execution of multiple solvers (Chapter 3) and the realization of all main features on distributed data (Chapter 4).</p>
-  </li>
-</ul>
+Node 1:
+┌──────┬──────┬──────┬──────┐  ┌──────┬──────┬──────┬──────┐
+│MM4 W0│MM4 W1│MM5 W0│MM5 W1│  │MM6 W0│MM6 W1│MM7 W0│MM7 W1│
+└──────┴──────┴──────┴──────┘  └──────┴──────┴──────┴──────┘
+╰──────────socket 0─────────╯  ╰──────────socket 1─────────╯
+</code></pre></div></div>
 
-<p>The list of completed dissertations also includes:</p>
-
-<ul>
-  <li>
-    <p>Klaudius Scheufele: <a href="https://elib.uni-stuttgart.de/handle/11682/10413">Coupling schemes and inexact Newton for multi-physics and coupled optimization problems.</a> (2018)</p>
-  </li>
-  <li>
-    <p>Florian Lindner: <a href="https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf">Data Transfer in Partitioned Multi-Physics Simulations: Interpolation &amp; Communication</a> (2019)</p>
-  </li>
-  <li>
-    <p>Amin Totounferoush: <a href="http://doi.org/10.18419/opus-12375">Data-integrated methods for performance improvement of massively parallel coupled simulations</a> (2022)</p>
-  </li>
-  <li>
-    <p>Kyle Davis: <a href="http://doi.org/10.18419/opus-13140">Computational methods for partitioned simulation coupling: applications in multi-physics simulations and energy infrastructure optimisation</a> (2023)</p>
-  </li>
-  <li>
-    <p>Benjamin Rodenberg: <a href="https://mediatum.ub.tum.de/1763172">Flexible and robust time stepping for partitioned multiphysics</a> (2025)</p>
-  </li>
-</ul>
-
-<p>and the story continues by the <a href="about.html">current team</a>.</p>
-
-<h2 id="precice-features">preCICE features</h2>
-
-<ul>
-  <li>
-    <p><strong>Coupling schemes</strong> For an introduction to explicit and implicit coupling, as well as the various acceleration / post-processing techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.3 and 4.1) and Benjamin Uekermann (Chapter 3). An easy first read on quasi-Newton acceleration is <a href="http://hdl.handle.net/2117/191193">A Comparison of Various Quasi-Newton Schemes for Partitioned Fluid-Structure Interaction</a>. Detailed information on the improved IQN-IMVJ acceleration is given in <a href="https://doi.org/10.1137/16M1082020">Robust Multisecant Quasi-Newton Variants for Parallel Fluid-Structure Simulations – and Other Multiphysics Applications</a>. For the motivation of replacing multiple implicit schemes with a single multi coupling scheme, see <a href="https://doi.org/10.1007/s00466-014-1113-2">A plug-and-play coupling approach for parallel multi-field simulations</a>.</p>
-  </li>
-  <li>
-    <p><strong>Data mapping</strong> For an introduction to the various techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.4 and 4.2) and Benjamin Uekermann (Section 4.3). Details regarding various mappings:</p>
-
-    <ul>
-      <li>For a performance comparison between the different mapping methods, see the <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2 reference paper</a>.</li>
-      <li>For the partition-of-unity RBF mapping (default since preCICE v3), see <a href="https://doi.org/10.1137/24M1663843">Efficient Partition-of-Unity Radial-Basis-Function Interpolation for Coupled Problems</a>.</li>
-      <li>An older overview of the RBF mapping is <a href="https://upcommons.upc.edu/handle/2117/190255">Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations</a>.</li>
-      <li>For details regarding gradient-based data mapping schemes, see <a href="https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf">Second-order projection-based mapping methods for coupled multi-physics simulations</a>.</li>
-      <li>For details regarding volume-coupling with cell-interpolation, see <a href="https://mediatum.ub.tum.de/1685618">Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE</a>.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Communication</strong> For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master’s thesis of Alexander Shukaev: “<a href="https://mediatum.ub.tum.de/1461672">A Fully Parallel Process-to-Process Intercommunication Technique for preCICE</a>”.</p>
-  </li>
-  <li>
-    <p><strong>Time interpolation</strong> This feature was developed in the context of <a href="https://mediatum.ub.tum.de/1763172">Benjamin Rodenberg’s dissertation</a>. The method was described in <a href="https://doi.org/10.1002/nme.6443">Quasi-Newton waveform iteration for partitioned surface-coupled multiphysics applications</a> and independently extended in <a href="https://doi.org/10.1002/nme.70063">A Time-Adaptive Multirate Quasi-Newton Waveform Iteration for Coupled Problems</a>, while the implementation is presented in <a href="https://doi.org/10.48550/arXiv.2511.07616">A waveform iteration implementation for black-box multi-rate higher-order coupling (preprint)</a>.</p>
-  </li>
-</ul>
-
-<h2 id="parallel-and-high-performance-computing">Parallel and high-performance computing</h2>
-
-<ul>
-  <li>The initial effort for parallelization of preCICE is documented in <a href="https://link.springer.com/chapter/10.1007/978-3-319-40528-5_11">Partitioned Fluid-Structure-Acoustics Interaction on Distributed Data: Coupling via preCICE</a> (2016).</li>
-  <li>Further steps to speed up initialization are documented in <a href="https://library.oapen.org/bitstream/handle/20.500.12657/41289/2020_Book_SoftwareForExascaleComputing-S.pdf?sequence=1#page=278">ExaFSA: Parallel Fluid-Structure-Acoustic Simulation</a> (2020).</li>
-  <li>The parallelization of communication initialization is published in <a href="https://www.mdpi.com/1999-4893/14/6/166">Efficient and Scalable Initialization of Partitioned Coupled Simulations with preCICE</a> (2021).</li>
-  <li>More details can be found in <a href="https://mediatum.ub.tum.de/doc/1320661/document.pdf">Benjamin Uekermann’s dissertation</a> (2016), <a href="https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf">Florian Lindner’s dissertation</a> (2019), and <a href="https://elib.uni-stuttgart.de/handle/11682/10413">Klaudius Scheufele’s dissertation</a> (2018).</li>
-</ul>
-
-<h2 id="testing">Testing</h2>
-
-<ul>
-  <li>The testing strategy of preCICE (including unit and integration tests, and an overview of the CI workflows) is described in the <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2 reference paper</a>.</li>
-  <li>The system tests of preCICE are described in <a href="https://doi.org/10.14279/eceasst.v83.2614">System Regression Tests for the preCICE Coupling Ecosystem</a>.</li>
-  <li>See also the BSSw blog post <a href="https://bssw.io/blog_posts/overcoming-complexity-in-testing-multiphysics-coupling-software">Overcoming Complexity in Testing Multiphysics Coupling Software</a>.</li>
-</ul>
-
-<h2 id="further-components">Further components</h2>
-
-<p>The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper <a href="https://doi.org/10.18419/opus-9334">“Official preCICE Adapters for Standard Open-Source Solvers”</a> includes a first overview and describes the concept of an adapter, while the <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2 reference paper</a> gives a more updated and detailed overview of the preCICE ecosystem.</p>
-
-<h2 id="discover-more">Discover more</h2>
-
-<p>A lot of useful information is also included in student projects, follow-up publications, and data sets. Have a look at:</p>
-
-<ul>
-  <li><a href="https://zenodo.org/communities/precice/records">Zenodo community on preCICE</a></li>
-  <li><a href="https://www.ipvs.uni-stuttgart.de/departments/sc/teaching/student-projects/">student projects at the IPVS, University of Stuttgart</a> (<a href="https://rds-stg.ibs-bw.de/opac/RDSIndex/Search?lookfor=preCICE&amp;type=allfields">university library</a>, <a href="https://darus.uni-stuttgart.de/dataverse/darus?q=preCICE&amp;types=dataverses%3Adatasets%3Afiles&amp;sort=score&amp;order=desc&amp;page=1">DaRUS</a>)</li>
-  <li><a href="https://www.cs.cit.tum.de/en/sccs/job-offers-student-projects/job-offers-student-projects/coupled-problems-multi-physics-simulations/">student projects at the SCCS, Technical University of Munich</a></li>
-  <li><a href="https://scholar.google.com/scholar?hl=en&amp;cites=5053469347483527186">works citing the preCICE v1 paper</a></li>
-  <li><a href="https://scholar.google.de/scholar?oi=bibs&amp;hl=en&amp;cites=17974677460269868025,12004404035922881061">works citing the preCICE v2 paper</a></li>
-</ul>
+<p><strong>IMPORTANT</strong>: For this to function correctly, the user must pin the Micro Manager ranks as described.
+Additionally, when multiple nodes are used, then it is assumed that the Micro Manager ranks are distributed in an incrementing fashion per node first (as shown in the sketch).
+The used nodes must be provided in a hostfile, otherwise all worker processes are created on the same node.</p>
 
 
     
@@ -7298,12 +7079,19 @@ Are you looking for how to start coupling your code? Then the <a href="couple-yo
 
 
 
-,{
-  "@type": "ListItem",
-  "position": 2,
-  "name": "Literature guide",
-  "item": "https://precice.org/fundamentals-literature-guide.html"
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -7616,7 +7404,7 @@ Are you looking for how to start coupling your code? Then the <a href="couple-yo
         </a>
         </p>
         <p>
-        Page last updated: Jun 15, 2026<br>
+        Page last updated: Jun 21, 2026<br>
         Site last updated: Jun 21, 2026
         </p>
         <p>

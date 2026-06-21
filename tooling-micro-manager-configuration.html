@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1782017597">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1782017597">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782017597">
-<link rel="stylesheet" href="css/bookcover.css?v=1782017597">
+<link rel="stylesheet" href="css/customstyles.css?v=1782030691">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1782030691">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782030691">
+<link rel="stylesheet" href="css/bookcover.css?v=1782030691">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1782017597">
+<link rel="stylesheet" href="css/theme-precice.css?v=1782030691">
 <!-- Styling for landing page -->
 
 
@@ -6849,7 +6849,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 03 Jun 26</small>
+              <small>Updated 21 Jun 26</small>
             </div>
           </aside>
           
@@ -7376,6 +7376,63 @@ The following parameters can be set</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
+<h2 id="tasking--workers">Tasking / Workers</h2>
+
+<p>See the <a href="tooling-micro-manager-nested-parallelization.html">tasking</a> documentation for a detailed explanation of the implementation.
+The usage of workers can be enabled by configuring the tasking parameters.
+When using workers, a separate MPI process group is started per Micro Manager rank. This should allow for parallel
+micro simulation computation.
+With <code class="language-plaintext highlighter-rouge">backend</code>, the communication between the Micro Manager rank and its workers can be set to use either a
+socket-based or MPI-based approach. For a SLURM system, by setting <code class="language-plaintext highlighter-rouge">is_slurm</code> to true, the worker process is
+attempted to be started with <code class="language-plaintext highlighter-rouge">srun</code> instead of <code class="language-plaintext highlighter-rouge">mpiexec</code>. In this case, <code class="language-plaintext highlighter-rouge">backend</code> must be set to <code class="language-plaintext highlighter-rouge">"socket"</code>.
+<code class="language-plaintext highlighter-rouge">num_workers</code> controls the amount of workers per Micro Manager rank. When <code class="language-plaintext highlighter-rouge">num_workers</code> is <code class="language-plaintext highlighter-rouge">1</code>, then
+local execution is assumed, thus no worker processes are created. Only values greater <code class="language-plaintext highlighter-rouge">0</code> are accepted.
+<code class="language-plaintext highlighter-rouge">mpi_impl</code> should be set to the underlying MPI implementation, as this is required for pinning.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">backend</code></td>
+      <td>Communication backend. Options: [“socket”, “mpi”]</td>
+      <td><code class="language-plaintext highlighter-rouge">"socket"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">is_slurm</code></td>
+      <td>Launch worker with <code class="language-plaintext highlighter-rouge">srun</code>?</td>
+      <td><code class="language-plaintext highlighter-rouge">"False"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">"num_workers"</code></td>
+      <td>Number of workers pre Micro Manager rank.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">"mpi_impl"</code></td>
+      <td>Implementation type of MPI. Options: [“intel”, “open”]</td>
+      <td><code class="language-plaintext highlighter-rouge">"open"</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The following configuration block should be provided on the same level as the simulation parameters.
+The given example uses socket based communication, launches with <code class="language-plaintext highlighter-rouge">mpiexec</code>, uses 4 workers per rank and
+assumes Intel MPI.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"tasking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"socket"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_slurm"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"num_workers"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"mpi_impl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"intel"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
 <h2 id="interpolate-a-crashed-micro-simulation">Interpolate a crashed micro simulation</h2>
 
 <p>If the optional dependency <code class="language-plaintext highlighter-rouge">sklearn</code> is installed, the Micro Manager will derive the output of a crashed micro simulation by interpolating outputs from similar simulations. To enable this, set
@@ -7763,7 +7820,7 @@ The following parameters can be set</p>
         </a>
         </p>
         <p>
-        Page last updated: Jun 3, 2026<br>
+        Page last updated: Jun 21, 2026<br>
         Site last updated: Jun 21, 2026
         </p>
         <p>
