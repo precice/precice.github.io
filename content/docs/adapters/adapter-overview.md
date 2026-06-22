@@ -48,6 +48,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [MercuryDPM](https://www.mercurydpm.org/) | [via MercuryDPM](mailto:precice@mercurydpm.org) | [code example](https://bitbucket.org/mercurydpm/mercurydpm/src/master/Drivers/PreCICE/) | [tutorial](tutorials-channel-transport-particles.html) ||
 | [OpenFAST](https://openfast.readthedocs.io/en/main/) | [Leonard Willeke](https://github.com/LeonardWilleke), [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/openfast-adapter), [report](https://doi.org/10.5281/zenodo.14809779) | Structure part in FSI | Experimental |
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) | |
+| [SPARTA](https://sparta.github.io/) | [Cao Ziqu](https://www.researchgate.net/profile/Ziqu-Cao-2?ev=hdr_xprf) | [code](https://gitcode.com/Z_Cao/sparta-precice-adapter) | DSMC part in DSMC-FEM |  |
 
 ## Legacy adapters
 
