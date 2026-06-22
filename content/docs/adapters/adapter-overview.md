@@ -42,13 +42,13 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [G+Smo](https://gismo.github.io/) | [TU Delft Numerical Analysis](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics/numerical-analysis/) |[code](https://github.com/gismo/gsPreCICE) | Structure part in FSI ||
 | [ISSM](https://github.com/ISSMteam/ISSM) | [Daniel Abele](https://github.com/dabele), [DLR Software Technology](https://www.dlr.de/sc/) | [code](https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice) | Ice sheet model | |
 | [LIGGGHTS](https://www.cfdem.com/media/DEM/docu/Manual.html) | [via Discourse](https://precice.discourse.group/t/flexible-mesh-particle-coupling-with-precice/2616) | [code](https://github.com/r-walloner/LIGGGHTS-PUBLIC) | DEM part in CFD-DEM | see also: [validated case](https://doi.org/10.18419/DARUS-5494) |
-| [SPARTA](https://sparta.github.io/) | [Cao Ziqu](https://www.researchgate.net/profile/Ziqu-Cao-2?ev=hdr_xprf) | [code](https://gitcode.com/Z_Cao/sparta-precice-adapter) | DSMC part in DSMC-FEM |  |
 | [LS-DYNA](http://www.lstc.com/products/ls-dyna) | [LKR](https://www.ait.ac.at/lkr) | [code example](https://github.com/precice/lsdyna-adapter) | Continuous metal casting process ||
 | [MBDyn](https://www.mbdyn.org/) | [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/mbdyn-adapter) | Structure part in FSI ||
 | [MBDyn](https://www.mbdyn.org/) | [Politecnico di Milano DAER](https://www.aero.polimi.it/) | [documentation](https://public.gitlab.polimi.it/DAER/mbdyn/-/wikis/preCICE-MBDyn-adapter), [code](https://gitlab.com/stilita/mbdyn-esm-adapter/) | Structure part in FSI ||
 | [MercuryDPM](https://www.mercurydpm.org/) | [via MercuryDPM](mailto:precice@mercurydpm.org) | [code example](https://bitbucket.org/mercurydpm/mercurydpm/src/master/Drivers/PreCICE/) | [tutorial](tutorials-channel-transport-particles.html) ||
 | [OpenFAST](https://openfast.readthedocs.io/en/main/) | [Leonard Willeke](https://github.com/LeonardWilleke), [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/openfast-adapter), [report](https://doi.org/10.5281/zenodo.14809779) | Structure part in FSI | Experimental |
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) | |
+| [SPARTA](https://sparta.github.io/) | [Cao Ziqu](https://www.researchgate.net/profile/Ziqu-Cao-2?ev=hdr_xprf) | [code](https://gitcode.com/Z_Cao/sparta-precice-adapter) | DSMC part in DSMC-FEM |  |
 
 ## Legacy adapters
 
