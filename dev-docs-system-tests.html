@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1782707244">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1782707244">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782707244">
-<link rel="stylesheet" href="css/bookcover.css?v=1782707244">
+<link rel="stylesheet" href="css/customstyles.css?v=1782730690">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1782730690">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782730690">
+<link rel="stylesheet" href="css/bookcover.css?v=1782730690">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1782707244">
+<link rel="stylesheet" href="css/theme-precice.css?v=1782730690">
 <!-- Styling for landing page -->
 
 
@@ -6875,7 +6875,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 28 Jun 26</small>
+              <small>Updated 29 Jun 26</small>
             </div>
           </aside>
           
@@ -7261,9 +7261,11 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
   <h3 id="timeouts">Timeouts</h3>
 
-  <p>A <code class="language-plaintext highlighter-rouge">GLOBAL_TIMEOUT</code> is used for all operations. Its default value is 600s (5min), it is set in the beginning of <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/systemtests/Systemtest.py"><code class="language-plaintext highlighter-rouge">Systemtests.py</code></a>, and it can be overridden via the <code class="language-plaintext highlighter-rouge">PRECICE_SYSTEMTESTS_TIMEOUT</code> environment variable.</p>
+  <p>The build and the run/compare steps use separate timeouts.</p>
 
-  <p>Tests can define a different <code class="language-plaintext highlighter-rouge">timeout</code> in their <code class="language-plaintext highlighter-rouge">tests.yaml</code> entry, which applies to the running and results comparison steps.</p>
+  <p><strong>Build:</strong> Each component in <code class="language-plaintext highlighter-rouge">components.yaml</code> may set a <code class="language-plaintext highlighter-rouge">build_timeout</code> (default: 480s (8min)). The build step runs <code class="language-plaintext highlighter-rouge">docker compose build</code> once for all participant images, with one wall-clock subprocess timeout. That limit is the maximum <code class="language-plaintext highlighter-rouge">build_timeout</code> among the distinct components of the test (so that the slowest component is not cut off too early). You can override the default via the <code class="language-plaintext highlighter-rouge">PRECICE_SYSTEMTESTS_BUILD_TIMEOUT</code> environment variable.</p>
+
+  <p><strong>Run and compare:</strong> Each test in <code class="language-plaintext highlighter-rouge">tests.yaml</code> may set a <code class="language-plaintext highlighter-rouge">timeout</code> (default: 180s (3min)), which applies to the running and results comparison steps only. You can override the default via the <code class="language-plaintext highlighter-rouge">PRECICE_SYSTEMTESTS_TIMEOUT</code> environment variable.</p>
 
 </details>
 
@@ -7636,7 +7638,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
         </a>
         </p>
         <p>
-        Page last updated: Jun 28, 2026<br>
+        Page last updated: Jun 29, 2026<br>
         Site last updated: Jun 29, 2026
         </p>
         <p>
