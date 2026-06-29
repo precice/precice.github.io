@@ -1,0 +1,2860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="This tutorial demonstrates the partitioned solution of the 1D Burgers' equation using preCICE and a neural network surrogate solver.">
+
+<meta name="keywords" content=" Python, Neural Network, Surrogate, Burgers Equation, Finite Volume, CFD">
+<meta name="theme-color" content="#0A76BB">
+<meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
+
+<title>Partitioned Burgers' equation 1D | preCICE - The Coupling Library</title>
+<link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
+
+<!-- OpenGraph metadata -->
+<meta property="og:title" content="Partitioned Burgers' equation 1D" />
+<meta property="og:site_name" content="preCICE.org" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://precice.org/tutorials-partitioned-burgers-1d.html" />
+<meta property="og:image" content="https://precice.org/images/icon-310x310.png" />
+<meta property="og:description" content="This tutorial demonstrates the partitioned solution of the 1D Burgers' equation using preCICE and a neural network surrogate solver.">
+
+<!-- Twitter Card metadata -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Partitioned Burgers' equation 1D" />
+<meta name="twitter:description" content="This tutorial demonstrates the partitioned solution of the 1D Burgers' equation using preCICE and a neural network surrogate solver.">
+<meta name="twitter:image" content="https://precice.org/images/icon-310x310.png" />
+
+<!-- Canonical link -->
+<link rel="canonical" href="https://precice.org/tutorials-partitioned-burgers-1d" >
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+<!-- Local CSS -->
+<link rel="stylesheet" href="css/customstyles.css?v=1782738529">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1782738529">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782738529">
+<link rel="stylesheet" href="css/bookcover.css?v=1782738529">
+<!-- Color styles -->
+<link rel="stylesheet" href="css/theme-precice.css?v=1782738529">
+<!-- Styling for landing page -->
+
+
+<!-- Jquery, Ajax -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<!-- Anchor.js -->
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JavaScript (requires jquery) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<!-- Local JS -->
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<!-- Algolia search -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<!-- QR code for printed pages -->
+<script defer src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var qrDiv = document.createElement("div");
+    qrDiv.id = "print-qr-code";
+    var qr = qrcode(0, "M");
+    qr.addData("https://precice.org/tutorials-partitioned-burgers-1d.html");
+    qr.make();
+    qrDiv.innerHTML = qr.createImgTag(3, 0);
+    document.body.appendChild(qrDiv);
+  });
+</script>
+<style>
+  #print-qr-code {
+    display: none;
+  }
+  @media print {
+    #print-qr-code {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+</style>
+
+<!-- Plausible Analytics -->
+<script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggleLink = document.getElementById('tg-sb-link');
+      if (!toggleLink) return;
+      toggleLink.addEventListener('click', function () {
+        var sidebar = document.getElementById('tg-sb-sidebar');
+        var content = document.getElementById('tg-sb-content');
+        var icon = document.getElementById('tg-sb-icon');
+        if (sidebar) {
+          sidebar.hidden = !sidebar.hidden;
+        }
+        if (content) {
+          content.classList.toggle('col-md-9');
+          content.classList.toggle('col-md-12');
+        }
+        if (icon) {
+          icon.classList.toggle('fa-toggle-on');
+          icon.classList.toggle('fa-toggle-off');
+        }
+      });
+    });
+    </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('table').forEach(function (table) {
+        table.classList.add('table', 'table-striped', 'table-hover', 'table-bordered', 'w-100');
+        var tableHead = table.querySelector('thead');
+        if (tableHead) {
+          tableHead.classList.add('table-primary');
+        }
+        if (table.parentElement && table.parentElement.classList.contains('table-responsive')) {
+          return;
+        }
+        var wrapper = document.createElement('div');
+        wrapper.className = 'table-responsive w-100';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      });
+    });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+<nav class="navbar navbar-expand-xl fixed-top" data-bs-theme="light" aria-label="Main">
+    <div class="container topnavlinks">
+        <div class="navbar-header navbar-header-group">
+            <a class="navbar-brand no-icon" href="/">
+                <span class="navbar-brand-icon">
+                    <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE">
+                </span>
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav ms-auto">
+                <!-- entries without drop-downs appear here -->
+                
+                
+                
+
+                
+                
+                
+                
+                <li><a href="quickstart.html">Quickstart</a></li>
+                
+                
+                
+                
+                <li><a href="docs.html">Docs</a></li>
+                
+                
+                
+                
+                <li class="active"><a href="tutorials.html">Tutorials</a></li>
+                
+                
+                
+                
+                <li><a href="community.html">Community</a></li>
+                
+                
+                
+                
+                <li><a href="https://precice.discourse.group/c/news" target="_blank" rel="noopener">Blog</a></li>
+                
+                
+                
+                
+                <li><a href="about.html">About</a></li>
+                
+                
+                
+
+                <!-- entries with drop-downs appear here -->
+                
+
+                <!--comment out this block if you want to hide search-->
+                    <!--start search-->
+                <li class="navbar-search-li">
+                    <div id="search-demo-container">
+                        <div id="search-input"></div>
+                        <div id="search-results"></div>
+                        <script>
+const algoliaSearch = instantsearch({
+  appId: 'LIT6P0EW26',
+  apiKey: '760ed6be3e165d08b4a798ac4aa82fe4',
+  indexName: 'jekyll',
+  searchFunction: function(helper) {
+    var searchResults = document.getElementById('search-results');
+    if (helper.state.query === '') {
+      if (searchResults) searchResults.style.display = 'none';
+      return;
+    }
+    helper.search();
+    if (searchResults) searchResults.style.display = 'block';
+  }
+});
+
+const hitTemplate = function(hit) {
+  let date = '';
+  if (hit.date) {
+    date = moment.unix(hit.date).format('MMM D, YYYY');
+  }
+
+  let url = `${hit.url}#${hit.anchor}`;
+
+  const title = hit._highlightResult.title.value;
+
+  let breadcrumbs = '';
+  if (hit._highlightResult.headings) {
+    breadcrumbs = hit._highlightResult.headings.map(match => {
+      return `<span class="result-breadcrumb">${match.value}</span>`
+    }).join(' > ')
+  }
+
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="result-item">
+    <h2><a class="result-link" href="${url}">${title}</a></h2>
+    <a href="${url}" class="result-breadcrumbs">${breadcrumbs}</a>
+    <div class="result-snippet">${content}</div>
+    </div>
+  `;
+}
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-input',
+    placeholder: 'Search (' + (/Mac|iPhone|iPad/.test(navigator.platform) ? '⌘K' : 'Ctrl+K') + ')',
+    poweredBy: true, // This is required if you're on the free Community plan
+    magnifier: false,
+    autofocus: false,
+    searchOnEnterKeyPressOnly: false,
+    reset: true
+  })
+);
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.hits({
+    container: '#search-results',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+algoliaSearch.start();
+
+// Navbar search layout (patch after start — same as precice.org)
+(function patchAlgoliaNavbarStyles() {
+  var box = document.querySelector('.navbar .ais-search-box');
+  var input = document.querySelector('.navbar .ais-search-box--input');
+  var reset = document.querySelector('.navbar .ais-search-box--reset');
+  var poweredBy = document.querySelector('.navbar .ais-search-box--powered-by');
+  var poweredByLink = document.querySelector('.navbar .nav li a.ais-search-box--powered-by-link');
+  if (poweredBy) {
+    poweredBy.style.marginTop = '-15px';
+    poweredBy.style.paddingRight = '5px';
+    poweredBy.style.pointerEvents = 'none';
+  }
+  if (poweredByLink) {
+    poweredByLink.style.padding = '0';
+    poweredByLink.style.backgroundColor = 'transparent';
+    poweredByLink.style.display = 'inline-block';
+    poweredByLink.style.pointerEvents = 'auto';
+  }
+  if (reset) {
+    reset.style.zIndex = '10';
+    reset.style.cursor = 'pointer';
+  }
+  if (input) {
+    input.style.paddingLeft = '10px';
+    input.style.borderColor = '#0A76BB';
+  }
+  if (box) {
+    box.style.padding = '.5em';
+    box.style.marginBottom = '0';
+    box.style.marginLeft = '10px';
+    box.style.marginTop = '0';
+    box.style.width = '20em';
+    box.style.fontSize = '0.8em';
+    box.style.height = '50px';
+    box.style.boxSizing = 'border-box';
+  }
+})();
+
+// some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
+document.addEventListener('mouseup', function(e) {
+  var results = document.getElementById('search-results');
+  if (!results.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+document.addEventListener('mouseup', function(e) {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  if (input.contains(e.target)) {
+    results.style.display = 'block';
+  }
+});
+
+// Cmd+K / Ctrl+K keyboard shortcut to focus search, Escape to dismiss
+document.addEventListener('keydown', function(e) {
+  var isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+  if ((isMac ? e.metaKey : e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    var input = document.querySelector('.ais-search-box--input');
+    if (input) {
+      input.focus();
+      input.select();
+    }
+  }
+
+  if (e.key === 'Escape' || e.keyCode === 27) {
+    var results = document.getElementById('search-results');
+    var inputContainer = document.getElementById('search-input');
+    var activeElement = document.activeElement;
+
+    if (results) {
+      results.style.display = 'none';
+    }
+
+    if (inputContainer && inputContainer.contains(activeElement)) {
+      activeElement.blur();
+    } else if (results && results.contains(activeElement)) {
+      var algoliaInput = document.querySelector('#search-input .ais-search-box--input');
+      if (algoliaInput) {
+        algoliaInput.focus();
+      } else {
+        activeElement.blur();
+      }
+    }
+  }
+});
+
+</script>
+                    </div>
+                </li>
+                    <!--end search-->
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" rel="noopener noreferrer" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://github.com/precice" target="_blank" rel="noopener noreferrer" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://www.linkedin.com/company/precice" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </li>
+                    <!-- rel="me" required by Mastodon for verification -->
+                <li>
+                    <a rel="me noopener noreferrer" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" rel="noopener noreferrer" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+          <!-- News banner -->
+          
+
+
+
+    </header>
+    <div class="container page-content mb-5">
+        
+        <div class="row">
+          <div class="col-md-3 mb-4 mb-md-0" id="tg-sb-sidebar">
+            
+
+<nav aria-label="Tutorials">
+<ul id="mysidebar" class="sidebar-nav flex-column">
+  <li class="sidebarTitle">Tutorials </li>
+
+  
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Introduction"
+       data-bs-toggle="collapse" href="#sb-1-introduction"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-1-introduction">
+       Introduction
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-1-introduction" data-bs-parent="#mysidebar">
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Overview" href="tutorials.html">
+       Overview
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Visualization" href="tutorials-visualization.html">
+       Visualization
+    </a>
+  </li>
+
+
+          
+        
+      
+
+      
+
+      
+    </ul>
+  </li>
+
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Basic cases"
+       data-bs-toggle="collapse" href="#sb-1-basic-cases"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-1-basic-cases">
+       Basic cases
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-1-basic-cases" data-bs-parent="#mysidebar">
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Quickstart" href="quickstart.html">
+       Quickstart
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Flow over heated plate" href="tutorials-flow-over-heated-plate.html">
+       Flow over heated plate
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned heat conduction" href="tutorials-partitioned-heat-conduction.html">
+       Partitioned heat conduction
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Perpendicular flap" href="tutorials-perpendicular-flap.html">
+       Perpendicular flap
+    </a>
+  </li>
+
+
+          
+        
+      
+
+      
+
+      
+    </ul>
+  </li>
+
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+      
+      
+      
+      
+    
+      
+      
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+        
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+        
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+      
+      
+    
+      
+      
+  
+
+  
+
+  
+
+  <li class="nav-item">
+    <a class="nav-link active"
+       title="All tutorials"
+       data-bs-toggle="collapse" href="#sb-1-all-tutorials"
+       role="button"
+       aria-expanded="true"
+       aria-controls="sb-1-all-tutorials">
+       All tutorials
+    </a>
+    <ul class="collapse show sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-1-all-tutorials" data-bs-parent="#mysidebar">
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="ASTE turbine" href="tutorials-aste-turbine.html">
+       ASTE turbine
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Breaking dam with flexible pillar 2D" href="tutorials-breaking-dam-2d.html">
+       Breaking dam with flexible pillar 2D
+    </a>
+  </li>
+
+
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Channel transport"
+       data-bs-toggle="collapse" href="#sb-3-channel-transport"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-channel-transport">
+       Channel transport
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-channel-transport" data-bs-parent="#sb-1-all-tutorials">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Basic variant" href="tutorials-channel-transport.html">
+       Basic variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Reaction" href="tutorials-channel-transport-reaction.html">
+       Reaction
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Particles" href="tutorials-channel-transport-particles.html">
+       Particles
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Elastic tube 1D" href="tutorials-elastic-tube-1d.html">
+       Elastic tube 1D
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Elastic tube 3D" href="tutorials-elastic-tube-3d.html">
+       Elastic tube 3D
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Flow around controlled moving cylinder" href="tutorials-flow-around-controlled-moving-cylinder.html">
+       Flow around controlled moving cylinder
+    </a>
+  </li>
+
+
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Flow over a heated plate"
+       data-bs-toggle="collapse" href="#sb-3-flow-over-a-heated-plate"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-flow-over-a-heated-plate">
+       Flow over a heated plate
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-flow-over-a-heated-plate" data-bs-parent="#sb-3-channel-transport">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Basic variant" href="tutorials-flow-over-heated-plate.html">
+       Basic variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Nearest-projection mapping" href="tutorials-flow-over-heated-plate-nearest-projection.html">
+       Nearest-projection mapping
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Steady state" href="tutorials-flow-over-heated-plate-steady-state.html">
+       Steady state
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Two meshes" href="tutorials-flow-over-heated-plate-two-meshes.html">
+       Two meshes
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Free flow over porous media" href="tutorials-free-flow-over-porous-media.html">
+       Free flow over porous media
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Heat exchanger" href="tutorials-heat-exchanger.html">
+       Heat exchanger
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Heat exchanger simplified" href="tutorials-heat-exchanger-simplified.html">
+       Heat exchanger simplified
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Multiple perpendicular flaps" href="tutorials-multiple-perpendicular-flaps.html">
+       Multiple perpendicular flaps
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Oscillator" href="tutorials-oscillator.html">
+       Oscillator
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Oscillator overlap" href="tutorials-oscillator-overlap.html">
+       Oscillator overlap
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link active"
+       title="Partitioned Burger's Equation" href="tutorials-partitioned-burgers-1d.html">
+       Partitioned Burger's Equation
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned elastic beam" href="tutorials-partitioned-elastic-beam.html">
+       Partitioned elastic beam
+    </a>
+  </li>
+
+
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Partitioned flow"
+       data-bs-toggle="collapse" href="#sb-3-partitioned-flow"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-partitioned-flow">
+       Partitioned flow
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-partitioned-flow" data-bs-parent="#sb-3-flow-over-a-heated-plate">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned flow over a b.f. step" href="tutorials-partitioned-backwards-facing-step.html">
+       Partitioned flow over a b.f. step
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned flow over heated plate" href="tutorials-flow-over-heated-plate-partitioned-flow.html">
+       Partitioned flow over heated plate
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned pipe" href="tutorials-partitioned-pipe.html">
+       Partitioned pipe
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned pipe two-phase" href="tutorials-partitioned-pipe-two-phase.html">
+       Partitioned pipe two-phase
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Partitioned pipe multiscale" href="tutorials-partitioned-pipe-multiscale.html">
+       Partitioned pipe multiscale
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Water hammer" href="tutorials-water-hammer.html">
+       Water hammer
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Partitioned heat conduction"
+       data-bs-toggle="collapse" href="#sb-3-partitioned-heat-conduction"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-partitioned-heat-conduction">
+       Partitioned heat conduction
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-partitioned-heat-conduction" data-bs-parent="#sb-3-partitioned-flow">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Basic variant" href="tutorials-partitioned-heat-conduction.html">
+       Basic variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Complex variant" href="tutorials-partitioned-heat-conduction-complex.html">
+       Complex variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Direct mesh access" href="tutorials-partitioned-heat-conduction-direct.html">
+       Direct mesh access
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Overlapping Schwarz" href="tutorials-partitioned-heat-conduction-overlap.html">
+       Overlapping Schwarz
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="3D variant" href="tutorials-partitioned-heat-conduction-3d.html">
+       3D variant
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      
+      
+    
+      
+      
+    
+  
+
+  <li class="nav-item">
+    <a class="nav-link collapsed"
+       title="Perpendicular flap"
+       data-bs-toggle="collapse" href="#sb-3-perpendicular-flap"
+       role="button"
+       aria-expanded="false"
+       aria-controls="sb-3-perpendicular-flap">
+       Perpendicular flap
+    </a>
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
+        id="sb-3-perpendicular-flap" data-bs-parent="#sb-3-partitioned-heat-conduction">
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Basic variant" href="tutorials-perpendicular-flap.html">
+       Basic variant
+    </a>
+  </li>
+
+
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Stress variant" href="tutorials-perpendicular-flap-stress.html">
+       Stress variant
+    </a>
+  </li>
+
+
+        
+      
+    </ul>
+  </li>
+
+
+            
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Quickstart" href="quickstart.html">
+       Quickstart
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Resonant circuit" href="tutorials-resonant-circuit.html">
+       Resonant circuit
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Two-scale heat conduction" href="tutorials-two-scale-heat-conduction.html">
+       Two-scale heat conduction
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Turek-Hron FSI3" href="tutorials-turek-hron-fsi3.html">
+       Turek-Hron FSI3
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Volume-coupled diffusion" href="tutorials-volume-coupled-diffusion.html">
+       Volume-coupled diffusion
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Volume-coupled flow" href="tutorials-volume-coupled-flow.html">
+       Volume-coupled flow
+    </a>
+  </li>
+
+
+          
+        
+      
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <li class="nav-item">
+    <a class="nav-link "
+       title="Wolf-sheep-grass model with soil creep" href="tutorials-wolf-sheep-soil-creep.html">
+       Wolf-sheep-grass model with soil creep
+    </a>
+  </li>
+
+
+          
+        
+      
+
+      
+
+      
+    </ul>
+  </li>
+
+
+      
+    
+  
+</ul>
+</nav>
+
+          </div>
+          <main class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Partitioned Burgers' equation 1D</h1>
+</div>
+
+
+
+<div class="post-content">
+
+    
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        This tutorial demonstrates the partitioned solution of the 1D Burgers’ equation using preCICE and a neural network surrogate solver.
+
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-9">
+          
+          <nav aria-label="table of contents">
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
+          </nav>
+          
+        </div>
+
+        <div class="col-md-3">
+          
+          <aside>
+            
+                
+                
+                
+                
+                <div class="text-end">
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/partitioned-burgers-1d/README.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
+            
+            <div class="text-end">
+              <small>Updated 29 Jun 26</small>
+            </div>
+          </aside>
+          
+        </div>
+    </div>
+
+   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+Get the <a href="https://github.com/precice/tutorials/tree/develop/partitioned-burgers-1d">case files of this tutorial</a>, as continuously rendered here, or see the <a href="https://github.com/precice/tutorials/tree/master/partitioned-burgers-1d">latest released version</a> (if there is already one). Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
+</div>
+
+<h2 id="setup">Setup</h2>
+
+<p>We solve the 1D viscous Burgers’ equation on the domain \([0,2]\):</p>
+
+\[\frac{\partial u}{\partial t} = \nu \frac{\partial^2 u}{\partial x^2} - u \frac{\partial u}{\partial x},\]
+
+<p>where \(u(x,t)\) is the scalar velocity field and \(\nu\) is the viscosity. In this tutorial by default \(\nu\) is very small (\(10^{-12}\)), but can be changed in the solver.</p>
+
+<p>The domain is partitioned into participants at \(x=1\):</p>
+
+<ul>
+  <li><strong>Dirichlet</strong>: Solves the left half \([0,1]\) and receives Dirichlet boundary conditions at the interface.</li>
+  <li><strong>Neumann</strong>: Solves the right half \([1,2]\) and receives Neumann boundary conditions at the interface.</li>
+</ul>
+
+<p>Both outer boundaries use zero-gradient conditions \(\frac{\partial u}{\partial x} = 0\). The problem can be solved for different initial conditions of superimposed sine waves, which can be generated using the provided script <code class="language-plaintext highlighter-rouge">utils/generate_ic.py</code>.</p>
+
+<p><img src="images/tutorials-partitioned-burgers-1d-full-domain-diagram.png" alt="Domain Diagram" />
+Diagram of the partitioned domain with an example initial condition.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>preCICE configuration (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
+
+<p><img src="images/tutorials-partitioned-burgers-1d-precice-config.png" alt="preCICE configuration visualization" /></p>
+
+<h2 id="available-solvers">Available solvers</h2>
+
+<p>Currently, the SciPy solver (<code class="language-plaintext highlighter-rouge">solver-scipy</code>) can be used for both sides, the NN surrogate solver (<code class="language-plaintext highlighter-rouge">neumann-surrogate</code>) only for the Neumann side.</p>
+
+<ul>
+  <li>SciPy. Simple finite volume solver using Lax-Friedrichs fluxes and implicit Euler time stepping.</li>
+  <li>Surrogate. Pre-trained neural network surrogate model.</li>
+</ul>
+
+<p>The conservative formulation of the Burgers’ equation is implemented in the SciPy solver. The surrogate is a neural network trained to autoregressively predict the next time step solution based on the current solution. The surrogate model was trained on solutions obtained with the SciPy solver. See <a href="#initial-condition">Initial condition</a> for how to generate the training data.</p>
+
+<p>Two pre-trained model checkpoints are provided in <code class="language-plaintext highlighter-rouge">neumann-surrogate/</code>, differing in how many unroll timesteps were used during the Backpropagation Through Time (BPTT) training phase. The two checkpoints, <code class="language-plaintext highlighter-rouge">CNN_RES_UNROLL_1.pth</code> and <code class="language-plaintext highlighter-rouge">CNN_RES_UNROLL_7.pth</code>, were trained, respectively, with a single-step prediction (rollout length 1) and a 7-step rollout, which improves stability over long autoregressive predictions. The checkpoint can be selected by changing <code class="language-plaintext highlighter-rouge">MODEL_NAME</code> in <code class="language-plaintext highlighter-rouge">neumann-surrogate/config.py</code>.</p>
+
+<p>The full training pipeline [1] is available in a <a href="https://github.com/vidulejs/neural-adapter">separate repository</a>.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+The surrogate participant requires PyTorch and related dependencies. By default, the CPU version is installed. If you wish to use the GPU version, see the comment in <code class="language-plaintext highlighter-rouge">neumann-surrogate/requirements.txt</code>. The GPU version requires several gigabytes of disk space (~6.2Gb).
+</div>
+
+<h2 id="running-the-simulation">Running the simulation</h2>
+
+<h3 id="running-the-participants">Running the participants</h3>
+
+<p>To run the partitioned simulation, open two separate terminals and start each participant individually:</p>
+
+<p>You can find the corresponding <code class="language-plaintext highlighter-rouge">run.sh</code> script for running the case in the folders corresponding to the participant you want to use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>dirichlet-scipy
+./run.sh
+</code></pre></div></div>
+
+<p>and</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>neumann-scipy
+./run.sh
+</code></pre></div></div>
+
+<p>or, to use the pretrained neural network surrogate participant:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>neumann-surrogate
+./run.sh
+</code></pre></div></div>
+
+<h3 id="initial-condition">Initial condition</h3>
+
+<p>The initial condition file <code class="language-plaintext highlighter-rouge">initial_condition.npz</code> is automatically generated by the run scripts if it does not exist.
+You can also manually generate it using the <code class="language-plaintext highlighter-rouge">utils/generate_ic.py</code> script:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 utils/generate_ic.py
+</code></pre></div></div>
+
+<p>This script requires the Python libraries <code class="language-plaintext highlighter-rouge">numpy</code> and <code class="language-plaintext highlighter-rouge">matplotlib</code>. It accepts an optional argument <code class="language-plaintext highlighter-rouge">--epoch</code> as a random number generator seed, which defaults to zero.</p>
+
+<p>To generate the training data, you can use the <code class="language-plaintext highlighter-rouge">utils/generate-training-data.sh</code> script from the tutorial root directory, which will generate data for different <code class="language-plaintext highlighter-rouge">--epoch</code> values:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./utils/generate-training-data.sh 
+</code></pre></div></div>
+
+<h3 id="monolithic-solution-reference">Monolithic solution (reference)</h3>
+
+<p>You can run the whole domain using the monolithic solver for comparison:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solver-scipy
+./run.sh
+</code></pre></div></div>
+
+<h2 id="post-processing">Post-processing</h2>
+
+<p>After both participants have finished, you can run the visualization script.
+<code class="language-plaintext highlighter-rouge">visualize_partitioned_domain.py</code> generates plots comparing the partitioned and monolithic solutions. You can specify which timestep to plot. Call from the root of the tutorial:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 utils/visualize_partitioned_domain.py <span class="nt">--neumann</span> neumann-surrogate/surrogate.npz 10
+</code></pre></div></div>
+
+<p>The final argument defines the coupling time step to plot (here, <code class="language-plaintext highlighter-rouge">10</code>). It can range from <code class="language-plaintext highlighter-rouge">0</code> up to the total number of time steps performed in the run.</p>
+
+<p>The script will produce the following output files in the <code class="language-plaintext highlighter-rouge">output/</code> directory:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">full-domain-timestep-slice.png</code>: Solution \(u\) at the selected timestep</li>
+</ul>
+
+<p><img src="images/tutorials-partitioned-burgers-1d-full-domain-timestep-slice.png" alt="Full Domain Timestep Slice" /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">gradient-timestep-slice.png</code>: Gradient \(du/dx\) at the selected timestep</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">full-domain-evolution.png</code>: Time evolution of the solution</p>
+  </li>
+</ul>
+
+<p><img src="images/tutorials-partitioned-burgers-1d-full-domain-evolution.png" alt="Full Domain Evolution" /></p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Dagis Daniels Vidulejs. “Coupling Neural Surrogates with Traditional Solvers using preCICE.” Master’s thesis, Technical University of Munich, 2025.</p>
+
+
+    
+
+
+
+<!-- Breadcrumb metadata -->
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "@type": "ListItem",
+  "position": 1,
+  "name": "Tutorials",
+  "item": "https://precice.org/tutorials.html"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "Partitioned Burger's Equation",
+  "item": "https://precice.org/tutorials-partitioned-burgers-1d.html"
+}
+
+
+
+
+
+
+]}
+</script>
+
+
+</div>
+
+
+          </main>
+        </div>
+        
+    </div>
+    <footer class="background-dark">
+  <div class="container">
+
+
+    <div class="row">
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 bg-white rounded-4 p-4 mx-auto mb-5">
+        <h2 class="text-center fs-5 fw-medium mt-1 mb-3 text-dark" style="font-family: 'Fira Sans', Roboto, sans-serif;">The preCICE newsletter</h2>
+        <script charset="utf-8" type="text/javascript" src="https://js.mailercloud.com/form/form.js"></script>
+<script>
+(function() {
+  mcform.create({
+    formId: "V3dEdUAzMTQ0NkAwMDAwMA==",
+    targetElement: "form_element_id"
+  })
+})();
+</script>
+
+      </div>
+    </div>
+
+
+    <div class="row text-center">
+      <div class="col-md-4">
+        <nav aria-label="Footer left">
+          <ul class="list-unstyled">
+            <li>
+              <a href="fundamentals-literature-guide.html">Cite preCICE</a>
+            </li>
+            <li>
+              <a href="community-contribute-to-precice.html">Contribute</a>
+            </li>
+            <li>
+              <a href="community-support-precice.html">Get support</a>
+            </li>
+            <li>
+              <a href="community-training.html">Get training</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col-md-4">
+        <nav aria-label="Footer right">
+          <ul class="list-unstyled">
+            <li>
+              <a class="no-icon" href="https://precice.discourse.group">Forum on Discourse</a>
+            </li>
+            <li>
+              <a class="no-icon" href="https://github.com/precice">preCICE on GitHub</a>
+            </li>
+            <li>
+              <a href="fundamentals-license.html">License</a>
+            </li>
+            <li>
+              <a href="about.html">Impressum / Legal</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col-md-4">
+        <p>
+        <a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+          <img alt="This work is licensed under a Creative Commons Attribution 4.0 International License." src="images/licensebutton-by-40_88x31.png" />
+        </a>
+        </p>
+        <p>
+        Page last updated: Jun 29, 2026<br>
+        Site last updated: Jun 29, 2026
+        </p>
+        <p>
+        <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="/js/copy-code.js"></script>
+</footer>
+
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+  <i class="fa fa-chevron-up"></i>
+</button>
+
+<style>
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top:hover {
+  background-color: #0052a3;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top {
+    bottom: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  const scrollBtn = document.getElementById('scroll-to-top');
+  const scrollThreshold = 300; // Show button after scrolling 300px
+
+  // Show/hide button on scroll
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > scrollThreshold) {
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.remove('visible');
+    }
+  });
+
+  // Scroll to top on click
+  scrollBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+})();
+</script>
+
+
+</body>
+
+</html>
