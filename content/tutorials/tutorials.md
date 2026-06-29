@@ -58,6 +58,7 @@ In the following cases, you can explore different aspects of preCICE:
 - [Multiple perpendicular flaps](tutorials-multiple-perpendicular-flaps.html): A three-field fluid-structure interaction case (fully implicit coupling, transient), with OpenFOAM and deal.II.
 - [Oscillator](tutorials-oscillator.html): A simple mass-spring oscillator with two masses, coupling two instances of a Python solver or of the FMI Runner.
 - [Oscillator overlap](tutorials-oscillator-overlap.html): An overlapping Schwartz method variant of the Oscillator tutorial, coupling two Dirichlet participants in Python.
+- [Partitioned Burger's Equation 1D](tutorials-partitioned-burgers-1d.html): Coupling a 1D Burger's equation solver to a neural network surrogate model, both written in Python.
 - [Partitioned elastic beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
 - Partitioned flow collection
   - [Partitioned flow over a backwards-facing step](tutorials-partitioned-backwards-facing-step.html): A fluid-fluid coupling scenario, demonstrating inlet-outlet boundary conditions in OpenFOAM.
