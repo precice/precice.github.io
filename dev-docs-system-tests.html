@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1782838202">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1782838202">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782838202">
-<link rel="stylesheet" href="css/bookcover.css?v=1782838202">
+<link rel="stylesheet" href="css/customstyles.css?v=1782847067">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1782847067">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782847067">
+<link rel="stylesheet" href="css/bookcover.css?v=1782847067">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1782838202">
+<link rel="stylesheet" href="css/theme-precice.css?v=1782847067">
 <!-- Styling for landing page -->
 
 
@@ -6992,6 +6992,40 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
 <p>Alternatively, <a href="https://precice.org/configuration-export.html#visualization-with-paraview">visualize the <code class="language-plaintext highlighter-rouge">precice-exports/diff_*.vtu</code> in ParaView</a>.</p>
 
+<h3 id="re-running-from-ci-artifacts">Re-running from CI artifacts</h3>
+
+<p>When a system test fails in CI, download the <strong>full</strong> artifact:</p>
+
+<p><code class="language-plaintext highlighter-rouge">system_tests_run_&lt;run_id&gt;_&lt;run_attempt&gt;_full</code></p>
+
+<p>(a smaller <code class="language-plaintext highlighter-rouge">_logs</code> archive contains only log files). The archive contains a shared <code class="language-plaintext highlighter-rouge">runs/</code> directory:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>runs/
+├── tools/                              # Dockerfiles and helpers (shared)
+└── &lt;tutorial&gt;_&lt;cases&gt;_&lt;timestamp&gt;/     # one folder per system test
+    ├── docker-compose.tutorial.yaml
+    ├── docker-compose.field_compare.yaml   # written at build time when compare is configured
+    ├── rerun-system-test.sh
+    ├── system-tests-build.log
+    ├── system-tests-run.log
+    ├── system-tests-compare.log
+    └── …
+</code></pre></div></div>
+
+<p>To re-run one test locally:</p>
+
+<ol>
+  <li>Extract the zip and keep the <code class="language-plaintext highlighter-rouge">runs/</code> layout (the test folder needs the sibling <code class="language-plaintext highlighter-rouge">tools/</code> directory).</li>
+  <li><code class="language-plaintext highlighter-rouge">cd</code> into the test folder.</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">./rerun-system-test.sh</code> (or <code class="language-plaintext highlighter-rouge">sh rerun-system-test.sh</code>).</li>
+</ol>
+
+<p>The script rebuilds images, runs the tutorial, and (if present) runs fieldcompare with <code class="language-plaintext highlighter-rouge">--exit-code-from field-compare</code>, matching the Python runner. Compose paths are relative to the test folder (<code class="language-plaintext highlighter-rouge">..</code> is the parent <code class="language-plaintext highlighter-rouge">runs/</code> directory), so you can move the extracted tree elsewhere on a Linux host with Docker.</p>
+
+<p><code class="language-plaintext highlighter-rouge">docker-compose.field_compare.yaml</code> is written when the test is prepared for Docker build. The replay script fixes common permission issues from extracted archives.</p>
+
+<p>Fieldcompare requires reference results in the artifact. If not already unpacked during the original CI run, unpack them manually first.</p>
+
 <h2 id="extending">Extending</h2>
 
 <h3 id="adding-new-tests">Adding new tests</h3>
@@ -7126,6 +7160,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
         <li><code class="language-plaintext highlighter-rouge">print_case_combinations.py</code>: Prints all possible combinations of tutorial cases, using the <code class="language-plaintext highlighter-rouge">metadata.yaml</code> files.</li>
         <li><code class="language-plaintext highlighter-rouge">build_docker_images.py</code>: Build the Docker images for each test</li>
         <li><code class="language-plaintext highlighter-rouge">generate_reference_results.py</code>: Executes the system tests with the versions defined in <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code> and generates the reference data archives, with the names described in <code class="language-plaintext highlighter-rouge">tests.yaml</code>. (should only be used by the CI Pipeline)</li>
+        <li><code class="language-plaintext highlighter-rouge">rerun-system-test.sh</code>: Helper script copied into each run directory so CI artifacts can be replayed locally.</li>
       </ul>
     </li>
   </ul>
