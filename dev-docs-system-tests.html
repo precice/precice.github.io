@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1782811077">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1782811077">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782811077">
-<link rel="stylesheet" href="css/bookcover.css?v=1782811077">
+<link rel="stylesheet" href="css/customstyles.css?v=1782838202">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1782838202">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1782838202">
+<link rel="stylesheet" href="css/bookcover.css?v=1782838202">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1782811077">
+<link rel="stylesheet" href="css/theme-precice.css?v=1782838202">
 <!-- Styling for landing page -->
 
 
@@ -7001,6 +7001,11 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 <p>The available cases are listed in the <code class="language-plaintext highlighter-rouge">metadata.yaml</code> of each tutorial. To add a new tutorial case as a test, add it to <code class="language-plaintext highlighter-rouge">metadata.yaml</code> and then define a test using it. Include that test in the relevant test suites.</p>
 
 <p>Use the <code class="language-plaintext highlighter-rouge">max_time</code> or <code class="language-plaintext highlighter-rouge">max_time_windows</code> parameters to restrict the runtime of the test to the first few coupling time windows, to save time. Aim for a runtime of less than a minute (assuming cached components), if possible.</p>
+
+<p>Some tutorials require setup before the simulation (e.g. switching configuration files). Use optional <code class="language-plaintext highlighter-rouge">run-before</code> and <code class="language-plaintext highlighter-rouge">run-after</code> fields in <code class="language-plaintext highlighter-rouge">tests.yaml</code> to run shell commands in the copied tutorial directory after copying and before Docker build (<code class="language-plaintext highlighter-rouge">run-before</code>), or after the simulation and before field comparison (<code class="language-plaintext highlighter-rouge">run-after</code>). Example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">run-before</span><span class="pi">:</span> <span class="s">./set-case.sh 1d3d</span>
+</code></pre></div></div>
 
 <p>You will need to define a reference results file. The reference results can and should be generated on GitHub using the <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml">Generate reference results (manual)</a> workflow for the respective test suite. You might want to temporarily set the <code class="language-plaintext highlighter-rouge">selected</code> test suite for requesting results only for a subset of test cases.</p>
 
