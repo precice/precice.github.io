@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1783079332">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1783079332">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783079332">
-<link rel="stylesheet" href="css/bookcover.css?v=1783079332">
+<link rel="stylesheet" href="css/customstyles.css?v=1783087607">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1783087607">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783087607">
+<link rel="stylesheet" href="css/bookcover.css?v=1783087607">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1783079332">
+<link rel="stylesheet" href="css/theme-precice.css?v=1783087607">
 <!-- Styling for landing page -->
 
 
@@ -6875,7 +6875,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 30 Jun 26</small>
+              <small>Updated 03 Jul 26</small>
             </div>
           </aside>
           
@@ -7046,6 +7046,41 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 <p>Note that you will need to define the <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> in the file <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml"><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code></a> to match the respective branch. Restore that to <code class="language-plaintext highlighter-rouge">develop</code> after that. See a <a href="https://github.com/precice/tutorials/issues/844">related issue</a>.</p>
 
 <p>The results will be added to a Git LFS, but you will need special push access: just use the aforementioned GitHub Actions workflow, instead.</p>
+
+<h4 id="external-test-sources">External test sources</h4>
+
+<p>Local test cases are defined in the <code class="language-plaintext highlighter-rouge">tutorials:</code> list. For test cases maintained in other git repositories or available as archives, use the <code class="language-plaintext highlighter-rouge">external:</code> list. A test suite may define both lists so that external cases can be referenced via YAML anchors alongside local tutorials (for example in the <code class="language-plaintext highlighter-rouge">release</code> suite).</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">test_suites</span><span class="pi">:</span>
+  <span class="na">some-external-test-case</span><span class="pi">:</span>
+    <span class="na">external</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="nl">&amp;some-external-test-case</span>
+        <span class="na">source</span><span class="pi">:</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">git</span>
+          <span class="na">url</span><span class="pi">:</span> <span class="s">https://github.com/some-user/tutorials.git</span>
+          <span class="na">ref</span><span class="pi">:</span> <span class="s">some-branch</span>
+          <span class="na">subdir</span><span class="pi">:</span> <span class="s">.</span>
+        <span class="na">path</span><span class="pi">:</span> <span class="s">path-to-test-case</span>
+        <span class="na">case_combination</span><span class="pi">:</span>
+          <span class="s">...</span>
+
+  <span class="na">release</span><span class="pi">:</span>
+    <span class="na">tutorials</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="nv">*quickstart_openfoam_cpp</span>
+    <span class="na">external</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="nv">*some-external-test-case</span>
+</code></pre></div></div>
+
+<p>Supported <code class="language-plaintext highlighter-rouge">source.type</code> values:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git</code>: shallow-clone <code class="language-plaintext highlighter-rouge">url</code> at <code class="language-plaintext highlighter-rouge">ref</code>. The <code class="language-plaintext highlighter-rouge">ref</code> must exist on the remote; clone failures are reported as errors.</li>
+  <li><code class="language-plaintext highlighter-rouge">archive</code>: download and extract a <code class="language-plaintext highlighter-rouge">.tar.gz</code> / <code class="language-plaintext highlighter-rouge">.zip</code> from <code class="language-plaintext highlighter-rouge">url</code>.</li>
+</ul>
+
+<p>Fetched external sources are cached under <code class="language-plaintext highlighter-rouge">~/.cache/precice-tutorials</code> (or <code class="language-plaintext highlighter-rouge">PRECICE_EXTERNAL_CACHE_DIR</code>) so that repeated test runs and CI matrix jobs do not re-download the same repository or archive every time. The cache key is derived from the source URL, ref, and optional subdir.</p>
+
+<p>The runner fetches the tutorial, copies it into the run directory, and then continues with the usual Docker build/run and fieldcompare steps. <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> / <code class="language-plaintext highlighter-rouge">TUTORIALS_PR</code> build arguments apply only to test cases sourced from the tutorials repository; external test cases are pinned by <code class="language-plaintext highlighter-rouge">source.ref</code>. Reference result paths are resolved relative to the root directory of the fetched test case.</p>
 
 <h3 id="adding-new-components">Adding new components</h3>
 
@@ -7220,7 +7255,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
   <ul>
     <li><code class="language-plaintext highlighter-rouge">name</code>: A human-readable, descriptive name</li>
-    <li><code class="language-plaintext highlighter-rouge">path</code>: Where the tutorial is located, relative to the tutorials repository</li>
+    <li><code class="language-plaintext highlighter-rouge">path</code>: Where the tutorial is located, relative to the tutorials repository (or the tutorial folder name for external sources)</li>
     <li><code class="language-plaintext highlighter-rouge">url</code>: A web page with more information on the tutorial</li>
     <li><code class="language-plaintext highlighter-rouge">participants</code>: A list of preCICE participants, typically corresponding to different domains of the simulation</li>
     <li><code class="language-plaintext highlighter-rouge">cases</code>: A list of solver configuration directories. Each element of the list includes:
@@ -7682,7 +7717,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
         </a>
         </p>
         <p>
-        Page last updated: Jun 30, 2026<br>
+        Page last updated: Jul 3, 2026<br>
         Site last updated: Jul 3, 2026
         </p>
         <p>
