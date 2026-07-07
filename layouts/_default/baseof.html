@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+{{- with .Params.redirect_to }}
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting&hellip;</title>
+  <link rel="canonical" href="{{ . | safeURL }}">
+  <script>location="{{ . | safeJS }}"</script>
+  <meta http-equiv="refresh" content="0; url={{ . | safeURL }}">
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <h1>Redirecting&hellip;</h1>
+  <a href="{{ . | safeURL }}">Click here if you are not redirected.</a>
+</body>
+{{- else }}
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body{{ if .IsHome }} class="landing-page"{{ end }}>
+  <header>
+    {{ partial "topnav.html" . }}
+    {{ partial "news_banner.html" (dict "page" . "onlanding" .IsHome) }}
+  </header>
+
+  {{- $isLanding := or .IsHome (eq .Layout "landing_page") -}}
+  {{- if $isLanding }}
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+  {{- else }}
+    {{- $hideSidebar := eq (.Param "hide_sidebar") true -}}
+    <div class="container page-content mb-5">
+      {{ if $hideSidebar }}
+        <main id="tg-sb-content">
+          {{ block "main" . }}{{ end }}
+        </main>
+      {{ else }}
+        <div class="row">
+          <aside class="col-md-3 mb-4 mb-md-0" id="tg-sb-sidebar">
+            {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
+          </aside>
+          <main class="col-md-9" id="tg-sb-content">
+            {{ block "main" . }}{{ end }}
+          </main>
+        </div>
+      {{ end }}
+    </div>
+  {{- end }}
+
+  {{ partial "footer.html" . }}
+  {{ partial "scroll_to_top.html" . }}
+  {{ partial "google_analytics.html" . }}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="{{ "js/customscripts.js" | relURL }}"></script>
+  {{ if .IsHome }}
+    <script src="{{ "js/github-queries.js" | relURL }}"></script>
+    <script src="{{ "js/news-collect.js" | relURL }}"></script>
+  {{ end }}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll("table").forEach(function (table) {
+        table.classList.add("table", "table-striped", "table-hover", "table-bordered", "w-100");
+        var tableHead = table.querySelector("thead");
+        if (tableHead) {
+          tableHead.classList.add("table-primary");
+        }
+        if (table.parentElement && table.parentElement.classList.contains("table-responsive")) {
+          return;
+        }
+        var wrapper = document.createElement("div");
+        wrapper.className = "table-responsive w-100";
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      });
+    });
+  </script>
+</body>
+{{- end }}
+</html>
