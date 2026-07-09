@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1783568913">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1783568913">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783568913">
-<link rel="stylesheet" href="css/bookcover.css?v=1783568913">
+<link rel="stylesheet" href="css/customstyles.css?v=1783626642">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1783626642">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783626642">
+<link rel="stylesheet" href="css/bookcover.css?v=1783626642">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1783568913">
+<link rel="stylesheet" href="css/theme-precice.css?v=1783626642">
 <!-- Styling for landing page -->
 
 
@@ -6875,7 +6875,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 06 Jul 26</small>
+              <small>Updated 09 Jul 26</small>
             </div>
           </aside>
           
@@ -7043,7 +7043,11 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
 <p>You will need to define a reference results file. The reference results can and should be generated on GitHub using the <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml">Generate reference results (manual)</a> workflow for the respective test suite. You might want to temporarily set the <code class="language-plaintext highlighter-rouge">selected</code> test suite for requesting results only for a subset of test cases.</p>
 
-<p>Note that you will need to define the <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> in the file <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml"><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code></a> to match the respective branch. Restore that to <code class="language-plaintext highlighter-rouge">develop</code> after that. See a <a href="https://github.com/precice/tutorials/issues/844">related issue</a>.</p>
+<p>By default, the <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml">Generate reference results (manual)</a> workflow uses <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> from <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/reference_versions.yaml"><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code></a>. For a feature branch, set Use tutorials from to <code class="language-plaintext highlighter-rouge">workflow branch</code>, or pass <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> via <code class="language-plaintext highlighter-rouge">--build_args</code> (locally) or the optional <code class="language-plaintext highlighter-rouge">build_args</code> workflow input.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+The two options cannot be combined: defining any overrides to <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code> will ignore the option to use the tutorials from the workflow branch.
+</div>
 
 <p>The results will be added to a Git LFS, but you will need special push access: just use the aforementioned GitHub Actions workflow, instead.</p>
 
@@ -7719,7 +7723,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
         </a>
         </p>
         <p>
-        Page last updated: Jul 6, 2026<br>
+        Page last updated: Jul 9, 2026<br>
         Site last updated: Jul 9, 2026
         </p>
         <p>
