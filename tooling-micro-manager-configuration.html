@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1783627425">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1783627425">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783627425">
-<link rel="stylesheet" href="css/bookcover.css?v=1783627425">
+<link rel="stylesheet" href="css/customstyles.css?v=1783681837">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1783681837">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783681837">
+<link rel="stylesheet" href="css/bookcover.css?v=1783681837">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1783627425">
+<link rel="stylesheet" href="css/theme-precice.css?v=1783681837">
 <!-- Styling for landing page -->
 
 
@@ -6849,7 +6849,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 03 Jul 26</small>
+              <small>Updated 10 Jul 26</small>
             </div>
           </aside>
           
@@ -7045,6 +7045,166 @@ $('#toc').on('click', 'a', function() {
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
 
+<h2 id="interpolation">Interpolation</h2>
+
+<p>The Micro Manager allows configuring different interpolation profiles that can be reused by other modules such as adaptivity or crash interpolation.
+Each profile contains information on which interpolation method to use, a unique identifier, and the required parameters of the selected interpolation scheme.
+The profiles are referenced in other modules using the provided identifier.
+Profiles can be specified by providing <code class="language-plaintext highlighter-rouge">"interpolation_configs": []</code> in the <code class="language-plaintext highlighter-rouge">simulation_params</code>.</p>
+
+<p>This list provides interpolation configurations. Each configuration must contain a <code class="language-plaintext highlighter-rouge">type</code> and an <code class="language-plaintext highlighter-rouge">id</code>.
+Further parameters are <code class="language-plaintext highlighter-rouge">type</code> dependent. Currently, two types are supported: k-Nearest Neighbors (KNN) and Radial Basis Function (RBF) interpolation.
+The unique <code class="language-plaintext highlighter-rouge">id</code> is required to load the respective interpolation configuration. Other modules can specify such via the field <code class="language-plaintext highlighter-rouge">interp_id</code>.</p>
+
+<h3 id="k-nearest-neighbors-knn">k-Nearest Neighbors (KNN)</h3>
+
+<p>KNN requires the optional dependency <code class="language-plaintext highlighter-rouge">sklearn</code>. If it is not installed, using KNN will raise errors.</p>
+
+<p>Example configuration:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KNN"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"k"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Description:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">type</code></td>
+      <td>Interpolation Method: Here KNN.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
+      <td>Unique Identifier, may be a string or int.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">k</code></td>
+      <td>Number of nearest neighbors.</td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="radial-basis-function-rbf">Radial Basis Function (RBF)</h3>
+
+<p>Example configuration:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RBF"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dummy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rbf_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"basis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gauss"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"eps"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"n_neighbors"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"domain_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"max_filling"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"coarsening_factor"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"projection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"target_dims"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Description:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">type</code></td>
+      <td>Interpolation Method: Here RBF.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
+      <td>Unique Identifier, may be a string or int.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rbf_config</code></td>
+      <td>RBF interpolation configuration.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">domain_config</code></td>
+      <td>Interpolation source domain. Either <code class="language-plaintext highlighter-rouge">"local"</code> or decomposed global.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A selection of basis functions is available: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code>, <code class="language-plaintext highlighter-rouge">gauss</code>.
+For rank local interpolation, <code class="language-plaintext highlighter-rouge">domain_config</code> can be set to <code class="language-plaintext highlighter-rouge">"local"</code>.
+If data should be shared across ranks for interpolation, then the domain must be further configured.
+To this end, spatial discretization techniques are used. For better performance, data can be projected to a lower-dimensional space
+using the fields with the highest standard deviation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">basis/type</code></td>
+      <td>RBF basis function: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code>, <code class="language-plaintext highlighter-rouge">gauss</code></td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">basis/eps</code></td>
+      <td>Parameter if basis type is <code class="language-plaintext highlighter-rouge">gauss</code></td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">max_filling</code></td>
+      <td>Tunes maximum filling of tree nodes used during decomposition.</td>
+      <td><code class="language-plaintext highlighter-rouge">8</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">coarsening_factor</code></td>
+      <td>Adjusts the fidelity of the discretized domain. Only integer values &gt;= 1.</td>
+      <td><code class="language-plaintext highlighter-rouge">2</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">projection</code></td>
+      <td>Either <code class="language-plaintext highlighter-rouge">std</code> or <code class="language-plaintext highlighter-rouge">identity</code>.</td>
+      <td><code class="language-plaintext highlighter-rouge">identity</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">target_dims</code></td>
+      <td>Only if <code class="language-plaintext highlighter-rouge">std</code> is used. Denotes the target dimension after projection.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="adaptivity">Adaptivity</h2>
 
 <p>See the <a href="tooling-micro-manager-adaptivity.html">adaptivity</a> documentation for a detailed explanation about the algorithm and variants.</p>
@@ -7136,20 +7296,7 @@ of <code class="language-plaintext highlighter-rouge">write_data_names</code> mu
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"src_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"input1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"input2"</span><span class="p">],</span><span class="w">
         </span><span class="nl">"dst_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"output1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"output2"</span><span class="p">],</span><span class="w">
-        </span><span class="nl">"n_neighbors"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"rbf_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"basis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"domain_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"max_filling"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"coarsening_factor"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"projection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"target_dims"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+        </span><span class="nl">"interp_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id_used_in_interpolation_config"</span><span class="w">
     </span><span class="p">},</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div></div>
@@ -7174,70 +7321,8 @@ of <code class="language-plaintext highlighter-rouge">write_data_names</code> mu
       <td><code class="language-plaintext highlighter-rouge">None</code></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">n_neighbours</code></td>
-      <td>The minimum amount of support points.</td>
-      <td><code class="language-plaintext highlighter-rouge">50</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">rbf_config</code></td>
-      <td>RBF interpolation configuration.</td>
-      <td><code class="language-plaintext highlighter-rouge">None</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">domain_config</code></td>
-      <td>Function source domain description.</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<p>A selection of basis functions is available: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code>.
-The domain must be described/further configured as input data is shared across ranks and must be redistributed for interpolation.
-Towards this, spatial discretization techniques are used. For better performance, data can be projected to a lower dimensional space
-using the fields with the highest standard deviation.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">use_pu</code></td>
-      <td>Enables PU-RBF. (currently not supported)</td>
-      <td><code class="language-plaintext highlighter-rouge">False</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">pu_overlap</code></td>
-      <td>Controlls overlap radius for PU decomposition.</td>
-      <td><code class="language-plaintext highlighter-rouge">0.1</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">basis</code></td>
-      <td>RBF basis function: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code></td>
-      <td><code class="language-plaintext highlighter-rouge">None</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">max_filling</code></td>
-      <td>Tunes maximum filling of tree nodes used during decomposition.</td>
-      <td><code class="language-plaintext highlighter-rouge">8</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">coarsening_factor</code></td>
-      <td>Adjusts the fidelity of the discretized domain. Only integer values &gt;= 1.</td>
-      <td><code class="language-plaintext highlighter-rouge">2</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">projection</code></td>
-      <td>Either <code class="language-plaintext highlighter-rouge">std</code> or <code class="language-plaintext highlighter-rouge">identity</code>.</td>
-      <td><code class="language-plaintext highlighter-rouge">identity</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">target_dims</code></td>
-      <td>Only if <code class="language-plaintext highlighter-rouge">std</code> is used. Denotes the target dimension after projection.</td>
+      <td><code class="language-plaintext highlighter-rouge">interp_id</code></td>
+      <td>ID referencing the interpolation configuration.</td>
       <td><code class="language-plaintext highlighter-rouge">None</code></td>
     </tr>
   </tbody>
@@ -7435,8 +7520,32 @@ assumes Intel MPI.</p>
 
 <h2 id="interpolate-a-crashed-micro-simulation">Interpolate a crashed micro simulation</h2>
 
-<p>If the optional dependency <code class="language-plaintext highlighter-rouge">sklearn</code> is installed, the Micro Manager will derive the output of a crashed micro simulation by interpolating outputs from similar simulations. To enable this, set
-<code class="language-plaintext highlighter-rouge">"interpolate_crash": true</code> in the <code class="language-plaintext highlighter-rouge">simulation_params</code> section of the configuration file.</p>
+<p>The Micro Manager can derive the output of a crashed micro simulation by interpolating outputs from similar simulations.</p>
+
+<p>To enable this, set<code class="language-plaintext highlighter-rouge">"interpolate_crash": true</code> in the <code class="language-plaintext highlighter-rouge">simulation_params</code> section of the configuration file.
+Further crash handling options can be specified under the <code class="language-plaintext highlighter-rouge">"interpolate_crash_params"</code> section using <code class="language-plaintext highlighter-rouge">interp_id</code> and <code class="language-plaintext highlighter-rouge">threshold</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">interp_id</code></td>
+      <td>ID referencing the interpolationo configuration.</td>
+      <td><code class="language-plaintext highlighter-rouge">None</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">threshold</code></td>
+      <td>Threshold of simulation crashes beyond which the Micro Manager will terminate.</td>
+      <td><code class="language-plaintext highlighter-rouge">0.2</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <p>For more details on the interpolation see the <a href="tooling-micro-manager-running.html#what-happens-when-a-micro-simulation-crashes">crash handling documentation</a>.</p>
 
@@ -7820,8 +7929,8 @@ assumes Intel MPI.</p>
         </a>
         </p>
         <p>
-        Page last updated: Jul 3, 2026<br>
-        Site last updated: Jul 9, 2026
+        Page last updated: Jul 10, 2026<br>
+        Site last updated: Jul 10, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
