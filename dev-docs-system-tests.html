@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1783739829">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1783739829">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783739829">
-<link rel="stylesheet" href="css/bookcover.css?v=1783739829">
+<link rel="stylesheet" href="css/customstyles.css?v=1783867107">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1783867107">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783867107">
+<link rel="stylesheet" href="css/bookcover.css?v=1783867107">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1783739829">
+<link rel="stylesheet" href="css/theme-precice.css?v=1783867107">
 <!-- Styling for landing page -->
 
 
@@ -6875,7 +6875,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 09 Jul 26</small>
+              <small>Updated 12 Jul 26</small>
             </div>
           </aside>
           
@@ -6886,11 +6886,11 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="running">Running</h2>
 
-<p>The main workflow for the user is executing the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script, which is the same that the <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-latest-components.yml">GitHub Actions workflow</a> executes. Depending on the options given to the script, it reads in the respective metadata files and generates <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> files that can start a fully-defined coupled simulation. For arguments that are not provided, default values from <code class="language-plaintext highlighter-rouge">components.yaml</code> are used.</p>
+<p>The main workflow for the user is executing the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script, which is the same that the <a href="https://github.com/precice/tutorials/actions/workflows/system-tests.yml">GitHub Actions workflow</a> executes. Depending on the options given to the script, it reads in the respective metadata files and generates <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> files that can start a fully-defined coupled simulation. For arguments that are not provided, default values from <code class="language-plaintext highlighter-rouge">components.yaml</code> are used.</p>
 
-<h3 id="manual-and-nightly-runs-on-github">Manual and nightly runs on GitHub</h3>
+<h3 id="manual-and-scheduled-runs-on-github">Manual and scheduled runs on GitHub</h3>
 
-<p>The <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-latest-components.yml">System tests (manual/nightly)</a> workflow executes the <code class="language-plaintext highlighter-rouge">release</code> test suite nightly and can also be triggered manually.</p>
+<p>The <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-manual.yml">System tests (manual)</a> workflow can execute any test suite (default: <code class="language-plaintext highlighter-rouge">release</code>) with any versions of the involved components (default: latest development branches).</p>
 
 <p>On the workflow page, click <code class="language-plaintext highlighter-rouge">Run workflow</code>. The default values will execute the <code class="language-plaintext highlighter-rouge">release</code> test suite using the latest <code class="language-plaintext highlighter-rouge">develop</code> branches of every component. If you want to override the version of some component, specify it in the respective field. Commit hashes, branches, and tags are all accepted. Branches and tags will get automatically resolved to their current commit on GitHub before starting any test, and all tests will use the same version of any common component.</p>
 
@@ -6907,6 +6907,8 @@ $('#toc').on('click', 'a', function() {
 
 <p>The <code class="language-plaintext highlighter-rouge">Use workflow from</code> is a default option of GitHub Actions that concerns the GHA workflow file itself.</p>
 
+<p>The <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-nightly.yml">System tests (nightly)</a> executes the <code class="language-plaintext highlighter-rouge">release</code> test suite every night. The <a href="https://github.com/precice/tutorials/actions/workflows/system-tests-weekly.yml">System tests (weekly)</a> executes the <code class="language-plaintext highlighter-rouge">extra</code> test suite once per week.</p>
+
 <h3 id="running-from-a-pull-request">Running from a pull request</h3>
 
 <p>Several repositories include a workflow that allows triggering the system tests by adding the <code class="language-plaintext highlighter-rouge">trigger-system-tests</code> label to the pull request. The event is triggered only at the moment of adding the label, so you need to remove the label and add it again if needed.</p>
@@ -6917,12 +6919,12 @@ $('#toc').on('click', 'a', function() {
 
 <p>The <a href="https://cli.github.com/">GitHub CLI</a> allows triggering workflows of a GitHub project. For example:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release
 </code></pre></div></div>
 
 <p>More arguments are available, for example:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-latest-components.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PLATFORM:ubuntu2404,PRECICE_REF:develop"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span><span class="s2">"DEBUG"</span> <span class="nt">--ref</span><span class="o">=</span>develop
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PLATFORM:ubuntu2404,PRECICE_REF:develop"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span><span class="s2">"DEBUG"</span> <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div></div>
 
 <p>The <code class="language-plaintext highlighter-rouge">build_args</code> override the defaults set in <code class="language-plaintext highlighter-rouge">tools/tests/components.yaml</code>.</p>
@@ -7094,7 +7096,7 @@ The two options cannot be combined: defining any overrides to <code class="langu
   <li>In the <code class="language-plaintext highlighter-rouge">components.yaml</code>, add a new component, defining all the parameters that it might need.
     <ul>
       <li>Add these parameters into the <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code>.</li>
-      <li>Add fields for these parameters into the <code class="language-plaintext highlighter-rouge">system-tests-latest-components.yml</code> workflow.</li>
+      <li>Add fields for these parameters into the <code class="language-plaintext highlighter-rouge">system-tests-manual.yml</code> workflow.</li>
     </ul>
   </li>
   <li>In the <code class="language-plaintext highlighter-rouge">dockerfiles/&lt;platform&gt;/Dockerfile</code>, define a new stage for building your new component. Use the parameters you defined above.
@@ -7149,7 +7151,9 @@ The two options cannot be combined: defining any overrides to <code class="langu
     <li><code class="language-plaintext highlighter-rouge">.github/workflows/</code>
       <ul>
         <li><code class="language-plaintext highlighter-rouge">system-tests.yml</code>: workflow for running the tests, triggered by other workflows (e.g., other repositories)</li>
-        <li><code class="language-plaintext highlighter-rouge">system-tests-latest-components.yml</code>: manual triggering front-end for <code class="language-plaintext highlighter-rouge">system-tests.yml</code></li>
+        <li><code class="language-plaintext highlighter-rouge">system-tests-manual.yml</code>: manual triggering front-end for <code class="language-plaintext highlighter-rouge">system-tests.yml</code></li>
+        <li><code class="language-plaintext highlighter-rouge">system-tests-nightly.yml</code>: scheduled run of <code class="language-plaintext highlighter-rouge">system-tests.yml</code> (every night)</li>
+        <li><code class="language-plaintext highlighter-rouge">system-tests-weekly.yml</code>: scheduled run of <code class="language-plaintext highlighter-rouge">system-tests.yml</code> (once per week)</li>
       </ul>
     </li>
     <li><code class="language-plaintext highlighter-rouge">flow-over-a-heated-plate/</code>
@@ -7723,8 +7727,8 @@ The two options cannot be combined: defining any overrides to <code class="langu
         </a>
         </p>
         <p>
-        Page last updated: Jul 9, 2026<br>
-        Site last updated: Jul 11, 2026
+        Page last updated: Jul 12, 2026<br>
+        Site last updated: Jul 12, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
