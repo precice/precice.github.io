@@ -6,29 +6,29 @@
 
 <meta name="description" content="Micro Manager supports MPI parallelized micro solvers with multi-level parallelization.">
 
-<meta name="keywords" content=" tooling, macro-micro, parallelization, multi-level parallelization, workers, tasking">
+<meta name="keywords" content=" tooling, macro-micro, parallelization, two-level parallelization, workers, tasking">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Running with multi-level parallelization | preCICE - The Coupling Library</title>
+<title>Running with two-level parallelization | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Running with multi-level parallelization" />
+<meta property="og:title" content="Running with two-level parallelization" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://precice.org/tooling-micro-manager-multi-level-parallelization.html" />
+<meta property="og:url" content="https://precice.org/tooling-micro-manager-two-level-parallelization.html" />
 <meta property="og:image" content="https://precice.org/images/icon-310x310.png" />
 <meta property="og:description" content="Micro Manager supports MPI parallelized micro solvers with multi-level parallelization.">
 
 <!-- Twitter Card metadata -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Running with multi-level parallelization" />
+<meta name="twitter:title" content="Running with two-level parallelization" />
 <meta name="twitter:description" content="Micro Manager supports MPI parallelized micro solvers with multi-level parallelization.">
 <meta name="twitter:image" content="https://precice.org/images/icon-310x310.png" />
 
 <!-- Canonical link -->
-<link rel="canonical" href="https://precice.org/tooling-micro-manager-multi-level-parallelization" >
+<link rel="canonical" href="https://precice.org/tooling-micro-manager-two-level-parallelization" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1783913514">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1783913514">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783913514">
-<link rel="stylesheet" href="css/bookcover.css?v=1783913514">
+<link rel="stylesheet" href="css/customstyles.css?v=1783943936">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1783943936">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1783943936">
+<link rel="stylesheet" href="css/bookcover.css?v=1783943936">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1783913514">
+<link rel="stylesheet" href="css/theme-precice.css?v=1783943936">
 <!-- Styling for landing page -->
 
 
@@ -88,7 +88,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     var qrDiv = document.createElement("div");
     qrDiv.id = "print-qr-code";
     var qr = qrcode(0, "M");
-    qr.addData("https://precice.org/tooling-micro-manager-multi-level-parallelization.html");
+    qr.addData("https://precice.org/tooling-micro-manager-two-level-parallelization.html");
     qr.make();
     qrDiv.innerHTML = qr.createImgTag(3, 0);
     document.body.appendChild(qrDiv);
@@ -6837,7 +6837,7 @@ document.addEventListener('keydown', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Running with multi-level parallelization</h1>
+   <h1 class="post-title-main">Running with two-level parallelization</h1>
 </div>
 
 
@@ -6893,11 +6893,11 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-end">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/nested-parallelization.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/two-level-parallelization.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-end">
-              <small>Updated 03 Jul 26</small>
+              <small>Updated 13 Jul 26</small>
             </div>
           </aside>
           
@@ -6910,7 +6910,7 @@ $('#toc').on('click', 'a', function() {
 In this approach, each Micro Manager instance assumes, that micro simulations are either solved in serial or use shared-memory parallelization.
 If one attempts to run individual micro simulations with MPI, incorrect behavior occurs because different micro simulation instances communicate with each other. Further, this will likely lead to race conditions or deadlocks.</p>
 
-<p>To support MPI parallelization for individual micro simulations, multi-level parallelization is introduced. In this execution mode, each Micro Manager rank $n\in [N]$ creates its own sub-process group of $M$ ranks with MPI.
+<p>To support MPI parallelization for individual micro simulations, two-level parallelization is introduced. In this execution mode, each Micro Manager rank $n\in [N]$ creates its own sub-process group of $M$ ranks with MPI.
 This results in a total of $N\cdot M$ processes. Each subprocess group consisting of $M$ processes run a “worker” process. The subprocess groups are henceforth referred to as workers. The worker executable is a generic task handler. It receives incoming tasks, decodes them, solves the request, and sends back the results. Workers have a persistent storage, to which all incoming tasks have access.</p>
 
 <p>The Micro Manager deploys this parallelization by first initializing the persistent storage with Micro Manager-specific task classes and loading the relevant micro simulation classes.
@@ -7404,7 +7404,7 @@ The used nodes must be provided in a hostfile, otherwise all worker processes ar
         </a>
         </p>
         <p>
-        Page last updated: Jul 3, 2026<br>
+        Page last updated: Jul 13, 2026<br>
         Site last updated: Jul 13, 2026
         </p>
         <p>
