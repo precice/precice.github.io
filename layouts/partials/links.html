@@ -1,0 +1,16 @@
+{{- range $sidebarName := site.Params.sidebars -}}
+  {{- with (index hugo.Data.sidebars $sidebarName) -}}
+    {{- range .entries -}}
+      {{- range (.folders | default slice) -}}
+        {{- partial "links_entry.html" . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- range hugo.Data.topnav.topnav -}}
+  {{- range .items -}}
+    {{- if and .url (not .external_url) -}}
+[{{ .url | strings.TrimPrefix "/" | strings.TrimSuffix ".html" }}]: {{ .url | strings.TrimPrefix "/" }}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

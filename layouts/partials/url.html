@@ -1,0 +1,6 @@
+{{- $url := . -}}
+{{- if hasPrefix $url "http" -}}
+  {{- $url -}}
+{{- else -}}
+  {{- $url | relURL -}}
+{{- end -}}
