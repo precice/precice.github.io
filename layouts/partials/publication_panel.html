@@ -1,0 +1,87 @@
+{{- $input := . -}}
+{{- $pubPage := false -}}
+{{- $pubParams := dict -}}
+{{- $pubTitle := "" -}}
+{{- $title := $input.title | default "" -}}
+
+{{- with $input.pub -}}
+  {{- if reflect.IsMap . -}}
+    {{- $pubParams = . -}}
+    {{- $pubTitle = index . "title" -}}
+  {{- else -}}
+    {{- $pubPage = . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if and (not $pubPage) (not $pubTitle) $title -}}
+  {{- range where site.RegularPages "Section" "publications" -}}
+    {{- if and (not $pubPage) (eq .Title $title) -}}
+      {{- $pubPage = . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if and (not $pubPage) (not $pubTitle) $title -}}
+  {{- range $entry := readDir "collections/_publications" -}}
+    {{- if not $pubTitle -}}
+      {{- $path := printf "collections/_publications/%s" $entry.Name -}}
+      {{- $raw := readFile $path -}}
+      {{- $parts := split $raw "---" -}}
+      {{- if ge (len $parts) 3 -}}
+        {{- $frontMatter := index $parts 1 | transform.Unmarshal -}}
+        {{- if eq $frontMatter.title $title -}}
+          {{- $pubParams = $frontMatter -}}
+          {{- $pubTitle = $frontMatter.title -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with $pubPage -}}
+  {{- $pubParams = .Params -}}
+  {{- $pubTitle = .Title -}}
+{{- end -}}
+
+{{- if $pubTitle -}}
+  {{- $authors := index $pubParams "authors" -}}
+  {{- $year := index $pubParams "year" -}}
+  {{- $journal := index $pubParams "journal" | default dict -}}
+  {{- $doi := index $pubParams "doi" -}}
+  {{- $publisherURL := index $pubParams "pub-url" -}}
+  {{- with $doi }}{{ $publisherURL = printf "https://www.doi.org/%s" . }}{{ end -}}
+  {{- $useWrapper := true -}}
+  {{- if eq $input.wrapper false }}{{ $useWrapper = false }}{{ end -}}
+
+  {{ if $useWrapper }}<div class="row"><div class="col-md-10 offset-md-1">{{ end }}
+  <div class="card border-primary panel-precice">
+    <div class="card-header-precice">
+      <strong>{{ $pubTitle }}</strong>
+    </div>
+    <div class="card-body">
+      <p>
+        {{ if $input.flexible }}
+          <em>{{ $authors }}</em>{{ with (index $journal "name") }} {{ . }},{{ end }}{{ with (index $journal "volume") }} Volume {{ . }},{{ end }}{{ with (index $journal "publisher") }} {{ . }},{{ end }} {{ $year }}{{ if and $input.show_doi_in_body $doi }}, <a href="https://www.doi.org/{{ $doi }}">doi:{{ $doi }}</a>{{ end }}.
+        {{ else if (index $journal "issue") }}
+          <em>{{ $authors }}</em>,
+          {{ index $journal "name" }},
+          {{ $year }},
+          {{ index $journal "volume" }}:{{ index $journal "issue" }}{{ if and $input.show_doi_in_body $doi }}, <a href="https://www.doi.org/{{ $doi }}">doi:{{ $doi }}</a>{{ end }}.
+        {{ else }}
+          <em>{{ $authors }}</em>,
+          {{ index $journal "name" }}{{ with (index $journal "volume") }},
+          Volume {{ . }}{{ end }}{{ with (index $journal "publisher") }},
+          {{ . }}{{ end }},
+          {{ $year }}{{ if and $input.show_doi_in_body $doi }}, <a href="https://www.doi.org/{{ $doi }}">doi:{{ $doi }}</a>{{ end }}.
+        {{ end }}
+      </p>
+      {{ if and $input.flexible $input.require_pub_url }}
+        {{ with (index $pubParams "pub-url") }}<a href="{{ . }}">Publisher's site</a>&nbsp;&nbsp;{{ end }}
+      {{ else }}
+        {{ with $publisherURL }}<a href="{{ . }}">Publisher's site</a>&nbsp;&nbsp;{{ end }}
+      {{ end }}
+      {{ with (index $pubParams "bibtex") }}<a href="{{ printf "assets/%s" . | relURL }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>{{ end }}
+    </div>
+  </div>
+  {{ if $useWrapper }}</div></div>{{ end }}
+{{- end -}}
