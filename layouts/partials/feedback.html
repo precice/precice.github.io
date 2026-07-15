@@ -1,0 +1,8 @@
+{{- $feedbackText := site.Params.feedback_text | default "Feedback" -}}
+{{- with site.Params.feedback_link -}}
+<li><a class="email" title="Submit feedback" href="{{ . }}">{{ $feedbackText }}</a></li>
+{{- else -}}
+{{- $email := site.Params.feedback_email | default "" -}}
+{{- $subject := site.Params.feedback_subject_line | default "Website" -}}
+<li><a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:{{ $email }}?subject={{ $subject }} feedback&body=I have some feedback about the {{ .Title }} page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> {{ $feedbackText }}</a></li>
+{{- end -}}
