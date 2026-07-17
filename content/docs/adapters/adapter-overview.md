@@ -17,7 +17,7 @@ We host adapters for the following codes in the [preCICE GitHub organization](ht
 | [deal.II](https://www.dealii.org/) | preCICE Developers | [code](https://github.com/precice/dealii-adapter), [docs](adapter-dealii-overview.html) | Structure part in FSI, any FEM | |
 | [DuMuX](https://dumux.org/) | preCICE Developers | [code](https://github.com/precice/dumux-adapter), [docs](adapter-dumux.html) | Darcy-scale in multiscale, porous media | |
 | [DUNE](https://www.dune-project.org/) | preCICE Developers | [code](https://github.com/precice/dune-adapter), [docs](adapter-dune.html) | Structure part in FSI | |
-| [Legacy FEniCS](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | |
+| [FEniCS (leagcy)](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | |
 | [FEniCSx](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenicsx-adapter), [docs](adapter-fenicsx.html) | Structure part in CHT, any FEM | |
 | [Nutils](https://www.nutils.org/) | preCICE Developers | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
 | [OpenFOAM](https://www.openfoam.com/) | preCICE Developers | [code](https://github.com/precice/openfoam-adapter), [docs](adapter-openfoam-overview.html) | Fluid part in CHT, FSI, FF | |
