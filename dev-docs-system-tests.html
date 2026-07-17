@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1784207567">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1784207567">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1784207567">
-<link rel="stylesheet" href="css/bookcover.css?v=1784207567">
+<link rel="stylesheet" href="css/customstyles.css?v=1784258203">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1784258203">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1784258203">
+<link rel="stylesheet" href="css/bookcover.css?v=1784258203">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1784207567">
+<link rel="stylesheet" href="css/theme-precice.css?v=1784258203">
 <!-- Styling for landing page -->
 
 
@@ -6922,7 +6922,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 12 Jul 26</small>
+              <small>Updated 16 Jul 26</small>
             </div>
           </aside>
           
@@ -7163,9 +7163,12 @@ The two options cannot be combined: defining any overrides to <code class="langu
 
 <ol>
   <li>Add a workflow file to that repository (under <code class="language-plaintext highlighter-rouge">.github/workflows/</code>). Example: <a href="https://github.com/precice/openfoam-adapter/blob/develop/.github/workflows/system-tests.yaml">OpenFOAM adapter</a>.</li>
-  <li>Create label as a trigger for workflow (under <code class="language-plaintext highlighter-rouge">Issues</code>-&gt;<code class="language-plaintext highlighter-rouge">Labels</code>-&gt;<code class="language-plaintext highlighter-rouge">New label</code>).</li>
-  <li>Give permissions: In the <a href="https://github.com/organizations/precice/settings">preCICE organization settings</a>, you need to add the new repository to the action secret <code class="language-plaintext highlighter-rouge">WORKFLOW_DISPATCH_TOKEN</code> and to the default actions runner group. Adding the new label directly to the pull request in which you add the workflow should already trigger the system tests.</li>
+  <li>Create label as a trigger for workflow (under <code class="language-plaintext highlighter-rouge">Issues</code>-&gt;<code class="language-plaintext highlighter-rouge">Labels</code>-&gt;<code class="language-plaintext highlighter-rouge">New label</code>) with name <code class="language-plaintext highlighter-rouge">trigger-system-tests</code>. For consistency, set the color to <code class="language-plaintext highlighter-rouge">#34495E</code>.</li>
+  <li>Give permissions to trigger workflows: In the <a href="https://github.com/organizations/precice/settings/secrets/actions">organization actions sercets</a>, you need to add the new repository to the action secret <code class="language-plaintext highlighter-rouge">WORKFLOW_DISPATCH_TOKEN</code>.</li>
+  <li>Give permissions to use the runner: In the <a href="https://github.com/organizations/precice/settings/actions/runner-groups/">organization runner groups settings</a>, you need to add the new repository to the respective runner group.</li>
 </ol>
+
+<p>After these steps, adding the new label directly to the pull request in which you add the workflow should already trigger the system tests.</p>
 
 <h2 id="implementation-details">Implementation details</h2>
 
@@ -7774,8 +7777,8 @@ The two options cannot be combined: defining any overrides to <code class="langu
         </a>
         </p>
         <p>
-        Page last updated: Jul 12, 2026<br>
-        Site last updated: Jul 16, 2026
+        Page last updated: Jul 16, 2026<br>
+        Site last updated: Jul 17, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
