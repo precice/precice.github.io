@@ -17,7 +17,8 @@ We host adapters for the following codes in the [preCICE GitHub organization](ht
 | [deal.II](https://www.dealii.org/) | preCICE Developers | [code](https://github.com/precice/dealii-adapter), [docs](adapter-dealii-overview.html) | Structure part in FSI, any FEM | |
 | [DuMuX](https://dumux.org/) | preCICE Developers | [code](https://github.com/precice/dumux-adapter), [docs](adapter-dumux.html) | Darcy-scale in multiscale, porous media | |
 | [DUNE](https://www.dune-project.org/) | preCICE Developers | [code](https://github.com/precice/dune-adapter), [docs](adapter-dune.html) | Structure part in FSI | |
-| [FEniCS](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | See also [FEniCS-X](https://github.com/precice/fenicsx-adapter) below (WIP) |
+| [Legacy FEniCS](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | |
+| [FEniCSx](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenicsx-adapter), [docs](adapter-fenicsx.html) | Structure part in CHT, any FEM | |
 | [Nutils](https://www.nutils.org/) | preCICE Developers | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
 | [OpenFOAM](https://www.openfoam.com/) | preCICE Developers | [code](https://github.com/precice/openfoam-adapter), [docs](adapter-openfoam-overview.html) | Fluid part in CHT, FSI, FF | |
 | [SU2](https://su2code.github.io/) | preCICE Developers | [code](https://github.com/precice/su2-adapter), [docs](adapter-su2-overview.html) | Fluid part in FSI | [Maintainer needed](https://github.com/precice/su2-adapter/issues/16) |
@@ -38,7 +39,6 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [ExaDG](https://github.com/exadg/exadg) | [David Schneider, US](https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/) | [code](https://github.com/exadg/exadg/tree/master/applications/fluid_structure_interaction/perpendicular_flap) | Fluid or Structure part in FSI | |
 | [FASTEST](https://www.maschinenbau.tu-darmstadt.de/fnb/fnb_research/fnb_fastest/index.en.jsp) | [TU Darmstadt FNB](https://www.fnb.tu-darmstadt.de/) | None | Fluid-Structure-Acoustics interaction | |
 | [FEAP](http://projects.ce.berkeley.edu/feap/) | [TU Darmstadt FNB](https://www.fnb.tu-darmstadt.de/) | None | Structure part in FSI | |
-| [FEniCS-X](https://fenicsproject.org/) | [Benjamin Rodenberg, TUM](https://www.cs.cit.tum.de/sccs/personen/benjamin-rodenberg/) | [code](https://github.com/precice/fenicsx-adapter) | Structure part in CHT, FSI, any FEM | looking for maintainers! |
 | [G+Smo](https://gismo.github.io/) | [TU Delft Numerical Analysis](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics/numerical-analysis/) |[code](https://github.com/gismo/gsPreCICE) | Structure part in FSI ||
 | [ISSM](https://github.com/ISSMteam/ISSM) | [Daniel Abele](https://github.com/dabele), [DLR Software Technology](https://www.dlr.de/sc/) | [code](https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice) | Ice sheet model | |
 | [LIGGGHTS](https://www.cfdem.com/media/DEM/docu/Manual.html) | [via Discourse](https://precice.discourse.group/t/flexible-mesh-particle-coupling-with-precice/2616) | [code](https://github.com/r-walloner/LIGGGHTS-PUBLIC) | DEM part in CFD-DEM | see also: [validated case](https://doi.org/10.18419/DARUS-5494) |
