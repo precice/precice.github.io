@@ -13,6 +13,8 @@ Most of the solvers support a format that [ParaView](https://www.paraview.org/) 
 
 To visualize OpenFOAM results, you can either use the bundled OpenFOAM file reader (open the empty `.foam` or `.OpenFOAM` file you can find at the case directory), or convert the results to VTK with `foamToVTK` and load these files in ParaView.
 
+Note that there is a native reader of ParaView for OpenFOAM results, as well as readers bundled with the respective OpenFOAM installation. These might behave differently. In particular, in the past, we have noticed [visualization issues with `fixedGradient` boundary conditions](https://github.com/precice/tutorials/issues/229) in with the native reader. Prefer the newest available reader, ideally the one bundled with your OpenFOAM installation.
+
 Some versions of OpenFOAM [produce additional empty result files](https://github.com/precice/openfoam-adapter/issues/26) when using the preCICE-OpenFOAM adapter, which may lead to a strange "flashing" effect in animations. To work around this, we are [deleting such files in the end of each simulation](https://github.com/precice/tutorials/blob/master/tools/openfoam-remove-empty-dirs.sh).
 
 ## Visualizing CalculiX results
