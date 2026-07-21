@@ -39,7 +39,7 @@ Session: [MS070B](https://wccm-eccomas2026.org/event/session/f9207f47-4180-11f1-
 - [Simulation of Moving Electromagnetic Parts with Finite- and Boundary Elements](https://wccm-eccomas2026.org/event/contribution/003df3a4-ed50-11f0-b205-000c29ddfc0c) (Jürgen Zechner, TAILSIT GmbH, Austria)
 - [Partitioned Physics Coupling for Thermal Transport Problems in the Subsurface using preCICE](https://wccm-eccomas2026.org/event/contribution/5f3957a1-ed98-11f0-b205-000c29ddfc0c) (Orie Cecil, USACE ERDC, USA)
 - [Numerical Integration of OpenFOAM with BioDynaMo Using preCICE for Multiscale and Multiphysics Problems in (Bio)Physics](https://wccm-eccomas2026.org/event/contribution/3c79eade-05d9-11f1-919d-000c29ddfc0c) (Alexandros Iosif, University of Cyprus, Cyprus)
-- [Thermo-Mechanically Coupled FE–FFT Homogenization of Porous Materials](https://wccm-eccomas2026.org/event/contribution/b085c385-01cf-11f1-919d-000c29ddfc0c) (Julian Dahler, RPTU Kaiserslautern-Landau, Fraunhofer ITWM, Germany)
+- ~~[Thermo-Mechanically Coupled FE–FFT Homogenization of Porous Materials](https://wccm-eccomas2026.org/event/contribution/b085c385-01cf-11f1-919d-000c29ddfc0c) (Julian Dahler, RPTU Kaiserslautern-Landau, Fraunhofer ITWM, Germany)~~ (cancelled)
 
 At the end of the session, we will use the remaining time for an extended Q&A.
 
