@@ -63,7 +63,7 @@ We are organizing an informal coming together of the preCICE community at a rest
 
 - [Surrogate-assisted Partitioned Modeling of Fractures in Glacier Ice](https://wccm-eccomas2026.org/event/contribution/899b77c9-ec9f-11f0-b205-000c29ddfc0c) (Jun Chen, University of Stuttgart, Germany)
 
-11:30-13:00, in [MS057B Modeling of Glaciers and Ice Sheets II](https://wccm-eccomas2026.org/event/session/97e1e03e-4180-11f1-986a-000c29ddfc0c) (Wednesday, 11:30-13:00):
+11:30-13:00, in [MS057B Modeling of Glaciers and Ice Sheets II](https://wccm-eccomas2026.org/event/session/97e1e03e-4180-11f1-986a-000c29ddfc0c):
 
 - [Subglacial hydrology modelling: achievements and challenges in simulating entire ice sheets](https://wccm-eccomas2026.org/event/contribution/3e43245f-e017-11f0-b205-000c29ddfc0c) (Angelika Humbert, Alfred Wegener Institute, Germany)
 
@@ -76,3 +76,7 @@ We are organizing an informal coming together of the preCICE community at a rest
 11:30-13:00, in [MS007B Synthesizing Experimental and Computational Perspectives in Mechanics/Mechanobiology of Soft Tissues: Dialogue Towards Mechanistic Insight II](https://wccm-eccomas2026.org/event/session/f3b66475-417e-11f1-986a-000c29ddfc0c):
 
 - [A Multi-scale Framework for Electromechanical Simulations of Skeletal Muscle](https://wccm-eccomas2026.org/event/contribution/075a9ea3-fcf8-11f0-919d-000c29ddfc0c) (Carme Homs-Pons, University of Stuttgart, Germany)
+
+11:30-13:00, in [MS095D Advances and Challenges in Phase-Field Modeling and Computations IV](https://wccm-eccomas2026.org/event/session/b913823c-4181-11f1-986a-000c29ddfc0c):
+
+- [Fire-Structure Interaction: Toward a Hybrid Coupled Simulation Using Phase-Field for Unreinforced Concrete Under Fire](https://wccm-eccomas2026.org/event/contribution/649bd21a-efab-11f0-b205-000c29ddfc0c) (Chaitanya Kandekar, Helmut-Schmidt University Hamburg, Germany)
