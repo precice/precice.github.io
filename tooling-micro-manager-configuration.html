@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1784949445">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1784949445">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1784949445">
-<link rel="stylesheet" href="css/bookcover.css?v=1784949445">
+<link rel="stylesheet" href="css/customstyles.css?v=1785061570">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1785061570">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785061570">
+<link rel="stylesheet" href="css/bookcover.css?v=1785061570">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1784949445">
+<link rel="stylesheet" href="css/theme-precice.css?v=1785061570">
 <!-- Styling for landing page -->
 
 
@@ -6890,7 +6890,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 10 Jul 26</small>
+              <small>Updated 26 Jul 26</small>
             </div>
           </aside>
           
@@ -7089,11 +7089,12 @@ $('#toc').on('click', 'a', function() {
 <h2 id="interpolation">Interpolation</h2>
 
 <p>The Micro Manager allows configuring different interpolation profiles that can be reused by other modules such as adaptivity or crash interpolation.
-Each profile contains information on which interpolation method to use, a unique identifier, and the required parameters of the selected interpolation scheme.
+The solutions of inactive or crashed micro simulations are computed by interpolating the solutions of active problems.
+The interpolation is done in the parameter space of the provided source and destination fields.
+Each profile contains information on which interpolation method to use, a unique identifier, and the required parameters of the selected method.
 The profiles are referenced in other modules using the provided identifier.
-Profiles can be specified by providing <code class="language-plaintext highlighter-rouge">"interpolation_configs": []</code> in the <code class="language-plaintext highlighter-rouge">simulation_params</code>.</p>
-
-<p>This list provides interpolation configurations. Each configuration must contain a <code class="language-plaintext highlighter-rouge">type</code> and an <code class="language-plaintext highlighter-rouge">id</code>.
+Profiles can be specified by providing <code class="language-plaintext highlighter-rouge">"interpolation_configs": []</code> in the <code class="language-plaintext highlighter-rouge">simulation_params</code>.
+This list provides interpolation configurations. Each configuration must contain a <code class="language-plaintext highlighter-rouge">type</code> and an <code class="language-plaintext highlighter-rouge">id</code>.
 Further parameters are <code class="language-plaintext highlighter-rouge">type</code> dependent. Currently, two types are supported: k-Nearest Neighbors (KNN) and Radial Basis Function (RBF) interpolation.
 The unique <code class="language-plaintext highlighter-rouge">id</code> is required to load the respective interpolation configuration. Other modules can specify such via the field <code class="language-plaintext highlighter-rouge">interp_id</code>.</p>
 
@@ -7191,6 +7192,11 @@ The unique <code class="language-plaintext highlighter-rouge">id</code> is requi
       <td><code class="language-plaintext highlighter-rouge">None</code></td>
     </tr>
     <tr>
+      <td><code class="language-plaintext highlighter-rouge">n_neighbors</code></td>
+      <td>Number of neighboring micro simulations to use in interpolation.</td>
+      <td> </td>
+    </tr>
+    <tr>
       <td><code class="language-plaintext highlighter-rouge">domain_config</code></td>
       <td>Interpolation source domain. Either <code class="language-plaintext highlighter-rouge">"local"</code> or decomposed global.</td>
       <td> </td>
@@ -7198,7 +7204,7 @@ The unique <code class="language-plaintext highlighter-rouge">id</code> is requi
   </tbody>
 </table>
 
-<p>A selection of basis functions is available: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code>, <code class="language-plaintext highlighter-rouge">gauss</code>.
+<p>A selection of basis functions is available, the Wendland functions: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code>, and the Gaussian function: <code class="language-plaintext highlighter-rouge">gauss</code>.
 For rank local interpolation, <code class="language-plaintext highlighter-rouge">domain_config</code> can be set to <code class="language-plaintext highlighter-rouge">"local"</code>.
 If data should be shared across ranks for interpolation, then the domain must be further configured.
 To this end, spatial discretization techniques are used. For better performance, data can be projected to a lower-dimensional space
@@ -7215,12 +7221,12 @@ using the fields with the highest standard deviation.</p>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">basis/type</code></td>
-      <td>RBF basis function: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code>, <code class="language-plaintext highlighter-rouge">gauss</code></td>
+      <td>RBF basis function: <code class="language-plaintext highlighter-rouge">c0</code>, <code class="language-plaintext highlighter-rouge">c2</code>, <code class="language-plaintext highlighter-rouge">c4</code>, <code class="language-plaintext highlighter-rouge">c6</code>, <code class="language-plaintext highlighter-rouge">gauss</code>.</td>
       <td><code class="language-plaintext highlighter-rouge">None</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">basis/eps</code></td>
-      <td>Parameter if basis type is <code class="language-plaintext highlighter-rouge">gauss</code></td>
+      <td>Variance of the Gaussian function if the basis type is <code class="language-plaintext highlighter-rouge">gauss</code>.</td>
       <td><code class="language-plaintext highlighter-rouge">None</code></td>
     </tr>
     <tr>
@@ -7970,8 +7976,8 @@ Further crash handling options can be specified under the <code class="language-
         </a>
         </p>
         <p>
-        Page last updated: Jul 10, 2026<br>
-        Site last updated: Jul 25, 2026
+        Page last updated: Jul 26, 2026<br>
+        Site last updated: Jul 26, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
