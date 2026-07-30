@@ -4,31 +4,31 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="Archives of this documentation">
+<meta name="description" content="Supported CalculiX versions and porting the CalculiX adapter to a different CalculiX version.">
 
-<meta name="keywords" content=" pdf, export, archive, v1, v2">
+<meta name="keywords" content=" adapter, calculix, support, versions">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Previous versions | preCICE - The Coupling Library</title>
+<title>CalculiX support | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Previous versions" />
+<meta property="og:title" content="CalculiX support" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://precice.org/fundamentals-previous-versions.html" />
+<meta property="og:url" content="https://precice.org/adapter-calculix-calculix-support.html" />
 <meta property="og:image" content="https://precice.org/images/icon-310x310.png" />
-<meta property="og:description" content="Archives of this documentation">
+<meta property="og:description" content="Supported CalculiX versions and porting the CalculiX adapter to a different CalculiX version.">
 
 <!-- Twitter Card metadata -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Previous versions" />
-<meta name="twitter:description" content="Archives of this documentation">
+<meta name="twitter:title" content="CalculiX support" />
+<meta name="twitter:description" content="Supported CalculiX versions and porting the CalculiX adapter to a different CalculiX version.">
 <meta name="twitter:image" content="https://precice.org/images/icon-310x310.png" />
 
 <!-- Canonical link -->
-<link rel="canonical" href="https://precice.org/fundamentals-previous-versions" >
+<link rel="canonical" href="https://precice.org/adapter-calculix-calculix-support" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -88,7 +88,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     var qrDiv = document.createElement("div");
     qrDiv.id = "print-qr-code";
     var qr = qrcode(0, "M");
-    qr.addData("https://precice.org/fundamentals-previous-versions.html");
+    qr.addData("https://precice.org/adapter-calculix-calculix-support.html");
     qr.make();
     qrDiv.innerHTML = qr.createImgTag(3, 0);
     document.body.appendChild(qrDiv);
@@ -474,22 +474,29 @@ document.addEventListener('keydown', function(e) {
     
       
       
+      
+      
+    
   
 
   
+    
+  
 
+  
+    
   
 
   <li class="nav-item">
-    <a class="nav-link active"
+    <a class="nav-link collapsed"
        title="Fundamentals"
        data-bs-toggle="collapse" href="#sb-1-fundamentals"
        role="button"
-       aria-expanded="true"
+       aria-expanded="false"
        aria-controls="sb-1-fundamentals">
        Fundamentals
     </a>
-    <ul class="collapse show sidebar-nav flex-column list-unstyled mb-0"
+    <ul class="collapse  sidebar-nav flex-column list-unstyled mb-0"
         id="sb-1-fundamentals" data-bs-parent="#mysidebar">
 
       
@@ -683,7 +690,7 @@ document.addEventListener('keydown', function(e) {
 
   
   <li class="nav-item">
-    <a class="nav-link active"
+    <a class="nav-link "
        title="Previous versions" href="fundamentals-previous-versions.html">
        Previous versions
     </a>
@@ -6863,7 +6870,7 @@ document.addEventListener('keydown', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Previous versions</h1>
+   <h1 class="post-title-main">CalculiX support</h1>
 </div>
 
 
@@ -6873,7 +6880,7 @@ document.addEventListener('keydown', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        Archives of this documentation
+        Supported CalculiX versions and porting the CalculiX adapter to a different CalculiX version.
 
     </div>
     
@@ -6914,134 +6921,70 @@ $('#toc').on('click', 'a', function() {
           
           <aside>
             
+                
+                
+                
+                
                 <div class="text-end">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io/edit/master/content/docs/fundamentals/fundamentals-previous-versions.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/calculix-adapter/edit/develop/docs/adapter-calculix-calculix-support.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-end">
-              <small>Updated 30 Dec 25</small>
+              <small>Updated 30 Jul 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
-We only support the latest version of preCICE, but upgrading is easy: See our <a href="./couple-your-code-porting-overview.html">porting guides</a>.
+   <p>The CalculiX adapter directly modifies the source files of CalculiX and, as such, is made for a specific version of CalculiX.
+This page includes some hints on porting the adapter to different versions.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+Have you upgraded the supported CalculiX version to a newer one? Contribute back to the repository and make it available for everyone!
 </div>
 
-<p>We archive the documentation into a citable PDF file, while the <a href="https://web.archive.org/">Wayback Machine</a> archives this website:</p>
+<h2 id="porting-the-adapter-to-a-new-calculix-version">Porting the adapter to a new CalculiX version</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>preCICE</th>
-      <th>Docs</th>
-      <th>Website</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2024-04</td>
-      <td>v3.1.1</td>
-      <td><a href="https://darus.uni-stuttgart.de/file.xhtml?persistentId=doi:10.18419/DARUS-4167/4&amp;version=1.0">PDF</a></td>
-      <td><a href="https://web.archive.org/web/20240415175559/https://precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2022-11</td>
-      <td>v2.5.0</td>
-      <td><a href="https://darus.uni-stuttgart.de/file.xhtml?persistentId=doi:10.18419/DARUS-3576/3&amp;version=1.0">PDF</a></td>
-      <td><a href="https://web.archive.org/web/20221204210218/https://precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2022-02</td>
-      <td>v2.3.0</td>
-      <td><a href="https://darus.uni-stuttgart.de/file.xhtml?persistentId=doi:10.18419/DARUS-2613/4&amp;version=1.0">PDF</a></td>
-      <td><a href="https://web.archive.org/web/20220223051319/http://precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2021-04</td>
-      <td>v2.2.0</td>
-      <td><a href="https://darus.uni-stuttgart.de/file.xhtml?persistentId=doi:10.18419/DARUS-2125/15&amp;version=1.1">PDF</a></td>
-      <td><a href="https://web.archive.org/web/20210428101248/http://precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2020-10</td>
-      <td>v2.1.1</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/f6bfac33aa878ab3e89e60720894e4fe0a547ab4">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20201018162618/https://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2019-10</td>
-      <td>v1.6.1</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/05df6896b25f6b79e364c86befb4f4a00b3baebe">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20191121140032/https://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2019-07</td>
-      <td>v1.5.2</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/7a7ba28a760c1351e4a998228d4463b75451e171">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20190904131115/https://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2019-04</td>
-      <td>v1.4.1</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/8a7f236b7e63c1c1083a4c6720a5afd98e1e6558">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20190904131115/https://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2018-11</td>
-      <td>v1.3.0</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/d42969b39a4ecb9b079681c6ef87f084218008eb">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20181116031228/https://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2018-08</td>
-      <td>v1.2.0</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/45cbc46d9538321b4b6cfa589e9305a7f37b94e8">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20180814194446/precice.org">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2018-04</td>
-      <td>v1.1.1</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/0ee082ce45fc2ee6864a4ad08cae28980d6c4884">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20180409090831/http://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2018-03</td>
-      <td>v1.0.3</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/3473c633f5e24be96ee5c8e230efe25414b114e8">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20180309040600/http://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2017-11</td>
-      <td>v1.0.0</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/91b37e813b55c6a97cf9077efb9b15f3d7e0973c">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20171203212904/http://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2016-05</td>
-      <td>v0.x</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/1c800ca60691e5f48655a545bda653b096f8ed7b">Wiki</a></td>
-      <td><a href="https://web.archive.org/web/20160529052152/http://www.precice.org/">Archive</a></td>
-    </tr>
-    <tr>
-      <td>2015-05</td>
-      <td>v0.x</td>
-      <td><a href="https://github.com/precice/precice/wiki/Home/deb981d17dbb61edf1c1b48b000f3eb140f0fff4">Wiki</a></td>
-      <td>N/A</td>
-    </tr>
-  </tbody>
-</table>
+<p>When a new CalculiX version is released, some files need to be updated:</p>
 
-<p>The dates refer to the documentation snapshot, the website archives do not align, but are listed as starting points.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">CalculiX.h</code></li>
+  <li><code class="language-plaintext highlighter-rouge">nonlingeo_precice.c</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cxx_2._version_.c</code> (version-specific: a new file replaces the previous one)</li>
+</ul>
 
-<p>The PDF exports of the documentation are part of the citable <a href="./installation-distribution.html">preCICE Distribution</a> and correspond to <a href="https://github.com/precice/precice.github.io/tags">website repository tags</a>.</p>
+<p>The adapter files in the <code class="language-plaintext highlighter-rouge">adapter/</code> folder should continue working independently of the CalculiX version.</p>
 
-<p>Before preCICE v2.2.0, the documentation was hosted in a <a href="https://github.com/precice/precice/wiki/Home/f6bfac33aa878ab3e89e60720894e4fe0a547ab4">GitHub Wiki</a>. For each page you want to visit, append the revision id to the page URL.</p>
+<p>Overall, the main loop of the solver must be modified to insert preCICE calls (time-stepping, communication, checkpointing, …). The adapter files describe how these must be done (e.g. read data from CalculiX to write them into preCICE buffers, etc.).</p>
 
-<p>preCICE found its own home on GitHub and this website in late 2015, moving from a <a href="https://web.archive.org/web/20160101233101/http://www5.in.tum.de/wiki/index.php/PreCICE_Webpage">TUM website</a> and forge.</p>
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+It is easier and safer to re-apply the (few) adapter-specific changes in the source files of the specific CalculiX version, instead of updating the source files and resolving the merge conflicts.
+</div>
+
+<h3 id="file-calculixh">File CalculiX.h</h3>
+
+<p>Simply copy the one from CalculiX and add the declaration of a function called <code class="language-plaintext highlighter-rouge">nonlingeo_precice</code>, which is the same as the existing <code class="language-plaintext highlighter-rouge">nonlingeo</code> but with two additional arguments at the end of the list: <code class="language-plaintext highlighter-rouge">char *preciceParticipantName, char *configFilename</code>.</p>
+
+<h3 id="file-nonlingeo_precicec">File nonlingeo_precice.c</h3>
+
+<p>Copy the file <code class="language-plaintext highlighter-rouge">nonlingeo.c</code> from CalculiX and add the adapter code. Use as reference the previous version: the difference between your <code class="language-plaintext highlighter-rouge">nonlingeo_precice.c</code> and the corresponding <code class="language-plaintext highlighter-rouge">nonlingeo.c</code> should be similar to the difference between the previous <code class="language-plaintext highlighter-rouge">nonlingeo_precice.c</code> and the <code class="language-plaintext highlighter-rouge">nonlingeo.c</code> of the previous CalculiX version. A good way to see what must be done is to use a graphical diff tool (e.g., <a href="https://meldmerge.org/">Meld</a>). To make the diff smaller, try formatting the CalculiX code with the same <code class="language-plaintext highlighter-rouge">.clang-format</code> specification, or hiding whitespace changes and blank lines (e.g., with <code class="language-plaintext highlighter-rouge">diff -w -B</code>).</p>
+
+<p>Adapter-specific changes are documented with a comment of the form <code class="language-plaintext highlighter-rouge">/* Adapter: doing XXX*/</code>. Finding these (i.e., looking for occurrences of the word <code class="language-plaintext highlighter-rouge">Adapter</code>) in the current version of the adapter can help ensure you didn’t miss anything. <em>Return the courtesy by maintaining these comments!</em></p>
+
+<h3 id="file-ccx_xyyc">File ccx_X.YY.c</h3>
+
+<p>Once again, copy the corresponding file, and add the adapter-specific changes, as above:</p>
+
+<ul>
+  <li>Define the adapter-related variables</li>
+  <li>Parse command line arguments to see if and how preCICE is being used</li>
+  <li>If preCICE is being used, use the adapter-specific solver loop. This takes the form <code class="language-plaintext highlighter-rouge">if (preciceUsed) {custom loop} else if (some CCX code){...}</code>, replacing <code class="language-plaintext highlighter-rouge">if (some CCX code) {...}</code>.</li>
+</ul>
+
+<h2 id="bumping-versions">Bumping versions</h2>
+
+<p>There are several files where the CalculiX version or the adapter version and other details need to be updated. See the pull request template <code class="language-plaintext highlighter-rouge">.github/PULL_REQUEST_TEMPLATE/release.md</code> for a checklist.</p>
 
 
     
@@ -7106,12 +7049,7 @@ We only support the latest version of preCICE, but upgrading is easy: See our <a
 
 
 
-,{
-  "@type": "ListItem",
-  "position": 2,
-  "name": "Previous versions",
-  "item": "https://precice.org/fundamentals-previous-versions.html"
-}
+
 
 
 
@@ -7424,7 +7362,7 @@ We only support the latest version of preCICE, but upgrading is easy: See our <a
         </a>
         </p>
         <p>
-        Page last updated: Dec 30, 2025<br>
+        Page last updated: Jul 30, 2026<br>
         Site last updated: Jul 30, 2026
         </p>
         <p>
