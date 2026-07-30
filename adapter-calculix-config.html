@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1785207298">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1785207298">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785207298">
-<link rel="stylesheet" href="css/bookcover.css?v=1785207298">
+<link rel="stylesheet" href="css/customstyles.css?v=1785404024">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1785404024">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785404024">
+<link rel="stylesheet" href="css/bookcover.css?v=1785404024">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1785207298">
+<link rel="stylesheet" href="css/theme-precice.css?v=1785404024">
 <!-- Styling for landing page -->
 
 
@@ -6822,7 +6822,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 09 Jul 26</small>
+              <small>Updated 30 Jul 26</small>
             </div>
           </aside>
           
@@ -7131,15 +7131,18 @@ This section might be incomplete or contain inaccuracies. Help improve this page
 Rename this file to <code class="language-plaintext highlighter-rouge">&lt;name&gt;.rin</code>.</p>
   </li>
   <li>
-    <p>To restart the simulation, we need the following line in the input file, before the <code class="language-plaintext highlighter-rouge">STEP</code> definition:</p>
+    <p>To restart a simulation, remove the mesh, material, and *INCLUDE sections from the input (.inp) file, keep/adapt the *STEP section(s), and add the following line as the first line of the file:</p>
+
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*RESTART,READ
+</code></pre></div>    </div>
+
+    <p>or</p>
+
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*RESTART,READ,STEP=1
+</code></pre></div>    </div>
+
+    <p>For every new step of restarting the simulation, increase the respective number: when you restart again to go further beyond in time, set <code class="language-plaintext highlighter-rouge">STEP=2</code>.</p>
   </li>
-</ol>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  *RESTART,READ,STEP=1
-</code></pre></div></div>
-
-<p>For every new step of restarting the simulation, increase the respective number: when you restart again to go further beyond in time, set <code class="language-plaintext highlighter-rouge">STEP=2</code>.</p>
-<ol>
   <li>
     <p>Since all the rest of the configuration is included in the restart file, we need to remove the rest of the definitions. In the end, the input file should look like this:</p>
 
@@ -7534,8 +7537,8 @@ Rename this file to <code class="language-plaintext highlighter-rouge">&lt;name&
         </a>
         </p>
         <p>
-        Page last updated: Jul 9, 2026<br>
-        Site last updated: Jul 28, 2026
+        Page last updated: Jul 30, 2026<br>
+        Site last updated: Jul 30, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
