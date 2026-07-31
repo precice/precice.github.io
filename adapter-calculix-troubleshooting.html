@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1785468600">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1785468600">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785468600">
-<link rel="stylesheet" href="css/bookcover.css?v=1785468600">
+<link rel="stylesheet" href="css/customstyles.css?v=1785506957">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1785506957">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785506957">
+<link rel="stylesheet" href="css/bookcover.css?v=1785506957">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1785468600">
+<link rel="stylesheet" href="css/theme-precice.css?v=1785506957">
 <!-- Styling for landing page -->
 
 
@@ -6841,7 +6841,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 30 Jul 26</small>
+              <small>Updated 31 Jul 26</small>
             </div>
           </aside>
           
@@ -6867,6 +6867,37 @@ $('#toc').on('click', 'a', function() {
     </ul>
   </li>
 </ul>
+
+<h2 id="compiling-with-gcc-10-or-newer">Compiling with GCC 10 or newer</h2>
+
+<p>If you compile the adapter (v2.20.1 or earlier) with GCC 10 or newer, you will get the following error, originating from CalculiX:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+</code></pre></div></div>
+
+<p>To work around this, you need to add <code class="language-plaintext highlighter-rouge">-fallow-argument-mismatch</code> to the <code class="language-plaintext highlighter-rouge">FFLAGS</code> inside <code class="language-plaintext highlighter-rouge">Makefile</code>:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- FFLAGS = -Wall -O3 -fopenmp $(INCLUDES)
+</span><span class="gi">+ FFLAGS = -Wall -O3 -fopenmp -fallow-argument-mismatch $(INCLUDES)
+</span></code></pre></div></div>
+
+<h2 id="compiling-with-intel-oneapi">Compiling with Intel OneAPI</h2>
+
+<p>If you compile the adapter with Intel OneAPI, you will get the following error at link time, originating from CalculiX:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>undefined reference to MAIN__
+</code></pre></div></div>
+
+<p>To work around this, you need to add the <code class="language-plaintext highlighter-rouge">-nofor-main</code> to the <code class="language-plaintext highlighter-rouge">FFLAGS</code> inside <code class="language-plaintext highlighter-rouge">Makefile</code>. The easiest way is to define <code class="language-plaintext highlighter-rouge">ADDITIONAL_FFLAGS</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">ADDITIONAL_FFLAGS</span><span class="o">=</span><span class="s2">"-nofor-main</span><span class="sb">`</span> make
+</code></pre></div></div>
+
+<p>to specify that the main program is not written in Fortran. Read more in the <a href="https://www.intel.com/content/www/us/en/docs/fortran-compiler/developer-guide-reference/2026-1/nofor-main.html">Intel compiler reference</a>.</p>
+
+<h2 id="undefined-references-to-spooles-functions">Undefined references to SPOOLES functions</h2>
+
+<p>On systems where both <code class="language-plaintext highlighter-rouge">spoolesMT.a</code> (multithreading) and <code class="language-plaintext highlighter-rouge">spooles.a</code> are available, you might get undefined references to SPOOLES. In that case, you might need to modify <code class="language-plaintext highlighter-rouge">SPOOLES_LIBS</code> in the <code class="language-plaintext highlighter-rouge">Makefile</code> to include the paths to both <code class="language-plaintext highlighter-rouge">spoolesMT.a</code> and to <code class="language-plaintext highlighter-rouge">spooles.a</code>, in this order.</p>
 
 
     
@@ -7244,7 +7275,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Jul 30, 2026<br>
+        Page last updated: Jul 31, 2026<br>
         Site last updated: Jul 31, 2026
         </p>
         <p>

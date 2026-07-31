@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1785468600">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1785468600">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785468600">
-<link rel="stylesheet" href="css/bookcover.css?v=1785468600">
+<link rel="stylesheet" href="css/customstyles.css?v=1785506957">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1785506957">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785506957">
+<link rel="stylesheet" href="css/bookcover.css?v=1785506957">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1785468600">
+<link rel="stylesheet" href="css/theme-precice.css?v=1785506957">
 <!-- Styling for landing page -->
 
 
@@ -6823,7 +6823,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 30 Jul 26</small>
+              <small>Updated 31 Jul 26</small>
             </div>
           </aside>
           
@@ -6935,29 +6935,7 @@ The variables <code class="language-plaintext highlighter-rouge">YAML_INCLUDE</c
 
 <p>You may also want to adjust the compiler <code class="language-plaintext highlighter-rouge">FC</code> from <code class="language-plaintext highlighter-rouge">mpifort</code> to <code class="language-plaintext highlighter-rouge">mpif90</code> or to any other compiler your system uses.</p>
 
-<h3 id="compiling-with-gcc-10-or-newer">Compiling with GCC 10 or newer</h3>
-
-<p>If you compile the adapter (v2.20.1 or earlier) with GCC 10 or newer, you will get the following error, originating from CalculiX:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
-</code></pre></div></div>
-
-<p>To work around this, you need to add <code class="language-plaintext highlighter-rouge">-fallow-argument-mismatch</code> to the <code class="language-plaintext highlighter-rouge">FFLAGS</code> inside <code class="language-plaintext highlighter-rouge">Makefile</code>:</p>
-
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- FFLAGS = -Wall -O3 -fopenmp $(INCLUDES)
-</span><span class="gi">+ FFLAGS = -Wall -O3 -fopenmp -fallow-argument-mismatch $(INCLUDES)
-</span></code></pre></div></div>
-
-<h3 id="notes-on-precice-versions">Notes on preCICE versions</h3>
-
-<details>
-  <summary>In case you are using some very old preCICE version, please upgrade. Our <a href="https://precice.discourse.group/" title="preCICE forum">community</a> is happy to help you. Click here and keep reading if you loved preCICE v1.x and (optionally) wish The Beatles were still around.</summary>
-
-  <ol>
-    <li>This adapter uses the preCICE C bindings via pkg-config. In other words, this assumes that preCICE (at least v1.5.0) has been built &amp; installed with CMake (e.g. using a Debian package). In case you want to keep using preCICE built with SCons, see the changes invoked by <a href="https://github.com/precice/calculix-adapter/pull/14">Pull Request #14</a>.</li>
-  </ol>
-
-</details>
+<p>See also the <a href="adapter-calculix-troubleshooting.html">troubleshooting</a> page for further known issues.</p>
 
 
     
@@ -7335,7 +7313,7 @@ The variables <code class="language-plaintext highlighter-rouge">YAML_INCLUDE</c
         </a>
         </p>
         <p>
-        Page last updated: Jul 30, 2026<br>
+        Page last updated: Jul 31, 2026<br>
         Site last updated: Jul 31, 2026
         </p>
         <p>
