@@ -24,7 +24,9 @@
 <meta name="twitter:title" content="{{ .Title }}">
 {{ with $description }}<meta name="twitter:description" content="{{ . }}">{{ end }}
 <meta name="twitter:image" content="{{ "/images/icon-310x310.png" | absURL }}">
-<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ "feed.xml" | absURL }}">
+{{ with site.Home.OutputFormats.Get "rss" }}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" title="{{ site.Title }}" href="{{ .Permalink | safeURL }}">
+{{ end }}
 <link rel="stylesheet" href="{{ "css/fontawesome.6.7.2.all.min.css" | relURL }}">
 <link rel="stylesheet" href="{{ "css/bootstrap.min.css" | relURL }}">
 <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
@@ -86,4 +88,3 @@
 
 <!-- Plausible Analytics -->
 <script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
-
