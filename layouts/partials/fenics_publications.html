@@ -1,0 +1,11 @@
+{{- $title := "FEniCS–preCICE: Coupling FEniCS to other simulation software" -}}
+{{- $publications := where site.RegularPages "Section" "publications" -}}
+{{- $citation := where $publications "Title" $title -}}
+
+<h2>How to cite</h2>
+{{- with index $citation 0 -}}
+  {{- partial "publication_panel.html" (dict "pub" . "flexible" true) -}}
+{{- end -}}
+
+<h2>Related literature</h2>
+{{- partial "publications_by_tag.html" (dict "tag" "fenics") -}}

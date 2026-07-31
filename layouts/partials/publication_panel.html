@@ -21,23 +21,6 @@
   {{- end -}}
 {{- end -}}
 
-{{- if and (not $pubPage) (not $pubTitle) $title -}}
-  {{- range $entry := readDir "collections/_publications" -}}
-    {{- if not $pubTitle -}}
-      {{- $path := printf "collections/_publications/%s" $entry.Name -}}
-      {{- $raw := readFile $path -}}
-      {{- $parts := split $raw "---" -}}
-      {{- if ge (len $parts) 3 -}}
-        {{- $frontMatter := index $parts 1 | transform.Unmarshal -}}
-        {{- if eq $frontMatter.title $title -}}
-          {{- $pubParams = $frontMatter -}}
-          {{- $pubTitle = $frontMatter.title -}}
-        {{- end -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-
 {{- with $pubPage -}}
   {{- $pubParams = .Params -}}
   {{- $pubTitle = .Title -}}
