@@ -21,7 +21,7 @@ Some versions of OpenFOAM [produce additional empty result files](https://github
 
 CalculiX exports results in its own `.frd` format, which you can visualize in CalculiX CGX (`cgx flap.frd`). In the CGX window, you can click-and-hold to select different times and fields, or to animate the geometry.
 
-If you prefer to work with VTK files, you can also use tools such as [ccx2paraview](https://github.com/calculix/ccx2paraview) or a converter included in the [calculix-adapter/tools](https://github.com/precice/calculix-adapter/tree/master/tools) directory. A more complete pre- and post-processing tool for CalculiX is [PrePoMax](https://prepomax.fs.um.si/) (open-source, only available for Windows).
+If you prefer to work with VTK files, you can also use tools such as [ccx2paraview](https://github.com/calculix/ccx2paraview) or a converter included in a [previous release of the CalculiX adapter](https://github.com/precice/calculix-adapter/tree/v2.20.1/tools/frdConverter). A more complete pre- and post-processing tool for CalculiX is [PrePoMax](https://prepomax.fs.um.si/) (open-source, only available for Windows).
 
 If you want to process CalculiX results in Python, [PyVista](https://docs.pyvista.org/) provides a [`.frd` reader](https://docs.pyvista.org/api/readers/_autosummary/pyvista.frdreader) since v0.48.
 
