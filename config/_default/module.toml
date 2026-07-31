@@ -1,529 +1,411 @@
-[[mounts]]
-source = "_data"
-target = "data"
-
-# Read the existing website content while excluding Jekyll's homepage, which
-# Hugo would otherwise interpret as a leaf bundle at the content root.
-[[mounts]]
-source = "content"
-target = "content"
-files = ["! index.html"]
-
-[[mounts]]
-source = "faq.html"
-target = "content/faq/_index.html"
-
-[[mounts]]
-source = "collections/_publications"
-target = "content/publications"
-
-[[mounts]]
-source = "collections/_testimonials"
-target = "content/testimonials"
-
-# Reuse the existing site styles while the Hugo layouts are still minimal.
-[[mounts]]
-source = "css"
-target = "static/css"
-
-[[mounts]]
-source = "js"
-target = "static/js"
-
-[[mounts]]
-source = "assets"
-target = "static/assets"
-
-[[mounts]]
-source = "images"
-target = "static/images"
-
-[[mounts]]
-source = "fonts"
-target = "static/fonts"
-
-[[mounts]]
-source = "webfonts"
-target = "static/webfonts"
-
 # CalculiX adapter
-[[mounts]]
-source = "imported/calculix-adapter/docs/adapter-calculix-overview.md"
-target = "content/docs/adapters/calculix/_index.md"
+[[imports]]
+path = "github.com/precice/calculix-adapter"
 
-[[mounts]]
-source = "imported/calculix-adapter/docs"
-target = "content/docs/adapters/calculix"
-files = ["! adapter-calculix-overview.md"]
+  [[imports.mounts]]
+  source = "docs/adapter-calculix-overview.md"
+  target = "content/docs/adapters/calculix/_index.md"
+
+  [[imports.mounts]]
+  source = "docs"
+  target = "content/docs/adapters/calculix"
+  files = ["! adapter-calculix-overview.md"]
 
 # code_aster adapter
-[[mounts]]
-source = "imported/code_aster-adapter/docs/adapter-code_aster.md"
-target = "content/docs/adapters/code_aster/_index.md"
+[[imports]]
+path = "github.com/precice/code_aster-adapter"
 
-[[mounts]]
-source = "imported/code_aster-adapter/docs/images"
-target = "content/docs/adapters/code_aster/images"
+  [[imports.mounts]]
+  source = "docs/adapter-code_aster.md"
+  target = "content/docs/adapters/code_aster/_index.md"
 
-[[mounts]]
-source = "imported/code_aster-adapter/docs/thesis-excerpt-cheung.pdf"
-target = "content/docs/adapters/code_aster/thesis-excerpt-cheung.pdf"
+  [[imports.mounts]]
+  source = "docs/images"
+  target = "content/docs/adapters/code_aster/images"
+
+  [[imports.mounts]]
+  source = "docs/thesis-excerpt-cheung.pdf"
+  target = "content/docs/adapters/code_aster/thesis-excerpt-cheung.pdf"
 
 # deal.II adapter
-[[mounts]]
-source = "imported/dealii-adapter/docs/adapter-dealii-overview.md"
-target = "content/docs/adapters/dealii/_index.md"
+[[imports]]
+path = "github.com/precice/dealii-adapter"
 
-[[mounts]]
-source = "imported/dealii-adapter/docs"
-target = "content/docs/adapters/dealii"
-files = ["! adapter-dealii-overview.md"]
+  [[imports.mounts]]
+  source = "docs/adapter-dealii-overview.md"
+  target = "content/docs/adapters/dealii/_index.md"
+
+  [[imports.mounts]]
+  source = "docs"
+  target = "content/docs/adapters/dealii"
+  files = ["! adapter-dealii-overview.md"]
 
 # DuMuX adapter
-[[mounts]]
-source = "imported/dumux-adapter/docs/overview.md"
-target = "content/docs/adapters/dumux/_index.md"
+[[imports]]
+path = "github.com/precice/dumux-adapter"
 
-[[mounts]]
-source = "imported/dumux-adapter/docs"
-target = "content/docs/adapters/dumux"
-files = ["! overview.md"]
+  [[imports.mounts]]
+  source = "docs/overview.md"
+  target = "content/docs/adapters/dumux/_index.md"
+
+  [[imports.mounts]]
+  source = "docs"
+  target = "content/docs/adapters/dumux"
+  files = ["! overview.md"]
 
 # DUNE adapter
-[[mounts]]
-source = "imported/dune-adapter/docs/overview.md"
-target = "content/docs/adapters/dune/_index.md"
+[[imports]]
+path = "github.com/precice/dune-adapter"
+
+  [[imports.mounts]]
+  source = "docs/overview.md"
+  target = "content/docs/adapters/dune/_index.md"
 
 # FEniCS adapter
-[[mounts]]
-source = "imported/fenics-adapter/docs/adapter-fenics.md"
-target = "content/docs/adapters/fenics/_index.md"
+[[imports]]
+path = "github.com/precice/fenics-adapter"
 
-[[mounts]]
-source = "imported/fenics-adapter/docs"
-target = "content/docs/adapters/fenics"
-files = ["! adapter-fenics.md", "! ReleaseGuide.md"]
+  [[imports.mounts]]
+  source = "docs/adapter-fenics.md"
+  target = "content/docs/adapters/fenics/_index.md"
+
+  [[imports.mounts]]
+  source = "docs"
+  target = "content/docs/adapters/fenics"
+  files = ["! adapter-fenics.md", "! ReleaseGuide.md"]
 
 # FEniCSx adapter
-[[mounts]]
-source = "imported/fenicsx-adapter/docs/README.md"
-target = "content/docs/adapters/fenicsx/_index.md"
+[[imports]]
+path = "github.com/precice/fenicsx-adapter"
+
+  [[imports.mounts]]
+  source = "docs/README.md"
+  target = "content/docs/adapters/fenicsx/_index.md"
 
 # OpenFOAM adapter
-[[mounts]]
-source = "imported/openfoam-adapter/docs/README.md"
-target = "content/docs/adapters/openfoam/_index.md"
+[[imports]]
+path = "github.com/precice/openfoam-adapter"
 
-[[mounts]]
-source = "imported/openfoam-adapter/docs"
-target = "content/docs/adapters/openfoam"
-files = ["! README.md", "! images/docs-adapter-openfoam-implicit-loop-src.md"]
+  [[imports.mounts]]
+  source = "docs/README.md"
+  target = "content/docs/adapters/openfoam/_index.md"
+
+  [[imports.mounts]]
+  source = "docs"
+  target = "content/docs/adapters/openfoam"
+  files = ["! README.md", "! images/docs-adapter-openfoam-implicit-loop-src.md"]
 
 # SU2 adapter
-[[mounts]]
-source = "imported/su2-adapter/docs/overview.md"
-target = "content/docs/adapters/su2/_index.md"
+[[imports]]
+path = "github.com/precice/su2-adapter"
 
-[[mounts]]
-source = "imported/su2-adapter/docs"
-target = "content/docs/adapters/su2"
-files = ["! overview.md"]
+  [[imports.mounts]]
+  source = "docs/overview.md"
+  target = "content/docs/adapters/su2/_index.md"
+
+  [[imports.mounts]]
+  source = "docs"
+  target = "content/docs/adapters/su2"
+  files = ["! overview.md"]
 
 # ASTE
-[[mounts]]
-source = "imported/aste/docs/README.md"
-target = "content/docs/tooling/aste/_index.md"
+[[imports]]
+path = "github.com/precice/aste"
+
+  [[imports.mounts]]
+  source = "docs/README.md"
+  target = "content/docs/tooling/aste/_index.md"
 
 # FMI runner
-[[mounts]]
-source = "imported/fmi-runner/docs/README.md"
-target = "content/docs/tooling/fmi-runner/_index.md"
+[[imports]]
+path = "github.com/precice/fmi-runner"
 
-[[mounts]]
-source = "imported/fmi-runner/docs/images"
-target = "content/docs/tooling/fmi-runner/images"
+  [[imports.mounts]]
+  source = "docs/README.md"
+  target = "content/docs/tooling/fmi-runner/_index.md"
+
+  [[imports.mounts]]
+  source = "docs/images"
+  target = "content/docs/tooling/fmi-runner/images"
 
 # Micro Manager
-[[mounts]]
-source = "imported/micro-manager/docs/README.md"
-target = "content/docs/tooling/micro-manager/_index.md"
+[[imports]]
+path = "github.com/precice/micro-manager"
 
-[[mounts]]
-source = "imported/micro-manager/docs"
-target = "content/docs/tooling/micro-manager"
-files = ["! README.md", "! ReleaseGuide.md"]
+  [[imports.mounts]]
+  source = "docs/README.md"
+  target = "content/docs/tooling/micro-manager/_index.md"
+
+  [[imports.mounts]]
+  source = "docs"
+  target = "content/docs/tooling/micro-manager"
+  files = ["! README.md", "! ReleaseGuide.md"]
 
 # preECO guidelines
-[[mounts]]
-source = "imported/preeco-orga/guidelines/guidelines-adapters.md"
-target = "content/community/contribute/guidelines/_index.md"
-
-[[mounts]]
-source = "imported/preeco-orga/guidelines"
-target = "content/community/contribute/guidelines"
-files = ["! guidelines-adapters.md"]
-
-# Tutorial: aste turbine
-[[mounts]]
-source = "imported/tutorials/aste-turbine/README.md"
-target = "content/tutorials/aste-turbine/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/aste-turbine/images"
-target = "content/tutorials/aste-turbine/images"
-
-# Tutorial: breaking dam 2d
-[[mounts]]
-source = "imported/tutorials/breaking-dam-2d/README.md"
-target = "content/tutorials/breaking-dam-2d/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/breaking-dam-2d/images"
-target = "content/tutorials/breaking-dam-2d/images"
-
-# Tutorial: channel transport
-[[mounts]]
-source = "imported/tutorials/channel-transport/README.md"
-target = "content/tutorials/channel-transport/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/channel-transport/images"
-target = "content/tutorials/channel-transport/images"
-
-# Tutorial: channel transport particles
-[[mounts]]
-source = "imported/tutorials/channel-transport-particles/README.md"
-target = "content/tutorials/channel-transport-particles/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/channel-transport-particles/images"
-target = "content/tutorials/channel-transport-particles/images"
-
-# Tutorial: channel transport reaction
-[[mounts]]
-source = "imported/tutorials/channel-transport-reaction/README.md"
-target = "content/tutorials/channel-transport-reaction/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/channel-transport-reaction/images"
-target = "content/tutorials/channel-transport-reaction/images"
-
-# Tutorial: elastic tube 1d
-[[mounts]]
-source = "imported/tutorials/elastic-tube-1d/README.md"
-target = "content/tutorials/elastic-tube-1d/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/elastic-tube-1d/images"
-target = "content/tutorials/elastic-tube-1d/images"
-
-# Tutorial: elastic tube 3d
-[[mounts]]
-source = "imported/tutorials/elastic-tube-3d/README.md"
-target = "content/tutorials/elastic-tube-3d/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/elastic-tube-3d/images"
-target = "content/tutorials/elastic-tube-3d/images"
-
-# Tutorial: flow around controlled moving cylinder
-[[mounts]]
-source = "imported/tutorials/flow-around-controlled-moving-cylinder/README.md"
-target = "content/tutorials/flow-around-controlled-moving-cylinder/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/flow-around-controlled-moving-cylinder/images"
-target = "content/tutorials/flow-around-controlled-moving-cylinder/images"
-
-# Tutorial: flow over heated plate
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate/README.md"
-target = "content/tutorials/flow-over-heated-plate/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate/images"
-target = "content/tutorials/flow-over-heated-plate/images"
-
-# Tutorial: flow over heated plate nearest projection
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate-nearest-projection/README.md"
-target = "content/tutorials/flow-over-heated-plate-nearest-projection/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate-nearest-projection/images"
-target = "content/tutorials/flow-over-heated-plate-nearest-projection/images"
-
-# Tutorial: flow over heated plate partitioned flow
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate-partitioned-flow/README.md"
-target = "content/tutorials/flow-over-heated-plate-partitioned-flow/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate-partitioned-flow/images"
-target = "content/tutorials/flow-over-heated-plate-partitioned-flow/images"
-
-# Tutorial: flow over heated plate steady state
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate-steady-state/README.md"
-target = "content/tutorials/flow-over-heated-plate-steady-state/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate-steady-state/images"
-target = "content/tutorials/flow-over-heated-plate-steady-state/images"
-
-# Tutorial: flow over heated plate two meshes
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate-two-meshes/README.md"
-target = "content/tutorials/flow-over-heated-plate-two-meshes/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/flow-over-heated-plate-two-meshes/images"
-target = "content/tutorials/flow-over-heated-plate-two-meshes/images"
-
-# Tutorial: free flow over porous media
-[[mounts]]
-source = "imported/tutorials/free-flow-over-porous-media/README.md"
-target = "content/tutorials/free-flow-over-porous-media/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/free-flow-over-porous-media/images"
-target = "content/tutorials/free-flow-over-porous-media/images"
-
-# Tutorial: heat exchanger
-[[mounts]]
-source = "imported/tutorials/heat-exchanger/README.md"
-target = "content/tutorials/heat-exchanger/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/heat-exchanger/images"
-target = "content/tutorials/heat-exchanger/images"
-
-# Tutorial: heat exchanger simplified
-[[mounts]]
-source = "imported/tutorials/heat-exchanger-simplified/README.md"
-target = "content/tutorials/heat-exchanger-simplified/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/heat-exchanger-simplified/images"
-target = "content/tutorials/heat-exchanger-simplified/images"
-
-# Tutorial: multiple perpendicular flaps
-[[mounts]]
-source = "imported/tutorials/multiple-perpendicular-flaps/README.md"
-target = "content/tutorials/multiple-perpendicular-flaps/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/multiple-perpendicular-flaps/images"
-target = "content/tutorials/multiple-perpendicular-flaps/images"
-
-# Tutorial: oscillator
-[[mounts]]
-source = "imported/tutorials/oscillator/README.md"
-target = "content/tutorials/oscillator/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/oscillator/images"
-target = "content/tutorials/oscillator/images"
-
-# Tutorial: oscillator overlap
-[[mounts]]
-source = "imported/tutorials/oscillator-overlap/README.md"
-target = "content/tutorials/oscillator-overlap/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/oscillator-overlap/images"
-target = "content/tutorials/oscillator-overlap/images"
-
-# Tutorial: partitioned backwards facing step
-[[mounts]]
-source = "imported/tutorials/partitioned-backwards-facing-step/README.md"
-target = "content/tutorials/partitioned-backwards-facing-step/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-backwards-facing-step/images"
-target = "content/tutorials/partitioned-backwards-facing-step/images"
-
-# Tutorial: partitioned burgers 1d
-[[mounts]]
-source = "imported/tutorials/partitioned-burgers-1d/README.md"
-target = "content/tutorials/partitioned-burgers-1d/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-burgers-1d/images"
-target = "content/tutorials/partitioned-burgers-1d/images"
-
-# Tutorial: partitioned elastic beam
-[[mounts]]
-source = "imported/tutorials/partitioned-elastic-beam/README.md"
-target = "content/tutorials/partitioned-elastic-beam/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-elastic-beam/images"
-target = "content/tutorials/partitioned-elastic-beam/images"
-
-# Tutorial: partitioned heat conduction
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction/README.md"
-target = "content/tutorials/partitioned-heat-conduction/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction/images"
-target = "content/tutorials/partitioned-heat-conduction/images"
-
-# Tutorial: partitioned heat conduction 3d
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction-3d/README.md"
-target = "content/tutorials/partitioned-heat-conduction-3d/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction-3d/images"
-target = "content/tutorials/partitioned-heat-conduction-3d/images"
-
-# Tutorial: partitioned heat conduction complex
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction-complex/README.md"
-target = "content/tutorials/partitioned-heat-conduction-complex/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction-complex/images"
-target = "content/tutorials/partitioned-heat-conduction-complex/images"
-
-# Tutorial: partitioned heat conduction direct
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction-direct/README.md"
-target = "content/tutorials/partitioned-heat-conduction-direct/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction-direct/images"
-target = "content/tutorials/partitioned-heat-conduction-direct/images"
-
-# Tutorial: partitioned heat conduction overlap
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction-overlap/README.md"
-target = "content/tutorials/partitioned-heat-conduction-overlap/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-heat-conduction-overlap/images"
-target = "content/tutorials/partitioned-heat-conduction-overlap/images"
-
-# Tutorial: partitioned pipe
-[[mounts]]
-source = "imported/tutorials/partitioned-pipe/README.md"
-target = "content/tutorials/partitioned-pipe/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-pipe/images"
-target = "content/tutorials/partitioned-pipe/images"
-
-# Tutorial: partitioned pipe multiscale
-[[mounts]]
-source = "imported/tutorials/partitioned-pipe-multiscale/README.md"
-target = "content/tutorials/partitioned-pipe-multiscale/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-pipe-multiscale/images"
-target = "content/tutorials/partitioned-pipe-multiscale/images"
-
-# Tutorial: partitioned pipe two phase
-[[mounts]]
-source = "imported/tutorials/partitioned-pipe-two-phase/README.md"
-target = "content/tutorials/partitioned-pipe-two-phase/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/partitioned-pipe-two-phase/images"
-target = "content/tutorials/partitioned-pipe-two-phase/images"
-
-# Tutorial: perpendicular flap
-[[mounts]]
-source = "imported/tutorials/perpendicular-flap/README.md"
-target = "content/tutorials/perpendicular-flap/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/perpendicular-flap/images"
-target = "content/tutorials/perpendicular-flap/images"
-
-# Tutorial: perpendicular flap stress
-[[mounts]]
-source = "imported/tutorials/perpendicular-flap-stress/README.md"
-target = "content/tutorials/perpendicular-flap-stress/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/perpendicular-flap-stress/images"
-target = "content/tutorials/perpendicular-flap-stress/images"
-
-# Tutorial: quickstart
-[[mounts]]
-source = "imported/tutorials/quickstart/README.md"
-target = "content/tutorials/quickstart/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/quickstart/images"
-target = "content/tutorials/quickstart/images"
-
-# Tutorial: resonant circuit
-[[mounts]]
-source = "imported/tutorials/resonant-circuit/README.md"
-target = "content/tutorials/resonant-circuit/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/resonant-circuit/images"
-target = "content/tutorials/resonant-circuit/images"
-
-# Tutorial: turek hron fsi3
-[[mounts]]
-source = "imported/tutorials/turek-hron-fsi3/README.md"
-target = "content/tutorials/turek-hron-fsi3/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/turek-hron-fsi3/images"
-target = "content/tutorials/turek-hron-fsi3/images"
-
-# Tutorial: two scale heat conduction
-[[mounts]]
-source = "imported/tutorials/two-scale-heat-conduction/README.md"
-target = "content/tutorials/two-scale-heat-conduction/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/two-scale-heat-conduction/images"
-target = "content/tutorials/two-scale-heat-conduction/images"
-
-# Tutorial: volume coupled diffusion
-[[mounts]]
-source = "imported/tutorials/volume-coupled-diffusion/README.md"
-target = "content/tutorials/volume-coupled-diffusion/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/volume-coupled-diffusion/images"
-target = "content/tutorials/volume-coupled-diffusion/images"
-
-# Tutorial: volume coupled flow
-[[mounts]]
-source = "imported/tutorials/volume-coupled-flow/README.md"
-target = "content/tutorials/volume-coupled-flow/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/volume-coupled-flow/images"
-target = "content/tutorials/volume-coupled-flow/images"
-
-# Tutorial: water hammer
-[[mounts]]
-source = "imported/tutorials/water-hammer/README.md"
-target = "content/tutorials/water-hammer/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/water-hammer/images"
-target = "content/tutorials/water-hammer/images"
-
-# Tutorial: wolf sheep soil creep
-[[mounts]]
-source = "imported/tutorials/wolf-sheep-soil-creep/README.md"
-target = "content/tutorials/wolf-sheep-soil-creep/_index.md"
-
-[[mounts]]
-source = "imported/tutorials/wolf-sheep-soil-creep/images"
-target = "content/tutorials/wolf-sheep-soil-creep/images"
-
-# Tutorials system tests
-[[mounts]]
-source = "imported/tutorials/tools/tests/README.md"
-target = "content/docs/dev-docs/system-tests/_index.md"
+[[imports]]
+path = "github.com/precice/preeco-orga"
+
+  [[imports.mounts]]
+  source = "guidelines/guidelines-adapters.md"
+  target = "content/community/contribute/guidelines/_index.md"
+
+  [[imports.mounts]]
+  source = "guidelines"
+  target = "content/community/contribute/guidelines"
+  files = ["! guidelines-adapters.md"]
+
+# This file is automatically generated by tools/sync_tutorials.py
+[[imports]]
+path = "github.com/precice/tutorials"
+
+  [[imports.mounts]]
+  source = "aste-turbine/README.md"
+  target = "content/tutorials/aste-turbine/_index.md"
+
+  [[imports.mounts]]
+  source = "aste-turbine/images"
+  target = "content/tutorials/aste-turbine/images"
+
+  [[imports.mounts]]
+  source = "breaking-dam-2d/README.md"
+  target = "content/tutorials/breaking-dam-2d/_index.md"
+
+  [[imports.mounts]]
+  source = "breaking-dam-2d/images"
+  target = "content/tutorials/breaking-dam-2d/images"
+
+  [[imports.mounts]]
+  source = "channel-transport/README.md"
+  target = "content/tutorials/channel-transport/_index.md"
+
+  [[imports.mounts]]
+  source = "channel-transport/images"
+  target = "content/tutorials/channel-transport/images"
+
+  [[imports.mounts]]
+  source = "channel-transport-reaction/README.md"
+  target = "content/tutorials/channel-transport-reaction/_index.md"
+
+  [[imports.mounts]]
+  source = "channel-transport-reaction/images"
+  target = "content/tutorials/channel-transport-reaction/images"
+
+  [[imports.mounts]]
+  source = "elastic-tube-1d/README.md"
+  target = "content/tutorials/elastic-tube-1d/_index.md"
+
+  [[imports.mounts]]
+  source = "elastic-tube-1d/images"
+  target = "content/tutorials/elastic-tube-1d/images"
+
+  [[imports.mounts]]
+  source = "elastic-tube-3d/README.md"
+  target = "content/tutorials/elastic-tube-3d/_index.md"
+
+  [[imports.mounts]]
+  source = "elastic-tube-3d/images"
+  target = "content/tutorials/elastic-tube-3d/images"
+
+  [[imports.mounts]]
+  source = "flow-around-controlled-moving-cylinder/README.md"
+  target = "content/tutorials/flow-around-controlled-moving-cylinder/_index.md"
+
+  [[imports.mounts]]
+  source = "flow-around-controlled-moving-cylinder/images"
+  target = "content/tutorials/flow-around-controlled-moving-cylinder/images"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate/README.md"
+  target = "content/tutorials/flow-over-heated-plate/_index.md"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate/images"
+  target = "content/tutorials/flow-over-heated-plate/images"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate-nearest-projection/README.md"
+  target = "content/tutorials/flow-over-heated-plate-nearest-projection/_index.md"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate-nearest-projection/images"
+  target = "content/tutorials/flow-over-heated-plate-nearest-projection/images"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate-partitioned-flow/README.md"
+  target = "content/tutorials/flow-over-heated-plate-partitioned-flow/_index.md"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate-partitioned-flow/images"
+  target = "content/tutorials/flow-over-heated-plate-partitioned-flow/images"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate-steady-state/README.md"
+  target = "content/tutorials/flow-over-heated-plate-steady-state/_index.md"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate-steady-state/images"
+  target = "content/tutorials/flow-over-heated-plate-steady-state/images"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate-two-meshes/README.md"
+  target = "content/tutorials/flow-over-heated-plate-two-meshes/_index.md"
+
+  [[imports.mounts]]
+  source = "flow-over-heated-plate-two-meshes/images"
+  target = "content/tutorials/flow-over-heated-plate-two-meshes/images"
+
+  [[imports.mounts]]
+  source = "heat-exchanger/README.md"
+  target = "content/tutorials/heat-exchanger/_index.md"
+
+  [[imports.mounts]]
+  source = "heat-exchanger/images"
+  target = "content/tutorials/heat-exchanger/images"
+
+  [[imports.mounts]]
+  source = "heat-exchanger-simplified/README.md"
+  target = "content/tutorials/heat-exchanger-simplified/_index.md"
+
+  [[imports.mounts]]
+  source = "heat-exchanger-simplified/images"
+  target = "content/tutorials/heat-exchanger-simplified/images"
+
+  [[imports.mounts]]
+  source = "multiple-perpendicular-flaps/README.md"
+  target = "content/tutorials/multiple-perpendicular-flaps/_index.md"
+
+  [[imports.mounts]]
+  source = "multiple-perpendicular-flaps/images"
+  target = "content/tutorials/multiple-perpendicular-flaps/images"
+
+  [[imports.mounts]]
+  source = "oscillator/README.md"
+  target = "content/tutorials/oscillator/_index.md"
+
+  [[imports.mounts]]
+  source = "oscillator/images"
+  target = "content/tutorials/oscillator/images"
+
+  [[imports.mounts]]
+  source = "oscillator-overlap/README.md"
+  target = "content/tutorials/oscillator-overlap/_index.md"
+
+  [[imports.mounts]]
+  source = "oscillator-overlap/images"
+  target = "content/tutorials/oscillator-overlap/images"
+
+  [[imports.mounts]]
+  source = "partitioned-backwards-facing-step/README.md"
+  target = "content/tutorials/partitioned-backwards-facing-step/_index.md"
+
+  [[imports.mounts]]
+  source = "partitioned-backwards-facing-step/images"
+  target = "content/tutorials/partitioned-backwards-facing-step/images"
+
+  [[imports.mounts]]
+  source = "partitioned-elastic-beam/README.md"
+  target = "content/tutorials/partitioned-elastic-beam/_index.md"
+
+  [[imports.mounts]]
+  source = "partitioned-elastic-beam/images"
+  target = "content/tutorials/partitioned-elastic-beam/images"
+
+  [[imports.mounts]]
+  source = "partitioned-heat-conduction/README.md"
+  target = "content/tutorials/partitioned-heat-conduction/_index.md"
+
+  [[imports.mounts]]
+  source = "partitioned-heat-conduction/images"
+  target = "content/tutorials/partitioned-heat-conduction/images"
+
+  [[imports.mounts]]
+  source = "partitioned-heat-conduction-complex/README.md"
+  target = "content/tutorials/partitioned-heat-conduction-complex/_index.md"
+
+  [[imports.mounts]]
+  source = "partitioned-heat-conduction-complex/images"
+  target = "content/tutorials/partitioned-heat-conduction-complex/images"
+
+  [[imports.mounts]]
+  source = "partitioned-heat-conduction-direct/README.md"
+  target = "content/tutorials/partitioned-heat-conduction-direct/_index.md"
+
+  [[imports.mounts]]
+  source = "partitioned-heat-conduction-direct/images"
+  target = "content/tutorials/partitioned-heat-conduction-direct/images"
+
+  [[imports.mounts]]
+  source = "partitioned-heat-conduction-overlap/README.md"
+  target = "content/tutorials/partitioned-heat-conduction-overlap/_index.md"
+
+  [[imports.mounts]]
+  source = "partitioned-heat-conduction-overlap/images"
+  target = "content/tutorials/partitioned-heat-conduction-overlap/images"
+
+  [[imports.mounts]]
+  source = "partitioned-pipe/README.md"
+  target = "content/tutorials/partitioned-pipe/_index.md"
+
+  [[imports.mounts]]
+  source = "partitioned-pipe/images"
+  target = "content/tutorials/partitioned-pipe/images"
+
+  [[imports.mounts]]
+  source = "partitioned-pipe-two-phase/README.md"
+  target = "content/tutorials/partitioned-pipe-two-phase/_index.md"
+
+  [[imports.mounts]]
+  source = "partitioned-pipe-two-phase/images"
+  target = "content/tutorials/partitioned-pipe-two-phase/images"
+
+  [[imports.mounts]]
+  source = "perpendicular-flap/README.md"
+  target = "content/tutorials/perpendicular-flap/_index.md"
+
+  [[imports.mounts]]
+  source = "perpendicular-flap/images"
+  target = "content/tutorials/perpendicular-flap/images"
+
+  [[imports.mounts]]
+  source = "quickstart/README.md"
+  target = "content/tutorials/quickstart/_index.md"
+
+  [[imports.mounts]]
+  source = "quickstart/images"
+  target = "content/tutorials/quickstart/images"
+
+  [[imports.mounts]]
+  source = "turek-hron-fsi3/README.md"
+  target = "content/tutorials/turek-hron-fsi3/_index.md"
+
+  [[imports.mounts]]
+  source = "turek-hron-fsi3/images"
+  target = "content/tutorials/turek-hron-fsi3/images"
+
+  [[imports.mounts]]
+  source = "two-scale-heat-conduction/README.md"
+  target = "content/tutorials/two-scale-heat-conduction/_index.md"
+
+  [[imports.mounts]]
+  source = "two-scale-heat-conduction/images"
+  target = "content/tutorials/two-scale-heat-conduction/images"
+
+  [[imports.mounts]]
+  source = "volume-coupled-diffusion/README.md"
+  target = "content/tutorials/volume-coupled-diffusion/_index.md"
+
+  [[imports.mounts]]
+  source = "volume-coupled-diffusion/images"
+  target = "content/tutorials/volume-coupled-diffusion/images"
+
+  [[imports.mounts]]
+  source = "volume-coupled-flow/README.md"
+  target = "content/tutorials/volume-coupled-flow/_index.md"
+
+  [[imports.mounts]]
+  source = "volume-coupled-flow/images"
+  target = "content/tutorials/volume-coupled-flow/images"
+
+  [[imports.mounts]]
+  source = "tools/tests/README.md"
+  target = "content/docs/dev-docs/system-tests/_index.md"

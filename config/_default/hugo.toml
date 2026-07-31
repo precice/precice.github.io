@@ -3,6 +3,11 @@ baseURL = "https://precice.org/"
 locale = "en-us"
 title = "preCICE - The Coupling Library"
 enableGitInfo = true
+enableRobotsTXT = true
+
+[module]
+# Use the canonical Go module archive so its checksum matches go.sum.
+proxy = "https://proxy.golang.org,direct"
 
 [params]
 repository = "precice/precice.github.io"
@@ -24,9 +29,9 @@ precice_v2_citations = 233
 precice_v2_citations_url = "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17974677460269868025,12004404035922881061"
 
 [params.algolia]
-application_id = "LIT6P0EW26"
-index_name = "jekyll"
-search_only_api_key = "760ed6be3e165d08b4a798ac4aa82fe4"
+application_id = "NFZUWQ3TD8"
+index_name = "precice-hugo-test"
+search_only_api_key = "471f6a53c442ad5949d349f030b9ad7e"
 nodes_to_index = "p,code,table"
 max_record_size = 20000
 
@@ -35,78 +40,23 @@ src = "https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.min.js"
 
 [params.github_editme_paths]
 "content" = "https://github.com/precice/precice.github.io/edit/master/"
-"imported/aste" = "https://github.com/precice/aste/edit/develop/"
-"imported/calculix-adapter" = "https://github.com/precice/calculix-adapter/edit/develop/"
-"imported/code_aster-adapter" = "https://github.com/precice/code_aster-adapter/edit/develop/"
-"imported/dealii-adapter" = "https://github.com/precice/dealii-adapter/edit/develop/"
-"imported/dumux-adapter" = "https://github.com/precice/dumux-adapter/edit/develop/"
-"imported/dune-adapter" = "https://github.com/precice/dune-adapter/edit/main/"
-"imported/fenics-adapter" = "https://github.com/precice/fenics-adapter/edit/develop/"
-"imported/fenicsx-adapter" = "https://github.com/precice/fenicsx-adapter/edit/develop/"
-"imported/fmi-runner" = "https://github.com/precice/fmi-runner/edit/main/"
-"imported/micro-manager" = "https://github.com/precice/micro-manager/edit/develop/"
-"imported/openfoam-adapter" = "https://github.com/precice/openfoam-adapter/edit/develop/"
-"imported/preeco-orga" = "https://github.com/precice/preeco-orga/edit/main/"
-"imported/su2-adapter" = "https://github.com/precice/su2-adapter/edit/develop/"
-"imported/tutorials" = "https://github.com/precice/tutorials/edit/develop/"
+"github.com/precice/aste" = "https://github.com/precice/aste/edit/develop/"
+"github.com/precice/calculix-adapter" = "https://github.com/precice/calculix-adapter/edit/develop/"
+"github.com/precice/code_aster-adapter" = "https://github.com/precice/code_aster-adapter/edit/develop/"
+"github.com/precice/dealii-adapter" = "https://github.com/precice/dealii-adapter/edit/develop/"
+"github.com/precice/dumux-adapter" = "https://github.com/precice/dumux-adapter/edit/develop/"
+"github.com/precice/dune-adapter" = "https://github.com/precice/dune-adapter/edit/main/"
+"github.com/precice/fenics-adapter" = "https://github.com/precice/fenics-adapter/edit/develop/"
+"github.com/precice/fenicsx-adapter" = "https://github.com/precice/fenicsx-adapter/edit/develop/"
+"github.com/precice/fmi-runner" = "https://github.com/precice/fmi-runner/edit/main/"
+"github.com/precice/micro-manager" = "https://github.com/precice/micro-manager/edit/develop/"
+"github.com/precice/openfoam-adapter" = "https://github.com/precice/openfoam-adapter/edit/develop/"
+"github.com/precice/preeco-orga" = "https://github.com/precice/preeco-orga/edit/main/"
+"github.com/precice/su2-adapter" = "https://github.com/precice/su2-adapter/edit/develop/"
+"github.com/precice/tutorials" = "https://github.com/precice/tutorials/edit/master/"
 
 [security]
 allowContent = [".*"]
-
-[params.jekyll_defaults."content"]
-layout = "page"
-comments = false
-search = true
-sidebar = "home_sidebar"
-topnav = "topnav"
-
-[params.jekyll_defaults."content/docs"]
-layout = "page"
-comments = false
-search = true
-sidebar = "docs_sidebar"
-topnav = "topnav"
-toc = true
-
-[params.jekyll_defaults."content/tutorials"]
-layout = "page"
-comments = false
-search = true
-sidebar = "tutorial_sidebar"
-topnav = "topnav"
-toc = true
-
-[params.jekyll_defaults."content/community"]
-layout = "page"
-comments = false
-search = true
-sidebar = "community_sidebar"
-topnav = "topnav"
-toc = true
-
-[params.jekyll_defaults."imported/docs"]
-layout = "page"
-comments = false
-search = true
-sidebar = "docs_sidebar"
-topnav = "topnav"
-toc = true
-
-[params.jekyll_defaults."imported/tutorials"]
-layout = "page"
-comments = false
-search = true
-sidebar = "tutorial_sidebar"
-topnav = "topnav"
-toc = true
-
-[params.jekyll_defaults."imported/preeco-orga"]
-layout = "page"
-comments = false
-search = true
-sidebar = "community_sidebar"
-topnav = "topnav"
-toc = true
 
 [markup.goldmark.renderer]
 unsafe = true
@@ -120,5 +70,20 @@ endLevel = 4
 ordered = false
 
 [outputs]
+home = ["HTML", "RSS", "Algolia", "SitemapIndex"]
 section = ["HTML"]
 
+[outputFormats.RSS]
+baseName = "feed"
+
+[outputFormats.Algolia]
+mediaType = "application/json"
+baseName = "algolia"
+isPlainText = true
+notAlternative = true
+
+[outputFormats.SitemapIndex]
+mediaType = "application/xml"
+baseName = "sitemap_index"
+isPlainText = true
+notAlternative = true
