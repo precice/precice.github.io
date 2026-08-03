@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1785762771">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1785762771">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785762771">
-<link rel="stylesheet" href="css/bookcover.css?v=1785762771">
+<link rel="stylesheet" href="css/customstyles.css?v=1785764097">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1785764097">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785764097">
+<link rel="stylesheet" href="css/bookcover.css?v=1785764097">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1785762771">
+<link rel="stylesheet" href="css/theme-precice.css?v=1785764097">
 <!-- Styling for landing page -->
 
 
@@ -6823,16 +6823,16 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 31 Jul 26</small>
+              <small>Updated 03 Aug 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <p>After <a href="https://precice.org/installation-overview.html">installing preCICE</a> and <a href="adapter-calculix-get-calculix.html">getting the CalculiX source and the required dependencies</a>, you can now build the adapter, i.e. a modified CCX executable.</p>
+   <p>After <a href="https://precice.org/installation-overview.html">installing preCICE</a> and <a href="adapter-calculix-get-calculix.html">getting the CalculiX source and the required dependencies</a>, you can now build the adapter, i.e., a modified CalculiX executable.</p>
 
-<p>There are two ways to get the adapter: (a) get a binary package (Ubuntu-only), or (b) build it from source. The latest adapter version is v2.20.1 and the versioning format is <code class="language-plaintext highlighter-rouge">&lt;CalculiX major.minor version&gt;.&lt;adapter revision&gt;</code>.</p>
+<p>There are two ways to get the adapter: (a) get a binary package (Ubuntu-only) or (b) build it from source. The adapter follows the versioning format <code class="language-plaintext highlighter-rouge">&lt;CalculiX major.minor version&gt;.&lt;adapter revision&gt;</code>.</p>
 
 <h2 id="get-a-binary-package">Get a binary package</h2>
 
@@ -6846,19 +6846,15 @@ $('#toc').on('click', 'a', function() {
 
 <p>This requires that also preCICE itself has been installed from a Debian package.</p>
 
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
 Replace <code class="language-plaintext highlighter-rouge">resolute</code> with <code class="language-plaintext highlighter-rouge">noble</code> to get the package for Ubuntu 24.04 (Noble Numbat), or with <code class="language-plaintext highlighter-rouge">jammy</code> for Ubuntu 22.04 (Jammy Jellyfish).
-</div>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-We started offering Debian packages for the CalculiX adapter since v2.19.0. Please <a href="https://precice.org/community-channels.html">give us your feedback</a>!
 </div>
 
 <h2 id="building-the-adapted-calculix">Building the adapted CalculiX</h2>
 
 <ol>
   <li>
-    <p>Download and unzip the latest state of the adapter (e.g. in the <code class="language-plaintext highlighter-rouge">CalculiX</code> folder), currently supporting CalculiX v2.20:</p>
+    <p>Download and unzip the latest state of the adapter (e.g. in the <code class="language-plaintext highlighter-rouge">CalculiX</code> folder), and see the <code class="language-plaintext highlighter-rouge">README.md</code> for the supported CalculiX version:</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> wget https://github.com/precice/calculix-adapter/archive/refs/heads/master.tar.gz
  <span class="nb">tar</span> <span class="nt">-xzf</span> master.tar.gz
@@ -6868,26 +6864,21 @@ We started offering Debian packages for the CalculiX adapter since v2.19.0. Plea
   <li>Edit the <code class="language-plaintext highlighter-rouge">Makefile</code> to set the paths to dependencies.
     <ul>
       <li>If you have the CalculiX source in <code class="language-plaintext highlighter-rouge">~/CalculiX/</code> and the dependencies in your global paths, you don’t need to change anything.</li>
-      <li>Otherwise, set <code class="language-plaintext highlighter-rouge">CCX</code> and, if built from source, the include and lib flags for the dependencies.</li>
-      <li>Read below if you are <a href="#compiling-with-gcc-10-or-newer">using GCC 10 or later</a>.</li>
+      <li>Otherwise, set <code class="language-plaintext highlighter-rouge">CCX</code> and the include and lib flags for the dependencies.</li>
     </ul>
   </li>
   <li>Clean any previous builds with <code class="language-plaintext highlighter-rouge">make clean</code>.</li>
-  <li>Build with <code class="language-plaintext highlighter-rouge">make</code> (e.g. <code class="language-plaintext highlighter-rouge">make -j 4</code> for parallel).</li>
+  <li>Build with <code class="language-plaintext highlighter-rouge">make</code> (e.g., <code class="language-plaintext highlighter-rouge">make -j 4</code> for parallel).</li>
   <li>You should now have a new executable <code class="language-plaintext highlighter-rouge">ccx_preCICE</code> in the <code class="language-plaintext highlighter-rouge">bin/</code> folder of the adapter. You may move this file to a path known by your system, or <a href="https://unix.stackexchange.com/a/26059/36693">add this to your <code class="language-plaintext highlighter-rouge">PATH</code></a> (careful when doing this!).</li>
 </ol>
 
 <h3 id="building-the-adapter-with-pastix">Building the adapter with PaStiX</h3>
 
-<p>Since version 2.17 of CalculiX, it is possible to link the PaStiX solver for increased performance, mostly through GPUs. Building the adapter with PaStiX is quite tedious, as most dependencies of PaStiX and PaStiX itself must be built from source. Check our <a href="adapter-calculix-pastix-build.html">detailed instructions on building the adapter with PaStiX</a>.</p>
+<p>CalculiX can link to the PaStiX solver for increased performance using GPUs. Building the adapter with PaStiX is quite tedious, as most dependencies of PaStiX and PaStiX itself must be built from source. Check some <a href="adapter-calculix-pastix-build.html">instructions on building the adapter with PaStiX</a>.</p>
 
 <h3 id="makefile-options">Makefile options</h3>
 
 <p>The adapter is built using GNU Make. The <code class="language-plaintext highlighter-rouge">Makefile</code> contains a few variables on top, which need to be adapted to your system:</p>
-
-<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
-The variables <code class="language-plaintext highlighter-rouge">YAML_INCLUDE</code> and <code class="language-plaintext highlighter-rouge">YAML_LIBS</code> are only relevant up to the adapter v2.20.1.
-</div>
 
 <ol>
   <li><code class="language-plaintext highlighter-rouge">CCX</code>: Location of the original CalculiX solver (CCX) source code (“src” directory)
@@ -6932,6 +6923,10 @@ The variables <code class="language-plaintext highlighter-rouge">YAML_INCLUDE</c
     </ul>
   </li>
 </ol>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
+The variables <code class="language-plaintext highlighter-rouge">YAML_INCLUDE</code> and <code class="language-plaintext highlighter-rouge">YAML_LIBS</code> are only relevant up to the adapter v2.20.1.
+</div>
 
 <p>You may also want to adjust the compiler <code class="language-plaintext highlighter-rouge">FC</code> from <code class="language-plaintext highlighter-rouge">mpifort</code> to <code class="language-plaintext highlighter-rouge">mpif90</code> or to any other compiler your system uses.</p>
 
@@ -7313,7 +7308,7 @@ The variables <code class="language-plaintext highlighter-rouge">YAML_INCLUDE</c
         </a>
         </p>
         <p>
-        Page last updated: Jul 31, 2026<br>
+        Page last updated: Aug 3, 2026<br>
         Site last updated: Aug 3, 2026
         </p>
         <p>
