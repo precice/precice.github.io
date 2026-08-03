@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1785554937">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1785554937">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785554937">
-<link rel="stylesheet" href="css/bookcover.css?v=1785554937">
+<link rel="stylesheet" href="css/customstyles.css?v=1785762771">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1785762771">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785762771">
+<link rel="stylesheet" href="css/bookcover.css?v=1785762771">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1785554937">
+<link rel="stylesheet" href="css/theme-precice.css?v=1785762771">
 <!-- Styling for landing page -->
 
 
@@ -6835,7 +6835,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 30 Jul 26</small>
+              <small>Updated 03 Aug 26</small>
             </div>
           </aside>
           
@@ -6861,10 +6861,20 @@ $('#toc').on('click', 'a', function() {
 <p>The adapter allows us to use several participants in one simulation (e.g., several instances of Calculix if several solid objects are taken into account). The name of the participant <code class="language-plaintext highlighter-rouge">Calculix</code> must match the specification of the participant on the command line when running the executable of <code class="language-plaintext highlighter-rouge">CCX</code> with the adapter being used (this is described later). Also, the name must be the same as the one used in the preCICE configuration file <code class="language-plaintext highlighter-rouge">precice-config.xml</code>.</p>
 
 <p>One participant may have several coupling interfaces. Note that each interface specification starts with a dash.
-Depending on the data you need to read and write, the interface should define either a <code class="language-plaintext highlighter-rouge">faces-mesh</code> (or <code class="language-plaintext highlighter-rouge">mesh</code> as a synonym) where the data points are centers of faces (computed by the adapter) or a mesh made of CalculiX vertices, with the keyword <code class="language-plaintext highlighter-rouge">nodes-mesh</code>. An interface made of faces should be defined in the CalculiX case using the <code class="language-plaintext highlighter-rouge">*SURFACE</code> command, whereas meshes with nodes should define these nodes using <code class="language-plaintext highlighter-rouge">*NSET</code>. Using the wrong family of mesh (e.g. reading forces on faces) throws an error. If you need both kinds of meshes, you should define more than one interface.</p>
+Depending on the data you need to read and write, the interface should define a mesh of the following types</p>
+
+<ul>
+  <li>a <code class="language-plaintext highlighter-rouge">faces-mesh</code> (or <code class="language-plaintext highlighter-rouge">mesh</code> as a synonym) where the data points are centers of faces (computed by the adapter). An interface made of faces should be defined in the CalculiX case using the <code class="language-plaintext highlighter-rouge">*SURFACE</code> command.</li>
+  <li>a <code class="language-plaintext highlighter-rouge">nodes-mesh</code> where the data points are the nodal vertices. An interface made of nodes should define these nodes using <code class="language-plaintext highlighter-rouge">*NSET</code>.</li>
+  <li>a <code class="language-plaintext highlighter-rouge">elements-mesh</code> where the data points are the quadrature points of the elements of a mesh. The mesh should be defined by nodes using <code class="language-plaintext highlighter-rouge">*NEST</code>. <strong>Note</strong>: <code class="language-plaintext highlighter-rouge">elements-mesh</code> is still experimental.</li>
+</ul>
+
+<p>Using the wrong family of mesh (e.g. reading forces on faces) throws an error. If you need both kinds of meshes, you should define more than one interface.</p>
 
 <p>For FSI simulations the mesh type of an interface is always <code class="language-plaintext highlighter-rouge">nodes-mesh</code>, as forces and displacement are defined on nodes. The name of this mesh, <code class="language-plaintext highlighter-rouge">Calculix_Mesh</code>, must match the mesh name given in the preCICE configuration file. In CHT simulations, <code class="language-plaintext highlighter-rouge">faces-meshes</code> are usually chosen, as they are needed to apply heat fluxes or convective heat transfer.
 For defining which nodes of the CalculiX domain belong to the FSI interface, a node set needs to be defined in the CalculiX input files. The name of this node set must match the name of the patch (here: “interface”).</p>
+
+<p>For multiscale mechanics simulations, the mesh type is always <code class="language-plaintext highlighter-rouge">elements-mesh</code>. The stresses, strains, and the material stiffness are defined on the quadrature points.</p>
 
 <p>In the current FSI example, the adapter reads forces from preCICE and feeds displacement deltas (not absolute displacements, but the change of the displacements relative to the last time step) to preCICE. This is defined with the keywords <code class="language-plaintext highlighter-rouge">read-data</code> and <code class="language-plaintext highlighter-rouge">write-data</code>, respectively. The names (here: <code class="language-plaintext highlighter-rouge">Forces</code> and <code class="language-plaintext highlighter-rouge">DisplacementDeltas</code>) again need to match the specifications in the preCICE configuration file. In the current example, the coupled fluid solver expects displacement deltas instead of displacements. However, the adapter is capable of writing either type. Just use <code class="language-plaintext highlighter-rouge">write-data: [Displacements]</code> for absolute displacements rather than relative changes being transferred in each time step. Valid <code class="language-plaintext highlighter-rouge">readData</code> keywords in CalculiX are:</p>
 
@@ -6985,6 +6995,8 @@ For defining which nodes of the CalculiX domain belong to the FSI interface, a n
 <p>The preCICE CalculiX adapter should support most elements when using <code class="language-plaintext highlighter-rouge">nodes-meshes</code>. It has been used with both linear and quadratic tetrahedral (C3D4 and C3D10) and hexahedral (C3D8, C3D8I, and <a href="http://web.mit.edu/calculix_v2.7/CalculiX/ccx_2.7/doc/ccx/node29.html">C3D20</a>) elements. There is however a restriction when using nearest-projection mapping: in that case, you have to use tetrahedral elements.</p>
 
 <p>When using face meshes, only tetrahedra and hexahedra are supported.</p>
+
+<p>When using <code class="language-plaintext highlighter-rouge">elements-mesh</code>, linear tetrahedral (C3D4) and hexahedral (C3D8) elements are supported.</p>
 
 <h3 id="coupling-to-2d-simulations">Coupling to 2D simulations</h3>
 
@@ -7550,8 +7562,8 @@ Rename this file to <code class="language-plaintext highlighter-rouge">&lt;name&
         </a>
         </p>
         <p>
-        Page last updated: Jul 30, 2026<br>
-        Site last updated: Aug 1, 2026
+        Page last updated: Aug 3, 2026<br>
+        Site last updated: Aug 3, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
