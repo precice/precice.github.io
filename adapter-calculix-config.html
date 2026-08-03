@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1785765236">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1785765236">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785765236">
-<link rel="stylesheet" href="css/bookcover.css?v=1785765236">
+<link rel="stylesheet" href="css/customstyles.css?v=1785776570">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1785776570">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1785776570">
+<link rel="stylesheet" href="css/bookcover.css?v=1785776570">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1785765236">
+<link rel="stylesheet" href="css/theme-precice.css?v=1785776570">
 <!-- Styling for landing page -->
 
 
@@ -6861,6 +6861,11 @@ $('#toc').on('click', 'a', function() {
 <p>In FSI simulations, the mesh type for an interface is always <code class="language-plaintext highlighter-rouge">nodes-mesh</code>, as forces and displacement are defined on nodes. The name of this mesh, <code class="language-plaintext highlighter-rouge">Calculix_Mesh</code>, must match the mesh name given in the preCICE configuration file. In CHT simulations, <code class="language-plaintext highlighter-rouge">faces-mesh</code> is used.
 For defining which nodes of the CalculiX domain belong to the FSI interface, a node set needs to be defined in the CalculiX input files. The name of this node set must match the name of the patch (in this example, <code class="language-plaintext highlighter-rouge">interface</code>).</p>
 
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+Patch names in CalculiX follow a naming convention where nodes sets start with <code class="language-plaintext highlighter-rouge">N</code> and surface sets with <code class="language-plaintext highlighter-rouge">S</code>.
+The adapter automatically adds these prefixes to the configured patch name, depending on the configured mesh type.
+</div>
+
 <p>For multiscale mechanics simulations, the mesh type is always <code class="language-plaintext highlighter-rouge">elements-mesh</code>. The stresses, strains, and material stiffness are defined on the quadrature points.</p>
 
 <p>In this FSI example, the adapter reads forces from preCICE and feeds displacement deltas (not absolute displacements, but the change of the displacements relative to the last time step) to preCICE. This is defined with the keywords <code class="language-plaintext highlighter-rouge">read-data</code> and <code class="language-plaintext highlighter-rouge">write-data</code>, respectively. The names (here: <code class="language-plaintext highlighter-rouge">Forces</code> and <code class="language-plaintext highlighter-rouge">DisplacementDeltas</code>) again need to match the specifications in the preCICE configuration file. Absolute displacements can be configured with <code class="language-plaintext highlighter-rouge">Displacements</code>.</p>
@@ -6946,9 +6951,9 @@ For defining which nodes of the CalculiX domain belong to the FSI interface, a n
 *END STEP
 </code></pre></div></div>
 
-<p>The adapter internally uses the CalculiX data format for point forces to apply the FSI forces at the coupling interface. This data structure is only initialized for those nodes, which are loaded at the beginning of a CalculiX analysis step via the input file. Thus, it is necessary to load all nodes of the node set, which defines the FSI interface in CalculiX (referring to the above example, the nodes of set <code class="language-plaintext highlighter-rouge">interface</code> (Note that in CalculiX a node set always begins with an <code class="language-plaintext highlighter-rouge">N</code> followed by the actual name of the set, which is here <code class="language-plaintext highlighter-rouge">interface</code>.) are loaded via the <code class="language-plaintext highlighter-rouge">CLOAD</code> keyword.), in each spatial direction. However, the values of these initial forces can (and should) be chosen to zero, such that the simulation result is not affected.</p>
+<p>The adapter internally uses the CalculiX data format for point forces to apply the FSI forces at the coupling interface. This data structure is only initialized for those nodes, which are loaded at the beginning of a CalculiX analysis step via the input file. Thus, it is necessary to load all nodes of the node set, which defines the FSI interface in CalculiX, in each spatial direction. Referring to the above example, the nodes of set <code class="language-plaintext highlighter-rouge">interface</code> are loaded via the <code class="language-plaintext highlighter-rouge">CLOAD</code> keyword. However, the values of these initial forces can (and should) be chosen to zero, such that the simulation result is not affected.</p>
 
-<p>When using <code class="language-plaintext highlighter-rouge">faces-meshes</code>, instead of a node set (<code class="language-plaintext highlighter-rouge">*NSET</code>), a <code class="language-plaintext highlighter-rouge">*SURFACE</code> must be sent, defined by a list of elements and face numbers. Instead of starting with an <code class="language-plaintext highlighter-rouge">N</code>, the name must start with a <code class="language-plaintext highlighter-rouge">S</code>.</p>
+<p>When using <code class="language-plaintext highlighter-rouge">faces-meshes</code>, instead of a node set (<code class="language-plaintext highlighter-rouge">*NSET</code>), the <code class="language-plaintext highlighter-rouge">*SURFACE</code> keyword defines the list of elements and face numbers to couple. Instead of starting with an <code class="language-plaintext highlighter-rouge">N</code>, the name must start with a <code class="language-plaintext highlighter-rouge">S</code>.</p>
 
 <p>CalculiX CCX offers both a geometrically linear and a geometrically non-linear solver, and both are supported by the adapter. The keyword <code class="language-plaintext highlighter-rouge">NLGEOM</code> (as shown in the example) selects the geometrically non-linear solver. It is also automatically triggered if material non-linearities are included in the analysis. In case the keyword <code class="language-plaintext highlighter-rouge">NLGEOM</code> does not appear in the CalculiX case input file and the chosen materials are linear, the geometrically linear CalculiX solver is used. In any case, for FSI simulations, the keyword <code class="language-plaintext highlighter-rouge">DYNAMIC</code> (enabling a dynamic computation) must appear in the CalculiX input file.</p>
 
