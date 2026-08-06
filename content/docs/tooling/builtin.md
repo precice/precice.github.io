@@ -1,6 +1,8 @@
 ---
 title: Built-in tooling
 permalink: tooling-builtin.html
+aliases:
+  - /tooling-builtin.html
 keywords: tooling, xml, configuration, version
 summary: "Built-in tooling is always installed alongside preCICE and provides some basic functionality."
 ---
@@ -10,9 +12,9 @@ With the `precice-cli`, you can get the installed preCICE version, generate a re
 
 ## XML reference
 
-{% version 3.3.0 %}
+{{< version "3.3.0" >}}
 `precice-tools md|xml|dt` was deprecated in version 3.3.0 in favour of `precice-config-doc`.
-{% endversion %}
+{{< /version >}}
 
 For generating the XML reference, we can use `precice-config-doc`:
 
@@ -46,9 +48,9 @@ This prints the DTD information, which can be used to validate the XML configura
 
 ## preCICE version
 
-{% version 2.4.0 %}
+{{< version "2.4.0" >}}
 `precice-tools version` was introduced in version 2.4.0 and deprecated in version 3.3.0 in favour of `precice-version`.
-{% endversion %}
+{{< /version >}}
 
 ```bash
 precice-version
@@ -65,10 +67,10 @@ This prints the version information of preCICE, which consists of multiple semic
 
 ## Configuration check
 
-{% version 2.4.0 %}
+{{< version "2.4.0" >}}
 `precice-tools check` was introduced in version 2.4.0 and deprecated in version 3.3.0 in favour of `precice-config-validate`.
 Prefer to use `precice-cli config check` for the extra logic checks instead.
-{% endversion %}
+{{< /version >}}
 
 ```bash
 precice-config-validate FILE [ PARTICIPANT [ COMMSIZE ] ]

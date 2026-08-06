@@ -1,6 +1,8 @@
 ---
 title: Running on a local machine
 permalink: running-simple.html
+aliases:
+  - /running-simple.html
 keywords: running, mpi, local, workstation, laptop
 summary: "Run your preCICE simulation on your local machine."
 ---

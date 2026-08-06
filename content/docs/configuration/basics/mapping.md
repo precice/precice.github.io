@@ -1,14 +1,16 @@
 ---
 title: Mapping configuration
 permalink: configuration-mapping.html
+aliases:
+  - /configuration-mapping.html
 keywords: configuration, mapping, meshes, coupling
 summary: "When coupling two participants at a common coupling interface, in general, the two surface meshes do not match.
 Therefore, preCICE provides data mapping methods to map coupling data from one mesh to the other. On this page, we explain how to configure such data mapping methods."
 ---
 
-{% note %}
+{{< note >}}
 The mapping configuration has undergone a major revision between preCICE version 2 and preCICE version 3. For the documentation of version 2, checkout the documentation of [our previous versions](fundamentals-previous-versions.html). Learn [how to upgrade](couple-your-code-porting-v2-3.html), or see the full [configuration reference](configuration-xml-reference.html).
-{% endnote %}
+{{< /note >}}
 
 ## Basics
 
@@ -25,7 +27,7 @@ Each data mapping definition refers to two meshes in the participant configurati
 </participant>
 ```
 
-![Mapping configuration](images/docs/configuration/doc-mapping.png)
+![Mapping configuration](/images/docs/configuration/doc-mapping.png)
 
 The `provide` mesh and `receive` mesh are then assigned to the `from` and `to` slot in the mapping configuration to indicate the mesh, on which data is written, and the mesh, on which data is read. In addition to a `from` and `to` mesh, each mapping defines a `direction`, which can either be `read` or `write`:
 
@@ -34,9 +36,9 @@ The `provide` mesh and `receive` mesh are then assigned to the `from` and `to` s
 
 The `direction` indicates, how the defined meshes are used from the participant perspective: for a `read` mapping, the participant reads data from the `provide` mesh (`MyMesh1`), for a `write` mapping, the participant writes data to the `provide` mesh. In principle, each `read` mapping can be transformed into a `write` mapping (see the section [restrictions for parallel participants](configuration-mapping.html#restrictions-for-parallel-participants) below) by shifting the mapping tag on the 'other' involved participant (e.g. `MySolver2`). Depending on the configuration, data mapping might be computationally demanding. In preCICE the mapping is executed on the participant, where the mapping tag is defined in the configuration file.
 
-{% note %}
+{{< note >}}
 All data mappings are executed during `advance` and not in `readData`, cf. the section on  [how to couple your own code](couple-your-code-overview.html).
-{% endnote %}
+{{< /note >}}
 
 Each mapping defines a `constraint`, which defines how the data is mapped between the meshes:
 
@@ -64,27 +66,27 @@ Each mapping defines a `constraint`, which defines how the data is mapped betwee
 
 For a sequential participant, any combination of `read`/`write`-`consistent/conservative` is valid. For a participant running in parallel, only `read`-`consistent` and `write`-`conservative` is possible. More details are given [further below](configuration-mapping.html#restrictions-for-parallel-participants).
 
-{% note %}
+{{< note >}}
 Do not confuse a participant running in parallel with a parallel coupling scheme, see the [fundamental terminology](fundamentals-terminology.html#parallel-solvers-and-parallel-coupling).
-{% endnote %}
+{{< /note >}}
 
-{% tip %}
+{{< tip >}}
 Instead of using static meshes as described here, you may consider using a [just-in-time data mapping](couple-your-code-just-in-time-mapping.html), where one of both meshes can change at runtime.
-{% endtip %}
+{{< /tip >}}
 
 The mapping method itself is defined in the xml configuration after the colon `mapping:...` (e.g. `<mapping:nearest-neighbor ...`). In general, preCICE offers two broader groups of mapping methods
 
-![Mapping options](images/docs/configuration/doc-mapping-options.svg)
+![Mapping options](/images/docs/configuration/doc-mapping-options.svg)
 
-{% note %}
+{{< note >}}
 Chapter 3.2 (Data mapping) of the preCICE version 2 [reference paper](https://doi.org/10.12688/openreseurope.14445.2) explains and compares a selection of projection-based methods and kernel methods.
-{% endnote %}
+{{< /note >}}
 
 ## Projection-based methods
 
 Projection-based data mapping methods are typically cheap to compute as they don't involve solving expensive linear systems as opposed to the kernel methods. The basic variant, which operates solely on vertex data, is `nearest-neighbor` mapping. All other variants require additional information from the user, as shown in the overview figure above.
 
-![different mapping variants visualized](images/docs/configuration-mapping-variants.png)
+![different mapping variants visualized](/images/docs/configuration-mapping-variants.png)
 
 Available methods are:
 
@@ -102,9 +104,9 @@ Kernel methods are typically more accurate and can deliver higher-order converge
   * `rbf-global-direct`, which computes initially a dense matrix decomposition of the linear system and applies the matrix decomposition afterwards in every coupling iteration to solve the mapping problem. All involved linear-algebra data structures are dense, regardless of the basis-function configuration. This method can use different [execution backends](configuration-mapping.html#execution-backends). By default, the linear-algebra library Eigen is used. Eigen uses a Cholesky decomposition, if the configured basis-function is strictly positive definite, and a QR decomposition, if that's not the case. This means that using the mapping with one of the basis-functions `volume-splines`, `thin-plate-splines` or `multiquadrics` takes considerable more time to compute, as these basis-functions are not positive definite. While this mapping method can be used while running a participant in parallel via mpi, a gather-scatter approach is used in preCICE, such that the actual system is solved in serial.
   * `rbf-global-iterative`, which assembles the system matrix initially and solves the resulting system iteratively in each coupling iteration. This method can use different [execution backends](configuration-mapping.html#execution-backends). However, the CPU version relies on the linear-algebra library PETSc, which is an optional dependency of preCICE. The PETSc implementation is fully mpi-parallel and uses sparse linear algebra to solve the resulting system. As a consequence, we need to take care when configuring the basis-function for the mapping: it should only be used with compactly supported basis-functions and the configured support-radius or shape-parameter should only cover a limited number of vertices in radial direction (e.g. 10 vertices) such that the resulting linear system is sparse. Details about this implementation can be found in [Florian's thesis (pages 37 ff.)](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf).
 
-{% note %}
+{{< note >}}
 For global rbf methods, the interpolation problem (or rather the polynomial QR system) might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate.
-{% endnote %}
+{{< /note >}}
 
 * `rbf-pum-direct`, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for `rbf-global-direct`, i.e., it is beneficial to configure strictly positive definite basis-functions). The mapping is specifically designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of `vertices-per-cluster` can be increased. The method can only handle sufficiently matching geometries and problems might occur if large gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in [David's talk at the preCICE workshop 2023](https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc). In practical applications, the partition of unity method typically outperforms any of the global rbf variants.
 
@@ -112,7 +114,7 @@ For global rbf methods, the interpolation problem (or rather the polynomial QR s
 
 Configuring kernel methods is more involved and offers more options. A full reference of all options can be found in the [xml reference](configuration-xml-reference.html). On a broader level, the configuration consists of two main options: the applied kernel mapping method and the used basis-function including its support radius or shape parameter. As the decision about the used kernel mapping method can be intricate, we provide an alias called `<mapping:rbf ...` which decides dynamically for a kernel method according to the setup (e.g. parallel execution, problem size, available dependencies)
 
-![RBF alias options](images/docs/configuration/doc-mapping-rbf-alias.svg)
+![RBF alias options](/images/docs/configuration/doc-mapping-rbf-alias.svg)
 
 An RBF mapping configuration could look as follows
 
@@ -124,9 +126,9 @@ An RBF mapping configuration could look as follows
 
 The basis-function has to be defined as a subtag in all kernel methods. In this example the basis-function `compact-polynomial-c6` is used with a support radius of `r=1.8`.
 
-{% note %}
+{{< note >}}
 We recommend using the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
-{% endnote %}
+{{< /note >}}
 
 The configuration of the basis-function is problem-dependent. In general, preCICE offers basis function with global and local support:
 
@@ -171,9 +173,9 @@ Mapping configurations that follow a gather-scatter approach are always computed
 
 By contrast, distributed mappings solve their rank-local problem in parallel. In practice, this means that the configuration snippet above assigns multiple MPI ranks to a single GPU (with device ID 0). Since oversubscribing a device is typically undesired, use `gpu-device-id="auto"` to assign MPI ranks in a round-robin fashion to the available GPUs. Also note -- due to the different parallelization strategies -- `n-threads` configures the number of threads per executing rank, i.e., for a distributed parallelization, `n-threads=10` assigns 10 OpenMP threads to each MPI rank, whereas for a gather-scatter parallelization `n-threads=10` assigns 10 OpenMP threads to the primary rank only.
 
-{% version 3.5.0 %}
+{{< version "3.5.0" >}}
 Note that as of preCICE v3.4 the `rbf-pum-direct` executor only supports `consistent` constraints. The `conservative` constraint is supported since v3.5.0.
-{% endversion %}
+{{< /version >}}
 
 More details on the feature can be found in [Schneider et al. 2023](https://doi.org/10.23967/c.coupled.2023.016).
 
@@ -183,11 +185,11 @@ Geometric multiscale mapping enables the coupling of dimensionally heterogeneous
 
 We differentiate between _axial_ and _radial_ geometric multiscale mapping:
 
-![Axial vs radial 1D-3D mapping](images/docs/configuration-mapping-geometric-multiscale-axial-radial.png)
+![Axial vs radial 1D-3D mapping](/images/docs/configuration-mapping-geometric-multiscale-axial-radial.png)
 
-{% experimental %}
+{{< experimental >}}
 This is an experimental feature, available since preCICE v3.0.0. Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
-{% endexperimental %}
+{{< /experimental >}}
 
 ### Axial geometric multiscale mapping
 
@@ -227,9 +229,9 @@ When using a `"spread"` mapping, data from the lower-dimensional participant is 
 
 Since lower-dimensional participants (e.g., 1D models) typically compute cross-sectionally averaged quantities such as mean velocity or pressure, an assumed spatial profile is required to reconstruct a distributed field on the higher-dimensional interface. By default, a physically consistent laminar profile is applied for `"parabolic"`, while `"uniform"` assumes a constant distribution.
 
-{% version 3.4.0 %}
+{{< version "3.4.0" >}}
 The `multiscale-cross-section-profile`, `multiscale-dimension`, and `multiscale-cross-section` options are currently only available in the `develop` branch of preCICE. Until v3.3.0, multiscale coupling was limited to `"1d-3d"` with a circular cross-section, and a parabolic profile was always applied (i.e., there was no option to select a different profile).
-{% endversion %}
+{{< /version >}}
 
 ### Radial geometric multiscale mapping
 
@@ -257,8 +259,8 @@ As stated above, for parallel participants only `read`-`consistent` and `write`-
 * Be sure that the other participant also uses both meshes. Probably you need an additional `<receive-mesh name="MyMesh1" from="MySolver1"/>`. This means another mesh is communicated at initialization, which can increase initialization time.
 * Last, be sure to update the `exchange` tags in the coupling scheme, compare the [coupling scheme configuration](configuration-coupling.html) (e.g. change which mesh is used for the exchange and acceleration)
 
-{% tip %}
+{{< tip >}}
 After applying these changes, you can use the [preCICE Config Visualizer](https://github.com/precice/config-visualizer) to visually validate your updated configuration file.
-{% endtip  %}
+{{< /tip >}}
 
 Maybe an example helps. You find one [in the preCICE Forum](https://precice.discourse.group/t/data-mapping-not-allowed-for-parallel-computation/374).

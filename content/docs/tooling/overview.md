@@ -1,6 +1,8 @@
 ---
 title: Tools for preCICE
 permalink: tooling-overview.html
+aliases:
+  - /tooling-overview.html
 keywords: tools
 ---
 

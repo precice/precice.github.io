@@ -1,8 +1,10 @@
 ---
 title: Documentation migration guide
 permalink: docs-meta-migration-guide.html
+aliases:
+  - /docs-meta-migration-guide.html
 keywords: pages, migration, github wiki
-summary: "We describe a typical migration workflow for documentation pages from the (old) preCICE Github Wiki to the current jekyll-based system."
+summary: "Migrate documentation pages from the old preCICE GitHub Wiki into the current Hugo content tree."
 ---
 
 ## 0. Get the wiki
@@ -15,7 +17,7 @@ git clone https://github.com/precice/precice.wiki.git
 
 ## 1. Choose a section and map out the structure
 
-It is advisable to start with the `sidebar.yml` in `_data/sidebars`. But before choose a self-contained set of pages that you want to migrate (or create), ideally a complete section like 'configuration' that can be ported in a single working session. As a next step flesh out the high-level structure, including file names and hierarchy. Don't rush this part, as naming is the [most difficult thing](https://www.martinfowler.com/bliki/TwoHardThings.html) in programming.
+It is advisable to start with the relevant file in `data/sidebars/`. First choose a self-contained set of pages that you want to migrate (or create), ideally a complete section like configuration that can be ported in a single working session. Then define the high-level structure, including file names and hierarchy. Don't rush this part, as naming is the [most difficult thing](https://www.martinfowler.com/bliki/TwoHardThings.html) in programming.
 
 When finalised, document your choices in the `sidebar.yml`.
 
@@ -27,8 +29,9 @@ Copy and paste the contents and add the [frontmatter](docs.html#minimal-viable-f
 
 ```yaml
 ---
-title: Configuration Basics
-permalink: configuration-introduction.html
+title: Configuration basics
+aliases:
+  - /configuration-introduction.html
 keywords: configuration, basics, overview
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
@@ -38,9 +41,9 @@ Adapt `title`, `permalink` and `keywords`.
 
 In the majority of cases the first paragraph will naturally lend itself to be the `summary`.
 
-{% note %}
+{{< note >}}
 The summary doesn't support rich content such as variables, italic/bold or links. Keep it regardless as even the bare ASCII will add structure and our audience is used to reading raw code. In case the summary contains a link the sentence should most likely be part of the body and not the summary anyways.
-{% endnote %}
+{{< /note >}}
 
 ## 3. Fix known issues
 
@@ -58,7 +61,7 @@ Replace the term 'wiki' with 'documentation' as we are moving away from the Gith
 
 ### Escape pipes `\|`
 
-Kramdown tries to aggressively create tables out of pipes, so \|\| x \|\|\_2 will become
+Markdown parsers may interpret pipes as tables, so \|\| x \|\|\_2 can become
 
  || x ||\_2
 
@@ -73,7 +76,7 @@ Instead write
 Should there be any images in the article, copy them to the `images` folder and link them as follows:
 
 ```md
-![atlernative text](images/image.png)
+![atlernative text](/images/image.png)
 ```
 
 ### Fix links

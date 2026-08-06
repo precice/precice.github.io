@@ -1,6 +1,8 @@
 ---
 title: Performance analysis
 permalink: tooling-performance-analysis.html
+aliases:
+  - /tooling-performance-analysis.html
 keywords: tooling, json, db, sqlite, txt, performance, events, analysis, cpu time, hpc, profiling
 summary: "preCICE comes with an internal performance analysis framework"
 ---
@@ -45,11 +47,11 @@ The most important tools include:
 * `export` converts the profiling data into a CSV file to interface with other programs.
 * `analyze` to analyze the profiling information of a single solver
 
-{% note %}
+{{< note >}}
 To install the profiling tools without the full CLI, install the `precice-profiling` PyPi package.
 Each command is available as a separate executable starting with `precice-profiling-`.
 For example the standalone version of `precice-cli profiling merge` is `precice-profiling-merge`.
-{% endnote %}
+{{< /note >}}
 
 ## Fundamental Events
 
@@ -82,9 +84,9 @@ Fundamental events are:
 
 ## Full API-profiling
 
-{% version 3.3.0 %}
+{{< version "3.3.0" >}}
 This feature is new in preCICE version 3.3.0.
-{% endversion %}
+{{< /version >}}
 
 To profile the full API including mesh definition and data access functions, you can use the `api` mode.
 
@@ -93,9 +95,9 @@ Be aware that this may lead to large profiling files especially when using the A
 
 ## User-defined events
 
-{% version 3.2.0 %}
+{{< version "3.2.0" >}}
 This feature is new in preCICE version 3.2.0.
-{% endversion %}
+{{< /version >}}
 
 You can measure your own code sections in your adapter code, which are then directly integrated into the profiling output of preCICE.
 These events are always considered to be fundamental and are thus recorded by default.
@@ -197,10 +199,10 @@ The rest of the section will go through the process of analyzing participants st
 
 ### Merging Event Files
 
-{% version 3.3.0 %}
+{{< version "3.3.0" >}}
 The file formats changed from JSON to a text-based format `.txt` for rank files and a sqlite3 database `profiling.db` for profiling data.
 The `merge` tool supports both formats.
-{% endversion %}
+{{< /version >}}
 
 After the simulation completes, you can find `precice-profiling` folders in the configured location, defaulting to the working directory of each participant.
 An example could look like this:
@@ -304,16 +306,16 @@ Writing to trace.json
 An example trace visualization using `ui.perfetto.dev` of the [elastic tube 1d tutorial](tutorials-elastic-tube-1d.html) looks as follows.
 Note the alternating executions of the solver due to the serial coupling scheme.
 
-![example of the elastic tube 1d tutorial visualized by perfetto](images/docs/tooling/profiling-elastictube1d-serial.png)
+![example of the elastic tube 1d tutorial visualized by perfetto](/images/docs/tooling/profiling-elastictube1d-serial.png)
 
 An example trace visualization using `ui.perfetto.dev` of a parallel [ASTE](tooling-aste.html) run on two and four ranks looks as follows.
 This first version contains only fundamental events, which is the default profiling setting.
 
-![example of parallel ASTE with fundamental events only visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-parallel-fundamental.png)
+![example of parallel ASTE with fundamental events only visualized by perfetto](/images/docs/tooling/profiling-aste-perfetto-parallel-fundamental.png)
 
 This second version contains all events using the configuration `<profiling mode="all" />`.
 
-![example of parallel ASTE with all events visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-parallel-all.png)
+![example of parallel ASTE with all events visualized by perfetto](/images/docs/tooling/profiling-aste-perfetto-parallel-all.png)
 
 ### Analyzing participants
 

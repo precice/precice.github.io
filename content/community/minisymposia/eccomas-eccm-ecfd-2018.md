@@ -3,6 +3,8 @@ title: ECCOMAS ECCM ECFD 2018
 keywords: 2018, ECCOMAS, event, events, minisymposium
 summary:
 permalink: eccomas-eccm-ecfd-2018.html
+aliases:
+  - /eccomas-eccm-ecfd-2018.html
 toc: false
 ---
 

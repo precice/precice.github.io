@@ -2,6 +2,8 @@
 title: Release workflow
 keywords: pages, development
 permalink: dev-docs-dev-release.html
+aliases:
+  - /dev-docs-dev-release.html
 ---
 
 We keep a detailed step, by step guide of the release-process in our repository:
