@@ -7,7 +7,7 @@ summary: "Use add PreCICE to install the Julia language bindings from the offici
 
 ## The versioning scheme
 
-The versioning scheme of the Julia bindings is the major and minor preCICE version which the bindings are tested with, followed by the version of the Julia bindings. This differs from the [matlab](installation-bindings-python.md) and [python](installation-bindings-python.md) bindings due to the [Julia versioning guidelines](https://pkgdocs.julialang.org/v1/toml-files/#The-version-field), which only allow major, minor, and patch versions.
+The versioning scheme of the Julia bindings is the major and minor preCICE version which the bindings are tested with, followed by the version of the Julia bindings. This differs from the [matlab](installation-bindings-matlab.html) and [python](installation-bindings-python.html) bindings due to the [Julia versioning guidelines](https://pkgdocs.julialang.org/v1/toml-files/#The-version-field), which only allow major, minor, and patch versions.
 
 Example: version `1` of the Julia bindings for preCICE version `2.4.0` is `2.4.1`
 
