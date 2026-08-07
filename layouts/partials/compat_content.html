@@ -1,0 +1,25 @@
+{{- $rendered := .Content -}}
+{{- $raw := .RawContent -}}
+{{- if or (strings.Contains $raw "{%") (strings.Contains $raw "{{ site.") (strings.Contains $raw "{{site.") -}}
+  {{- $content := $raw -}}
+  {{- $blockTags := slice "disclaimer" "experimental" "important" "note" "tip" "version" "warning" -}}
+
+  {{- /* Translate the legacy Jekyll callouts into the existing Hugo shortcodes. */ -}}
+  {{- range $tag := $blockTags -}}
+    {{- $openPattern := printf `{%%[[:space:]]*%s[[:space:]]*%%}` $tag -}}
+    {{- $closePattern := printf `{%%[[:space:]]*end%s[[:space:]]*%%}` $tag -}}
+    {{- $content = replaceRE $openPattern (printf `{{< %s >}}` $tag) $content -}}
+    {{- $content = replaceRE $closePattern (printf `{{< /%s >}}` $tag) $content -}}
+  {{- end -}}
+
+  {{- /* The imported documentation uses only note and warning inline includes. */ -}}
+  {{- $content = replaceRE `{%[[:space:]]*include[[:space:]]+(note|warning)\.html[[:space:]]+content="([^"]*)"[[:space:]]*%}` `{{< ${1} >}}${2}{{< /${1} >}}` $content -}}
+  {{- $content = replaceRE `{{[[:space:]]*site\.([A-Za-z_][A-Za-z0-9_]*)[[:space:]]*}}` `{{< site_param "${1}" >}}` $content -}}
+
+  {{- if eq .RelPermalink "/docs/adapters/fenics/" -}}
+    {{- $content = replaceRE `(?s)## How to cite.*\z` `{{< fenics_publications >}}` $content -}}
+  {{- end -}}
+
+  {{- $rendered = .RenderString (dict "display" "block") $content -}}
+{{- end -}}
+{{- $rendered -}}
