@@ -150,7 +150,7 @@ In the `README.md` file, following the general structure of the existing tutoria
 - Don't forget to adapt the `permalink:` field in the beginning of the file.
 
 {{< note >}}
-If you add a complete new tutorial case, also add its Hugo module mounts to `config/_default/module.toml` and its permalink to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/data/sidebars/tutorial_sidebar.yml) in a pull request to the [website repository](https://github.com/precice/precice.github.io).
+If you add a complete new tutorial case, also add its Hugo module mounts to `config/_default/module.toml` and its permalink to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/data/sidebars/tutorials_sidebar.yml) in a pull request to the [website repository](https://github.com/precice/precice.github.io).
 {{< /note >}}
 
 ### The metadata file
@@ -229,7 +229,7 @@ tutorial, open a pull request with these changes in the
 
 1. Add the tutorial's Hugo module mounts to `config/_default/module.toml`.
 2. Add its permalink to a fitting place in the
-   [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/data/sidebars/tutorial_sidebar.yml), next to a similar tutorial.
+   [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/data/sidebars/tutorials_sidebar.yml), next to a similar tutorial.
 3. Edit the [tutorials landing page](https://github.com/precice/precice.github.io/blob/master/content/tutorials/overview.md) to add the tutorial to the overview.
 
 After your PR gets reviewed, approved, and merged, the website will be built automatically, and your tutorial will appear online in a couple of minutes.

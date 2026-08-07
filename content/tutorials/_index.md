@@ -4,7 +4,7 @@ cascade:
   layout: page
   comments: false
   search: true
-  sidebar: tutorial_sidebar
+  sidebar: tutorials_sidebar
   topnav: topnav
   toc: true
 ---
