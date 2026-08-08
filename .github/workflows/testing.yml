@@ -1,81 +1,137 @@
 name: Build and deploy the testing website
+
 on:
   workflow_dispatch:
   push:
     branches:
-      - precice-v3
+      - hugo
+
+permissions:
+  contents: read
+
+concurrency:
+  group: testing-website
+  cancel-in-progress: true
+
+env:
+  BASE_URL: "https://precice.github.io/website-testing/"
+  DOXYGEN_BASE_URL: "https://precice.github.io/website-testing/doxygen"
+  GO_VERSION: "1.26.3"
+  HUGO_VERSION: "0.163.3"
+  DOXYGEN_VERSION: "1.14.0"
+  DOXYGEN_SHA256: "e5d6ae24d0bf3f0cdc4d8f146726b89ca323922f19441af99b1872d503665ad6"
 
 jobs:
   build-deploy:
+    name: Build and deploy testing site
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+
     steps:
       - name: Checkout website
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          submodules: true
-          lfs: false
           path: website
+          fetch-depth: 0
+          submodules: false
+          lfs: false
 
-      - name: Fetch - precice develop
-        uses: actions/checkout@v6
+      - name: Set up Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache-dependency-path: website/go.sum
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Checkout preCICE develop
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: precice/precice
           ref: develop
           path: develop
 
-      - name: Fetch - precice main
-        uses: actions/checkout@v6
+      - name: Checkout preCICE main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: precice/precice
           ref: main
           path: main
+          fetch-depth: 0
+          fetch-tags: true
 
-      - name: Patch doxyfiles
-        working-directory: website
-        run: doxygen/patch.sh
+      - name: Patch Doxygen configuration
+        run: ./website/doxygen/patch.sh
 
-      - name: Install dependencies
+      - name: Install Doxygen dependencies
         run: |
-          sudo apt-get -yyq update
-          sudo apt-get -yyq install doxygen graphviz plantuml
+          sudo apt-get update
+          sudo apt-get install --yes graphviz libxml2-utils plantuml
 
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-          working-directory: website
+          doxygen_archive="${RUNNER_TEMP}/doxygen-${DOXYGEN_VERSION}.tar.gz"
+          doxygen_dir="${RUNNER_TEMP}/doxygen-${DOXYGEN_VERSION}"
+          curl --fail --location --silent --show-error \
+            --output "${doxygen_archive}" \
+            "https://github.com/doxygen/doxygen/releases/download/Release_${DOXYGEN_VERSION//./_}/doxygen-${DOXYGEN_VERSION}.linux.bin.tar.gz"
+          echo "${DOXYGEN_SHA256}  ${doxygen_archive}" | sha256sum --check --strict
+          mkdir -p "${doxygen_dir}"
+          tar --extract --gzip --file "${doxygen_archive}" --strip-components=1 --directory "${doxygen_dir}"
+          echo "${doxygen_dir}/bin" >> "${GITHUB_PATH}"
 
-      - name: Build website
+      - name: Verify Hugo modules
         working-directory: website
-        env:
-          JEKYLL_ENV: production
-        run: bundle exec jekyll build
+        run: hugo mod verify
 
-      - name: Build doxygen - develop
+      - name: Build Hugo site
+        working-directory: website
+        run: hugo --gc --minify --cleanDestinationDir --environment production --baseURL "${BASE_URL}"
+
+      - name: Build Doxygen for develop
         working-directory: develop
-        run: doxygen
         env:
           PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
+        run: doxygen
 
-      - name: Build doxygen - main
+      - name: Build Doxygen for main
         working-directory: main
-        run: doxygen
         env:
           PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
+        run: doxygen
 
-      - name: Assemble website
+      - name: Assemble site
         run: |
-          mv website/_site public
-          mv develop/docs/source-code-documentation/html public/doxygen/develop
-          mv main/docs/source-code-documentation/html public/doxygen/main
+          mkdir -p website/public/doxygen
+          mv develop/docs/source-code-documentation/html website/public/doxygen/develop
+          mv main/docs/source-code-documentation/html website/public/doxygen/main
 
-      - name: List website files
-        run: find public
+      - name: Validate assembled site
+        run: |
+          test -s website/public/index.html
+          test -s website/public/feed.xml
+          test -s website/public/sitemap.xml
+          test -s website/public/sitemap_index.xml
+          test -s website/public/robots.txt
+          test -s website/public/doxygen/develop/index.html
+          test -s website/public/doxygen/main/index.html
+          test -s website/public/doxygen/main/sitemap.xml
+          grep -Fx 'Sitemap: https://precice.github.io/website-testing/sitemap_index.xml' website/public/robots.txt
+          xmllint --noout \
+            website/public/feed.xml \
+            website/public/sitemap.xml \
+            website/public/sitemap_index.xml \
+            website/public/doxygen/main/sitemap.xml
 
-      - name: Deploy to testing
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Remove production domain marker
+        run: rm -f website/public/CNAME
+
+      - name: Upload testing site
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
-          personal_token: ${{ secrets.WEB_TESTING_TOKEN }}
-          publish_dir: ./public
-          external_repository: precice/website-testing
-          publish_branch: main
+          name: testing-site
+          path: website/public
+          if-no-files-found: error
+          retention-days: 7
