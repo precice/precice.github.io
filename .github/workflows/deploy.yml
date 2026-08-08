@@ -1,110 +1,158 @@
 name: Build and deploy the website
+
 on:
   workflow_dispatch:
-  workflow_call:
   push:
     branches:
       - master
 
+permissions:
+  contents: read
+
 concurrency:
-  group: website-deploy
-  cancel-in-progress: false # wait
+  group: production-pages
+  cancel-in-progress: false
+
+env:
+  BASE_URL: "https://precice.org/"
+  GO_VERSION: "1.26.3"
+  HUGO_VERSION: "0.163.3"
+  DOXYGEN_VERSION: "1.14.0"
+  DOXYGEN_SHA256: "e5d6ae24d0bf3f0cdc4d8f146726b89ca323922f19441af99b1872d503665ad6"
 
 jobs:
-  pre-commit:
-    name: pre-commit checks
+  build:
+    name: Build production site
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - name: Setup python
-        uses: actions/setup-python@v6
-        with:
-         python-version: '3.x'
-      - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1
+    timeout-minutes: 45
 
-  build-deploy:
-    needs: pre-commit
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout website
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          submodules: true
-          lfs: false
           path: website
-          fetch-depth: 0 # full history required to determine last edit
+          fetch-depth: 0
+          submodules: false
+          lfs: false
 
-      - name: Fetch - precice develop
-        uses: actions/checkout@v6
+      - name: Set up Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache-dependency-path: website/go.sum
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Checkout preCICE develop
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: precice/precice
           ref: develop
           path: develop
 
-      - name: Fetch - precice main
-        uses: actions/checkout@v6
+      - name: Checkout preCICE main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: precice/precice
           ref: main
           path: main
+          fetch-depth: 0
           fetch-tags: true
 
-      - name: Patch doxyfiles
-        run: website/doxygen/patch.sh
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get -yyq update
-          sudo apt-get -yyq install graphviz plantuml
-
-          # Install latest doxygen binary
-          mkdir doxygen
-          curl -sL https://github.com/doxygen/doxygen/releases/download/Release_1_14_0/doxygen-1.14.0.linux.bin.tar.gz | tar -xz --strip-components=1 -C doxygen
-          readlink -f doxygen/bin >> $GITHUB_PATH
-
-      - name: Check doxygen version
-        run: doxygen --version
-
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-          working-directory: website
-
-      - name: Fetch full history for submodules
-        working-directory: website
-        run: git submodule foreach --recursive "git fetch --unshallow --all 2>/dev/null || git fetch --all"
-
-      - name: Build website
-        working-directory: website
+      - name: Patch Doxygen configuration
+        run: ./website/doxygen/patch.sh
         env:
-          JEKYLL_ENV: production
-        run: bundle exec jekyll build
+          DOXYGEN_BASE_URL: "https://precice.org/doxygen"
 
-      - name: Build doxygen - develop
+      - name: Install Doxygen dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes graphviz libxml2-utils plantuml
+
+          doxygen_archive="${RUNNER_TEMP}/doxygen-${DOXYGEN_VERSION}.tar.gz"
+          doxygen_dir="${RUNNER_TEMP}/doxygen-${DOXYGEN_VERSION}"
+          curl --fail --location --silent --show-error \
+            --output "${doxygen_archive}" \
+            "https://github.com/doxygen/doxygen/releases/download/Release_${DOXYGEN_VERSION//./_}/doxygen-${DOXYGEN_VERSION}.linux.bin.tar.gz"
+          echo "${DOXYGEN_SHA256}  ${doxygen_archive}" | sha256sum --check --strict
+          mkdir -p "${doxygen_dir}"
+          tar --extract --gzip --file "${doxygen_archive}" --strip-components=1 --directory "${doxygen_dir}"
+          echo "${doxygen_dir}/bin" >> "${GITHUB_PATH}"
+
+      - name: Log tool versions
+        run: |
+          go version
+          hugo version
+          doxygen --version
+
+      - name: Verify Hugo modules
+        working-directory: website
+        run: hugo mod verify
+
+      - name: Build Hugo site
+        working-directory: website
+        run: hugo --gc --minify --cleanDestinationDir --environment production --baseURL "${BASE_URL}"
+
+      - name: Build Doxygen for develop
         working-directory: develop
-        run: doxygen
         env:
           PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
+        run: doxygen
 
-      - name: Build doxygen - main
+      - name: Build Doxygen for main
         working-directory: main
-        run: doxygen
         env:
           PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
+        run: doxygen
 
-      - name: Assemble website
+      - name: Assemble site
         run: |
-          mv website/_site public
-          mv develop/docs/source-code-documentation/html public/doxygen/develop
-          mv main/docs/source-code-documentation/html public/doxygen/main
+          mkdir -p website/public/doxygen
+          mv develop/docs/source-code-documentation/html website/public/doxygen/develop
+          mv main/docs/source-code-documentation/html website/public/doxygen/main
 
-      - name: List website files
-        run: find public
+      - name: Validate assembled site
+        run: |
+          test -s website/public/index.html
+          test "$(cat website/public/CNAME)" = "precice.org"
+          test -s website/public/feed.xml
+          test -s website/public/sitemap.xml
+          test -s website/public/sitemap_index.xml
+          test -s website/public/robots.txt
+          test -s website/public/doxygen/develop/index.html
+          test -s website/public/doxygen/main/index.html
+          test -s website/public/doxygen/main/sitemap.xml
+          grep -Fx 'Sitemap: https://precice.org/sitemap_index.xml' website/public/robots.txt
+          xmllint --noout \
+            website/public/feed.xml \
+            website/public/sitemap.xml \
+            website/public/sitemap_index.xml \
+            website/public/doxygen/main/sitemap.xml
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
-          github_token: ${{ secrets.JEKYLL_PAT }}
-          publish_dir: ./public
+          path: website/public
+
+  deploy:
+    name: Deploy production site
+    if: github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5
