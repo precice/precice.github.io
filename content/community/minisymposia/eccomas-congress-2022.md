@@ -3,6 +3,8 @@ title: ECCOMAS Congress 2022
 keywords: 2022, ECCOMAS, event, events, minisymposium
 summary:
 permalink: eccomas-congress-2022.html
+aliases:
+  - /eccomas-congress-2022.html
 toc: false
 ---
 

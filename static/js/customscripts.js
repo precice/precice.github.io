@@ -1,6 +1,5 @@
 /**
  * Site-wide behaviors (Bootstrap 5 native APIs + vanilla DOM).
- * jQuery is still loaded in head.html for toc.js and Algolia instantsearch only.
  */
 
 // DOMContentLoaded: replaces $(document).ready() for sidebar, tooltips, anchors, collapse

@@ -1,6 +1,8 @@
 ---
 title: Config visualization
 permalink: tooling-config-visualization.html
+aliases:
+  - /tooling-config-visualization.html
 keywords: tooling, xml, configuration
 summary: "Understanding, handling and debugging preCICE configuration files can be difficult and tedious. This tool simplifies this process by visualizing the configuration as a dot graph."
 ---
@@ -22,9 +24,9 @@ This has a few important benefits:
 
 ## Installation
 
-{% tip %}
+{{< tip >}}
 This tool is also available as part of the [preCICE CLI](tooling-cli.html).
-{% endtip %}
+{{< /tip >}}
 
 We provide two python packages ways of visualizing preCICE configurations.
 
@@ -60,9 +62,9 @@ The configuration visualizer comes with a CLI and a GUI, which serve different p
 
 ## Using the GUI
 
-![The GUI showing the perpendicular flap tutorial](images/docs/tooling/config-visualizer-gui-main.png)
+![The GUI showing the perpendicular flap tutorial](/images/docs/tooling/config-visualizer-gui-main.png)
 
-![The GUI showing the coupling logic of the heat-exchanger tutorial](images/docs/tooling/config-visualizer-gui-heat-exchanger.png)
+![The GUI showing the coupling logic of the heat-exchanger tutorial](/images/docs/tooling/config-visualizer-gui-heat-exchanger.png)
 
 To open the interactive GUI and optionally pass a path to a configuration file:
 
@@ -158,7 +160,7 @@ The following examples are based on the [elastic-tube-1d tutorial](tutorials-ela
 precice-config-visualizer -o graph.svg precice-config.xml
 ```
 
-![Config visualization](images/docs/tooling/elastictube1d-full.svg)
+![Config visualization](/images/docs/tooling/elastictube1d-full.svg)
 
 ### Reduced information of coupling schemes and communicators
 
@@ -166,7 +168,7 @@ precice-config-visualizer -o graph.svg precice-config.xml
 precice-config-visualizer --communicators=merged --cplschemes=merged -o graph.svg precice-config.xml
 ```
 
-![Config visualization](images/docs/tooling/elastictube1d-cpl-com-merged.svg)
+![Config visualization](/images/docs/tooling/elastictube1d-cpl-com-merged.svg)
 
 ### Data flow visualization
 
@@ -174,4 +176,4 @@ precice-config-visualizer --communicators=merged --cplschemes=merged -o graph.sv
 precice-config-visualizer --communicators=hide --cplschemes=hide -o graph.svg precice-config.xml
 ```
 
-![Config visualization](images/docs/tooling/elastictube1d-data-flow.svg)
+![Config visualization](/images/docs/tooling/elastictube1d-data-flow.svg)

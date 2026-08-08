@@ -1,6 +1,8 @@
 ---
 title: Global data
 permalink: couple-your-code-global-data.html
+aliases:
+  - /couple-your-code-global-data.html
 keywords: api, adapter, data, global
 summary: "Define and exchange global data not accociated to a mesh."
 ---

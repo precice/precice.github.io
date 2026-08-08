@@ -3,6 +3,9 @@ title: The preCICE documentation
 keywords: overview, features, docs
 summary: "This page gives an overview of the complete preCICE documentation, including building, configuration, literature, the API, and much more."
 permalink: docs.html
+aliases:
+  - /docs.html
+  - /features/
 redirect_from:
   - /features/
 ---
@@ -38,6 +41,6 @@ The preCICE docs are organized in several sections:
 
 Before you start reading: there are just some [preCICE-specific technical terms](fundamentals-terminology.html) that every user should read first.
 
-{% tip %}
+{{< tip >}}
 Interested in training? We have developed a [training course](community-training.html) on preCICE. Come to the yearly [preCICE workshops](community.html) or book a private training through the [support program](community-support-precice.html).
-{% endtip  %}
+{{< /tip >}}

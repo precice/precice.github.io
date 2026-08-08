@@ -2,6 +2,8 @@
 title: Timings in preCICE
 keywords: pages, development
 permalink: dev-docs-dev-eventtimings.html
+aliases:
+  - /dev-docs-dev-eventtimings.html
 ---
 
 ## Usage

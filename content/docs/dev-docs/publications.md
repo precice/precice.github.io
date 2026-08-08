@@ -2,6 +2,8 @@
 title: Publication strategy
 keywords: Publication, release, distribution, DaRUS
 permalink: dev-docs-publication-strategy.html
+aliases:
+  - /dev-docs-publication-strategy.html
 ---
 
 ## Publication of distribution on DaRUS

@@ -113,7 +113,7 @@ You can configure a single sidebar via `pdf_sidebar` or multiple sidebars via `p
 
 pdf_sidebars:
   - docs_sidebar
-  - tutorial_sidebar
+  - tutorials_sidebar
 ```
 
 and `docs_sidebar.yml` is
