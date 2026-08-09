@@ -1,6 +1,8 @@
 ---
 title: Logging configuration
 permalink: configuration-logging.html
+aliases:
+  - /configuration-logging.html
 keywords: configuration, logging, boost.log
 summary: "By default, preCICE provides a meaningful logging output to stdout. In case you want to modify the default logging, this page describes how to do this."
 ---

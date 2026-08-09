@@ -1,6 +1,8 @@
 ---
 title: Privacy policy
 permalink: privacy.html
+aliases:
+  - /privacy.html
 keywords: privacy, policy, privacy policy, data protection, data retention, personal data
 summary:
 hide_sidebar: true
