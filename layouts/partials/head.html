@@ -1,0 +1,90 @@
+{{- $siteTitle := site.Title -}}
+{{- with site.Params.site_title }}{{ $siteTitle = . }}{{ end -}}
+{{- $title := $siteTitle -}}
+{{- if and .Title (not .IsHome) }}{{ $title = printf "%s | %s" .Title $siteTitle }}{{ end -}}
+{{- $description := "" -}}
+{{- with .Params.summary }}{{ $description = plainify . }}{{ else }}{{ with site.Params.description }}{{ $description = plainify . }}{{ end }}{{ end -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ with $description }}<meta name="description" content="{{ . }}">{{ end }}
+{{ with .Params.tags }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+<meta name="theme-color" content="#0A76BB">
+<title>{{ $title }}</title>
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="shortcut icon" href="{{ "/images/favicon.ico" | relURL }}">
+<link rel="icon" sizes="192x192" href="{{ "/images/icon.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="310x310" href="{{ "/images/icon-310x310.png" | relURL }}">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:site_name" content="preCICE.org">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ "/images/icon-310x310.png" | absURL }}">
+{{ with $description }}<meta property="og:description" content="{{ . }}">{{ end }}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ .Title }}">
+{{ with $description }}<meta name="twitter:description" content="{{ . }}">{{ end }}
+<meta name="twitter:image" content="{{ "/images/icon-310x310.png" | absURL }}">
+{{ with site.Home.OutputFormats.Get "rss" }}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" title="{{ site.Title }}" href="{{ .Permalink | safeURL }}">
+{{ end }}
+<link rel="stylesheet" href="{{ "css/fontawesome.6.7.2.all.min.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/bootstrap.min.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/customstyles.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/customstyles-precice.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/boxshadowproperties.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/bookcover.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/theme-precice.css" | relURL }}">
+{{ if .IsHome }}<link rel="stylesheet" href="{{ "css/landing-page.css" | relURL }}">{{ end }}
+<link rel="stylesheet" href="{{ "css/katex.min.css" | relURL }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+{{ block "head_extra" . }}{{ end }}
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+<script defer src="{{ "js/katex.min.js" | relURL }}"></script>
+<script defer src="{{ "js/auto-render.min.js" | relURL }}"></script>
+{{ with site.Params.mermaid.src }}<script type="module">import mermaid from "{{ . }}"; mermaid.initialize({ startOnLoad: true });</script>{{ end }}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "$", right: "$", display: false},
+        {left: "\\(", right: "\\)", display: false},
+        {left: "\\[", right: "\\]", display: true}
+      ],
+      throwOnError: false
+    });
+  });
+</script>
+
+<!-- QR code for printed pages -->
+<script defer src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof qrcode === "undefined") return;
+    var qrDiv = document.createElement("div");
+    qrDiv.id = "print-qr-code";
+    var qr = qrcode(0, "M");
+    qr.addData("{{ .Permalink }}");
+    qr.make();
+    qrDiv.innerHTML = qr.createImgTag(3, 0);
+    document.body.appendChild(qrDiv);
+  });
+</script>
+<style>
+  #print-qr-code { display: none; }
+  @media print {
+    #print-qr-code {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+</style>
+
+<!-- Plausible Analytics -->
+<script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>

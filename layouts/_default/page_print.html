@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{ partial "head_print.html" . }}
+</head>
+<body class="{{ with .Params.type }}{{ . }} {{ end }}print">
+  <div class="container print-container">
+    <main class="print-content">
+      <div class="post-header">
+        <h1 class="post-title-main" id="{{ .RelPermalink | replaceRE "[^A-Za-z0-9_-]" "" }}">{{ .Title }}</h1>
+      </div>
+      <div class="post-content">
+        {{ with .Params.summary }}
+          <div class="summary">{{ . | markdownify }}</div>
+        {{ end }}
+        {{ .Content }}
+      </div>
+    </main>
+  </div>
+</body>
+</html>
