@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="{{ "css/community-spotlight.css" | relURL }}">
+
+{{- $core := slice -}}
+{{- with hugo.Data.developer.leads }}{{ $core = $core | append . }}{{ end -}}
+{{- with hugo.Data.developer.main }}{{ $core = $core | append . }}{{ end -}}
+{{- with (index hugo.Data.developer "main-inactive") }}{{ $core = $core | append . }}{{ end -}}
+{{- with hugo.Data.developer.contributors }}{{ $core = $core | append . }}{{ end -}}
+{{- $shown := "," -}}
+{{- $avatarCount := 0 -}}
+{{- $maxAvatars := 99 -}}
+
+<div class="contributor-preview-container">
+  <div class="contributor-preview-grid">
+    {{ range $person := $core }}
+      {{- $github := $person.github | default "" -}}
+      {{- $needle := printf ",%s," $github -}}
+      {{- if and $github (lt $avatarCount $maxAvatars) (not (in $shown $needle)) -}}
+        <a href="https://github.com/{{ $github }}" target="_blank" rel="noopener noreferrer" title="{{ $person.fullname }}">
+          <img class="contributor-preview-avatar" src="https://github.com/{{ $github }}.png?size=120" alt="{{ $person.fullname }}" loading="lazy">
+        </a>
+        {{- $shown = printf "%s%s," $shown $github -}}
+        {{- $avatarCount = add $avatarCount 1 -}}
+      {{- end -}}
+    {{ end }}
+  </div>
+</div>
