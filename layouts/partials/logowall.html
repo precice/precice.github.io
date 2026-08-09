@@ -1,0 +1,17 @@
+<div id="logowall-items" class="row logowall-grid" role="region" aria-label="Community logos">
+  {{- range hugo.Data.logowall }}
+    {{- range .columns }}
+      {{- range .logos }}
+        <div class="col-md-3 col-sm-3 col-3 text-center logo-item" data-category="{{ .category }}">
+          <a href="{{ .link }}" class="logo no-icon">
+            <div class="logo-holder d-flex align-items-center">
+              <img class="img-fluid mx-auto d-block" src="{{ printf "/images/logo/%s" .logo | relURL }}" alt="{{ .name }}, {{ .country }}" loading="lazy">
+            </div>
+            <p class="institution">{{ .name }}</p>
+            <p class="country">{{ .country }}</p>
+          </a>
+        </div>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+</div>
