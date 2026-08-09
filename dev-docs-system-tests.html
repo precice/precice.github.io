@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1786241212">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1786241212">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1786241212">
-<link rel="stylesheet" href="css/bookcover.css?v=1786241212">
+<link rel="stylesheet" href="css/customstyles.css?v=1786303142">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1786303142">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1786303142">
+<link rel="stylesheet" href="css/bookcover.css?v=1786303142">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1786241212">
+<link rel="stylesheet" href="css/theme-precice.css?v=1786303142">
 <!-- Styling for landing page -->
 
 
@@ -6908,7 +6908,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 16 Jul 26</small>
+              <small>Updated 09 Aug 26</small>
             </div>
           </aside>
           
@@ -7017,6 +7017,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fieldcompare <span class="nb">dir </span>precice-exports/ reference-results-unpacked/&lt;<span class="k">case</span><span class="o">&gt;</span>/ <span class="se">\</span>
              <span class="nt">--ignore-missing-reference-files</span> <span class="se">\</span>
+             <span class="nt">--exclude-files</span> reference-results-metadata.txt <span class="se">\</span>
              <span class="nt">--ignore-unsupported-file-formats</span> <span class="se">\</span>
              <span class="nt">-rtol</span> 3e-7
 </code></pre></div></div>
@@ -7085,6 +7086,10 @@ The two options cannot be combined: defining any overrides to <code class="langu
 </div>
 
 <p>The results will be added to a Git LFS, but you will need special push access: just use the aforementioned GitHub Actions workflow, instead.</p>
+
+<p>Each generated reference archive contains a <code class="language-plaintext highlighter-rouge">reference-results-metadata.txt</code> file
+inside its case directory. This file records the component versions and machine
+information used to generate that archive.</p>
 
 <h4 id="external-test-sources">External test sources</h4>
 
@@ -7223,7 +7228,7 @@ The two options cannot be combined: defining any overrides to <code class="langu
         <li><code class="language-plaintext highlighter-rouge">docker-compose.template.yaml</code>: Describes how to prepare each test (Docker Compose service template)</li>
         <li><code class="language-plaintext highlighter-rouge">docker-compose.field_compare.template.yaml</code>: Describes how to compare results with fieldcompare (Docker Compose service template)</li>
         <li><code class="language-plaintext highlighter-rouge">components.yaml</code>: Declares the available components and their parameters/options</li>
-        <li><code class="language-plaintext highlighter-rouge">reference_results.metadata.template</code>: Template for reporting the versions used to generate the reference results</li>
+        <li><code class="language-plaintext highlighter-rouge">reference-results-metadata.txt.template</code>: Template for reporting the versions and machine used to generate each reference results archive</li>
         <li><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code>: List of arguments to use for generating the reference results</li>
         <li><code class="language-plaintext highlighter-rouge">tests.yaml</code>: Declares the available tests, grouped in test suites</li>
       </ul>
@@ -7763,7 +7768,7 @@ The two options cannot be combined: defining any overrides to <code class="langu
         </a>
         </p>
         <p>
-        Page last updated: Jul 16, 2026<br>
+        Page last updated: Aug 9, 2026<br>
         Site last updated: Aug 9, 2026
         </p>
         <p>
