@@ -1,0 +1,33 @@
+{{- /* Renders the sidebar navigation. Reads the sidebar key from page
+       params, looks up the matching data file in data/sidebars/, and
+       delegates tree rendering to sidebar_recursive.html. */ -}}
+{{- $sidebarKey := .Param "sidebar" | default "home_sidebar" -}}
+{{- $sidebarKeyText := strings.TrimSpace (printf "%v" $sidebarKey) -}}
+{{- $hasNoSidebar := or (eq $sidebarKeyText "nil") (eq $sidebarKeyText "<nil>") (eq $sidebarKeyText "false") -}}
+{{- if not $hasNoSidebar -}}
+{{- $sidebarData := index hugo.Data.sidebars $sidebarKey -}}
+{{- $entries := slice -}}
+{{- with $sidebarData.entries }}{{ $entries = . }}{{ end -}}
+{{- $firstEntry := index $entries 0 -}}
+
+{{- if $firstEntry -}}
+  {{- $product := $firstEntry.product | default $firstEntry.title | default "" -}}
+  {{- $version := $firstEntry.version | default "" -}}
+  <nav aria-label="{{ $product }}">
+    <ul id="mysidebar" class="sidebar-nav flex-column">
+      <li class="sidebarTitle">{{ strings.TrimSpace (printf "%s %s" $product $version) }}</li>
+      {{- range $entry := $entries }}
+        {{- range $folder := $entry.folders }}
+          {{- if partial "sidebar_is_web.html" $folder }}
+            {{ partial "sidebar_recursive.html" (dict "item" $folder "current" $ "level" 1 "parentID" "mysidebar") }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    </ul>
+  </nav>
+{{- else -}}
+  {{- with $sidebarKey }}
+    <div class="sidebar-nav small text-muted" data-sidebar="{{ . }}">Sidebar source not found: {{ . }}</div>
+  {{- end }}
+{{- end -}}
+{{- end -}}

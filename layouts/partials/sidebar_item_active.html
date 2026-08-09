@@ -1,0 +1,43 @@
+{{- /* Recursively checks if any item in the given subtree matches the
+       current page. Returns truthy when a match is found, used to
+       expand parent collapse sections. Params: item, current. */ -}}
+{{- $item := .item -}}
+{{- $current := .current -}}
+{{- $active := false -}}
+
+{{- with $item.url }}
+  {{- if partial "sidebar_page_matches_url.html" (dict "page" $current "url" .) }}
+    {{- $active = true -}}
+  {{- end }}
+{{- end -}}
+
+{{- if not $active }}
+  {{- range $child := $item.folderitems }}
+    {{- if partial "sidebar_item_active.html" (dict "item" $child "current" $current) }}
+      {{- $active = true -}}
+    {{- end }}
+    {{- range $subfolder := $child.subfolders }}
+      {{- if partial "sidebar_item_active.html" (dict "item" $subfolder "current" $current) }}
+        {{- $active = true -}}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end -}}
+
+{{- if not $active }}
+  {{- range $subfolder := $item.subfolders }}
+    {{- if partial "sidebar_item_active.html" (dict "item" $subfolder "current" $current) }}
+      {{- $active = true -}}
+    {{- end }}
+  {{- end }}
+{{- end -}}
+
+{{- if not $active }}
+  {{- range $child := $item.subfolderitems }}
+    {{- if partial "sidebar_item_active.html" (dict "item" $child "current" $current) }}
+      {{- $active = true -}}
+    {{- end }}
+  {{- end }}
+{{- end -}}
+
+{{- if $active -}}true{{- end -}}
