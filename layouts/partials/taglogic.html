@@ -1,0 +1,16 @@
+{{- $tagName := .Params.tagName | default .Title -}}
+<p>The following pages and posts are tagged with <button type="button" style="cursor: default" class="btn btn-secondary">{{ $tagName }}</button></p>
+<table>
+  <thead><tr><th>Title</th><th>Type</th><th>Excerpt</th></tr></thead>
+  <tbody>
+    {{ range site.RegularPages }}
+      {{ if in (.Params.tags | default slice) $tagName }}
+        <tr>
+          <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+          <td><span class="badge text-bg-secondary">{{ .Type | title }}</span></td>
+          <td>{{ with .Params.summary }}{{ . | plainify | truncate 160 }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}</td>
+        </tr>
+      {{ end }}
+    {{ end }}
+  </tbody>
+</table>
