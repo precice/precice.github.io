@@ -1,19 +1,14 @@
----
-title: preCICE - The Coupling Library
-permalink: index.html
-keywords:
-toc: false
-hide_sidebar: true
-layout: landing_page
-topnav: topnav
----
+{{ define "main" }}
+{{- $params := site.Params -}}
+{{- $preciceVersion := $params.precice_version -}}
+{{- $preciceReleaseURL := printf "https://github.com/precice/precice/releases/tag/v%s" $preciceVersion -}}
 
 <!-- Lead stage -->
 
 <div class="container">
   <div class="section">
 
-    <h1 class="title no-anchor">Welcome to <img src="images/preCICE_logo_42px.svg" alt="preCICE"></h1>
+    <h1 class="title no-anchor">Welcome to <img src="/images/preCICE_logo_42px.svg" alt="preCICE"></h1>
     <h2 class="subtitle no-anchor">The coupling library for partitioned multi-physics simulations.</h2>
     <div class="action-button-container">
       <span id="github-button">
@@ -21,7 +16,7 @@ topnav: topnav
       </span>
       <span id="latest-release">
         <!-- This will be replaced by the handleResponse() when the page is loaded -->
-        <a href="https://github.com/precice/precice/releases/tag/v{{ site.precice_version }}" class="btn btn-secondary no-icon action-button" role="button">Latest v{{ site.precice_version }} &nbsp;<i class="fas fa-download"></i></a>
+        <a href="{{ $preciceReleaseURL | safeURL }}" class="btn btn-secondary no-icon action-button" role="button">Latest v{{ $preciceVersion }} &nbsp;<i class="fas fa-download"></i></a>
       </span>
       <a href="/quickstart.html" class="btn btn-primary no-icon action-button" role="button">Get started &nbsp;<i class="fas fa-chevron-right"></i></a>
     </div>
@@ -39,7 +34,7 @@ topnav: topnav
         </p>
       </div>
       <div class="col-md-6">
-        <img class="img-fluid col-12" src="images/lead-image-precice.svg" alt="visualisation of how preCICE couples different solvers">
+        <img class="img-fluid col-12" src="/images/lead-image-precice.svg" alt="visualisation of how preCICE couples different solvers">
       </div>
     </div>
 
@@ -78,7 +73,7 @@ topnav: topnav
     <div class="row">
       <div class="col-md-3 col-sm-6 d-flex flex-column">
         <div class="image-holder usp">
-          <img class="img-fluid mx-auto d-block" src="images/usp/usp-minimal.svg" alt="non-invasive integration">
+          <img class="img-fluid mx-auto d-block" src="/images/usp/usp-minimal.svg" alt="non-invasive integration">
         </div>
         <div class="card border-primary panel-precice usp">
           <div class="card-header-precice text-start">
@@ -95,7 +90,7 @@ topnav: topnav
       </div>
       <div class="col-md-3 col-sm-6 d-flex flex-column">
         <div class="image-holder usp">
-          <img class="img-fluid mx-auto d-block" src="images/usp/usp-arbitrary.svg" alt="Coupling of programs">
+          <img class="img-fluid mx-auto d-block" src="/images/usp/usp-arbitrary.svg" alt="Coupling of programs">
         </div>
         <div class="card border-primary panel-precice usp">
           <div class="card-header-precice text-start">
@@ -112,7 +107,7 @@ topnav: topnav
       </div>
       <div class="col-md-3 col-sm-6 d-flex flex-column">
         <div class="image-holder usp">
-          <img class="img-fluid mx-auto d-block" src="images/usp/usp-numerics.svg" alt="numerical methods">
+          <img class="img-fluid mx-auto d-block" src="/images/usp/usp-numerics.svg" alt="numerical methods">
         </div>
         <div class="card border-primary panel-precice usp">
           <div class="card-header-precice text-start">
@@ -129,7 +124,7 @@ topnav: topnav
       </div>
       <div class="col-md-3 col-sm-6 d-flex flex-column">
         <div class="image-holder usp">
-          <img class="img-fluid mx-auto d-block" src="images/usp/usp-scalability.svg" alt="scalability">
+          <img class="img-fluid mx-auto d-block" src="/images/usp/usp-scalability.svg" alt="scalability">
         </div>
         <div class="card border-primary panel-precice usp">
           <div class="card-header-precice text-start">
@@ -163,7 +158,7 @@ topnav: topnav
         <a class="adapter w-100" href="adapter-openfoam-overview.html">
           <div class="card border-primary adapter-card h-100 text-center">
             <div class="card-body d-flex flex-column justify-content-between">
-              <img class="img-fluid adapter mx-auto" src="images/logo/logo-openfoam.png" alt="openFOAM logo" title="Couple with openFOAM">
+              <img class="img-fluid adapter mx-auto" src="/images/logo/logo-openfoam.png" alt="openFOAM logo" title="Couple with openFOAM">
               <p class="adapter-label mb-0">OpenFOAM &nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
             </div>
           </div>
@@ -173,7 +168,7 @@ topnav: topnav
         <a class="adapter w-100" href="adapter-calculix-overview.html">
           <div class="card border-primary adapter-card h-100 text-center">
             <div class="card-body d-flex flex-column justify-content-between">
-              <img class="img-fluid adapter mx-auto" src="images/logo/logo-calculix.png" alt="CalculiX logo" title="Couple with CalculiX">
+              <img class="img-fluid adapter mx-auto" src="/images/logo/logo-calculix.png" alt="CalculiX logo" title="Couple with CalculiX">
               <p class="adapter-label mb-0">CalculiX &nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
             </div>
           </div>
@@ -183,7 +178,7 @@ topnav: topnav
         <a class="adapter w-100" href="adapter-fenics.html">
           <div class="card border-primary adapter-card h-100 text-center">
             <div class="card-body d-flex flex-column justify-content-between">
-              <img class="img-fluid adapter mx-auto" src="images/logo/logo-fenics.png" alt="FEniCS logo" title="Couple with FEniCS">
+              <img class="img-fluid adapter mx-auto" src="/images/logo/logo-fenics.png" alt="FEniCS logo" title="Couple with FEniCS">
               <p class="adapter-label mb-0">FEniCS &nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
             </div>
           </div>
@@ -193,7 +188,7 @@ topnav: topnav
         <a class="adapter w-100" href="adapter-dealii-overview.html">
           <div class="card border-primary adapter-card h-100 text-center">
             <div class="card-body d-flex flex-column justify-content-between">
-              <img class="img-fluid adapter mx-auto" src="images/logo/logo-dealii.png" alt="deal.II logo" title="Couple with deal.II">
+              <img class="img-fluid adapter mx-auto" src="/images/logo/logo-dealii.png" alt="deal.II logo" title="Couple with deal.II">
               <p class="adapter-label mb-0">deal.II &nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
             </div>
           </div>
@@ -203,7 +198,7 @@ topnav: topnav
         <a class="adapter w-100" href="adapter-nutils.html">
           <div class="card border-primary adapter-card h-100 text-center">
             <div class="card-body d-flex flex-column justify-content-between">
-              <img class="img-fluid adapter mx-auto" src="images/logo/logo-nutils.png" alt="Nutils logo" title="Couple with Nutils">
+              <img class="img-fluid adapter mx-auto" src="/images/logo/logo-nutils.png" alt="Nutils logo" title="Couple with Nutils">
               <p class="adapter-label mb-0">Nutils &nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
             </div>
           </div>
@@ -236,7 +231,7 @@ topnav: topnav
           <div class="card border-primary card-body full-height">
             <p class="quote"><a href="community-projects.html#evaluation-of-heart-balve-biomechanics"><i class="fas fa-quote-left"></i>We are using preCICE as it can handle numerical simulations of large sizes with ease as opposed to previous in-house couplers.<i class="fas fa-quote-right"></i></a></p>
             <div class="d-flex align-items-center">
-              <img class="testimonial" src="images/testimonial_kyle_square.jpg" alt="simulation biomechanics">
+              <img class="testimonial" src="/images/testimonial_kyle_square.jpg" alt="simulation biomechanics">
               <div>
                 <p><strong>—Kyle Davis</strong></p>
                 <p>University of the Free State, Department of Cardiothoracic Surgery, South Africa</p>
@@ -248,7 +243,7 @@ topnav: topnav
           <div class="card border-primary card-body full-height">
             <p class="quote"><a href="community-projects.html#fluid-structure-interaction-on-flapping-wings"><i class="fas fa-quote-left"></i>The large number of coupling functionalities in preCICE gives the user the opportunity to build advanced and scalable simulations with ease.<i class="fas fa-quote-right"></i></a></p>
             <div class="d-flex align-items-center">
-              <img class="testimonial" src="images/testimonial_derek_square.jpg" alt="simulation aerodynamics">
+              <img class="testimonial" src="/images/testimonial_derek_square.jpg" alt="simulation aerodynamics">
               <div>
                 <p><strong>—Derek Risseeuw</strong></p>
                 <p>Aerodynamics, Faculty of Aerospace Engineering, TU Delft, The Netherlands</p>
@@ -260,7 +255,7 @@ topnav: topnav
           <div class="card border-primary card-body full-height">
             <p class="quote"><a href="community-projects.html#hybrid-simulation-methods-for-wind-modelling-in-urban-areas"><i class="fas fa-quote-left"></i>With preCICE, we could realize an efficient CPU-GPU coupling of our in-house lattice Boltzmann solver and OpenFOAM.<i class="fas fa-quote-right"></i></a></p>
             <div class="d-flex align-items-center">
-              <img class="testimonial" src="images/testimonial_manchester_square.jpg" alt="simulation cpu-gpu">
+              <img class="testimonial" src="/images/testimonial_manchester_square.jpg" alt="simulation cpu-gpu">
               <div>
                 <p><strong>—Marta Camps Santasmasas</strong></p>
                 <p>Aerodynamics research group, MACE, The University of Manchester, UK</p>
@@ -292,10 +287,10 @@ topnav: topnav
       </div>
       <div class="col-md-6 d-flex align-items-center">
         <div class="col-md-4 col-4 d-flex flex-column">
-          <a class="no-icon" href="https://www.cs.cit.tum.de/en/sccs/home/"><img class="img-fluid mx-auto d-block uni-logo" src="images/logo/logo_tum_400px.png" alt="TUM logo"></a>
+          <a class="no-icon" href="https://www.cs.cit.tum.de/en/sccs/home/"><img class="img-fluid mx-auto d-block uni-logo" src="/images/logo/logo_tum_400px.png" alt="TUM logo"></a>
         </div>
         <div class="col-md-4 col-4 d-flex flex-column">
-          <a class="no-icon" href="https://www.ipvs.uni-stuttgart.de/"><img class="img-fluid mx-auto d-block uni-logo" src="images/logo/logo_stuttgart_400px.png" alt="Uni Stuttgart logo"></a>
+          <a class="no-icon" href="https://www.ipvs.uni-stuttgart.de/"><img class="img-fluid mx-auto d-block uni-logo" src="/images/logo/logo_stuttgart_400px.png" alt="Uni Stuttgart logo"></a>
         </div>
         <div class="col-md-4 col-4 d-flex flex-column">
           <a class="no-icon github-link" href="https://github.com/precice/precice">
@@ -312,7 +307,7 @@ topnav: topnav
       <div class="col-md-3 offset-md-1 col-sm-3 d-none d-sm-block text-center">
         <a class="book-container no-icon" href="https://doi.org/10.12688/openreseurope.14445.2" target="_blank" rel="noreferrer noopener">
           <div class="book mx-auto d-block">
-            <img class="m-0" alt="preCICE reference paper" src="images/paper-v2-thumbnail.jpg" title="preCICE v2: A sustainable and user-friendly coupling library">
+            <img class="m-0" alt="preCICE reference paper" src="/images/paper-v2-thumbnail.jpg" title="preCICE v2: A sustainable and user-friendly coupling library">
           </div>
         </a>
       </div>
@@ -327,8 +322,8 @@ topnav: topnav
             <a href="assets/precice-v2.bib">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
           </div>
         </div>
-        <a href="{{ site.precice_v2_citations_url }}" class="btn btn-secondary no-icon literature-link" role="button">Citations of preCICE v2 paper ({{ site.precice_v2_citations }}) &nbsp;<i class="fas fa-chevron-right"></i></a>
-        <a href="{{ site.precice_v1_citations_url }}" class="btn btn-secondary no-icon literature-link" role="button">preCICE v1 ({{ site.precice_v1_citations }}) &nbsp;<i class="fas fa-chevron-right"></i></a>
+        <a href="{{ $params.precice_v2_citations_url | safeURL }}" class="btn btn-secondary no-icon literature-link" role="button">Citations of preCICE v2 paper ({{ $params.precice_v2_citations }}) &nbsp;<i class="fas fa-chevron-right"></i></a>
+        <a href="{{ $params.precice_v1_citations_url | safeURL }}" class="btn btn-secondary no-icon literature-link" role="button">preCICE v1 ({{ $params.precice_v1_citations }}) &nbsp;<i class="fas fa-chevron-right"></i></a>
         <a href="fundamentals-literature-guide.html" class="btn btn-primary literature-link" role="button">Literature guide &nbsp;<i class="fas fa-chevron-right"></i></a>
       </div>
     </div>
@@ -366,7 +361,7 @@ topnav: topnav
         </div>
         <div class="col-md-4 d-flex flex-column">
           <b>The quarterly preCICE newsletter</b>
-          {% include newsletter.html %}
+          {{ partial "newsletter.html" . }}
         </div>
       </div>
     </div> <!-- section -->
@@ -395,7 +390,7 @@ topnav: topnav
         <div class="col-md-4 d-flex flex-column">
           <div class="card border-primary card-body full-height">
             <div class="d-flex align-items-center">
-              <img class="img-fluid mx-auto d-block precice-support" src="images/precice-support.svg" alt="precice support program logo">
+              <img class="img-fluid mx-auto d-block precice-support" src="/images/precice-support.svg" alt="precice support program logo">
             </div>
           </div>
         </div>
@@ -476,26 +471,8 @@ topnav: topnav
       <button type="button" class="btn btn-secondary filter-btn" data-filter="Research" aria-pressed="false" aria-controls="logowall-items">Research</button>
       <button type="button" class="btn btn-secondary filter-btn" data-filter="Industry" aria-pressed="false" aria-controls="logowall-items">Industry</button>
     </div>
-    
-    {% assign logowall = site.data.logowall %}
-    <div id="logowall-items" class="row logowall-grid" role="region" aria-label="Community logos">
-    {% for row in logowall %}
-    {% for column in row.columns %}
-    {% for logo in column.logos %}
-      <div class="col-md-3 col-sm-3 col-3 text-center logo-item" data-category="{{logo.category}}"> <!-- vertical-align -->
-        <a href="{{logo.link}}" class="logo no-icon">
-          <div class="logo-holder d-flex align-items-center"> <!-- mx-auto d-block -->
-            <img class="img-fluid mx-auto d-block" src="images/logo/{{logo.logo}}" alt="{{logo.name}}, {{logo.country}}"
-             loading="lazy">
-          </div>
-          <p class="institution">{{logo.name}}</p>
-          <p class="country">{{logo.country}}</p>
-        </a>
-      </div>
-    {% endfor %}
-    {% endfor %}
-    {% endfor %}
-    </div>
+
+    {{ partial "logowall.html" . }}
 
     <div class="mt-4">
       <a href="community.html" class="btn btn-primary" role="button">Explore the preCICE community &nbsp;<i class="fas fa-chevron-right"></i></a>
@@ -540,3 +517,4 @@ topnav: topnav
     </div> <!-- section -->
   </div> <!-- container -->
 </div> <!-- background-dark -->
+{{ end }}
