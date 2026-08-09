@@ -1,0 +1,13 @@
+{{- $tag := .tag -}}
+{{- $publications := where site.RegularPages "Section" "publications" -}}
+{{- $publications = sort $publications "Params.year" "desc" -}}
+<div class="row">
+  {{- range $publications }}
+    {{- $pubTags := printf "%v" (index .Params "tag") -}}
+    {{- if in $pubTags $tag }}
+      <div class="col-md-10 offset-md-1">
+        {{ partial "publication_panel.html" (dict "pub" . "wrapper" false "flexible" true "require_pub_url" true) }}
+      </div>
+    {{- end }}
+  {{- end }}
+</div>
