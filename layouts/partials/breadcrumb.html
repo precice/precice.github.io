@@ -1,0 +1,35 @@
+{{- $topnavKey := .Param "topnav" | default "topnav" -}}
+{{- $topnav := index hugo.Data $topnavKey | default hugo.Data.topnav -}}
+{{- $sectionTitle := "" -}}
+{{- $sectionURL := "" -}}
+{{- range $entry := $topnav.topnav -}}
+  {{- range $item := $entry.items -}}
+    {{- $sectionSidebar := printf "%s_sidebar" ($item.section | default "") -}}
+    {{- if or (and $item.url (in $.RelPermalink $item.url)) (eq ($.Param "sidebar") $sectionSidebar) -}}
+      {{- $sectionTitle = $item.title -}}
+      {{- $sectionURL = $item.url -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{- if $sectionTitle -}}
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": {{ $sectionTitle | jsonify }},
+      "item": {{ $sectionURL | absURL | jsonify }}
+    },
+    {{- end }}
+    {
+      "@type": "ListItem",
+      "position": {{ if $sectionTitle }}2{{ else }}1{{ end }},
+      "name": {{ .Title | jsonify }},
+      "item": {{ .Permalink | jsonify }}
+    }
+  ]
+}
+</script>

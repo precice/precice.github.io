@@ -3,6 +3,8 @@ title: ECCOMAS Coupled Problems 2025
 keywords: 2025, ECCOMAS, COUPLED, event, events, minisymposium
 summary:
 permalink: eccomas-coupled-2025.html
+aliases:
+  - /eccomas-coupled-2025.html
 toc: false
 ---
 

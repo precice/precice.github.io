@@ -1,6 +1,9 @@
 ---
 title: Step 5 – Non-matching time step sizes
 permalink: couple-your-code-time-step-sizes.html
+aliases:
+  - /couple-your-code-time-step-sizes.html
+  - /couple-your-code-timestep-sizes.html
 keywords: api, adapter, advance, time-stepping, subcycling, adaptivity
 summary: "In this step, you learn how preCICE handles non-matching time step sizes and a few more things about simulation time."
 redirect_from:
@@ -73,7 +76,7 @@ Let us have a closer look at both options.
 The preCICE configuration defines a fixed time window. Both participants can use smaller time step sizes, but then they _subcycle_, i.e. coupling data is only communicated at the end of each time window.
 The figure below illustrates this procedure (k is the subcycling index, the dashed lines mark the time window):
 
-![Time-stepping with a fixed time window](images/docs/couple-your-code-timestepping-fixed.png)
+![Time-stepping with a fixed time window](/images/docs/couple-your-code-timestepping-fixed.png)
 
 * After each time step, both participants tell preCICE which time step size `dt` they just used by calling `precice.advance(dt)`. This way, preCICE can keep track of the total time. `preciceDt` is the remainder time to the next window:
 
@@ -143,10 +146,10 @@ dt = min(precice_dt, solver_dt)
 </div>
 * Once both participants reach the end of the time window, coupling data is exchanged.
 
-{% note %}
+{{< note >}}
 This procedure is independent of whether a serial or a parallel coupling scheme is used.
 For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start.
-{% endnote %}
+{{< /note >}}
 
 ### Possible subcycling pitfall
 
@@ -220,15 +223,15 @@ precice.advance(dt)
 </div>
 </div>
 
-{% note %}
+{{< note >}}
 The strategy presented above is only one possibility. Generally, the participant knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
-{% endnote %}
+{{< /note >}}
 
 ## First participant prescribes time step size
 
 The `first` participant sets the time step size. This requires that the `second` participant runs after the `first` one. Thus, as stated above, this option is only applicable for serial coupling.
 
-![First participant prescribes time step size](images/docs/couple-your-code-timestepping-first.png)
+![First participant prescribes time step size](/images/docs/couple-your-code-timestepping-first.png)
 
 * The blue participant B is `first` and computes a step with its time step size (Step 1).
 * In `advance`, this time step size is given to preCICE (Step 2).
@@ -322,13 +325,13 @@ dt = min(precice_dt, solver_dt)
 
 * The procedure starts over with the blue participant B.
 
-{% note %}
+{{< note >}}
 `preciceDt` on the blue side is always infinity such that `min(solverDt,preciceDt)==solverDt`.
-{% endnote %}
+{{< /note >}}
 
-{% important %}
+{{< important >}}
 You never need to alter your code if you want to switch the first and second participant, if you want to switch between a serial and a parallel coupling scheme, or if you want to switch between `fixed` and `first-participant` time-stepping. Everything can be configured. Even if implicit coupling is used.
-{% endimportant %}
+{{< /important >}}
 
 ## Steering the end of the simulation
 

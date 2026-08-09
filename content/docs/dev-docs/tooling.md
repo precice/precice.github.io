@@ -2,6 +2,8 @@
 title: Tooling
 keywords: pages, development
 permalink: dev-docs-dev-tooling.html
+aliases:
+  - /dev-docs-dev-tooling.html
 ---
 
 ## Setting up pre-commit

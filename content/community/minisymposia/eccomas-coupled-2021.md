@@ -3,6 +3,8 @@ title: ECCOMAS Coupled Problems 2021
 keywords: 2021, ECCOMAS, COUPLED, event, events, minisymposium
 summary:
 permalink: eccomas-coupled-2021.html
+aliases:
+  - /eccomas-coupled-2021.html
 toc: false
 ---
 

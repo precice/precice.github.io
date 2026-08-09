@@ -1,6 +1,8 @@
 ---
 title: Direct access to received meshes
 permalink: couple-your-code-direct-access.html
+aliases:
+  - /couple-your-code-direct-access.html
 keywords: api, adapter, mapping, meshes
 summary: "You can access received meshes and their data directly by using specific optional API functions."
 ---
@@ -53,9 +55,9 @@ This concept is required if you want to access received meshes directly. It migh
 
 ```
 
-{% tip %}
+{{< tip >}}
 If you want to have the flexibility of direct mesh access, but still want to use data mappings provided by preCICE, you may want to use [just-in-time data mappings](couple-your-code-just-in-time-mapping.html).
-{% endtip  %}
+{{< /tip >}}
 
 ## Concept and API
 
@@ -72,15 +74,15 @@ In order to use the feature, it needs to be enabled explicitly in the configurat
 ...
 ```
 
-{% version 3.2.0 %}
+{{< version "3.2.0" >}}
 The flag on the received mesh was called `<receive-mesh ... direct-access="true" />` instead of `<receive-mesh ... api-access="true" />` before preCICE version 3.2.0.
-{% endversion %}
+{{< /version >}}
 
 Note that we write the data on a mesh we received and no mapping and no mesh need to be defined as opposed to the usual case. If you want to read data on a provided mesh additionally, a mesh can (and must) be provided, as usual. Note also that you probably need to reconfigure the mesh, which is used for the data exchange (`<exchange data=..`), the data acceleration and convergence measure within the coupling scheme. Minimal configuration examples can also be found in the integration tests located in the preCICE repository `precice/src/precice/tests`. All relevant test files have '`direct-access`' in the file name, e.g. `explicit-direct-access.xml`.
 
-{% tip %}
+{{< tip >}}
 A more application-oriented configuration, where both solver make use of this feature can be found in [this deal.II example](https://github.com/DavidSCN/matrix-free-dealii-precice/blob/master/tests/heat/partitioned-heat-direct-access/precice-config.xml)
-{% endtip %}
+{{< /tip >}}
 
 ## Using the feature in parallel
 
