@@ -39,7 +39,7 @@ Session: [MS070B](https://wccm-eccomas2026.org/event/session/f9207f47-4180-11f1-
 - [Simulation of Moving Electromagnetic Parts with Finite- and Boundary Elements](https://wccm-eccomas2026.org/event/contribution/003df3a4-ed50-11f0-b205-000c29ddfc0c) (Jürgen Zechner, TAILSIT GmbH, Austria)
 - [Partitioned Physics Coupling for Thermal Transport Problems in the Subsurface using preCICE](https://wccm-eccomas2026.org/event/contribution/5f3957a1-ed98-11f0-b205-000c29ddfc0c) (Orie Cecil, USACE ERDC, USA)
 - [Numerical Integration of OpenFOAM with BioDynaMo Using preCICE for Multiscale and Multiphysics Problems in (Bio)Physics](https://wccm-eccomas2026.org/event/contribution/3c79eade-05d9-11f1-919d-000c29ddfc0c) (Alexandros Iosif, University of Cyprus, Cyprus)
-- [Thermo-Mechanically Coupled FE–FFT Homogenization of Porous Materials](https://wccm-eccomas2026.org/event/contribution/b085c385-01cf-11f1-919d-000c29ddfc0c) (Julian Dahler, RPTU Kaiserslautern-Landau, Fraunhofer ITWM, Germany)
+- ~~[Thermo-Mechanically Coupled FE–FFT Homogenization of Porous Materials](https://wccm-eccomas2026.org/event/contribution/b085c385-01cf-11f1-919d-000c29ddfc0c) (Julian Dahler, RPTU Kaiserslautern-Landau, Fraunhofer ITWM, Germany)~~ (cancelled)
 
 At the end of the session, we will use the remaining time for an extended Q&A.
 
@@ -63,7 +63,7 @@ We are organizing an informal coming together of the preCICE community at a rest
 
 - [Surrogate-assisted Partitioned Modeling of Fractures in Glacier Ice](https://wccm-eccomas2026.org/event/contribution/899b77c9-ec9f-11f0-b205-000c29ddfc0c) (Jun Chen, University of Stuttgart, Germany)
 
-11:30-13:00, in [MS057B Modeling of Glaciers and Ice Sheets II](https://wccm-eccomas2026.org/event/session/97e1e03e-4180-11f1-986a-000c29ddfc0c) (Wednesday, 11:30-13:00):
+11:30-13:00, in [MS057B Modeling of Glaciers and Ice Sheets II](https://wccm-eccomas2026.org/event/session/97e1e03e-4180-11f1-986a-000c29ddfc0c):
 
 - [Subglacial hydrology modelling: achievements and challenges in simulating entire ice sheets](https://wccm-eccomas2026.org/event/contribution/3e43245f-e017-11f0-b205-000c29ddfc0c) (Angelika Humbert, Alfred Wegener Institute, Germany)
 
@@ -76,3 +76,7 @@ We are organizing an informal coming together of the preCICE community at a rest
 11:30-13:00, in [MS007B Synthesizing Experimental and Computational Perspectives in Mechanics/Mechanobiology of Soft Tissues: Dialogue Towards Mechanistic Insight II](https://wccm-eccomas2026.org/event/session/f3b66475-417e-11f1-986a-000c29ddfc0c):
 
 - [A Multi-scale Framework for Electromechanical Simulations of Skeletal Muscle](https://wccm-eccomas2026.org/event/contribution/075a9ea3-fcf8-11f0-919d-000c29ddfc0c) (Carme Homs-Pons, University of Stuttgart, Germany)
+
+11:30-13:00, in [MS095D Advances and Challenges in Phase-Field Modeling and Computations IV](https://wccm-eccomas2026.org/event/session/b913823c-4181-11f1-986a-000c29ddfc0c):
+
+- [Fire-Structure Interaction: Toward a Hybrid Coupled Simulation Using Phase-Field for Unreinforced Concrete Under Fire](https://wccm-eccomas2026.org/event/contribution/649bd21a-efab-11f0-b205-000c29ddfc0c) (Chaitanya Kandekar, Helmut-Schmidt University Hamburg, Germany)
