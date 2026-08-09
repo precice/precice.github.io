@@ -218,7 +218,7 @@ We automate many checks with [GitHub actions](https://github.com/features/action
 ### Adding a new tutorial to the website
 
 Tutorial content is imported from the tutorials repository with Hugo Modules.
-The **Update Hugo modules** workflow records the selected tutorial revision in
+The `Update Hugo modules` workflow records the selected tutorial revision in
 `go.mod` and `go.sum`. Consider putting a `note`
 [alert box](docs-meta-cheatsheet.html#alerts) on top of your new tutorial page
 to describe any unreleased requirements.
