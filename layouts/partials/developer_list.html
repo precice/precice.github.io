@@ -1,0 +1,30 @@
+{{- $group := .group -}}
+{{- $people := index hugo.Data.developer $group -}}
+{{- with $people }}
+  <br>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="devlist">
+        {{- range $index, $person := sort . "name" }}
+          <li{{ if eq $index 0 }} class="devlist-first"{{ end }}>
+            {{- with $person.img }}
+              <div class="devlist-img">
+                <img src="{{ printf "/images/developer/%s.jpg" . | relURL }}" alt="Portrait">
+              </div>
+            {{- end }}
+            <div class="devlist-left">
+              <p>
+                <strong>{{ $person.fullname }}</strong><br>
+                {{ $person.institution }}
+              </p>
+            </div>
+            <ul class="devlist-right">
+              {{- with $person.orcid }}<li><a href="{{ . }}" alt="See the institutional website" class="no-icon"><i class="fab fa-orcid"></i></a></li>{{ end }}
+              {{- with $person.github }}<li><a href="https://github.com/{{ . }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{{ end }}
+            </ul>
+          </li>
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+{{- end }}
