@@ -1,0 +1,83 @@
+{{- /* Recursively renders a sidebar tree node.
+       Leaf items become plain nav-links; branch items become collapsible
+       sections (Bootstrap 5 collapse). Params: item, current (page context),
+       level (nesting depth, 1-based), parentID (BS collapse parent). */ -}}
+{{- $item := .item -}}
+{{- $current := .current -}}
+{{- $level := .level | default 1 -}}
+{{- $parentID := .parentID | default "mysidebar" -}}
+{{- $title := $item.title | default "" -}}
+{{- $url := $item.url | default "" -}}
+{{- $folderitems := $item.folderitems | default (slice) -}}
+{{- $subfolders := $item.subfolders | default (slice) -}}
+{{- $subfolderitems := $item.subfolderitems | default (slice) -}}
+{{- $isBranch := false -}}
+{{- if eq $level 1 }}
+  {{- if gt (len $folderitems) 0 }}{{ $isBranch = true }}{{ end -}}
+{{- else if eq $level 3 }}
+  {{- $isBranch = true -}}
+{{- end -}}
+{{- $isActive := partial "sidebar_item_active.html" (dict "item" $item "current" $current) -}}
+{{- $isCurrent := false -}}
+{{- if $url }}
+  {{- $isCurrent = partial "sidebar_page_matches_url.html" (dict "page" $current "url" $url) -}}
+{{- end -}}
+
+{{- if not $isBranch -}}
+  {{- $href := partial "sidebar_resolve_url.html" (dict "url" $url) -}}
+  <li class="nav-item">
+    <a class="nav-link {{ if $isCurrent }}active{{ end }}"
+       title="{{ $title }}" href="{{ $href }}">
+       {{ $title }}
+    </a>
+  </li>
+{{- else -}}
+  {{- $currentID := printf "sb-%d-%s" $level ($title | anchorize) -}}
+  {{- $nextLevel := add $level 1 -}}
+  <li class="nav-item">
+    <a class="nav-link {{ if $isActive }}active{{ else }}collapsed{{ end }}"
+       title="{{ $title }}"
+       data-bs-toggle="collapse" href="#{{ $currentID }}"
+       role="button"
+       aria-expanded="{{ if $isActive }}true{{ else }}false{{ end }}"
+       aria-controls="{{ $currentID }}">
+       {{ $title }}
+    </a>
+    <ul class="collapse {{ if $isActive }}show{{ end }} sidebar-nav flex-column list-unstyled mb-0"
+        id="{{ $currentID }}" data-bs-parent="#{{ $parentID }}">
+
+      {{- if $url }}
+        {{- $href := partial "sidebar_resolve_url.html" (dict "url" $url) -}}
+        <li class="nav-item">
+          <a class="nav-link {{ if $isCurrent }}active{{ end }}"
+             title="{{ $title }}" href="{{ $href }}">
+             {{ $title }} Overview
+          </a>
+        </li>
+      {{- end }}
+
+      {{- range $child := $folderitems }}
+        {{- if partial "sidebar_is_web.html" $child }}
+          {{ partial "sidebar_recursive.html" (dict "item" $child "current" $current "level" $nextLevel "parentID" $currentID) }}
+          {{- range $subfolder := $child.subfolders }}
+            {{- if partial "sidebar_is_web.html" $subfolder }}
+              {{ partial "sidebar_recursive.html" (dict "item" $subfolder "current" $current "level" 3 "parentID" $currentID) }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+
+      {{- range $subfolder := $subfolders }}
+        {{- if partial "sidebar_is_web.html" $subfolder }}
+          {{ partial "sidebar_recursive.html" (dict "item" $subfolder "current" $current "level" $nextLevel "parentID" $currentID) }}
+        {{- end }}
+      {{- end }}
+
+      {{- range $child := $subfolderitems }}
+        {{- if partial "sidebar_is_web.html" $child }}
+          {{ partial "sidebar_recursive.html" (dict "item" $child "current" $current "level" $nextLevel "parentID" $currentID) }}
+        {{- end }}
+      {{- end }}
+    </ul>
+  </li>
+{{- end -}}
