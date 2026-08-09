@@ -1,0 +1,50 @@
+{{- $siteTitle := site.Title -}}
+{{- with site.Params.site_title }}{{ $siteTitle = . }}{{ end -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ with .Params.summary }}<meta name="description" content="{{ plainify . }}">{{ end }}
+<title>{{ with .Title }}{{ . }} | {{ end }}{{ $siteTitle }}</title>
+<link rel="shortcut icon" href="{{ "/images/favicon.ico" | relURL }}">
+<link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/fontawesome.6.7.2.all.min.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/bootstrap.min.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/customstyles.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/customstyles-precice.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/boxshadowproperties.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/bookcover.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/theme-precice.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/printstyles.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/katex.min.css" | relURL }}">
+<script src="{{ "js/prince.es6.polyfill.min.js" | relURL }}"></script>
+<script src="{{ "js/prince.mathjax.compat.js" | relURL }}"></script>
+<script src="{{ "js/katex.min.js" | relURL }}"></script>
+<script defer src="{{ "js/auto-render.min.js" | relURL }}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "$", right: "$", display: false},
+        {left: "\\(", right: "\\)", display: false},
+        {left: "\\[", right: "\\]", display: true}
+      ],
+      throwOnError: false
+    });
+  });
+</script>
+
+<!-- scripts for Prince functionality -->
+<script>
+  if (typeof Prince !== "undefined") {
+    Prince.addScriptFunc("datestamp", function() {
+      return "{{ now.Format "January 2, 2006" }}";
+    });
+    Prince.addScriptFunc("guideName", function() {
+      return "{{ site.Params.print_title | default "preCICE" }} Documentation";
+    });
+    Prince.addScriptFunc("versionNumber", function() {
+      return "{{ site.Params.precice_version }}";
+    });
+  }
+</script>
+

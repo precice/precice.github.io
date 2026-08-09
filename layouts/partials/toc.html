@@ -1,0 +1,5 @@
+{{- $toc := printf "%s" .TableOfContents -}}
+{{- if and (ne (.Param "toc") false) (in $toc "<li") -}}
+  {{- $toc = replace $toc `id="TableOfContents"` `id="toc" aria-label="Table of contents" class="mb-4"` -}}
+  {{- $toc | safeHTML -}}
+{{- end -}}
