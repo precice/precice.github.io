@@ -1,26 +1,63 @@
 ---
-title: Troubleshooting and Common Issues
+title: Troubleshooting and common issues
 permalink: docs-meta-common-issues.html
-keywords: issues, troubleshooting, bugs, errors, warnings, documentation, jekyll, build locally
-summary:
+aliases:
+  - /docs-meta-common-issues.html
+keywords: issues, troubleshooting, Hugo, modules, build locally
+summary: "Solutions for common local Hugo and module build problems."
 ---
 
-## Jekyll error '429 Too Many Requests'
+## Hugo cannot download a module
 
-When building the site locally in frequent succession, Jekyll might complain in the following way:
+Hugo Modules require Git and Go. A fresh clone downloads the versions recorded
+in `go.mod` when Hugo first builds the site, so it also requires network access.
+Check the local tools and verify the configured modules with:
 
 ```bash
- open-uri.rb:364:in `open_http': 429 Too Many Requests (OpenURI::HTTPError)
+git --version
+go version
+hugo mod verify
 ```
 
-### Cause
+## Hugo reports a checksum mismatch
 
-In order to retrieve the current number of citations on Google Scholar, we use the `nokogiri` gem to scrape [http://scholar.google.com/scholar?hl=en&cites=5053469347483527186](http://scholar.google.com/scholar?hl=en&cites=5053469347483527186) and extract the number of citations (for more information see `_plugins/googlescholar.rb`). Frequent scraping attempts can hit Google's rate limit and lead to a soft IP ban.
+If an upstream repository changes a revision that was already downloaded, Go
+will reject it because its content no longer matches the checksum in `go.sum`.
+Do not disable checksum verification. Instead, synchronize the affected module
+revision, review the resulting `go.mod` and `go.sum` changes, and commit them
+together:
 
-### Solution
+```bash
+python3 tools/sync_hugo_modules.py
+hugo mod verify
+```
 
-Either visit [http://scholar.google.com](http://scholar.google.com) in your browser and solve the Captcha or deactivate the `googlescholar.rb` plugin temporarily, e.g. by renaming it to `googlescholar.rb_`, or commenting out its contents.
+## Local imported content is older than upstream content
 
-## Jekyll crashes on Windows
+Hugo builds imported documentation from the revisions pinned in `go.mod`, not
+from another checkout on your computer. Run the `Update Hugo modules` workflow
+or the synchronization command above to select newer upstream revisions.
 
-Some of the flags (arguments) for running `jekyll build` or `jekyll serve` are known to crash on Windows, e.g. `--safe -l` or `--detach`. In most cases there is no workaround, because the features are simply not implemented or available in Windows, so run the command without the flag.
+## Hugo cannot clean its cache
+
+The production build uses `--gc`, which requires a writable Hugo cache. In a
+restricted container or environment, select a cache directory owned by your
+user:
+
+```bash
+HUGO_CACHEDIR=/tmp/precice-hugo-cache hugo --gc --minify
+```
+
+## Search results are stale
+
+Building the site only creates `public/algolia.json`; it does not upload records
+to Algolia. Build and validate the export locally with:
+
+```bash
+npm ci
+hugo --gc --minify --cleanDestinationDir --environment production
+npm run algolia:index -- --dry-run
+```
+
+Use the `Update the Algolia search index` workflow to publish the validated
+records with the repository's configured credentials.
