@@ -1,39 +1,74 @@
 name: Update the Algolia search index
+
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 2 * * *"
 
+permissions:
+  contents: read
+
+concurrency:
+  group: update-algolia
+  cancel-in-progress: false
+
+env:
+  GO_VERSION: "1.26.3"
+  HUGO_VERSION: "0.163.3"
+  NODE_VERSION: "24.18.0"
+  ALGOLIA_APP_ID: "LIT6P0EW26"
+  ALGOLIA_INDEX_NAME: "jekyll"
+
 jobs:
-  build:
+  index:
+    name: Build and publish index
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          submodules: true
+          fetch-depth: 0
+          submodules: false
           lfs: false
-          path: website
-      - uses: ruby/setup-ruby@v1
+
+      - name: Set up Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
-          bundler-cache: true
-          working-directory: website
-      - name: Check recent commit
-        id: checkcommit
-        working-directory: website
-        run: |
-          LATEST_COMMIT=$(git log -1 --format=%ct)
-          CURRENT_TIME=$(date +%s)
-          TIME_DIFF=$((CURRENT_TIME - LATEST_COMMIT))
-          if [ $TIME_DIFF -gt 86400 ]; then
-            echo "No commit within 24 hours."
-            echo "recent_commit=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "recent_commit=true" >> "$GITHUB_OUTPUT"
-          fi
-      - name: Build website and update Algolia index
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.checkcommit.outputs.recent_commit == 'true' }}
-        working-directory: website
+          go-version: ${{ env.GO_VERSION }}
+          cache-dependency-path: go.sum
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Test Algolia indexing
+        run: npm run test:algolia
+
+      - name: Verify Hugo modules
+        run: hugo mod verify
+
+      - name: Build Hugo Algolia export
+        run: hugo --gc --minify --cleanDestinationDir --environment production
+
+      - name: Validate generated Algolia records
+        run: npm run algolia:index -- --dry-run
+
+      - name: Replace Algolia records
         env:
-          JEKYLL_ENV: production
-        run: ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }} bundle exec jekyll algolia
+          ALGOLIA_APP_ID: ${{ env.ALGOLIA_APP_ID }}
+          ALGOLIA_WRITE_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          ALGOLIA_INDEX_NAME: ${{ env.ALGOLIA_INDEX_NAME }}
+        run: npm run algolia:index
