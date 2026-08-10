@@ -1,0 +1,20 @@
+{{- $target := path.Clean .url -}}
+{{- $resolvedPage := false -}}
+{{- range .site.Pages -}}
+  {{- $page := . -}}
+  {{- if eq $target (path.Clean .RelPermalink) -}}
+    {{- $resolvedPage = . -}}
+  {{- end -}}
+  {{- range .Params.aliases -}}
+    {{- if eq $target (path.Clean .) -}}
+      {{- $resolvedPage = $page -}}
+    {{- end -}}
+  {{- end -}}
+  {{- range .Aliases -}}
+    {{- $alias := strings.TrimPrefix "/pdf" (path.Clean .) -}}
+    {{- if eq $target $alias -}}
+      {{- $resolvedPage = $page -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $resolvedPage -}}

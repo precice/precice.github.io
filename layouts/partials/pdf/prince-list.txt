@@ -1,0 +1,31 @@
+{{- $title := site.Home.OutputFormats.Get "pdftitle" -}}
+{{- $toc := site.Home.OutputFormats.Get "pdftoc" -}}
+{{- $docsPart := site.Home.OutputFormats.Get "pdfdocspart" -}}
+{{- $tutorialsPart := site.Home.OutputFormats.Get "pdftutorialspart" -}}
+{{- $appendixPart := site.Home.OutputFormats.Get "pdfappendixpart" -}}
+{{ $title.Permalink }}
+{{ $toc.Permalink }}
+{{ $docsPart.Permalink }}
+{{- range hugo.Data.sidebars.docs_sidebar.entries }}
+  {{- with .folders }}
+    {{- range partial "pdf/sidebar-urls.html" (dict "site" site "nodes" .) }}
+{{ . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{ $tutorialsPart.Permalink }}
+{{- range hugo.Data.sidebars.tutorial_sidebar.entries }}
+  {{- with .folders }}
+    {{- range partial "pdf/sidebar-urls.html" (dict "site" site "nodes" .) }}
+{{ . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{ $appendixPart.Permalink }}
+{{- range hugo.Data.sidebars.pdf_appendix_sidebar.entries }}
+  {{- with .folders }}
+    {{- range partial "pdf/sidebar-urls.html" (dict "site" site "nodes" .) }}
+{{ . }}
+    {{- end }}
+  {{- end }}
+{{- end }}

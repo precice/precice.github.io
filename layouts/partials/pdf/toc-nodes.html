@@ -1,0 +1,29 @@
+{{- $site := .site -}}
+{{- $level := int (.level | default 0) -}}
+{{- range .nodes -}}
+  {{- $node := . -}}
+  {{- $output := lower (printf "%v" ($node.output | default "")) -}}
+  {{- $type := lower (printf "%v" ($node.type | default "")) -}}
+  {{- $resolvedPage := false -}}
+  {{- with $node.url -}}
+    {{- $resolvedPage = partial "pdf/page-for-url.html" (dict "site" $site "url" .) -}}
+  {{- end -}}
+  {{- if and (in $output "pdf") (ne $type "frontmatter") (or (not $node.url) $resolvedPage) }}
+    <li{{ if not $node.url }} class="{{ if eq $level 0 }}sectionHead{{ else }}subSectionHead{{ end }}"{{ end }}>
+      {{- with $resolvedPage -}}
+        <a href="{{ .Permalink }}">{{ $node.title }}</a>
+      {{- else -}}
+        {{- if eq $level 0 -}}
+          {{ $node.title }}
+        {{- else -}}
+          <span>{{ $node.title }}</span>
+        {{- end -}}
+      {{- end -}}
+      {{- range $key := slice "folders" "folderitems" "subfolders" "subfolderitems" -}}
+        {{- with index $node $key }}
+          <ul>{{ partial "pdf/toc-nodes.html" (dict "site" $site "nodes" . "level" (add $level 1)) }}</ul>
+        {{- end -}}
+      {{- end -}}
+    </li>
+  {{- end -}}
+{{- end -}}

@@ -1,4 +1,17 @@
 {{ define "main" }}
+{{ if eq (site.Params.output | default "web") "pdf" }}
+<article class="post-content">
+  <header class="post-header">
+    <h1 class="post-title-main" id="{{ .RelPermalink | replaceRE "[^A-Za-z0-9_-]" "" }}">{{ .Title }}</h1>
+  </header>
+
+  {{ with .Params.summary }}
+    <div class="summary">{{ . | markdownify }}</div>
+  {{ end }}
+
+  {{ partial "compat_content.html" . }}
+</article>
+{{ else }}
 <article class="post-content">
   <header class="post-header">
     <h1 class="post-title-main">{{ .Title }}</h1>
@@ -29,4 +42,5 @@
   {{ end }}
   {{ partial "breadcrumb.html" . }}
 </article>
+{{ end }}
 {{ end }}
