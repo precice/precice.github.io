@@ -6,7 +6,7 @@ import urllib.request
 from datetime import datetime
 
 DISCOURSE_BASE = "https://precice.discourse.group"
-OUTPUT_FILE = "./assets/data/faq.json"
+OUTPUT_FILE = "./static/assets/data/faq.json"
 
 
 def http_get_json(url: str):

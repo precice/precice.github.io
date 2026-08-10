@@ -1,0 +1,67 @@
+name: Update Hugo modules
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "5 0 * * *"
+
+concurrency:
+  group: update-hugo-modules
+  cancel-in-progress: false
+
+env:
+  GO_VERSION: "1.26.3"
+  HUGO_VERSION: "0.163.3"
+  PYTHON_VERSION: "3.14"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          submodules: false
+          lfs: false
+          token: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+
+      - name: Set up Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache-dependency-path: go.sum
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Synchronize Hugo module revisions
+        run: python3 tools/sync_hugo_modules.py
+
+      - name: Verify updated modules
+        run: hugo mod verify
+
+      - name: Commit and push update
+        run: |
+          if git diff --quiet -- go.mod go.sum; then
+            echo "Hugo modules are already up to date."
+            exit 0
+          fi
+
+          git config --local user.name "precice-bot"
+          git config --local user.email "info@precice.org"
+          git add go.mod go.sum
+          git commit --message "Update Hugo modules"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

@@ -4,7 +4,7 @@ import re
 from urllib.request import urlopen
 
 DISCOURSE_URL = "https://precice.discourse.group/c/news/5.json"
-OUTPUT_FILE = "./assets/data/news.json"
+OUTPUT_FILE = "./static/assets/data/news.json"
 
 
 def fetch_json(url: str):
