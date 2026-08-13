@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1786587905">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1786587905">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1786587905">
-<link rel="stylesheet" href="css/bookcover.css?v=1786587905">
+<link rel="stylesheet" href="css/customstyles.css?v=1786642655">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1786642655">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1786642655">
+<link rel="stylesheet" href="css/bookcover.css?v=1786642655">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1786587905">
+<link rel="stylesheet" href="css/theme-precice.css?v=1786642655">
 <!-- Styling for landing page -->
 
 
@@ -6922,7 +6922,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 09 Aug 26</small>
+              <small>Updated 13 Aug 26</small>
             </div>
           </aside>
           
@@ -7029,11 +7029,13 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
 <p>To reproduce the comparison locally, use the <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/docker-compose.field_compare.template.yaml">same fieldcompare command</a>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fieldcompare <span class="nb">dir </span>precice-exports/ reference-results-unpacked/&lt;<span class="k">case</span><span class="o">&gt;</span>/ <span class="se">\</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fieldcompare <span class="nb">dir</span> <span class="se">\</span>
              <span class="nt">--ignore-missing-reference-files</span> <span class="se">\</span>
-             <span class="nt">--exclude-files</span> reference-results-metadata.txt <span class="se">\</span>
+             <span class="nt">--exclude-files</span> .reference-results-metadata.md <span class="se">\</span>
              <span class="nt">--ignore-unsupported-file-formats</span> <span class="se">\</span>
-             <span class="nt">-rtol</span> 3e-7
+             <span class="nt">-rtol</span> 3e-7 <span class="se">\</span>
+             precice-exports/ <span class="se">\</span>
+             reference-results-unpacked/&lt;<span class="k">case</span><span class="o">&gt;</span>/
 </code></pre></div></div>
 
 <p>The default relative tolerance (<code class="language-plaintext highlighter-rouge">-rtol</code>) is <code class="language-plaintext highlighter-rouge">3e-7</code>. Per-test overrides are possible in <code class="language-plaintext highlighter-rouge">tests.yaml</code> (e.g., <code class="language-plaintext highlighter-rouge">tolerance: 1e-2</code>). Set <code class="language-plaintext highlighter-rouge">skip_compare: true</code> to skip the comparison step and only verify that the build and run steps succeed.</p>
@@ -7101,7 +7103,7 @@ The two options cannot be combined: defining any overrides to <code class="langu
 
 <p>The results will be added to a Git LFS, but you will need special push access: just use the aforementioned GitHub Actions workflow, instead.</p>
 
-<p>Each generated reference archive contains a <code class="language-plaintext highlighter-rouge">reference-results-metadata.txt</code> file
+<p>Each generated reference archive contains a <code class="language-plaintext highlighter-rouge">.reference-results-metadata.md</code> file
 inside its case directory. This file records the component versions and machine
 information used to generate that archive.</p>
 
@@ -7242,7 +7244,7 @@ information used to generate that archive.</p>
         <li><code class="language-plaintext highlighter-rouge">docker-compose.template.yaml</code>: Describes how to prepare each test (Docker Compose service template)</li>
         <li><code class="language-plaintext highlighter-rouge">docker-compose.field_compare.template.yaml</code>: Describes how to compare results with fieldcompare (Docker Compose service template)</li>
         <li><code class="language-plaintext highlighter-rouge">components.yaml</code>: Declares the available components and their parameters/options</li>
-        <li><code class="language-plaintext highlighter-rouge">reference-results-metadata.txt.template</code>: Template for reporting the versions and machine used to generate each reference results archive</li>
+        <li><code class="language-plaintext highlighter-rouge">reference-results-metadata.md.template</code>: Template for reporting the versions and machine used to generate each reference results archive</li>
         <li><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code>: List of arguments to use for generating the reference results</li>
         <li><code class="language-plaintext highlighter-rouge">tests.yaml</code>: Declares the available tests, grouped in test suites</li>
       </ul>
@@ -7782,7 +7784,7 @@ information used to generate that archive.</p>
         </a>
         </p>
         <p>
-        Page last updated: Aug 9, 2026<br>
+        Page last updated: Aug 13, 2026<br>
         Site last updated: Aug 13, 2026
         </p>
         <p>
