@@ -258,7 +258,7 @@ function extractPageRecords(page, nodesToIndex) {
       headingLevel = Number(tagName[1]) - 1;
       hierarchy[headingLevel] = normaliseWhitespace(element.text());
       hierarchy.fill(null, headingLevel + 1);
-      anchor = findAnchor($, element) || anchor;
+      anchor = findAnchor($, element);
     }
 
     if (!element.is(nodesToIndex)) {
