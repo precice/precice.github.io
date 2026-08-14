@@ -69,10 +69,10 @@ Hugo writes the search export to `public/algolia.json`. Validate the generated
 records without uploading them with:
 
 ```bash
-npm ci
-npm run test:algolia
+npm --prefix tools ci
+npm --prefix tools run test:algolia
 hugo --gc --minify --cleanDestinationDir --environment production
-npm run algolia:index -- --dry-run
+npm --prefix tools run algolia:index -- --input ../public/algolia.json --dry-run
 ```
 
 See [the search documentation](docs/algolia.md) for test-index and credential
