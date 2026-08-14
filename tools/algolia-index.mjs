@@ -266,7 +266,7 @@ function extractPageRecords(page, nodesToIndex) {
     }
 
     const searchableElement = element.clone();
-    searchableElement.find(EXCLUDED_SELECTOR).remove();
+    searchableElement.find(`${EXCLUDED_SELECTOR},${CALLOUT_SELECTOR}`).remove();
     const content = normaliseWhitespace(searchableElement.text());
     if (!content) {
       continue;
