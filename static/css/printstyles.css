@@ -15,17 +15,53 @@ body.print .print-content {
 
 body.print .print-content img {
     display: block;
-    max-width: 100%;
-    max-height: 520pt;
-    width: auto;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 85% !important;
+    max-height: 380pt !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 1.5em auto !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+body.print .print-content a img,
+body.print .print-content img[src*=".svg"],
+body.print .print-content img[src*="shields.io"],
+body.print .print-content img[src*="badge"],
+body.print .print-content img[src*="repology"],
+body.print .print-content img[src*="pkgs.org"],
+body.print .print-content img[src*="doi.org"],
+body.print .print-content img[src*="darus"],
+body.print .print-content img[src*="theoj.org"],
+body.print .print-content img[src*="status"],
+body.print .print-content table img {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin: 0.2em 0 !important;
+    max-width: 100% !important;
+    max-height: none !important;
+}
+
+body.print .print-content p:has(> a > img),
+body.print .print-content p:has(> a.no-icon),
+body.print .print-content p:has(> img[src*="badge"]),
+body.print .print-content p:has(> img[src*="shields.io"]),
+body.print .print-content p:has(> img[src*="theoj.org"]),
+body.print .print-content p:has(> img[src*="darus"]) {
+    text-align: left !important;
 }
 
 .nav ul li a {border-top:0px; background-color:transparent; color: #808080; }
-#navig a[href] {color: #040606 !important;}
 table .table {max-width:650px;}
+
+table th code,
+table thead code {
+    color: #ffffff !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#navig a[href] {color: #040606 !important;}
 
 #navig li.sectionHead {
     font-weight: bold;
@@ -46,20 +82,43 @@ table .table {max-width:650px;}
 
 
 
-#navig a[href]::after { content: leader(".") target-counter(attr(href), page); }
-
 a[href]::after {
-    content: " (page " target-counter(attr(href), page) ")"
+    content: "";
 }
 
-a[href^="http:"]::after, a[href^="https:"]::after, a[href^="ftp:"]::after {
-    content: "";
+.post-content a.internal-link::after,
+.post-content a[href^="#"]:not(.noCrossRef):not([data-bs-toggle]):not(.nav-link)::after {
+    content: " (page " target-counter(attr(href), page) ")";
+}
+
+.post-content a:not(.no-icon)[href^="http://"]::after,
+.post-content a:not(.no-icon)[href^="https://"]::after,
+.post-content a:not(.no-icon)[href^="ftp://"]::after,
+.post-content a[href^="http:"]:not(.internal-link)::after,
+.post-content a[href^="https:"]:not(.internal-link)::after,
+.post-content a[href^="ftp:"]:not(.internal-link)::after,
+a.no-icon::after,
+a.no-icon:after,
+a.no_icon::after,
+a.no_icon:after,
+.post-content a.no-icon::after,
+.post-content a.no-icon:after,
+.post-content a:has(img)::after,
+.post-content a:has(img):after {
+    content: "" !important;
+    display: none !important;
+    padding-left: 0 !important;
+}
+
+#navig a[href]::after {
+    content: leader(".") " " target-counter(attr(href), page) !important;
+    font-family: sans-serif !important;
 }
 
 a[href] {
     color: #0A76BB !important;
 }
-a[href*="mailto"]::after, a[data-bs-toggle="tooltip"]::after, a[href].noCrossRef::after, a[data-bs-toggle="tab"]::after {
+a[href*="mailto"]::after, a[data-bs-toggle="tooltip"]::after, a[href].noCrossRef::after, a[href].noCrossRef:after, a[data-bs-toggle="tab"]::after, .nav-tabs a::after {
     content: "";
 }
 
@@ -129,6 +188,21 @@ a[href*="mailto"]::after, a[data-bs-toggle="tooltip"]::after, a[href].noCrossRef
 
 .alert a {
     text-decoration: none !important;
+}
+
+#loadBtn, #spinner {
+    display: none !important;
+}
+
+#changelog::after {
+    content: "(unreleased changes)";
+    font-style: italic;
+    color: #333;
+}
+
+.page-break, .pagebreak, .new-page {
+    break-before: page !important;
+    page-break-before: always !important;
 }
 
 
@@ -231,6 +305,12 @@ pre > code {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+#toc {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1.5em;
+}
+
 .alert {
     margin: 1em 0;
     padding: .6em;
@@ -241,52 +321,99 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id], dt[id] {
 }
 
 /* prepare nav tabs for printing */
-.nav > li.active > a, /* tab headers */
-.nav > li > a {
-    color: black;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px 4px 0 0;
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6 !important;
+    margin-bottom: 15px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
 }
+
+.nav-tabs .nav-item {
+    position: relative !important;
+    display: inline-block !important;
+    margin-bottom: -1px !important;
+    margin-right: 8px !important;
+}
+
+.nav-tabs .nav-link,
+.nav-tabs .nav-item a {
+    color: #495057 !important;
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    border-bottom-color: transparent !important;
+    border-radius: 4px 4px 0 0 !important;
+    padding: 4px 12px !important;
+    font-size: 0.9em !important;
+    text-decoration: none !important;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.active a {
+    color: #0A76BB !important;
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    border-bottom: 2px solid #0A76BB !important;
+    font-weight: bold !important;
+}
+
 .tab-content > .tab-pane {
     display: block !important; /* display non-active panes */
-    position: relative;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    margin-bottom: 1.5em !important;
 }
+
 div.tab-content div.tab-pane pre {
-  margin-top: 1em;
+    margin-top: 0.5em !important;
 }
+
 /* create counters to link tab headers to tab contents */
 .post-content ul.nav.nav-tabs { 
     counter-reset: tab_number; /* creates a new instance of counter with name tab_number */
 }
+
+.post-content .nav.nav-tabs li.nav-item::after,
 .post-content .nav.nav-tabs li::after {
     counter-increment: tab_number; /* increment counter */
     content: counter(tab_number); /* display value in small bubble */
     position: absolute;
-    top:  -1em;
-    left:  -1em;
-    padding: 2px 5px;
-    background-color: white;
-    color: black;
-    font-size: 0.65em;
+    top: -0.6em;
+    left: -0.6em;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.2em;
+    text-align: center;
+    background-color: #ffffff;
+    color: #0A76BB;
+    font-size: 0.75em;
+    font-weight: bold;
     border-radius: 50%;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px grey;
+    border: 1.5px solid #0A76BB;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+    z-index: 5;
 }
+
 div.tab-content { 
-  counter-reset: pane_number; 
+    counter-reset: pane_number; 
 }
-div.tab-pane::after {
+
+.post-content .tab-content > .tab-pane::after {
     counter-increment: pane_number;
     content: counter(pane_number);
     position: absolute;
-    top: -1em;
-    left: -1em;
-    padding: 2px 5px;
-    background-color: white;
-    color: black;
-    font-size: 0.65em;
+    top: -0.5em;
+    left: -0.6em;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.2em;
+    text-align: center;
+    background-color: #ffffff;
+    color: #0A76BB;
+    font-size: 0.75em;
+    font-weight: bold;
     border-radius: 50%;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px gray;
+    border: 1.5px solid #0A76BB;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+    z-index: 5;
 }
