@@ -1,20 +1,63 @@
-{{- $target := path.Clean .url -}}
+{{- $raw := .url | default "" -}}
+{{- $target := path.Clean $raw -}}
+{{- $targetNoSlash := strings.Trim (strings.TrimPrefix "/pdf" $target) "/" -}}
+{{- $targetNoHtml := strings.TrimSuffix ".html" $targetNoSlash -}}
 {{- $resolvedPage := false -}}
+
+{{/* Pass 1: Exact alias or permalink match on content pages */}}
 {{- range .site.Pages -}}
-  {{- $page := . -}}
-  {{- if eq $target (path.Clean .RelPermalink) -}}
-    {{- $resolvedPage = . -}}
-  {{- end -}}
-  {{- range .Params.aliases -}}
-    {{- if eq $target (path.Clean .) -}}
+  {{- if and (not $resolvedPage) (eq .Kind "page") -}}
+    {{- $page := . -}}
+    {{- $rel := path.Clean .RelPermalink -}}
+    {{- if or (eq $target $rel) (eq $targetNoSlash (strings.Trim (strings.TrimPrefix "/pdf" $rel) "/")) -}}
       {{- $resolvedPage = $page -}}
     {{- end -}}
-  {{- end -}}
-  {{- range .Aliases -}}
-    {{- $alias := strings.TrimPrefix "/pdf" (path.Clean .) -}}
-    {{- if eq $target $alias -}}
-      {{- $resolvedPage = $page -}}
+    {{- if not $resolvedPage -}}
+      {{- range .Params.aliases -}}
+        {{- $alias := path.Clean . -}}
+        {{- if or (eq $target $alias) (eq $targetNoSlash (strings.Trim (strings.TrimPrefix "/pdf" $alias) "/")) -}}
+          {{- $resolvedPage = $page -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $resolvedPage -}}
+      {{- with .Params.permalink -}}
+        {{- $perm := path.Clean . -}}
+        {{- if or (eq $target $perm) (eq $targetNoSlash (strings.Trim (strings.TrimPrefix "/pdf" $perm) "/")) -}}
+          {{- $resolvedPage = $page -}}
+        {{- end -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
+
+{{/* Pass 2: Generalized match across all pages and sections */}}
+{{- if not $resolvedPage -}}
+  {{- range .site.Pages -}}
+    {{- if not $resolvedPage -}}
+      {{- $page := . -}}
+      {{- $relClean := strings.TrimSuffix ".html" (strings.Trim (strings.TrimPrefix "/pdf" (path.Clean .RelPermalink)) "/") -}}
+      {{- if eq $targetNoHtml $relClean -}}
+        {{- $resolvedPage = $page -}}
+      {{- end -}}
+      {{- if not $resolvedPage -}}
+        {{- range .Params.aliases -}}
+          {{- $aliasClean := strings.TrimSuffix ".html" (strings.Trim (strings.TrimPrefix "/pdf" (path.Clean .)) "/") -}}
+          {{- if eq $targetNoHtml $aliasClean -}}
+            {{- $resolvedPage = $page -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if not $resolvedPage -}}
+        {{- with .File -}}
+          {{- $pathClean := strings.TrimSuffix ".md" .Path -}}
+          {{- if eq $targetNoHtml $pathClean -}}
+            {{- $resolvedPage = $page -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 {{- return $resolvedPage -}}
