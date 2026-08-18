@@ -58,6 +58,10 @@ Order of authors: maintainers are listed first followed by everybody else, both 
 
 4. Download components
 
+    {% important %}
+    The tutorials repository tracks reference result files in Git LFS. Download this repository with Git LFS enabled and check that the archives in the `reference-results/` directory in each tutorial can be extracted.
+    {% endimportant %}
+
     <!-- Algolia complains if we use too large code snippets with syntax highlighting -->
     ```text
     #!/bin/bash
@@ -143,7 +147,7 @@ Order of authors: maintainers are listed first followed by everybody else, both 
 
     Once there is a machine-readable distribution, simplify the bash script accordingly.
 
-5. Upload to DaRUS
+6. Upload to DaRUS
 
     ```python
     from easyDataverse import Dataverse
@@ -170,6 +174,6 @@ Order of authors: maintainers are listed first followed by everybody else, both 
     dataset.upload("ipvs_us3")
     ```
 
-6. Review and publish
+7. Review and publish
 
     The upload returns a url, which gives you access to the dataset. Review carefully. Currently, for example, licenses still need manual editing. Also the PDF version of the docs, a README.md, and descriptions of all components are missing. Once ready, publish (i.e. send to DaRUS team for review).
