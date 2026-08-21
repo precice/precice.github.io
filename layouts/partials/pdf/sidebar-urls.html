@@ -1,0 +1,21 @@
+{{- $urls := slice -}}
+{{- $site := .site -}}
+{{- range .nodes -}}
+  {{- $node := . -}}
+  {{- $output := lower (printf "%v" ($node.output | default "")) -}}
+  {{- if in $output "pdf" -}}
+    {{- with $node.url -}}
+      {{- with partial "pdf/page-for-url.html" (dict "site" $site "url" .) -}}
+        {{- $urls = $urls | append .Permalink -}}
+      {{- end -}}
+    {{- end -}}
+    {{- range $key := slice "folders" "folderitems" "subfolders" "subfolderitems" -}}
+      {{- with index $node $key -}}
+        {{- range partial "pdf/sidebar-urls.html" (dict "site" $site "nodes" .) -}}
+          {{- $urls = $urls | append . -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $urls -}}
