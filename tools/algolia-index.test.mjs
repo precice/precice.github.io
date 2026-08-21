@@ -5,7 +5,7 @@ import {
   parseCliArgs,
   recordByteSize,
   validateSearchExport,
-} from "../tools/algolia-index.mjs";
+} from "./algolia-index.mjs";
 
 const searchExport = {
   schemaVersion: 1,
@@ -13,18 +13,18 @@ const searchExport = {
   maxRecordSize: 20_000,
   pages: [
     {
-      title: "Example guide",
+      title: "Example Guide",
       url: "/docs/example/",
       html: `
-        <h2 id="install">Install</h2>
-        <p>Use <code>precice-config</code> to configure the adapter.</p>
-        <table><tbody><tr><td>Version</td><td>3.4</td></tr></tbody></table>
+        <h2 id="install">Installation</h2>
+        <p>Use <code>tool-config</code> to configure the application.</p>
+        <table><tbody><tr><td>Property</td><td>Value</td></tr></tbody></table>
         <script>ignored content</script>
       `,
-      plain: "Use precice-config to configure the adapter. Version 3.4",
+      plain: "Use tool-config to configure the application. Property Value",
       section: "docs",
       kind: "page",
-      tags: ["adapter"],
+      tags: ["tool"],
       categories: [],
       keywords: "configuration",
       date: 1_784_198_400,
@@ -36,13 +36,13 @@ test("creates Jekyll-compatible records with heading and anchor metadata", () =>
   const records = createRecords(searchExport);
 
   assert.equal(records.length, 3);
-  assert.equal(records[0].title, "Example guide");
+  assert.equal(records[0].title, "Example Guide");
   assert.equal(records[0].url, "/docs/example/");
   assert.equal(records[0].anchor, "install");
-  assert.deepEqual(records[0].headings, ["Install"]);
+  assert.deepEqual(records[0].headings, ["Installation"]);
   assert.match(records[0].html, /^<p>/);
-  assert.equal(records[1].content, "precice-config");
-  assert.equal(records[2].content, "Version3.4");
+  assert.equal(records[1].content, "tool-config");
+  assert.equal(records[2].content, "PropertyValue");
   assert.equal(records[0].custom_ranking.heading, 80);
   assert.match(records[0].objectID, /^[a-f0-9]{64}$/);
   assert.equal(records.some((record) => record.content.includes("ignored content")), false);
@@ -59,16 +59,16 @@ test("excludes callouts so a tutorial result starts with its introduction", () =
   const calloutExport = structuredClone(searchExport);
   calloutExport.nodesToIndex = "p";
   calloutExport.pages[0].html = `
-    <div class="alert alert-info" role="alert"><p>Note: Download the case files.</p></div>
-    <p>This tutorial introduces the partitioned heat-conduction case.</p>
+    <div class="alert alert-info" role="alert"><p>Note: Download the example files.</p></div>
+    <p>This document introduces the example setup.</p>
   `;
-  calloutExport.pages[0].plain = "Note: Download the case files. This tutorial introduces the partitioned heat-conduction case.";
+  calloutExport.pages[0].plain = "Note: Download the example files. This document introduces the example setup.";
 
   const records = createRecords(calloutExport);
 
   assert.equal(records.length, 1);
-  assert.equal(records[0].content, "This tutorial introduces the partitioned heat-conduction case.");
-  assert.equal(records[0].content.includes("Download the case files"), false);
+  assert.equal(records[0].content, "This document introduces the example setup.");
+  assert.equal(records[0].content.includes("Download the example files"), false);
 });
 
 test("splits oversized records without exceeding the configured limit", () => {
