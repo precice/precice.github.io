@@ -1,115 +1,113 @@
-# preCICE Webpage - [precice.org](https://precice.org/)
+# preCICE website - [precice.org](https://precice.org/)
 
 ## Local development
 
-First install [`pre-commit`](https://repology.org/project/python:pre-commit/versions) to keep your commits clean.
+First install [pre-commit](https://pre-commit.com/) using its
+[installation instructions](https://pre-commit.com/#install) to keep commits
+clean.
 
-The website is using [Jekyll](https://jekyllrb.com/) static website generator and [Github pages](https://pages.github.com/).
-To run and develop it locally you need to install [`rbenv`](rbenv.org) using `apt install rbenv ruby-build`.
-Then use `rbenv init` and follow the instructions to set it up.
-With `rbenv` installed and activated in your shell:
+The website uses the [Hugo](https://gohugo.io/) static site generator and
+[GitHub Pages](https://pages.github.com/). Install Hugo Extended and Go using
+the versions configured in the GitHub Actions workflows. Follow Hugo's
+[installation guide](https://gohugo.io/installation/) and Go's
+[installation guide](https://go.dev/doc/install); Hugo Extended is required for
+the site's asset pipeline. Hugo Modules require Git and Go, as described in the
+[Hugo Modules documentation](https://gohugo.io/hugo-modules/use-modules/). Node.js
+is only needed when working on Algolia search.
+
+After installation, check the tools before building:
 
 ```bash
-git clone --recurse-submodules https://github.com/precice/precice.github.io && cd precice.github.io
+hugo version
+go version
+pre-commit --version
+```
+
+```bash
+git clone https://github.com/precice/precice.github.io.git
+cd precice.github.io
 pre-commit install
-rbenv install
-bundle install
-bundle exec jekyll serve -l
+hugo server
 ```
 
-You can now view website locally in your browser at `localhost:4000`.
+You can now view the website locally at <http://localhost:1313/>. On the first
+build, Hugo downloads the module versions recorded in `go.mod`. No Ruby or Git
+submodule setup is required.
 
-## Update submodules
-
-Submodules do not yet get updated automatically. This means if you change something in the OpenFOAM adapter documentation or the description of the tutorials, you need to explicitly trigger an update here:
+Before opening a pull request, run the production build:
 
 ```bash
-git submodule update --remote --merge
+hugo mod verify
+hugo --gc --minify --cleanDestinationDir --environment production
+pre-commit run --all-files
 ```
 
-This updates **all** submodules. You can call it from everywhere (you do not need to `cd` into the submodule).
-Afterwards, commit and push.
+## Update imported documentation
 
-Do not directly edit the content of the submodules from within the website repository. This might give ugly merge conflicts.
+Adapter, tutorial, and tooling documentation is included through Hugo Modules.
+The `Update Hugo modules` workflow checks the upstream repositories daily and
+records the selected revisions in `go.mod` and `go.sum`.
 
-## Pull with submodules
-
-To pull changes including submodules
+To update the imported documentation locally, run:
 
 ```bash
-git pull --recurse-submodules
+python3 tools/sync_hugo_modules.py
 ```
 
-## Build inside a Docker container
+Review and commit the resulting `go.mod` and `go.sum` changes. Do not edit
+downloaded module files from this repository; make documentation changes in the
+repository that owns them.
 
-Instead of building on your system (which requires some setup the first time), you can directly serve the website from a Docker container (using the community image [`jekyll/jekyll`](https://hub.docker.com/r/jekyll/jekyll)). In this directory, after you initialize and update the git submodules, run the following:
+Adding a new imported project requires an import and mounts in
+`config/_default/module.toml`, an edit-link mapping in the Hugo configuration,
+and a navigation entry where appropriate. Adding a tutorial currently also
+requires an entry in `data/sidebars/tutorials_sidebar.yml`.
 
-```shell
-docker run --rm --volume="$PWD:/srv/jekyll:Z" --publish 127.0.0.1:4000:4000 -it jekyll/jekyll jekyll serve
+## Search
+
+Hugo writes the search export to `public/algolia.json`. Validate the generated
+records without uploading them with:
+
+```bash
+npm --prefix tools ci
+npm --prefix tools run test:algolia
+hugo --gc --minify --cleanDestinationDir --environment production
+npm --prefix tools run algolia:index -- --input ../public/algolia.json --dry-run
 ```
 
-Arguments:
-
-* `docker run`: The Docker command to run a container from an existing image
-* `--rm`: Automatically remove (or not) the container when it exists
-* `--volume`: Mount the current directory (`$PWD`) to a directory in the container (`/srv/jekyll`), so that only the current container can see the content (`:Z`)
-* `--publish`: Publish the container's port 4000 (where Jekyll serves the website) to the host port 4000. Note that `127.0.0.1` is the localhost in IPv4. For IPv6, you can replace that with `[::1]`.
-* `-it`: Interactive container, capturing signals (such as `Ctrl-C`).
-* `jekyll/jekyll`: The image
-* `jekyll serve`: The command to run. Somehow, the current default `make` target does not work in this context.
+See [the search documentation](docs/algolia.md) for test-index and credential
+setup.
 
 ## Further information
 
-If you would like to learn more about the preCICE documentation, a good start are the [documentation of the documentation pages](https://precice.org/docs-meta-overview.html).
+The [documentation of the documentation pages](https://precice.org/docs-meta-overview.html)
+explains the website structure, navigation, front matter, and imported content.
 
 ## Changing the news banner
 
-Edit [`_includes/news_banner.html`](_includes/news_banner.html).
-
-A good starting point is the following:
-
-```html
-<div class="background-light banner-container">
-  <div class="container">
-    <div class="row m-0">
-      <div class="col-lg-12 banner">
-        <p class="m-0">
-          This is the text of my news banner.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-Use the following to selectively change appearance.
-
-```html
-{% if include.landing %}
-  Displayed on the landing page.
-{% else %}
-  Displayed on other pages.
-{% endif %}
-```
+Edit [`layouts/partials/news_banner.html`](layouts/partials/news_banner.html).
+The partial explains how to enable or disable the banner, change its text and
+link, and choose whether it appears on the landing page or on other pages.
 
 ## Common issues while building the site
 
-* If you get permission issues to install gems, resist the impulse of `sudo`: you can install the dependencies locally by running `bundle config set --local path 'vendor/bundle'` before `bundle install`.
+- If Hugo cannot download a module, first check that Git and Go are installed,
+  then run `hugo mod verify`. A fresh clone needs network access to download the
+  versions recorded in `go.mod`.
+- If Hugo reports a checksum mismatch, do not disable verification. The upstream
+  source or selected revision has changed; update the module through the normal
+  synchronization process and review the resulting `go.mod` and `go.sum` files.
+- If a container or restricted environment cannot clean Hugo's cache, build
+  with a writable cache directory, for example
+  `HUGO_CACHEDIR=/tmp/precice-hugo-cache hugo --gc --minify`.
+- If search results are stale, remember that a Hugo build only writes
+  `public/algolia.json`; the Algolia indexing workflow or CLI must upload it.
 
-* If you get errors like `Gem::Ext::BuildError: ERROR: Failed to build gem native extension.` or `mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h`, then (as the error message suggests), you may need to install a Ruby development environment (e.g., `ruby-dev`).
-
-* If you are a poor soul that is stuck developing on Windows, the `-l` flag is known to crash, so best try without.
-
-* Should you get the warning
-
-    ```bash
-    Fetching citation data failed with OpenURI::HTTPError
-    ```
-
-    while building the site locally, then you have been rate limited by Google Scholar. The citation database won't be up to date. Alternatively open [http://scholar.google.com/](http://scholar.google.com/) in a browser and complete the Captcha.
-
-For further information see the [documentation page on common issues](https://precice.org/docs-meta-common-issues.html).
+For further information, see [common issues](https://precice.org/docs-meta-common-issues.html).
 
 ## Licenses
 
-The content of the preCICE webpage is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en). Third-party licenses (e.g. of the framework we use) are collected in the `licenses` subfolder. Note that preCICE itself has a software license, [LGPL v3](https://www.gnu.org/licenses/lgpl-3.0.en.html).
+The content of the preCICE webpage is licensed under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en). Third-party
+licenses are collected in the `licenses` subfolder. preCICE itself is licensed
+under [LGPL v3](https://www.gnu.org/licenses/lgpl-3.0.en.html).
