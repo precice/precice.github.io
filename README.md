@@ -61,7 +61,7 @@ repository that owns them.
 Adding a new imported project requires an import and mounts in
 `config/_default/module.toml`, an edit-link mapping in the Hugo configuration,
 and a navigation entry where appropriate. Adding a tutorial currently also
-requires an entry in `data/sidebars/tutorial_sidebar.yml`.
+requires an entry in `data/sidebars/tutorials_sidebar.yml`.
 
 ## Search
 
