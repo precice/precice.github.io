@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1786757455">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1786757455">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1786757455">
-<link rel="stylesheet" href="css/bookcover.css?v=1786757455">
+<link rel="stylesheet" href="css/customstyles.css?v=1787383912">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1787383912">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1787383912">
+<link rel="stylesheet" href="css/bookcover.css?v=1787383912">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1786757455">
+<link rel="stylesheet" href="css/theme-precice.css?v=1787383912">
 <!-- Styling for landing page -->
 
 
@@ -6918,11 +6918,11 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-end">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/tools/tests/README.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/tests/README.md" class="btn btn-outline-secondary githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-end">
-              <small>Updated 13 Aug 26</small>
+              <small>Updated 15 Aug 26</small>
             </div>
           </aside>
           
@@ -6941,7 +6941,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>On the workflow page, click <code class="language-plaintext highlighter-rouge">Run workflow</code>. The default values will execute the <code class="language-plaintext highlighter-rouge">release</code> test suite using the latest <code class="language-plaintext highlighter-rouge">develop</code> branches of every component. If you want to override the version of some component, specify it in the respective field. Commit hashes, branches, and tags are all accepted. Branches and tags will get automatically resolved to their current commit on GitHub before starting any test, and all tests will use the same version of any common component.</p>
 
-<p>The available test suites are found in <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/tests.yaml"><code class="language-plaintext highlighter-rouge">tests.yaml</code></a> and common values are:</p>
+<p>The available test suites are found in <a href="https://github.com/precice/tutorials/blob/develop/tests/tests.yaml"><code class="language-plaintext highlighter-rouge">tests.yaml</code></a> and common values are:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">quickstart</code>, <code class="language-plaintext highlighter-rouge">elastic-tube-1d</code>, or any other tutorial (see <a href="https://github.com/precice/tutorials/issues/448">exceptions</a>)</li>
@@ -6974,13 +6974,13 @@ $('#toc').on('click', 'a', function() {
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run system-tests-manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PLATFORM:ubuntu2404,PRECICE_REF:develop"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span><span class="s2">"DEBUG"</span> <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">build_args</code> override the defaults set in <code class="language-plaintext highlighter-rouge">tools/tests/components.yaml</code>.</p>
+<p>The <code class="language-plaintext highlighter-rouge">build_args</code> override the defaults set in <code class="language-plaintext highlighter-rouge">tests/components.yaml</code>.</p>
 
 <h3 id="running-locally">Running locally</h3>
 
 <p>To run locally, you will need Docker, Docker Compose, and Python 3.</p>
 
-<p>Navigate into the directory <code class="language-plaintext highlighter-rouge">tools/tests/</code> of the tutorials, make a Python virtual environment, and install the dependencies:</p>
+<p>Navigate into the directory <code class="language-plaintext highlighter-rouge">tests/</code> of the tutorials, make a Python virtual environment, and install the dependencies:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv .venv <span class="o">&amp;&amp;</span> <span class="nb">source</span> .venv/bin/activate
 python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
@@ -7027,7 +7027,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
   <li><code class="language-plaintext highlighter-rouge">iterations-logs/</code>: The <code class="language-plaintext highlighter-rouge">precice-*-iterations.log</code> files of the test run. Only present in test cases using implicit coupling. The comparisons to references only take into account the file SHA-256 checksums.</li>
 </ul>
 
-<p>To reproduce the comparison locally, use the <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/docker-compose.field_compare.template.yaml">same fieldcompare command</a>:</p>
+<p>To reproduce the comparison locally, use the <a href="https://github.com/precice/tutorials/blob/develop/tests/docker-compose.field_compare.template.yaml">same fieldcompare command</a>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fieldcompare <span class="nb">dir</span> <span class="se">\</span>
              <span class="nt">--ignore-missing-reference-files</span> <span class="se">\</span>
@@ -7053,7 +7053,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 <p>(a smaller <code class="language-plaintext highlighter-rouge">_logs</code> archive contains only log files). The archive contains a shared <code class="language-plaintext highlighter-rouge">runs/</code> directory:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>runs/
-├── tools/                              # Dockerfiles and helpers (shared)
+├── tests/                              # Dockerfiles and helpers (shared)
 └── &lt;tutorial&gt;_&lt;cases&gt;_&lt;timestamp&gt;/     # one folder per system test
     ├── docker-compose.tutorial.yaml
     ├── docker-compose.field_compare.yaml   # written at build time when compare is configured
@@ -7067,7 +7067,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 <p>To re-run one test locally:</p>
 
 <ol>
-  <li>Extract the zip and keep the <code class="language-plaintext highlighter-rouge">runs/</code> layout (the test folder needs the sibling <code class="language-plaintext highlighter-rouge">tools/</code> directory).</li>
+  <li>Extract the zip and keep the <code class="language-plaintext highlighter-rouge">runs/</code> layout (the test folder needs the sibling <code class="language-plaintext highlighter-rouge">tests/</code> directory).</li>
   <li><code class="language-plaintext highlighter-rouge">cd</code> into the test folder.</li>
   <li>Run <code class="language-plaintext highlighter-rouge">./rerun-system-test.sh</code> (or <code class="language-plaintext highlighter-rouge">sh rerun-system-test.sh</code>).</li>
 </ol>
@@ -7082,7 +7082,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
 <h3 id="adding-new-tests">Adding new tests</h3>
 
-<p>Tests and test suites are defined in <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/tests.yaml"><code class="language-plaintext highlighter-rouge">tests.yaml</code></a>. By convention, every tutorial defines a test suite with the same name as its directory, and several test cases using combinations of the available participants. These test cases are later referenced by other test suites: these are typically the <code class="language-plaintext highlighter-rouge">release</code> and the test suites of different tested components.</p>
+<p>Tests and test suites are defined in <a href="https://github.com/precice/tutorials/blob/develop/tests/tests.yaml"><code class="language-plaintext highlighter-rouge">tests.yaml</code></a>. By convention, every tutorial defines a test suite with the same name as its directory, and several test cases using combinations of the available participants. These test cases are later referenced by other test suites: these are typically the <code class="language-plaintext highlighter-rouge">release</code> and the test suites of different tested components.</p>
 
 <p>The available cases are listed in the <code class="language-plaintext highlighter-rouge">metadata.yaml</code> of each tutorial. To add a new tutorial case as a test, add it to <code class="language-plaintext highlighter-rouge">metadata.yaml</code> and then define a test using it. Include that test in the relevant test suites.</p>
 
@@ -7095,7 +7095,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
 <p>You will need to define a reference results file. The reference results can and should be generated on GitHub using the <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml">Generate reference results (manual)</a> workflow for the respective test suite. You might want to temporarily set the <code class="language-plaintext highlighter-rouge">selected</code> test suite for requesting results only for a subset of test cases.</p>
 
-<p>By default, the <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml">Generate reference results (manual)</a> workflow uses <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> from <a href="https://github.com/precice/tutorials/blob/develop/tools/tests/reference_versions.yaml"><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code></a>. For a feature branch, set Use tutorials from to <code class="language-plaintext highlighter-rouge">workflow branch</code>, or pass <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> via <code class="language-plaintext highlighter-rouge">--build_args</code> (locally) or the optional <code class="language-plaintext highlighter-rouge">build_args</code> workflow input.</p>
+<p>By default, the <a href="https://github.com/precice/tutorials/actions/workflows/generate-reference-results-manual.yml">Generate reference results (manual)</a> workflow uses <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> from <a href="https://github.com/precice/tutorials/blob/develop/tests/reference_versions.yaml"><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code></a>. For a feature branch, set Use tutorials from to <code class="language-plaintext highlighter-rouge">workflow branch</code>, or pass <code class="language-plaintext highlighter-rouge">TUTORIALS_REF</code> via <code class="language-plaintext highlighter-rouge">--build_args</code> (locally) or the optional <code class="language-plaintext highlighter-rouge">build_args</code> workflow input.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
 The two options cannot be combined: defining any overrides to <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code> will ignore the option to use the tutorials from the workflow branch.
@@ -7226,7 +7226,7 @@ information used to generate that archive.</p>
         <li><code class="language-plaintext highlighter-rouge">metadata.yml</code>: describes each case directory (which participant, which component, which script to run, …)</li>
       </ul>
     </li>
-    <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
+    <li><code class="language-plaintext highlighter-rouge">tests/</code>
       <ul>
         <li><code class="language-plaintext highlighter-rouge">component-templates/</code>: jinja2 templates for Docker Compose services for the components
           <ul>
@@ -7254,7 +7254,7 @@ information used to generate that archive.</p>
   <p>User-facing tools:</p>
 
   <ul>
-    <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
+    <li><code class="language-plaintext highlighter-rouge">tests/</code>
       <ul>
         <li><code class="language-plaintext highlighter-rouge">systemtests.py</code>: Executes the system tests, starting Docker Compose services of each required component (after building them), running each test, and comparing the results to reference results.</li>
         <li><code class="language-plaintext highlighter-rouge">print_test_suites.py</code>: Prints the available tests.</li>
@@ -7270,7 +7270,7 @@ information used to generate that archive.</p>
   <p>Implementation scripts:</p>
 
   <ul>
-    <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
+    <li><code class="language-plaintext highlighter-rouge">tests/</code>
       <ul>
         <li><code class="language-plaintext highlighter-rouge">systemtests.py</code>: Main entry point</li>
         <li><code class="language-plaintext highlighter-rouge">requirements.txt</code>: Dependencies (jinja2, pyyaml)</li>
@@ -7784,8 +7784,8 @@ information used to generate that archive.</p>
         </a>
         </p>
         <p>
-        Page last updated: Aug 13, 2026<br>
-        Site last updated: Aug 15, 2026
+        Page last updated: Aug 15, 2026<br>
+        Site last updated: Aug 22, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
