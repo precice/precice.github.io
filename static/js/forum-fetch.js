@@ -5,6 +5,9 @@
  */
 console.log("forum-fetch.js loaded!");
 
+// Resolve data from the site root even when the site is served from a subpath.
+const siteRoot = new URL("../", document.currentScript.src);
+
 document.addEventListener("DOMContentLoaded", async function () {
   console.log("FAQ loader running...");
 
@@ -27,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   try {
-    const res = await fetch("/assets/data/faq.json");
+    const res = await fetch(new URL("assets/data/faq.json", siteRoot));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const data = await res.json();
@@ -113,8 +116,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           new Date(t.last_posted_at).toLocaleDateString("en-GB") +
           " | Replies: " +
           t.posts_count +
-          " | Views: " +
-          t.views;
+          (t.views !== undefined && t.views !== null ? " | Views: " + t.views : "");
 
         card.appendChild(h4);
         card.appendChild(excerptP);
