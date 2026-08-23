@@ -10,11 +10,11 @@ require (
 	github.com/precice/dumux-adapter v3.0.1-0.20260727083532-7bb2e8d05512+incompatible // indirect
 	github.com/precice/dune-adapter v0.0.0-20260718211704-0723530a3f41 // indirect
 	github.com/precice/fenics-adapter v2.3.1-0.20260803194841-4615720762f4+incompatible // indirect
-	github.com/precice/fenicsx-adapter v1.0.2-0.20260716165953-17d67792f781 // indirect
+	github.com/precice/fenicsx-adapter v1.0.2-0.20260814135432-c1c338be2704 // indirect
 	github.com/precice/fmi-runner v0.2.2-0.20260718084031-4003d4b47035 // indirect
-	github.com/precice/micro-manager v0.11.2-0.20260727083507-453c84035ff6 // indirect
-	github.com/precice/openfoam-adapter v1.3.2-0.20260805151646-5a9eec4548ce // indirect
-	github.com/precice/preeco-orga v0.0.0-20260718211338-7b68152ffffe // indirect
+	github.com/precice/micro-manager v0.11.2 // indirect
+	github.com/precice/openfoam-adapter v1.3.2-0.20260819081720-c7e95a8a2cc8 // indirect
+	github.com/precice/preeco-orga v0.0.0-20260823103239-68cc53b83c75 // indirect
 	github.com/precice/su2-adapter v0.0.0-20260718101756-fde3106dab59 // indirect
-	github.com/precice/tutorials v202104.1.2-0.20260805083843-a4b79f538087+incompatible // indirect
+	github.com/precice/tutorials v202104.1.2-0.20260819083151-d4172d9379b5+incompatible // indirect
 )
