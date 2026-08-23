@@ -138,7 +138,7 @@ To add a new imported project:
 2. Run `hugo mod get github.com/precice/my-project@<revision>`.
 3. Run `hugo mod tidy` and `hugo mod verify`.
 4. Add the rendered pages to the a sidebar file (`data/sidebars/`).
-5. Build the site and verify page URLs, edit links, and last-modified dates.
+5. Build the website and verify the page URLs, edit links, and last-modified dates.
 
 The `Update Hugo modules` workflow checks the imported repositories and updates
 their selected revisions in `go.mod` and `go.sum`. Do not copy imported content
