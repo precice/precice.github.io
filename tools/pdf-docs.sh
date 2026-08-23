@@ -2,6 +2,9 @@
 
 set -eu
 
+repo_root="$(cd "$(dirname "$0")/.." && pwd)"
+cd "${repo_root}"
+
 pdf_port="${PDF_PORT:-4173}"
 pdf_build_dir="${PDF_BUILD_DIR:-public-pdf}"
 pdf_output="${PDF_OUTPUT:-pdf/docs.pdf}"

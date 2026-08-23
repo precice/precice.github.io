@@ -24,7 +24,7 @@ generator. The minimum Prince version for the MathJax compatibility script is
 
 ## Build process
 
-The repository-root `pdf-docs.sh` script performs the complete build directly
+The `tools/pdf-docs.sh` script performs the complete build directly
 with Hugo. It performs four steps:
 
 1. Hugo renders the PDF outputs and selected documentation pages into a
@@ -39,7 +39,7 @@ with Hugo. It performs four steps:
 Run the script from the repository root:
 
 ```sh
-./pdf-docs.sh
+./tools/pdf-docs.sh
 ```
 
 Internally, the Hugo step is equivalent to:
@@ -102,7 +102,7 @@ environment variables:
 PDF_BUILD_DIR=/tmp/precice-pdf \
 PDF_OUTPUT=/tmp/precice-docs.pdf \
 PDF_PORT=4174 \
-./pdf-docs.sh
+./tools/pdf-docs.sh
 ```
 
 ## Styling
