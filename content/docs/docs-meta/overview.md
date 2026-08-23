@@ -44,9 +44,9 @@ hugo --gc --minify --cleanDestinationDir --environment production
 
 The two main ingredients behind the website are:
 
-1. **The sidebar**, the navigation tree. The sidebar partial renders the YAML
+1. **The sidebar:** the navigation tree. The sidebar partial renders the YAML
    files in `data/sidebars/` into the navigation shown on each page.
-2. **A set of pages**, Markdown files in `content/` and mounted Markdown files
+2. **A set of pages:** Markdown files in `content/` and mounted Markdown files
    from imported repositories. Hugo renders them to HTML using the templates in
    `layouts/`.
 
