@@ -152,18 +152,29 @@ export function recordByteSize(record) {
 }
 
 export async function readSearchExport(inputPath) {
+  let resolvedPath = path.resolve(inputPath);
   let source;
   try {
-    source = await readFile(inputPath, "utf8");
+    source = await readFile(resolvedPath, "utf8");
   } catch (error) {
-    throw new Error(`Unable to read Algolia export at ${inputPath}: ${error.message}`);
+    if (inputPath === "public/algolia.json") {
+      const fallbackPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "public", "algolia.json");
+      try {
+        source = await readFile(fallbackPath, "utf8");
+        resolvedPath = fallbackPath;
+      } catch {
+        throw new Error(`Unable to read Algolia export at ${resolvedPath}: ${error.message}`);
+      }
+    } else {
+      throw new Error(`Unable to read Algolia export at ${resolvedPath}: ${error.message}`);
+    }
   }
 
   try {
     return validateSearchExport(JSON.parse(source));
   } catch (error) {
     if (error instanceof SyntaxError) {
-      throw new Error(`Algolia export at ${inputPath} is not valid JSON: ${error.message}`);
+      throw new Error(`Algolia export at ${resolvedPath} is not valid JSON: ${error.message}`);
     }
     throw error;
   }
@@ -188,8 +199,7 @@ export async function uploadRecords({ appId, apiKey, batchSize, indexName, recor
 }
 
 export async function run(options, environment = process.env, logger = console) {
-  const inputPath = path.resolve(options.input);
-  const searchExport = await readSearchExport(inputPath);
+  const searchExport = await readSearchExport(options.input);
   const records = createRecords(searchExport, options);
   const maxRecordSize = options.maxRecordSize ?? searchExport.maxRecordSize;
 
