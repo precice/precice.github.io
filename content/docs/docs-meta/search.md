@@ -32,8 +32,8 @@ max_record_size = 20000
 `nodes_to_index` controls which rendered HTML elements become search records.
 `max_record_size` is the maximum serialized record size accepted by the target
 Algolia plan; the indexer validates and splits records as needed. The
-search-only key is visible in the browser and must be restricted to search
-access. Never commit an indexing key.
+search-only key is visible in the browser (public) and must be restricted to search
+access. Never commit the `Write API Key`.
 
 ## Updating the index
 
