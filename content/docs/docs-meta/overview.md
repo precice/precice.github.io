@@ -62,19 +62,26 @@ entries:
   product: Documentation
   folders:
   - title: Configuration
+    output: web, pdf
     folderitems:
     - title: Basics
       url: /configuration-introduction.html
+      output: web, pdf
       subfolders:
       - title: Coupling scheme
+        output: web, pdf
         subfolderitems:
         - title: Overview
           url: /configuration-coupling.html
+          output: web, pdf
 ```
 
-The `url` of each entry must match the rendered page URL. Keep the established
-`.html` URLs when moving an existing page, and use an alias when a page URL must
-change.
+The `url` of each entry must match the rendered page URL. The `output` field
+controls whether the entry appears on the website, in the compiled offline PDF
+(`web, pdf`), or only on the website (`web`). For details on PDF target
+filtering, see [Publish to PDF](/docs-meta-publish-to-pdf.html). Keep the
+established `.html` URLs when moving an existing page, and use an alias when a
+page URL must change.
 
 ### Where to save files
 
