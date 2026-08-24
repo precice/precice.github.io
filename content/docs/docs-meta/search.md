@@ -39,10 +39,10 @@ access. Never commit the `Write API Key`.
 First install the Node.js dependencies and build the Hugo export:
 
 ```bash
-npm ci
-npm run test:algolia
+npm --prefix tools ci
+npm --prefix tools run test:algolia
 hugo --gc --minify --cleanDestinationDir --environment production
-npm run algolia:index -- --dry-run
+npm --prefix tools run algolia:index -- --dry-run
 ```
 
 The dry run validates the JSON schema, configured selector, record sizes, and
@@ -53,7 +53,7 @@ provide a restricted indexing key in the environment:
 export ALGOLIA_APP_ID="your-application-id"
 export ALGOLIA_WRITE_API_KEY="your-restricted-indexing-key"
 export ALGOLIA_INDEX_NAME="your-index-name"
-npm run algolia:index
+npm --prefix tools run algolia:index
 ```
 
 The indexing key needs `addObject`, `deleteIndex`, and `editSettings`
