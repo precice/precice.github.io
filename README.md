@@ -1,10 +1,6 @@
 # preCICE website - [precice.org](https://precice.org/)
 
-## Local development
-
-First install [pre-commit](https://pre-commit.com/) using its
-[installation instructions](https://pre-commit.com/#install) to keep commits
-clean.
+## Building the website locally
 
 The website uses the [Hugo](https://gohugo.io/) static site generator and
 [GitHub Pages](https://pages.github.com/). Install Hugo Extended and Go using
@@ -20,21 +16,30 @@ After installation, check the tools before building:
 ```bash
 hugo version
 go version
-pre-commit --version
 ```
+
+Clone the repository and start the local development server:
 
 ```bash
 git clone https://github.com/precice/precice.github.io.git
 cd precice.github.io
-pre-commit install
 hugo server
 ```
 
 You can now view the website locally at <http://localhost:1313/>. On the first
-build, Hugo downloads the module versions recorded in `go.mod`. No Ruby or Git
-submodule setup is required.
+build, Hugo automatically downloads the module versions recorded in `go.mod`.
 
-Before opening a pull request, run the production build:
+## Contributing
+
+First install [pre-commit](https://pre-commit.com/) using its
+[installation instructions](https://pre-commit.com/#install) to keep commits
+clean:
+
+```bash
+pre-commit install
+```
+
+Before opening a pull request, run the production build and verify that all checks pass:
 
 ```bash
 hugo mod verify
@@ -59,9 +64,10 @@ downloaded module files from this repository; make documentation changes in the
 repository that owns them.
 
 Adding a new imported project requires an import and mounts in
-`config/_default/module.toml`, an edit-link mapping in the Hugo configuration,
-and a navigation entry where appropriate. Adding a tutorial currently also
-requires an entry in `data/sidebars/tutorials_sidebar.yml`.
+`config/_default/module.toml`, an edit-link mapping in
+`config/_default/params.toml`, and a navigation entry where appropriate. Adding
+a tutorial currently also requires an entry in
+`data/sidebars/tutorials_sidebar.yml`.
 
 ## Search
 
