@@ -1,0 +1,31 @@
+{{- $pages := slice -}}
+{{- range site.Pages -}}
+  {{- if and (or (eq .Kind "page") (eq .Kind "section")) (ne (.Param "search") "exclude") -}}
+    {{- $pages = $pages | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $pages = sort $pages "RelPermalink" -}}
+{
+  "schemaVersion": 1,
+  "nodesToIndex": {{ site.Params.algolia.nodes_to_index | jsonify }},
+  "maxRecordSize": {{ site.Params.algolia.max_record_size }},
+  "pages": [
+    {{- range $index, $page := $pages }}
+      {{- if $index }},{{ end }}
+      {{- /* Keep the search export on the same rendered-content path as page layouts. */ -}}
+      {{- $content := partial "compat_content.html" $page -}}
+      {
+        "title": {{ $page.Title | jsonify }},
+        "url": {{ $page.RelPermalink | jsonify }},
+        "html": {{ $content | jsonify }},
+        "plain": {{ $content | plainify | jsonify }},
+        "section": {{ $page.Section | jsonify }},
+        "kind": {{ $page.Kind | jsonify }},
+        "tags": {{ $page.Params.tags | jsonify }},
+        "categories": {{ $page.Params.categories | jsonify }},
+        "keywords": {{ $page.Params.keywords | jsonify }},
+        "date": {{ if ne ($page.Lastmod.Format "2006") "0001" }}{{ $page.Lastmod.Unix }}{{ else }}null{{ end }}
+      }
+    {{- end }}
+  ]
+}

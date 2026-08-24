@@ -13,7 +13,8 @@
         {{ with .Params.summary }}
           <div class="summary">{{ . | markdownify }}</div>
         {{ end }}
-        {{ .Content }}
+        {{ partial "toc.html" . }}
+        {{ partial "compat_content.html" . }}
       </div>
     </main>
   </div>
