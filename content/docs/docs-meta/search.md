@@ -61,6 +61,3 @@ permissions, and its index restriction must include the temporary index prefix
 used for atomic replacement. Production updates run through the `Update the
 Algolia search index` workflow, which reads these values from repository
 secrets.
-
-See [`docs/algolia.md`](https://github.com/precice/precice.github.io/blob/hugo/docs/algolia.md)
-for complete dashboard, test-index, and query-validation instructions.
