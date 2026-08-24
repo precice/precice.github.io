@@ -86,8 +86,8 @@ page URL must change.
 ### Where to save files
 
 Save website-owned Markdown files below `content/` in the section that owns
-them. Unlike Jekyll, the directory structure is meaningful to Hugo: a directory
-containing `_index.md` is a section and its path contributes to page URLs.
+them. The directory structure is meaningful to Hugo: a directory containing
+`_index.md` is a section and its path contributes to page URLs.
 
 ```text
 content/
@@ -96,6 +96,11 @@ content/
         └── basics/
             └── introduction.md
 ```
+
+To maintain backward compatibility with established top-level URLs (such as
+`/configuration-introduction.html`) without breaking external links or
+bookmarks, pages define `aliases` to redirect from flat URL patterns to
+their nested location.
 
 ### Naming conventions
 
@@ -121,7 +126,7 @@ summary: "Configure participants, meshes, exchanged data, mappings, and coupling
 ---
 ```
 
-Use `aliases` for additional legacy URLs:
+Use `aliases` to redirect previous URLs to the page:
 
 ```yaml
 aliases:
