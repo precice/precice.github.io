@@ -143,14 +143,17 @@ adapter, tutorial, or tool. This keeps documentation close to the code while
 presenting it in one place on the website. Hugo Modules mount that source
 content into the website's content tree.
 
-To add a new imported project:
+To add a new imported repository:
 
 1. Add its module import and mounts in `config/_default/module.toml`, and add
-   the corresponding edit-link mapping in the Hugo configuration.
-2. Run `hugo mod get github.com/precice/my-project@<revision>`.
-3. Run `hugo mod tidy` and `hugo mod verify`.
-4. Add the rendered pages to the a sidebar file (`data/sidebars/`).
-5. Build the website and verify the page URLs, edit links, and last-modified dates.
+   the corresponding edit-link mapping in `config/_default/params.toml`.
+2. Run `hugo mod get github.com/precice/my-project@<revision>` (to fetch and pin
+   the target commit or branch in `go.mod`).
+3. Run `hugo mod tidy` (to prune unused dependencies) and `hugo mod verify` (to
+   validate checksums in `go.sum`).
+4. Add the rendered pages to a sidebar file (`data/sidebars/`).
+5. Build the website locally (`hugo server`) and verify the page URLs,
+   edit links, and last-modified dates.
 
 The `Update Hugo modules` workflow checks the imported repositories and updates
 their selected revisions in `go.mod` and `go.sum`. Do not copy imported content
