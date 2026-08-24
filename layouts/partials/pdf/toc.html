@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{ partial "head_print.html" . }}
+</head>
+<body class="frontmatter print">
+  <div class="container print-container">
+    <main class="print-content">
+      <div id="navig">
+        <h1>Table of Contents</h1>
+        <ul id="mysidebar" class="nav" style="columns: 2">
+        {{- range $index, $section := slice
+          (dict "title" "Documentation" "sidebar" hugo.Data.sidebars.docs_sidebar)
+          (dict "title" "Tutorials" "sidebar" hugo.Data.sidebars.tutorials_sidebar)
+          (dict "title" "Appendix" "sidebar" hugo.Data.sidebars.pdf_appendix_sidebar) }}
+          {{- if eq $index 0 }}
+          <h2 style="margin-top: 20px; padding-bottom: 5px; border-bottom: 1px solid #ccc;">{{ $section.title }}</h2>
+          {{- else }}
+          <h2 style="margin-top: 30px; padding-bottom: 5px; border-bottom: 1px solid #ccc;">{{ $section.title }}</h2>
+          {{- end }}
+            {{- range $section.sidebar.entries -}}
+              {{- with .folders }}{{ partial "pdf/toc-nodes.html" (dict "site" site "nodes" . "level" 0) }}{{ end -}}
+            {{- end -}}
+        {{- end }}
+        </ul>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

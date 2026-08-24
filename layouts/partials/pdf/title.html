@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{ partial "head_print.html" . }}
+</head>
+<body class="title print">
+  <div class="container print-container">
+    <main class="print-content">
+      <div class="printTitleArea">
+        <div class="printTitle">
+          <img id="printTitleLogo" src="{{ "images/preCICE_logo_42px.svg" | absURL }}" alt="preCICE logo">
+        </div>
+        <div class="printSubtitle">{{ site.Params.print_subtitle }}</div>
+        <div class="printVersion">Documentation of preCICE v{{ site.Params.precice_version }}</div>
+        <div class="lastGeneratedDate">Generated: {{ now.Format "January 2, 2006" }}</div>
+        <hr>
+
+        <div class="copyrightBoilerplate">
+          <p>
+            This PDF is a snapshot of the documentation hosted at
+            <a href="https://precice.org">precice.org</a>, generated on
+            {{ now.Format "January 2, 2006" }}. The website source is available at
+            <a href="https://github.com/precice/precice.github.io">github.com/precice/precice.github.io</a>.
+          </p>
+          <p>
+            This snapshot was generated with a non-commercial Prince license.
+            Some interactive website content may have a simplified print representation.
+            See the
+            <a href="https://precice.org/docs-meta-publish-to-pdf.html">PDF generation documentation</a>
+            for build instructions.
+          </p>
+          <p>
+            preCICE is free and open-source software. Website documentation is
+            licensed under the
+            <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>
+            license.
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
