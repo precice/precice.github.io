@@ -76,12 +76,15 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
+          cache-dependency-path: tools/package-lock.json
 
       - name: Install Node.js dependencies
         run: npm ci
+        working-directory: tools
 
       - name: Test Algolia indexing
         run: npm run test:algolia
+        working-directory: tools
 
       - name: Verify Hugo modules
         run: hugo mod verify
@@ -91,6 +94,7 @@ jobs:
 
       - name: Validate Algolia records
         run: npm run algolia:index -- --dry-run
+        working-directory: tools
 
       - name: Install XML validation tools
         run: sudo apt-get update && sudo apt-get install --yes libxml2-utils
