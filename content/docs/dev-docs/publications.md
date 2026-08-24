@@ -58,6 +58,8 @@ Order of authors: maintainers are listed first followed by everybody else, both 
 
 4. Download components
 
+   Note that the tutorials repository tracks reference result files in Git LFS. To preserve these, get this repository using Git, with Git LFS enabled, and check that the archives in the `reference-results/` directory in each tutorial can be extracted. The following script only downloads the tutorials without these archives.
+
     <!-- Algolia complains if we use too large code snippets with syntax highlighting -->
     ```text
     #!/bin/bash
