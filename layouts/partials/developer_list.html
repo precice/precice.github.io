@@ -1,16 +1,17 @@
 {{- $group := .group -}}
 {{- $people := index hugo.Data.developer $group -}}
 {{- with $people }}
-  <br>
   <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <ul class="devlist">
+    <div class="col-lg-10 col-md-12">
+      <ul class="devlist my-3">
         {{- range $index, $person := sort . "name" }}
           <li{{ if eq $index 0 }} class="devlist-first"{{ end }}>
-            {{- with $person.img }}
-              <div class="devlist-img">
-                <img src="{{ printf "/images/developer/%s.jpg" . | relURL }}" alt="Portrait">
-              </div>
+            {{- if eq $group "main" }}
+              {{- with $person.img }}
+                <div class="devlist-img">
+                  <img src="{{ printf "/images/developer/%s.jpg" . | relURL }}" alt="Portrait">
+                </div>
+              {{- end }}
             {{- end }}
             <div class="devlist-left">
               <p>
