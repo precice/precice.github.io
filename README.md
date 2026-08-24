@@ -99,17 +99,7 @@ link, and choose whether it appears on the landing page or on other pages.
 
 - If Hugo cannot download a module, first check that Git and Go are installed,
   then run `hugo mod verify`. A fresh clone needs network access to download the
-  versions recorded in `go.mod`.
-- If Hugo reports a checksum mismatch, do not disable verification. The upstream
-  source or selected revision has changed; update the module through the normal
-  synchronization process and review the resulting `go.mod` and `go.sum` files.
-- If you encounter stale assets or local cache issues, run
-  `hugo --cleanDestinationDir --gc` or set a custom cache directory with
-  `HUGO_CACHEDIR=/tmp/precice-hugo-cache hugo server`.
-- If search results are stale, remember that a Hugo build only writes
-  `public/algolia.json`; the Algolia indexing workflow or CLI must upload it.
-
-For further information, see [common issues](https://precice.org/docs-meta-common-issues.html).
+For further information, see [common issues](content/docs/docs-meta/common-issues.md).
 
 ## Licenses
 
