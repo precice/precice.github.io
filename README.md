@@ -72,11 +72,11 @@ records without uploading them with:
 npm --prefix tools ci
 npm --prefix tools run test:algolia
 hugo --gc --minify --cleanDestinationDir --environment production
-npm --prefix tools run algolia:index -- --input ../public/algolia.json --dry-run
+npm --prefix tools run algolia:index -- --dry-run
 ```
 
-See [the search documentation](docs/algolia.md) for test-index and credential
-setup.
+See [the search documentation](content/docs/docs-meta/search.md) for
+configuration and credential setup.
 
 ## Further information
 
@@ -97,9 +97,9 @@ link, and choose whether it appears on the landing page or on other pages.
 - If Hugo reports a checksum mismatch, do not disable verification. The upstream
   source or selected revision has changed; update the module through the normal
   synchronization process and review the resulting `go.mod` and `go.sum` files.
-- If a container or restricted environment cannot clean Hugo's cache, build
-  with a writable cache directory, for example
-  `HUGO_CACHEDIR=/tmp/precice-hugo-cache hugo --gc --minify`.
+- If you encounter stale assets or local cache issues, run
+  `hugo --cleanDestinationDir --gc` or set a custom cache directory with
+  `HUGO_CACHEDIR=/tmp/precice-hugo-cache hugo server`.
 - If search results are stale, remember that a Hugo build only writes
   `public/algolia.json`; the Algolia indexing workflow or CLI must upload it.
 
