@@ -12,8 +12,7 @@ aliases:
 The website search is powered by [Algolia](https://www.algolia.com/). Hugo
 generates `public/algolia.json` from rendered page content, and the Node.js CLI
 in `tools/algolia-index.mjs` converts that export into Algolia records and
-atomically replaces the configured index. This replaces the former
-`jekyll-algolia` plugin.
+atomically replaces the configured index.
 
 ## Configuring search
 
