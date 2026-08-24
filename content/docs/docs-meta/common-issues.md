@@ -38,14 +38,18 @@ Hugo builds imported documentation from the revisions pinned in `go.mod`, not
 from another checkout on your computer. Run the `Update Hugo modules` workflow
 or the synchronization command above to select newer upstream revisions.
 
-## Hugo cannot clean its cache
+## Stale assets or cache issues
 
-The production build uses `--gc`, which requires a writable Hugo cache. In a
-restricted container or environment, select a cache directory owned by your
-user:
+If local builds retain stale assets or encounter cache permission issues, run Hugo with `--cleanDestinationDir` and `--gc` to purge unreferenced generated assets:
 
 ```bash
-HUGO_CACHEDIR=/tmp/precice-hugo-cache hugo --gc --minify
+hugo --cleanDestinationDir --gc
+```
+
+You can also direct Hugo to use a custom local cache directory:
+
+```bash
+HUGO_CACHEDIR=/tmp/precice-hugo-cache hugo server
 ```
 
 ## Search results are stale
