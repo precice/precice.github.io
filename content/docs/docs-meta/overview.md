@@ -155,7 +155,14 @@ To add a new imported repository:
 5. Build the website locally (`hugo server`) and verify the page URLs,
    edit links, and last-modified dates.
 
-The `Update Hugo modules` workflow checks the imported repositories and updates
-their selected revisions in `go.mod` and `go.sum`. Do not copy imported content
-into this repository or edit the downloaded module cache. Make content changes
-upstream, then update the recorded module revision.
+The `Update Hugo modules` workflow (`.github/workflows/update-submodules.yml`)
+automatically synchronizes imported repositories and records their selected
+revisions in `go.mod` and `go.sum`. External repositories (such as
+`precice/tutorials` and adapter repositories) include an `update-website.yml`
+GitHub Actions workflow that triggers this update whenever documentation pull
+requests are merged upstream, ensuring changes appear on the website
+immediately rather than waiting for the daily scheduled run.
+
+Do not copy imported content directly into this repository or edit the
+downloaded module cache. Always make content changes in the upstream
+repository, which will then automatically propagate to the website.
