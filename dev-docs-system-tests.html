@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1787663613">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1787663613">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1787663613">
-<link rel="stylesheet" href="css/bookcover.css?v=1787663613">
+<link rel="stylesheet" href="css/customstyles.css?v=1787668561">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1787668561">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1787668561">
+<link rel="stylesheet" href="css/bookcover.css?v=1787668561">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1787663613">
+<link rel="stylesheet" href="css/theme-precice.css?v=1787668561">
 <!-- Styling for landing page -->
 
 
@@ -6922,7 +6922,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 15 Aug 26</small>
+              <small>Updated 25 Aug 26</small>
             </div>
           </aside>
           
@@ -7012,6 +7012,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
   <li><code class="language-plaintext highlighter-rouge">system-tests-build.log</code>: The logs of building the respective components.</li>
   <li><code class="language-plaintext highlighter-rouge">system-tests-run.log</code>: The logs of running the simulation (intermixed, from all participants).</li>
   <li><code class="language-plaintext highlighter-rouge">system-tests-compare.log</code>: The logs for the comparison to the reference results.</li>
+  <li><code class="language-plaintext highlighter-rouge">system-tests-compare-diff.log</code>: Progress and errors from rendering fieldcompare diff visualizations (on comparison failures).</li>
 </ol>
 
 <p>In addition, in the directories of the cases executed, you can find <code class="language-plaintext highlighter-rouge">system-tests-&lt;case&gt;.log</code> files.</p>
@@ -7023,7 +7024,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 <ul>
   <li><code class="language-plaintext highlighter-rouge">precice-exports/</code>: The coupling meshes of the test run.</li>
   <li><code class="language-plaintext highlighter-rouge">reference-results/</code>: The coupling meshes of the reference run, as stored on Git LFS, expanded into <code class="language-plaintext highlighter-rouge">reference-results-unpacked</code>. For test cases using implicit coupling, the reference <code class="language-plaintext highlighter-rouge">.tar.gz</code> also contains the reference <code class="language-plaintext highlighter-rouge">precice-*-iterations.log</code> files.</li>
-  <li><code class="language-plaintext highlighter-rouge">diff-results/</code>: Numerical difference of the results in the two directories (computed with <code class="language-plaintext highlighter-rouge">fieldcompare dir --diff precice-exports/ reference/</code>). These are only present on failed comparisons.</li>
+  <li><code class="language-plaintext highlighter-rouge">diff-results/</code>: Numerical difference of the results in the two directories (computed with <code class="language-plaintext highlighter-rouge">fieldcompare dir --diff precice-exports/ reference/</code>). These are only present on failed comparisons and accompanied by visualization in <code class="language-plaintext highlighter-rouge">diff-results/visualizations/</code>.</li>
   <li><code class="language-plaintext highlighter-rouge">iterations-logs/</code>: The <code class="language-plaintext highlighter-rouge">precice-*-iterations.log</code> files of the test run. Only present in test cases using implicit coupling. The comparisons to references only take into account the file SHA-256 checksums.</li>
 </ul>
 
@@ -7044,13 +7045,24 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
 
 <p>Alternatively, <a href="https://precice.org/configuration-export.html#visualization-with-paraview">visualize the <code class="language-plaintext highlighter-rouge">precice-exports/diff_*.vtu</code> in ParaView</a>.</p>
 
+<p>To regenerate the PNG visualizations locally from an archived <code class="language-plaintext highlighter-rouge">diff-results/</code> folder (for example after downloading a CI artifact):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 visualize_fieldcompare_diffs.py /path/to/diff-results
+</code></pre></div></div>
+
+<p>The script prints progress per file, and processes files in parallel. Point sprites are used for all meshes. Fields with zero difference are skipped.</p>
+
+<p>The default image size is set by <code class="language-plaintext highlighter-rouge">WINDOW_SIZE</code> in <code class="language-plaintext highlighter-rouge">visualize_fieldcompare_diffs.py</code> (currently <code class="language-plaintext highlighter-rouge">1024 x 768</code>). Increase it for higher-resolution PNGs, e.g. <code class="language-plaintext highlighter-rouge">WINDOW_SIZE = (1920, 1080)</code>.</p>
+
+<p>For PDF output instead of PNG, replace the <code class="language-plaintext highlighter-rouge">plotter.show(screenshot=...)</code> call in <code class="language-plaintext highlighter-rouge">render_field()</code> with <code class="language-plaintext highlighter-rouge">plotter.render()</code> followed by <code class="language-plaintext highlighter-rouge">plotter.save_graphic(str(output_file.with_suffix(".pdf")))</code>.</p>
+
 <h3 id="re-running-from-ci-artifacts">Re-running from CI artifacts</h3>
 
 <p>When a system test fails in CI, download the <strong>full</strong> artifact:</p>
 
 <p><code class="language-plaintext highlighter-rouge">system_tests_run_&lt;run_id&gt;_&lt;run_attempt&gt;_full</code></p>
 
-<p>(a smaller <code class="language-plaintext highlighter-rouge">_logs</code> archive contains only log files). The archive contains a shared <code class="language-plaintext highlighter-rouge">runs/</code> directory:</p>
+<p>(a smaller <code class="language-plaintext highlighter-rouge">_logs</code> archive contains the stage log files; on comparison failures, difference visualizations are in a separate <code class="language-plaintext highlighter-rouge">_diffs</code> archive. The archives contain a shared <code class="language-plaintext highlighter-rouge">runs/</code> directory:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>runs/
 ├── tests/                              # Dockerfiles and helpers (shared)
@@ -7061,6 +7073,7 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
     ├── system-tests-build.log
     ├── system-tests-run.log
     ├── system-tests-compare.log
+    ├── system-tests-compare-diff.log   # on comparison failures
     └── …
 </code></pre></div></div>
 
@@ -7243,6 +7256,7 @@ information used to generate that archive.</p>
         </li>
         <li><code class="language-plaintext highlighter-rouge">docker-compose.template.yaml</code>: Describes how to prepare each test (Docker Compose service template)</li>
         <li><code class="language-plaintext highlighter-rouge">docker-compose.field_compare.template.yaml</code>: Describes how to compare results with fieldcompare (Docker Compose service template)</li>
+        <li><code class="language-plaintext highlighter-rouge">docker-compose.diff_visualizer.template.yaml</code>: Describes how to render fieldcompare diff VTK files to PNG images on failure</li>
         <li><code class="language-plaintext highlighter-rouge">components.yaml</code>: Declares the available components and their parameters/options</li>
         <li><code class="language-plaintext highlighter-rouge">reference-results-metadata.md.template</code>: Template for reporting the versions and machine used to generate each reference results archive</li>
         <li><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code>: List of arguments to use for generating the reference results</li>
@@ -7273,7 +7287,8 @@ information used to generate that archive.</p>
     <li><code class="language-plaintext highlighter-rouge">tests/</code>
       <ul>
         <li><code class="language-plaintext highlighter-rouge">systemtests.py</code>: Main entry point</li>
-        <li><code class="language-plaintext highlighter-rouge">requirements.txt</code>: Dependencies (jinja2, pyyaml)</li>
+        <li><code class="language-plaintext highlighter-rouge">requirements.txt</code>: Dependencies (jinja2, pyyaml, pyvista for optional local use of the visualizer script)</li>
+        <li><code class="language-plaintext highlighter-rouge">visualize_fieldcompare_diffs.py</code>: Renders archived fieldcompare diff VTK files to PNG images (normally run via the <code class="language-plaintext highlighter-rouge">diff_visualizer</code> Docker stage)</li>
         <li><code class="language-plaintext highlighter-rouge">metadata_parser/</code>: Reads the YAML files into Python objects (defines the schema)</li>
         <li><code class="language-plaintext highlighter-rouge">systemtests/</code>: Main implementation classes
           <ul>
@@ -7784,7 +7799,7 @@ information used to generate that archive.</p>
         </a>
         </p>
         <p>
-        Page last updated: Aug 15, 2026<br>
+        Page last updated: Aug 25, 2026<br>
         Site last updated: Aug 25, 2026
         </p>
         <p>
