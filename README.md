@@ -69,25 +69,12 @@ Adding a new imported project requires an import and mounts in
 a tutorial currently also requires an entry in
 `data/sidebars/tutorials_sidebar.yml`.
 
-## Search
-
-Hugo writes the search export to `public/algolia.json`. Validate the generated
-records without uploading them with:
-
-```bash
-npm --prefix tools ci
-npm --prefix tools run test:algolia
-hugo --gc --minify --cleanDestinationDir --environment production
-npm --prefix tools run algolia:index -- --dry-run
-```
-
-See [the search documentation](content/docs/docs-meta/search.md) for
-configuration and credential setup.
-
 ## Further information
 
 The [documentation of the documentation pages](https://precice.org/docs-meta-overview.html)
 explains the website structure, navigation, front matter, and imported content.
+See the [search documentation](content/docs/docs-meta/search.md) for details on
+Algolia search indexing and configuration.
 
 ## Changing the news banner
 
