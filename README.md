@@ -71,7 +71,8 @@ a tutorial currently also requires an entry in
 
 ## Further information
 
-The [documentation of the documentation pages](https://precice.org/docs-meta-overview.html)
+The [documentation of the documentation pages](content/docs/docs-meta/overview.md)
+(or on the [website](https://precice.org/docs-meta-overview.html))
 explains the website structure, navigation, front matter, and imported content.
 See the [search documentation](content/docs/docs-meta/search.md) for details on
 Algolia search indexing and configuration.
