@@ -56,9 +56,9 @@ make perpendicular-flap-vertex-gismo
 
 For more details, refer to the documentation and examples within each submodule. Available solvers:
 
-| **Solver**                          | **Additional submodules**                                           |
-|------------------------------------|-------------------------------------------------------------------|
-| `perpendicular-flap-vertex-gismo` | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis)   |
+| Solver | Additional submodules |
+| --- | --- |
+| `perpendicular-flap-vertex-gismo` | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis) |
 
 Finally, make the solver discoverable, e.g. by installation (by default, to `/usr/local/`, which might not be in your `LD_LIBRARY_PATH`):
 
