@@ -86,7 +86,7 @@ link, and choose whether it appears on the landing page or on other pages.
 ## Common issues while building the site
 
 - If Hugo cannot download a module, first check that Git and Go are installed,
-  then run `hugo mod verify`. A fresh clone needs network access to download the
+  then run `hugo mod verify`. A fresh clone needs network access to download the hugo modules.
 For further information, see [common issues](content/docs/docs-meta/common-issues.md).
 
 ## Licenses
