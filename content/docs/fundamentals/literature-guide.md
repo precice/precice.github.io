@@ -97,6 +97,7 @@ and the story continues by the [current team](about.html).
 * The initial effort for parallelization of preCICE is documented in [Partitioned Fluid-Structure-Acoustics Interaction on Distributed Data: Coupling via preCICE](https://link.springer.com/chapter/10.1007/978-3-319-40528-5_11) (2016).
 * Further steps to speed up initialization are documented in [ExaFSA: Parallel Fluid-Structure-Acoustic Simulation](https://library.oapen.org/bitstream/handle/20.500.12657/41289/2020_Book_SoftwareForExascaleComputing-S.pdf?sequence=1#page=278) (2020).
 * The parallelization of communication initialization is published in [Efficient and Scalable Initialization of Partitioned Coupled Simulations with preCICE](https://www.mdpi.com/1999-4893/14/6/166) (2021).
+* The scaling of the initialization was analyzed in [Performance analysis of the initialization algorithm for peer-to-peer communication of preCICE](https://elib.uni-stuttgart.de/items/1c1e34e2-ab9c-429e-b87f-74d8ee074420) (2026).
 * More details can be found in [Benjamin Uekermann's dissertation](https://mediatum.ub.tum.de/doc/1320661/document.pdf) (2016), [Florian Lindner's dissertation](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (2019), and [Klaudius Scheufele's dissertation](https://elib.uni-stuttgart.de/handle/11682/10413) (2018).
 
 ## Testing
