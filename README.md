@@ -29,6 +29,25 @@ hugo server
 You can now view the website locally at <http://localhost:1313/>. On the first
 build, Hugo automatically downloads the module versions recorded in `go.mod`.
 
+## Build inside a Docker container
+
+Instead of building on your system (which requires some setup the first time), you can directly serve the website from a Docker container (using the [official Hugo image](https://github.com/gohugoio/hugo/pkgs/container/hugo) - [Dockerfile](https://github.com/gohugoio/hugo/blob/master/Dockerfile)). In this directory, run the following:
+
+```shell
+docker run --rm --volume="$PWD:/project:Z" -p 1313:1313 -it ghcr.io/gohugoio/hugo:latest serve  --bind 0.0.0.0
+```
+
+Arguments:
+
+- `docker run`: The Docker command to run a container from an existing image
+- `--rm`: Automatically remove (or not) the container when it exists
+- `--volume`: Mount the current directory (`$PWD`) to a directory in the container (`/project/`), so that only the current container can see the content (`:Z`)
+- `--publish`: Publish the container's port 1313 (where Hugo serves the website) to the host port 1313
+- `-it`: Interactive container, capturing signals (such as `Ctrl-C`)
+- `ghcr.io/gohugoio/hugo:latest`: The image. If `latest` fails, v0.165.0 is known to work.
+- `serve`: The Hugo command to run
+- `--bind 0.0.0.0`: Bind all network addresses to the 0.0.0.0 interface (important to access the website from the host).
+
 ## Contributing
 
 First install [pre-commit](https://pre-commit.com/) using its
