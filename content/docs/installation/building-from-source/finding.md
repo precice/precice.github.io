@@ -1,6 +1,8 @@
 ---
 title: Building from source - Finding
 permalink: installation-source-finding.html
+aliases:
+  - /installation-source-finding.html
 keywords: configuration, basics, cmake, installation, building, source, bash, profile
 toc: false
 ---

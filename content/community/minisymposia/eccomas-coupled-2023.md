@@ -3,6 +3,8 @@ title: ECCOMAS Coupled Problems 2023
 keywords: 2023, ECCOMAS, COUPLED, event, events, minisymposium
 summary:
 permalink: eccomas-coupled-2023.html
+aliases:
+  - /eccomas-coupled-2023.html
 toc: false
 ---
 

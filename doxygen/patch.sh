@@ -10,7 +10,7 @@
 # - it sets the PROJECT_NUMBER to the release or the commit
 # - it sets the SITEMAP_URL for the main doxygen reference
 
-if [ ! -f "website/_config.yml" ] || [ ! -f "main/Doxyfile" ] || [ ! -f "develop/Doxyfile" ] ; then
+if [ ! -f "website/config/_default/hugo.toml" ] || [ ! -f "main/Doxyfile" ] || [ ! -f "develop/Doxyfile" ] ; then
   >&2 echo "Call from the root of the runner!"
   echo "Pwd $(pwd)"
   echo "Doxyfiles:"
@@ -25,7 +25,7 @@ set -e
 # Remove config options
 sed -e "/^ *TAGFILES/d" -e "/^ *SITEMAP_URL/d" -e "/^ *PROJECT_NUMBER/d" -i main/Doxyfile develop/Doxyfile
 
-BASEURL="https://precice.org/doxygen"
+BASEURL="${DOXYGEN_BASE_URL:-https://precice.org/doxygen}"
 # This is relative to the Doxyfile
 TAGFILE="../website/doxygen/cppreference-doxygen-web.tag.xml=http://en.cppreference.com/w/"
 

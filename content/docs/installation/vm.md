@@ -1,6 +1,8 @@
 ---
 title: Demo Virtual Machine
 permalink: installation-vm.html
+aliases:
+  - /installation-vm.html
 keywords: installation, demo, sandbox, virtual machine, vm, vagrant, box
 summary: "A sandbox to try preCICE and all the adapters without having to install them on your system."
 ---
@@ -28,7 +30,7 @@ but you can easily delete it when you don't need it anymore.
 
 This contains all the solvers and adapters used in our tutorials, already built and configured for you to enjoy.
 
-![Screnshot](images/docs/docs-installation-vm-screenshot.jpg)
+![Screnshot](/images/docs/docs-installation-vm-screenshot.jpg)
 
 See [what is included](https://github.com/precice/vm/blob/main/README.md#what-is-included) in detail. See [the box](https://app.vagrantup.com/precice/boxes/precice-vm) directly on vagrant.
 

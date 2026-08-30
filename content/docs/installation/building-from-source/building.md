@@ -1,6 +1,8 @@
 ---
 title: Building from source - Building
 permalink: installation-source-building.html
+aliases:
+  - /installation-source-building.html
 keywords: configuration, basics, cmake, installation, building, source
 toc: false
 ---

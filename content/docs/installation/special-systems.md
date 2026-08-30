@@ -1,6 +1,8 @@
 ---
 title: Special systems
 permalink: installation-special-systems.html
+aliases:
+  - /installation-special-systems.html
 keywords: installation, building, dependencies, spack, cluster, supercomputer
 tocheaders: h2,h3
 ---
@@ -12,9 +14,9 @@ This page contains instructions for building preCICE on special systems, being c
 The systems in the [archived section](#archived-systems) are no longer operational.
 The instructions may still be valuable for unlisted systems.
 
-{% note %}
+{{< note >}}
 We encourage users to actively contribute to this page! If your system is not listed, please feel encouraged to add instructions for it!
-{% endnote %}
+{{< /note >}}
 
 ## Active systems
 
@@ -36,9 +38,9 @@ export EIGEN3_ROOT="$HOME/precice/eigen"
 module load cmake boost petsc/<VERSION>-int32-shared
 ```
 
-{% note %}
+{{< note >}}
 libxml2 is part of the `-devel` packages, which are loaded by default on the login nodes. The compute nodes run in a diskless mode in order to save RAM. Therefore, make sure to use the login nodes for building purposes.
-{% endnote %}
+{{< /note >}}
 
 (3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:
 
@@ -54,9 +56,9 @@ make install -j 16
 
 Usually, both variables, `PETSc_LIBRARIES` and `PETSc_INCLUDE_DIRS` are supposed to be found by `cmake`. This detection mechanism fails on Hawk and therefore we have to specify these variables on the command line. The reason for the detection mechanism to fail is unclear. It might be causes by our PETSc detection mechanism or might be an issue with the cluster. If you find a more native way to use the PETSc installation provided on Hawk, please update this documentation. The PETSc module, where this issue occurred, was `petsc/3.12.2-int32-shared`.
 
-{% note %}
+{{< note >}}
 In order to run the tests, you need to enable spawn capable MPI runs by specifying the global MPI universe size. This can be done by configuring `cmake` with the additional argument `-D MPIEXEC_NUMPROC_FLAG=\"-up;4;-np\"` (environment variables can be exported as an alternative). All tests apart from the parallel integration test (which probably fails due to improper network specification) should pass afterwards. In order to run MPI spawn capable simulations (required for IQN-IMVJ, but not IQN-ILS) you need to specify the global MPI universe size using the `-up` flag as well, e.g., `mpirun -up 64 -np 32 ./my_solver arg1`
-{% endnote %}
+{{< /note >}}
 
 #### Running on a single node
 
@@ -332,9 +334,9 @@ Currently Loaded Modulefiles:
 
 ##### Building with CMake
 
-{% warning %}
+{{< warning >}}
 This page needs updates for preCICE v2 and the module system rolled out on CooLMUC in June 2021
-{% endwarning %}
+{{< /warning >}}
 
 If you load modules for any preCICE related installation, make sure the used MPI versions are consistent. This is also relevant for any solver you want to couple with preCICE. Therefore, it might be helpful to have a look in your solvers module installation before you start compiling preCICE. You can use `module show` to get information about specific modules.
 
@@ -673,9 +675,9 @@ Replace `PRECICE_DIR` with the installation prefix used for preCICE. Also, make 
 
 ### Hazel Hen (Cray/Intel, Stuttgart)
 
-{% warning %}
+{{< warning >}}
 This page needs updates for preCICE v2.
-{% endwarning %}
+{{< /warning >}}
 
 #### Building on Hazel Hen
 
@@ -714,9 +716,9 @@ Use `ipogif0` for socket communication.
 
 ### SuperMUC (Lenovo/Intel, Munich)
 
-{% warning %}
+{{< warning >}}
 This page needs updates for preCICE v2.
-{% endwarning %}
+{{< /warning >}}
 
 :information_source: SuperMUC was shut down in 2019. This page may still be useful for other clusters. See also the instructions for SuperMUC-NG.
 
@@ -812,9 +814,9 @@ When using socket communication on SuperMUC (as well as other LRZ clusters), it 
 
 ### MAC Cluster (various architectures, Munich)
 
-{% warning %}
+{{< warning >}}
 This page needs updates for preCICE v2.
-{% endwarning %}
+{{< /warning >}}
 
 :information_source: The MAC Cluster was shut down in 2018. However, these instructions may also be useful for users of other HPC systems.
 
@@ -853,9 +855,9 @@ exit
 
 ### MareNostrum (Lenovo/Intel, Barcelona)
 
-{% warning %}
+{{< warning >}}
 This page needs updates for preCICE v2.
-{% endwarning %}
+{{< /warning >}}
 
 #### Build
 

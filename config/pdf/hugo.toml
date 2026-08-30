@@ -1,0 +1,59 @@
+[params]
+output = "pdf"
+print_title = "preCICE"
+print_subtitle = "The coupling library for partitioned multi-physics simulations"
+
+[outputs]
+home = ["PDFTitle", "PDFTOC", "PDFDocsPart", "PDFTutorialsPart", "PDFAppendixPart", "PrinceList"]
+page = ["HTML"]
+section = ["HTML"]
+
+[outputFormats.PDFTitle]
+mediaType = "text/html"
+baseName = "title"
+path = "pdf"
+isHTML = true
+notAlternative = true
+
+[outputFormats.PDFTOC]
+mediaType = "text/html"
+baseName = "toc"
+path = "pdf"
+isHTML = true
+notAlternative = true
+
+[outputFormats.PDFDocsPart]
+mediaType = "text/html"
+baseName = "docs-part"
+path = "pdf"
+isHTML = true
+notAlternative = true
+
+[outputFormats.PDFTutorialsPart]
+mediaType = "text/html"
+baseName = "tutorials-part"
+path = "pdf"
+isHTML = true
+notAlternative = true
+
+[outputFormats.PDFAppendixPart]
+mediaType = "text/html"
+baseName = "appendix-part"
+path = "pdf"
+isHTML = true
+notAlternative = true
+
+[outputFormats.PrinceList]
+mediaType = "text/plain"
+baseName = "prince-list"
+path = "pdf"
+isPlainText = true
+notAlternative = true
+
+[segments.pdf]
+  [[segments.pdf.includes]]
+  output = "{pdftitle,pdftoc,pdfdocspart,pdftutorialspart,pdfappendixpart,princelist}"
+
+  [[segments.pdf.includes]]
+  output = "html"
+  path = "{/docs,/docs/**,/tutorials,/tutorials/**}"
