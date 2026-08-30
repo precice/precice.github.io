@@ -58,6 +58,13 @@
           {{ $year }}{{ if and $input.show_doi_in_body $doi }}, <a href="https://www.doi.org/{{ $doi }}">doi:{{ $doi }}</a>{{ end }}.
         {{ end }}
       </p>
+      {{ with $pubPage }}
+        {{ with .Content }}
+          <div class="publication-content my-2">
+            {{ . }}
+          </div>
+        {{ end }}
+      {{ end }}
       {{ if and $input.flexible $input.require_pub_url }}
         {{ with (index $pubParams "pub-url") }}<a href="{{ . }}">Publisher's site</a>&nbsp;&nbsp;{{ end }}
       {{ else }}
