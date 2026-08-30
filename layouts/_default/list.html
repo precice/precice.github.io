@@ -34,17 +34,15 @@
 
   {{ partial "compat_content.html" . }}
 
-  {{ $pages := .RegularPages }}
-  {{ if $pages }}
-    <div class="list-pages mt-4">
-      {{ range $pages.ByTitle }}
-        <article class="mb-3">
-          <h2 class="h4"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-          {{ with .Params.summary }}<p>{{ . | markdownify }}</p>{{ end }}
-        </article>
+  {{ with .Params.tags }}
+    <div class="tags mt-4">
+      <b>Tags: </b>
+      {{ range . }}
+        <a href="{{ printf "tag_%s.html" . | relURL }}" class="btn btn-outline-secondary cursorNorm" role="button">{{ . }}</a>
       {{ end }}
     </div>
   {{ end }}
+  {{ partial "breadcrumb.html" . }}
 </section>
 {{ end }}
 {{ end }}
