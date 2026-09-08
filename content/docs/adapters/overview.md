@@ -12,6 +12,7 @@ There are various codes - free and proprietary ones - currently coupled with pre
 We host adapters for the following codes in the [preCICE GitHub organization](https://github.com/precice/) and we maintain them to work with the latest release of preCICE (unless stated otherwise).
 
 | Adapter for | Contact | Resources | Typical applications | Comments |
+| ---         | ---     | ---       | ---                  | ---      |
 | [CalculiX](https://www.calculix.de/) | preCICE Developers | [code](https://github.com/precice/calculix-adapter), [docs](adapter-calculix-overview.html) | Structure part in CHT, FSI | |
 | [code_aster](https://code-aster.org/) | preCICE Developers | [code](https://github.com/precice/code_aster-adapter), [docs](adapter-code_aster.html) | Structure part in CHT | |
 | [deal.II](https://www.dealii.org/) | preCICE Developers | [code](https://github.com/precice/dealii-adapter), [docs](adapter-dealii-overview.html) | Structure part in FSI, any FEM | |
@@ -28,7 +29,8 @@ We host adapters for the following codes in the [preCICE GitHub organization](ht
 The preCICE community has successfully coupled the following codes with preCICE for [community projects](community-projects.html).
 Wherever meaningful (license, maturity of the project, no other home), we host the code repository.
 
-| Adapter for   | Contact | Resources | Typical applications | Comments |
+| Adapter for | Contact | Resources | Typical applications | Comments |
+| ---         | ---     | ---       | ---                  | ---      |
 | [Alya](https://www.bsc.es/research-development/research-areas/engineering-simulations/alya-high-performance-computational) | [Benjamin Uekermann](https://github.com/uekerman) | | Fluid and structure part in FSI | Not actively maintained (but not abandoned) |
 | [Ansys Fluent](https://www.ansys.com/products/fluids/ansys-fluent) | preCICE Developers | [code](https://github.com/precice/fluent-adapter), [docs](https://github.com/precice/fluent-adapter/wiki) | Fluid part in FSI | Experimental |
 | [Ateles (APES)](https://apes-suite.org/ateles/) | [APES team](https://apes-suite.org/pages/impressum) | [code](https://github.com/apes-suite/ateles) | Fluid-Acousting, Fluid-Fluid coupling | |
@@ -45,7 +47,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [LS-DYNA](http://www.lstc.com/products/ls-dyna) | [LKR](https://www.ait.ac.at/lkr) | [code example](https://github.com/precice/lsdyna-adapter) | Continuous metal casting process ||
 | [MBDyn](https://www.mbdyn.org/) | [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/mbdyn-adapter) | Structure part in FSI ||
 | [MBDyn](https://www.mbdyn.org/) | [Politecnico di Milano DAER](https://www.aero.polimi.it/) | [documentation](https://public.gitlab.polimi.it/DAER/mbdyn/-/wikis/preCICE-MBDyn-adapter), [code](https://gitlab.com/stilita/mbdyn-esm-adapter/) | Structure part in FSI ||
-| [MercuryDPM](https://www.mercurydpm.org/) | [via MercuryDPM](mailto:precice@mercurydpm.org) | [code example](https://bitbucket.org/mercurydpm/mercurydpm/src/master/Drivers/PreCICE/), [tutorial](tutorials-channel-transport-particles.html) | CFD-DEM simulations |
+| [MercuryDPM](https://www.mercurydpm.org/) | [via MercuryDPM](mailto:precice@mercurydpm.org) | [code example](https://bitbucket.org/mercurydpm/mercurydpm/src/master/Drivers/PreCICE/), [tutorial](tutorials-channel-transport-particles.html) | CFD-DEM simulations ||
 | [OpenFAST](https://openfast.readthedocs.io/en/main/) | [Leonard Willeke](https://github.com/LeonardWilleke), [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/openfast-adapter), [report](https://doi.org/10.5281/zenodo.14809779) | Structure part in FSI | Experimental |
 | [OpenRadioss](https://openradioss.org/) | [UniBw Munich](https://www.unibw.de/mechanik-und-statik-en/baustatik/engineering-informatics-laboratory-1/dr-ing-georgios-michaloudis) | [code](https://github.com/OpenRadioss/OpenRadioss/tree/main/engine/source/coupling), [examples](https://github.com/elisa-santoro/openradioss-cases), [thesis](https://webthesis.biblio.polito.it/40822/) | Structure part in FSI | |
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) | |
@@ -55,7 +57,8 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 
 These adapters and/or the respective solvers are not maintained and might not work anymore, but are listed here as an example of which other projects have used preCICE in the past.
 
-| Adapter for   | Contact | Resources | Typical applications | Comments |
+| Adapter for | Contact | Resources | Typical applications | Comments |
+| ---         | ---     | ---       | ---                  | ---      |
 | [Carat++](https://www.cee.ed.tum.de/en/st/software/research/carat/) | [TUM Statik](https://www.cee.ed.tum.de/en/st/home/) | None | Structure part of FSI | |
 | [EFD](https://github.com/precice/efd) | [TUM SCCS](https://www.cs.cit.tum.de/en/sccs/home/) | [code](https://github.com/precice/efd) | Fluid part of FSI | |
 | [foam-extend](https://sourceforge.net/projects/foam-extend/) | [TU Delft Aerodynamics](https://www.tudelft.nl/index.php?id=4542&L=1) | [code](https://github.com/davidsblom/FOAM-FSI) | Fluid and structure part of FSI, Fluid-Fluid coupling | |
