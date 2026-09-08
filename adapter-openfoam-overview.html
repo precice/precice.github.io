@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1788871303">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1788871303">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1788871303">
-<link rel="stylesheet" href="css/bookcover.css?v=1788871303">
+<link rel="stylesheet" href="css/customstyles.css?v=1788885323">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1788885323">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1788885323">
+<link rel="stylesheet" href="css/bookcover.css?v=1788885323">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1788871303">
+<link rel="stylesheet" href="css/theme-precice.css?v=1788885323">
 <!-- Styling for landing page -->
 
 
@@ -6900,7 +6900,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 01 Sep 26</small>
+              <small>Updated 08 Sep 26</small>
             </div>
           </aside>
           
@@ -6913,36 +6913,204 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="what-can-it-do">What can it do?</h2>
 
-<p>This adapter can read/write the following fields in a surface coupling setup:</p>
+<p>This adapter has been demonstrated on different use cases (conjugate heat transfer, fluid-structure interaction, fluid-fluid coupling, and CFD-DEM), both in 2D (3D with one layer of cells in the z-axis) and 3D, and both for flow and solid OpenFOAM-based solvers (see <a href="https://precice.org/tutorials.html">tutorials</a>).
+The fields to read/write are provided by different adapter modules that one needs to <a href="https://precice.org/adapter-openfoam-config.html">configure</a> and are described in the following tables.</p>
+
+<p>Legend on locations to read/write:</p>
 
 <ul>
-  <li>Temperature (read + write)</li>
-  <li>Temperature surface-normal gradient (read + write)</li>
-  <li>Heat flux (read + write)</li>
-  <li>Sink temperature (read + write)</li>
-  <li>Heat transfer coefficient (read + write)</li>
-  <li>Force (read + write)</li>
-  <li>Stress (write)</li>
-  <li>Displacement (read + write)</li>
-  <li>Displacement delta (read)</li>
-  <li>Pressure (read + write)</li>
-  <li>Pressure surface-normal gradient (read + write)</li>
-  <li>Velocity (read + write)</li>
-  <li>Velocity surface-normal gradient (read + write)</li>
-  <li>Phase fraction (alpha) (read + write)</li>
-  <li>Phase fraction (alpha) gradient (read + write)</li>
-  <li>Phase flux (phi) (read + write)</li>
+  <li><strong>N:</strong> Mesh nodes (surface coupling)</li>
+  <li><strong>F:</strong> Face centers (surface coupling)</li>
+  <li><strong>C:</strong> Cell centers (volume coupling)</li>
+  <li><strong>*:</strong> Mesh connectivity supported (for, e.g., nearest-projection mapping)</li>
 </ul>
 
-<p>In addition, the adapter supports the following fields in a volume coupling setup:</p>
+<p>Regarding nearest-projection mapping, note that, for consistent data (e.g., displacement), it only makes sense that the writing participant provides mesh connectivity. For conservative data (e.g., forces), it only makes sense that the reading participant provides mesh connectivity.</p>
 
-<ul>
-  <li>Temperature (write)</li>
-  <li>Pressure (write)</li>
-  <li>Velocity (read + write)</li>
-</ul>
+<h3 id="module-conjugate-heat-transfer">Module: Conjugate heat transfer</h3>
 
-<p>All features of preCICE are supported, including implicit coupling and nearest-projection mapping. Even though OpenFOAM is 3D, this adapter can also work in the 2D mode of preCICE, defining only one layer of interface nodes (automatically).</p>
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Write</th>
+      <th>Read</th>
+      <th>Config prefix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Heat flux</td>
+      <td>N*, F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">Heat-Flux</code></td>
+    </tr>
+    <tr>
+      <td>Heat transfer coefficient</td>
+      <td>N*, F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">Heat-Transfer-Coefficient</code></td>
+    </tr>
+    <tr>
+      <td>Sink temperature</td>
+      <td>N*, F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">Sink-Temperature</code></td>
+    </tr>
+    <tr>
+      <td>Temperature</td>
+      <td>N*, F, C</td>
+      <td>F, C</td>
+      <td><code class="language-plaintext highlighter-rouge">Temperature</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All fields are supported for both flow (compressible/incompressible) and basic (e.g., laplacianFoam) solvers.</p>
+
+<p>OpenFOAM provides temperature on face centers and cell centers. For mesh nodes (with mesh connectivity enabled), the adapter interpolates from the faces to the nodes.
+Similarly, heat flux, heat transfer coefficient, and sink temperature are computed on the face centers and interpolated to the mesh nodes when mesh connectivity is enabled.</p>
+
+<h3 id="module-fluid-structure-interaction">Module: Fluid-structure interaction</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Write</th>
+      <th>Read</th>
+      <th>Config prefix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Displacement: absolute</td>
+      <td>N*, <a href="https://github.com/precice/openfoam-adapter/issues/153">F*</a></td>
+      <td>N, F</td>
+      <td><code class="language-plaintext highlighter-rouge">Displacement</code></td>
+    </tr>
+    <tr>
+      <td>Displacement: relative</td>
+      <td>-</td>
+      <td>N, F</td>
+      <td><code class="language-plaintext highlighter-rouge">DisplacementDelta</code></td>
+    </tr>
+    <tr>
+      <td>Force</td>
+      <td>F (flow solvers)</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">Force</code></td>
+    </tr>
+    <tr>
+      <td>Stress</td>
+      <td>F (flow solvers)</td>
+      <td>-</td>
+      <td><code class="language-plaintext highlighter-rouge">Stress</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Displacement reading and writing are supported for both flow (compressible or incompressible) and structure solvers.
+For mesh nodes, the <code class="language-plaintext highlighter-rouge">pointDisplacement</code> field is used; for face centers, the <code class="language-plaintext highlighter-rouge">cellDisplacement</code> field is used.</p>
+
+<p>Only flow solvers can write forces or stresses. Solid solvers can read forces, but not stresses.</p>
+
+<p>Originally, only flow OpenFOAM solvers have been considered. Reading more fields and providing connectivity by solid solvers can still be implemented.</p>
+
+<h3 id="module-fluid-fluid-coupling">Module: Fluid-fluid coupling</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Write</th>
+      <th>Read</th>
+      <th>Config prefix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Drag force</td>
+      <td>F, C</td>
+      <td>F, C</td>
+      <td><code class="language-plaintext highlighter-rouge">DragForce</code></td>
+    </tr>
+    <tr>
+      <td>Momentum: explicit</td>
+      <td>F, C</td>
+      <td>F, C</td>
+      <td><code class="language-plaintext highlighter-rouge">ExplicitMomentum</code></td>
+    </tr>
+    <tr>
+      <td>Momentum: implicit</td>
+      <td>F, C</td>
+      <td>F, C</td>
+      <td><code class="language-plaintext highlighter-rouge">ImplicitMomentum</code></td>
+    </tr>
+    <tr>
+      <td>Phase flux</td>
+      <td>F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">Phi</code></td>
+    </tr>
+    <tr>
+      <td>Volume fraction</td>
+      <td>F, C</td>
+      <td>F, C</td>
+      <td><code class="language-plaintext highlighter-rouge">Alpha</code></td>
+    </tr>
+    <tr>
+      <td>Phase fraction gradient</td>
+      <td>F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">AlphaGradient</code></td>
+    </tr>
+    <tr>
+      <td>Pressure</td>
+      <td>F, C</td>
+      <td>F, C</td>
+      <td><code class="language-plaintext highlighter-rouge">Pressure</code></td>
+    </tr>
+    <tr>
+      <td>Pressure: full gradient</td>
+      <td>F, C</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">PressureGradientFull</code></td>
+    </tr>
+    <tr>
+      <td>Pressure: surface-normal gradient</td>
+      <td>F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">PressureGradient</code></td>
+    </tr>
+    <tr>
+      <td>Temperature</td>
+      <td>F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">FlowTemperature</code></td>
+    </tr>
+    <tr>
+      <td>Temperature surface-normal gradient</td>
+      <td>F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">FlowTemperatureGradient</code></td>
+    </tr>
+    <tr>
+      <td>Velocity</td>
+      <td>F, C</td>
+      <td>F, C</td>
+      <td><code class="language-plaintext highlighter-rouge">Velocity</code></td>
+    </tr>
+    <tr>
+      <td>Velocity surface-normal gradient</td>
+      <td>F</td>
+      <td>F</td>
+      <td><code class="language-plaintext highlighter-rouge">VelocityGradient</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All fields assume a flow solver, and some of these fields are mainly meant for a CFD-DEM coupling (<code class="language-plaintext highlighter-rouge">DragForce</code>, <code class="language-plaintext highlighter-rouge">ExplicitMomentum</code>, <code class="language-plaintext highlighter-rouge">ImplicitMomentum</code>).</p>
 
 <h2 id="try">Try</h2>
 
@@ -7374,7 +7542,7 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2026<br>
+        Page last updated: Sep 8, 2026<br>
         Site last updated: Sep 8, 2026
         </p>
         <p>
