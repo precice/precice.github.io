@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1789012970">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1789012970">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1789012970">
-<link rel="stylesheet" href="css/bookcover.css?v=1789012970">
+<link rel="stylesheet" href="css/customstyles.css?v=1789050845">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1789050845">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1789050845">
+<link rel="stylesheet" href="css/bookcover.css?v=1789050845">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1789012970">
+<link rel="stylesheet" href="css/theme-precice.css?v=1789050845">
 <!-- Styling for landing page -->
 
 
@@ -6890,7 +6890,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 26 Jul 26</small>
+              <small>Updated 10 Sep 26</small>
             </div>
           </aside>
           
@@ -7424,6 +7424,11 @@ of <code class="language-plaintext highlighter-rouge">write_data_names</code> mu
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
+<p>Model adaptivity also writes the scalar data <code class="language-plaintext highlighter-rouge">Model-Resolution</code> for every
+micro simulation. Add this data name to the preCICE XML configuration and to
+the Micro-Manager participant’s mesh and write-data entries when model
+adaptivity is enabled.</p>
+
 <h3 id="adding-adaptivity-in-the-precice-xml-configuration">Adding adaptivity in the preCICE XML configuration</h3>
 
 <p>If adaptivity is used, the Micro Manager will attempt to write two scalar data per micro simulation to preCICE, called <code class="language-plaintext highlighter-rouge">Active-State</code> and <code class="language-plaintext highlighter-rouge">Active-Steps</code>.</p>
@@ -7452,6 +7457,9 @@ of <code class="language-plaintext highlighter-rouge">write_data_names</code> mu
 <h2 id="load-balancing">Load balancing</h2>
 
 <p>Load balancing can be activated by setting <code class="language-plaintext highlighter-rouge">load_balancing</code> to true.
+It also writes the scalar data <code class="language-plaintext highlighter-rouge">Rank-Of-Sim</code> for every micro simulation. Add
+this data name to the preCICE XML configuration and to the Micro-Manager
+participant’s mesh and write-data entries when load balancing is enabled.
 It balances based on either the elapsed time required to solve the prior iteration <code class="language-plaintext highlighter-rouge">type="time"</code> or the number of active simulations <code class="language-plaintext highlighter-rouge">type="active"</code>.
 One Initial load balancing step is performed, prior to any computation (assuming equal workload for time based load balancing or the current active counts for <code class="language-plaintext highlighter-rouge">active</code> load balancing.).
 Subsequently, in the following iteration another load balancing step is performed based. (This is mainly for the time based balancing to use the just acquired timings.)
@@ -7976,7 +7984,7 @@ Further crash handling options can be specified under the <code class="language-
         </a>
         </p>
         <p>
-        Page last updated: Jul 26, 2026<br>
+        Page last updated: Sep 10, 2026<br>
         Site last updated: Sep 10, 2026
         </p>
         <p>
