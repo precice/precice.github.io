@@ -1,6 +1,8 @@
 ---
 title: Content guidelines
 permalink: docs-meta-content-guidelines.html
+aliases:
+  - /docs-meta-content-guidelines.html
 keywords: pages, migration, guideline, content, best practices, style guide
 summary: "Learn which style to follow when writing documentation and how to write good titles, content, and page summaries."
 ---
@@ -24,7 +26,7 @@ This is the style we aim for, even if not all documentation pages are currently 
 - Always specify a `title:`
 - Keep it short, specific, and avoid boilerplate.
 - Avoid duplicate titles.
-- Don't include navigational context such as `preCICE.org |`, `preCICE Documentaion -`. Jekyll does this automatically.
+- Don't include navigational context such as `preCICE.org |` or `preCICE Documentation -`. The site templates add this automatically.
 
 More information on the [title link guide from Google](https://developers.google.com/search/docs/appearance/title-link#page-titles).
 

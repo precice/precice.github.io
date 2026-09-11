@@ -5,26 +5,25 @@ on:
   schedule:
     - cron: "0 6 * * *"
 
+concurrency:
+  group: update-discourse-data
+  cancel-in-progress: false
+
 jobs:
   update-discourse-data:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
 
     steps:
-      - uses: actions/create-github-app-token@v3
-        id: app-token
-        with:
-          client-id: ${{ vars.WEBSITE_UPDATER_CLIENT_ID }}
-          private-key: ${{ secrets.WEBSITE_UPDATER_KEY }}
-
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          token: ${{ steps.app-token.outputs.token }}
+          fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.14"
 
@@ -33,19 +32,15 @@ jobs:
           python tools/fetch-news.py
           python tools/fetch-faq.py
 
-      - name: Configure Git author
+      - name: Commit and push changes
         run: |
+          git add static/assets/data/news.json static/assets/data/faq.json
+          if git diff --cached --quiet; then
+            echo "Discourse data is already up to date."
+            exit 0
+          fi
+
           git config --local user.name "precice-bot"
           git config --local user.email "info@precice.org"
-
-      - name: Commit changes (if any)
-        run: |
-          git add assets/data/news.json
-          git add assets/data/faq.json
-          git commit -m "Update Discourse data data [skip ci]" || echo "No changes to commit"
-
-      - name: Push commit
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ steps.app-token.outputs.token }}
-          branch: ${{ github.ref }}
+          git commit --message "Update Discourse data [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

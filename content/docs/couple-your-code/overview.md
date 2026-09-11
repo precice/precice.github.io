@@ -1,6 +1,8 @@
 ---
 title: Couple your code
 permalink: couple-your-code-overview.html
+aliases:
+  - /couple-your-code-overview.html
 keywords: api, adapter, peer-to-peer, library, bindings
 ---
 

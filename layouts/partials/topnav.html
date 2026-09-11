@@ -1,0 +1,77 @@
+{{- $page := . -}}
+{{- $topnavKey := .Param "topnav" | default "topnav" -}}
+{{- $topnav := index hugo.Data $topnavKey | default hugo.Data.topnav -}}
+{{- $topnavDropdowns := $topnav.topnav_dropdowns -}}
+<nav class="navbar navbar-expand-xl fixed-top" data-bs-theme="light" aria-label="Main">
+  <div class="container topnavlinks">
+    <div class="navbar-header navbar-header-group">
+      <a class="navbar-brand no-icon" href="{{ site.Home.RelPermalink }}">
+        <span class="navbar-brand-icon">
+          <img class="navbar-brand-text" src="{{ "/images/preCICE_text_28px.svg" | relURL }}" alt="preCICE">
+        </span>
+      </a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav ms-auto">
+        {{ range $entry := $topnav.topnav }}
+          {{ range $item := $entry.items }}
+            {{ $sectionSidebar := printf "%s_sidebar" ($item.section | default "") }}
+            {{ $isActive := false }}
+            {{ with $item.url }}
+              {{ $isActive = partial "sidebar_page_matches_url.html" (dict "page" $page "url" .) }}
+            {{ end }}
+            {{ if and (not $isActive) $item.section }}
+              {{ $isActive = eq ($page.Param "sidebar") $sectionSidebar }}
+            {{ end }}
+            <li class="nav-item{{ if $isActive }} active{{ end }}">
+              {{ if $item.external_url }}
+                <a class="nav-link" href="{{ $item.external_url }}" target="_blank" rel="noopener">{{ $item.title }}</a>
+              {{ else }}
+                <a class="nav-link" href="{{ $item.url | relURL }}">{{ $item.title }}</a>
+              {{ end }}
+            </li>
+          {{ end }}
+        {{ end }}
+
+        {{ with $topnavDropdowns }}
+          {{ range $entry := . }}
+            {{ range $folder := $entry.folders }}
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{ $folder.title }}</a>
+                <ul class="dropdown-menu">
+                  {{ range $folderitem := $folder.folderitems }}
+                    {{ $isActive := false }}
+                    {{ with $folderitem.url }}{{ $isActive = partial "sidebar_page_matches_url.html" (dict "page" $page "url" .) }}{{ end }}
+                    <li{{ if $isActive }} class="dropdownActive"{{ end }}>
+                      {{ if $folderitem.external_url }}
+                        <a class="dropdown-item" href="{{ $folderitem.external_url }}" target="_blank" rel="noopener">{{ $folderitem.title }}</a>
+                      {{ else }}
+                        <a class="dropdown-item" href="{{ $folderitem.url | relURL }}">{{ $folderitem.title }}</a>
+                      {{ end }}
+                    </li>
+                  {{ end }}
+                </ul>
+              </li>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+
+        <li class="navbar-search-li">
+          <div id="search-demo-container">
+            <div id="search-input"></div>
+            <div id="search-results"></div>
+            {{ partial "algolia.html" . }}
+          </div>
+        </li>
+        <li><a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" rel="noopener noreferrer" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a></li>
+        <li><a class="no-icon nav-external" href="https://github.com/precice" target="_blank" rel="noopener noreferrer" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a></li>
+        <li><a class="no-icon nav-external" href="https://www.linkedin.com/company/precice" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+        <li><a rel="me noopener noreferrer" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a></li>
+        <li><a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" rel="noopener noreferrer" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,6 +1,8 @@
 ---
 title: SLURM sessions
 permalink: running-slurm.html
+aliases:
+  - /running-slurm.html
 keywords: running, cluster, slurm, mpi
 summary: "Running partitioned simulations on a cluster managed by SLURM requires special treatment of the provided MPI machines."
 ---
@@ -79,9 +81,9 @@ set -m
 
 A viable remedy is to further partition the MPI session provided by SLURM and assign these partitions to the various MPI runs using hostfiles.
 
-{% warning %}
+{{< warning >}}
 Hostfiles are not standardized and differ between MPI implementations OpenMPI, MPICH, MVAPICH2, MS-MPI, IntelMPI, etc.
-{% endwarning %}
+{{< /warning >}}
 
 ### Bash version
 

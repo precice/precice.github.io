@@ -1,6 +1,8 @@
 ---
 title: Step 1 – Preparation
 permalink: couple-your-code-preparing-your-solver.html
+aliases:
+  - /couple-your-code-preparing-your-solver.html
 keywords: api, adapter, library, software engineering, CFD, fluid
 summary: "If you want to couple your own code you need to properly understand it. That is why, in this first step, we have a look at your own code. We discuss what you need to do to prepare the code for coupling."
 ---
@@ -48,14 +50,14 @@ Probably most solvers have such a structure: something in the beginning (reading
 
 In the following steps, we will slowly add more and more calls to the preCICE API in this code snippet. Some part of the preCICE API is briefly described in each step. More precisely (no pun intended :grin:), we use the native `C++` API of preCICE. The API is, however, also available in other scientific programming languages: plain `C`, `Fortran`, `Python`, `Matlab`, `Julia`, and `Rust` (see [Application Programming Interface](couple-your-code-api)).
 
-{% tip %}
+{{< tip >}}
 Also have a look at the [API documentation](couple-your-code-api.html) and [minimal reference implementations](couple-your-code-api.html#minimal-reference-implementations).
-{% endtip %}
+{{< /tip >}}
 
-{% tip %}
+{{< tip >}}
 Looking for best practices? There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
-{% endtip %}
+{{< /tip >}}
 
-{% note %}
+{{< note >}}
 This example refers to preCICE v3.x: [see the differences from preCICE v2.x](couple-your-code-porting-v2-3.html).
-{% endnote %}
+{{< /note >}}

@@ -1,6 +1,8 @@
 ---
 title: Terminology
 permalink: fundamentals-terminology.html
+aliases:
+  - /fundamentals-terminology.html
 keywords: adapter, peer-to-peer, library, black-box, participant
 summary: "We often refer to the following terms, but they may not already be clear."
 ---

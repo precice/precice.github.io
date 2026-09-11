@@ -1,6 +1,8 @@
 ---
 title: Acceleration configuration
 permalink: configuration-acceleration.html
+aliases:
+  - /configuration-acceleration.html
 keywords: configuration, acceleration, under-relaxation, Aitken, Quasi-Newton
 summary: "Mathematically, implicit coupling schemes lead to fixed-point equations at the coupling interface. A pure implicit coupling without acceleration corresponds to a simple fixed-point iteration, which still has the same stability issues as an explicit coupling. We need acceleration techniques to stabilize and accelerate the fixed-point iteration."
 ---
@@ -177,6 +179,6 @@ Here are some brief explanations and hints on good combinations of choices for t
   * In particular, the `RS-SVD` mode gives good performance comparing to other options while retaining the original multi-vector convergence properties, although its performance slightly depends on the choice of the truncation parameter.
 * It's to note that a necessary prerequisite for convergence of the implicit coupling loop is the proper convergence of each participant internally. Inner convergence measure (e.g. of the fluid solver) should be two orders of magnitude stricter than the coupling convergence-measure to achieve good performance with quasi-Newton.
 
-{% version 3.4.0 %}
+{{< version "3.4.0" >}}
 The feature of setting bounds to data and `on-bound-violation` attribute for QN acceleration is new in 3.4.0.
-{% endversion %}
+{{< /version >}}

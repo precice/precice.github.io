@@ -2,6 +2,8 @@
 title: Optimization
 keywords: pages, development
 permalink: dev-docs-dev-optimization.html
+aliases:
+  - /dev-docs-dev-optimization.html
 ---
 
 This tutorial states when and how to optimize code written for preCICE.

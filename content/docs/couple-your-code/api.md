@@ -1,6 +1,10 @@
 ---
 title: Application programming interface
 permalink: couple-your-code-api.html
+aliases:
+  - /couple-your-code-api.html
+  - /dev-docs-sourcedocs.html
+  - /doxygen/
 keywords: api, adapter, library, bindings, Participant
 summary: "This page gives an overview on available preCICE APIs and minimal reference implementations."
 redirect_from:
@@ -82,4 +86,4 @@ Fortran bindings are included in the main repository.
 
 All the language bindings are calling the C++ API of preCICE and some of them are interdependent. Here is an overview of what uses what:
 
-![Architectural overview of bindings](images/docs/Bindings.png)
+![Architectural overview of bindings](/images/docs/Bindings.png)

@@ -1,6 +1,8 @@
 ---
 title: Communication configuration
 permalink: configuration-communication.html
+aliases:
+  - /configuration-communication.html
 keywords: configuration, communication, m2n tag, intra-comm tag
 summary: A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured. 
 ---
@@ -61,9 +63,9 @@ Which participant is `acceptor` and which one is `connector` makes almost no dif
 
 The `exchange-directory` should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to `"."`, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers in the page [running on a local machine](running-simple.html).
 
-{% important %}
+{{< important >}}
 If you face any problems with establishing the communication, have a look [at this Discourse post](https://precice.discourse.group/t/help-the-participants-are-not-finding-each-other/646/2).
-{% endimportant %}
+{{< /important >}}
 
 ## Advanced: the intra-comm tag
 

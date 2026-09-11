@@ -1,0 +1,11 @@
+{{- /* Resolves a sidebar URL for use in href attributes. External URLs
+       (http, https, mailto, #) are returned as-is; internal paths
+       are passed through relURL. */ -}}
+{{- $rawURL := .url | default "" -}}
+{{- $isExternal := or (hasPrefix $rawURL "http://") (or (hasPrefix $rawURL "https://") (or (hasPrefix $rawURL "mailto:") (hasPrefix $rawURL "#"))) -}}
+
+{{- if $isExternal -}}
+  {{- $rawURL -}}
+{{- else -}}
+  {{- $rawURL | relURL -}}
+{{- end -}}

@@ -1,6 +1,8 @@
 ---
 title: Step 3 – Mesh and data access
 permalink: couple-your-code-mesh-and-data-access.html
+aliases:
+  - /couple-your-code-mesh-and-data-access.html
 keywords: api, adapter, mesh, ids, data, vertices
 summary: "In this step, we see how to define coupling meshes and access coupling data."
 ---

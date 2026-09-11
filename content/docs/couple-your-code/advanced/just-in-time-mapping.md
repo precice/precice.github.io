@@ -1,17 +1,19 @@
 ---
 title: Just-in-time data mapping
 permalink: couple-your-code-just-in-time-mapping.html
+aliases:
+  - /couple-your-code-just-in-time-mapping.html
 keywords: api, adapter, mapping, meshes, just-in-time, mesh-particle coupling, DEM
 summary: "You can read and write data at dynamic coordinates instead of static vertex IDs using specific optional API functions."
 ---
 
-{% version 3.2.0 %}
+{{< version "3.2.0" >}}
 This feature is new in preCICE version 3.2.0.
-{% endversion %}
+{{< /version >}}
 
-{% experimental %}
+{{< experimental >}}
 This is an experimental feature and might change in future (minor) releases of preCICE. Enable it using `<precice-configuration experimental="true">` in the preCICE configuration.
-{% endexperimental %}
+{{< /experimental >}}
 
 Just-in time data mapping combines the idea of [direct-mesh access](couple-your-code-direct-access.html) with the [conventional mapping](configuration-mapping.html) methods in preCICE: a solver does not provide a static mesh during the initialization phase, but instead defines an access region, in which vertices and data can be read and written to and from preCICE just-in-time. Using the just-in-time API (see below) of preCICE comes with performance implications: reading and writing becomes more expensive, but it gives the user more flexibility for moving meshes. The feature was originally designed with mesh-particle coupling in mind: one participant (the mesh-based participant) defines a static mesh during initialization, and the other participant (particle participant) defines a spatial access region, where data can be provided just-in-time along with the current particle position. The feature might be useful for other scenarios as well. The following sections describe the API, the configuration, and the limitations of the current implementation.
 

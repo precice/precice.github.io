@@ -1,6 +1,9 @@
 ---
 title: Roadmap
 permalink: fundamentals-roadmap.html
+aliases:
+  - /fundamentals-roadmap.html
+  - /roadmap.html
 redirect_from: roadmap.html
 keywords: upcoming features, roadmap, future, releases
 summary: "We are actively developing preCICE. These are some of the features you can expect in the future."

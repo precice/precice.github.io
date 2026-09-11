@@ -3,6 +3,8 @@ title: preCICE training
 keywords: workshop, teaching, support, api, implicit coupling, tools, data mapping, training
 summary: A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes and beyond.
 permalink: community-training.html
+aliases:
+  - /community-training.html
 toc: true
 ---
 
@@ -22,43 +24,43 @@ The course currently consists of four modules. Several more will follow.
 
 We couple two simple Python codes, discussing the basic methods of the preCICE API.
 
-![Basics training: Configuration](images/training/training-basics.png)
+![Basics training: Configuration](/images/training/training-basics.png)
 
 ### Tools
 
 We take a tour over available tools to configure, understand, and post-process preCICE simulations. More specifically, we have a look at the preCICE logger, config visualizer, mesh exports, and watchpoints of preCICE. We also discuss common tips for visualizing partitioned simulations in ParaView.
 
-![Basics training: Tools](images/training/training-tools.png)
+![Basics training: Tools](/images/training/training-tools.png)
 
 ### Implicit coupling
 
 We use a conjugate heat transfer scenario coupling OpenFOAM with Nutils to study implicit coupling, including acceleration methods.
 
-![Basics training: Implicit coupling](images/training/training-implicit-coupling.png)
+![Basics training: Implicit coupling](/images/training/training-implicit-coupling.png)
 
 ### Data mapping
 
 We explore aspects of accuracy and efficiency in data mapping, using [ASTE](tooling-aste.html).
 
-![Basics training: Mapping](images/training/training-mapping.png)
+![Basics training: Mapping](/images/training/training-mapping.png)
 
 ### Workflow for FSI simulations
 
 In this [community-contributed part of the course](https://github.com/precice/community-training/tree/main/fsi-workflow), we are going step by step through the process of creating a fluid-structure interaction simulation coupling CalculiX and OpenFOAM. We start by creating the meshes for both solvers, using FreeCAD and snappyHexMesh. We then setup and run single-physics simulations, before we couple them.
 
-![Application training: FSI workflow](images/training/training-fsi.png)
+![Application training: FSI workflow](/images/training/training-fsi.png)
 
 ### Parallelization and HPC workflows
 
 We parallelize the same Python codes used in the Basics module, we analyze the performance-related events, run partitioned simulations in parallel on SLURM-enabled systems, and look deeper into common performance-related pitfalls.
 
-![HPC training: Tracing](images/training/training-hpc.png)
+![HPC training: Tracing](/images/training/training-hpc.png)
 
 ### Macro-micro coupling
 
 We couple many micro simulations to a macro simulation: We use the [Micro Manager](tooling-micro-manager-overview.html) to set up Python and C++ micro simulations, learn how manage runtime using adaptivity, implement model adaptivity, and run the micro simulations in parallel with adaptivity and load balancing.
 
-![Macro-Micro training: Adaptivity](images/training/training-mm.png)
+![Macro-Micro training: Adaptivity](/images/training/training-mm.png)
 
 ## How to prepare?
 
@@ -67,10 +69,10 @@ Most of these tools work best (or only) on a Linux system.
 You can either (a) use a prepared system image that we provide (e.g., in a virtual machine), or (b) install the dependencies directly on your system.
 To reduce system-related friction during the training, we recommend starting with option (a).
 
-{% important %}
+{{< important >}}
 At the end, verify your installation, and contact us as soon as possible regarding any issues.
 Find verification instructions at the end of each section.
-{% endimportant %}
+{{< /important >}}
 
 ### Provided system
 
@@ -84,11 +86,11 @@ With this `.iso` file, you can either:
 In both cases, you can either install the modified Ubuntu image, or try a live session, without any permanent changes (or result file saves) to your system.
 Get the smoothest experience by installing the image in a VM, so that your changes are saved between sessions, and you can at the same time access your host OS.
 
-{% note %}
+{{< note >}}
 At the moment, this modified Ubuntu image is only available for Intel/AMD x86-64 CPUs.
 In our on-site trainings, some prepared USB sticks are provided.
 These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
-{% endnote %}
+{{< /note >}}
 
 Configure the VM with these settings:
 
@@ -119,13 +121,13 @@ Further important settings:
 
 To check your installation, run the [1D elastic tube tutorial](tutorials-elastic-tube-1d.html) (Python solvers) inside the VM.
 
-{% important %}
+{{< important >}}
 If you use a bootable USB, make sure to select trying a live session, and not installing (or take care that you do not remove your data).
 If you have [secure boot](https://en.wikipedia.org/wiki/UEFI#Secure_Boot) enabled, this will need to be turned off to boot this unsigned OS.
 In case you use Windows with [BitLocker](https://en.wikipedia.org/wiki/BitLocker) enabled, you will not be able to boot on Windows while secure boot is disabled (BitLocker will be asking for the decryption key).
 Remember to switch secure boot on again to be able to use your system as before.
 Do not remove the USB during a live session.
-{% endimportant %}
+{{< /important >}}
 
 ### Individual dependencies
 

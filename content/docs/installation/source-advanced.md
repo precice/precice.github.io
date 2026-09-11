@@ -1,14 +1,16 @@
 ---
 title: Building from source - Advanced
 permalink: installation-source-advanced.html
+aliases:
+  - /installation-source-advanced.html
 keywords: configuration, basics, cmake, installation, building, source
 ---
 
 ## Debian packages
 
-{% note %}
+{{< note >}}
 You may prefer to directly use the [provided packages](https://github.com/precice/precice/releases) attached to our releases.
-{% endnote %}
+{{< /note >}}
 
 To generate Debian packages, make sure to set the following variables:
 
@@ -18,9 +20,9 @@ make -j $(nproc) package
 ```
 
 The directory should now contain a `.deb` package and the corresponding checksum file.
-You can install this using your package manager (to be able to remove properly): `sudo apt install ./libprecice{{ site.precice_version }}.deb`
+You can install this using your package manager (to be able to remove properly): `sudo apt install ./libprecice{{< param "precice_version" >}}.deb`
 
-In case you want to remove this package, use your package manager: `sudo apt purge libprecice{{ site.precice_version }}`.
+In case you want to remove this package, use your package manager: `sudo apt purge libprecice{{< param "precice_version" >}}`.
 
 ## Static library
 

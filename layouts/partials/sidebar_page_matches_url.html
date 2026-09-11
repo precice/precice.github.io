@@ -1,0 +1,20 @@
+{{- /* Checks if a page matches a target URL. Compares against the page's
+       RelPermalink, front-matter url, permalink, and aliases for a
+       reliable match regardless of how the URL was defined. */ -}}
+{{- $page := .page -}}
+{{- $target := partial "sidebar_url_clean.html" .url -}}
+{{- $matches := false -}}
+{{- if and $page $target }}
+  {{- $urls := slice -}}
+  {{- with $page.RelPermalink }}{{ $urls = $urls | append . }}{{ end -}}
+  {{- with $page.Params.url }}{{ $urls = $urls | append . }}{{ end -}}
+  {{- with $page.Params.permalink }}{{ $urls = $urls | append . }}{{ end -}}
+  {{- with $page.Params.aliases }}
+    {{- range . }}{{ $urls = $urls | append . }}{{ end -}}
+  {{- end -}}
+  {{- range $urls }}
+    {{- $clean := partial "sidebar_url_clean.html" . -}}
+    {{- if eq $clean $target }}{{ $matches = true }}{{ end -}}
+  {{- end }}
+{{- end -}}
+{{- if $matches -}}true{{- end -}}

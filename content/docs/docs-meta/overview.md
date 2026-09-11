@@ -1,153 +1,168 @@
 ---
 title: Documentation of the documentation
-keywords: pages, authoring, exclusion, frontmatter
-summary: "This page is an introduction to the development of the preCICE documentation, based on a jekyll theme called documentation-theme-jekyll. You will learn how to run jekyll locally, about the sidebar structure, how to name and where to save documentation pages and what a minimal frontmatter looks like."
+keywords: pages, authoring, front matter, Hugo, modules
+summary: "An introduction to developing the preCICE documentation with Hugo: local builds, navigation, page structure, front matter, and imported content."
 permalink: docs-meta-overview.html
+aliases:
+  - /docs-meta-overview.html
 ---
 
 ## About the content
 
-This majority of this documentation focuses on the technical side of writing content. See [our content guidelines](docs-meta-content-guidelines.html) to learn what the content should look like.
+Most of this documentation focuses on the technical side of writing content.
+See the [content guidelines](docs-meta-content-guidelines.html) to learn what
+the content should look like.
 
-## About the theme
+## About the website
 
-This site is based on a jekyll theme by technical writer Tom Joht called [documentation-theme-jekyll](https://github.com/tomjoht/documentation-theme-jekyll). At the time of writing this theme was the second most popular documentation-style jekyll theme on [jamstackthemes.dev](https://jamstackthemes.dev/#ssg=jekyll) and has been selected for its rich feature set and clean, functional design out of the box.
-
-In addition Tom did a great job documenting the theme (using the theme) and you can read about specific features and their implementation and use [in his documentation](https://idratherbewriting.com/documentation-theme-jekyll/index.html).
+The website is built with [Hugo](https://gohugo.io/). Website-owned Markdown
+pages live in `content/`, navigation data lives in `data/sidebars/`, and shared
+templates live in `layouts/`. Hugo combines these with static files and
+documentation imported from other preCICE repositories.
 
 ## Getting started
 
-To develop the website locally it is recommended to install jekyll and run
+Install Hugo Extended and Go using the versions listed in the repository
+`README.md`, then run:
 
 ```bash
-bundle exec jekyll serve
+hugo server
 ```
 
-The [theme's documentation page](https://idratherbewriting.com/documentation-theme-jekyll/index.html#2-install-jekyll) has a step-by-step guide to install jekyll and the plugin ("gem") manager `bundler`. When running jekyll for the first time you might have to install and/or update the gems first:
+Open <http://localhost:1313/>. Hugo watches local files and rebuilds the site
+when they change. On the first run, it downloads the module versions recorded
+in `go.mod`.
+
+Before opening a pull request, use the production build:
 
 ```bash
-bundle install
-bundle update
+hugo mod verify
+hugo --gc --minify --cleanDestinationDir --environment production
 ```
 
-Now try again `bundle exec jekyll serve` and the site should be running at `http://localhost:4000/`. Jekyll will refresh and rebuild when you change files.
+## How the website works in a nutshell
 
-## How documentation-theme-jekyll works in a nutshell
+The two main ingredients behind the website are:
 
-The two main ingredients behind this jekyll theme are
-
-1. **The sidebar**, i.e. the navigation tree. Jekyll builds the sidebar based on the `sidebar.yml` in the `_data/sidebars` directory. The YAML contains the relative structure of the navigation tree as well as the links to the html pages.
-2. **A set of pages**, i.e. Markdown or html files. Jekyll parses the Markdown or html files in the `pages` directory, renders them to html (in case of Markdown), and places them in the root folder.
+1. **The sidebar:** the navigation tree. The sidebar partial renders the YAML
+   files in `data/sidebars/` into the navigation shown on each page.
+2. **A set of pages:** Markdown files in `content/` and mounted Markdown files
+   from imported repositories. Hugo renders them to HTML using the templates in
+   `layouts/`.
 
 ### Sidebar
 
-Here is a snippet from the `_data\sidebars\docs_sidebar.yml` that spans (the maximum) two levels:
+The sidebar data retains the established three-level structure. For example,
+the following excerpt from `data/sidebars/docs_sidebar.yml` represents a page
+with nested pages:
 
 ```yaml
 entries:
 - title: sidebar
-  product: Docs
-  version: 2.1.0
+  product: Documentation
   folders:
-
   - title: Configuration
     output: web, pdf
     folderitems:
-
     - title: Basics
       url: /configuration-introduction.html
       output: web, pdf
-
       subfolders:
-      - title: Coupling Scheme
+      - title: Coupling scheme
         output: web, pdf
         subfolderitems:
-
         - title: Overview
           url: /configuration-coupling.html
           output: web, pdf
-
-        - title: Multi Coupling
-          url: /configuration-coupling-multi.html
-          output: web, pdf
-
-    - title: Acceleration
-      url: /configuration-acceleration.html
-      output: web, pdf
 ```
+
+The `url` of each entry must match the rendered page URL. The `output` field
+controls whether the entry appears on the website, in the compiled offline PDF
+(`web, pdf`), or only on the website (`web`). For details on PDF target
+filtering, see [Publish to PDF](/docs-meta-publish-to-pdf.html). Keep the
+established `.html` URLs when moving an existing page, and use an alias when a
+page URL must change.
 
 ### Where to save files
 
-Save Markdown files in the `pages` directory in an appropriate subdirectory. Jekyll is agnostic to this folder structure - subdirectories are for human ease of organisation only.
+Save website-owned Markdown files below `content/` in the section that owns
+them. The directory structure is meaningful to Hugo: a directory containing
+`_index.md` is a section and its path contributes to page URLs.
 
 ```text
-pages
-|_ docs
-  |_ configuration
-    |_ configuration-introduction.html
-    |_ ...
-  |_ installation
-    |_ ...
+content/
+└── docs/
+    └── configuration/
+        └── basics/
+            └── introduction.md
 ```
+
+To maintain backward compatibility with established top-level URLs (such as
+`/configuration-introduction.html`) without breaking external links or
+bookmarks, pages define `aliases` to redirect from flat URL patterns to
+their nested location.
 
 ### Naming conventions
 
-{% important %}
-Because of the flat hierarchy files have to be named uniquely.
-{% endimportant %}
+Hugo derives URLs from content paths, so file names no longer need to be unique
+across the complete documentation tree. Use descriptive, lower-case file names
+with hyphens instead of underscores, for example
+`configuration-introduction.md`. Use the singular form where it reads
+naturally. Preserve an existing public URL with `permalink` or `aliases` when a
+file is moved.
 
-This can be easily achieved by baking in the category/topic into the filename and adds some welcome robustness, e.g.
+### Minimal viable front matter
 
-```text
-docs
-|_ configuration
-  |_ configuration-introduction.html
-  |_ configuration-coupling.html
-  |_ configuration-coupling-multi.html
-```
-
-File names should contain hyphens `-` instead of underscores `_` following best practices for [SEO](https://support.google.com/webmasters/answer/76329?hl=en).
-
-In addition use the singular form where possible, e.g. `configration-action.html` instead of `configuration-actions.html`.
-
-### Minimal viable frontmatter
-
-The minimal frontmatter contains only the options `title` and `permalink` (required) but should be complemented by `keywords` and `summary` (optional).
+Every page needs a title. Existing pages should retain their `permalink` to
+preserve public URLs; new pages usually derive their URL from their path. Add
+keywords and a summary where they improve search and page metadata.
 
 ```yaml
 ---
-title: Configuration Basics
+title: Configuration basics
 permalink: configuration-introduction.html
 keywords: configuration, basics, overview
-summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. "
+summary: "Configure participants, meshes, exchanged data, mappings, and coupling schemes."
 ---
 ```
 
-The `permalink` has to be the full file name ending in `.html` with no leading slash `\`. During the build process jekyll processes the frontmatter and places the file at `permalink` value, i.e. in the root directory (by default is `_site`).
+Use `aliases` to redirect previous URLs to the page:
 
-The [Migration Guide](docs-meta-migration-guide.html) contains more information on how to migrate preCICE documentation pages from the preCICE Github Wiki.
+```yaml
+aliases:
+  - /configuration-introduction.html
+```
+
+The [documentation cheatsheet](docs-meta-cheatsheet.html) lists supported front
+matter fields and Hugo shortcodes.
 
 ## Rendering content from external repositories
 
-While the main content of this website is sourced from the same [repository](https://github.com/precice/precice.github.io) that hosts the mechanics of it, some content is sourced from separate repositories. The main reason is to keep the documentation next to the respective code, so that developers can view it without looking at the website and update it in the same contribution, while users can find everything in the same place. Read more about this concept in the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2). This practice is not yet uniformly adopted, but we are working on migrating more content.
+Some website content is maintained in the repository that owns the related
+adapter, tutorial, or tool. This keeps documentation close to the code while
+presenting it in one place on the website. Hugo Modules mount that source
+content into the website's content tree.
 
-External repositories are included as Git submodules, specified in the [`.gitmodules`](https://github.com/precice/precice.github.io/blob/master/.gitmodules) file. One example is the [tutorials](tutorials), which is covered by [additional documentation for adding new tutorials](https://precice.org/community-contribute-to-precice.html#adding-a-new-tutorial-to-the-website).
+To add a new imported repository:
 
-To fetch content from an external repository/project (replace the `my-*` with the actual names):
+1. Add its module import and mounts in `config/_default/module.toml`, and add
+   the corresponding edit-link mapping in `config/_default/params.toml`.
+2. Run `hugo mod get github.com/precice/my-project@<revision>` (to fetch and pin
+   the target commit or branch in `go.mod`).
+3. Run `hugo mod tidy` (to prune unused dependencies) and `hugo mod verify` (to
+   validate checksums in `go.sum`).
+4. Add the rendered pages to a sidebar file (`data/sidebars/`).
+5. Build the website locally (`hugo server`) and verify the page URLs,
+   edit links, and last-modified dates.
 
-1. Switch to a new branch of the website and specify the new module: `git submodule add https://github.com/precice/my-project imported/my-project`.
-2. Set the branch to track, if not the default: `git submodule set-branch --branch my-branch imported/my-project`. This is particularly useful in case you are adding new documentation via a pull request. However, remember to reset the branch after merging.
-3. The above commands should have modified the `.gitmodules` file and staged changes. Commit the result (remember to push later, after testing).
-4. Update all submodules with `git submodule update --remote --merge`. If successful, you should see your new project in the `imported/` directory. Remember that the branch in your external project must already be published.
-5. Update the commit that the module points to: `git add imported/my-project && git commit -m "Update my-project submodule" && git push`. You should only see a `modified: imported/my-project (new commits)` in your `git status`, not the files of that directory.
-6. In your GitHub pull request to the website, at the "files changed" view, you should see a submodule with a Git reference to your new project in the `imported/` directory.
+The `Update Hugo modules` workflow (`.github/workflows/update-submodules.yml`)
+automatically synchronizes imported repositories and records their selected
+revisions in `go.mod` and `go.sum`. External repositories (such as
+`precice/tutorials` and adapter repositories) include an `update-website.yml`
+GitHub Actions workflow that triggers this update whenever documentation pull
+requests are merged upstream, ensuring changes appear on the website
+immediately rather than waiting for the daily scheduled run.
 
-To render the fetched content on the website:
-
-1. In the file [`_config.yml`](https://github.com/precice/precice.github.io/blob/master/_config.yml), specify the newly imported directory in the list of `subprojects:`.
-2. In the same file, add an entry under the `defaults:` list, associating the subproject with some layout, sidebar, a path for the "Edit me" button, and more features.
-3. Remember to make the new pages discoverable, e.g., by adding them to some [sidebar](https://github.com/precice/precice.github.io/tree/master/_data/sidebars), or linking from another page.
-
-After you merge the pull request in the external repository, remember to change the branch in the submodule (step 2) and in the `_config.yml` (step 1). If you squash-and-merge the pull request, the commit you were pointing to will not exist anymore. The easiest workaround it to delete the `imported/my-project` folder and update the submodules again (remember to add, commit, and push). You can always check the `git diff` for the commit it will point the submodule to.
-
-To update the content, push to your repository and then [manually trigger the "update submodules" workflow](https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml). Alternatively, add a GitHub Actions workflows to your repository, to [update the website automatically](https://github.com/precice/tutorials/blob/master/.github/workflows/update-website.yml). You will need to [share the `WORKFLOW_DISPATCH_TOKEN` with the external repository](https://github.com/organizations/precice/settings/secrets/actions).
+Do not copy imported content directly into this repository or edit the
+downloaded module cache. Always make content changes in the upstream
+repository, which will then automatically propagate to the website.

@@ -1,0 +1,130 @@
+{{- $algolia := site.Params.algolia -}}
+{{- if $algolia }}
+<script>
+if (typeof instantsearch !== "undefined") {
+  const algoliaSearch = instantsearch({
+    appId: '{{ index $algolia "application_id" }}',
+    apiKey: '{{ index $algolia "search_only_api_key" }}',
+    indexName: '{{ index $algolia "index_name" }}',
+    searchFunction: function(helper) {
+      var searchResults = document.getElementById("search-results");
+      if (helper.state.query === "") {
+        if (searchResults) searchResults.style.display = "none";
+        return;
+      }
+      helper.search();
+      if (searchResults) searchResults.style.display = "block";
+    }
+  });
+
+  const hitTemplate = function(hit) {
+    let date = "";
+    if (hit.date && typeof moment !== "undefined") {
+      date = moment.unix(hit.date).format("MMM D, YYYY");
+    }
+    let url = `${hit.url}#${hit.anchor}`;
+    const title = hit._highlightResult.title.value;
+    let breadcrumbs = "";
+    if (hit._highlightResult.headings) {
+      breadcrumbs = hit._highlightResult.headings.map(match => `<span class="result-breadcrumb">${match.value}</span>`).join(" > ");
+    }
+    const content = hit._highlightResult.html.value;
+    return `
+      <div class="result-item">
+        <h2><a class="result-link" href="${url}">${title}</a></h2>
+        ${breadcrumbs ? `<a href="${url}" class="result-breadcrumbs">${breadcrumbs}</a>` : ""}
+        <div class="result-snippet">${content}</div>
+      </div>
+    `;
+  };
+
+  algoliaSearch.addWidget(
+    instantsearch.widgets.searchBox({
+      container: "#search-input",
+      placeholder: "Search (" + (/Mac|iPhone|iPad/.test(navigator.platform) ? "⌘K" : "Ctrl+K") + ")",
+      poweredBy: true,
+      magnifier: false,
+      autofocus: false,
+      searchOnEnterKeyPressOnly: false,
+      reset: true
+    })
+  );
+
+  algoliaSearch.addWidget(
+    instantsearch.widgets.hits({
+      container: "#search-results",
+      templates: { item: hitTemplate }
+    })
+  );
+
+  algoliaSearch.start();
+
+  // Navbar search layout (patch after start - same as precice.org)
+  (function patchAlgoliaNavbarStyles() {
+    var box = document.querySelector(".navbar .ais-search-box");
+    var input = document.querySelector(".navbar .ais-search-box--input");
+    var reset = document.querySelector(".navbar .ais-search-box--reset");
+    var poweredBy = document.querySelector(".navbar .ais-search-box--powered-by");
+    var poweredByLink = document.querySelector(".navbar .nav li a.ais-search-box--powered-by-link");
+    if (poweredBy) {
+      poweredBy.style.marginTop = "-15px";
+      poweredBy.style.paddingRight = "5px";
+      poweredBy.style.pointerEvents = "none";
+    }
+    if (poweredByLink) {
+      poweredByLink.style.padding = "0";
+      poweredByLink.style.backgroundColor = "transparent";
+      poweredByLink.style.display = "inline-block";
+      poweredByLink.style.pointerEvents = "auto";
+    }
+    if (reset) {
+      reset.style.zIndex = "10";
+      reset.style.cursor = "pointer";
+    }
+    if (input) {
+      input.style.paddingLeft = "10px";
+      input.style.borderColor = "#0A76BB";
+    }
+    if (box) {
+      box.style.padding = ".5em";
+      box.style.marginBottom = "0";
+      box.style.marginLeft = "10px";
+      box.style.marginTop = "0";
+      box.style.width = "20em";
+      box.style.fontSize = "0.8em";
+      box.style.height = "50px";
+      box.style.boxSizing = "border-box";
+    }
+  })();
+
+  document.addEventListener("mouseup", function(e) {
+    var results = document.getElementById("search-results");
+    if (results && !results.contains(e.target)) {
+      results.style.display = "none";
+    }
+  });
+  document.addEventListener("mouseup", function(e) {
+    var input = document.getElementById("search-input");
+    var results = document.getElementById("search-results");
+    if (input && results && input.contains(e.target)) {
+      results.style.display = "block";
+    }
+  });
+  document.addEventListener("keydown", function(e) {
+    var isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+    if ((isMac ? e.metaKey : e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      var input = document.querySelector(".ais-search-box--input");
+      if (input) {
+        input.focus();
+        input.select();
+      }
+    }
+    if (e.key === "Escape" || e.keyCode === 27) {
+      var results = document.getElementById("search-results");
+      if (results) results.style.display = "none";
+    }
+  });
+}
+</script>
+{{- end }}

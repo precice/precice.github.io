@@ -1,6 +1,10 @@
 ---
 title: Literature guide
 permalink: fundamentals-literature-guide.html
+aliases:
+  - /fundamentals-literature-guide.html
+  - /publications/
+  - /publications.html
 keywords: literature, papers, numerics, hpc, cite, publications
 summary: "A guide to the main reference literature for each component and feature of preCICE"
 redirect_from:
@@ -20,8 +24,7 @@ Even further, please cite all components you are using, next to the latest refer
 
 Talking about preCICE, at any level? Then, read and cite the latest preCICE reference paper:
 
-<!-- Do you want to add a new publication? Use {% include publication_panel.html title="..." %} -->
-{% include publication_panel.html title="preCICE v2: A sustainable and user-friendly coupling library [version 2; peer review: 2 approved]" %}
+{{< publication_panel title="preCICE v2: A sustainable and user-friendly coupling library [version 2; peer review: 2 approved]" >}}
 
 Talking specifically about preCICE v1? Then keep citing the [preCICE v1 reference paper](https://www.sciencedirect.com/science/article/pii/S0045793016300974).
 
@@ -29,12 +32,13 @@ Talking specifically about preCICE v1? Then keep citing the [preCICE v1 referenc
 
 Are you using any of the adapters? Then, please also read and cite the respective references. The following adapters currently have reference papers:
 
-{% include publication_panel.html title="OpenFOAM-preCICE: Coupling OpenFOAM with External Solvers for Multi-Physics Simulations" %}
-{% include publication_panel.html title="FEniCS–preCICE: Coupling FEniCS to other simulation software" %}
+{{< publication_panel title="OpenFOAM-preCICE: Coupling OpenFOAM with External Solvers for Multi-Physics Simulations" >}}
+
+{{< publication_panel title="FEniCS–preCICE: Coupling FEniCS to other simulation software" >}}
 
 For the CalculiX, SU2, and code_aster adapters, as well as for the concept of an adapter, please read and cite this overview paper:
 
-{% include publication_panel.html title="Official preCICE Adapters for Standard Open-Source Solvers" %}
+{{< publication_panel title="Official preCICE Adapters for Standard Open-Source Solvers" >}}
 
 ### Reproducibility
 
@@ -44,9 +48,9 @@ Besides the distribution, publications are often accompanied by replication data
 
 ## Starting points
 
-{% tip %}
+{{< tip >}}
 Are you looking for how to start coupling your code? Then the [documentation](couple-your-code-overview.html) is a more extensive and up-to-date guide than the published resources.
-{% endtip  %}
+{{< /tip >}}
 
 * The latest reference article for preCICE is [preCICE v2: A sustainable and user-friendly coupling library](https://doi.org/10.12688/openreseurope.14445.2). This gives a wide overview over the complete preCICE ecosystem and is a great place to start reading about the modern preCICE (most probably even for the versions after v2).
 

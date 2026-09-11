@@ -1,6 +1,8 @@
 ---
 title: Output files
 permalink: running-output-files.html
+aliases:
+  - /running-output-files.html
 keywords: output, log, iterations, convergence, events
 summary: "During runtime, preCICE writes different output files. On this page, we give an overview of these files and their content."
 ---
@@ -158,10 +160,10 @@ Most commonly (with `<export:vtu />`), these are:
 
 ## History of output files
 
-{% tip %}
-This documentation concerns preCICE v{{ site.precice_version }}.
+{{< tip >}}
+This documentation concerns preCICE v{{< param "precice_version" >}}.
 Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](couple-your-code-porting-overview.html).
-{% endtip %}
+{{< /tip >}}
 
 For older scripts that rely on these files, the following historical information might be useful:
 

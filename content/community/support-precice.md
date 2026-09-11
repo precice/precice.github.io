@@ -1,6 +1,8 @@
 ---
 title: You support preCICE – preCICE supports you
 permalink: community-support-precice.html
+aliases:
+  - /community-support-precice.html
 keywords: support, priority support, private support, research project, industry, commercial, license, contracting, sub-contracting, service level agreement, NDA, price, on-site meeting, training
 summary: Support preCICE to help the software remain and grow. In return, the preCICE team supports your work. There are three different variants for such a collaboration.
 toc: true

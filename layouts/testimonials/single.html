@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article class="post-content">
+  <header class="post-header">
+    <h1 class="post-title-main">{{ .Title }}</h1>
+  </header>
+
+  <div class="row">
+    <div class="col-md-6">
+      {{ .Content }}
+      {{- with .Params.author }}
+        <p>
+          - <strong>
+            {{- with $.Params.author_link -}}
+              <a href="{{ . }}">{{ $.Params.author }}</a>
+            {{- else -}}
+              {{ $.Params.author }}
+            {{- end -}}
+          </strong><br>
+          {{ with $.Params.organisation_link }}<a href="{{ . }}">{{ $.Params.organisation }}</a>{{ else }}{{ $.Params.organisation }}{{ end }}
+        </p>
+      {{- end }}
+    </div>
+    <div class="col-md-6">
+      {{- with .Params.img }}
+        <figure>
+          <img src="{{ printf "/images/testimonials/%s" . | relURL }}" alt="{{ $.Title }}">
+          <figcaption>{{ $.Title }}</figcaption>
+        </figure>
+      {{- end }}
+    </div>
+  </div>
+</article>
+{{ end }}

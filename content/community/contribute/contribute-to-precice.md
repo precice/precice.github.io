@@ -1,6 +1,8 @@
 ---
 title: Contribute to preCICE
 permalink: community-contribute-to-precice.html
+aliases:
+  - /community-contribute-to-precice.html
 keywords: contribute, develop
 summary:
 toc: true
@@ -72,9 +74,9 @@ or to demonstrate a new feature. We welcome contributions to our [tutorials repo
 and we will discuss it with you over a few [review](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request) iterations.
 If you roughly follow the guidelines in this section, your contribution could be merged very quickly. Since we aim to maintain and update all tutorials, it is important for us that every tutorial merged follows the same structure and conventions.
 
-{% tip %}
+{{< tip >}}
 Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape.
-{% endtip %}
+{{< /tip >}}
 
 First time working with Git? Watch a [lecture on Git](https://missing.csail.mit.edu/2020/version-control/).
 
@@ -147,9 +149,9 @@ In the `README.md` file, following the general structure of the existing tutoria
 - an example picture or video of the results.
 - Don't forget to adapt the `permalink:` field in the beginning of the file.
 
-{% note %}
-If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io).
-{% endnote  %}
+{{< note >}}
+If you add a complete new tutorial case, also add its Hugo module mounts to `config/_default/module.toml` and its permalink to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/data/sidebars/tutorials_sidebar.yml) in a pull request to the [website repository](https://github.com/precice/precice.github.io).
+{{< /note >}}
 
 ### The metadata file
 
@@ -191,7 +193,6 @@ After testing and merging, we will generate the reference results of the new tes
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
 - Mesh names of participants with multiple interfaces contain the interface in the mesh name, e.g. `Fluid-Upstream-Mesh`. For meshes on which it is important to distinguish between face centers and face nodes, the modifier comes at the end, e.g. `Fluid-Upstream-Mesh-Centers`.
 - Watchpoint names should be describing the point, not be a generic name.
-- Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
 
 ### Open a pull request
 
@@ -215,14 +216,20 @@ We automate many checks with [GitHub actions](https://github.com/features/action
 
 ### Adding a new tutorial to the website
 
-The content of the tutorials is sourced from the develop branch of the tutorials repository, which is specified in the `.gitmodules` file of the website repository. Hence, in general, anything merged to develop in the tutorials appears on the website. Consider putting some `note` [alert box](docs-meta-cheatsheet.html#alerts) on top of your new tutorial page to describe any unreleased requirements.
+Tutorial content is imported from the tutorials repository with Hugo Modules.
+The `Update Hugo modules` workflow records the selected tutorial revision in
+`go.mod` and `go.sum`. Consider putting a `note`
+[alert box](docs-meta-cheatsheet.html#alerts) on top of your new tutorial page
+to describe any unreleased requirements.
 
-*New* tutorials will not directly appear on the website, but they need some additional steps. After merging to the tutorials develop, open a pull request with the following changes in the [website repository](https://github.com/precice/precice.github.io) ([example](https://github.com/precice/precice.github.io/pull/275)):
+New tutorials will not directly appear on the website. After merging a new
+tutorial, open a pull request with these changes in the
+[website repository](https://github.com/precice/precice.github.io):
 
-1. Trigger the [update submodules workflow](https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml) and, after it completes, create a new branch and pull request (this may also happen automatically, or someone from the preCICE team may have to do it for you).
-2. Edit the [`_config.yml` file](https://github.com/precice/precice.github.io/blob/master/_config.yml) to append the directory name of your tutorial under `subprojects:`.
-3. Edit the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) to add your tutorial permalink (defined in the heading of the `README.md` you created) to a fitting place, next to a similar tutorial.
-4. Edit the [tutorials landing page](https://github.com/precice/precice.github.io/blob/master/content/tutorials/overview.md) to add your tutorial to the overview.
+1. Add the tutorial's Hugo module mounts to `config/_default/module.toml`.
+2. Add its permalink to a fitting place in the
+   [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/data/sidebars/tutorials_sidebar.yml), next to a similar tutorial.
+3. Edit the [tutorials landing page](https://github.com/precice/precice.github.io/blob/master/content/tutorials/overview.md) to add the tutorial to the overview.
 
 After your PR gets reviewed, approved, and merged, the website will be built automatically, and your tutorial will appear online in a couple of minutes.
 
@@ -236,13 +243,13 @@ You can pick up issues that you would like to work on from any repository you li
 
 Look for [contributing guidelines](https://github.com/precice/precice/blob/develop/docs/CONTRIBUTING.md) in each repository. The [developer documentation](dev-docs-overview.html) will also be useful.
 
-{% tip %}
+{{< tip >}}
 Read on our [Roadmap](fundamentals-roadmap.html) what is already in our to-do list before starting to write large parts of code.
-{% endtip %}
+{{< /tip >}}
 
-{% tip %}
+{{< tip >}}
 There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
-{% endtip %}
+{{< /tip >}}
 
 ## Helping other users
 

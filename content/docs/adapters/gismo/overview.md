@@ -1,6 +1,8 @@
 ---
 title: The G+Smo adapter
 permalink: adapter-gismo.html
+aliases:
+  - /adapter-gismo.html
 keywords: adapter, G+Smo, Isogeometric Analysis, IGA
 summary: "The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI applications or even to couple G+Smo to itself for advanced structural simulations."
 ---

@@ -1,6 +1,8 @@
 ---
 title: Matlab bindings
 permalink: installation-bindings-matlab.html
+aliases:
+  - /installation-bindings-matlab.html
 keywords: basics, overview, installation, bindings, matlab
 summary: "Clone the repository precice/matlab-bindings and run the installation script with Matlab"
 ---

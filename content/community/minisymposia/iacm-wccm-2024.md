@@ -3,6 +3,8 @@ title: iacm WCCM 2024
 keywords: 2024, IACM, ECCOMAS, WCCM, event, events, minisymposium
 summary:
 permalink: iacm-wccm-2024.html
+aliases:
+  - /iacm-wccm-2024.html
 toc: false
 ---
 

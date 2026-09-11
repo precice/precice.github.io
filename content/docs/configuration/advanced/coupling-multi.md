@@ -1,6 +1,8 @@
 ---
 title: Multi coupling configuration
 permalink: configuration-coupling-multi.html
+aliases:
+  - /configuration-coupling-multi.html
 keywords: configuration, coupling scheme
 summary: "If you want to couple more than two participants, there are two options: You can combine multiple normal coupling schemes (composition) or you can use a fully-implicit multi-coupling scheme. On this page, we explain both options."
 ---
@@ -48,12 +50,12 @@ Still, even with only explicit schemes, you can do very strange combinations. So
 
 The mesh over which the data is communicated plays no role. We get a circular dependency:
 
-{% mermaid %}
+{{< mermaid >}}
 graph LR
   A -->|first to second| B
   B -->|first to second| C
   C -->|first to second| A
-{% endmermaid %}
+{{< /mermaid >}}
 
 All three participants are a second participant in a serial coupling scheme, in which they receive data. Thus, they all wait for data in `initialize`, which is, however, only sent in the `advance` call of another participant, as explained on the [coupling flow pages](couple-your-code-coupling-flow.html).
 
@@ -85,11 +87,11 @@ In a fully-implicit multi-coupling, an arbitrary number of solvers are executed 
 
 Exactly one participant needs to take `control` of the coupling. preCICE computes the convergence measures and the acceleration on this participant.
 
-{% version 2.3.0 %}
+{{< version "2.3.0" >}}
 Prior to version 2.3.0, this controlling participant needs to be centric.
 This means that it requires `m2n` connections to all other participants and the `exchange` tags needs to be properly configured.
 Version 2.3.0 allows non-centric participants as long as they run in serial.
-{% endversion %}
+{{< /version >}}
 
 Data being exchanged between multiple solvers must be configured identically in terms of data initialization and substeps.
 All other tags are similar to a normal [implicit coupling](configuration-coupling.html#implicit-coupling-schemes).

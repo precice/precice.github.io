@@ -1,6 +1,8 @@
 ---
 title: License information
 permalink: fundamentals-license.html
+aliases:
+  - /fundamentals-license.html
 keywords: license, LGPLv3, CC-BY
 summary: preCICE is free/open-source software, without imposing any license restrictions on the software you couple.
 ---

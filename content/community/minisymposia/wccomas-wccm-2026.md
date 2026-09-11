@@ -3,6 +3,8 @@ title: ECCOMAS WCCM 2026
 keywords: 2026, ECCOMAS, WCCM, event, events, minisymposium
 summary:
 permalink: eccomas-wccm-2026.html
+aliases:
+  - /eccomas-wccm-2026.html
 toc: false
 ---
 

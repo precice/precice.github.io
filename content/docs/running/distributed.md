@@ -1,6 +1,8 @@
 ---
 title: Distributed systems
 permalink: running-distributed.html
+aliases:
+  - /running-distributed.html
 keywords: running, distributed, cluster, mainframe, cloud
 summary: "Running preCICE simulations on a distributed system involves additional setup steps which are covered on this page."
 ---

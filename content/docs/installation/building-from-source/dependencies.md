@@ -1,6 +1,8 @@
 ---
 title: Building from source - Dependencies
 permalink: installation-source-dependencies.html
+aliases:
+  - /installation-source-dependencies.html
 keywords: configuration, basics, installation, building
 summary: 'This page describes the dependencies used by preCICE, how to install them on various systems and how to build them.'
 ---
@@ -14,10 +16,10 @@ Then use the [dependencies](#dependencies) section to install all missing depend
 
 After all dependencies are ready to use, proceed with [configuring the preCICE build](installation-source-configuration).
 
-{% tip %}
-This documentation concerns preCICE v{{ site.precice_version }}.
+{{< tip >}}
+This documentation concerns preCICE v{{< param "precice_version" >}}.
 Read about [previous versions](fundamentals-previous-versions.html) or [how to upgrade](couple-your-code-porting-overview.html).
-{% endtip %}
+{{< /tip >}}
 
 ## Overview
 
@@ -229,9 +231,9 @@ You can build preCICE without MPI in case of compatibility issues with a certain
 
 Keep in mind that, if you already installed [PETSc](installation-source-dependencies.html#petsc), MPI must also already be installed.
 
-{% important %}
+{{< important >}}
 Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
-{% endimportant %}
+{{< /important >}}
 
 ### PETSc
 
@@ -282,9 +284,9 @@ History of required versions:
 
 preCICE optionally uses [Kokkos-Kernels](https://kokkos.org/kokkos-kernels/docs/) (and [Kokkos](https://kokkos.org/)) for GPU- and OpenMP-accelerated [PU-RBF radial-basis function mappings](configuration-mapping.html#execution-backends). To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_KOKKOS_KERNELS_MAPPING=ON`. When building preCICE, it inherits the enabled execution backend from Kokkos automatically. preCICE accepts the backends `CUDA`, `HIP`, `SYCL`, and `OpenMP` from Kokkos. Further backend-specific parameters are runtime-configurable through the XML configuration, as usual. After compiling preCICE and its tests, you can check that the backend operates as expected using `ctest -R Cuda` (or `Hip`, `Sycl`, `OpenMP`).
 
-{% tip %}
+{{< tip >}}
 preCICE can be compiled with Kokkos-kernels through [`spack`](installation-spack.html). Example: `spack install precice +kokkos-kernels +cuda ^kokkos cuda_arch=80`.
-{% endtip %}
+{{< /tip >}}
 
 [Kokkos-Kernels](https://github.com/kokkos/kokkos/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases) follow the usual CMake build instructions. For Kokkos, system packages might be available through your package manager as well.
 
@@ -315,9 +317,9 @@ If you want build preCICE on your own computer and you are using one of the foll
 Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options.
 Contributions to this section are particularly welcome (click "Edit me"). Trouble? [Ask for help](https://precice.discourse.group/).
 
-{% tip %}
+{{< tip >}}
 preCICE also has pre-compiled [system packages](installation-packages.html) in many repositories.
-{% endtip %}
+{{< /tip >}}
 
 ### Arch Linux
 
