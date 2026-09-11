@@ -44,7 +44,7 @@ Arguments:
 - `--volume`: Mount the current directory (`$PWD`) to a directory in the container (`/project/`), so that only the current container can see the content (`:Z`)
 - `--publish`: Publish the container's port 1313 (where Hugo serves the website) to the host port 1313
 - `-it`: Interactive container, capturing signals (such as `Ctrl-C`)
-- `ghcr.io/gohugoio/hugo:latest`: The image. If `latest` fails, v0.165.0 is known to work.
+- `ghcr.io/gohugoio/hugo:latest`: The image. If `latest` fails, v0.166.0 is known to work.
 - `serve`: The Hugo command to run
 - `--bind 0.0.0.0`: Bind all network addresses to the 0.0.0.0 interface (important to access the website from the host).
 
