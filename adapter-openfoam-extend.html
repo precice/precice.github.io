@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1789321461">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1789321461">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1789321461">
-<link rel="stylesheet" href="css/bookcover.css?v=1789321461">
+<link rel="stylesheet" href="css/customstyles.css?v=1789322727">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1789322727">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1789322727">
+<link rel="stylesheet" href="css/bookcover.css?v=1789322727">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1789321461">
+<link rel="stylesheet" href="css/theme-precice.css?v=1789322727">
 <!-- Styling for landing page -->
 
 
@@ -6959,56 +6959,52 @@ See this diagram for an overview:</p>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.min.js"></script>
 <div class="mermaid">
 flowchart TD
-    subgraph loop ["Implicit Iteration Loop for Window t"]
+    subgraph loop["Implicit Iteration Loop for Window t"]
         direction TB
+
         B{"OpenFOAM Solve"}
         C["Adapter::execute()"]
-        D["Adapter:writeCouplingData()"]
+        D["Adapter::writeCouplingData()"]
         E["preCICE::advance()"]
-        F{"preCICE - Rollback Needed?"}
+        F{"preCICE: Rollback Needed?"}
         G["Adapter::readCheckpoint() (Rollback)"]
-        I["Adapter - Read NEW Coupled Solver Data"]
-
-        J{"preCICE - Save State Needed?"}
+        I["Adapter: Read NEW Coupled Solver Data"]
+        J{"preCICE: Save State Needed?"}
         K["Adapter::writeCheckpoint()"]
-        L["Adapter - Read FINAL/Next Window Data"]
-
+        L["Adapter: Read FINAL/Next Window Data"]
     end
 
-    B --&gt; C;
-    C --&gt; D;
-    D --&gt; E;
-    E --&gt; F;
+    B --&gt; C
+    C --&gt; D
+    D --&gt; E
+    E --&gt; F
 
-    F -- Yes --&gt; G;
-    G --&gt; I;
-    I --&gt; B;
+    F -- Yes --&gt; G
+    G --&gt; I
+    I --&gt; B
 
-    F -- No --&gt; J; %% Converged or explicit
-    K --&gt; L;
-    J -- Yes --&gt; K;
-    J -- No --&gt; L;
+    F -- No --&gt; J
+    J -- Yes --&gt; K
+    J -- No --&gt; L
+    K --&gt; L
 
-    L --&gt; M["OpenFOAM - Advance to Next Window t+dt"];
+    L --&gt; M["OpenFOAM: Advance to Next Window t+dt"]
 
-    %% Styles
-    style B fill:#f9f,stroke:#333  %% Solver Solve
-    style M fill:#f9f,stroke:#333  %% Solver Advance Window
+    classDef solver fill:#f9f,stroke:#333
+    classDef adapter fill:#eef,stroke:#333
+    classDef writeOp fill:#ffdacc,stroke:#333
+    classDef precice fill:#eee,stroke:#333
+    classDef decision fill:#eee,stroke:#333,stroke-dasharray:5 5
+    classDef readOp fill:#cfc,stroke:#333
 
-    style C fill:#eef,stroke:#333  %% Adapter::execute() entry
+    class B,M solver
+    class C adapter
+    class D,K writeOp
+    class E precice
+    class F,J decision
+    class G,I,L readOp
 
-    style D fill:#ffdacc,stroke:#333  %% Write Coupling Data
-    style K fill:#ffdacc,stroke:#333  %% Write Checkpoint
-
-    style E fill:#eee,stroke:#333  %% preCICE advance
-    style F fill:#eee,stroke:#333,stroke-dasharray: 5 5 %% preCICE Rollback Check
-    style J fill:#eee,stroke:#333,stroke-dasharray: 5 5 %% preCICE Save Check
-
-    style G fill:#cfc,stroke:#333  %% Read Checkpoint
-    style I fill:#cfc,stroke:#333  %% Read NEW Data
-    style L fill:#cfc,stroke:#333  %% Read FINAL/Next Data
-
-    style loop stroke:#aaa,stroke-width:1px,stroke-dasharray: 3
+    style loop fill:none,stroke:#aaa,stroke-width:1px,stroke-dasharray:3 3
 </div>
 
 <p>(this graph is also available as an <a href="https://github.com/precice/openfoam-adapter/blob/develop/docs/images/docs-adapter-openfoam-implicit-loop.png">image file</a>)</p>
