@@ -1,8 +1,6 @@
-/*
- * SPDX-FileCopyrightText: 2022-2026 The preCICE developers - precice.org <info@precice.org>
- *
- * SPDX-License-Identifier: MIT
- */
+# SPDX-FileCopyrightText: 2022-2026 The preCICE developers - precice.org <info@precice.org>
+#
+# SPDX-License-Identifier: MIT
 module Jekyll
   class TipBlock < Liquid::Block
     def render(context)

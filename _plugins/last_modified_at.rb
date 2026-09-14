@@ -1,8 +1,6 @@
-/*
- * SPDX-FileCopyrightText: 2026 The preCICE developers - precice.org <info@precice.org>
- *
- * SPDX-License-Identifier: MIT
- */
+# SPDX-FileCopyrightText: 2026 The preCICE developers - precice.org <info@precice.org>
+#
+# SPDX-License-Identifier: MIT
 require 'open3'
 
 module Jekyll
