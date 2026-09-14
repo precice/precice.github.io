@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2020-2026 The preCICE developers - precice.org <info@precice.org>
+ *
+ * SPDX-License-Identifier: MIT
+ */
 require 'set'
 module Jekyll
   class SubprojectGenerator < Generator
