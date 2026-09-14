@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2025-2026 The preCICE developers - precice.org <info@precice.org>
+ *
+ * SPDX-License-Identifier: MIT
+ */
 document.addEventListener("DOMContentLoaded", async function () {
   const newsContainer = document.getElementById("news-container");
   const loadingText = document.getElementById("loading-news");
