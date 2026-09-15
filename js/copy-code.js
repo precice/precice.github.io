@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2026 The preCICE developers - precice.org <info@precice.org>
+ *
+ * SPDX-License-Identifier: MIT
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const codeBlocks = document.querySelectorAll('div.highlighter-rouge');
 

@@ -112,4 +112,24 @@ For further information see the [documentation page on common issues](https://pr
 
 ## Licenses
 
-The content of the preCICE webpage is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en). Third-party licenses (e.g. of the framework we use) are collected in the `licenses` subfolder. Note that preCICE itself has a software license, [LGPL v3](https://www.gnu.org/licenses/lgpl-3.0.en.html).
+The website in this repository (https://precice.org/) is maintained by the preCICE developers.
+It is based on the following dependencies (as licensed), with modifications or additional code licensed under the MIT license.
+
+Dependencies:
+
+* [Jekyll](https://jekyllrb.com/), which is [available on GitHub](https://github.com/jekyll/jekyll) under an [MIT license](https://github.com/jekyll/jekyll/blob/master/LICENSE).
+* Theme: [documentation-theme-jekyll](https://idratherbewriting.com/documentation-theme-jekyll/), which is [available on GitHub](https://github.com/tomjoht/documentation-theme-jekyll) under an [MIT license](https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/LICENSE).
+* Linked JavaScript libraries:
+  * [Algolia instantsearch.js](https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/js), which is [available on GitHub](https://github.com/algolia/instantsearch) under an [MIT license](https://github.com/algolia/instantsearch/blob/master/LICENSE).
+  * [anchorjs](https://www.bryanbraun.com/anchorjs/), which is [available on GitHub](https://github.com/bryanbraun/anchorjs) under an [MIT license](https://github.com/bryanbraun/anchorjs/blob/main/LICENSE).
+  * [asciinema-player](https://docs.asciinema.org/manual/player/), which is [available on GitHub](https://github.com/asciinema/asciinema-player) under an [Apache 2.0 license](https://github.com/asciinema/asciinema-player/blob/develop/LICENSE).
+  * [Boostrap](https://getbootstrap.com/), which is [available on GitHub](https://github.com/twbs/bootstrap) under an [MIT license](https://github.com/twbs/bootstrap/blob/main/LICENSE).
+  * [FontAwesome free](https://fontawesome.com/license/free), which is [available on GitHub](https://github.com/FortAwesome/Font-Awesome) and [licensed](https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt) as follows: Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License.
+  * [jQuery](https://jquery.com/), which is [available on GitHub](https://github.com/jquery/jquery) under an [MIT license](https://jquery.com/license/).
+  * [KaTeX](https://katex.org/), which is [available on GitHub](https://github.com/KaTeX/KaTeX) under an [MIT license](https://github.com/KaTeX/KaTeX/blob/main/LICENSE).
+  * [Moment.js](https://momentjs.com/), which is [available on GitHub](https://github.com/moment/moment/) under an [MIT license](https://github.com/moment/moment/blob/develop/LICENSE).
+  * [qrcode-generator](https://kazuhikoarase.github.io/qrcode-generator/js/demo/), which is [available on GitHub](https://github.com/kazuhikoarase/qrcode-generator/) under an [MIT license](https://github.com/kazuhikoarase/qrcode-generator/blob/master/LICENSE).
+
+The content of the documentation pages included in this repository is licensed under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en).
+
+Note that the preCICE core library itself has a software license, [LGPL v3](https://www.gnu.org/licenses/lgpl-3.0.en.html), and is maintained in a [different repository](https://github.com/precice/precice).
