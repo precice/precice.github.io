@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2025-2026 The preCICE developers - precice.org <info@precice.org>
+ *
+ * SPDX-License-Identifier: MIT
+ */
 console.log("forum-fetch.js loaded!");
 
 document.addEventListener("DOMContentLoaded", async function () {

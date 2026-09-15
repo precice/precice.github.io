@@ -1,4 +1,8 @@
-
+/*
+ * SPDX-FileCopyrightText: 2025-2026 The preCICE developers - precice.org <info@precice.org>
+ *
+ * SPDX-License-Identifier: MIT
+ */
 // Script to get information about the latest preCICE release from GitHub,
 // using its API
 
