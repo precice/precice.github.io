@@ -117,7 +117,7 @@ It is based on the following dependencies (as licensed), with modifications or a
 
 Dependencies:
 
-* [Jekyll](https://jekyllrb.com/), which is [available on GitHub](https://github.com/jekyll/jekyll) under an [MIT license](https://github.com/jekyll/jekyll/blob/master/LICENSE)
+* [Jekyll](https://jekyllrb.com/), which is [available on GitHub](https://github.com/jekyll/jekyll) under an [MIT license](https://github.com/jekyll/jekyll/blob/master/LICENSE).
 * Theme: [documentation-theme-jekyll](https://idratherbewriting.com/documentation-theme-jekyll/), which is [available on GitHub](https://github.com/tomjoht/documentation-theme-jekyll) under an [MIT license](https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/LICENSE).
 * Linked JavaScript libraries:
   * [Algolia instantsearch.js](https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/js), which is [available on GitHub](https://github.com/algolia/instantsearch) under an [MIT license](https://github.com/algolia/instantsearch/blob/master/LICENSE).
