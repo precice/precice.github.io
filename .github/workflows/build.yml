@@ -104,13 +104,11 @@ jobs:
           test "$(cat public/CNAME)" = "precice.org"
           test -s public/feed.xml
           test -s public/sitemap.xml
-          test -s public/sitemap_index.xml
           test -s public/robots.txt
-          grep -Fx 'Sitemap: https://precice.org/sitemap_index.xml' public/robots.txt
+          grep -Fx 'Sitemap: https://precice.org/sitemap.xml' public/robots.txt
           xmllint --noout \
             public/feed.xml \
-            public/sitemap.xml \
-            public/sitemap_index.xml
+            public/sitemap.xml
 
       - name: Upload Hugo site
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
