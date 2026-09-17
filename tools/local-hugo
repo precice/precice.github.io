@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+"""Run Hugo with local module replacements for live editing.
+
+Usage:
+    tools/local-hugo --tutorials=../tutorials server
+    tools/local-hugo --openfoam=../openfoam-adapter --tutorials=../tutorials server
+    tools/local-hugo --help
+"""
+
+import argparse
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+
+PRECICE_MODULE_PREFIX = "github.com/precice/"
+IMPORT_PATH = re.compile(r'^path\s*=\s*"([^"]+)"\s*$')
+
+
+def get_known_modules(repo_root: Path) -> list[str]:
+    """Return a sorted list of canonical module paths."""
+    modules: set[str] = set()
+
+    module_toml = repo_root / "config" / "_default" / "module.toml"
+    if module_toml.exists():
+        for line in module_toml.read_text(encoding="utf-8").splitlines():
+            match = IMPORT_PATH.match(line.strip())
+            if match:
+                modules.add(match.group(1))
+
+    go_mod = repo_root / "go.mod"
+    if go_mod.exists():
+        for line in go_mod.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line.startswith(PRECICE_MODULE_PREFIX):
+                modules.add(line.split()[0])
+
+    return sorted(modules)
+
+
+def main() -> None:
+    repo_root = Path(__file__).resolve().parent.parent
+    canonical_modules = get_known_modules(repo_root)
+
+    parser = argparse.ArgumentParser(
+        description="A wrapper around 'hugo' to easily live-edit imported preCICE documentation modules.",
+        usage="%(prog)s [MODULE_OPTIONS] [HUGO_ARGS...]",
+    )
+
+    for mod in canonical_modules:
+        short = mod.removeprefix(PRECICE_MODULE_PREFIX)
+        aliases = [f"--{short}"]
+        if short.endswith("-adapter"):
+            aliases.append(f"--{short.removesuffix('-adapter')}")
+        parser.add_argument(
+            *aliases,
+            type=Path,
+            default=None,
+            dest=mod,
+            metavar="PATH",
+            help=f"Path to local {short} clone",
+        )
+
+    parsed, hugo_args = parser.parse_known_args()
+
+    replacements: dict[str, Path] = {}
+    for mod_path, local_path in vars(parsed).items():
+        if local_path is not None:
+            resolved = local_path.expanduser().resolve()
+            if not resolved.is_dir():
+                print(
+                    f"Error: Directory for '{mod_path}' does not exist: {resolved}",
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+            replacements[mod_path] = resolved
+
+    if not hugo_args:
+        hugo_args = ["server"]
+
+    replacement_strings = [f"{mod} -> {path}" for mod, path in replacements.items()]
+
+    env = os.environ.copy()
+    env_replacements = env.get("HUGO_MODULE_REPLACEMENTS", "").strip()
+    if env_replacements:
+        all_replacements = [env_replacements] + replacement_strings
+    else:
+        all_replacements = replacement_strings
+
+    if all_replacements:
+        env["HUGO_MODULE_REPLACEMENTS"] = ", ".join(all_replacements)
+
+    if replacement_strings:
+        print("[local-hugo] Module replacements active:")
+        for rep in replacement_strings:
+            print(f"  • {rep}")
+
+    print(f"[local-hugo] Executing: hugo {' '.join(hugo_args)}\n")
+    sys.stdout.flush()
+
+    try:
+        completed = subprocess.run(["hugo"] + hugo_args, env=env)
+        sys.exit(completed.returncode)
+    except KeyboardInterrupt:
+        sys.exit(130)
+    except FileNotFoundError:
+        print(
+            "Error: 'hugo' executable not found in PATH. Please install Hugo Extended.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
