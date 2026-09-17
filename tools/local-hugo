@@ -7,6 +7,7 @@ Usage:
     tools/local-hugo --help
 """
 
+import argparse
 import os
 from pathlib import Path
 import re
@@ -16,8 +17,8 @@ PRECICE_MODULE_PREFIX = "github.com/precice/"
 IMPORT_PATH = re.compile(r'^path\s*=\s*"([^"]+)"\s*$')
 
 
-def get_known_modules(repo_root: Path) -> tuple[dict[str, str], list[str]]:
-    """Return an alias lookup mapping and a list of canonical module paths."""
+def get_known_modules(repo_root: Path) -> list[str]:
+    """Return a sorted list of canonical module paths."""
     modules: set[str] = set()
 
     module_toml = repo_root / "config" / "_default" / "module.toml"
@@ -34,91 +35,45 @@ def get_known_modules(repo_root: Path) -> tuple[dict[str, str], list[str]]:
             if line.startswith(PRECICE_MODULE_PREFIX):
                 modules.add(line.split()[0])
 
-    mapping: dict[str, str] = {}
-    canonical_list = sorted(modules)
-
-    for mod in canonical_list:
-        mapping[mod] = mod
-        short = mod.removeprefix(PRECICE_MODULE_PREFIX)
-        mapping[short] = mod
-        mapping[short.replace("_", "-")] = mod
-        if short.endswith("-adapter"):
-            base = short.removesuffix("-adapter")
-            mapping[base] = mod
-            mapping[base.replace("_", "-")] = mod
-
-    return mapping, canonical_list
+    return sorted(modules)
 
 
-def print_help(canonical_modules: list[str]) -> None:
-    print("""Usage: tools/local-hugo [MODULE_OPTIONS] [HUGO_ARGS...]
+def main() -> None:
+    repo_root = Path(__file__).resolve().parent.parent
+    canonical_modules = get_known_modules(repo_root)
 
-A wrapper around 'hugo' to easily live-edit imported preCICE documentation modules.
-It maps module flags to HUGO_MODULE_REPLACEMENTS and executes Hugo.
+    parser = argparse.ArgumentParser(
+        description="A wrapper around 'hugo' to easily live-edit imported preCICE documentation modules.",
+        usage="%(prog)s [MODULE_OPTIONS] [HUGO_ARGS...]",
+    )
 
-Options:
-    --<module>=<path>    Override a module with a local repository clone.
-    -h, --help           Show this help message and exit.
-
-Examples:
-    tools/local-hugo --tutorials=../tutorials server
-    tools/local-hugo --openfoam=../openfoam-adapter server --bind 0.0.0.0
-    tools/local-hugo --calculix=../calculix-adapter --tutorials=../tutorials server
-
-Available module shortcuts:""")
     for mod in canonical_modules:
         short = mod.removeprefix(PRECICE_MODULE_PREFIX)
         aliases = [f"--{short}"]
         if short.endswith("-adapter"):
             aliases.append(f"--{short.removesuffix('-adapter')}")
-        print(f"    {', '.join(aliases):<36} -> {mod}")
-    print()
+        parser.add_argument(
+            *aliases,
+            type=Path,
+            default=None,
+            dest=mod,
+            metavar="PATH",
+            help=f"Path to local {short} clone",
+        )
 
-
-def main() -> None:
-    repo_root = Path(__file__).resolve().parent.parent
-    mapping, canonical_list = get_known_modules(repo_root)
-
-    args = sys.argv[1:]
-    if "-h" in args or "--help" in args:
-        print_help(canonical_list)
-        sys.exit(0)
+    parsed, hugo_args = parser.parse_known_args()
 
     replacements: dict[str, Path] = {}
-    hugo_args: list[str] = []
-
-    i = 0
-    while i < len(args):
-        arg = args[i]
-        if arg.startswith("--"):
-            key_val = arg[2:]
-            key: str
-            val: str | None = None
-
-            if "=" in key_val:
-                key, val = key_val.split("=", 1)
-            elif key_val in mapping and i + 1 < len(args) and not args[i + 1].startswith("--"):
-                key = key_val
-                i += 1
-                val = args[i]
-            else:
-                key = key_val
-
-            if key in mapping and val is not None:
-                module_path = mapping[key]
-                resolved_path = Path(val).expanduser().resolve()
-                if not resolved_path.is_dir():
-                    print(
-                        f"Error: Directory for '--{key}' does not exist: {resolved_path}",
-                        file=sys.stderr,
-                    )
-                    sys.exit(1)
-                replacements[module_path] = resolved_path
-                i += 1
-                continue
-
-        hugo_args.append(arg)
-        i += 1
+    for mod_path, local_path in vars(parsed).items():
+        if local_path is not None:
+            resolved = local_path.expanduser().resolve()
+            if not resolved.is_dir():
+                print(
+                    f"Error: Directory for '{mod_path}' does not exist: {resolved}",
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+            replacements[mod_path] = resolved
 
     if not hugo_args:
         hugo_args = ["server"]
