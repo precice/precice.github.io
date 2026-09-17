@@ -11,6 +11,7 @@ import argparse
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 
 PRECICE_MODULE_PREFIX = "github.com/precice/"
@@ -80,23 +81,29 @@ def main() -> None:
 
     replacement_strings = [f"{mod} -> {path}" for mod, path in replacements.items()]
 
-    env_replacements = os.environ.get("HUGO_MODULE_REPLACEMENTS", "").strip()
+    env = os.environ.copy()
+    env_replacements = env.get("HUGO_MODULE_REPLACEMENTS", "").strip()
     if env_replacements:
         all_replacements = [env_replacements] + replacement_strings
     else:
         all_replacements = replacement_strings
 
+    if all_replacements:
+        env["HUGO_MODULE_REPLACEMENTS"] = ", ".join(all_replacements)
+
     if replacement_strings:
         print("[local-hugo] Module replacements active:")
         for rep in replacement_strings:
             print(f"  • {rep}")
-        os.environ["HUGO_MODULE_REPLACEMENTS"] = ", ".join(all_replacements)
 
     print(f"[local-hugo] Executing: hugo {' '.join(hugo_args)}\n")
     sys.stdout.flush()
 
     try:
-        os.execvp("hugo", ["hugo"] + hugo_args)
+        completed = subprocess.run(["hugo"] + hugo_args, env=env)
+        sys.exit(completed.returncode)
+    except KeyboardInterrupt:
+        sys.exit(130)
     except FileNotFoundError:
         print(
             "Error: 'hugo' executable not found in PATH. Please install Hugo Extended.",
