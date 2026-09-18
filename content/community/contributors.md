@@ -28,7 +28,7 @@ toc: true
     </div>
     <ul class="devlist-right">
       {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-orcid"></i></a></li>{% endif %}
-      {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
+      {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
   {% endfor %}
@@ -57,7 +57,7 @@ Previous maintainers and their affiliation at the time of their last significant
     </div>
     <ul class="devlist-right">
       {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-orcid"></i></a></li>{% endif %}
-      {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
+      {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
   {% endfor %}
@@ -84,7 +84,7 @@ Previous contributors and their affiliation at the time of their last significan
     </div>
     <ul class="devlist-right">
       {% if p.orcid %}<li><a href="{{ p.orcid }}" alt="See the institutional website" class="no-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-orcid"></i></a></li>{% endif %}
-      {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
+      {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
   {% endfor %}
