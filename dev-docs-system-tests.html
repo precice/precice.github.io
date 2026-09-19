@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1789736715">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1789736715">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1789736715">
-<link rel="stylesheet" href="css/bookcover.css?v=1789736715">
+<link rel="stylesheet" href="css/customstyles.css?v=1789854775">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1789854775">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1789854775">
+<link rel="stylesheet" href="css/bookcover.css?v=1789854775">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1789736715">
+<link rel="stylesheet" href="css/theme-precice.css?v=1789854775">
 <!-- Styling for landing page -->
 
 
@@ -6922,7 +6922,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 28 Aug 26</small>
+              <small>Updated 19 Sep 26</small>
             </div>
           </aside>
           
@@ -6985,6 +6985,11 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv .venv <span class="o">&amp;&amp;</span> <span class="nb">source</span> .venv/bin/activate
 python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<p>Prepare the mirror of third-party repositories in <code class="language-plaintext highlighter-rouge">./thirdparty</code>, by running:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./mirror-repositories.sh
 </code></pre></div></div>
 
 <p>To test a certain test-suite defined in <code class="language-plaintext highlighter-rouge">tests.yaml</code>, use:</p>
@@ -7085,6 +7090,8 @@ python <span class="nt">-m</span> pip <span class="nb">install</span> <span clas
   <li><code class="language-plaintext highlighter-rouge">cd</code> into the test folder.</li>
   <li>Run <code class="language-plaintext highlighter-rouge">./rerun-system-test.sh</code> (or <code class="language-plaintext highlighter-rouge">sh rerun-system-test.sh</code>).</li>
 </ol>
+
+<p>The first time you run tests locally, you need to <a href="#running-locally">initialize the mirror of third-party repositories</a>.</p>
 
 <p>The script rebuilds images, runs the tutorial, and (if present) runs fieldcompare with <code class="language-plaintext highlighter-rouge">--exit-code-from field-compare</code>, matching the Python runner. Compose paths are relative to the test folder (<code class="language-plaintext highlighter-rouge">..</code> is the parent <code class="language-plaintext highlighter-rouge">runs/</code> directory), so you can move the extracted tree elsewhere on a Linux host with Docker.</p>
 
@@ -7800,8 +7807,8 @@ information used to generate that archive.</p>
         </a>
         </p>
         <p>
-        Page last updated: Aug 28, 2026<br>
-        Site last updated: Sep 18, 2026
+        Page last updated: Sep 19, 2026<br>
+        Site last updated: Sep 19, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
