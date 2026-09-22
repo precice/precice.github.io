@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;a34c5fb</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;e6046e3</span>
    </div>
   </td>
  </tr>
@@ -134,7 +134,7 @@ $(function() {
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  sum = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">std::sqrt</a>(sum);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a0e34ab15fc7c00c7da8681dda7029cc1">PRECICE_WARN_IF</a>(</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(sum, 0.0),</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <a class="code hl_function" href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">math::isZero</a>(sum),</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="stringliteral">&quot;All residual sub-vectors in the residual-sum preconditioner are numerically zero ( sum = {}). &quot;</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <span class="stringliteral">&quot;This indicates that the data values exchanged between two successive iterations did not change. &quot;</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      <span class="stringliteral">&quot;The simulation may be unstable, e.g. produces NAN values. Please check the data values exchanged &quot;</span></div>
@@ -147,7 +147,7 @@ $(function() {
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1ResidualSumPreconditioner.html#a03e256bfea00a427f5e943dddee11231">_residualSum</a>[k] += norms[k] / sum;</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_define" href="LogMacros_8hpp.html#a0e34ab15fc7c00c7da8681dda7029cc1">PRECICE_WARN_IF</a>(</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(<a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1ResidualSumPreconditioner.html#a03e256bfea00a427f5e943dddee11231">_residualSum</a>[k], 0.0),</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_function" href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">math::isZero</a>(<a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1ResidualSumPreconditioner.html#a03e256bfea00a427f5e943dddee11231">_residualSum</a>[k]),</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="stringliteral">&quot;The sub-vector of data \&quot;{}\&quot; in the residual-sum preconditioner became numerically zero ( sub-vector = {}). &quot;</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="stringliteral">&quot;If this occurred in the second iteration and the initial-relaxation factor is equal to 1.0, &quot;</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="stringliteral">&quot;check if the coupling data values of one solver is zero in the first iteration. &quot;</span></div>
@@ -162,7 +162,7 @@ $(function() {
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordflow">if</span> (!resetWeights) {</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>.size(); k++) {</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keywordtype">double</span> resSum = <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1ResidualSumPreconditioner.html#a03e256bfea00a427f5e943dddee11231">_residualSum</a>[k];</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(resSum, 0.0)) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">math::isZero</a>(resSum)) {</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">continue</span>; <span class="comment">// These will be ignored when resetting the weights</span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      }</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <span class="comment">// Check if the ratio of the new scaling weight to the previous residual sum</span></div>
@@ -184,7 +184,7 @@ $(function() {
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="comment">// Reset the weights for non-zero residual sums</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>.size(); k++) {</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">double</span> resSum = <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1ResidualSumPreconditioner.html#a03e256bfea00a427f5e943dddee11231">_residualSum</a>[k];</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">if</span> (not <a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(resSum, 0.0)) {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">if</span> (not <a class="code hl_function" href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">math::isZero</a>(resSum)) {</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keyword">auto</span> offset = <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#ad673a6c2c282c4fbe2b08bf36827579d">_subVectorOffsets</a>[k];</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>[k]; i++) {</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#ac6898e07d72b31f6a9002a82dc4803df">_weights</a>[i + offset]    = 1 / resSum;</div>
@@ -227,8 +227,8 @@ $(function() {
 <div class="ttc" id="adifferences_8hpp_html"><div class="ttname"><a href="differences_8hpp.html">differences.hpp</a></div></div>
 <div class="ttc" id="afill_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/fill.html">std::fill</a></div><div class="ttdeci">T fill(T... args)</div></div>
 <div class="ttc" id="anamespaceprecice_1_1acceleration_1_1impl_html"><div class="ttname"><a href="namespaceprecice_1_1acceleration_1_1impl.html">precice::acceleration::impl</a></div><div class="ttdef"><b>Definition</b> <a href="ConstantPreconditioner_8cpp_source.html#l00008">ConstantPreconditioner.cpp:8</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1math_html_a0e86802cfe992deba131d789d035b5b7"><div class="ttname"><a href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">precice::math::equals</a></div><div class="ttdeci">constexpr bool equals(const Eigen::MatrixBase&lt; DerivedA &gt; &amp;A, const Eigen::MatrixBase&lt; DerivedB &gt; &amp;B, double tolerance=NUMERICAL_ZERO_DIFFERENCE)</div><div class="ttdoc">Compares two Eigen::MatrixBase for equality up to tolerance.</div><div class="ttdef"><b>Definition</b> <a href="differences_8hpp_source.html#l00012">differences.hpp:12</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1math_html_a75138b2787a94627597142cf8a2773ec"><div class="ttname"><a href="namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec">precice::math::NUMERICAL_ZERO_DIFFERENCE</a></div><div class="ttdeci">constexpr double NUMERICAL_ZERO_DIFFERENCE</div><div class="ttdef"><b>Definition</b> <a href="differences_8hpp_source.html#l00008">differences.hpp:8</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1math_html_a779b734c79a50c1c749c86d4d3047d29"><div class="ttname"><a href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">precice::math::isZero</a></div><div class="ttdeci">bool isZero(double a, double tolerance=NUMERICAL_ZERO_DIFFERENCE) noexcept</div><div class="ttdef"><b>Definition</b> <a href="differences_8hpp_source.html#l00027">differences.hpp:27</a></div></div>
 <div class="ttc" id="asqrt_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">std::sqrt</a></div><div class="ttdeci">T sqrt(T... args)</div></div>
 <div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

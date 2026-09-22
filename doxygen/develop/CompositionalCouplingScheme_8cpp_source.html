@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;a34c5fb</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;e6046e3</span>
    </div>
   </td>
  </tr>
@@ -107,7 +107,7 @@ $(function() {
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">double</span> idt = <a class="code hl_namespace" href="namespaceprecice_1_1cplscheme_1_1impl.html">impl</a>.getTimeWindowSize();</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordtype">double</span> edt = expl.getTimeWindowSize();</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="comment">// edt needs to be an integer multiple of idt</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(edt, idt) || <a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/numeric/math/remainder.html">std::remainder</a>(edt, idt), 0.0);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(edt, idt) || <a class="code hl_function" href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">math::isZero</a>(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/numeric/math/remainder.html">std::remainder</a>(edt, idt));</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>} <span class="comment">// namespace</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
@@ -747,6 +747,7 @@ $(function() {
 <div class="ttc" id="anamespaceprecice_1_1cplscheme_html"><div class="ttname"><a href="namespaceprecice_1_1cplscheme.html">precice::cplscheme</a></div><div class="ttdoc">contains implementations of coupling schemes for coupled simulations.</div><div class="ttdef"><b>Definition</b> <a href="BaseCouplingScheme_8cpp_source.html#l00033">BaseCouplingScheme.cpp:33</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1cplscheme_html_a6b44d3f863a1349468f3d62b86bd0435"><div class="ttname"><a href="namespaceprecice_1_1cplscheme.html#a6b44d3f863a1349468f3d62b86bd0435">precice::cplscheme::PtrCouplingScheme</a></div><div class="ttdeci">std::shared_ptr&lt; CouplingScheme &gt; PtrCouplingScheme</div><div class="ttdef"><b>Definition</b> <a href="cplscheme_2SharedPointer_8hpp_source.html#l00012">SharedPointer.hpp:12</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1math_html_a0e86802cfe992deba131d789d035b5b7"><div class="ttname"><a href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">precice::math::equals</a></div><div class="ttdeci">constexpr bool equals(const Eigen::MatrixBase&lt; DerivedA &gt; &amp;A, const Eigen::MatrixBase&lt; DerivedB &gt; &amp;B, double tolerance=NUMERICAL_ZERO_DIFFERENCE)</div><div class="ttdoc">Compares two Eigen::MatrixBase for equality up to tolerance.</div><div class="ttdef"><b>Definition</b> <a href="differences_8hpp_source.html#l00012">differences.hpp:12</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1math_html_a779b734c79a50c1c749c86d4d3047d29"><div class="ttname"><a href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">precice::math::isZero</a></div><div class="ttdeci">bool isZero(double a, double tolerance=NUMERICAL_ZERO_DIFFERENCE) noexcept</div><div class="ttdef"><b>Definition</b> <a href="differences_8hpp_source.html#l00027">differences.hpp:27</a></div></div>
 <div class="ttc" id="anumeric_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/numeric.html">numeric</a></div></div>
 <div class="ttc" id="aostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a></div></div>
 <div class="ttc" id="apush_back_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">std::vector::push_back</a></div><div class="ttdeci">T push_back(T... args)</div></div>

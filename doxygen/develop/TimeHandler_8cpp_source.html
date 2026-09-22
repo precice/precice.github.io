@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;a34c5fb</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;e6046e3</span>
    </div>
   </td>
  </tr>
@@ -195,7 +195,7 @@ $(function() {
 <div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#a7a5d13e5b7a4f78ddde948221dc0d1e7">   94</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#a7a5d13e5b7a4f78ddde948221dc0d1e7">TimeHandler::reachedEndOfWindow</a>(<span class="keywordtype">double</span> timeWindowSize)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(<a class="code hl_function" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#aa1f9e5b3ad17a5ed37693674f245a15b">untilWindowEnd</a>(timeWindowSize), 0.0);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">math::isZero</a>(<a class="code hl_function" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#aa1f9e5b3ad17a5ed37693674f245a15b">untilWindowEnd</a>(timeWindowSize));</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
 </div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
@@ -205,7 +205,7 @@ $(function() {
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#a0643b1b6ebefa11985b50639802992cd">_impl</a>-&gt;_maxTime) {</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Directly return preventing lossy computations</span></div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  }</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(<a class="code hl_function" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#a3d2757a3ef13e33b3bb1881f7dde353c">untilTime</a>(*<a class="code hl_variable" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#a0643b1b6ebefa11985b50639802992cd">_impl</a>-&gt;_maxTime), 0.0);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">math::isZero</a>(<a class="code hl_function" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#a3d2757a3ef13e33b3bb1881f7dde353c">untilTime</a>(*<a class="code hl_variable" href="classprecice_1_1cplscheme_1_1impl_1_1TimeHandler.html#a0643b1b6ebefa11985b50639802992cd">_impl</a>-&gt;_maxTime));</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
 </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
@@ -302,6 +302,7 @@ $(function() {
 <div class="ttc" id="amin_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/min.html">std::min</a></div><div class="ttdeci">T min(T... args)</div></div>
 <div class="ttc" id="anamespaceprecice_1_1cplscheme_1_1impl_html"><div class="ttname"><a href="namespaceprecice_1_1cplscheme_1_1impl.html">precice::cplscheme::impl</a></div><div class="ttdef"><b>Definition</b> <a href="AbsoluteConvergenceMeasure_8cpp_source.html#l00005">AbsoluteConvergenceMeasure.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1math_html_a0e86802cfe992deba131d789d035b5b7"><div class="ttname"><a href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">precice::math::equals</a></div><div class="ttdeci">constexpr bool equals(const Eigen::MatrixBase&lt; DerivedA &gt; &amp;A, const Eigen::MatrixBase&lt; DerivedB &gt; &amp;B, double tolerance=NUMERICAL_ZERO_DIFFERENCE)</div><div class="ttdoc">Compares two Eigen::MatrixBase for equality up to tolerance.</div><div class="ttdef"><b>Definition</b> <a href="differences_8hpp_source.html#l00012">differences.hpp:12</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1math_html_a779b734c79a50c1c749c86d4d3047d29"><div class="ttname"><a href="namespaceprecice_1_1math.html#a779b734c79a50c1c749c86d4d3047d29">precice::math::isZero</a></div><div class="ttdeci">bool isZero(double a, double tolerance=NUMERICAL_ZERO_DIFFERENCE) noexcept</div><div class="ttdef"><b>Definition</b> <a href="differences_8hpp_source.html#l00027">differences.hpp:27</a></div></div>
 <div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace.</div></div>
 <div class="ttc" id="aoptional_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/optional.html">optional</a></div></div>
 <div class="ttc" id="astructprecice_1_1cplscheme_1_1impl_1_1TimeHandler_1_1Impl_html"><div class="ttname"><a href="structprecice_1_1cplscheme_1_1impl_1_1TimeHandler_1_1Impl.html">precice::cplscheme::impl::TimeHandler::Impl</a></div><div class="ttdef"><b>Definition</b> <a href="#l00011">TimeHandler.cpp:11</a></div></div>

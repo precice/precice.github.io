@@ -249,7 +249,7 @@ var searchData=
   ['gradients_246',['gradients',['../classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a64d8c266944d90c3af93ef82ce172fc8',1,'precice::com::serialize::SerializedStamples::gradients() const'],['../classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#aef63a4895ef66e2bec4f2e1687db8f80',1,'precice::com::serialize::SerializedStamples::gradients()'],['../classprecice_1_1cplscheme_1_1CouplingData.html#a90e50f5d512ff1f70a11b3aae1b27c7f',1,'precice::cplscheme::CouplingData::gradients()'],['../classprecice_1_1mesh_1_1Data.html#ae4cc52e2b60f7f00d0d8cbcd8791f14d',1,'precice::mesh::Data::gradients()']]],
   ['gradientscols_247',['gradientsCols',['../classprecice_1_1cplscheme_1_1CouplingData.html#a84c4cd69be5f5285d54c7cf479a308a2',1,'precice::cplscheme::CouplingData']]],
   ['gradientsrows_248',['gradientsRows',['../classprecice_1_1cplscheme_1_1CouplingData.html#ad208b9cb935dbcb5cf3f4ab94c8d45b3',1,'precice::cplscheme::CouplingData']]],
-  ['greater_249',['greater',['../namespaceprecice_1_1math.html#ab5fc218ddab783ccd97f7c14fc4ccab3',1,'precice::math']]],
-  ['greaterequals_250',['greaterEquals',['../namespaceprecice_1_1math.html#a7c89628af2152c671582049853513b34',1,'precice::math']]],
+  ['greater_249',['greater',['../namespaceprecice_1_1math.html#a73daaa90eb9e7287b46895339ec50236',1,'precice::math']]],
+  ['greaterequals_250',['greaterEquals',['../namespaceprecice_1_1math.html#a575b8980798dcc1af0122bad668c2ab1',1,'precice::math']]],
   ['grouping_251',['grouping',['http://en.cppreference.com/w/cpp/locale/numpunct/grouping.html',1,'std::numpunct_byname::grouping()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/grouping.html',1,'std::moneypunct::grouping()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/grouping.html',1,'std::moneypunct_byname::grouping()'],['http://en.cppreference.com/w/cpp/locale/numpunct/grouping.html',1,'std::numpunct::grouping()']]]
 ];
