@@ -50,11 +50,8 @@ def main() -> None:
 
     for mod in canonical_modules:
         short = mod.removeprefix(PRECICE_MODULE_PREFIX)
-        aliases = [f"--{short}"]
-        if short.endswith("-adapter"):
-            aliases.append(f"--{short.removesuffix('-adapter')}")
         parser.add_argument(
-            *aliases,
+            f"--{short}",
             type=Path,
             default=None,
             dest=mod,
