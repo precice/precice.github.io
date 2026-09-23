@@ -10,24 +10,15 @@ Usage:
 import argparse
 import os
 from pathlib import Path
-import re
 import subprocess
 import sys
 
 PRECICE_MODULE_PREFIX = "github.com/precice/"
-IMPORT_PATH = re.compile(r'^path\s*=\s*"([^"]+)"\s*$')
 
 
 def get_known_modules(repo_root: Path) -> list[str]:
-    """Return a sorted list of canonical module paths."""
+    """Return a sorted list of canonical module paths from go.mod."""
     modules: set[str] = set()
-
-    module_toml = repo_root / "config" / "_default" / "module.toml"
-    if module_toml.exists():
-        for line in module_toml.read_text(encoding="utf-8").splitlines():
-            match = IMPORT_PATH.match(line.strip())
-            if match:
-                modules.add(match.group(1))
 
     go_mod = repo_root / "go.mod"
     if go_mod.exists():
