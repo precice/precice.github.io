@@ -64,9 +64,6 @@ def main() -> None:
                 sys.exit(1)
             replacements[mod_path] = resolved
 
-    if not hugo_args:
-        hugo_args = ["server"]
-
     replacement_strings = [f"{mod} -> {path}" for mod, path in replacements.items()]
 
     env = os.environ.copy()
