@@ -16,6 +16,13 @@ import sys
 PRECICE_MODULE_PREFIX = "github.com/precice/"
 
 
+def existing_directory(value: str) -> Path:
+    path = Path(value).expanduser().resolve()
+    if not path.is_dir():
+        raise argparse.ArgumentTypeError(f"Directory does not exist: {path}")
+    return path
+
+
 def get_known_modules(repo_root: Path) -> list[str]:
     """Return a sorted list of canonical module paths from go.mod."""
     modules: set[str] = set()
@@ -43,7 +50,7 @@ def main() -> None:
         short = mod.removeprefix(PRECICE_MODULE_PREFIX)
         parser.add_argument(
             f"--{short}",
-            type=Path,
+            type=existing_directory,
             default=None,
             dest=mod,
             metavar="PATH",
@@ -52,17 +59,9 @@ def main() -> None:
 
     parsed, hugo_args = parser.parse_known_args()
 
-    replacements: dict[str, Path] = {}
-    for mod_path, local_path in vars(parsed).items():
-        if local_path is not None:
-            resolved = local_path.expanduser().resolve()
-            if not resolved.is_dir():
-                print(
-                    f"Error: Directory for '{mod_path}' does not exist: {resolved}",
-                    file=sys.stderr,
-                )
-                sys.exit(1)
-            replacements[mod_path] = resolved
+    replacements = {
+        mod: path for mod, path in vars(parsed).items() if path is not None
+    }
 
     replacement_strings = [f"{mod} -> {path}" for mod, path in replacements.items()]
 
