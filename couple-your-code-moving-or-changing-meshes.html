@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1790744287">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1790744287">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1790744287">
-<link rel="stylesheet" href="css/bookcover.css?v=1790744287">
+<link rel="stylesheet" href="css/customstyles.css?v=1790781567">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1790781567">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1790781567">
+<link rel="stylesheet" href="css/bookcover.css?v=1790781567">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1790744287">
+<link rel="stylesheet" href="css/theme-precice.css?v=1790781567">
 <!-- Styling for landing page -->
 
 
@@ -6870,7 +6870,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 05 Aug 26</small>
+              <small>Updated 30 Sep 26</small>
             </div>
           </aside>
           
@@ -6881,7 +6881,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>preCICE supports static meshes, meaning moving geometries can still be emulated using node displacements as described by the Arbitrary-Lagrangian-Eulerian or ALE-methods.</p>
 
-<p>Note that spatially aware mapping-schemes in preCICE work in the reference domain, not the physical domain.</p>
+<p>Note that spatially-aware mapping schemes in preCICE work in the reference domain, not the physical domain.</p>
 
 <p>Examples of this method are the <a href="tutorials-perpendicular-flap">perpendicular flap tutorials</a> and the <a href="tutorials-turek-hron-fsi3">Turek-Hron FSI3 benchmark</a>.</p>
 
@@ -6891,16 +6891,16 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="mapping-inside-adapter">Mapping inside adapter</h2>
 
-<p>In some cases, the mesh of a participant may fluctuate extremely between time steps or it may be unclear, where exactly sampling points are needed for following time steps.
+<p>In some cases, the mesh of a participant may fluctuate extremely between time steps, or it may be unclear where exactly sampling points are needed for following time steps.
 This includes particle methods, such as the Discrete Element Method (DEM), where particle centers are often points of interest.
 Directly representing them as vertices in a preCICE mesh would lead to strongly fluctuating meshes.</p>
 
-<p>Another common method are overset meshes, which require moving meshes in addition to advanced mapping logic in the adapter.</p>
+<p>Another common method is overset meshes, which require moving meshes in addition to advanced mapping logic in the adapter.</p>
 
 <p>For such cases, it may be the best way forward to <a href="couple-your-code-direct-access">directly access the mesh</a> of the remote participant.
 After defining a region of interest and initializing the participant, the adapter can receive vertex coordinates and ids included in said region.</p>
 
-<p>This information gives the dynamic participant the option to manage its own mapping to/from internal solver meshes, or to generate an interpolant over the region of interest allowing to freely sample any coordinates.</p>
+<p>This information gives the dynamic participant the option to manage its own mapping to/from internal solver meshes, or to generate an interpolant over the region of interest, allowing to freely sample any coordinates.</p>
 
 <p>See the documentation of <a href="couple-your-code-direct-access">the direct-access feature</a> for more information.</p>
 
@@ -6908,10 +6908,10 @@ After defining a region of interest and initializing the participant, the adapte
 
 <p>Under some circumstances, it may be useful to manage a pseudo-mesh in both adapters.</p>
 
-<p>First, define matching meshes with a fixed amount of pseudo-coordinates \(coord(i) = (i, 0, 0)\) in both adapters and configure a nearest-neighbour mapping between them.</p>
+<p>First, define matching meshes with a fixed amount of pseudo-coordinates \(coord(i) = (i, 0, 0)\) in both adapters and configure a nearest-neighbor mapping between them.</p>
 
 <p>Various data types can then be converted to <code class="language-plaintext highlighter-rouge">double</code> and written as <code class="language-plaintext highlighter-rouge">scalar</code> and <code class="language-plaintext highlighter-rouge">vector</code> data to those nodes.
-This can include a boolean data which encodes if a node is active or not.
+This can include a boolean data entry, which encodes if a node is active or not.
 The adapters can now dynamically use these nodes by writing <code class="language-plaintext highlighter-rouge">1.0</code> or <code class="language-plaintext highlighter-rouge">0.0</code> to the <code class="language-plaintext highlighter-rouge">active</code> data of the local mesh.</p>
 
 <p>This method trades communication efficiency for flexibility, as data is always stored as doubles and will always be fully transferred.</p>
@@ -6972,7 +6972,7 @@ Furthermore, the ownership of watchpoints may move between ranks of a participan
 The cost for this is similar to calling <code class="language-plaintext highlighter-rouge">initialize()</code> on top of the cost of calling <code class="language-plaintext highlighter-rouge">advance()</code>.</p>
 
 <p>This is probably impractical for solvers with meshes changing every timestep.
-For such cases, <a href="#mapping-inside-adapter">mapping inside the adapter</a> of the dynamic solver should the method of choice.</p>
+For such cases, <a href="#mapping-inside-adapter">mapping inside the adapter</a> of the dynamic solver should be the method of choice.</p>
 
 
     
@@ -7350,7 +7350,7 @@ For such cases, <a href="#mapping-inside-adapter">mapping inside the adapter</a>
         </a>
         </p>
         <p>
-        Page last updated: Aug 5, 2026<br>
+        Page last updated: Sep 30, 2026<br>
         Site last updated: Sep 30, 2026
         </p>
         <p>
