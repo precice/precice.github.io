@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1790788526">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1790788526">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1790788526">
-<link rel="stylesheet" href="css/bookcover.css?v=1790788526">
+<link rel="stylesheet" href="css/customstyles.css?v=1790844598">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1790844598">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1790844598">
+<link rel="stylesheet" href="css/bookcover.css?v=1790844598">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1790788526">
+<link rel="stylesheet" href="css/theme-precice.css?v=1790844598">
 <!-- Styling for landing page -->
 
 
@@ -6906,7 +6906,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 03 Jul 26</small>
+              <small>Updated 01 Oct 26</small>
             </div>
           </aside>
           
@@ -6936,23 +6936,27 @@ $('#toc').on('click', 'a', function() {
 <p>Configure the snapshot computation functionality with a JSON file. An example configuration file is</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"output_directory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"parameter_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"parameter.hdf5"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"macro-scalar-data"</span><span class="p">,</span><span class="w"> </span><span class="s2">"macro-vector-data"</span><span class="p">],</span><span class="w">
-        </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"micro-scalar-data"</span><span class="p">,</span><span class="w"> </span><span class="s2">"micro-vector-data"</span><span class="p">],</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"snapshot_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"post_processing_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_postprocessing"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"initialize_once"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"output_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_data"</span><span class="w">
+    </span><span class="nl">"micro_manager"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"micro_file_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"output_directory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"parameter_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"parameter.hdf5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"macro-scalar-data"</span><span class="p">,</span><span class="w"> </span><span class="s2">"macro-vector-data"</span><span class="p">],</span><span class="w">
+            </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"micro-scalar-data"</span><span class="p">,</span><span class="w"> </span><span class="s2">"micro-vector-data"</span><span class="p">],</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"snapshot_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"post_processing_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_postprocessing"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"initialize_once"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"output_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_data"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+
+<p>Unlike the coupled Micro Manager, the snapshot computation does not use a preCICE participant, so it does not require <code class="language-plaintext highlighter-rouge">participant_name</code>, <code class="language-plaintext highlighter-rouge">precice_config_file_path</code>, or <code class="language-plaintext highlighter-rouge">interfaces</code> at the top level, and the configuration is not validated against the <a href="https://github.com/precice/adapter-schema">preCICE adapter configuration schema</a>. Instead, everything is nested under the top-level <code class="language-plaintext highlighter-rouge">micro_manager</code> key.</p>
 
 <h2 id="micro-manager-configuration">Micro Manager Configuration</h2>
 
@@ -6966,8 +6970,8 @@ $('#toc').on('click', 'a', function() {
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">micro_file_name</code></td>
-      <td>Path to the file containing the Python importable micro simulation class. If the file is not in the working directory, give the relative path from the directory where the Micro Manager is executed.</td>
+      <td><code class="language-plaintext highlighter-rouge">micro_file_names</code></td>
+      <td>Paths to the files containing the Python importable micro simulation classes. If the files are not in the working directory, give the relative paths from the directory where the Micro Manager is executed.</td>
       <td>-</td>
     </tr>
     <tr>
@@ -6978,11 +6982,11 @@ $('#toc').on('click', 'a', function() {
   </tbody>
 </table>
 
-<p>Apart from the base settings, there are three main sections in the configuration file, <a href="#coupling-parameters">coupling parameters</a>, <a href="#simulation-parameters">simulation parameters</a>, <a href="#snapshot-parameters">snapshot parameters</a>, and <a href="#diagnostics">diagnostics</a>.</p>
+<p>Apart from the base settings, there are three main sections in the <code class="language-plaintext highlighter-rouge">micro_manager</code> section of the configuration file, <a href="#coupling-parameters">coupling parameters</a>, <a href="#simulation-parameters">simulation parameters</a>, <a href="#snapshot-parameters">snapshot parameters</a>, and <a href="#diagnostics">diagnostics</a>.</p>
 
-<p>The path to the file containing the Python importable micro simulation class is specified in the <code class="language-plaintext highlighter-rouge">micro_file_name</code> parameter. If the file is not in the working directory, give the relative path.</p>
+<p>The paths to the files containing the Python importable micro simulation classes are specified in the <code class="language-plaintext highlighter-rouge">micro_file_names</code> parameter. If the files are not in the working directory, give the relative paths.</p>
 
-<p>There are four main sections in the configuration file, the <code class="language-plaintext highlighter-rouge">coupling_params</code>, the <code class="language-plaintext highlighter-rouge">simulations_params</code>, the <code class="language-plaintext highlighter-rouge">snapshot_params</code> and the optional <code class="language-plaintext highlighter-rouge">diagnostics</code>.</p>
+<p>There are four main sections in the <code class="language-plaintext highlighter-rouge">micro_manager</code> section of the configuration file, the <code class="language-plaintext highlighter-rouge">coupling_params</code>, the <code class="language-plaintext highlighter-rouge">simulations_params</code>, the <code class="language-plaintext highlighter-rouge">snapshot_params</code> and the optional <code class="language-plaintext highlighter-rouge">diagnostics</code>.</p>
 
 <h2 id="coupling-parameters">Coupling Parameters</h2>
 
@@ -7468,8 +7472,8 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Jul 3, 2026<br>
-        Site last updated: Sep 30, 2026
+        Page last updated: Oct 1, 2026<br>
+        Site last updated: Oct 1, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies

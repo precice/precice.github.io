@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1790788526">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1790788526">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1790788526">
-<link rel="stylesheet" href="css/bookcover.css?v=1790788526">
+<link rel="stylesheet" href="css/customstyles.css?v=1790844598">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1790844598">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1790844598">
+<link rel="stylesheet" href="css/bookcover.css?v=1790844598">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1790788526">
+<link rel="stylesheet" href="css/theme-precice.css?v=1790844598">
 <!-- Styling for landing page -->
 
 
@@ -6876,35 +6876,104 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 18 Sep 26</small>
+              <small>Updated 01 Oct 26</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  In the preCICE XML configuration the Micro Manager is a participant with the name <code class="language-plaintext highlighter-rouge">Micro-Manager</code>. </div>
+   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  In the preCICE XML configuration the Micro Manager is a participant. Its name is configurable via <code class="language-plaintext highlighter-rouge">participant_name</code>, and defaults to <code class="language-plaintext highlighter-rouge">Micro-Manager</code>. </div>
 
-<p>The Micro Manager is configured with a <a href="https://en.wikipedia.org/wiki/JSON#Syntax">JSON</a> file. Several parameters can be set, in different sections. For example:</p>
+<p>The Micro Manager is configured with a <a href="https://en.wikipedia.org/wiki/JSON#Syntax">JSON</a> file. The configuration conforms to the <a href="https://github.com/precice/adapter-schema">preCICE adapter configuration schema</a>: the keys <code class="language-plaintext highlighter-rouge">participant_name</code>, <code class="language-plaintext highlighter-rouge">precice_config_file_path</code>, and <code class="language-plaintext highlighter-rouge">interfaces</code> are validated against this schema, while all Micro-Manager-specific settings are nested under the <code class="language-plaintext highlighter-rouge">micro_manager</code> key. Several parameters can be set, in different sections. For example:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"micro_file_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python/micro.py"</span><span class="p">],</span><span class="w">
-  </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"precice_config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"macro_mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Macro-Mesh"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Macro-Scalar"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Macro-Vector"</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Micro-Scalar"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Micro-Vector"</span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">]</span><span class="w">
+  </span><span class="nl">"participant_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Micro-Manager"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"precice_config_file_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"interfaces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Macro-Mesh"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"read_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Macro-Scalar"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Macro-Vector"</span><span class="w"> </span><span class="p">}],</span><span class="w">
+      </span><span class="nl">"write_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Micro-Scalar"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Micro-Vector"</span><span class="w"> </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"micro_manager"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"micro_file_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python/micro.py"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
+<h2 id="top-level-configuration">Top-level Configuration</h2>
+
+<p>These parameters are validated against the <a href="https://github.com/precice/adapter-schema">preCICE adapter configuration schema</a> and are set at the outermost level of the configuration file.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">participant_name</code></td>
+      <td>Name of the preCICE participant, as stated in the preCICE configuration.</td>
+      <td><code class="language-plaintext highlighter-rouge">"Micro-Manager"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">precice_config_file_path</code></td>
+      <td>Path to the preCICE XML configuration file from the current working directory.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">interfaces</code></td>
+      <td>List of interface definitions. The Micro Manager uses a single entry, described below.</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Each entry of <code class="language-plaintext highlighter-rouge">interfaces</code> has the following fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mesh_name</code></td>
+      <td>Name of the macro mesh as stated in the preCICE configuration.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">read_data</code></td>
+      <td>List of objects of the form <code class="language-plaintext highlighter-rouge">{"name": "&lt;data-name&gt;"}</code> describing the data to be read from preCICE.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">write_data</code></td>
+      <td>List of objects of the form <code class="language-plaintext highlighter-rouge">{"name": "&lt;data-name&gt;"}</code> describing the data to be written to preCICE.</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The adapter schema allows additional optional fields on <code class="language-plaintext highlighter-rouge">interfaces</code> entries (<code class="language-plaintext highlighter-rouge">patches</code>, <code class="language-plaintext highlighter-rouge">location</code>, <code class="language-plaintext highlighter-rouge">is_received</code>) and on <code class="language-plaintext highlighter-rouge">read_data</code>/<code class="language-plaintext highlighter-rouge">write_data</code> entries (<code class="language-plaintext highlighter-rouge">solver_name</code>, <code class="language-plaintext highlighter-rouge">operation</code>, <code class="language-plaintext highlighter-rouge">flip-normal</code>). These are accepted but currently not used by the Micro Manager.</p>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b>  The Micro Manager only works with one interface. Defining more than one interfaces leads to an error. </div>
+
 <h2 id="micro-manager-configuration">Micro Manager Configuration</h2>
 
-<p>These parameters are in the outer section.</p>
+<p>These parameters are in the section <code class="language-plaintext highlighter-rouge">micro_manager</code> of the configuration file.</p>
 
 <table>
   <thead>
@@ -6945,47 +7014,13 @@ $('#toc').on('click', 'a', function() {
 
 <p>All output is to a CSV file with the peak memory usage (RSS) in every time window, in MBs.</p>
 
-<p>Apart from the base settings, there are three main sections in the configuration file, <a href="#coupling-parameters">coupling parameters</a>, and <a href="#simulation-parameters">simulation parameters</a>.</p>
-
-<h2 id="coupling-parameters">Coupling Parameters</h2>
-
-<p>These parameters are in the section <code class="language-plaintext highlighter-rouge">coupling_params</code>.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">precice_config_file_name</code></td>
-      <td>Path to the preCICE XML configuration file from the current working directory.</td>
-      <td>Empty string.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">macro_mesh_name</code></td>
-      <td>Name of the macro mesh as stated in the preCICE configuration.</td>
-      <td>Empty string.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">read_data_names</code></td>
-      <td>List with the names of the data to be read from preCICE.</td>
-      <td>Empty string.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">write_data_names</code></td>
-      <td>List with the names of the data to be written to preCICE.</td>
-      <td>Empty string.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Apart from these base settings, the main section in <code class="language-plaintext highlighter-rouge">micro_manager</code> is <a href="#simulation-parameters">simulation parameters</a>.</p>
 
 <h2 id="simulation-parameters">Simulation Parameters</h2>
 
-<p>These parameters are in the section <code class="language-plaintext highlighter-rouge">simulation_params</code>.</p>
+<p>These parameters are in the section <code class="language-plaintext highlighter-rouge">micro_manager.simulation_params</code>.</p>
+
+<p>The snippets below show only the relevant <code class="language-plaintext highlighter-rouge">simulation_params</code> section; in the full configuration file this is nested inside the top-level <code class="language-plaintext highlighter-rouge">micro_manager</code> key.</p>
 
 <table>
   <thead>
@@ -7959,8 +7994,8 @@ Further crash handling options can be specified under the <code class="language-
         </a>
         </p>
         <p>
-        Page last updated: Sep 18, 2026<br>
-        Site last updated: Sep 30, 2026
+        Page last updated: Oct 1, 2026<br>
+        Site last updated: Oct 1, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
