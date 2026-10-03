@@ -14,9 +14,13 @@ Since 2020, we have been developing a dedicated training course on preCICE. Orig
 
 The course is organized in separate modules, which can be combined in various different ways. Each module typically takes 120 to 150 minutes to complete. We start each module with a short presentation explaining some background and giving an overview of the tasks. Then, students work on the tasks in a hands-on fashion, individually or in groups. Questions are answered individually by typically several instructors. We close each module by discussing solution approaches and open problems all together. We recommend using the [preCICE Demo Virtual Machine](installation-vm.html) to follow the tasks. The actual course material is tailored to the needs of each event and distributed via download links.
 
+Basic previous knowledge of Python programming, the Linux command line, and numerical simulation principles are highly recommended.
+
 ## Content
 
-The course currently consists of four modules. Several more will follow.
+The course currently consists of the following modules.
+The basics is necessary for beginners, and some other modules build upon that one.
+The modules are generally independent to each other.
 
 ### Basics
 
