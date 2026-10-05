@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1791090958">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1791090958">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1791090958">
-<link rel="stylesheet" href="css/bookcover.css?v=1791090958">
+<link rel="stylesheet" href="css/customstyles.css?v=1791226515">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1791226515">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1791226515">
+<link rel="stylesheet" href="css/bookcover.css?v=1791226515">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1791090958">
+<link rel="stylesheet" href="css/theme-precice.css?v=1791226515">
 <!-- Styling for landing page -->
 
 
@@ -6832,7 +6832,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 05 Aug 26</small>
+              <small>Updated 05 Oct 26</small>
             </div>
           </aside>
           
@@ -7062,7 +7062,7 @@ If the version is correct, you can make this change persistent by appending the 
     </tr>
     <tr>
       <td>3.3.0</td>
-      <td>min 3.4.0</td>
+      <td>min 3.4.0, supports 5.0.0 or later</td>
     </tr>
   </tbody>
 </table>
@@ -7071,11 +7071,17 @@ If the version is correct, you can make this change persistent by appending the 
 
 <p>Eigen is a header-only library, i.e. it is compiled into preCICE and does not require linkage.
 Download the sources from their <a href="https://gitlab.com/libeigen/eigen/-/releases/">latest compatible release</a> and extract them to some location.
-The folder of your choice should now contain a folder called <code class="language-plaintext highlighter-rouge">eigen-x.y.z</code> for version <code class="language-plaintext highlighter-rouge">x.y.z</code>.
-Set the environment variable <code class="language-plaintext highlighter-rouge">Eigen3_ROOT</code> to the <code class="language-plaintext highlighter-rouge">eigen-x.y.z</code> folder by adding this to your <code class="language-plaintext highlighter-rouge">~.bashrc</code>.</p>
+The folder of your choice should now contain a folder called <code class="language-plaintext highlighter-rouge">eigen-x.y.z</code> for version <code class="language-plaintext highlighter-rouge">x.y.z</code>.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">Eigen3_ROOT</span><span class="o">=</span>/path/to/eigen/eigen-x.y.z
+<p>Since preCICE v3.3.0, CMake needs to be configured to find Eigen using the <code class="language-plaintext highlighter-rouge">Eigen3_DIR</code> variable:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>eigen-x.y.z
+<span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+cmake ..
+<span class="nb">export </span><span class="nv">Eigen3_DIR</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">"</span>
 </code></pre></div></div>
+
+<p>In earlier preCICE versions, CMake expected the <code class="language-plaintext highlighter-rouge">Eigen3_ROOT</code> variable: <code class="language-plaintext highlighter-rouge">export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z</code>.</p>
 
 <h3 id="boost">Boost</h3>
 
@@ -7909,8 +7915,8 @@ Contributions to this section would be particularly helpful.</p>
         </a>
         </p>
         <p>
-        Page last updated: Aug 5, 2026<br>
-        Site last updated: Oct 4, 2026
+        Page last updated: Oct 5, 2026<br>
+        Site last updated: Oct 5, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
