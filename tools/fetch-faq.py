@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2025-2026 The preCICE developers - precice.org <info@precice.org>
+#
+# SPDX-License-Identifier: MIT
+
 import os
 import json
 import re
