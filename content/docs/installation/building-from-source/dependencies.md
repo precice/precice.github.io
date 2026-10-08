@@ -110,18 +110,24 @@ History of required version:
 | ---     | ---       |
 | older   | min 3.2.0 |
 | 1.5.0   | min 3.3.7 |
-| 3.3.0   | min 3.4.0 |
+| 3.3.0   | min 3.4.0, supports 5.0.0 or later |
 
 #### Download the Eigen headers
 
 Eigen is a header-only library, i.e. it is compiled into preCICE and does not require linkage.
 Download the sources from their [latest compatible release](https://gitlab.com/libeigen/eigen/-/releases/) and extract them to some location.
 The folder of your choice should now contain a folder called `eigen-x.y.z` for version `x.y.z`.
-Set the environment variable `Eigen3_ROOT` to the `eigen-x.y.z` folder by adding this to your `~.bashrc`.
+
+Since preCICE v3.3.0, CMake needs to be configured to find Eigen using the `Eigen3_DIR` variable:
 
 ```bash
-export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z
+cd eigen-x.y.z
+mkdir build && cd build
+cmake ..
+export Eigen3_DIR="$(pwd)"
 ```
+
+In earlier preCICE versions, CMake expected the `Eigen3_ROOT` variable: `export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z`.
 
 ### Boost
 
