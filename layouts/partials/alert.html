@@ -1,0 +1,7 @@
+{{- $kind := .kind | default "note" -}}
+{{- $content := .content | default "" -}}
+{{- $page := .page | default page -}}
+{{- $class := dict "note" "info" "warning" "danger" "tip" "success" "important" "warning" "experimental" "warning" "disclaimer" "info" "version" "info" -}}
+{{- $icon := dict "note" "fa fa-info-circle" "warning" "fas fa-exclamation-circle" "tip" "fa fa-check-square" "important" "fas fa-exclamation-triangle" "experimental" "fas fa-flask" "disclaimer" "fa fa-hands-wash" "version" "fas fa-tag" -}}
+{{- $label := dict "note" "Note" "warning" "Warning" "tip" "Tip" "important" "Important" "experimental" "Experimental" "disclaimer" "Disclaimer" "version" "Version" -}}
+<div class="alert alert-{{ index $class $kind | default "info" }}" role="alert"><i class="{{ index $icon $kind | default "fa fa-info-circle" }}"></i> <b>{{ index $label $kind | default (title $kind) }}:</b> {{ $page.RenderString $content }}</div>

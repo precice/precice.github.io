@@ -1,0 +1,30 @@
+{{- range partial "testimonial_pages.html" . }}
+    {{- $testimonial := . -}}
+    <h2 id="{{ .Title | anchorize }}">{{ .Title }}</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        {{ .Content }}
+        {{- with .Params.author }}
+          <p>
+            - <strong>
+              {{- with $testimonial.Params.author_link -}}
+                <a href="{{ . }}">{{ $testimonial.Params.author }}</a>
+              {{- else -}}
+                {{ $testimonial.Params.author }}
+              {{- end -}}
+            </strong><br>
+            {{ with $testimonial.Params.organisation_link }}<a href="{{ . }}">{{ $testimonial.Params.organisation }}</a>{{ else }}{{ $testimonial.Params.organisation }}{{ end }}
+          </p>
+        {{- end }}
+      </div>
+      <div class="col-md-6">
+        {{- with .Params.img }}
+          <figure>
+            <img src="{{ printf "/images/testimonials/%s" . | relURL }}" alt="{{ $testimonial.Title }}">
+            <figcaption>{{ $testimonial.Title }}</figcaption>
+          </figure>
+        {{- end }}
+      </div>
+    </div>
+{{- end }}

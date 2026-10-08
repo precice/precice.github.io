@@ -1,6 +1,8 @@
 ---
 title: Using Spack
 permalink: installation-spack.html
+aliases:
+  - /installation-spack.html
 keywords: configuration, basics, installation, building, dependencies, spack
 summary: "Get and use Spack to easily build preCICE and all its dependencies from source on your Linux/macOS laptop or local supercomputer, without any root access."
 ---
@@ -55,9 +57,9 @@ spack install precice ^boost@1.84.0
 
 That's it! Spack will now automatically get and build preCICE and all of its dependencies from source. This may take a while, but you don't need to do anything else.
 
-{% note %}
+{{< note >}}
 preCICE depends on Boost, which often introduces breaking changes that affect preCICE. We support newer Boost versions as soon as possible in patch releases. Here, we recommend the latest known compatible Boost version only to avoid such potential conflicts. Feel free to try the very latest by omitting this option:
-{% endnote %}
+{{< /note >}}
 
 <code>
 spack install precice
@@ -113,9 +115,9 @@ spack load py-pyprecice
 
 You can instruct Spack to recognize specific dependencies that are already installed on your system, by modifying your preferences in `~/.spack/packages.yaml`.
 
-{% tip %}
+{{< tip >}}
 If this is the first time you set preferences, the file might not exist and you have to create it yourself
-{% endtip %}
+{{< /tip >}}
 
 For example, to specify a locally installed MPI version, you could write:
 

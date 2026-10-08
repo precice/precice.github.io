@@ -1,6 +1,8 @@
 ---
 title: Building from source - Troubleshooting
 permalink: installation-source-troubleshooting.html
+aliases:
+  - /installation-source-troubleshooting.html
 keywords: configuration, basics, cmake, installation, building, source
 ---
 

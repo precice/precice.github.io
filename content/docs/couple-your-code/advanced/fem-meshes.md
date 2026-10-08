@@ -1,13 +1,15 @@
 ---
 title: Dealing with FEM meshes
 permalink: couple-your-code-fem-meshes.html
+aliases:
+  - /couple-your-code-fem-meshes.html
 keywords: api, adapter, FEM, meshes, elements
 summary: "There are various options how to deal with FEM meshes in preCICE and the best one depends on your application."
 ---
 
 Finite-element discretizations come along with different options in order to define a coupling interface. Given a common (here fourth-order) finite element, we have:
 
-![FEM coupling mesh](images/docs/couple-your-code-fem-meshes.png)
+![FEM coupling mesh](/images/docs/couple-your-code-fem-meshes.png)
 
   1. geometry-based interfaces such as vertices (black, circular contour) at the element corners or the face centers,
   2. the finite-element support points (black, filled circles) and

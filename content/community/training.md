@@ -3,6 +3,8 @@ title: preCICE training
 keywords: workshop, teaching, support, api, implicit coupling, tools, data mapping, training
 summary: A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes and beyond.
 permalink: community-training.html
+aliases:
+  - /community-training.html
 toc: true
 ---
 
@@ -27,43 +29,43 @@ We regularly add new modules - don't hesitate to let us know if you would have a
 
 We couple two simple Python codes, discussing the basic methods of the preCICE API.
 
-![Basics training: Configuration](images/training/training-basics.png)
+![Basics training: Configuration](/images/training/training-basics.png)
 
 ### Tools
 
 We take a tour over available tools to configure, understand, and post-process preCICE simulations. More specifically, we have a look at the preCICE logger, config visualizer, mesh exports, and watchpoints of preCICE. We also discuss common tips for visualizing partitioned simulations in ParaView.
 
-![Basics training: Tools](images/training/training-tools.png)
+![Basics training: Tools](/images/training/training-tools.png)
 
 ### Implicit coupling
 
 We use a conjugate heat transfer scenario coupling OpenFOAM with Nutils to study implicit coupling, including acceleration methods.
 
-![Basics training: Implicit coupling](images/training/training-implicit-coupling.png)
+![Basics training: Implicit coupling](/images/training/training-implicit-coupling.png)
 
 ### Data mapping
 
 We explore aspects of accuracy and efficiency in data mapping, using [ASTE](tooling-aste.html).
 
-![Basics training: Mapping](images/training/training-mapping.png)
+![Basics training: Mapping](/images/training/training-mapping.png)
 
 ### Workflow for FSI simulations
 
 In this [community-contributed part of the course](https://github.com/precice/community-training/tree/main/fsi-workflow), we are going step by step through the process of creating a fluid-structure interaction simulation coupling CalculiX and OpenFOAM. We start by creating the meshes for both solvers, using FreeCAD and snappyHexMesh. We then setup and run single-physics simulations, before we couple them.
 
-![Application training: FSI workflow](images/training/training-fsi.png)
+![Application training: FSI workflow](/images/training/training-fsi.png)
 
 ### Parallelization and HPC workflows
 
 We parallelize the same Python codes used in the Basics module, we analyze the performance-related events, run partitioned simulations in parallel on SLURM-enabled systems, and look deeper into common performance-related pitfalls.
 
-![HPC training: Tracing](images/training/training-hpc.png)
+![HPC training: Tracing](/images/training/training-hpc.png)
 
 ### Macro-micro coupling
 
 We couple many micro simulations to a macro simulation: We use the [Micro Manager](tooling-micro-manager-overview.html) to set up Python and C++ micro simulations, learn how manage runtime using adaptivity, implement model adaptivity, and run the micro simulations in parallel with adaptivity and load balancing.
 
-![Macro-Micro training: Adaptivity](images/training/training-mm.png)
+![Macro-Micro training: Adaptivity](/images/training/training-mm.png)
 
 ## How to prepare?
 
@@ -73,19 +75,19 @@ You can either (a) use a prepared system image that we provide (a virtual machin
 To reduce system-related friction during the training, we recommend starting with option (a).
 On virtual trainings, that is a VM image; on in-person trainings, that might be a bootable live USB.
 
-{% important %}
+{{< important >}}
 Before the training, verify your installation, and contact us as soon as possible regarding any issues.
 For example, try running the [elastic-tube-1d Python tutorial](tutorials-elastic-tube-1d.html) (check if it is already under `~/tutorials/`).
-{% endimportant %}
+{{< /important >}}
 
 ### Provided virtual machine image
 
 Close to the training start, you will receive instructions with a link to an up-to-date provided VM image, very similar to the [demo VM](installation-vm.html).
 We typically provide a [Vagrant](https://developer.hashicorp.com/vagrant) box made for [VirtualBox](https://www.virtualbox.org/).
 
-{% note %}
+{{< note >}}
 At the moment, this modified Ubuntu image is only available for Intel/AMD x86-64 CPUs.
-{% endnote %}
+{{< /note >}}
 
 System requirements: ideally 25GB of free storage, 8GB of RAM, and more than 4 CPU cores.
 By default, the VM is configured with 4GB of RAM and 4 CPU cores, both configurable.
@@ -97,9 +99,9 @@ In our on-site trainings, some bootable USB sticks are provided, based on the Ub
 allowing you to work on a temporary live session, without installing anything on your system.
 These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
 
-{% important %}
+{{< important >}}
 If you use a bootable USB, make sure to select trying a live session, and not installing (or take care that you do not remove your data).
-{% endimportant %}
+{{< /important >}}
 
 Notes:
 

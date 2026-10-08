@@ -1,6 +1,8 @@
 ---
 title: Documentation cheatsheet
 permalink: docs-meta-cheatsheet.html
+aliases:
+  - /docs-meta-cheatsheet.html
 keywords: pages, migration, cheatsheet
 summary:
 ---
@@ -55,85 +57,85 @@ entries:
 
 ## Alerts
 
-[Link to documentation](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_alerts.html)
+[Hugo shortcode documentation](https://gohugo.io/content-management/shortcodes/)
 
-```liquid
-{%raw%}{% note %}
+```markdown
+{{</* note */>}}
 This is my note.
-{% endnote %}
+{{</* /note */>}}
 
-{% tip %}
+{{</* tip */>}}
 This is my tip.
-{% endtip  %}
+{{</* /tip */>}}
 
-{% warning %}
+{{</* warning */>}}
 This is my warning.
-{% endwarning %}
+{{</* /warning */>}}
 
-{% important %}
+{{</* important */>}}
 This is my important info.
-{% endimportant %}
+{{</* /important */>}}
 
-{% experimental %}
+{{</* experimental */>}}
 This is an experimental feature.
-{% endexperimental %}
+{{</* /experimental */>}}
 
-{% disclaimer %}
+{{</* disclaimer */>}}
 This is my important info.
-{% enddisclaimer %}{%endraw%}
+{{</* /disclaimer */>}}
 ```
 
-{% note %}
+{{< note >}}
 This is my note.
-{% endnote %}
+{{< /note >}}
 
-{% tip %}
+{{< tip >}}
 This is my tip.
-{% endtip %}
+{{< /tip >}}
 
-{% warning %}
+{{< warning >}}
 This is my warning.
-{% endwarning %}
+{{< /warning >}}
 
-{% important %}
+{{< important >}}
 This is my important info.
-{% endimportant %}
+{{< /important >}}
 
-{% experimental %}
+{{< experimental >}}
 This is an experimental feature.
-{% endexperimental %}
+{{< /experimental >}}
 
-{% disclaimer %}
+{{< disclaimer >}}
 This is my important info.
-{% enddisclaimer %}
+{{< /disclaimer >}}
 
 ## Version information
 
-```liquid
-{% raw %}{% version %}
+```markdown
+{{</* version */>}}
 No explicit version information.
-{% endversion %}
+{{</* /version */>}}
 
-{% version 1.0.0 %}
+{{</* version "1.0.0" */>}}
 Feature new in 1.0.0
-{% endversion %}
+{{</* /version */>}}
 
-{% version 9.0.0 %}
+{{</* version "9.0.0" */>}}
 Feature new in 9.0.0. Useful for publishing documentation of an upcoming version.
-{% endversion %}{% endraw %}
+{{</* /version */>}}
 ```
 
-{% version %}
+{{< version >}}
 No explicit version information
-{% endversion %}
+{{< /version >}}
 
-{% version 1.0.0 %}
+{{< version "1.0.0" >}}
 Feature new in 1.0.0
-{% endversion %}
+{{< /version >}}
 
-{% version 9.0.0 %}
+{{< version "9.0.0" >}}
 Feature new in 9.0.0. Useful for publishing documentation of an upcoming version.
-{% endversion %}
+{{< /version >}}
 
 ## Code blocks in a list
 
@@ -164,13 +166,13 @@ Result:
 ```md
 [Some internal link](docs-meta-cheatsheet.html#links-and-images)
 
-![alt text](images/image.png)
+![alt text](/images/image.png)
 ```
 
 ### Resize: 100% width svg
 
 ```html
-<img class="img-fluid" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width: 100%;">
+<img class="img-fluid" src="/images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width: 100%;">
 ```
 
 Use the class `img-fluid` to keep images within their container. Add `style="width: 100%;"` when the image should fill the available width.
@@ -182,7 +184,7 @@ Use the class `img-fluid` to keep images within their container. Add `style="wid
 In addition to the last example, add the Bootstrap utilities `d-block mx-auto` and set a maximum width in the element's style.
 
 ```html
-<img class="img-fluid d-block mx-auto" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%;">
+<img class="img-fluid d-block mx-auto" src="/images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%;">
 ```
 
 ## Markdown in HTML block

@@ -1,6 +1,8 @@
 ---
 title: System packages
 permalink: installation-packages.html
+aliases:
+  - /installation-packages.html
 keywords: configuration, basics, installation, building, dependencies, spack
 ---
 
@@ -22,8 +24,8 @@ To install, open it in your software center.
 Alternatively, download & install it from the command line. For **Ubuntu 24.04 (Noble Numbat)**:
 
 ```bash
-wget https://github.com/precice/precice/releases/download/v{{ site.precice_version }}/libprecice3_{{ site.precice_version }}_noble.deb
-sudo apt install ./libprecice3_{{ site.precice_version }}_noble.deb
+wget https://github.com/precice/precice/releases/download/v{{< param "precice_version" >}}/libprecice3_{{< param "precice_version" >}}_noble.deb
+sudo apt install ./libprecice3_{{< param "precice_version" >}}_noble.deb
 ```
 
 We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release.

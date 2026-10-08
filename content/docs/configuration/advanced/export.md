@@ -1,6 +1,8 @@
 ---
 title: Export configuration
 permalink: configuration-export.html
+aliases:
+  - /configuration-export.html
 keywords: configuration, export, vtk, vtu, paraview, monitoring, debugging
 summary: You can export your coupling meshes to various formats. This is a great feature for debugging as you can monitor how preCICE maps and exchanges data. On this page, we explain how to configure such exporters.
 ---
@@ -66,16 +68,16 @@ The original VTK exporter exports to the legacy ASCII VTK format.
 As the format only supports serial participants, it exports to parallel VTU files if needed.
 Its intended use-case is to visualize coupling-meshes in Paraview.
 
-{% note %}
+{{< note >}}
 For parallel participants, prefer to use the VTU exporter, introduced in 2.4.0.
-{% endnote %}
+{{< /note >}}
 
 ### VTU
 
-{% version 2.4.0 %}
+{{< version "2.4.0" >}}
 New in version 2.4.0.
 Prefer the VTU exporter over the VTK exporter for parallel simulations.
-{% endversion %}
+{{< /version >}}
 
 ```xml
 <export:vtu />
@@ -91,9 +93,9 @@ VTU files tend to be slightly smaller than VTP files, but the connectivity infor
 
 ### VTP
 
-{% version 2.4.0 %}
+{{< version "2.4.0" >}}
 New in version 2.4.0.
-{% endversion %}
+{{< /version >}}
 
 ```xml
 <export:vtp />
@@ -109,9 +111,9 @@ VTP files tend to be slightly larger than VTU files, but the explicit connectivi
 
 ### CSV
 
-{% version 2.4.0 %}
+{{< version "2.4.0" >}}
 New in version 2.4.0.
-{% endversion %}
+{{< /version >}}
 
 ```xml
 <export:csv />
@@ -179,9 +181,9 @@ VTK, VTU, and VTP exporters write a `.series` file at the end of the simulation 
 A series file loads the entire dataset and maps each export to its actual time.
 This allows you to open a series directly from the terminal, which can be convenient at times.
 
-{% version 3.3.0 %}
+{{< version "3.3.0" >}}
 New in version 3.3.0.
-{% endversion %}
+{{< /version >}}
 
 ### Applying displacements
 

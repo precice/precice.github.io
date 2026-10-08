@@ -1,6 +1,9 @@
 ---
 title: Frequently asked questions
 permalink: /fundamentals-faq.html
+aliases:
+  - /fundamentals-faq.html
+  - /faq.html
 keywords: faq, forum, questions
 editme: false
 toc: false

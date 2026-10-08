@@ -2,6 +2,8 @@
 title: Release strategy
 keywords: pages, authoring, release, hotfix, development
 permalink: dev-docs-release-strategy.html
+aliases:
+  - /dev-docs-release-strategy.html
 ---
 
 ## Terminology
@@ -12,12 +14,12 @@ permalink: dev-docs-release-strategy.html
 
 ## Dependency tree
 
-<img class="img-fluid d-block mx-auto" src="images/docs/dev-docs-release-dependencies.svg" alt="Release dependencies" style="min-width: 100%; width:800px; margin: auto;">
+<img class="img-fluid d-block mx-auto" src="/images/docs/dev-docs-release-dependencies.svg" alt="Release dependencies" style="min-width: 100%; width:800px; margin: auto;">
 
 ## Release procedure
 
 1. Repository R needs to release a new version V
-   The name of the release branch is "R-vV" pyprecice-v{{ site.precice_version }}.1
+   The name of the release branch is "R-vV" pyprecice-v{{< param "precice_version" >}}.1
 2. Prepare the release in the branch (bump version etc)
 3. Find R in the dependency tree and the subtree with root R
 4. Every R' in subtree (R != R) needs to create a release branch with the name deduced above.
@@ -31,7 +33,7 @@ permalink: dev-docs-release-strategy.html
 ## Hotfix procedure
 
 1. Repository R needs to release a new version V
-   The name of the release branch is "R-vV" pyprecice-v{{ site.precice_version }}.1
+   The name of the release branch is "R-vV" pyprecice-v{{< param "precice_version" >}}.1
 2. Prepare the release in the branch (bump version etc)
 3. Find R in the dependency tree
 4. Run systemtests with R using release branches and the rest using master
@@ -57,9 +59,9 @@ Bugfix releases are allowed at any time and any frequency.
 - last precice/precice release branch (off every repo) + concrete solver versions.
 - Forms the base of the Vagrant box
 
-{% note %}
+{{< note >}}
 Note: this means repositories don't all need versions.
-{% endnote %}
+{{< /note >}}
 
 ## Example
 
@@ -67,7 +69,7 @@ Goal: Release pyprecice version `1.2.3`.
 Root repository: `precice/pyprecice`
 Name of release branch: `pyprecice-v1.2.3`
 
-<img class="img-fluid d-block mx-auto" src="images/docs/dev-docs-release-example.svg" alt="Release example" style="min-width: 100%; width:800px; margin: auto;">
+<img class="img-fluid d-block mx-auto" src="/images/docs/dev-docs-release-example.svg" alt="Release example" style="min-width: 100%; width:800px; margin: auto;">
 
 1. Create branch `pyprecice-v1.2.3` from `precice/pyprecice:develop`
 2. Prepare the release (bump version etc)

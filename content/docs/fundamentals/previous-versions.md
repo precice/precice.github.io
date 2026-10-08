@@ -1,13 +1,15 @@
 ---
 title: Previous versions
 permalink: fundamentals-previous-versions.html
+aliases:
+  - /fundamentals-previous-versions.html
 keywords: pdf, export, archive, v1, v2
 summary: "Archives of this documentation"
 ---
 
-{% tip %}
+{{< tip >}}
 We only support the latest version of preCICE, but upgrading is easy: See our [porting guides](./couple-your-code-porting-overview.html).
-{% endtip  %}
+{{< /tip >}}
 
 We archive the documentation into a citable PDF file, while the [Wayback Machine](https://web.archive.org/) archives this website:
 

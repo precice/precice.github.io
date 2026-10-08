@@ -1,6 +1,8 @@
 ---
 title: Mesh exchange example
 permalink: configuration-coupling-mesh-exchange.html
+aliases:
+  - /configuration-coupling-mesh-exchange.html
 keywords: configuration, mesh exchange, example, read, write
 summary: If you struggle with which mesh you should use where in the configuration and whether a mapping is read or write, you might find this example helpful. 
 ---
@@ -42,7 +44,7 @@ All this sounds complicated at first, but is relatively clear once you draw the 
 </coupling-scheme:serial-explicit>
 ```
 
-![visualistion of the mesh exchange](images/docs/configuration-mesh-exchange.png)
+![visualistion of the mesh exchange](/images/docs/configuration-mesh-exchange.png)
 
 ## Why do we make all this so complicated?
 

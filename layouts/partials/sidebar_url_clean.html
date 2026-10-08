@@ -1,0 +1,8 @@
+{{- /* Normalises a URL for comparison: trims whitespace and strips
+       leading/trailing slashes so "docs/foo/" matches "docs/foo". */ -}}
+{{- $url := "" -}}
+{{- with . }}{{ $url = printf "%v" . }}{{ end -}}
+{{- $url = strings.TrimSpace $url -}}
+{{- $url = strings.TrimPrefix "/" $url -}}
+{{- $url = strings.TrimSuffix "/" $url -}}
+{{- $url -}}

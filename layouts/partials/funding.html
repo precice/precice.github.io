@@ -1,0 +1,25 @@
+<div class="row gy-3">
+  {{- range hugo.Data.funding }}
+    <div class="col-md-6 d-flex flex-column">
+      <div class="card h-100">
+        <div class="card-body">
+          <a href="{{ .url }}" target="_blank" rel="noopener" class="no-icon card-title">
+            <strong>{{ .title }}</strong>
+          </a>
+          <div class="row align-items-center">
+            <div class="col-sm-4">
+              <a href="{{ .url }}" target="_blank" rel="noopener" class="no-icon">
+                <img src="{{ .img | relURL }}" alt="{{ .alt | default "Logo" }}" class="img-fluid">
+              </a>
+            </div>
+            <div class="col-sm-8">
+              {{- with .description }}<p><small>{{ . }}</small></p>{{ end }}
+              {{- with .number }}<p>Funding number: {{ . }}</p>{{ end }}
+              {{- with .period }}<p>Years running: {{ . }}</p>{{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{- end }}
+</div>

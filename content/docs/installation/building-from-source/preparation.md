@@ -1,6 +1,8 @@
 ---
 title: Building from source - Preparation
 permalink: installation-source-preparation.html
+aliases:
+  - /installation-source-preparation.html
 keywords: configuration, basics, cmake, installation, building, source
 ---
 
@@ -29,10 +31,10 @@ Next is the type of the build which defaults to debug:
 * A **release with debug info** build allows to debug the internals of preCICE only.
   Similar to the release build, it does not support neither debug nor trace logging.
 
-{% version 2.4.0 %}
+{{< version "2.4.0" >}}
 Version 2.4.0 introduces CMake options to extend release builds with debugging functionality.
 If the debug build is prohibitively slow in your setup, then try to use a release build with the option [`PRECICE_RELEASE_WITH_DEBUG_LOG`](installation-source-configuration) enabled.
-{% endversion %}
+{{< /version >}}
 
 At this point, you should have decided on which build-type to use and which features to disable.
 
@@ -44,9 +46,9 @@ Then open a terminal in the resulting folder.
 To download and extract a version directly from the terminal, please execute the following:
 
 ```bash
-wget https://github.com/precice/precice/archive/v{{ site.precice_version }}.tar.gz
-tar -xzvf v{{ site.precice_version }}.tar.gz
-cd precice-{{ site.precice_version }}
+wget https://github.com/precice/precice/archive/v{{< param "precice_version" >}}.tar.gz
+tar -xzvf v{{< param "precice_version" >}}.tar.gz
+cd precice-{{< param "precice_version" >}}
 ```
 
 ## Installation prefix

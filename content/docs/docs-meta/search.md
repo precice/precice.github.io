@@ -1,84 +1,63 @@
 ---
 title: Update the search index
 keywords: search, Algolia, search index, update search index
-summary:
+summary: "Build, validate, and publish the Hugo-generated Algolia search index."
 permalink: docs-meta-search.html
+aliases:
+  - /docs-meta-search.html
 ---
 
 ## Overview
 
-Our search is powered by Algolia, using their [free community plan](https://www.algolia.com/pricing/). Algolia conveniently provides the `jekyll-algolia` gem at [https://github.com/algolia/jekyll-algolia](https://github.com/algolia/jekyll-algolia) for a smooth integration with jekyll.
+The website search is powered by [Algolia](https://www.algolia.com/). Hugo
+generates `public/algolia.json` from rendered page content, and the Node.js CLI
+in `tools/algolia-index.mjs` converts that export into Algolia records and
+atomically replaces the configured index.
 
 ## Configuring search
 
-In `_config.yml` the `algolia-jekyll` gem is configured as follows:
+The public frontend settings are configured under `[params.algolia]` in
+`config/_default/hugo.toml`:
 
-```yaml
-algolia:
-  application_id: XXX
-  index_name:     XXX
-  search_only_api_key: XXX
-  nodes_to_index: 'p,code,table'
+```toml
+[params.algolia]
+application_id = "your-application-id"
+index_name = "your-index-name"
+search_only_api_key = "your-search-only-key"
+nodes_to_index = "p,code,table"
+max_record_size = 20000
 ```
 
-Of note is the last entry `nodes_to_index` that determines which HTML tags will be indexed.
-
-There is an upper limit on how much information one such node, e.g. the content of a `<code></code>` block, may contain. In rare cases extra long `<code>` blocks may have to be broken up into several ones.
+`nodes_to_index` controls which rendered HTML elements become search records.
+`max_record_size` is the maximum serialized record size accepted by the target
+Algolia plan; the indexer validates and splits records as needed. The
+search-only key is visible in the browser (public) and must be restricted to search
+access. Never commit the `Write API Key`.
 
 ## Updating the index
 
-The `jekyll-algolia` gem makes updating the index a breeze. Simply change into the root directory and execute:
+First install the Node.js dependencies and build the Hugo export:
 
 ```bash
-ALGOLIA_API_KEY='XXX' bundle exec jekyll algolia
+npm --prefix tools ci
+npm --prefix tools run test:algolia
+hugo --gc --minify --cleanDestinationDir --environment production
+npm --prefix tools run algolia:index -- --dry-run
 ```
 
-Result:
+The dry run validates the JSON schema, configured selector, record sizes, and
+resulting records without contacting Algolia. To publish after that validation,
+provide a restricted indexing key in the environment:
 
-```text
-Configuration file: E:/code/precice.github.io_new/_config.yml
-Processing site...                                                             
-        Subproject: imported/tutorials/quickstart
-      Adding pages: README.md
-        Subproject: imported/tutorials/elastic-tube-1d
-      Adding pages: README.md
-        Subproject: imported/tutorials/elastic-tube-3d
-      Adding pages: README.md
-        Subproject: imported/tutorials/flow-over-heated-plate
-      Adding pages: README.md
-        Subproject: imported/tutorials/flow-over-heated-plate-steady-state
-      Adding pages: README.md
-        Subproject: imported/tutorials/flow-over-heated-plate-nearest-projection
-      Adding pages: README.md
-        Subproject: imported/tutorials/heat-exchanger
-      Adding pages: README.md
-        Subproject: imported/tutorials/multiple-perpendicular-flaps
-      Adding pages: README.md
-        Subproject: imported/tutorials/partitioned-elastic-beam
-      Adding pages: README.md
-        Subproject: imported/tutorials/partitioned-heat-conduction
-      Adding pages: README.md
-        Subproject: imported/tutorials/partitioned-heat-conduction-complex
-      Adding pages: README.md
-        Subproject: imported/tutorials/perpendicular-flap
-      Adding pages: README.md
-        Subproject: imported/tutorials/turek-hron-fsi3
-      Adding pages: README.md
-        Subproject: imported/tutorials/partitioned-pipe
-      Adding pages: README.md
-        Subproject: imported/openfoam-adapter/docs
-      Adding pages: config.md, extend.md, get.md, openfoam-support.md, README.md
-
-Progress: |====================================================================|
-
-Progress: |==========================================Settings are already up todate.
-Getting list of existing records                                               
-Updating records in index jekyll...                                            
-Records to delete: 1582                                                        
-Records to add: 1718                                                           
-
-Progress: |====================================================================|
-✔ Indexing complete                                                            
+```bash
+export ALGOLIA_APP_ID="your-application-id"
+export ALGOLIA_WRITE_API_KEY="your-restricted-indexing-key"
+export ALGOLIA_INDEX_NAME="your-index-name"
+npm --prefix tools run algolia:index
 ```
 
-Be aware, that updates to the index count towards the limit of free operations, so it is recommended to update once a month.
+The indexing key needs `addObject`, `deleteIndex`, and `editSettings`
+permissions, and its index restriction must include the temporary index prefix
+used for atomic replacement. Production updates run through the `Update the
+Algolia search index` workflow, which reads these values from repository
+secrets.

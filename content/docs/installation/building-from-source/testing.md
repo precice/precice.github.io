@@ -1,6 +1,8 @@
 ---
 title: Building from source - Testing
 permalink: installation-source-testing.html
+aliases:
+  - /installation-source-testing.html
 keywords: configuration, basics, cmake, installation, building, source
 toc: false
 ---

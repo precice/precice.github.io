@@ -1,0 +1,2 @@
+{{- $html := partial "publication_panel.html" (dict "title" (.Get "title") "flexible" (.Get "flexible") "wrapper" (.Get "wrapper") "show_doi_in_body" (.Get "show_doi_in_body") "require_pub_url" (.Get "require_pub_url")) | printf "%s" | replaceRE `(?m)^[ \t]+` "" -}}
+{{- printf "\n%s\n" $html | safeHTML -}}

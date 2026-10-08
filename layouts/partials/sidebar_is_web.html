@@ -1,0 +1,5 @@
+{{- /* Returns truthy if the item should appear in web output
+       (i.e. its "output" field contains "web", defaulting to yes). */ -}}
+{{- $output := "web" -}}
+{{- with .output }}{{ $output = printf "%v" . }}{{ end -}}
+{{- if in $output "web" -}}true{{- end -}}

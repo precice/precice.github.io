@@ -1,6 +1,9 @@
 ---
 title: Overview of adapters
 permalink: adapters-overview.html
+aliases:
+  - /adapters-overview.html
+  - /codes/
 keywords: adapter, adapters, adapter overview, adapter introduction
 redirect_from: /codes/
 ---

@@ -4,6 +4,9 @@ keywords: contribute, GSoC, google summer of code, student
 summary: Open opportunities for contributing to preCICE
 toc: true
 permalink: community-contribute-open-projects.html
+aliases:
+  - /community-contribute-open-projects.html
+  - /gsoc/
 redirect_from:
   - /gsoc/
 ---
@@ -32,9 +35,9 @@ If you want to contribute with a student project (typically a thesis), see the [
 This page highlights a few specific projects that are not directly suitable for a thesis ([thesis-suitable issues in the core library](https://github.com/precice/precice/issues?q=is%3Aissue%20state%3Aopen%20label%3Athesis)), but are also a bit more than a [good first issue](https://github.com/precice/precice/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22).
 Some of these projects we advertise publicly, in programs such as the Google Summer of Code.
 
-{% tip %}
+{{< tip >}}
 Are you looking for or offering a thesis / PhD / other related job? Have a look also at [our forum](https://precice.discourse.group/c/jobs/13).
-{% endtip %}
+{{< /tip >}}
 
 ## Google Summer of Code (GSoC)
 
@@ -54,16 +57,16 @@ Additionally, show us what you have tried already (see "entry test" in each proj
 
 We will contact you via replies and/or private messages in the forum, to find out together if these topics are a good fit. You can alternatively ask quick questions in the [Matrix chat](https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im). Don't miss the [guidelines](#general-guidelines) at the bottom of this page.
 
-{% important %}
+{{< important >}}
 We are a small project, and we are experiencing a spike of activity, which is very difficult to review next to the usual work.
 Please do not ask whether you can work on an issue - not without details. If you find something interesting to you that you feel it is clear enough for you to contribute, go ahead and submit a PR.
 We value quality higher than quantity. If you find something interesting, take your time and focus on it.
 We expect to work with the accepted GSoC participants in the summer. Our capacity to review external contributions before that is very limited.
-{% endimportant %}
+{{< /important >}}
 
-{% important %}
+{{< important >}}
 We have already received too many pull requests in the period before proposals open. For this reason, we have now restricted interactions with the preCICE repositories to collaborators. If you have not reached out so far, chances for selection are very small.
-{% endimportant %}
+{{< /important >}}
 
 ### Submitting proposals
 

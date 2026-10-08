@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="post-content">
+  <header class="post-header mb-3">
+    <h1 class="post-title-main">{{ .Title }}</h1>
+  </header>
+
+  <div class="alert alert-info mb-4" role="alert">
+    <i class="fas fa-info-circle me-1"></i> This is an individual publication entry. For a curated overview of preCICE literature, citations, and recommended reading, see our <a href="{{ "fundamentals-literature-guide.html" | relURL }}" class="alert-link">Literature Guide</a>.
+  </div>
+
+  {{ partial "publication_panel.html" (dict "pub" . "wrapper" false "show_doi_in_body" true) }}
+
+  <div class="mt-4">
+    <a href="{{ "fundamentals-literature-guide.html" | relURL }}" class="btn btn-outline-primary">
+      <i class="fas fa-book me-1"></i> Literature Guide
+    </a>
+  </div>
+</article>
+{{ end }}

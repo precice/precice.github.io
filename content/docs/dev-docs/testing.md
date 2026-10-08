@@ -2,6 +2,8 @@
 title: Running and writing tests
 keywords: pages, development, tests
 permalink: dev-docs-dev-testing.html
+aliases:
+  - /dev-docs-dev-testing.html
 ---
 
 ## Overview

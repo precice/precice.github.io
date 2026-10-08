@@ -3,6 +3,8 @@ title: Organizing a preCICE workshop
 keywords: precice workshop, workshop
 summary:
 permalink: precice-workshop-organizing.html
+aliases:
+  - /precice-workshop-organizing.html
 toc: true
 ---
 
@@ -12,7 +14,7 @@ In this page, we document common steps and lessons learned, aiming to make onboa
 
 We have also published our experiences and recommendations together with the [ESPResSo](https://espressomd.org/) and [DuMux](https://dumux.org/) teams:
 
-{% include publication_panel.html title="Organizing software community workshops: Experiences from three independent simulation software projects" %}
+{{< publication_panel title="Organizing software community workshops: Experiences from three independent simulation software projects" >}}
 
 ## First urgent steps
 

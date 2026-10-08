@@ -2,6 +2,8 @@
 title: General coding conventions
 keywords: pages, development
 permalink: dev-docs-dev-conventions.html
+aliases:
+  - /dev-docs-dev-conventions.html
 summary: This page describes general and coding conventions used in preCICE.
 ---
 

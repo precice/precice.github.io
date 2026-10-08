@@ -1,6 +1,8 @@
 ---
 title: Python bindings
 permalink: installation-bindings-python.html
+aliases:
+  - /installation-bindings-python.html
 keywords: configuration, basics, overview, installation, bindings
 summary: "Use pip3 install pyprecice to install the python language bindings from PyPI"
 ---
@@ -32,9 +34,9 @@ The usage of the python language bindings for preCICE is very similar to the C++
 * Please use `numpy` arrays, if this seems appropriate. For scalar data a 1D-`numpy` with `size` entries should be used; for vector data a 2D-`numpy` array with `size x dimensions` entries should be used.
 * Refer to [the python version of the tutorial for the elastic tube in 1D](tutorials-elastic-tube-1d.html#python) and the corresponding [source code](https://github.com/precice/tutorials/tree/master/elastic-tube-1d) for a complete example of how pyprecice can be used to couple your code.
 
-{% tip %}
+{{< tip >}}
 You can use Python's `help()` function for getting detailed usage information. Example: Open a python3 shell, `import precice`,   `help(precice.Participant)` or `help(precice.Participant.write_data)`
-{% endtip %}
+{{< /tip >}}
 
 ## More details & troubleshooting
 

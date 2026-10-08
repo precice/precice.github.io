@@ -4,8 +4,9 @@ keywords: configuration, basics, xml, data
 summary: "The preCICE configuration file is structured in several sections. It is important to understand what the section are and how they are connected. On this page, we explain you that."
 sidebar: docs_sidebar
 permalink: configuration-introduction.html
+aliases:
+  - /configuration-introduction.html
 ---
-
 
 The configuration consists, in general, of the following five parts:
 
@@ -19,15 +20,15 @@ The configuration consists, in general, of the following five parts:
 </precice-configuration>
 ```
 
-{% tip %}
+{{< tip >}}
 Visualizing the configuration helps a lot in understanding the connections between these five parts. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html). We use it to visualize the configuration in the documentation.
-{% endtip %}
+{{< /tip >}}
 
-![Complete example](images/docs/configuration/doc-base.png)
+![Complete example](/images/docs/configuration/doc-base.png)
 
-{% note %}
+{{< note >}}
 On this page, you also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter.
-{% endnote %}
+{{< /note >}}
 
 ## 1. Coupling data
 
@@ -53,7 +54,7 @@ The value `dimensions` needs to match the physical dimension of the mesh, i.e. t
 
 ## 3. Coupling participants
 
-![Participant configuration](images/docs/configuration/doc-participants.png)
+![Participant configuration](/images/docs/configuration/doc-participants.png)
 
 Each solver that participates in the coupled simulation needs a participant definition. You need to define at least two participants.
 
@@ -96,7 +97,7 @@ Read more about the [mapping configuration](configuration-mapping.html), or see 
 
 ## 4. Communication
 
-![Communication configuration](images/docs/configuration/doc-m2n.png)
+![Communication configuration](/images/docs/configuration/doc-m2n.png)
 
 If two participants should exchange data, they need a communication channel.
 
@@ -108,7 +109,7 @@ Read more about the [communication configuration](configuration-communication.ht
 
 ## 5. Coupling scheme
 
-![Couplingscheme configuration](images/docs/configuration/doc-cplscheme.png)
+![Couplingscheme configuration](/images/docs/configuration/doc-cplscheme.png)
 
 At last, you need to define how the two participants exchange data. If you want an explicit coupling scheme (no coupling subiterations), you can use:
 

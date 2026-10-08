@@ -1,0 +1,6 @@
+{{- $key := .Get 0 -}}
+{{- with index site.Params $key -}}
+  {{- . -}}
+{{- else -}}
+  {{- errorf "The site_param shortcode could not find %q (%s)" $key .Position -}}
+{{- end -}}

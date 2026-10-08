@@ -2,6 +2,8 @@
 title: Logging
 keywords: pages, development
 permalink: dev-docs-dev-logging.html
+aliases:
+  - /dev-docs-dev-logging.html
 ---
 
 ## Overview
