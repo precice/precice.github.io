@@ -70,6 +70,8 @@ The list of completed dissertations also includes:
 
 * Benjamin Rodenberg: [Flexible and robust time stepping for partitioned multiphysics](https://mediatum.ub.tum.de/1763172) (2025)
 
+* David Schneider: [Flexible and efficient data mapping for simulation of coupled problems](https://doi.org/10.18419/opus-18423) (2026)
+
 and the story continues by the [current team](about.html).
 
 ## preCICE features
@@ -80,6 +82,7 @@ and the story continues by the [current team](about.html).
 
   * For a performance comparison between the different mapping methods, see the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2).
   * For the partition-of-unity RBF mapping (default since preCICE v3), see [Efficient Partition-of-Unity Radial-Basis-Function Interpolation for Coupled Problems](https://doi.org/10.1137/24M1663843).
+  * For details on the GPU implementation of the RBF mapping, see [Data-Parallel Radial-Basis Function Interpolation in preCICE](https://doi.org/10.23967/c.coupled.2023.016).
   * An older overview of the RBF mapping is [Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations](https://upcommons.upc.edu/handle/2117/190255).
   * For details regarding gradient-based data mapping schemes, see [Second-order projection-based mapping methods for coupled multi-physics simulations](https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf).
   * For details regarding volume-coupling with cell-interpolation, see [Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE](https://mediatum.ub.tum.de/1685618).

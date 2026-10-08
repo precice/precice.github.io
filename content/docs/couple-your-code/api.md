@@ -57,6 +57,7 @@ Fortran bindings are included in the main repository.
 - Installation: [`pip3 install pyprecice`](installation-bindings-python.html)
 - Usage: `import precice`
 - Reference implementation: [`precice/python-bindings/examples/solverdummy`](https://github.com/precice/python-bindings/tree/master/examples/solverdummy)
+- Python API documentation: [latest release](https://api.precice.org/python/latest/), [development version](https://api.precice.org/python/develop/)
 - Source code: [`precice/python-bindings`](https://github.com/precice/python-bindings)
 
 ## Matlab
