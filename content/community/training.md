@@ -12,15 +12,15 @@ Since 2020, we have been developing a dedicated training course on preCICE. Orig
 
 ## Teaching concept
 
-The course is organized in separate modules, which can be combined in various different ways. Each module typically takes 120 to 150 minutes to complete. We start each module with a short presentation explaining some background and giving an overview of the tasks. Then, students work on the tasks in a hands-on fashion, individually or in groups. Questions are answered individually by typically several instructors. We close each module by discussing solution approaches and open problems all together. We recommend using the [preCICE Demo Virtual Machine](installation-vm.html) to follow the tasks. The actual course material is tailored to the needs of each event and distributed via download links.
+The course is organized in separate modules, which can be combined in various different ways. Each module typically takes 120 to 150 minutes to complete. We start each module with a short presentation explaining some background and giving an overview of the tasks. Then, students work on the tasks in a hands-on fashion, individually or in groups. Questions are answered individually by typically several instructors. We close each module by discussing solution approaches and open problems all together. We typically provide a reference system (see [how to prepare](#how-to-prepare)) with everything installed, for convenience. The actual course material is tailored to the needs of each event and distributed via download links.
 
 Basic previous knowledge of Python programming, the Linux command line, and numerical simulation principles are highly recommended.
 
 ## Content
 
-The course currently consists of the following modules.
-The basics is necessary for beginners, and some other modules build upon that one.
-The modules are generally independent to each other.
+The course currently consists of the following modules, presented in historical order.
+The basics is necessary for beginners, and it is typically followed by tools, implicit coupling, and data mapping,
+and further modules depending on the needs of the audience.
 
 ### Basics
 
@@ -68,13 +68,13 @@ We couple many micro simulations to a macro simulation: We use the [Micro Manage
 
 On the technical side, the training course involves multiple components of the preCICE ecosystem, as well as third-party solvers and pre- and post-processing tools.
 Most of these tools work best (or only) on a Linux system.
-You can either (a) use a prepared system image that we provide (e.g., in a virtual machine or in a live USB), or (b) install the dependencies directly on your system.
+You can either (a) use a prepared system image that we provide (a virtual machine image or a bootable live USB), or (b) install the dependencies directly on your system.
 To reduce system-related friction during the training, we recommend starting with option (a).
-On virtual training, that is a VM image; on in-person trainings, that might be a bootable live USB.
+On virtual trainings, that is a VM image; on in-person trainings, that might be a bootable live USB.
 
 {% important %}
-At the end, verify your installation, and contact us as soon as possible regarding any issues.
-To verify your installation, try running the [elastic-tube-1d Python tutorial](tutorials-elastic-tube-1d.html) (check if it is already under `~/tutorials/`).
+Before the training, verify your installation, and contact us as soon as possible regarding any issues.
+For example, try running the [elastic-tube-1d Python tutorial](tutorials-elastic-tube-1d.html) (check if it is already under `~/tutorials/`).
 {% endimportant %}
 
 ### Provided virtual system
@@ -92,7 +92,8 @@ Most of the storage goes to solvers and other tools that you might not need, in 
 
 ### Provided live USB
 
-In our on-site trainings, some prepared USB sticks are provided.
+In our on-site trainings, some bootable USB sticks are provided, based on the Ubuntu installer,
+allowing you to work on a temporary live session, without installing anything on your system.
 These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
 
 {% important %}
