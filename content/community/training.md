@@ -21,6 +21,7 @@ Basic previous knowledge of Python programming, the Linux command line, and nume
 The course currently consists of the following modules, presented in historical order.
 The basics is necessary for beginners, and it is typically followed by tools, implicit coupling, and data mapping,
 and further modules depending on the needs of the audience.
+We regularly add new modules - don't hesitate to let us know if you would have any specific needs.
 
 ### Basics
 
@@ -77,10 +78,10 @@ Before the training, verify your installation, and contact us as soon as possibl
 For example, try running the [elastic-tube-1d Python tutorial](tutorials-elastic-tube-1d.html) (check if it is already under `~/tutorials/`).
 {% endimportant %}
 
-### Provided virtual system
+### Provided virtual machine image
 
-Close to the training start, you will receive instructions with a link to an up-to-date provided system, very similar to the [demo VM](installation-vm.html).
-We typically provide a [Vagrant](https://developer.hashicorp.com/vagrant) box image for [VirtualBox](https://www.virtualbox.org/).
+Close to the training start, you will receive instructions with a link to an up-to-date provided VM image, very similar to the [demo VM](installation-vm.html).
+We typically provide a [Vagrant](https://developer.hashicorp.com/vagrant) box made for [VirtualBox](https://www.virtualbox.org/).
 
 {% note %}
 At the moment, this modified Ubuntu image is only available for Intel/AMD x86-64 CPUs.
