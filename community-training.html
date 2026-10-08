@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1791449856">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1791449856">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1791449856">
-<link rel="stylesheet" href="css/bookcover.css?v=1791449856">
+<link rel="stylesheet" href="css/customstyles.css?v=1791454725">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1791454725">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1791454725">
+<link rel="stylesheet" href="css/bookcover.css?v=1791454725">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1791449856">
+<link rel="stylesheet" href="css/theme-precice.css?v=1791454725">
 <!-- Styling for landing page -->
 
 
@@ -1847,7 +1847,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 05 Aug 26</small>
+              <small>Updated 08 Oct 26</small>
             </div>
           </aside>
           
@@ -1860,11 +1860,16 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="teaching-concept">Teaching concept</h2>
 
-<p>The course is organized in separate modules, which can be combined in various different ways. Each module typically takes 120 to 150 minutes to complete. We start each module with a short presentation explaining some background and giving an overview of the tasks. Then, students work on the tasks in a hands-on fashion, individually or in groups. Questions are answered individually by typically several instructors. We close each module by discussing solution approaches and open problems all together. We recommend using the <a href="installation-vm.html">preCICE Demo Virtual Machine</a> to follow the tasks. The actual course material is tailored to the needs of each event and distributed via download links.</p>
+<p>The course is organized in separate modules, which can be combined in various different ways. Each module typically takes 120 to 150 minutes to complete. We start each module with a short presentation explaining some background and giving an overview of the tasks. Then, students work on the tasks in a hands-on fashion, individually or in groups. Questions are answered individually by typically several instructors. We close each module by discussing solution approaches and open problems all together. We typically provide a reference system (see <a href="#how-to-prepare">how to prepare</a>) with everything installed, for convenience. The actual course material is tailored to the needs of each event and distributed via download links.</p>
+
+<p>Basic previous knowledge of Python programming, the Linux command line, and numerical simulation principles are highly recommended.</p>
 
 <h2 id="content">Content</h2>
 
-<p>The course currently consists of four modules. Several more will follow.</p>
+<p>The course currently consists of the following modules, presented in historical order.
+The basics is necessary for beginners, and it is typically followed by tools, implicit coupling, and data mapping,
+and further modules depending on the needs of the audience.
+We regularly add new modules - don’t hesitate to let us know if you would have any specific needs.</p>
 
 <h3 id="basics">Basics</h3>
 
@@ -1912,76 +1917,46 @@ $('#toc').on('click', 'a', function() {
 
 <p>On the technical side, the training course involves multiple components of the preCICE ecosystem, as well as third-party solvers and pre- and post-processing tools.
 Most of these tools work best (or only) on a Linux system.
-You can either (a) use a prepared system image that we provide (e.g., in a virtual machine), or (b) install the dependencies directly on your system.
-To reduce system-related friction during the training, we recommend starting with option (a).</p>
+You can either (a) use a prepared system image that we provide (a virtual machine image or a bootable live USB), or (b) install the dependencies directly on your system.
+To reduce system-related friction during the training, we recommend starting with option (a).
+On virtual trainings, that is a VM image; on in-person trainings, that might be a bootable live USB.</p>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
-At the end, verify your installation, and contact us as soon as possible regarding any issues.
-Find verification instructions at the end of each section.
+Before the training, verify your installation, and contact us as soon as possible regarding any issues.
+For example, try running the <a href="tutorials-elastic-tube-1d.html">elastic-tube-1d Python tutorial</a> (check if it is already under <code class="language-plaintext highlighter-rouge">~/tutorials/</code>).
 </div>
 
-<h3 id="provided-system">Provided system</h3>
+<h3 id="provided-virtual-machine-image">Provided virtual machine image</h3>
 
-<p>We have prepared a modified Ubuntu image that includes all the tools we will use (different from the demo VM).
-With the training instructions, you will receive a URL with an up-to-date image for the specific training.
-With this <code class="language-plaintext highlighter-rouge">.iso</code> file, you can either:</p>
-
-<ul>
-  <li>prepare a virtual machine (VM), e.g., using <a href="https://www.virtualbox.org/">VirtualBox</a></li>
-  <li>create a bootable USB stick, e.g., using <a href="https://etcher.balena.io/">Etcher</a>, and use your system directly</li>
-</ul>
-
-<p>In both cases, you can either install the modified Ubuntu image, or try a live session, without any permanent changes (or result file saves) to your system.
-Get the smoothest experience by installing the image in a VM, so that your changes are saved between sessions, and you can at the same time access your host OS.</p>
+<p>Close to the training start, you will receive instructions with a link to an up-to-date provided VM image, very similar to the <a href="installation-vm.html">demo VM</a>.
+We typically provide a <a href="https://developer.hashicorp.com/vagrant">Vagrant</a> box made for <a href="https://www.virtualbox.org/">VirtualBox</a>.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
 At the moment, this modified Ubuntu image is only available for Intel/AMD x86-64 CPUs.
-In our on-site trainings, some prepared USB sticks are provided.
-These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
 </div>
 
-<p>Configure the VM with these settings:</p>
+<p>System requirements: ideally 25GB of free storage, 8GB of RAM, and more than 4 CPU cores.
+By default, the VM is configured with 4GB of RAM and 4 CPU cores, both configurable.
+Most of the storage goes to solvers and other tools that you might not need, in which case you could directly install the tools you need on your system, or on your own VM.</p>
 
-<ul>
-  <li>At least 8GB of RAM (the system will not load with 4GB in the “try” mode).</li>
-  <li>Ideally, four logical CPU cores (one is also fine).</li>
-  <li>At least 64MB of video RAM (more -&gt; smoother graphics).</li>
-  <li>At least 25GB of storage.</li>
-</ul>
+<h3 id="provided-live-usb">Provided live USB</h3>
 
-<p>For VirtualBox, find these settings under the <code class="language-plaintext highlighter-rouge">System</code>, <code class="language-plaintext highlighter-rouge">Display</code>, and <code class="language-plaintext highlighter-rouge">Storage</code> categories.</p>
-
-<p>Further important settings:</p>
-
-<ul>
-  <li>The OpenFOAM adapter is installed under <code class="language-plaintext highlighter-rouge">~/OpenFOAM/ubuntu-v2406</code>. If you install (not “try” in a live session), move that directory to your user: <code class="language-plaintext highlighter-rouge">cd ~/OpenFOAM/ &amp;&amp; mv ubuntu-v2406/ $USER-v2406</code>.</li>
-  <li>Set your keyboard layout: In the Ubuntu applications menu, type “keyboard layout”. Select “Add input source”. Remove the default one.</li>
-</ul>
-
-<p><strong>Optional:</strong> If you choose to install the image in a VM, you probably want to better integrate it with your host system. For VirtualBox, you need to <a href="https://www.virtualbox.org/manual/ch04.html">install the Guest Additions</a> and set up a <a href="https://www.virtualbox.org/manual/ch04.html#sharedfolders">shared folder</a>:</p>
-
-<ol>
-  <li>Devices &gt; Insert Guest Additions CD Image</li>
-  <li>Navigate to the CD</li>
-  <li>Execute <code class="language-plaintext highlighter-rouge">autorun.sh</code> and give your password</li>
-  <li>It automatically installs the Guest Additions. Press Enter to exit at the end.</li>
-  <li>Set up a shared folder: Devices &gt; Shared Folders &gt; Shared Folders settings… &gt; Add</li>
-  <li>Folder Path: folder in your host system</li>
-  <li>Mount point: Where to find the folder in the VM system. For example, <code class="language-plaintext highlighter-rouge">/mnt/training</code>.</li>
-  <li>Select “Auto-mount” and “Make Permanent”</li>
-  <li>Inside the VM, execute <code class="language-plaintext highlighter-rouge">sudo adduser $USER vboxsf</code></li>
-  <li>Restart the VM</li>
-</ol>
-
-<p>To check your installation, run the <a href="tutorials-elastic-tube-1d.html">1D elastic tube tutorial</a> (Python solvers) inside the VM.</p>
+<p>In our on-site trainings, some bootable USB sticks are provided, based on the Ubuntu installer,
+allowing you to work on a temporary live session, without installing anything on your system.
+These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.</p>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
 If you use a bootable USB, make sure to select trying a live session, and not installing (or take care that you do not remove your data).
-If you have <a href="https://en.wikipedia.org/wiki/UEFI#Secure_Boot">secure boot</a> enabled, this will need to be turned off to boot this unsigned OS.
-In case you use Windows with <a href="https://en.wikipedia.org/wiki/BitLocker">BitLocker</a> enabled, you will not be able to boot on Windows while secure boot is disabled (BitLocker will be asking for the decryption key).
-Remember to switch secure boot on again to be able to use your system as before.
-Do not remove the USB during a live session.
 </div>
+
+<p>Notes:</p>
+
+<ul>
+  <li>If you have <a href="https://en.wikipedia.org/wiki/UEFI#Secure_Boot">secure boot</a> enabled, this will need to be turned off to boot this unsigned OS.</li>
+  <li>In case you use Windows with <a href="https://en.wikipedia.org/wiki/BitLocker">BitLocker</a> enabled, you will not be able to boot on Windows while secure boot is disabled (BitLocker will be asking for the decryption key).
+Remember to switch secure boot on again to be able to use your system as before.</li>
+  <li>Do not remove the USB during a live session (e.g., during a break). You would be surprised how many times this has happened already. :-)</li>
+</ul>
 
 <h3 id="individual-dependencies">Individual dependencies</h3>
 
@@ -2287,7 +2262,7 @@ Do not remove the USB during a live session.
         </a>
         </p>
         <p>
-        Page last updated: Aug 5, 2026<br>
+        Page last updated: Oct 8, 2026<br>
         Site last updated: Oct 8, 2026
         </p>
         <p>
