@@ -31,9 +31,9 @@ We recommend that you start from one of the following cases, which you can quick
 - Flow in a channel with an elastic [perpendicular flap](tutorials-perpendicular-flap.html): A **fluid-structure interaction** scenario. Feel free to combine different solvers, among OpenFOAM, SU2, deal.II, FEniCS, Nutils, CalculiX, solids4Foam, and DUNE.
 
 <p style="text-align: center">
-<a href="tutorials-flow-over-heated-plate.html" title="Tutorial: Flow over heated plate"><img src="/images/tutorials-flow-over-heated-plate-example.png" style="margin-left:3%; max-width:31%; max-height:100px;" alt="Flow over heated plate"></a>
-<a href="tutorials-partitioned-heat-conduction.html" title="Tutorial: Partitioned heat conduction"><img src="/images/tutorials-partitioned-heat-conduction-setup.png" style="max-width:31%; max-height:100px;" alt="Partitioned heat conduction"></a>
-<a href="tutorials-perpendicular-flap.html" title="Tutorial: Perpendicular flap"><img src="/images/tutorials-perpendicular-flap-physics.png" style="margin-left:3%; max-width:31%; max-height:100px;" alt="Flow with a perpendicular flap"></a>
+<a href="/tutorials-flow-over-heated-plate.html" title="Tutorial: Flow over heated plate"><img src="/images/tutorials-flow-over-heated-plate-example.png" style="margin-left:3%; max-width:31%; max-height:100px;" alt="Flow over heated plate"></a>
+<a href="/tutorials-partitioned-heat-conduction.html" title="Tutorial: Partitioned heat conduction"><img src="/images/tutorials-partitioned-heat-conduction-setup.png" style="max-width:31%; max-height:100px;" alt="Partitioned heat conduction"></a>
+<a href="/tutorials-perpendicular-flap.html" title="Tutorial: Perpendicular flap"><img src="/images/tutorials-perpendicular-flap-physics.png" style="margin-left:3%; max-width:31%; max-height:100px;" alt="Flow with a perpendicular flap"></a>
 </p>
 
 ## All cases
