@@ -12,11 +12,16 @@ Since 2020, we have been developing a dedicated training course on preCICE. Orig
 
 ## Teaching concept
 
-The course is organized in separate modules, which can be combined in various different ways. Each module typically takes 120 to 150 minutes to complete. We start each module with a short presentation explaining some background and giving an overview of the tasks. Then, students work on the tasks in a hands-on fashion, individually or in groups. Questions are answered individually by typically several instructors. We close each module by discussing solution approaches and open problems all together. We recommend using the [preCICE Demo Virtual Machine](installation-vm.html) to follow the tasks. The actual course material is tailored to the needs of each event and distributed via download links.
+The course is organized in separate modules, which can be combined in various different ways. Each module typically takes 120 to 150 minutes to complete. We start each module with a short presentation explaining some background and giving an overview of the tasks. Then, students work on the tasks in a hands-on fashion, individually or in groups. Questions are answered individually by typically several instructors. We close each module by discussing solution approaches and open problems all together. We typically provide a reference system (see [how to prepare](#how-to-prepare)) with everything installed, for convenience. The actual course material is tailored to the needs of each event and distributed via download links.
+
+Basic previous knowledge of Python programming, the Linux command line, and numerical simulation principles are highly recommended.
 
 ## Content
 
-The course currently consists of four modules. Several more will follow.
+The course currently consists of the following modules, presented in historical order.
+The basics is necessary for beginners, and it is typically followed by tools, implicit coupling, and data mapping,
+and further modules depending on the needs of the audience.
+We regularly add new modules - don't hesitate to let us know if you would have any specific needs.
 
 ### Basics
 
@@ -64,68 +69,44 @@ We couple many micro simulations to a macro simulation: We use the [Micro Manage
 
 On the technical side, the training course involves multiple components of the preCICE ecosystem, as well as third-party solvers and pre- and post-processing tools.
 Most of these tools work best (or only) on a Linux system.
-You can either (a) use a prepared system image that we provide (e.g., in a virtual machine), or (b) install the dependencies directly on your system.
+You can either (a) use a prepared system image that we provide (a virtual machine image or a bootable live USB), or (b) install the dependencies directly on your system.
 To reduce system-related friction during the training, we recommend starting with option (a).
+On virtual trainings, that is a VM image; on in-person trainings, that might be a bootable live USB.
 
 {% important %}
-At the end, verify your installation, and contact us as soon as possible regarding any issues.
-Find verification instructions at the end of each section.
+Before the training, verify your installation, and contact us as soon as possible regarding any issues.
+For example, try running the [elastic-tube-1d Python tutorial](tutorials-elastic-tube-1d.html) (check if it is already under `~/tutorials/`).
 {% endimportant %}
 
-### Provided system
+### Provided virtual machine image
 
-We have prepared a modified Ubuntu image that includes all the tools we will use (different from the demo VM).
-With the training instructions, you will receive a URL with an up-to-date image for the specific training.
-With this `.iso` file, you can either:
-
-- prepare a virtual machine (VM), e.g., using [VirtualBox](https://www.virtualbox.org/)
-- create a bootable USB stick, e.g., using [Etcher](https://etcher.balena.io/), and use your system directly
-
-In both cases, you can either install the modified Ubuntu image, or try a live session, without any permanent changes (or result file saves) to your system.
-Get the smoothest experience by installing the image in a VM, so that your changes are saved between sessions, and you can at the same time access your host OS.
+Close to the training start, you will receive instructions with a link to an up-to-date provided VM image, very similar to the [demo VM](installation-vm.html).
+We typically provide a [Vagrant](https://developer.hashicorp.com/vagrant) box made for [VirtualBox](https://www.virtualbox.org/).
 
 {% note %}
 At the moment, this modified Ubuntu image is only available for Intel/AMD x86-64 CPUs.
-In our on-site trainings, some prepared USB sticks are provided.
-These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
 {% endnote %}
 
-Configure the VM with these settings:
+System requirements: ideally 25GB of free storage, 8GB of RAM, and more than 4 CPU cores.
+By default, the VM is configured with 4GB of RAM and 4 CPU cores, both configurable.
+Most of the storage goes to solvers and other tools that you might not need, in which case you could directly install the tools you need on your system, or on your own VM.
 
-- At least 8GB of RAM (the system will not load with 4GB in the "try" mode).
-- Ideally, four logical CPU cores (one is also fine).
-- At least 64MB of video RAM (more -> smoother graphics).
-- At least 25GB of storage.
+### Provided live USB
 
-For VirtualBox, find these settings under the `System`, `Display`, and `Storage` categories.
-
-Further important settings:
-
-- The OpenFOAM adapter is installed under `~/OpenFOAM/ubuntu-v2406`. If you install (not "try" in a live session), move that directory to your user: `cd ~/OpenFOAM/ && mv ubuntu-v2406/ $USER-v2406`.
-- Set your keyboard layout: In the Ubuntu applications menu, type "keyboard layout". Select "Add input source". Remove the default one.
-
-**Optional:** If you choose to install the image in a VM, you probably want to better integrate it with your host system. For VirtualBox, you need to [install the Guest Additions](https://www.virtualbox.org/manual/ch04.html) and set up a [shared folder](https://www.virtualbox.org/manual/ch04.html#sharedfolders):
-
-1. Devices > Insert Guest Additions CD Image
-2. Navigate to the CD
-3. Execute `autorun.sh` and give your password
-4. It automatically installs the Guest Additions. Press Enter to exit at the end.
-5. Set up a shared folder: Devices > Shared Folders > Shared Folders settings... > Add
-6. Folder Path: folder in your host system
-7. Mount point: Where to find the folder in the VM system. For example, `/mnt/training`.
-8. Select "Auto-mount" and "Make Permanent"
-9. Inside the VM, execute `sudo adduser $USER vboxsf`
-10. Restart the VM
-
-To check your installation, run the [1D elastic tube tutorial](tutorials-elastic-tube-1d.html) (Python solvers) inside the VM.
+In our on-site trainings, some bootable USB sticks are provided, based on the Ubuntu installer,
+allowing you to work on a temporary live session, without installing anything on your system.
+These should work on any laptop with an x86-64 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple Silicon systems.
 
 {% important %}
 If you use a bootable USB, make sure to select trying a live session, and not installing (or take care that you do not remove your data).
-If you have [secure boot](https://en.wikipedia.org/wiki/UEFI#Secure_Boot) enabled, this will need to be turned off to boot this unsigned OS.
-In case you use Windows with [BitLocker](https://en.wikipedia.org/wiki/BitLocker) enabled, you will not be able to boot on Windows while secure boot is disabled (BitLocker will be asking for the decryption key).
-Remember to switch secure boot on again to be able to use your system as before.
-Do not remove the USB during a live session.
 {% endimportant %}
+
+Notes:
+
+- If you have [secure boot](https://en.wikipedia.org/wiki/UEFI#Secure_Boot) enabled, this will need to be turned off to boot this unsigned OS.
+- In case you use Windows with [BitLocker](https://en.wikipedia.org/wiki/BitLocker) enabled, you will not be able to boot on Windows while secure boot is disabled (BitLocker will be asking for the decryption key).
+Remember to switch secure boot on again to be able to use your system as before.
+- Do not remove the USB during a live session (e.g., during a break). You would be surprised how many times this has happened already. :-)
 
 ### Individual dependencies
 
