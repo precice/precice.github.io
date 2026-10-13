@@ -1,5 +1,6 @@
 ---
 title: Documentation
+redirect_to: /docs/fundamentals/overview/
 cascade:
   layout: page
   comments: false

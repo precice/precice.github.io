@@ -1,5 +1,6 @@
 ---
 title: Tutorials
+redirect_to: /tutorials/overview/
 cascade:
   layout: page
   comments: false

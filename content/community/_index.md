@@ -1,5 +1,6 @@
 ---
 title: Community
+redirect_to: /community/overview/
 cascade:
   layout: page
   comments: false
