@@ -1,5 +1,50 @@
-{{- $toc := printf "%s" .TableOfContents -}}
-{{- if and (ne (.Param "toc") false) (in $toc "<li") -}}
-  {{- $toc = replace $toc `id="TableOfContents"` `id="toc" aria-label="Table of contents" class="mb-4"` -}}
-  {{- $toc | safeHTML -}}
+{{- if ne (.Param "toc") false -}}
+  {{- $rawToc := printf "%s" .TableOfContents -}}
+  {{- if in $rawToc "<li" -}}
+    {{- $toc := replace $rawToc `id="TableOfContents"` `id="toc" aria-label="Table of contents" class="mb-4"` -}}
+    {{- $toc | safeHTML -}}
+  {{- else -}}
+    <nav id="toc" aria-label="Table of contents" class="mb-4" style="display:none;">
+      <ul id="toc-dynamic-list"></ul>
+    </nav>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var tocNav = document.getElementById("toc");
+        var list = document.getElementById("toc-dynamic-list");
+        if (!tocNav || !list) return;
+        var headings = document.querySelectorAll(".post-content h2, .post-content h3");
+        if (!headings.length) return;
+        var currentH2Li = null;
+        var currentSubUl = null;
+        headings.forEach(function(h) {
+          if (!h.id) {
+            h.id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+          }
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.href = "#" + h.id;
+          a.textContent = h.textContent.trim();
+          li.appendChild(a);
+          if (h.tagName.toLowerCase() === "h2") {
+            list.appendChild(li);
+            currentH2Li = li;
+            currentSubUl = null;
+          } else if (h.tagName.toLowerCase() === "h3") {
+            if (!currentSubUl) {
+              currentSubUl = document.createElement("ul");
+              if (currentH2Li) {
+                currentH2Li.appendChild(currentSubUl);
+              } else {
+                list.appendChild(currentSubUl);
+              }
+            }
+            currentSubUl.appendChild(li);
+          }
+        });
+        if (list.children.length) {
+          tocNav.style.display = "";
+        }
+      });
+    </script>
+  {{- end -}}
 {{- end -}}
