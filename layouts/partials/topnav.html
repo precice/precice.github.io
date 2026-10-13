@@ -16,6 +16,16 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav ms-auto">
+        {{- $hasExactMatch := false -}}
+        {{- range $entry := $topnav.topnav -}}
+          {{- range $item := $entry.items -}}
+            {{- with $item.url -}}
+              {{- if partial "sidebar_page_matches_url.html" (dict "page" $page "url" .) -}}
+                {{- $hasExactMatch = true -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
         {{ range $entry := $topnav.topnav }}
           {{ range $item := $entry.items }}
             {{ $sectionSidebar := printf "%s_sidebar" ($item.section | default "") }}
@@ -23,8 +33,8 @@
             {{ with $item.url }}
               {{ $isActive = partial "sidebar_page_matches_url.html" (dict "page" $page "url" .) }}
             {{ end }}
-            {{ if and (not $isActive) $item.section }}
-              {{ $isActive = eq ($page.Param "sidebar") $sectionSidebar }}
+            {{ if and (not $hasExactMatch) (not $isActive) $item.section }}
+              {{ $isActive = or (eq ($page.Param "sidebar") $sectionSidebar) (eq $page.Section $item.section) }}
             {{ end }}
             <li class="nav-item{{ if $isActive }} active{{ end }}">
               {{ if $item.external_url }}

@@ -5,7 +5,7 @@
 {{- range $entry := $topnav.topnav -}}
   {{- range $item := $entry.items -}}
     {{- $sectionSidebar := printf "%s_sidebar" ($item.section | default "") -}}
-    {{- if or (and $item.url (in $.RelPermalink $item.url)) (eq ($.Param "sidebar") $sectionSidebar) -}}
+    {{- if or (and $item.url (in $.RelPermalink $item.url)) (eq ($.Param "sidebar") $sectionSidebar) (and $item.section (eq $.Section $item.section)) -}}
       {{- $sectionTitle = $item.title -}}
       {{- $sectionURL = $item.url -}}
     {{- end -}}
