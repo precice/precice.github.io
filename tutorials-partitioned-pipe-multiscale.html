@@ -43,12 +43,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- Local CSS -->
-<link rel="stylesheet" href="css/customstyles.css?v=1792063173">
-<link rel="stylesheet" href="css/customstyles-precice.css?v=1792063173">
-<link rel="stylesheet" href="css/boxshadowproperties.css?v=1792063173">
-<link rel="stylesheet" href="css/bookcover.css?v=1792063173">
+<link rel="stylesheet" href="css/customstyles.css?v=1792156972">
+<link rel="stylesheet" href="css/customstyles-precice.css?v=1792156972">
+<link rel="stylesheet" href="css/boxshadowproperties.css?v=1792156972">
+<link rel="stylesheet" href="css/bookcover.css?v=1792156972">
 <!-- Color styles -->
-<link rel="stylesheet" href="css/theme-precice.css?v=1792063173">
+<link rel="stylesheet" href="css/theme-precice.css?v=1792156972">
 <!-- Styling for landing page -->
 
 
@@ -2437,7 +2437,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-end">
-              <small>Updated 30 Jun 26</small>
+              <small>Updated 16 Oct 26</small>
             </div>
           </aside>
           
@@ -2457,9 +2457,9 @@ The coupling is performed using <strong>preCICE</strong>.</p>
 <p>In addition to the 1D–3D setup, this tutorial also includes configurations for <strong>1D–1D</strong> and <strong>3D–3D</strong> coupling.<br />
 These variants can be beneficial for validation studies, solver comparisons, or for investigating the influence of model dimensionality.</p>
 
-<p>In the following, $\mathrm{1D}$ denotes the reduced-order domain (e.g., a Nutils solver) and $\mathrm{3D}$ denotes the full 3D CFD domain (e.g., OpenFOAM).</p>
+<p>In the following, \(\mathrm{1D}\) denotes the reduced-order domain (e.g., a Nutils solver) and \(\mathrm{3D}\) denotes the full 3D CFD domain (e.g., OpenFOAM).</p>
 
-<p>The problem consists of a straight pipe of length $L = 40 \mathrm{m}$ and diameter $D = 10 \mathrm{m}$. We partition the domain at $z_c = 20 \mathrm{m}$, where the coupling interface is located. The pipe axis is aligned with the z-axis.
+<p>The problem consists of a straight pipe of length \(L = 40 \mathrm{m}\) and diameter \(D = 10 \mathrm{m}\). We partition the domain at \(z_c = 20 \mathrm{m}\), where the coupling interface is located. The pipe axis is aligned with the z-axis.
 The <strong>1D domain</strong> solves the flow equations using Nutils, while the <strong>3D domain</strong> is solved using OpenFOAM.<br />
 Both solvers are coupled via preCICE by exchanging the <strong>pressure</strong> and <strong>axial velocity</strong> at the interface.</p>
 
@@ -2470,12 +2470,12 @@ Both solvers are coupled via preCICE by exchanging the <strong>pressure</strong>
   <li><strong>3D → 1D</strong>: The 3D solver provides the velocity, and the 1D solver returns the pressure.</li>
 </ul>
 
-<p>The global outlet (end of the rightmost domain) is set to $p_{\mathrm{out}} = 0 \mathrm{Pa}$.</p>
+<p>The global outlet (end of the rightmost domain) is set to \(p_{\mathrm{out}} = 0 \mathrm{Pa}\).</p>
 
-<p>For the <strong>3D → 1D</strong> coupling, the 3D inlet velocity is prescribed as a <strong>parabolic (Poiseuille)</strong> profile with a bulk velocity of $u_{\mathrm{in}} = 0.1 \mathrm{m/s}$
+<p>For the <strong>3D → 1D</strong> coupling, the 3D inlet velocity is prescribed as a <strong>parabolic (Poiseuille)</strong> profile with a bulk velocity of \(u_{\mathrm{in}} = 0.1 \mathrm{m/s}\)
 implemented using a <code class="language-plaintext highlighter-rouge">codedFixedValue</code> boundary condition. This ensures a physically realistic velocity distribution consistent with the 1D model.</p>
 
-<p>For the <strong>1D → 3D</strong> coupling, the inlet velocity is set to $u_{\mathrm{in}} = 0.1 \mathrm{m/s}$.</p>
+<p>For the <strong>1D → 3D</strong> coupling, the inlet velocity is set to \(u_{\mathrm{in}} = 0.1 \mathrm{m/s}\).</p>
 
 <h2 id="configuration">Configuration</h2>
 
@@ -2661,7 +2661,7 @@ You can visualize the flow field and pressure distribution using <strong>ParaVie
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x u p
 </code></pre></div></div>
 
-<p>They correspond to the axial position, velocity and pressure at the last time-step, i.e., at $t = 5 \mathrm{s}$.</p>
+<p>They correspond to the axial position, velocity and pressure at the last time-step, i.e., at \(t = 5 \mathrm{s}\).</p>
 
 <h3 id="plotting-axial-pressure-distribution-optional">Plotting axial pressure distribution (optional)</h3>
 
@@ -2959,8 +2959,8 @@ The profile is Poiseuille-like with a bulk velocity of <strong>0.1 m/s</strong>;
         </a>
         </p>
         <p>
-        Page last updated: Jun 30, 2026<br>
-        Site last updated: Oct 15, 2026
+        Page last updated: Oct 16, 2026<br>
+        Site last updated: Oct 16, 2026
         </p>
         <p>
         <i class="fas fa-shield-halved" aria-hidden="true"></i> This website does not use cookies
