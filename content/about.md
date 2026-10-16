@@ -27,7 +27,7 @@ The conceptual ideas of preCICE are not completely new. preCICE is an advancemen
 
 ## Planning and development of precice.org
 
-The website in its current form was planned and implemented by CH Lorenz Research and Innovation Consulting together with the preCICE team. For more information contact [Christopher Lorenz](https://christopherlorenz.com) at christopher[dot]lorenz[at]chlorenz[dot]ug.
+The website was originally planned and implemented by [Christopher Lorenz](https://christopherlorenz.com) / CH Lorenz Research and Innovation Consulting together with the preCICE team in 2021. It was later ported from the Jekyll to the Hugo framework by [Muhammad Aashir Aslam](https://github.com/MuhammadAashirAslam) in 2026 as part of a [Google Summer of Code project](https://gist.github.com/MuhammadAashirAslam/a5c5929b962d0a0886a4f050279fcade).
 
 ## Funding
 
