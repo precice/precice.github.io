@@ -3,7 +3,6 @@ title: Porting from 1.x to 2.x
 permalink: couple-your-code-porting-v1-2.html
 aliases:
   - /couple-your-code-porting-v1-2.html
-  - /couple-your-code-porting-adapters.html
 keywords: api, adapter, version, time step, action
 summary: "This guide helps you to upgrade from preCICE 1.x to preCICE 2.x."
 redirect_from: couple-your-code-porting-adapters.html
