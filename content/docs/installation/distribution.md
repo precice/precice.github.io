@@ -1,6 +1,8 @@
 ---
 title: The preCICE distribution
 permalink: installation-distribution.html
+aliases:
+  - /installation-distribution.html
 keywords: installation, versions, compatibility, distribution
 summary: "A frozen state of component versions that work together."
 ---

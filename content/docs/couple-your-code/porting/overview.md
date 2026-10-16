@@ -1,6 +1,9 @@
 ---
 title: Porting adapters between breaking releases
 permalink: couple-your-code-porting-overview.html
+aliases:
+  - /couple-your-code-porting-overview.html
+  - /couple-your-code-porting-adapters.html
 keywords: api, adapter, version, porting, major, breaking
 ---
 

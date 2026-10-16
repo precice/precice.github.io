@@ -1,6 +1,8 @@
 ---
 title: The preCICE CLI
 permalink: tooling-cli.html
+aliases:
+  - /tooling-cli.html
 keywords: tooling, xml, configuration, version, cli, pypi
 summary: "The preCICE CLI provides a unified interface to the main preCICE tools."
 ---

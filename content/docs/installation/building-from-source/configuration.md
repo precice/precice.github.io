@@ -1,6 +1,8 @@
 ---
 title: Building from source - Configuration
 permalink: installation-source-configuration.html
+aliases:
+  - /installation-source-configuration.html
 keywords: configuration, basics, cmake, installation, building, source
 ---
 
@@ -16,14 +18,14 @@ You can combine presets with other CMake arguments such as `-DCMAKE_INSTALL_PREF
 To see all available presets use:
 
 ```bash
-cd precice-{{ site.precice_version }} # Enter the preCICE source directory
+cd precice-{{< param "precice_version" >}} # Enter the preCICE source directory
 cmake --list-presets
 ```
 
 Then, to configure preCICE, run:
 
 ```bash
-cd precice-{{ site.precice_version }} # Enter the preCICE source directory
+cd precice-{{< param "precice_version" >}} # Enter the preCICE source directory
 cmake --preset=production # Configure using the production preset
 ```
 
@@ -37,7 +39,7 @@ This allows to cleanly create multiple build configurations for a single source 
 Please create a build directory inside the preCICE source directory as follows:
 
 ```bash
-cd precice-{{ site.precice_version }} # Enter the preCICE source directory
+cd precice-{{< param "precice_version" >}} # Enter the preCICE source directory
 mkdir build
 cd build
 ```
@@ -88,9 +90,9 @@ Option | Type | Default | Description
 `PRECICE_CTEST_MPI_FLAGS` | String | | Additional flags to pass to `mpiexec` when running the tests.
 `CMAKE_INTERPROCEDURAL_OPTIMIZATION` | Boolean | OFF | Enable interprocedural/link-time optimization
 
-{% version 2.4.0 %}
+{{< version "2.4.0" >}}
 Version 2.4.0 introduces the CMake options `PRECICE_RELEASE_WITH_ASSERTIONS`, `..._DEBUG_LOG`, `..._TRACE_LOG`, which allow release builds with extended debugging functionality.
-{% endversion %}
+{{< /version >}}
 
 ## The next step
 

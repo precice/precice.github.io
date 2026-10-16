@@ -4,6 +4,8 @@ keywords: configuration, xml, overview
 summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. On this page, we give you an overview of the complete configuration section of the documentation."
 sidebar: docs_sidebar
 permalink: configuration-overview.html
+aliases:
+  - /configuration-overview.html
 ---
 
 ## You are new to preCICE and want to learn how the configuration works?
@@ -42,7 +44,7 @@ Visualizing the configuration file is a good way to spot mistakes, but also to l
 
 There is a [separate page with all steps required for porting](couple-your-code-porting-v2-3.html#precice-configuration-file).
 
-{% note %}
+{{< note >}}
 The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
 If you get errors emitted by `xml::XMLAttribute`, then please set the locale to `export LANG=en_US.UTF-8`.
-{% endnote %}
+{{< /note >}}

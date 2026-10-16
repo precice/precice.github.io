@@ -1,6 +1,8 @@
 ---
 title: Adapter software engineering
 permalink: couple-your-code-adapter-software-engineering.html
+aliases:
+  - /couple-your-code-adapter-software-engineering.html
 keywords: api, adapter, library, modularity, sustainability
 summary: "The example developed in the step-by-step guide is a rather intrusive way of writing an adapter as we directly modify the main solver routines. This page discusses alternative architectures, as well as further technical aspects of the adapter as a software project."
 ---
@@ -11,13 +13,13 @@ What we develop in the [step-by-step guide](couple-your-code-preparing-your-solv
 
 In this section, we look into developing an adapter as a class in the solver code, as a wrapper that calls the solver and preCICE APIs, or as a solver plugin:
 
-![Adapter software engineering options](images/docs/couple-your-code/adapter-software-engineering/adapter-software-engineering-approaches.svg)
+![Adapter software engineering options](/images/docs/couple-your-code/adapter-software-engineering/adapter-software-engineering-approaches.svg)
 
 This categorization is not always clear, as it often depends on our perspective: which is the executable application being coupled? A ready-to-use simulation program, a code using tools from a toolkit, or an external script delegating execution? This section is mainly meant to provide ideas and examples on how to better structure such an adapter code.
 
-{% tip %}
+{{< tip >}}
 In any case, fully integrating the adapter into the codebase and the continuous integration system of the solver (with any of the methods described here) makes maintenance easier, as most complications typically come from changes in the solver code, not from preCICE (in which case, you can refer to a [porting guide](./couple-your-code-porting-overview.html)).
-{% endtip %}
+{{< /tip >}}
 
 ### Adapter class
 
@@ -82,7 +84,7 @@ This configuration is typically sourced from a dedicated configuration file,
 which is read directly by the adapter.
 For example, for an FSI simulation coupling OpenFOAM and CalculiX, three configuration files are needed:
 
-![Adapter and preCICE configuration files in a coupled simulation](images/docs/couple-your-code/adapter-software-engineering/configuration-files-precice-adapter.svg)
+![Adapter and preCICE configuration files in a coupled simulation](/images/docs/couple-your-code/adapter-software-engineering/configuration-files-precice-adapter.svg)
 
 ### Configuration prototypes
 
@@ -93,9 +95,9 @@ you could read only the participant name from the command line.
 
 Examples of this approach are the [minimal reference implementations (solver dummies)](./couple-your-code-api.html#minimal-reference-implementations), the [1D elastic tube tutorial codes](./tutorials-elastic-tube-1d.html), and the [Nutils examples](./adapter-nutils.html).
 
-{% tip %}
+{{< tip >}}
 It is a good practice to keep the configuration of each participant stored in a configuration file, and the configuration files of each participant stored in separate directories.
-{% endtip %}
+{{< /tip >}}
 
 ### Configuration format
 

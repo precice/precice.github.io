@@ -1,6 +1,8 @@
 ---
 title: Running simulations overview
 permalink: running-overview.html
+aliases:
+  - /running-overview.html
 keywords: output, log, clusters, slurm, mpi
 ---
 
