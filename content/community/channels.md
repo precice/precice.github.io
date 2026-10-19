@@ -18,7 +18,7 @@ We have all been there: you start using a new tool, only to find out that you do
 
 You can find us on our [preCICE forum on Discourse](https://precice.discourse.group/), which is great for structured discussions that help everyone. We try our best to help everyone, but this approach does not scale. We would be very happy if you also try to help others - only together way we can build a helping and welcoming online community!
 
-For quick orientation questions, feel free to drop us a short message on the [preCICE Matrix chatroom](https://matrix.to/#/#precice_lobby:gitter.im?web-instance%5Belement.io%5D=app.gitter.im).
+For quick orientation questions, feel free to drop us a short message on the [preCICE Matrix chatroom]({{< site_param "matrix_url" >}}).
 
 ## I want to stay up-to-date
 
