@@ -1,0 +1,44 @@
+{{- $destination := .Destination -}}
+{{- $fragment := "" -}}
+{{- if in $destination "#" -}}
+  {{- $parts := split $destination "#" -}}
+  {{- $destination = index $parts 0 -}}
+  {{- $fragment = index $parts 1 -}}
+{{- end -}}
+
+{{- $isExternal := or (hasPrefix $destination "http://") (hasPrefix $destination "https://") (hasPrefix $destination "mailto:") (hasPrefix $destination "ftp://") -}}
+{{- $isAnchorOnly := and (eq $destination "") (ne $fragment "") -}}
+
+{{- $href := .Destination -}}
+{{- $isInternal := false -}}
+
+{{- if $isAnchorOnly -}}
+  {{- $href = printf "#%s" $fragment -}}
+  {{- $isInternal = true -}}
+{{- else if not $isExternal -}}
+  {{- $targetPage := false -}}
+  {{- if ne $destination "" -}}
+    {{- $targetPage = .Page.GetPage $destination -}}
+    {{- if not $targetPage -}}
+      {{- $targetPage = partial "pdf/page-for-url.html" (dict "site" .Page.Site "url" $destination) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $targetPage -}}
+    {{- $isInternal = true -}}
+    {{- if ne $fragment "" -}}
+      {{- $href = printf "%s#%s" .Permalink $fragment -}}
+    {{- else -}}
+      {{- $href = .Permalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $classes := slice -}}
+{{- if $isInternal -}}
+  {{- $classes = $classes | append "internal-link" -}}
+{{- end -}}
+{{- if or (strings.Contains .Text "<img") (strings.Contains .Text "![") (strings.Contains .Destination "doi.org") (strings.Contains .Destination "darus") -}}
+  {{- $classes = $classes | append "no-icon" -}}
+{{- end -}}
+
+<a href="{{ $href | safeURL }}"{{ with $classes }} class="{{ delimit . " " }}"{{ end }}{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>

@@ -1,6 +1,8 @@
 ---
 title: Step 6 – Implicit coupling
 permalink: couple-your-code-implicit-coupling.html
+aliases:
+  - /couple-your-code-implicit-coupling.html
 keywords: api, adapter, coupling schemes, checkpoint, fixed-point
 summary: "In previous steps, we only considered explicit coupling. We now move onto implicit coupling, so sub-iterating each time step multiple times until a convergence threshold is reached. This stabilizes strongly-coupled problems."
 ---
@@ -131,9 +133,9 @@ turn_off_solver()
 </div>
 The methods `saveOldState` and `reloadOldState` need to be provided by your solver. You wonder when writing and reading checkpoints is required? Well, that's no black magic. In the first coupling iteration of each time window, preCICE tells you to write a checkpoint. In every iteration in which the coupling does not converge, preCICE tells you to read a checkpoint. This gets a bit more complicated if your solver subcycles (we learned this in [Step 5](couple-your-code-time-step-sizes)), but preCICE still does the right thing. By the way, the actual convergence measure is computed in `advance` in case you wondered about that as well.
 
-{% important %}
+{{< important >}}
 Did you see that we moved the function `endTimeStep()` into the `else` block? This is to only move forward in time if the coupling converged. With this neat trick, we do not need two loops (a time loop and a coupling loop), but both are combined into one.
-{% endimportant %}
+{{< /important >}}
 
 Of course, with the adapted code above, explicit coupling still works. You do not need to alter your code for that. In case of explicit coupling, both actions reading and writing iteration checkpoints always return `false`.
 
@@ -153,10 +155,10 @@ At this state, you can again test your adapted solver against a [solver dummy](c
 [...]
 ```
 
-{% tip %}
+{{< tip >}}
 For stability and faster convergence also use an [acceleration method](configuration-acceleration).
-{% endtip %}
+{{< /tip >}}
 
-{% important %}
+{{< important >}}
 You need to implement `saveOldState` and `reloadOldState` in such a way that a single coupling iteration becomes a proper function. Meaning, for two times the same input (the values you read from preCICE), the solver also needs to return two times the same output (the values you write to preCICE). Only then can the quasi-Newton acceleration methods work properly. This means, you need to include as much information in the checkpoint as necessary to really be able to go back in time. Storing complete volume data of all variables is the brute-force option. Depending on your solver, there might also be more elegant solutions. Be careful: this also needs to work if you jump back in time more than one time step.
-{% endimportant %}
+{{< /important >}}

@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+"""Run Hugo with local module replacements for live editing.
+
+Usage:
+    tools/local-hugo --tutorials=../tutorials server
+    tools/local-hugo --openfoam=../openfoam-adapter --tutorials=../tutorials server
+    tools/local-hugo --help
+"""
+
+import argparse
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+PRECICE_MODULE_PREFIX = "github.com/precice/"
+
+
+def existing_directory(value: str) -> Path:
+    path = Path(value).expanduser().resolve()
+    if not path.is_dir():
+        raise argparse.ArgumentTypeError(f"Directory does not exist: {path}")
+    return path
+
+
+def get_known_modules(repo_root: Path) -> list[str]:
+    """Return a sorted list of canonical module paths from go.mod."""
+    modules: set[str] = set()
+
+    go_mod = repo_root / "go.mod"
+    if go_mod.exists():
+        for line in go_mod.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line.startswith(PRECICE_MODULE_PREFIX):
+                modules.add(line.split()[0])
+
+    return sorted(modules)
+
+
+def main() -> None:
+    repo_root = Path(__file__).resolve().parent.parent
+    canonical_modules = get_known_modules(repo_root)
+
+    parser = argparse.ArgumentParser(
+        description="A wrapper around 'hugo' to easily live-edit imported preCICE documentation modules.",
+        usage="%(prog)s [MODULE_OPTIONS] [HUGO_ARGS...]",
+    )
+
+    for mod in canonical_modules:
+        short = mod.removeprefix(PRECICE_MODULE_PREFIX)
+        parser.add_argument(
+            f"--{short}",
+            type=existing_directory,
+            default=None,
+            dest=mod,
+            metavar="PATH",
+            help=f"Path to local {short} clone",
+        )
+
+    parsed, hugo_args = parser.parse_known_args()
+
+    replacements = {
+        mod: path for mod, path in vars(parsed).items() if path is not None
+    }
+
+    replacement_strings = [f"{mod} -> {path}" for mod, path in replacements.items()]
+
+    env = os.environ.copy()
+    env_replacements = env.get("HUGO_MODULE_REPLACEMENTS", "").strip()
+    if env_replacements:
+        all_replacements = [env_replacements] + replacement_strings
+    else:
+        all_replacements = replacement_strings
+
+    if all_replacements:
+        env["HUGO_MODULE_REPLACEMENTS"] = ", ".join(all_replacements)
+
+    if replacement_strings:
+        print("[local-hugo] Module replacements active:")
+        for rep in replacement_strings:
+            print(f"  • {rep}")
+
+    print(f"[local-hugo] Executing: hugo {' '.join(hugo_args)}\n")
+    sys.stdout.flush()
+
+    try:
+        completed = subprocess.run(["hugo"] + hugo_args, env=env)
+        sys.exit(completed.returncode)
+    except KeyboardInterrupt:
+        sys.exit(130)
+    except FileNotFoundError:
+        print(
+            "Error: 'hugo' executable not found in PATH. Please install Hugo Extended.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

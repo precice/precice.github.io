@@ -1,6 +1,8 @@
 ---
 title: Rust bindings
 permalink: installation-bindings-rust.html
+aliases:
+  - /installation-bindings-rust.html
 keywords: configuration, basics, overview, installation, bindings, rust
 summary: "Use cargo add precice to install the rust language bindings from crate.io"
 ---

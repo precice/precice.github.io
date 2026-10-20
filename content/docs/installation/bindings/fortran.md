@@ -1,6 +1,8 @@
 ---
 title: Fortran bindings
 permalink: installation-bindings-fortran.html
+aliases:
+  - /installation-bindings-fortran.html
 keywords: basics, overview, installation, bindings, fortran
 ---
 

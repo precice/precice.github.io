@@ -1,6 +1,8 @@
 ---
 title: Moving or changing meshes
 permalink: couple-your-code-moving-or-changing-meshes.html
+aliases:
+  - /couple-your-code-moving-or-changing-meshes.html
 keywords: api, adapter, ALE, geometries, CFD
 summary: "preCICE supports ALE-methods, direct-mesh-access, and pseudo-meshes to handle most scenarios of moving or changing meshes. A remeshing API is on the roadmap and being actively developed."
 ---
@@ -54,13 +56,13 @@ Note that inactive nodes can lead to numerical instabilities in some acceleratio
 
 ## Remeshing using preCICE
 
-{% version 3.2.0 %} This feature is new in preCICE version 3.2.0. {% endversion %}
+{{< version "3.2.0" >}} This feature is new in preCICE version 3.2.0. {{< /version >}}
 
-{% experimental %}
+{{< experimental >}}
 This feature is in active development and not yet feature-complete.
 If you are missing features, please check [the GitHub project](https://github.com/orgs/precice/projects/20) and comment on the issues to help us prioritize.
 Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet.
-{% endexperimental %}
+{{< /experimental >}}
 
 **Goal** of the remeshing support in preCICE to allow resetting meshes at runtime.
 

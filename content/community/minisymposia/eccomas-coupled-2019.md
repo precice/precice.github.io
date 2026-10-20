@@ -3,6 +3,8 @@ title: ECCOMAS Coupled Problems 2019
 keywords: 2019, ECCOMAS, COUPLED, event, events, minisymposium
 summary:
 permalink: eccomas-coupled-2019.html
+aliases:
+  - /eccomas-coupled-2019.html
 toc: false
 ---
 

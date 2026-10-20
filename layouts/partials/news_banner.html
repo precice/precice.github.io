@@ -1,0 +1,21 @@
+{{/*
+News banner template, disabled by default. To publish a banner, change `false`
+below to `true` and edit only the announcement text and link below. The base
+layout already calls this partial, and the existing classes should be kept for
+consistent styling. To only show the banner on the front page, change the banner
+block condition to `{{ if .onlanding }}`.
+*/}}
+
+{{ if .onlanding }}
+  <aside role="banner" class="background-light banner-container">
+    <div class="container">
+      <div class="row m-0">
+        <div class="col-lg-12 news-banner">
+          <p class="m-0">
+            Call for contributions: <a href="{{ "precice-workshop-2027.html" | relURL }}">preCICE Workshop 2027</a> - March 1-5 at Delft, The Netherlands
+          </p>
+        </div>
+      </div>
+    </div>
+  </aside>
+{{ end }}
