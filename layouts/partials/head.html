@@ -48,6 +48,36 @@
 {{ with site.Params.mermaid.src }}<script type="module">import mermaid from "{{ . }}"; mermaid.initialize({ startOnLoad: true });</script>{{ end }}
 <script>
   document.addEventListener("DOMContentLoaded", function() {
+    function processMathTextNodes(root) {
+      if (!root) return;
+      var tag = root.nodeName ? root.nodeName.toLowerCase() : "";
+      if (tag === "script" || tag === "style" || tag === "textarea" || tag === "pre" || tag === "code") {
+        return;
+      }
+      if (root.nodeType === 3) {
+        if (root.nodeValue && root.nodeValue.indexOf("$$") !== -1) {
+          var parent = root.parentNode;
+          if (parent) {
+            var parentText = (parent.textContent || parent.innerText || "").trim();
+            var isOnlyMath = /^(\$\$|\\\[)[\s\S]+(\$\$|\\\])$/.test(parentText) && parentText.indexOf("$$", 2) === (parentText.length - 2);
+            if (!isOnlyMath) {
+              root.nodeValue = root.nodeValue.replace(/\$\$([\s\S]+?)\$\$/g, function(match, math) {
+                return "\\(" + math + "\\)";
+              });
+            }
+          }
+        }
+        return;
+      }
+      var child = root.firstChild;
+      while (child) {
+        processMathTextNodes(child);
+        child = child.nextSibling;
+      }
+    }
+
+    processMathTextNodes(document.body);
+
     renderMathInElement(document.body, {
       delimiters: [
         {left: "$$", right: "$$", display: true},

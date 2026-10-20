@@ -14,6 +14,18 @@
   <a href="{{ . | safeURL }}">Click here if you are not redirected.</a>
 </body>
 {{- else }}
+{{- if eq (site.Params.output | default "web") "pdf" }}
+<head>
+  {{ partial "head_print.html" . }}
+</head>
+<body class="{{ with .Params.type }}{{ . }} {{ end }}print">
+  <div class="container print-container">
+    <main class="print-content">
+      {{ block "main" . }}{{ end }}
+    </main>
+  </div>
+</body>
+{{- else }}
 <head>
   {{ partial "head.html" . }}
 </head>
@@ -76,5 +88,6 @@
     });
   </script>
 </body>
+{{- end }}
 {{- end }}
 </html>
