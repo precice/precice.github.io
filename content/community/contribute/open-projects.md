@@ -43,6 +43,19 @@ Are you looking for or offering a thesis / PhD / other related job? Have a look 
 
 The [Google Summer of Code](https://summerofcode.withgoogle.com/) is _"a global, online program focused on bringing new contributors into open source software development. GSoC Contributors work with an open source organization on a 12+ week programming project under the guidance of mentors."_.
 
+The first time that preCICE participated as an organization was in 2026.
+We aim to participate again in the future, but not every year.
+We will update this page once there are new project ideas.
+
+### GSoC 2026
+
+In 2026, preCICE was granted two projects, both of which completed successfully:
+
+- [Muhammad Aashir Aslam](https://github.com/MuhammadAashirAslam) ported the website from Jekyll to Hugo and upgraded the frontend ([report](https://gist.github.com/MuhammadAashirAslam/a5c5929b962d0a0886a4f050279fcade)).
+- [Pranjal Manhgaye](https://github.com/PranjalManhgaye) contributed various improvements to the system tests infrastructure ([report](https://gist.github.com/PranjalManhgaye/df30f41a551f6f104a51c3e8478e5b7c)).
+
+<details><summary>This program has ended. Click to expand the archived information.</summary>
+
 For 2026, we have prepared the following topics, for different sets of skills.
 Since this is our first year, and since we are a rather small project, we might not be able to accommodate applicants to all of these projects.
 Before applying, introduce yourself in the [forum](https://precice.discourse.group/c/jobs/gsoc/15) and let us know more about your background and motivation:
@@ -64,11 +77,7 @@ We value quality higher than quantity. If you find something interesting, take y
 We expect to work with the accepted GSoC participants in the summer. Our capacity to review external contributions before that is very limited.
 {{< /important >}}
 
-{{< important >}}
-We have already received too many pull requests in the period before proposals open. For this reason, we have now restricted interactions with the preCICE repositories to collaborators. If you have not reached out so far, chances for selection are very small.
-{{< /important >}}
-
-### Submitting proposals
+#### Submitting proposals
 
 You need to [submit a proposal on the GSoC system](https://google.github.io/gsocguides/student/writing-a-proposal). The proposal has to follow the following guidelines. Not following will lead to automatic rejection. You can edit your proposal on the GSoC system until the end of the [proposal submission deadline](https://summerofcode.withgoogle.com/organizations/precice/programs/2026/timeline). Due to the amount of interest, we do not have the capacity to provide feedback on drafts.
 
@@ -105,7 +114,7 @@ We are looking for proposals of maximum 4 A4 pages, in a PDF file. Use the follo
 
 - **Page 4: Figures**: This is an optional page exclusively for large figures, images or code.
 
-### Project: Website modernization
+#### Project: Website modernization
 
 This website is built with [Jekyll](https://jekyllrb.com/),
 a straight-forward static site generator that has served us well,
@@ -130,8 +139,9 @@ Be creative!
 - Project size: Medium (175h)
 - Difficulty: Easy/Intermediate - Requires upgrading the front-end framework and porting existing content from one framework and stack to another, but will be driven primarily by you on the "how".
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) and [Gerasimos Chourdakis](https://github.com/MakisH)
+- This project was assigned to [Muhammad Aashir Aslam](https://github.com/MuhammadAashirAslam), with [Gerasimos Chourdakis](https://github.com/MakisH) and [Frédéric Simonis](https://github.com/fsimonis) as mentors.
 
-### Project: System tests improvements
+#### Project: System tests improvements
 
 While the core library has several unit and integration tests,
 some issues only show up when running complete simulations.
@@ -148,8 +158,9 @@ running (much) faster test cases, running multiple test cases in parallel, bette
 - Project size: Medium (175h) - Depending on the availability, small or large are also possible
 - Difficulty: Intermediate - Requires combining multiple technologies and has an impact in multiple repositories, but includes mostly small and clear work packages.
 - Mentors: [Gerasimos Chourdakis](https://github.com/MakisH) - Fallback: [Frédéric Simonis](https://github.com/fsimonis)
+- This project was assigned to [Pranjal Manhgaye](https://github.com/PranjalManhgaye), with [Gerasimos Chourdakis](https://github.com/MakisH) as mentor.
 
-### Project: Error messages with configuration context
+#### Project: Error messages with configuration context
 
 The core library needs a [preCICE configuration file](configuration-overview.html),
 which currently needs to be written manually (we are working on higher-level configuration tools as well).
@@ -169,8 +180,9 @@ Then, locate and modify the error message in the source code, to provide more in
 - Project size: Small (90h)
 - Difficulty: Intermediate - Requires significant modifications to the C++ codebase, but with limited impact to/from other work.
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) - Fallback: [Benjamin Uekermann](https://github.com/uekerman)
+- This project was not addressed in the context of GSoC 2026.
 
-### Project: Clean multi-step configuration
+#### Project: Clean multi-step configuration
 
 The core library parses its [configuration file](configuration-overview.html) using the [libxml2 library](https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home).
 The way this currently works is a bit rigid and the configuration of objects is directly tied to this parsing.
@@ -185,6 +197,9 @@ See the [related issue](https://github.com/precice/precice/issues/982).
 - Project size: Medium (175h)
 - Difficulty: Intermediate/Hard - Requires refactoring or modifying large parts of the C++ codebase, but with limited impact to/from other work.
 - Mentors: [Frédéric Simonis](https://github.com/fsimonis) - Fallback: [Benjamin Uekermann](https://github.com/uekerman)
+- This project was not addressed in the context of GSoC 2026.
+
+</details>
 
 ## General guidelines
 
