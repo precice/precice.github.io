@@ -2,6 +2,8 @@
 title: Naming conventions
 keywords: pages, development, naming
 permalink: dev-docs-naming.html
+aliases:
+  - /dev-docs-naming.html
 summary: This page describes naming conventions for the preCICE ecosystem.
 ---
 

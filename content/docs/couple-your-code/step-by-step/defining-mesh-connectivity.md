@@ -1,11 +1,12 @@
 ---
 title: Step 8 – Mesh connectivity 
 permalink: couple-your-code-defining-mesh-connectivity.html
+aliases:
+  - /couple-your-code-defining-mesh-connectivity.html
 keywords: api, adapter, projection, mapping, edges, triangles
 toc: false
 summary: "So far, our coupling mesh is only a cloud of vertices. This is sufficient for most of the numerical methods that preCICE offers. For some features, however, preCICE also needs to know how vertices are connected to each other. In this step, you learn how to define this so-called mesh connectivity."
 ---
-
 
 The most important example where mesh connectivity is needed is the `nearest-projection` mapping, where the mesh we project _into_ needs mesh connectivity. For a consistent mapping, this is the mesh _from_ which you map. For a conservative mapping, the mesh _to_ which you map. More information is given on the [mapping configuration page](configuration-mapping).
 
@@ -89,15 +90,15 @@ requires_mesh_connectivity_for(mesh_name)
 </div>
 </div>
 
-{% warning %}
+{{< warning >}}
 The bulk API functions are only supported from v3.
-{% endwarning %}
+{{< /warning >}}
 
 Maybe interesting to know: preCICE actually does internally not compute with quads, but creates two triangles. [Read more](https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-1/274#2-1-using-quads-for-projection).
 
-{% warning %}
+{{< warning >}}
 Quads are only supported since v2.1. For older version, the methods only exist as empty stubs.
-{% endwarning %}
+{{< /warning >}}
 
 The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define two triangles.
 <ul id="apiTabs" class="nav nav-tabs">

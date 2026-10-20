@@ -1,10 +1,11 @@
 ---
 title: Step 2 – Steering methods
 permalink: couple-your-code-steering-methods.html
+aliases:
+  - /couple-your-code-steering-methods.html
 keywords: api, adapter, initialization, advance, finalize, workflow
 summary: "In this step, you get to know the most important API functions of preCICE: initialize, advance, and finalize."
 ---
-
 
 As a first preparation step, you need to include the preCICE library headers. In C++, you need to include the file [precice.hpp](https://github.com/precice/precice/blob/develop/src/precice/precice.hpp).
 The handle to the preCICE API is the class `precice::Participant`. Its constructor requires the participant's name, the preCICE configuration file's name and the `rank` and `size` of the current thread. Once the basic preCICE interface is set up, we can _steer_ the behaviour of preCICE. For that we need the following functions:

@@ -1,6 +1,8 @@
 ---
 title: Waveform iteration for time interpolation of coupling data
 permalink: couple-your-code-waveform.html
+aliases:
+  - /couple-your-code-waveform.html
 keywords: api, adapter, time, waveform, subcycling, multirate
 summary: "With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling."
 ---
@@ -15,7 +17,7 @@ preCICE only exchanges data at the end of the last time step in each time window
 
 The figure below visualizes this situation for a single coupling window ranging from $$t_\text{ini}$$ to $$t_\text{ini}+\Delta t$$:
 
-![Coupling data exchange without interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png)
+![Coupling data exchange without interpolation](/images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png)
 
 The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t_\mathcal{D}, \delta t_\mathcal{N}$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readData`, it always reads the same value $$c_{\mathcal{N}\text{end}}$$ from preCICE, independent from the current time step.
 
@@ -27,7 +29,7 @@ A simple solution to reach higher accuracy is to apply linear interpolation insi
 
 Linear interpolation between coupling boundary conditions of the previous and the current time window is illustrated below:
 
-![Coupling data exchange with linear interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformLinear.png)
+![Coupling data exchange with linear interpolation](/images/docs/couple-your-code/couple-your-code-waveform/WaveformLinear.png)
 
 If the Dirichlet participant $$\mathcal{D}$$ calls `readData`, it samples the data from a time-dependent function $$c_\mathcal{D}(t)$$. This function is created from linear interpolation of the first and the last sample $$c_{\mathcal{D}0}$$ and $$c_{\mathcal{D}5}$$ created by the Neumann participant $$\mathcal{N}$$ in the current time window. This allows $$\mathcal{D}$$ to sample the coupling condition at arbitrary times $$t$$ inside the current time window.
 
@@ -46,7 +48,7 @@ void Participant::readData(
 
 In the previous sections of the step-by-step guide we always used `relativeReadTime = preciceDt` where `preciceDt = precice.getMaxTimeStepSize()` points to the end of the current time window (see, for example ["Step 5 - Non-matching time step sizes"](couple-your-code-time-step-sizes.html)). However, the original purpose of `relativeReadTime` is exactly to offer the user an interface for sampling from waveforms. The figure below illustrates how providing different values `dt` for `relativeReadTime` allows to sample interpolated values at different points in time:
 
-![API for relativeReadTime](images/docs/couple-your-code/couple-your-code-waveform/APIRelativeReadTime.png)
+![API for relativeReadTime](/images/docs/couple-your-code/couple-your-code-waveform/APIRelativeReadTime.png)
 
 `relativeReadTime` describes the time relatively to the beginning of the current time step starting at $$\tau_n$$. This means that `dt = 0` gives us access to data at the beginning of the time step. By choosing `dt > 0` we can sample data at points in time after $$\tau_n$$. The maximum allowed `dt = preciceDt` corresponds to $$\tau_n$$ plus the remaining time until the end of the current time window (i.e. `preciceDt = precice.getMaxTimeStepSize()`).
 

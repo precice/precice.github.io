@@ -1,19 +1,22 @@
 ---
 title: Porting from 1.x to 2.x
 permalink: couple-your-code-porting-v1-2.html
+aliases:
+  - /couple-your-code-porting-v1-2.html
+  - /couple-your-code-porting-adapters.html
 keywords: api, adapter, version, time step, action
 summary: "This guide helps you to upgrade from preCICE 1.x to preCICE 2.x."
 redirect_from: couple-your-code-porting-adapters.html
 ---
 
-{% tip %}
+{{< tip >}}
 Reviving that old adapter? Good opportunity to learn about some best practices and make it easier to reuse and maintain!
 There are [guidelines for adapters](community-guidelines-adapters.html) and [guidelines for application cases](community-guidelines-application-cases.html).
-{% endtip %}
+{{< /tip >}}
 
-{% tip %}
+{{< tip >}}
 Also have a look at the [API documentation](couple-your-code-api.html) and [minimal reference implementations](couple-your-code-api.html#minimal-reference-implementations).
-{% endtip %}
+{{< /tip >}}
 
 ## preCICE API
 

@@ -1,6 +1,8 @@
 ---
 title: Notes on CMake
 permalink: installation-source-cmake.html
+aliases:
+  - /installation-source-cmake.html
 keywords: configuration, basics, cmake, installation, building, source
 ---
 
