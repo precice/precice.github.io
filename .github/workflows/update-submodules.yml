@@ -22,13 +22,19 @@ jobs:
       contents: write
 
     steps:
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        with:
+          client-id: ${{ vars.WEBSITE_UPDATER_CLIENT_ID }}
+          private-key: ${{ secrets.WEBSITE_UPDATER_KEY }}
+
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
           submodules: false
           lfs: false
-          token: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Set up Go
         uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
