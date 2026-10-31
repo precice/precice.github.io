@@ -30,6 +30,19 @@
     {{- else -}}
       {{- $href = .Permalink -}}
     {{- end -}}
+  {{- else if or (eq $destination "precice-config.xml") (hasSuffix $destination "/precice-config.xml") -}}
+    {{- $resource := .Page.Resources.GetMatch $destination -}}
+    {{- if not $resource -}}
+      {{- $resource = .Page.CurrentSection.Resources.GetMatch $destination -}}
+    {{- end -}}
+    {{- with $resource -}}
+      {{- $isInternal = true -}}
+      {{- if ne $fragment "" -}}
+        {{- $href = printf "%s#%s" .RelPermalink $fragment -}}
+      {{- else -}}
+        {{- $href = .RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 
