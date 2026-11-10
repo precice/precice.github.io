@@ -20,15 +20,15 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": {{ $sectionTitle | jsonify }},
-      "item": {{ $sectionURL | absURL | jsonify }}
+      "name": {{ $sectionTitle | jsonify | safeJS }},
+      "item": {{ $sectionURL | absURL | jsonify | safeJS }}
     },
     {{- end }}
     {
       "@type": "ListItem",
       "position": {{ if $sectionTitle }}2{{ else }}1{{ end }},
-      "name": {{ .Title | jsonify }},
-      "item": {{ .Permalink | jsonify }}
+      "name": {{ .Title | jsonify | safeJS }},
+      "item": {{ .Permalink | jsonify | safeJS }}
     }
   ]
 }
