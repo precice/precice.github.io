@@ -32,9 +32,9 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
 | Dependency | Version required | Availability |
 | --- | --- | --- |
 | [C++ compiler](#c-compiler) | C++17 | [C++17 compiler support](https://cppreference.com/w/cpp/compiler_support/17.html) |
-| [CMake](#cmake) | >= 3.22.1 | [![Repology - CMake](https://img.shields.io/repology/repositories/cmake)](https://repology.org/project/cmake/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-cmake-blue)](https://pkgs.org/search/?q=cmake){:.no-icon} |
+| [CMake](#cmake) | >= 3.28.3 | [![Repology - CMake](https://img.shields.io/repology/repositories/cmake)](https://repology.org/project/cmake/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-cmake-blue)](https://pkgs.org/search/?q=cmake){:.no-icon} |
 | [Eigen](#eigen) | >= 3.4.0 | [![Repology - Eigen](https://img.shields.io/repology/repositories/eigen)](https://repology.org/project/eigen/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-eigen3-blue)](https://pkgs.org/search/?q=eigen3){:.no-icon} |
-| [Boost](#boost) | >= 1.74.0 | [![Repology - Boost](https://img.shields.io/repology/repositories/boost)](https://repology.org/project/boost/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-libboost-blue)](https://pkgs.org/search/?q=libboost){:.no-icon} |
+| [Boost](#boost) | >= 1.83.0 | [![Repology - Boost](https://img.shields.io/repology/repositories/boost)](https://repology.org/project/boost/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-libboost-blue)](https://pkgs.org/search/?q=libboost){:.no-icon} |
 | [libxml2](#libxml2) | >= 2 | [![Repology - libxml2](https://img.shields.io/repology/repositories/libxml2)](https://repology.org/project/libxml2/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-libxml2-blue)](https://pkgs.org/search/?q=libxml2){:.no-icon} |
 
 Note that more recent versions of some dependencies (e.g., Boost) might also need more recent or upcoming releases of preCICE.
@@ -44,7 +44,7 @@ Note that more recent versions of some dependencies (e.g., Boost) might also nee
 | Dependency | Required for | Version required | Availability |
 | --- | --- | --- | --- |
 | [MPI](#mpi) (opt-out) | [Communication over MPI](configuration-communication.html) | implementation of MPI-3 | Various [implementations](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) |
-| [PETSc](#petsc) (opt-out) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 3.15 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-petsc-blue)](https://pkgs.org/search/?q=petsc){:.no-icon} |
+| [PETSc](#petsc) (opt-out) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 3.19 | [![Repology - PETSc](https://img.shields.io/repology/repositories/petsc)](https://repology.org/project/petsc/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-petsc-blue)](https://pkgs.org/search/?q=petsc){:.no-icon} |
 | [Ginkgo](#ginkgo) (opt-in) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 1.8, with Kokkos >= 4.1 | [![Repology - Ginkgo](https://img.shields.io/repology/repositories/ginkgo-linear-algebra)](https://repology.org/project/ginkgo-linear-algebra/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-ginkgo-blue)](https://pkgs.org/search/?q=ginkgo){:.no-icon} |
 | [Kokkos-Kernels](#kokkos-kernels) (opt-in) | [Some RBF mappings](configuration-mapping.html#execution-backends) | >= 4.1, with Kokkos >= 4.1 | [![Repology - Kokkos-Kernels](https://img.shields.io/repology/repositories/kokkos-kernels)](https://repology.org/project/kokkos-kernels/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-kokkos-kernels)](https://pkgs.org/search/?q=kokkos-kernels){:.no-icon} |
 | [Python](#python) (opt-out) | [Python Action interface](configuration-action.html#python-callback-interface) | >= 3 | [![Repology - Python](https://img.shields.io/repology/repositories/python)](https://repology.org/project/python/versions){:.no-icon} [![pkgs.org](https://img.shields.io/badge/pkgs.org-python-blue)](https://pkgs.org/search/?q=python){:.no-icon} |
@@ -87,7 +87,7 @@ History of required version:
 | 1.4.0   | min 3.10.2 |
 | 2.4.0   | min 3.16.3 |
 | 3.2.0   | min 3.22.1 |
-| 3.3.0   | as above   |
+| 3.5.0   | min 3.28.3 |
 
 #### Download CMake binaries
 
@@ -113,6 +113,7 @@ History of required version:
 | older   | min 3.2.0 |
 | 1.5.0   | min 3.3.7 |
 | 3.3.0   | min 3.4.0, supports 5.0.0 or later |
+| 3.5.0   | as above  |
 
 #### Download the Eigen headers
 
@@ -163,6 +164,7 @@ History of required versions:
 | 3.1.2   | as above       | 1.86.0             |
 | 3.2.0   | 1.74.0         | 1.89.0             |
 | 3.3.0   | 1.74.0         | none known yet     |
+| 3.5.0   | 1.83.0         | none known yet     |
 
 For help, see also the ranges set in the [Spack recipe](https://github.com/spack/spack-packages/blob/develop/repos/spack_repo/builtin/packages/precice/package.py).
 
@@ -252,7 +254,7 @@ History of required versions:
 | older   | 3.6.0 (with 64bit indices) | 3.12.0             |
 | 2.1.0   | 3.12.0                     | none known yet     |
 | 3.2.0   | 3.15.0                     | as above           |
-| 3.3.0   | as above                   | as above           |
+| 3.5.0   | 3.19.0                     | as above           |
 
 #### Build PETSc from source
 
@@ -284,7 +286,7 @@ History of required versions:
 | preCICE | Ginkgo required | Kokkos required |
 | ---     | ---             | ---             |
 | 3.2.0   | 1.8.0           | 4.1.0           |
-| 3.3.0   | same as above   | same as above   |
+| 3.5.0   | same as above   | same as above   |
 
 ### Kokkos-Kernels
 
@@ -301,6 +303,7 @@ History of required versions:
 | preCICE | Kokkos-Kernels required | Kokkos required |
 | ---     | ---                     | ---             |
 | 3.4.1   | 4.1.0                   | 4.1.0           |
+| 3.5.0   | as above                | as above        |
 
 ### Python
 
@@ -315,7 +318,7 @@ History of required versions:
 | ---     | ---                        | ---                 | ---            | ---                |
 | older   | 2.7                        | 2.8                 | not defined    | 1.17               |
 | 2.0.0   | 3                          | None known yet      | 1.17           | None known yet     |
-| 3.3.0   | same as above              | same as above       | same as above  | same as above      |
+| 3.5.0   | same as above              | same as above       | same as above  | same as above      |
 
 ## System guides
 
