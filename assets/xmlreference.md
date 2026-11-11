@@ -1,4 +1,4 @@
-<!-- generated with preCICE 3.4.1 -->
+<!-- generated with preCICE 3.5.0 -->
 # precice-configuration
 
 Main tag containing preCICE configuration.
@@ -272,7 +272,7 @@ Represents one solver using preCICE. At least two participants have to be define
   <action:multiply-by-area timing="{string}" mesh="{string}">
     ...
   </action:multiply-by-area>
-  <export:vtk directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
+  <export:vtk mesh="" directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
   <watch-point name="{string}" mesh="{string}" coordinate="{vector}"/>
   <watch-integral name="{string}" mesh="{string}" scale-with-connectivity="{boolean}"/>
   <provide-mesh name="{string}"/>
@@ -1796,11 +1796,12 @@ Exports meshes to VTK legacy format files. Parallel participants will use the VT
 **Example:**  
 
 ```xml
-<export:vtk directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
+<export:vtk mesh="" directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
+| mesh | string | Name of the mesh to export, or empty to export all meshes of the participant. | `` | none |
 | directory | string | Directory to export the files to. | `.` | none |
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `false` | none |
@@ -1815,11 +1816,12 @@ Exports meshes to VTU files in serial or PVTU files with VTU piece files in para
 **Example:**  
 
 ```xml
-<export:vtu directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
+<export:vtu mesh="" directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
+| mesh | string | Name of the mesh to export, or empty to export all meshes of the participant. | `` | none |
 | directory | string | Directory to export the files to. | `.` | none |
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `false` | none |
@@ -1834,11 +1836,12 @@ Exports meshes to VTP files in serial or PVTP files with VTP piece files in para
 **Example:**  
 
 ```xml
-<export:vtp directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
+<export:vtp mesh="" directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
+| mesh | string | Name of the mesh to export, or empty to export all meshes of the participant. | `` | none |
 | directory | string | Directory to export the files to. | `.` | none |
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `false` | none |
@@ -1853,11 +1856,12 @@ Exports vertex coordinates and data to CSV files.
 **Example:**  
 
 ```xml
-<export:csv directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
+<export:csv mesh="" directory="." every-n-time-windows="1" every-iteration="false" update-series="false"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
+| mesh | string | Name of the mesh to export, or empty to export all meshes of the participant. | `` | none |
 | directory | string | Directory to export the files to. | `.` | none |
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `false` | none |
