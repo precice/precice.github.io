@@ -37,9 +37,12 @@ def clone_tutorials(repo: str, branch: str | None, target_dir: Path) -> None:
         sys.exit(1)
 
 
-def discover_tutorials(tutorials_dir: Path) -> tuple[set[str], set[str]]:
+def discover_tutorials(
+    tutorials_dir: Path,
+) -> tuple[set[str], set[str], set[str]]:
     directories_with_readme: set[str] = set()
     directories_with_images: set[str] = set()
+    configurations: set[str] = set()
 
     for entry in tutorials_dir.iterdir():
         if not entry.is_dir() or entry.name.startswith("."):
@@ -50,14 +53,17 @@ def discover_tutorials(tutorials_dir: Path) -> tuple[set[str], set[str]]:
             directories_with_readme.add(entry.name)
             if (entry / "images").is_dir():
                 directories_with_images.add(f"{entry.name}/images")
+            if (entry / "precice-config.xml").is_file():
+                configurations.add(f"{entry.name}/precice-config.xml")
 
-    return directories_with_readme, directories_with_images
+    return directories_with_readme, directories_with_images, configurations
 
 
 def generate_module_toml(
     toml_path: Path,
     tutorials: set[str],
     images: set[str],
+    configurations: set[str],
     repo_path: str = "github.com/precice/tutorials",
 ) -> None:
     try:
@@ -94,6 +100,13 @@ def generate_module_toml(
             toml_lines.append("  [[imports.mounts]]")
             toml_lines.append(f'  source = "{folder}/images"')
             toml_lines.append(f'  target = "content/tutorials/{folder}/images"')
+            toml_lines.append("")
+
+        configuration = f"{folder}/precice-config.xml"
+        if configuration in configurations:
+            toml_lines.append("  [[imports.mounts]]")
+            toml_lines.append(f'  source = "{configuration}"')
+            toml_lines.append(f'  target = "content/tutorials/{configuration}"')
             toml_lines.append("")
 
     toml_lines.append("  [[imports.mounts]]")
@@ -144,14 +157,14 @@ def main() -> None:
         if not tutorials_dir.is_dir():
             logging.error(f"Provided local repo is not a directory: {tutorials_dir}")
             sys.exit(1)
-        tutorials, images = discover_tutorials(tutorials_dir)
+        tutorials, images, configurations = discover_tutorials(tutorials_dir)
     else:
         with tempfile.TemporaryDirectory() as temp_dir:
             clone_path = Path(temp_dir) / "tutorials"
             clone_tutorials(args.repo, args.branch, clone_path)
-            tutorials, images = discover_tutorials(clone_path)
+            tutorials, images, configurations = discover_tutorials(clone_path)
 
-    generate_module_toml(args.module_toml, tutorials, images)
+    generate_module_toml(args.module_toml, tutorials, images, configurations)
 
 
 if __name__ == "__main__":
