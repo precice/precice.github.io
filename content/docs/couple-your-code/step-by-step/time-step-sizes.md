@@ -151,6 +151,117 @@ This procedure is independent of whether a serial or a parallel coupling scheme 
 For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start.
 {{< /note >}}
 
+### Accumulating error over time
+
+preCICE uses the time step sizes `dt` passed to `advance(dt)` to track the overal point in time.
+It does its best to reduce numerical error of accumulating these generally small time step sizes.
+However, this is only possible if the passed `dt` are computed in a way that minmizes various errors.
+
+A common symptom of numerically noisy time step sizes are errors regarding time step sizes and missing data samples:
+
+* `The time step size given to preCICE in "advance" ... exceeds the maximum allowed time step size ...`
+* `Data "D" cannot be read from mesh "M" as it contains no samples.`
+* `readData(...) cannot sample data outside of current time window.`
+* `Data D on mesh M1 didn't contain any data samples while attempting to map to mesh M2.`
+
+The easiest way to prevent this in your adapter is to negotiate the time step and use this to both advance the solver and advance preCICE:
+
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-12">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-12">Python</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-12" markdown="1">
+
+```cpp
+preciceDt = precice.getMaxTimeStepSize();
+solverDt = beginTimeStep(); // e.g. compute adaptive dt
+// negotiate time step
+dt = min(preciceDt, solverDt);
+// pass the dt to both the solver and to preCICE
+solveTimeStep(dt);
+precice.advance(dt);
+```
+
+</div>
+<div role="tabpanel" class="tab-pane" id="python-12" markdown="1">
+
+```python
+precice_dt = precice.get_max_time_step_size()
+solver_dt = begin_time_step() # e.g. compute adaptive dt
+# negotiate time step
+dt = min(precice_dt, solver_dt)
+# pass the dt to both the solver and to preCICE
+solve_time_step(dt) 
+precice.advance(dt)
+```
+
+</div>
+</div>
+
+If your solver directly uses the preCICE provided time step, then its best to directly pass the time step size to advance:
+
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-14">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-14">Python</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-14" markdown="1">
+
+```cpp
+precice.advance(precice.getMaxTimeStepSize());
+```
+
+</div>
+<div role="tabpanel" class="tab-pane" id="python-14" markdown="1">
+
+```python
+precice.advance(precice.get_max_time_step_size())
+```
+
+</div>
+</div>
+
+A bad example is to recompute the dt based on an absolute solver time, which becomes noisier with increasing time.
+
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-13">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-13">Python</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-13" markdown="1">
+
+```cpp
+preciceDt = precice.getMaxTimeStepSize();
+// BAD: compute the time using absolute values 
+tbefore = currentSolverTime();
+solveTimeStep(preciceDt);
+tafter = currentSolverTime();
+dt = tafter - tbefore
+// the dt will get increasingly more noisy
+precice.advance(dt);
+```
+
+</div>
+<div role="tabpanel" class="tab-pane" id="python-13" markdown="1">
+
+```python
+precice_dt = precice.get_max_time_step_size()
+# BAD: compute the time using absolute values 
+tbefore = current_solver_time()
+solve_time_step(dt) 
+tafter = current_solver_time()
+dt = tafter - tbefore
+# the dt will get increasingly more noisy
+precice.advance(dt)
+```
+
+</div>
+</div>
+
 ### Possible subcycling pitfall
 
 If you are using very many small time steps in one window, you might see the following warning:
