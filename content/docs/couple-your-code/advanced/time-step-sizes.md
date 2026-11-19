@@ -6,11 +6,50 @@ summary: "There are various considerations when selecting time step sizes in pre
 
 ## Accumulating error over time
 
-preCICE uses the time step sizes `dt` passed to `advance(dt)` to track the overal point in time.
+preCICE uses the time step sizes `dt` passed to `advance(dt)` to track the overall point in time.
 It does its best to reduce numerical error of accumulating these generally small time step sizes.
-However, this is only possible if the passed `dt` are computed in a way that minmizes various errors.
+However, this is only possible if the passed `dt` themselves are computed in a way that minimizes numerical error.
 
-A common symptom of numerically noisy time step sizes are errors regarding time step sizes and missing data samples:
+An example on how a time step size can be of low precision is to compute the `dt` based on an absolute solver time.
+The precision of this `dt` decreases with increasing absolute time.
+
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-13">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-13">Python</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-13" markdown="1">
+
+```cpp
+preciceDt = precice.getMaxTimeStepSize();
+// BAD: compute the time using absolute values 
+tBefore = currentSolverTime();
+solveTimeStep(preciceDt);
+tAfter = currentSolverTime();
+dt = tAfter - tBefore
+// this dt decreases in precision
+precice.advance(dt);
+```
+
+</div>
+<div role="tabpanel" class="tab-pane" id="python-13" markdown="1">
+
+```python
+precice_dt = precice.get_max_time_step_size()
+# BAD: compute the time using absolute values 
+t_before = current_solver_time()
+solve_time_step(dt) 
+t_after = current_solver_time()
+dt = t_after - t_before
+# this dt decreases in precision
+precice.advance(dt)
+```
+
+</div>
+</div>
+
+A common symptom of using time step sizes with poor numerical precision are errors regarding either time step sizes or timestamped data samples such as:
 
 * `The time step size given to preCICE in "advance" ... exceeds the maximum allowed time step size ...`
 * `Data "D" cannot be read from mesh "M" as it contains no samples.`
@@ -72,44 +111,6 @@ precice.advance(precice.getMaxTimeStepSize());
 
 ```python
 precice.advance(precice.get_max_time_step_size())
-```
-
-</div>
-</div>
-
-A bad example is to recompute the dt based on an absolute solver time, which becomes noisier with increasing time.
-
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-13">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-13">Python</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-13" markdown="1">
-
-```cpp
-preciceDt = precice.getMaxTimeStepSize();
-// BAD: compute the time using absolute values 
-tbefore = currentSolverTime();
-solveTimeStep(preciceDt);
-tafter = currentSolverTime();
-dt = tafter - tbefore
-// the dt will get increasingly more noisy
-precice.advance(dt);
-```
-
-</div>
-<div role="tabpanel" class="tab-pane" id="python-13" markdown="1">
-
-```python
-precice_dt = precice.get_max_time_step_size()
-# BAD: compute the time using absolute values 
-tbefore = current_solver_time()
-solve_time_step(dt) 
-tafter = current_solver_time()
-dt = tafter - tbefore
-# the dt will get increasingly more noisy
-precice.advance(dt)
 ```
 
 </div>
