@@ -69,7 +69,9 @@ There are basically two options to choose from in the configuration.
 * `fixed`: A fixed time window with size `value` is prescribed, during which both participants can use whatever time step sizes they want. Communication of coupling data happens only after each time window.
 * `first-participant`: The first participant prescribes the time step size for the second one. Communication of coupling data happens after each time step. This option is only available for serial coupling schemes (more about [configuration of coupling schemes](configuration-coupling.html)). The attribute `value` is not applicable.
 
-Let us have a closer look at both options.
+Let us take a closer look at both options.
+This section covers only the basics.
+You can find more information in the [avanced section](/docs/couple-your-code/advanced/time-step-sizes/).
 
 ## Fixed time window
 

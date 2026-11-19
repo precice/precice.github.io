@@ -56,7 +56,7 @@ A common symptom of using time step sizes with poor numerical precision are erro
 * `readData(...) cannot sample data outside of current time window.`
 * `Data D on mesh M1 didn't contain any data samples while attempting to map to mesh M2.`
 
-The easiest way to prevent this in your adapter is to negotiate the time step and use this to both advance the solver and advance preCICE:
+The easiest way to prevent this in your adapter is to negotiate the time step as shown in [the step-by-step guide](/docs/couple-your-code/step-by-step/time-step-sizes/) and use this to both advance the solver and advance preCICE:
 
 <ul id="apiTabs" class="nav nav-tabs">
     <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-12">C++</a></li>
