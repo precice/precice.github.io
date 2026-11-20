@@ -189,5 +189,5 @@ precice.advance(dt)
 </div>
 
 {{< note >}}
-The strategy presented above is only one possibility. Generally, the participant knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
+The strategy presented above is only one possibility. Generally, the solver knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
 {{< /note >}}
