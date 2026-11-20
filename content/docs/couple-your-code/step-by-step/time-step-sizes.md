@@ -69,7 +69,9 @@ There are basically two options to choose from in the configuration.
 * `fixed`: A fixed time window with size `value` is prescribed, during which both participants can use whatever time step sizes they want. Communication of coupling data happens only after each time window.
 * `first-participant`: The first participant prescribes the time step size for the second one. Communication of coupling data happens after each time step. This option is only available for serial coupling schemes (more about [configuration of coupling schemes](configuration-coupling.html)). The attribute `value` is not applicable.
 
-Let us have a closer look at both options.
+Let us take a closer look at both options.
+This section covers only the basics.
+You can find more information in the [avanced section](/docs/couple-your-code/advanced/time-step-sizes/).
 
 ## Fixed time window
 
@@ -80,151 +82,78 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
 
 * After each time step, both participants tell preCICE which time step size `dt` they just used by calling `precice.advance(dt)`. This way, preCICE can keep track of the total time. `preciceDt` is the remainder time to the next window:
 
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
+    <ul id="apiTabs" class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
+    </ul>
+    <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
-```c++
-preciceDt = precice.getMaxTimeStepSize();
-```
+    ```c++
+    preciceDt = precice.getMaxTimeStepSize();
+    ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
 
-```python
-precice_dt = precice.get_max_time_step_size()
-```
+    ```python
+    precice_dt = precice.get_max_time_step_size()
+    ```
 
-</div>
-</div>
+    </div>
+    </div>
+
 * Both participants compute their next (adaptive) time step size. It can be larger or smaller than the remainder `preciceDt`.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
 
-```c++
-solverDt = beginTimeStep();
-```
+    <ul id="apiTabs" class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
+    </ul>
+    <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
+    ```c++
+    solverDt = beginTimeStep();
+    ```
 
-```python
-solver_dt = begin_time_step()
-```
+    </div>
+    <div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
 
-</div>
-</div>
-If it is larger, the remainder `preciceDt` is used instead (orange participant, dark orange is used).
-If it is smaller, the participant's time step size `solverDt` can be used (blue participant, dark blue is used).
-These two cases are reflected in:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-4">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
+    ```python
+    solver_dt = begin_time_step()
+    ```
 
-```c++
-dt = min(preciceDt, solverDt)
-```
+    </div>
+    </div>
+    If it is larger, the remainder `preciceDt` is used instead (orange participant, dark orange is used).
+    If it is smaller, the participant's time step size `solverDt` can be used (blue participant, dark blue is used).
+    These two cases are reflected in:
+    <ul id="apiTabs" class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-4">C++</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
+    </ul>
+    <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-4" markdown="1">
+    ```c++
+    dt = min(preciceDt, solverDt)
+    ```
 
-```python
-dt = min(precice_dt, solver_dt)
-```
+    </div>
+    <div role="tabpanel" class="tab-pane" id="python-4" markdown="1">
 
-</div>
-</div>
+    ```python
+    dt = min(precice_dt, solver_dt)
+    ```
+
+    </div>
+    </div>
+
 * Once both participants reach the end of the time window, coupling data is exchanged.
 
 {{< note >}}
 This procedure is independent of whether a serial or a parallel coupling scheme is used.
 For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start.
-{{< /note >}}
-
-### Possible subcycling pitfall
-
-If you are using very many small time steps in one window, you might see the following warning:
-
-```txt
-preCICE just returned a maximum time step size of <SOME DT>. Such a small value can happen if you use many sub steps per time window over multiple time windows due to added-up differences of machine precision.
-```
-
-The last time step ended up close to the end of the time-window without reaching it, leading to a very small final time step.
-Such small time steps can lead to problems in the solver.
-
-One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
-The following example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `minDt`.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-5">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-5">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-5" markdown="1">
-
-```cpp
-...
-solverDt = beginTimeStep(); // e.g. compute adaptive dt
-// Can lead to using a dt that only approximately reaches end of time window
-// dt = min(preciceDt, solverDt);
-
-// Specify a minimal time step size
-double minDt = 10e-14;
-if (preciceDt - solverDt < minDt) {
-  // The next time step would be too small or surpass the end
-  dt = preciceDt;
-} else {
-  dt = solverDt;
-}
-precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
-setDisplacements(displacements);
-solveTimeStep(dt);
-computeForces(forces);
-precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
-// if dt = preciceDt, we will exactly reach the end of the window when calling advance
-precice.advance(dt);
-...
-```
-
-</div>
-<div role="tabpanel" class="tab-pane" id="python-5" markdown="1">
-
-```python
-...
-solver_dt = begin_time_step() # e.g. compute adaptive dt
-# Can lead to using a dt that only approximately reaches end of time window
-# dt = min(precice_dt, solver_dt);
-
-# Specify a minimal time step size
-min_dt = 10e-14
-if precice_dt - solver_dt < min_dt:
-  dt = precice_dt
-else:
-  dt = solver_dt
-displacements = precice.read_data("FluidMesh", "Displacements", vertex_ids, dt)
-set_displacements(displacements)
-solve_time_step(dt)
-forces = compute_forces()
-precice.write_data("FluidMesh", "Displacements", vertex_ids, forces)
-# if dt = preciceDt, we will exactly reach the end of the window when calling advance
-precice.advance(dt)
-...
-```
-
-</div>
-</div>
-
-{{< note >}}
-The strategy presented above is only one possibility. Generally, the participant knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
 {{< /note >}}
 
 ## First participant prescribes time step size
@@ -236,92 +165,93 @@ The `first` participant sets the time step size. This requires that the `second`
 * The blue participant B is `first` and computes a step with its time step size (Step 1).
 * In `advance`, this time step size is given to preCICE (Step 2).
 
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-6">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-6">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-6" markdown="1">
+    <ul id="apiTabs" class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-6">C++</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-6">Python</a></li>
+    </ul>
+    <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="cpp-6" markdown="1">
 
-```c++
-precice.advance(dt);
-```
+    ```c++
+    precice.advance(dt);
+    ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-6" markdown="1">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="python-6" markdown="1">
 
-```python
-precice.advance(dt)
-```
+    ```python
+    precice.advance(dt)
+    ```
 
-</div>
-</div>
+    </div>
+    </div>
 * preCICE has tracked the time level of the orange participant A and returns the remainder to reach B's time step size.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-7">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-7">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-7" markdown="1">
+    <ul id="apiTabs" class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-7">C++</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-7">Python</a></li>
+    </ul>
+    <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="cpp-7" markdown="1">
 
-```c++
-preciceDt = precice.getMaxTimeStepSize();
-```
+    ```c++
+    preciceDt = precice.getMaxTimeStepSize();
+    ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-7" markdown="1">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="python-7" markdown="1">
 
-```python
-precice_dt = precice.get_max_time_step_size()
-```
+    ```python
+    precice_dt = precice.get_max_time_step_size()
+    ```
 
-</div>
-</div>
+    </div>
+    </div>
 * A computes its next (adaptive) time step size. It can now be larger or smaller than the remainder.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-8">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-8">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-8" markdown="1">
+    <ul id="apiTabs" class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-8">C++</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-8">Python</a></li>
+    </ul>
+    <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="cpp-8" markdown="1">
 
-```c++
-solverDt = beginTimeStep();
-```
+    ```c++
+    solverDt = beginTimeStep();
+    ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-8" markdown="1">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="python-8" markdown="1">
 
-```python
-solver_dt = begin_time_step()
-```
+    ```python
+    solver_dt = begin_time_step()
+    ```
 
-</div>
-</div>
+    </div>
+    </div>
 
-If it is larger, the remainder `preciceDt` is used instead (the case below in Step 3, dark orange is used).
-If it is smaller, the participant's time step size `solverDt` can be used (not visualized).
-These two cases are again reflected in the formula:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-9">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-9">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-9" markdown="1">
+    If it is larger, the remainder `preciceDt` is used instead (the case below in Step 3, dark orange is used).
+    If it is smaller, the participant's time step size `solverDt` can be used (not visualized).
+    These two cases are again reflected in the formula:
 
-```c++
-dt = min(preciceDt, solverDt);
-```
+    <ul id="apiTabs" class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-9">C++</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-9">Python</a></li>
+    </ul>
+    <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="cpp-9" markdown="1">
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-9" markdown="1">
+    ```c++
+    dt = min(preciceDt, solverDt);
+    ```
 
-```python
-dt = min(precice_dt, solver_dt)
-```
+    </div>
+    <div role="tabpanel" class="tab-pane" id="python-9" markdown="1">
 
-</div>
-</div>
+    ```python
+    dt = min(precice_dt, solver_dt)
+    ```
+
+    </div>
+    </div>
 
 * The procedure starts over with the blue participant B.
 
