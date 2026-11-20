@@ -13,13 +13,7 @@ However, this is only possible if the passed `dt` themselves are computed in a w
 An example on how a time step size can be of low precision is to compute the `dt` based on an absolute solver time.
 The precision of this `dt` decreases with increasing absolute time.
 
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-13">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-13">Python</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-13" markdown="1">
+{{<api>}}
 
 ```cpp
 preciceDt = precice.getMaxTimeStepSize();
@@ -32,8 +26,7 @@ dt = tAfter - tBefore
 precice.advance(dt);
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-13" markdown="1">
+---
 
 ```python
 precice_dt = precice.get_max_time_step_size()
@@ -46,8 +39,7 @@ dt = t_after - t_before
 precice.advance(dt)
 ```
 
-</div>
-</div>
+{{</api>}}
 
 A common symptom of using time step sizes with poor numerical precision are errors regarding either time step sizes or timestamped data samples such as:
 
@@ -58,13 +50,7 @@ A common symptom of using time step sizes with poor numerical precision are erro
 
 The easiest way to prevent this in your adapter is to negotiate the time step as shown in [the step-by-step guide](/docs/couple-your-code/step-by-step/time-step-sizes/) and use this to both advance the solver and advance preCICE:
 
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-12">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-12">Python</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-12" markdown="1">
+{{<api>}}
 
 ```cpp
 preciceDt = precice.getMaxTimeStepSize();
@@ -76,8 +62,7 @@ solveTimeStep(dt);
 precice.advance(dt);
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-12" markdown="1">
+---
 
 ```python
 precice_dt = precice.get_max_time_step_size()
@@ -89,32 +74,23 @@ solve_time_step(dt)
 precice.advance(dt)
 ```
 
-</div>
-</div>
+{{</api>}}
 
 If your solver directly uses the preCICE provided time step, then its best to directly pass the time step size to advance:
 
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-14">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-14">Python</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-14" markdown="1">
+{{<api>}}
 
 ```cpp
 precice.advance(precice.getMaxTimeStepSize());
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-14" markdown="1">
+---
 
 ```python
 precice.advance(precice.get_max_time_step_size())
 ```
 
-</div>
-</div>
+{{</api>}}
 
 ## Possible subcycling pitfall
 
@@ -129,12 +105,8 @@ Such small time steps can lead to problems in the solver.
 
 One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
 The following example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `minDt`.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-5">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-5">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-5" markdown="1">
+
+{{<api>}}
 
 ```cpp
 ...
@@ -160,8 +132,7 @@ precice.advance(dt);
 ...
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-5" markdown="1">
+---
 
 ```python
 ...
@@ -185,8 +156,7 @@ precice.advance(dt)
 ...
 ```
 
-</div>
-</div>
+{{</api>}}
 
 {{< note >}}
 The strategy presented above is only one possibility. Generally, the solver knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.

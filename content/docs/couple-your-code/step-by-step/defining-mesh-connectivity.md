@@ -15,12 +15,8 @@ For surface coupling in 2D, mesh connectivity boils down to defining edges betwe
 For volume coupling in 2D, mesh connectivity boils down to defining triangles and / or quads between vertices. In 3D, you need to define tetrahedra introduced in version `2.5.0`.
 
 All kind of connectivity can be built up directly from vertices. Triangles and quads also allow us to define them using edge IDs.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
+
+{{<api>}}
 
 ```cpp
 void setMeshEdge(precice::string_view meshName, VertexID firstVertexID, VertexID secondVertexID);
@@ -29,8 +25,7 @@ void setMeshQuad(precice::string_view meshName, VertexID firstVertexID, VertexID
 void setMeshTetrahedron(precice::string_view meshName, VertexID firstVertexID, VertexID secondVertexID, VertexID thirdVertexID, VertexID fourthVertexID);
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
+---
 
 ```python
 set_mesh_edge(mesh_name, first_vertex_id, second_vertex_id)
@@ -39,15 +34,11 @@ set_mesh_quad(mesh_name, first_vertex_id, second_vertex_id, third_vertex_id, fou
 set_mesh_tetrahedron(mesh_name, first_vertex_id, second_vertex_id, third_vertex_id, fourth_vertex_id)    
 ```
 
-</div>
-</div>
+{{</api>}}
+
 There are also bulk versions of these methods, which can be easier to handle in some cases:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
+
+{{<api>}}
 
 ```cpp
 void setMeshEdges(precice::string_view meshName, precice::span<const VertexID> vertices);
@@ -56,8 +47,7 @@ void setMeshQuads(precice::string_view meshName, precice::span<const VertexID> v
 void setMeshTetrahedra(precice::string_view meshName, precice::span<const VertexID> vertices);
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
+---
 
 ```python
 set_mesh_edges(mesh_name, vertices)
@@ -66,29 +56,23 @@ set_mesh_quads(mesh_name, vertices)
 set_mesh_tetrahedra(mesh_name, vertices)
 ```
 
-</div>
-</div>
+{{</api>}}
+
 If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are [no-ops](https://en.wikipedia.org/wiki/NOP_(code)). Thus, don't worry about performance. If you need a significant workload to already create this connectivity information in your adapter in the first place, you can also explicitly ask preCICE whether it is required:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
+
+{{<api>}}
 
 ```cpp
 bool requiresMeshConnectivityFor(precice::string_view meshName);
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
+---
 
 ```python
 requires_mesh_connectivity_for(mesh_name)   
 ```
 
-</div>
-</div>
+{{</api>}}
 
 {{< warning >}}
 The bulk API functions are only supported from v3.
@@ -101,12 +85,8 @@ Quads are only supported since v2.1. For older version, the methods only exist a
 {{< /warning >}}
 
 The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define two triangles.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-4">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
+
+{{<api>}}
 
 ```cpp
 /* ... */
@@ -138,8 +118,7 @@ if (precice.requiresMeshConnectivityFor(meshName)) {
 /* ... */
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-4" markdown="1">
+---
 
 ```python
 # We define the unit square in 2D with vertices A, B, C, D
@@ -160,8 +139,8 @@ if precice.requires_mesh_connectivity_for(mesh_name):
   precice.set_mesh_triangles(mesh_name, triangles)
 ```
 
-</div>
-</div>
+{{</api>}}
+
 ## Mesh pre-processing
 
 preCICE pre-processes all provided meshes during initialization, removing duplicates and adding missing hierarchical elements.
@@ -188,12 +167,8 @@ In this case you can save a mapping from Solver ID to preCICE Vertex ID, after d
 When iterating over the faces, get the vertex identifiers of defining points.
 For triangular faces, these would be the 3 corner points.
 Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-5">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-5">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-5" markdown="1">
+
+{{<api>}}
 
 ```cpp
 Participant participant(...);
@@ -216,8 +191,7 @@ for (auto& tri: solver.triangularFaces) {
 }
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-5" markdown="1">
+---
 
 ```python
 participant = precice.Participant(...)
@@ -237,8 +211,7 @@ for tri in solver.triangular_faces:
   participant.set_mesh_triangle(mesh_name, a, b, c)
 ```
 
-</div>
-</div>
+{{</api>}}
 
 ### Solver supports custom attributes
 
@@ -254,12 +227,8 @@ Examples of such attributes:
 In this case you can save preCICE Vertex IDs as labels directly in the solver vertices.
 Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
 When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-6">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-6">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-6" markdown="1">
+
+{{<api>}}
 
 ```cpp
 Participant participant(...);
@@ -279,8 +248,7 @@ for (auto& tri: solver.triangularFaces) {
 }
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-6" markdown="1">
+---
 
 ```python
 participant = precice.Participant(...)
@@ -297,8 +265,7 @@ for tri in solver.triangular_faces:
   participant.set_mesh_triangle("MyMesh", a, b, c)
 ```
 
-</div>
-</div>
+{{</api>}}
 
 ### Solver supports coordinates only
 
@@ -309,12 +276,8 @@ Depending on your solver, coordinates available at various stages may be subject
 Hence, a C++ `std::map` without custom comparator, or python `dict` may not be sufficient.
 
 An alternative would be to use a spatial index as a data structure to store this information.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-7">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-7">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-7" markdown="1">
+
+{{<api>}}
 
 ```cpp
 Participant participant(...);
@@ -366,8 +329,7 @@ class IDLookup {
 };
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-7" markdown="1">
+---
 
 ```py
 import rtree
@@ -386,5 +348,4 @@ for tri in solver.triangularFaces:
   participant.set_mesh_triangle("MyMesh", a, b, c)
 ```
 
-</div>
-</div>
+{{</api>}}

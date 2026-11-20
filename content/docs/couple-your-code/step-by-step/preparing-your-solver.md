@@ -9,12 +9,7 @@ summary: "If you want to couple your own code you need to properly understand it
 
 Let's say you want to prepare a fluid solver for fluid-structure interaction and that your code looks like this:
 
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python">Python</a></li>
-</ul>
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="cpp" markdown="1">
+{{<api>}}
 
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
@@ -30,8 +25,7 @@ turnOffSolver();
 
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python" markdown="1">
+---
 
 ```python
 turn_on_solver() #e.g. setup and partition mesh
@@ -44,8 +38,8 @@ while not simulation_done(): # time loop
 turn_off_solver()
 ```
 
-</div>
-</div>
+{{</api>}}
+
 Probably most solvers have such a structure: something in the beginning (reading input, domain decomposition), a big time loop, and something in the end. Each time step also falls into three parts: some pre-computations (e.g. computing an adaptive time step size), the actual computation (solving a linear or non-linear equation system), and something in the end (updating variables, incrementing time). Try to identify these parts in the code you want to couple.
 
 In the following steps, we will slowly add more and more calls to the preCICE API in this code snippet. Some part of the preCICE API is briefly described in each step. More precisely (no pun intended :grin:), we use the native `C++` API of preCICE. The API is, however, also available in other scientific programming languages: plain `C`, `Fortran`, `Python`, `Matlab`, `Julia`, and `Rust` (see [Application Programming Interface](couple-your-code-api)).

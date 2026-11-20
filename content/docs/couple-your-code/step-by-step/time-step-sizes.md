@@ -11,12 +11,8 @@ redirect_from:
 ---
 
 In previous steps, you have already seen that there are quite some things going on with time step sizes. Let us now have a look at what is actually happening.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
+
+{{<api>}}
 
 ```cpp
 ...
@@ -35,8 +31,7 @@ while (not simulationDone()){ // time loop
 }
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
+---
 
 ```python
 ...
@@ -54,8 +49,8 @@ while not simulation_done(): # time loop
   end_time_step() # e.g. update variables, increment time
 ```
 
-</div>
-</div>
+{{</api>}}
+
 Good thing to know: in this step, you do really not have to alter your code. Everything needed is already there and can be configured. :relieved:
 
 There are basically two options to choose from in the configuration.
@@ -82,72 +77,53 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
 
 * After each time step, both participants tell preCICE which time step size `dt` they just used by calling `precice.advance(dt)`. This way, preCICE can keep track of the total time. `preciceDt` is the remainder time to the next window:
 
-    <ul id="apiTabs" class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
-    </ul>
-    <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
+    {{<api>}}
 
     ```c++
     preciceDt = precice.getMaxTimeStepSize();
     ```
 
-    </div>
-    <div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
+    ---
 
     ```python
     precice_dt = precice.get_max_time_step_size()
     ```
 
-    </div>
-    </div>
+    {{</api>}}
 
 * Both participants compute their next (adaptive) time step size. It can be larger or smaller than the remainder `preciceDt`.
 
-    <ul id="apiTabs" class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
-    </ul>
-    <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
+    {{<api>}}
 
     ```c++
     solverDt = beginTimeStep();
     ```
 
-    </div>
-    <div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
+    ---
 
     ```python
     solver_dt = begin_time_step()
     ```
 
-    </div>
-    </div>
+    {{</api>}}
+
     If it is larger, the remainder `preciceDt` is used instead (orange participant, dark orange is used).
     If it is smaller, the participant's time step size `solverDt` can be used (blue participant, dark blue is used).
     These two cases are reflected in:
-    <ul id="apiTabs" class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-4">C++</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-4">Python</a></li>
-    </ul>
-    <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="cpp-4" markdown="1">
+
+    {{<api>}}
 
     ```c++
     dt = min(preciceDt, solverDt)
     ```
 
-    </div>
-    <div role="tabpanel" class="tab-pane" id="python-4" markdown="1">
+    ---
 
     ```python
     dt = min(precice_dt, solver_dt)
     ```
 
-    </div>
-    </div>
+    {{</api>}}
 
 * Once both participants reach the end of the time window, coupling data is exchanged.
 
@@ -165,93 +141,69 @@ The `first` participant sets the time step size. This requires that the `second`
 * The blue participant B is `first` and computes a step with its time step size (Step 1).
 * In `advance`, this time step size is given to preCICE (Step 2).
 
-    <ul id="apiTabs" class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-6">C++</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-6">Python</a></li>
-    </ul>
-    <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="cpp-6" markdown="1">
+    {{<api>}}
 
     ```c++
     precice.advance(dt);
     ```
 
-    </div>
-    <div role="tabpanel" class="tab-pane" id="python-6" markdown="1">
+    ---
 
     ```python
     precice.advance(dt)
     ```
 
-    </div>
-    </div>
+    {{</api>}}
+
 * preCICE has tracked the time level of the orange participant A and returns the remainder to reach B's time step size.
-    <ul id="apiTabs" class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-7">C++</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-7">Python</a></li>
-    </ul>
-    <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="cpp-7" markdown="1">
+
+    {{<api>}}
 
     ```c++
     preciceDt = precice.getMaxTimeStepSize();
     ```
 
-    </div>
-    <div role="tabpanel" class="tab-pane" id="python-7" markdown="1">
+    ---
 
     ```python
     precice_dt = precice.get_max_time_step_size()
     ```
 
-    </div>
-    </div>
+    {{</api>}}
+
 * A computes its next (adaptive) time step size. It can now be larger or smaller than the remainder.
-    <ul id="apiTabs" class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-8">C++</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-8">Python</a></li>
-    </ul>
-    <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="cpp-8" markdown="1">
+
+    {{<api>}}
 
     ```c++
     solverDt = beginTimeStep();
     ```
 
-    </div>
-    <div role="tabpanel" class="tab-pane" id="python-8" markdown="1">
+    ---
 
     ```python
     solver_dt = begin_time_step()
     ```
 
-    </div>
-    </div>
+    {{</api>}}
 
     If it is larger, the remainder `preciceDt` is used instead (the case below in Step 3, dark orange is used).
     If it is smaller, the participant's time step size `solverDt` can be used (not visualized).
     These two cases are again reflected in the formula:
 
-    <ul id="apiTabs" class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-9">C++</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-9">Python</a></li>
-    </ul>
-    <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="cpp-9" markdown="1">
+    {{<api>}}
 
     ```c++
     dt = min(preciceDt, solverDt);
     ```
 
-    </div>
-    <div role="tabpanel" class="tab-pane" id="python-9" markdown="1">
+    ---
 
     ```python
     dt = min(precice_dt, solver_dt)
     ```
 
-    </div>
-    </div>
+    {{</api>}}
 
 * The procedure starts over with the blue participant B.
 
@@ -266,34 +218,24 @@ You never need to alter your code if you want to switch the first and second par
 ## Steering the end of the simulation
 
 One last thing about time. There is also a helper function in preCICE that allows you to steer the end of a coupled simulation:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-10">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-10">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-10" markdown="1">
+
+{{<api>}}
 
 ```c++
 bool isCouplingOngoing();
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-10" markdown="1">
+---
 
 ```python
 is_ongoing = is_coupling_ongoing()
 ```
 
-</div>
-</div>
+{{</api>}}
 
 This functions looks at `max-time-windows` and `max-time` as defined in the preCICE configuration and knows when it is time to go. Then, you should call `finalize`. It replaces your `simulationDone()`.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-11">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-11">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-11" markdown="1">
+
+{{<api>}}
 
 ```c++
 while (precice.isCouplingOngoing()){ // time loop
@@ -302,8 +244,7 @@ while (precice.isCouplingOngoing()){ // time loop
 precice.finalize();
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-11" markdown="1">
+---
 
 ```python
 while precice.is_coupling_ongoing(): # time loop
@@ -311,5 +252,4 @@ while precice.is_coupling_ongoing(): # time loop
 precice.finalize()  
 ```
 
-</div>
-</div>
+{{</api>}}
