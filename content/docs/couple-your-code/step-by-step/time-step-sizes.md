@@ -71,7 +71,7 @@ There are basically two options to choose from in the configuration.
 
 Let us take a closer look at both options.
 This section covers only the basics.
-You can find more information in the [avanced section](/docs/couple-your-code/advanced/time-step-sizes/).
+You can find more information in the [advanced section](/docs/couple-your-code/advanced/time-step-sizes/).
 
 ## Fixed time window
 
