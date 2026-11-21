@@ -18,12 +18,8 @@ Enable it using `<precice-configuration experimental="true">` and do not conside
 
 When using `nearest-neighbor-gradient` mapping, we require coupling data and additional gradient data. We have seen in [Step 3](couple-your-code-mesh-and-data-access.html) how to write data to the mesh.
 Now, we will learn how to write gradient data to the mesh. For this purpose, we use the following API method:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
+
+{{<api>}}
 
 ```cpp
 void writeGradientData(
@@ -33,15 +29,14 @@ void writeGradientData(
     precice::span<const double>   gradients);
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
+---
 
 ```python
 write_gradient_data(mesh_name, data_name, vertex_ids, gradients)
 ```
 
-</div>
-</div>
+{{</api>}}
+
 Let's consider an example for writing block vector gradient data corresponding to the vector data `v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)` differentiated in spatial directions x and y.
 The values are passed as following:
 
@@ -53,12 +48,8 @@ The values are passed as following:
 ```
 
 Let's add gradient data to our example code:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
+
+{{<api>}}
 
 ```cpp
 precice::Participant precice("FluidSolver", "precice-config.xml", rank, size); // constructor
@@ -97,8 +88,7 @@ while (not simulationDone()){ // time loop
 /* ... */
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
+---
 
 ```python
 precice = precice.Participant("FluidSolver", "precice-config.xml", rank, size)
@@ -130,8 +120,7 @@ while not simulation_done():
   precice.advance(dt)
 ```
 
-</div>
-</div>
+{{</api>}}
 
 {{< version "2.4.0" >}}
 For preCICE versions lower than 2.5.0, you need to set the flag `gradient="on"` in the configuration file, whenever you require to write gradient data. An exemplary xml configuration file is given below. Starting from preCICE version 2.5.0, the gradient requirement is automatically deduced (based on the selected mapping) and can be queried in the code, as usual. Hence, the `gradient="on"` flag must not be set in the configuration file.

@@ -1,0 +1,29 @@
+{{- $id := .Ordinal -}}
+{{- $parts := split (replaceRE `\n *---\n` "\n---\n" .Inner) "\n---\n" -}}
+
+{{- if ne (len $parts) 2 -}}
+  {{- errorf "%s: expected 2 code blocks separated by a --- line. Position: %s" .Name .Position -}}
+{{- end -}}
+
+{{- $cpp := index $parts 0 | strings.TrimSpace -}}
+{{- if not (or (hasPrefix $cpp "```cpp\n") (hasPrefix $cpp "```c++\n")) -}}
+  {{- errorf "%s: the first block must be a cpp code block. Position: %s" .Name .Position -}}
+{{- end -}}
+
+{{- $python := index $parts 1 | strings.TrimSpace -}}
+{{- if not (or (hasPrefix $python "```python\n") (hasPrefix $python "```py\n")) -}}
+  {{- errorf "%s: the second block must be a python code block. Position: %s" .Name .Position -}}
+{{- end -}}
+
+<ul id="apiTabs-{{ $id }}" class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-{{ $id }}">C++</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-{{ $id }}">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-{{ $id }}">
+{{ $cpp | markdownify }}
+</div>
+<div role="tabpanel" class="tab-pane" id="python-{{ $id }}">
+{{ $python | markdownify }}
+</div>
+</div>
