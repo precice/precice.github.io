@@ -7,7 +7,11 @@
 {{- $blocks := dict -}}
 {{- range $lang := $langs -}}
   {{- range $part := $parts -}}
-    {{- $code := strings.TrimSpace $part -}}
+    {{- /* Remove indentation from block to prevent the parser thinking that it is a quote */ -}}
+    {{- $trimmed := $part | replaceRE `^(?:[ \t]*\n)+` "" | replaceRE `(?:\n[ \t]*)+$` "" -}}
+    {{- $indent := replaceRE `(?s)^([ \t]*).*$` "$1" $trimmed -}}
+    {{- $code := replaceRE (printf `(?m)^%s` $indent) "" $trimmed -}}
+
     {{- range $alias := $lang.aliases -}}
       {{- if hasPrefix $code (printf "```%s\n" $alias) -}}
         {{- $blocks = merge $blocks (dict $lang.id $code) -}}
@@ -33,7 +37,9 @@
 {{- range $lang := $langs -}}
   {{- if isset $blocks $lang.id }}
 <div role="tabpanel" class="tab-pane{{ if eq $lang.id $first }} active{{ end }}" id="{{ $lang.id }}-{{ $id }}">
+
 {{ index $blocks $lang.id | markdownify }}
+
 </div>
   {{- end -}}
 {{- end }}
