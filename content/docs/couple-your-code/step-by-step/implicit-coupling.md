@@ -8,40 +8,31 @@ summary: "In previous steps, we only considered explicit coupling. We now move o
 ---
 
 The main ingredient needed for implicit coupling is move backwards in time. For that, we need a [flux capacitor](https://www.youtube.com/watch?v=VcZe8_RZO8c). Just kidding 😉. What we really need is that your solver can write and read iteration checkpoints. An iteration checkpoint should contain all the information necessary to reload a previous state of your solver. What exactly is needed depends solely on your solver. preCICE tells you when you need to write and read checkpoints. To this end, preCICE uses the following interface:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
+
+{{<api>}}
 
 ```cpp
 bool requiresWritingCheckpoint()
 bool requiresReadingCheckpoint()
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
+---
 
 ```python
 requires_writing_checkpoint()
 requires_reading_checkpoint()
 ```
 
-</div>
-</div>
+{{</api>}}
+
 These functions perform double duty:
 
 1. They inform the adapter that writing or reading a checkpoint is required by the solver.
 2. They let preCICE know that your adapter is capable of implicit coupling. preCICE will show an error if you configure implicit coupling without calling these functions.
 
 Let's extend our example code to also handle implicit coupling.
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
+
+{{<api>}}
 
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
@@ -55,8 +46,7 @@ double preciceDt; // maximum precice time step size
 double dt; // actual time step size
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
+---
 
 ```python
 turn_on_solver() # eg: setup and partition mesh
@@ -65,15 +55,11 @@ precice = precice.Participant("FluidSolver", "precice-config.xml", rank, size) #
 # [... ] define mesh 
 ```
 
-</div>
-</div>
+{{</api>}}
+
 <!-- Long code blocks need to be split. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272 -->
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
-</ul>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
+
+{{<api>}}
 
 ```cpp
 precice.initialize();
@@ -101,8 +87,7 @@ precice.finalize(); // frees data structures and closes communication channels
 turnOffSolver();
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
+---
 
 ```python
 precice.initialize()
@@ -129,8 +114,8 @@ precice.finalize()
 turn_off_solver()
 ```
 
-</div>
-</div>
+{{</api>}}
+
 The methods `saveOldState` and `reloadOldState` need to be provided by your solver. You wonder when writing and reading checkpoints is required? Well, that's no black magic. In the first coupling iteration of each time window, preCICE tells you to write a checkpoint. In every iteration in which the coupling does not converge, preCICE tells you to read a checkpoint. This gets a bit more complicated if your solver subcycles (we learned this in [Step 5](couple-your-code-time-step-sizes)), but preCICE still does the right thing. By the way, the actual convergence measure is computed in `advance` in case you wondered about that as well.
 
 {{< important >}}

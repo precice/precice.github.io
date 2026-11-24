@@ -10,12 +10,7 @@ summary: "In this step, you get to know the most important API functions of preC
 As a first preparation step, you need to include the preCICE library headers. In C++, you need to include the file [precice.hpp](https://github.com/precice/precice/blob/develop/src/precice/precice.hpp).
 The handle to the preCICE API is the class `precice::Participant`. Its constructor requires the participant's name, the preCICE configuration file's name and the `rank` and `size` of the current thread. Once the basic preCICE interface is set up, we can _steer_ the behaviour of preCICE. For that we need the following functions:
 
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-1">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-1">Python</a></li>
-</ul>
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
+{{<api>}}
 
 ```cpp
 Participant( String participantName, String configurationFileName, int rank, int size );
@@ -24,8 +19,7 @@ void advance ( double computedTimeStepSize );
 void finalize();
 ```
 
-  </div>
-  <div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
+---
 
 ```python
 participant = Participant(participant_name, configuration_file_name, rank, size)
@@ -34,8 +28,8 @@ participant.advance(computed_timestep_size)
 participant.finalize()
 ```
 
-  </div>
-</div>
+{{</api>}}
+
 What do they do?
 
 * `initialize` establishes communication channels and sets up data structures of preCICE.
@@ -43,34 +37,24 @@ What do they do?
 * `finalize` frees the preCICE data structures and closes communication channels.
 
 The following function allows us to query the maximum allowed time step size from preCICE:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-2">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-2">Python</a></li>
-</ul>
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
+
+{{<api>}}
 
 ```cpp
 double getMaxTimeStepSize();
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
+---
 
 ```python
 get_max_time_step_size()
 ```
 
-</div>
-</div>
+{{</api>}}
 
 But let's ignore the details of time step sizes for the moment. This will be the topic of [Step 5](couple-your-code-time-step-sizes.html). We can now extend the code of our fluid solver:
-<ul id="apiTabs" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-3">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-3">Python</a></li>
-</ul>
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="cpp-3" markdown="1">
+
+{{<api>}}
 
 ```cpp
 #include <precice/precice.hpp>
@@ -96,8 +80,7 @@ precice.finalize(); // frees data structures and closes communication channels
 turnOffSolver();
 ```
 
-</div>
-<div role="tabpanel" class="tab-pane" id="python-3" markdown="1">
+---
 
 ```python
 import precice
@@ -121,5 +104,4 @@ precice.finalize()  # frees data structures and closes communication channels
 turn_off_solver()
 ```
 
-</div>
-</div>
+{{</api>}}
