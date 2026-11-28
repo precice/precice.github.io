@@ -1,29 +1,46 @@
 {{- $id := .Ordinal -}}
+{{- $langs := hugo.Data.api.langs -}}
+
 {{- $parts := split (replaceRE `\n *---\n` "\n---\n" .Inner) "\n---\n" -}}
 
-{{- if ne (len $parts) 2 -}}
-  {{- errorf "%s: expected 2 code blocks separated by a --- line. Position: %s" .Name .Position -}}
+{{- /* Find the code block of each language. */ -}}
+{{- $blocks := dict -}}
+{{- range $lang := $langs -}}
+  {{- range $part := $parts -}}
+    {{- /* Remove indentation from block to prevent the parser thinking that it is a quote */ -}}
+    {{- $trimmed := $part | replaceRE `^(?:[ \t]*\n)+` "" | replaceRE `(?:\n[ \t]*)+$` "" -}}
+    {{- $indent := replaceRE `(?s)^([ \t]*).*$` "$1" $trimmed -}}
+    {{- $code := replaceRE (printf `(?m)^%s` $indent) "" $trimmed -}}
+
+    {{- range $alias := $lang.aliases -}}
+      {{- if hasPrefix $code (printf "```%s\n" $alias) -}}
+        {{- $blocks = merge $blocks (dict $lang.id $code) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
 
-{{- $cpp := index $parts 0 | strings.TrimSpace -}}
-{{- if not (or (hasPrefix $cpp "```cpp\n") (hasPrefix $cpp "```c++\n")) -}}
-  {{- errorf "%s: the first block must be a cpp code block. Position: %s" .Name .Position -}}
+{{- if not (isset $blocks "cpp") -}}
+  {{- errorf "%s: a C++ code block is necessary. Position: %s" .Name .Position -}}
 {{- end -}}
 
-{{- $python := index $parts 1 | strings.TrimSpace -}}
-{{- if not (or (hasPrefix $python "```python\n") (hasPrefix $python "```py\n")) -}}
-  {{- errorf "%s: the second block must be a python code block. Position: %s" .Name .Position -}}
-{{- end -}}
+{{- $first := (index $langs 0).id -}}
 
 <ul id="apiTabs-{{ $id }}" class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" href="#cpp-{{ $id }}">C++</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" href="#python-{{ $id }}">Python</a></li>
+{{- range $lang := $langs -}}
+  {{- if isset $blocks $lang.id }}
+    <li class="nav-item"><a class="nav-link{{ if eq $lang.id $first }} active{{ end }}" data-bs-toggle="tab" role="tab" href="#{{ $lang.id }}-{{ $id }}">{{ $lang.label }}</a></li>
+  {{- end -}}
+{{- end }}
 </ul>
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="cpp-{{ $id }}">
-{{ $cpp | markdownify }}
+{{- range $lang := $langs -}}
+  {{- if isset $blocks $lang.id }}
+<div role="tabpanel" class="tab-pane{{ if eq $lang.id $first }} active{{ end }}" id="{{ $lang.id }}-{{ $id }}">
+
+{{ index $blocks $lang.id | markdownify }}
+
 </div>
-<div role="tabpanel" class="tab-pane" id="python-{{ $id }}">
-{{ $python | markdownify }}
-</div>
+  {{- end -}}
+{{- end }}
 </div>
